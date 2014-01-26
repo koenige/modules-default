@@ -1,0 +1,18 @@
+# zzwrap
+# Template for HTTP error page
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/projects/zzwrap
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2011 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+#
+<div class="errorpage">
+<h1>%%% page h1 %%%</h1>
+<div id="text">
+<p>%%% page error_description %%%</p>
+%%% page error_explanation "<p>%s</p>" %%%
+</div>
+</div>
