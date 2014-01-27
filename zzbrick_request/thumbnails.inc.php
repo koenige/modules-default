@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/projects/zzform
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2014 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -29,7 +29,7 @@
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @todo support $zz['conditions']
  */
-function zz_thumbnails($params) {
+function mod_default_thumbnails($params) {
 	global $zz_conf;
 	global $zz_setting;
 	

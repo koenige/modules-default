@@ -27,7 +27,7 @@
  *		'text' => page content, 'title', 'breadcrumbs', ...
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  */
-function zz_maintenance($params) {
+function mod_default_maintenance($params) {
 	global $zz_conf;
 	global $zz_setting;
 
@@ -58,8 +58,10 @@ function zz_maintenance($params) {
 	if ($zz_conf['heading_prefix']) $heading_prefix = ' ';
 	$heading_prefix .= '<a href="./">'.zz_text('Maintenance').'</a>:';
 	
-	$page['query_strings'] = array('folder', 'log', 'integrity', 'filetree', 
-		'phpinfo', 'file', 'q', 'deleteall', 'filter', 'limit', 'scope');
+	$page['query_strings'] = array(
+		'folder', 'log', 'integrity', 'filetree', 'phpinfo', 'file', 'q',
+		'deleteall', 'filter', 'limit', 'scope'
+	);
 	$page['text'] = '<div id="zzform" class="maintenance">'."\n";
 	
 	$sql = '';
