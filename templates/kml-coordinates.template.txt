@@ -35,7 +35,7 @@
 		<description><![CDATA[
 		<div class="kmldesc">
 		%%% condition if filename %%%
-		<img src="%%% item host %%%/files/%%% item filename %%%">
+		<img src="%%% item host %%%/files/%%% item filename %%%?v=%%% item version %%%">
 		%%% condition endif %%%
 		%%% item description %%%
 		%%% condition if place %%%
