@@ -76,7 +76,7 @@ function mod_default_maintenance($params) {
 		case 'INSERT':
 		case 'UPDATE':
 		case 'DELETE':
-			$result = wrap_db_query($sql);
+			$result = zz_db_change($sql);
 			$page['text'] .= '<h2>'.zz_text('Result').'</h2>'."\n";
 			if (!$result['action']) {
 				$page['text'] .= '<div class="error">'
