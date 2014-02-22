@@ -1,12 +1,12 @@
 <?php 
 
 /**
- * zzform
+ * default module
  * Database table for list of URIs
  * DB-Tabelle für Liste von URIs
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/projects/zzform
+ * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2012-2013 Gustaf Mossakowski

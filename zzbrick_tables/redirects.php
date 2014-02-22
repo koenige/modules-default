@@ -1,12 +1,12 @@
 <?php 
 
 /**
- * zzform
+ * default module
  * Database table for redirects of URLs
  * DB-Tabelle zur Eingabe von Umleitungen von URLs
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/projects/zzform
+ * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2006-2012 Gustaf Mossakowski

@@ -1,8 +1,8 @@
-# zzwrap
+# default module
 # Template for KML export of coordinates
 #
 # Part of »Zugzwang Project«
-# http://www.zugzwang.org/projects/zzwrap
+# http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
 # @copyright Copyright © 2011 Gustaf Mossakowski

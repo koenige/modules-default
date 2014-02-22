@@ -1,12 +1,12 @@
 <?php 
 
 /**
- * zzform
+ * default module
  * Logging of the database operations via zzform, function zzlog()
  * Protokoll der Datenbankeingaben mittels zzform, Funktion zz_log
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/projects/zzform
+ * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2007-2010 Gustaf Mossakowski

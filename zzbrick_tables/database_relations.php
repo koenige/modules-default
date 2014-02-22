@@ -1,12 +1,12 @@
 <?php 
 
 /**
- * zzform
+ * default module
  * Database table to set relations for upholding referential integrity
  * DB-Tabelle zur Eingabe von Beziehungen fuer die referentielle Integritaet
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/projects/zzform
+ * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2005-2010 Gustaf Mossakowski

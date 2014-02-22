@@ -1,11 +1,11 @@
 <?php 
 
 /**
- * zzform
+ * default module
  * Maintenance script for database operations with zzform
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/projects/zzform
+ * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2010, 2013-2014 Gustaf Mossakowski

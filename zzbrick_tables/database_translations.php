@@ -1,12 +1,12 @@
 <?php 
 
 /**
- * zzform
+ * default module
  * Database table to set translation fields
  * DB-Tabelle zur Eingabe von Feldern, die übersetzt werden sollen
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/projects/zzform
+ * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2005-2010 Gustaf Mossakowski

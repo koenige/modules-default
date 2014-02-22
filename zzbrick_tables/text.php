@@ -1,12 +1,12 @@
 <?php 
 
 /**
- * zzform
+ * default module
  * Database table for translations of text blocks
  * DB-Tabelle zur Eingabe von Uebersetzungen von Textbloecken
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/projects/zzform
+ * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2009-2010, 2013 Gustaf Mossakowski
