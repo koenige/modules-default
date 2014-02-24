@@ -92,7 +92,7 @@ function mod_default_thumbnails($params) {
 			if (!isset($file['source'])) continue;
 
 			// check if destination file exists
-			$dest = zz_makelink($file['path'], $line);
+			$dest = zz_makelink($file['path'], $line, 'path');
 			// don't write a new file if old one already exists
 			if ($dest AND $mode == 'existing') continue;
 
@@ -146,14 +146,13 @@ function zz_thumbnails_makelink($source_path, $line, $mode = false) {
 	if (!empty($source_path['root'])) {
 		$root = $source_path['root'];
 		// don't check against root if file does not exist
-		if ($mode == 'inexistent')
+		if ($mode === 'inexistent')
 			unset($source_path['root']);
 	}
-	$source = zz_makelink($source_path, $line);
+	$source = zz_makelink($source_path, $line, 'path');
 	if (!$source) return false;
-	if (!empty($source_path['webroot']))
-		$source = substr($source, strlen($source_path['webroot']));
-	$source = $root.$source;
+	if ($mode === 'inexistent')
+		$source = $root.$source;
 	return $source;
 }
 
