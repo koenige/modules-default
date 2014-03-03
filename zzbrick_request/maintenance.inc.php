@@ -299,8 +299,9 @@ function zz_maintenance_integrity() {
 		$ids = wrap_db_fetch($sql, '_dummy_', 'key/value', false, E_USER_NOTICE);
 		$detail_field = $relation['detail_db'].' . '.$relation['detail_table'].' . '.$relation['detail_field'];
 		if ($ids) {
-			$line = '<li class="error">'.wrap_text('Error').' &#8211; <code>'
-				.$detail_field.'</code> contains invalid values: ('
+			$results[] = '<li class="error">'.wrap_text('Error').' &#8211; '
+				.sprintf(wrap_text('Field %s contains invalid values:'),
+				'<code>'.$detail_field.'</code>').' ('
 				.$relation['detail_id_field'].' => '.$relation['detail_field'].')<br>';
 			foreach ($ids as $id => $foreign_id) {
 				$line .= $id.' => '.$foreign_id.'; ';
@@ -308,8 +309,9 @@ function zz_maintenance_integrity() {
 			$line .= '</li>';
 			$results[] = $line;
 		} else {
-			$results[] = '<li class="ok">'.wrap_text('OK').' &#8211; Field <code>'
-				.$detail_field.'</code> contains only valid values</li>';
+			$results[] = '<li class="ok">'.wrap_text('OK').' &#8211; '
+				.sprintf(wrap_text('Field %s contains only valid values.'),
+				'<code>'.$detail_field.'</code>').'</li>';
 		}
 	}
 	if ($results) {
@@ -1132,8 +1134,8 @@ function zz_maintenance_logs() {
 		$text .= '<p style="float: right;"><a href="'.zz_html_escape($_SERVER['REQUEST_URI'])
 			.'&amp;deleteall">'.wrap_text('Delete all lines').'</a></p>'
 			.'<p><input type="submit" value="'.wrap_text('Delete selected lines').'">'
-			.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.wrap_text('Select all').'</a> |
-			<a onclick="zz_set_checkboxes(false); return false;" href="#">'.wrap_text('Deselect all').'</a></p>';
+			.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.zz_text('Select all').'</a> |
+			<a onclick="zz_set_checkboxes(false); return false;" href="#">'.zz_text('Deselect all').'</a></p>';
 	}
 	$text .= '</form>';
 

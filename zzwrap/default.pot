@@ -98,6 +98,18 @@ msgid "Relational Integrity"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Field %s contains only valid values."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Field %s contains invalid values:"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Nothing to check."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Filetree"
 msgstr ""
 
