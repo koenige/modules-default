@@ -1,11 +1,11 @@
 # default modules
 # Translations
 #
-# Part of »Zugzwang Project«
+# Part of Â»Zugzwang ProjectÂ«
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014 Gustaf Mossakowski
+# @copyright Copyright Â© 2008-2009, 2014 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -17,7 +17,7 @@ msgstr ""
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=us-ascii\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 "X-Generator: Poedit 1.6.4\n"

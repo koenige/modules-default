@@ -1,11 +1,11 @@
 # default modules
 # Translations
 #
-# Part of �Zugzwang Project�
+# Part of »Zugzwang Project«
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright � 2008-2009, 2014 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -17,7 +17,7 @@ msgstr ""
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=us-ascii\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "X-Generator: Poedit 1.6.4\n"
@@ -47,16 +47,16 @@ msgid ""
 "To access the internal area, a registration is required. Please enter below "
 "your username and password."
 msgstr ""
-"F&uuml;r den Zugang zum internen Bereich ist eine Anmeldung erforderlich. "
-"Bitte geben Sie unten den von uns erhaltenen Benutzernamen mit Pa&szlig;wort "
-"ein."
+"Für den Zugang zum internen Bereich ist eine Anmeldung erforderlich. Bitte "
+"geben Sie unten den von uns erhaltenen Benutzernamen mit Paßwort ein."
 
 #: modules/default/templates/login.template.txt
 msgid ""
 "Please allow cookies after sending your login credentials. For security "
 "reasons, after %d minutes of inactivity you will be logged out automatically."
 msgstr ""
-"Damit der Login funktioniert, m&uuml;ssen Sie nach &Uuml;bermittlung der "
-"Anmeldedaten einen Cookie akzeptieren. Nach %d Minuten Inaktivit&auml;t "
-"werden Sie aus Sicherheitsgr&uuml;nden automatisch wieder abgemeldet!"
+"Damit der Login funktioniert, müssen Sie nach Übermittlung der "
+"Anmeldedaten einen Cookie akzeptieren. Nach %d Minuten Inaktivität "
+"werden Sie aus Sicherheitsgründen automatisch wieder abgemeldet!"
+
 
