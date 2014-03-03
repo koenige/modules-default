@@ -254,6 +254,10 @@ msgid "Delete all lines"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Delete all files"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Delete selected files"
 msgstr ""
 

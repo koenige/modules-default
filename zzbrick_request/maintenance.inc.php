@@ -602,7 +602,7 @@ function zz_maintenance_folders() {
 			// show submit button only if files are there
 			$text .= '<tbody>'.$tbody.'</tbody></table>'."\n"
 				.'<p style="float: right;"><a href="'.zz_html_escape($_SERVER['REQUEST_URI'])
-				.'&amp;deleteall">Delete all files</a></p>
+				.'&amp;deleteall">'wrap_text('Delete all files').'</a></p>
 				<p><input type="submit" value="'.wrap_text('Delete selected files').'">'
 				.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.zz_text('Select all').'</a> |
 				<a onclick="zz_set_checkboxes(false); return false;" href="#">'.zz_text('Deselect all').'</a>
