@@ -246,6 +246,10 @@ msgid "Folder is empty"
 msgstr "Ordner ist leer"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Delete all lines"
+msgstr "Lösche alle Einträge"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Delete selected files"
 msgstr "Lösche ausgewählte Dateien"
 
@@ -350,6 +354,10 @@ msgid "Level"
 msgstr "Ebene"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Message"
+msgstr "Meldung"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "User"
 msgstr "Benutzer"
 
@@ -381,4 +389,10 @@ msgstr "%s Einträge gelöscht"
 msgid "Please choose one of the filters."
 msgstr "Bitte wählen Sie aus den Filtern aus."
 
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Group"
+msgstr "Gruppierung"
 
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Group entries"
+msgstr "Einträge gruppieren"
