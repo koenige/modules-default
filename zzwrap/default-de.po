@@ -10,16 +10,16 @@
 #
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Zugzwang Project -- zzwrap\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.6.4\n"
 
 #: modules/default/templates/login.template.txt
@@ -39,6 +39,10 @@ msgid "Login"
 msgstr "Login"
 
 #: modules/default/templates/login.template.txt
+msgid "Username:"
+msgstr "Benutzer:"
+
+#: modules/default/templates/login.template.txt
 msgid "Password:"
 msgstr "Passwort:"
 
@@ -55,9 +59,9 @@ msgid ""
 "Please allow cookies after sending your login credentials. For security "
 "reasons, after %d minutes of inactivity you will be logged out automatically."
 msgstr ""
-"Damit der Login funktioniert, müssen Sie nach Übermittlung der "
-"Anmeldedaten einen Cookie akzeptieren. Nach %d Minuten Inaktivität "
-"werden Sie aus Sicherheitsgründen automatisch wieder abgemeldet!"
+"Damit der Login funktioniert, müssen Sie nach Übermittlung der Anmeldedaten "
+"einen Cookie akzeptieren. Nach %d Minuten Inaktivität werden Sie aus "
+"Sicherheitsgründen automatisch wieder abgemeldet!"
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
@@ -90,6 +94,18 @@ msgstr "Wert"
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Show PHP info on server"
 msgstr "Zeige Informationen zu PHP auf dem Server"
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Check relational integrity"
+msgstr "Prüfe relationale Integrität"
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Relational Integrity"
+msgstr "Relationale Integrität"
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Filetree"
+msgstr "Dateibaum"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "SQL query"
@@ -161,7 +177,9 @@ msgstr "Datenbank wechseln"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "(Database is not on server, you have to select a new database.)"
-msgstr "(Datenbank ist nicht auf dem Server, daher müssen Sie eine neue Datenbank auswählen)"
+msgstr ""
+"(Datenbank ist nicht auf dem Server, daher müssen Sie eine neue Datenbank "
+"auswählen)"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Translation"
@@ -188,16 +206,12 @@ msgid "Backup of uploaded files is not active."
 msgstr "Backup von hochgeladenen Dateien ist nicht aktiv."
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
-msgid "Current TEMP dir is:"
-msgstr "Aktuelles temporäres Verzeichnis:"
+msgid "Current %s dir is: %s"
+msgstr "Aktuelles %s-Verzeichnis: %s"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
-msgid "Current TEMP dir does not exist:"
-msgstr "Aktuelles temporäres Verzeichnis existiert nicht:"
-
-#: modules/default/zzbrick_request/maintenance.inc.php#files
-msgid "Current backup dir is:"
-msgstr "Aktuelles Backup-Verzeichnis:"
+msgid "– but this directory does not exist."
+msgstr "– aber dieses Verzeichnis existiert nicht."
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Filename"
@@ -248,7 +262,7 @@ msgid "Errors will be sent via mail"
 msgstr "Fehler werden per Mail versendet"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
-msgid "Errors won\'t be shown"
+msgid "Errors won't be shown"
 msgstr "Fehler werden nicht angezeigt"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
@@ -298,6 +312,10 @@ msgstr "POST-Variablen werden aufgezeichnet"
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "POST variables will not be logged"
 msgstr "POST-Variablen werden nicht aufgezeichnet"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "disabled"
+msgstr "deaktiviert"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Error Logging"

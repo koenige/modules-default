@@ -19,7 +19,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Generator: Poedit 1.6.4\n"
 
 #: modules/default/templates/login.template.txt
@@ -58,7 +57,6 @@ msgid ""
 "reasons, after %d minutes of inactivity you will be logged out automatically."
 msgstr ""
 
-
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
 msgstr ""
@@ -89,6 +87,18 @@ msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Show PHP info on server"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Check relational integrity"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Relational Integrity"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Filetree"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
@@ -188,15 +198,11 @@ msgid "Backup of uploaded files is not active."
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
-msgid "Current TEMP dir is:"
+msgid "Current %s dir is: %s"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
-msgid "Current TEMP dir does not exist:"
-msgstr ""
-
-#: modules/default/zzbrick_request/maintenance.inc.php#files
-msgid "Current backup dir is:"
+msgid "– but this directory does not exist."
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
@@ -248,7 +254,7 @@ msgid "Errors will be sent via mail"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
-msgid "Errors won\'t be shown"
+msgid "Errors won't be shown"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
@@ -297,6 +303,10 @@ msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "POST variables will not be logged"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "disabled"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles

@@ -4,11 +4,11 @@
  * default module
  * Maintenance script for database operations with zzform
  *
- * Part of »Zugzwang Project«
+ * Part of Â»Zugzwang ProjectÂ«
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2014 Gustaf Mossakowski
+ * @copyright Copyright Â© 2010, 2013-2014 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -130,7 +130,7 @@ function mod_default_maintenance($params) {
 			.str_replace('%%%', '%&shy;%&shy;%', zz_html_escape($sql))
 			.'</textarea>
 			<br><input type="submit"></form>'."\n";
-	// 	- SQL query absetzen, Häkchen für zz_log_sql()
+	// 	- SQL query absetzen, HÃ¤kchen fÃ¼r zz_log_sql()
 	} else {
 		if (!empty($_GET['folder'])) {
 			$heading = 'Backup folder';
@@ -464,7 +464,8 @@ function zz_maintenance_folders() {
 	foreach ($dirs as $key => $dir) {
 		$exists = file_exists($dir) ? true : false;
 		$text .= '<li>'.sprintf(wrap_text('Current %s dir is: %s'), $key, realpath($dir))
-			.(!$exists AND $dir ? ' &#8211; <span class="error">but this directory does not exist</span>' : '')
+			.(!$exists AND $dir ? '<span class="error"> '
+			.wrap_text('â€“ but this directory does not exist.').'</span>' : '')
 			.'</li>'."\n";
 		if (!$exists) continue;
 		$folders[] = $key;
