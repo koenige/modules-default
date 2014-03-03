@@ -412,3 +412,155 @@ msgstr "Gruppierung"
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Group entries"
 msgstr "Einträge gruppieren"
+
+#: modules/default/zzbrick_request/thumbnails.inc.php
+msgid "Thumbnail creation"
+msgstr "Erstellen von Vorschaubildern"
+
+#: modules/default/zzbrick_request/thumbnails.inc.php
+msgid "Here, you can create either missing thumbnails, if they were not created on upload. Or you can create completely new thumbnails if you changed the pixel size."
+msgstr "Hier können Sie entweder fehlende Vorschaubilder erstellen, falls diese nicht beim Hochladen erstellt wurden. Oder Sie können komplett neue Vorschaubilder erstellen, z. B. falls Sie die Bildgröße geändert haben."
+
+#: modules/default/zzbrick_request/thumbnails.inc.php
+msgid "Sorry, but the table script %s could not be found."
+msgstr "Entschuldigung, aber das Tabellenskript %s konnte nicht gefunden werden."
+
+#: modules/default/zzbrick_request/thumbnails.inc.php
+msgid "The original file does not exist."
+msgstr "Die Originaldatei existiert nicht."
+
+#: modules/default/zzbrick_request/thumbnails.inc.php
+msgid "The function %s does not exist."
+msgstr "Die Funktion %s existiert nicht."
+
+#: modules/default/zzbrick_request/thumbnails.inc.php
+msgid "Thumbnail for %s x %s x px was created."
+msgstr "Ja! Ein Vorschaubild für %sx%s px wurde erstellt."
+
+#: modules/default/zzbrick_request/thumbnails.inc.php
+msgid "Thumbnail for %s x %s x px could not be created."
+msgstr "Nein. Ein Vorschaubild für %sx%s px konnte nicht erstellt werden."
+
+#: modules/default/zzbrick_request/thumbnails.inc.php
+msgid "No missing thumbnails were found."
+msgstr "Es wurden keine fehlenden Vorschaubilder gefunden"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Database Table Relations"
+msgstr "Tabellenbeziehungen der Datenbank"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Master Table"
+msgstr "Haupttabelle"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Detail Table"
+msgstr "Detailtabelle"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Foreign Key"
+msgstr "Fremdschlüssel"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Database of Master Table"
+msgstr "Datenbank der Haupttabelle"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Name of Master Table"
+msgstr "Name der Haupttabelle"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Primary Key of Master Table"
+msgstr "Primärschlüssel der Haupttabelle"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Database of Detail Table"
+msgstr "Datenbank der Detailtabelle"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Name of Detail Table"
+msgstr "Name der Detailtabelle"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Primary Key of Detail Table"
+msgstr "Primärschlüssel der Detailtabelle"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "Foreign Key of Detail Table"
+msgstr "Fremdschlüssel der Detailtabelle"
+
+#: modules/default/zzbrick_tables/database_relations.inc.php
+msgid "If main record will be deleted, what should happen with detail record?"
+msgstr ""
+
+#: modules/default/zzbrick_tables/database_logging.inc.php
+msgid "Query"
+msgstr "Abfrage"
+
+#: modules/default/zzbrick_tables/database_logging.inc.php
+msgid "Record"
+msgstr "Eintrag"
+
+#: modules/default/zzbrick_tables/database_logging.inc.php
+msgid "Last update"
+msgstr "Stand"
+
+#: modules/default/zzbrick_tables/database_translations.inc.php
+msgid "Translations"
+msgstr "Übersetzungen"
+
+#: modules/default/zzbrick_tables/database_translations.inc.php
+msgid "Database"
+msgstr "Datenbank"
+
+#: modules/default/zzbrick_tables/database_translations.inc.php
+msgid "Table"
+msgstr "Tabelle"
+
+#: modules/default/zzbrick_tables/database_translations.inc.php
+msgid "Field"
+msgstr "Feld"
+
+#: modules/default/zzbrick_tables/database_translations.inc.php
+msgid "Data type"
+msgstr "Datentyp"
+
+#: modules/default/zzbrick_tables/database_translations.inc.php
+msgid "Data Type"
+msgstr "Datentyp"
+
+#. Here, a boilerplate text for redirects is needed
+#: modules/default/zzbrick_tables/redirects.inc.php
+msgid "Information about redirects"
+msgstr ""
+"<p>Hier können Webseiten auf andere Webseiten umgeleitet werden. "
+"Dabei gibt es mehrere Möglichkeiten:</p>"
+""
+"<ul>"
+"<li>Vorübergehende Umleitung, z. B. einer kurzen Adresse auf eine lange, permanent existierende Adresse,"
+"wie example.com/aktuell auf example.com/nachrichten/2010/04 mittels <code>307</code>-Code für temporäre Umleitungen</li>"
+"<li>Dauerhafte Umleitung von einer alten Adresse auf eine neue Adresse mittels <code>301</code>-Code für permanente"
+"Umleitungen</li>"
+"<li>Umleitung von mehreren alten Adressen auf eine neue Adresse, hier muß die alten Adresse auf <code>*</code> enden."
+"Achtung: es darf kein <code>/</code> vor dem Sternchen stehen.</li>"
+"</ul>"
+
+#: modules/default/zzbrick_tables/redirects.inc.php
+msgid "Old URL"
+msgstr "Alte URL"
+
+#: modules/default/zzbrick_tables/redirects.inc.php
+msgid "New URL"
+msgstr "Neue URL"
+
+#: modules/default/zzbrick_tables/redirects.inc.php
+msgid "Code"
+msgstr "Code"
+
+#: modules/default/zzbrick_tables/redirects.inc.php
+msgid "Area"
+msgstr "Bereich"
+
+#: modules/default/zzbrick_tables/redirects.inc.php
+msgid "Redirects"
+msgstr "Umleitungen"

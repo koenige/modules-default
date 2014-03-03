@@ -20,6 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.4\n"
+"Language: en\n"
 
 #: modules/default/templates/login.template.txt
 msgid "You have been logged out."
@@ -410,7 +411,10 @@ msgid "Thumbnail creation"
 msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
-msgid "Here, you can create either missing thumbnails, if they were not created on upload. Or you can create completely new thumbnails if you changed the pixel size."
+msgid ""
+"Here, you can create either missing thumbnails, if they were not created on "
+"upload. Or you can create completely new thumbnails if you changed the pixel "
+"size."
 msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
@@ -495,7 +499,7 @@ msgstr ""
 
 #: modules/default/zzbrick_tables/database_logging.inc.php
 msgid "Last update"
-msgstr ""
+msgstr "Updated"
 
 #: modules/default/zzbrick_tables/database_translations.inc.php
 msgid "Translations"
@@ -525,6 +529,14 @@ msgstr ""
 #: modules/default/zzbrick_tables/redirects.inc.php
 msgid "Information about redirects"
 msgstr ""
+"<p>You can redirect URLs to different addresses. You have several "
+"possibilities:</p><ul><li>Temporary redirect, e. g. from a shortcut to a "
+"permanent address like fromexample.com/current_news to example.com/"
+"news/2010/04 with a code <code>307</code></li><li>Permanent redirect from an "
+"old address to a new address with code <code>301</code></li><li>Redirect "
+"from several old addresses to a new address, here, the old address must end "
+"with the asterisk (<code>*</code>). There must not be a <code>/</code> "
+"before the asterisk.</li></ul>"
 
 #: modules/default/zzbrick_tables/redirects.inc.php
 msgid "Old URL"
