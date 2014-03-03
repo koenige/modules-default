@@ -264,7 +264,7 @@ function zz_maintenance_tables() {
 	$text .= '</form>';
 
 	if (!empty($zz_conf['relations_table'])) {
-		$text .= '<p><a href="?integrity">Check relational integrity</a></p>';
+		$text .= '<p><a href="?integrity">'.wrap_text('Check relational integrity').'</a></p>';
 	}
 
 	return $text;
