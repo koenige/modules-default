@@ -56,7 +56,7 @@ function mod_default_maintenance($params) {
 	zz_initialize();
 	$heading_prefix = '';
 	if ($zz_conf['heading_prefix']) $heading_prefix = ' ';
-	$heading_prefix .= '<a href="./">'.zz_text('Maintenance').'</a>:';
+	$heading_prefix .= '<a href="./">'.wrap_text('Maintenance').'</a>:';
 	
 	$page['query_strings'] = array(
 		'folder', 'log', 'integrity', 'filetree', 'phpinfo', 'file', 'q',
@@ -77,41 +77,41 @@ function mod_default_maintenance($params) {
 		case 'UPDATE':
 		case 'DELETE':
 			$result = zz_db_change($sql);
-			$page['text'] .= '<h2>'.zz_text('Result').'</h2>'."\n";
+			$page['text'] .= '<h2>'.wrap_text('Result').'</h2>'."\n";
 			if (!$result['action']) {
 				$page['text'] .= '<div class="error">'
 					.'Database says: '.$result['error']['db_msg'].' [Code '
 					.$result['error']['db_errno'].']'
 					.'</div>'."\n";
 			} elseif ($result['action'] == 'nothing') {
-				$page['text'] .= '<p>'.zz_text('No changes were done to database.').'</p>'."\n";
+				$page['text'] .= '<p>'.wrap_text('No changes were done to database.').'</p>'."\n";
 			} else {
-				$page['text'] .= '<p>'.sprintf(zz_text('%s was successful'), zz_text(ucfirst($result['action'])))
-					.': '.sprintf(zz_text('%s row(s) affected'), $result['rows'])
+				$page['text'] .= '<p>'.sprintf(wrap_text('%s was successful'), wrap_text(ucfirst($result['action'])))
+					.': '.sprintf(wrap_text('%s row(s) affected'), $result['rows'])
 					.($result['id_value'] ? ' (ID: '.$result['id_value'].')' : '').'</p>'."\n";
 			}
 			break;
 		case 'SELECT':
 		default:
-			$page['text'] .= sprintf(zz_text('Sorry, %s is not yet supported'), zz_htmltag_escape($tokens[0]));
+			$page['text'] .= sprintf(wrap_text('Sorry, %s is not yet supported'), zz_htmltag_escape($tokens[0]));
 		}
 	}
 
 	if (empty($_GET)) {	
 		if (!$sql) {
-			$heading = zz_text('Maintenance');
+			$heading = wrap_text('Maintenance');
 			$heading_prefix = '';
 
 			// 'relations'
 			// 'translations'
-			$page['text'] .= '<h2>'.zz_text('Relation and Translation Tables').'</h2>'."\n";
+			$page['text'] .= '<h2>'.wrap_text('Relation and Translation Tables').'</h2>'."\n";
 			$page['text'] .= zz_maintenance_tables();
 	
-			$page['text'] .= '<h2>'.zz_text('Error Logging').'</h2>'."\n";
+			$page['text'] .= '<h2>'.wrap_text('Error Logging').'</h2>'."\n";
 			$page['text'] .= zz_maintenance_errors();
 		
-			$page['text'] .= '<h2>'.zz_text('PHP & Server').'</h2>'."\n";
-			$page['text'] .= '<p><a href="?phpinfo">'.zz_text('Show PHP info on server').'</a></p>';
+			$page['text'] .= '<h2>'.wrap_text('PHP & Server').'</h2>'."\n";
+			$page['text'] .= '<p><a href="?phpinfo">'.wrap_text('Show PHP info on server').'</a></p>';
 			if ($zz_conf['graphics_library'] === 'imagemagick') {
 				require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
 				$page['text'] .= '<p>ImageMagick:</p><blockquote><pre>'.zz_imagick_version().'</pre></blockquote>';
@@ -119,13 +119,13 @@ function mod_default_maintenance($params) {
 			}
 
 		// 	- Backup/errors, insert, update, delete
-			$page['text'] .= '<h2>'.zz_text('Temp and Backup Files').'</h2>'."\n";
+			$page['text'] .= '<h2>'.wrap_text('Temp and Backup Files').'</h2>'."\n";
 			$page['text'] .= zz_maintenance_folders();
 
-			$page['text'] .= '<h2><a href="?filetree">'.zz_text('Filetree').'</a></h2>'."\n";
+			$page['text'] .= '<h2><a href="?filetree">'.wrap_text('Filetree').'</a></h2>'."\n";
 		}
 	
-		$page['text'] .= '<h2>'.zz_text('Custom SQL query').'</h2>'."\n";
+		$page['text'] .= '<h2>'.wrap_text('Custom SQL query').'</h2>'."\n";
 		$page['text'] .= '<form method="POST" action=""><textarea cols="60" rows="10" name="sql">'
 			.str_replace('%%%', '%&shy;%&shy;%', zz_html_escape($sql))
 			.'</textarea>
@@ -149,7 +149,7 @@ function mod_default_maintenance($params) {
 			exit;
 		} else {
 			$heading = 'Error';
-			$page['text'] .= zz_text('GET should be empty, please test that:').' <pre>';
+			$page['text'] .= wrap_text('GET should be empty, please test that:').' <pre>';
 			foreach ($_GET as $key => $value) {
 				$page['text'] .= $key.' => '.$value."\n";
 			}
@@ -173,10 +173,10 @@ function zz_maintenance_tables() {
 	$text = false;
 
 	if (empty($zz_conf['relations_table'])) {
-		$text .= '<p>'.zz_text('No table for database relations is defined')
+		$text .= '<p>'.wrap_text('No table for database relations is defined')
 			.' (<code>$zz_conf["relations_table"]</code>)</p>';
 	} elseif (empty($zz_conf['translations_table'])) {
-		$text .= '<p>'.zz_text('No table for database translations is defined')
+		$text .= '<p>'.wrap_text('No table for database translations is defined')
 			.' (<code>$zz_conf["translations_table"]</code>)</p>';
 	}
 	
@@ -232,26 +232,26 @@ function zz_maintenance_tables() {
 
 	$text .= '<form action="" method="POST">';
 	$text .= '<table class="data"><thead><tr>
-		<th>'.zz_text('Type').'</th>
-		<th>'.zz_text('Current database').'</th>
-		<th>'.zz_text('New database').'</th>
-		<th class="editbutton">'.zz_text('Action').'</th>
+		<th>'.wrap_text('Type').'</th>
+		<th>'.wrap_text('Current database').'</th>
+		<th>'.wrap_text('New database').'</th>
+		<th class="editbutton">'.wrap_text('Action').'</th>
 		</thead><tbody>'."\n";
 	$i = 0;
 	foreach ($dbs as $category => $db_names) {
 		foreach ($db_names as $db) {
 			if (in_array($db, $databases)) {
 				$keep = '<input type="radio" checked="checked" name="db_set['
-					.$category.']['.$db.']" value="keep"> '.zz_text('Keep database')
+					.$category.']['.$db.']" value="keep"> '.wrap_text('Keep database')
 					.' / '.'<input type="radio" name="db_set['.$category.']['
-					.$db.']" value="change"> '.zz_text('Change database');
+					.$db.']" value="change"> '.wrap_text('Change database');
 			} else {
-				$keep = zz_text('(Database is not on server, you have to select a new database.)')
+				$keep = wrap_text('(Database is not on server, you have to select a new database.)')
 					.'<input type="hidden" name="db_set['.$category.']['
 					.$db.']" value="change">';
 			}
 			$text .= '<tr class="'.($i & 1 ? 'uneven' : 'even').'">'
-				.'<td>'.zz_text(ucfirst($category)).'</td>'
+				.'<td>'.wrap_text(ucfirst($category)).'</td>'
 				.'<td>'.$db.'</td>'
 				.'<td><select name="db_value['.$category.']['.$db.']">'.$db_select.'</select></td>'
 				.'<td>'.$keep.'</td>'
@@ -379,9 +379,9 @@ function zz_maintenance_files($dir, $base) {
 	}
 
 	$text = '<table class="data"><thead><tr>
-		<th>'.zz_text('Filename').'</th>
-		<th>'.zz_text('Filesize').'</th>
-		<th>'.zz_text('Files').'</th>
+		<th>'.wrap_text('Filename').'</th>
+		<th>'.wrap_text('Filesize').'</th>
+		<th>'.wrap_text('Files').'</th>
 		</thead>
 		<tfoot><tr><td></td><td class="number">'.number_format($total).' Bytes</td>
 		<td class="number">'.number_format($totalfiles).'</td></tr></tfoot>
@@ -450,7 +450,7 @@ function zz_maintenance_folders() {
 	if (!isset($zz_conf['backup'])) $zz_conf['backup'] = '';
 	if ((!$zz_conf['backup'] OR empty($zz_conf['backup_dir']))
 		AND empty($zz_conf['tmp_dir']) AND empty($zz_setting['cache'])) {
-		$text .= '<p>'.zz_text('Backup of uploaded files is not active.').'</p>'."\n";
+		$text .= '<p>'.wrap_text('Backup of uploaded files is not active.').'</p>'."\n";
 		return $text;
 	}
 
@@ -463,7 +463,7 @@ function zz_maintenance_folders() {
 	$text .= '<ul>';
 	foreach ($dirs as $key => $dir) {
 		$exists = file_exists($dir) ? true : false;
-		$text .= '<li>'.sprintf(zz_text('Current %s dir is: %s'), $key, realpath($dir))
+		$text .= '<li>'.sprintf(wrap_text('Current %s dir is: %s'), $key, realpath($dir))
 			.(!$exists AND $dir ? ' &#8211; <span class="error">but this directory does not exist</span>' : '')
 			.'</li>'."\n";
 		if (!$exists) continue;
@@ -535,10 +535,10 @@ function zz_maintenance_folders() {
 		$text .= '<form action="" method="POST">';
 		$text .= '<table class="data"><thead><tr>
 			<th>[]</th>
-			<th>'.zz_text('Filename').'</th>
-			<th>'.zz_text('Filetype').'</th>
-			<th>'.zz_text('Size').'</th>
-			<th>'.zz_text('Timestamp').'</th>
+			<th>'.wrap_text('Filename').'</th>
+			<th>'.wrap_text('Filetype').'</th>
+			<th>'.wrap_text('Size').'</th>
+			<th>'.wrap_text('Timestamp').'</th>
 			</thead>'."\n";
 		$i = 0;
 		$size_total = 0;
@@ -555,14 +555,14 @@ function zz_maintenance_folders() {
 			$size = filesize($my_folder.'/'.$file);
 			$size_total += $size;
 			if (is_dir($my_folder.'/'.$file)) {
-				$ext = zz_text('Folder');
+				$ext = wrap_text('Folder');
 			} elseif (strrpos($file, '.') > strlen($file) - 10) {
 				// treat part behind last dot as file extension
 				// normally, file extensions won't be longer than 10 characters
 				// not 100% correct of course
 				$ext = substr($file, strrpos($file, '.')+1);
 			} else {
-				$ext = zz_text('unknown');
+				$ext = wrap_text('unknown');
 			}
 			$time = date('Y-m-d H:i:s', filemtime($my_folder.'/'.$file));
 			$files_in_dir = 0;
@@ -590,19 +590,19 @@ function zz_maintenance_folders() {
 			if ($i == $zz_conf['int']['this_limit']) break;
 		}
 		closedir($folder_handle);
-		$text .= '<tfoot><tr><td></td><td>'.zz_text('All Files').'</td><td>'
+		$text .= '<tfoot><tr><td></td><td>'.wrap_text('All Files').'</td><td>'
 			.$total_rows.'</td><td>'.number_format($size_total).' Bytes</td><td></td></tr></tfoot>';
 		if (!$tbody) {
 			$text .= '<tbody><tr class="even"><td>&nbsp;</td><td colspan="4">&#8211; '
-				.zz_text('Folder is empty').' &#8211;</td></tr></tbody></table>'."\n";
+				.wrap_text('Folder is empty').' &#8211;</td></tr></tbody></table>'."\n";
 		} else {
 			// show submit button only if files are there
 			$text .= '<tbody>'.$tbody.'</tbody></table>'."\n"
 				.'<p style="float: right;"><a href="'.zz_html_escape($_SERVER['REQUEST_URI'])
 				.'&amp;deleteall">Delete all files</a></p>
-				<p><input type="submit" value="'.zz_text('Delete selected files').'">'
-				.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.zz_text('Select all').'</a> |
-				<a onclick="zz_set_checkboxes(false); return false;" href="#">'.zz_text('Deselect all').'</a>
+				<p><input type="submit" value="'.wrap_text('Delete selected files').'">'
+				.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.wrap_text('Select all').'</a> |
+				<a onclick="zz_set_checkboxes(false); return false;" href="#">'.wrap_text('Deselect all').'</a>
 				</p>';
 		}
 		$text .= '</form>';
@@ -686,33 +686,33 @@ function zz_maintenance_folders_deleteall($my_folder, $file) {
 function zz_maintenance_errors() {
 	global $zz_conf;
 
-	$lines[0]['th'] = zz_text('Error handling');
+	$lines[0]['th'] = wrap_text('Error handling');
 	$lines[0]['td'] = (!empty($zz_conf['error_handling']) ? $zz_conf['error_handling'] : '');
-	$lines[0]['explanation']['output'] = zz_text('Errors will be shown on webpage');
-	$lines[0]['explanation']['mail'] = zz_text('Errors will be sent via mail');
-	$lines[0]['explanation'][false] = zz_text('Errors won\'t be shown');
+	$lines[0]['explanation']['output'] = wrap_text('Errors will be shown on webpage');
+	$lines[0]['explanation']['mail'] = wrap_text('Errors will be sent via mail');
+	$lines[0]['explanation'][false] = wrap_text('Errors won\'t be shown');
 
 	$lines[1] = array(
-		'th' => zz_text('Send mail for these error levels'),
+		'th' => wrap_text('Send mail for these error levels'),
 		'td' => (is_array($zz_conf['error_mail_level']) ? implode(', ', $zz_conf['error_mail_level']) : $zz_conf['error_mail_level'])
 	);
 	$lines[3] = array(
-		'th' => zz_text('Send mail (From:)'),
+		'th' => wrap_text('Send mail (From:)'),
 		'td' => (!empty($zz_conf['error_mail_from']) ? $zz_conf['error_mail_from'] : ''),
-		'explanation' => array(false => zz_text('not set')),
+		'explanation' => array(false => wrap_text('not set')),
 		'class' => 'level1'
 	);
 	$lines[5] = array(
-		'th' => zz_text('Send mail (To:)'),
+		'th' => wrap_text('Send mail (To:)'),
 		'td' => (!empty($zz_conf['error_mail_to']) ? $zz_conf['error_mail_to'] : ''),
-		'explanation' => array(false => zz_text('not set')),
+		'explanation' => array(false => wrap_text('not set')),
 		'class' => 'level1'
 	);
 
-	$lines[6]['th'] = zz_text('Logging');
+	$lines[6]['th'] = wrap_text('Logging');
 	$lines[6]['td'] = $zz_conf['log_errors'];
-	$lines[6]['explanation'][1] = zz_text('Errors will be logged');
-	$lines[6]['explanation'][false] = zz_text('Errors will not be logged');
+	$lines[6]['explanation'][1] = wrap_text('Errors will be logged');
+	$lines[6]['explanation'][false] = wrap_text('Errors will not be logged');
 
 	if ($zz_conf['log_errors']) {
 
@@ -730,7 +730,7 @@ function zz_maintenance_errors() {
 		$no = 8;
 		foreach ($logfiles as $file => $my_levels) {
 			$lines[$no] = array(
-				'th' => sprintf(zz_text('Logfile for %s'), '<strong>'
+				'th' => sprintf(wrap_text('Logfile for %s'), '<strong>'
 				.implode(', ' , $my_levels).'</strong>'),
 				'td' => '<a href="?log='.urlencode($file)
 				.'&amp;filter[type]=none">'.$file.'</a>',
@@ -739,24 +739,24 @@ function zz_maintenance_errors() {
 			$no = $no +2;
 		}
 
-		$lines[20]['th'] = zz_text('Maximum length of single error log entry');
+		$lines[20]['th'] = wrap_text('Maximum length of single error log entry');
 		$lines[20]['td'] = $zz_conf['log_errors_max_len'];
 		$lines[20]['class'] = 'level1';
 	
-		$lines[22]['th'] = zz_text('Log POST variables when errors occur');
+		$lines[22]['th'] = wrap_text('Log POST variables when errors occur');
 		$lines[22]['td'] = (!empty($zz_conf['error_log_post']) ? $zz_conf['error_log_post'] : false);
-		$lines[22]['explanation'][1] = zz_text('POST variables will be logged');
-		$lines[22]['explanation'][false] = zz_text('POST variables will not be logged');
+		$lines[22]['explanation'][1] = wrap_text('POST variables will be logged');
+		$lines[22]['explanation'][false] = wrap_text('POST variables will not be logged');
 		$lines[22]['class'] = 'level1';
 
 	}
 
-	$lines[23]['th'] = zz_text('Logging (Upload)');
+	$lines[23]['th'] = wrap_text('Logging (Upload)');
 	$lines[23]['td'] = !empty($zz_conf['upload_log']) ? '<a href="?log='.urlencode(realpath($zz_conf['upload_log']))
-				.'">'.realpath($zz_conf['upload_log']).'</a>' : zz_text('disabled');
+				.'">'.realpath($zz_conf['upload_log']).'</a>' : wrap_text('disabled');
 
-	$text = '<table class="data"><thead><tr><th>'.zz_text('Setting').'</th>'
-		.'<th>'.zz_text('Value').'</th>'
+	$text = '<table class="data"><thead><tr><th>'.wrap_text('Setting').'</th>'
+		.'<th>'.wrap_text('Value').'</th>'
 		.'</tr></thead><tbody>'."\n";
 	foreach ($lines as $index => $line) {
 		if (!$line['td']) $line['td'] = false;
@@ -780,7 +780,7 @@ function zz_maintenance_logs() {
 	global $zz_conf;
 	$levels = array('error', 'warning', 'notice');
 	if (empty($_GET['log'])) {
-		$text = '<p>'.zz_text('No logfile specified').'</p>'."\n";
+		$text = '<p>'.wrap_text('No logfile specified').'</p>'."\n";
 		return $text;
 	}
 
@@ -797,11 +797,11 @@ function zz_maintenance_logs() {
 		$show_log = true;
 	}
 	if (!$show_log) {
-		$text = '<p>'.sprintf(zz_text('This is not one of the used logfiles: %s'), zz_html_escape($_GET['log'])).'</p>'."\n";
+		$text = '<p>'.sprintf(wrap_text('This is not one of the used logfiles: %s'), zz_html_escape($_GET['log'])).'</p>'."\n";
 		return $text;
 	}
 	if (!file_exists($_GET['log'])) {
-		$text = '<p>'.sprintf(zz_text('Logfile does not exist: %s'), zz_html_escape($_GET['log'])).'</p>'."\n";
+		$text = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), zz_html_escape($_GET['log'])).'</p>'."\n";
 		return $text;
 	}
 
@@ -824,7 +824,7 @@ function zz_maintenance_logs() {
 	$my_uri = $zz_conf['int']['url']['self'].zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
 	
 	foreach ($filters as $index => $filter) {
-		$filter_output[$index] = '<dt>'.zz_text('Selection').' '.ucfirst($index).':</dt>';
+		$filter_output[$index] = '<dt>'.wrap_text('Selection').' '.ucfirst($index).':</dt>';
 		$my_link = $my_uri;
 		if ($filters_set) {
 			foreach ($filters_set as $which => $filter_set) {
@@ -843,7 +843,7 @@ function zz_maintenance_logs() {
 		}
 		$filter_output[$index] .= '<dd class="filter_all">&#8211;&nbsp;'
 			.(isset($_GET['filter'][$index]) ? '<a href="'.$my_link.'">' : '<strong>')
-			.zz_text('all')
+			.wrap_text('all')
 			.(isset($_GET['filter'][$index]) ? '</a>' : '</strong>')
 			.'&nbsp;&#8211;</dd>'."\n";
 	}
@@ -856,7 +856,7 @@ function zz_maintenance_logs() {
 
 	if (!empty($_GET['filter']) AND !empty($_GET['filter']['type'])
 		AND $_GET['filter']['type'] == 'none') {
-		$text .= '<p><strong>'.zz_text('Please choose one of the filters.').'</strong></p>';
+		$text .= '<p><strong>'.wrap_text('Please choose one of the filters.').'</strong></p>';
 		return $text;
 	}
 
@@ -1114,25 +1114,25 @@ function zz_maintenance_logs() {
 	$text .= '<form action="" method="POST">'
 		.'<table class="data"><thead><tr>
 		<th>[]</th>
-		<th>'.zz_text('Date').'
-		'.($group ? '<br>'.zz_text('Last Date').'' : '').'</th>
-		<th>'.zz_text('Type').'</th>
-		<th>'.zz_text('Level').'</th>
-		<th>'.zz_text('Message').'</th>
-		<th>'.zz_text('User').'</th>
-		'.($group ? '<th>'.zz_text('Frequency').'</th>' : '').'
+		<th>'.wrap_text('Date').'
+		'.($group ? '<br>'.wrap_text('Last Date').'' : '').'</th>
+		<th>'.wrap_text('Type').'</th>
+		<th>'.wrap_text('Level').'</th>
+		<th>'.wrap_text('Message').'</th>
+		<th>'.wrap_text('User').'</th>
+		'.($group ? '<th>'.wrap_text('Frequency').'</th>' : '').'
 		</thead>'."\n"
 		.'<tbody>'."\n".$tbody;
 	if (!$tbody)
-		$text .= '<tr><td colspan="6">'.zz_text('No lines').'</td></tr>'."\n";
+		$text .= '<tr><td colspan="6">'.wrap_text('No lines').'</td></tr>'."\n";
 	$text .= '</tbody></table>'."\n";
 	if ($total_rows) {
 		// show this only if there are deletable lines
 		$text .= '<p style="float: right;"><a href="'.zz_html_escape($_SERVER['REQUEST_URI'])
 			.'&amp;deleteall">Delete all lines</a></p>'
-			.'<p><input type="submit" value="'.zz_text('Delete selected lines').'">'
-			.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.zz_text('Select all').'</a> |
-			<a onclick="zz_set_checkboxes(false); return false;" href="#">'.zz_text('Deselect all').'</a></p>';
+			.'<p><input type="submit" value="'.wrap_text('Delete selected lines').'">'
+			.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.wrap_text('Select all').'</a> |
+			<a onclick="zz_set_checkboxes(false); return false;" href="#">'.wrap_text('Deselect all').'</a></p>';
 	}
 	$text .= '</form>';
 
@@ -1185,7 +1185,7 @@ function zz_delete_line_from_file($file, $lines) {
 
 	// check if file exists and is writable
 	if (!is_writable($file))
-		return sprintf(zz_text('File %s is not writable.'), $file);
+		return sprintf(wrap_text('File %s is not writable.'), $file);
 
 	$deleted = 0;
 	$content = file($file);
@@ -1199,13 +1199,13 @@ function zz_delete_line_from_file($file, $lines) {
 
 	// open file for writing
 	if (!$handle = fopen($file, 'w+'))
-		return sprintf(zz_text('Cannot open %s for writing.'), $file);
+		return sprintf(wrap_text('Cannot open %s for writing.'), $file);
 
 	foreach($content as $line)
 		fwrite($handle, $line);
 
 	fclose($handle);
-	return sprintf(zz_text('%s lines deleted.'), $deleted);
+	return sprintf(wrap_text('%s lines deleted.'), $deleted);
 }
 
 ?>

@@ -59,4 +59,308 @@ msgstr ""
 "Anmeldedaten einen Cookie akzeptieren. Nach %d Minuten Inaktivität "
 "werden Sie aus Sicherheitsgründen automatisch wieder abgemeldet!"
 
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Maintenance"
+msgstr "Wartung"
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Maintenance scripts"
+msgstr "Wartungsskripte"
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Type"
+msgstr "Typ"
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Action"
+msgstr "Aktion"
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "GET should be empty, please test that:"
+msgstr "GET sollte leer sein, bitte überprüfen Sie das:"
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Setting"
+msgstr "Einstellung"
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Value"
+msgstr "Wert"
+
+#: modules/default/zzbrick_request/maintenance.inc.php
+msgid "Show PHP info on server"
+msgstr "Zeige Informationen zu PHP auf dem Server"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
+msgid "SQL query"
+msgstr "SQL-Abfrage"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
+msgid "Result"
+msgstr "Ergebnis"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
+msgid "No changes were done to database."
+msgstr "Es wurden keine Änderungen an der Datenbank vorgenommen."
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
+msgid "%s was successful"
+msgstr "%s war erfolgreich"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
+msgid "Insert"
+msgstr "Einfügen"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
+msgid "Update"
+msgstr "Aktualisierung"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
+msgid "Delete"
+msgstr "Löschen"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
+msgid "%s row(s) affected"
+msgstr "%s Einträge bearbeitet"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
+msgid "Sorry, %s is not yet supported"
+msgstr "Entschuldigung, aber %s wird (noch) nicht unterstützt"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
+msgid "Custom SQL query"
+msgstr "Eigene SQL-Abfrage"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "Relation and Translation Tables"
+msgstr "Beziehungs- und Übersetzungstabellen"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "No table for database relations is defined"
+msgstr "Es wurde keine Tabelle für Datenbankbeziehungen angegeben"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "No table for database translations is defined"
+msgstr "Es wurde keine Tabelle für Übersetzungen angegeben"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "Current database"
+msgstr "Aktuelle Datenbank"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "New database"
+msgstr "Neue Datenbank"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "Keep database"
+msgstr "Datenbank behalten"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "Change database"
+msgstr "Datenbank wechseln"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "(Database is not on server, you have to select a new database.)"
+msgstr "(Datenbank ist nicht auf dem Server, daher müssen Sie eine neue Datenbank auswählen)"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "Translation"
+msgstr "Übersetzung"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "Master"
+msgstr "Haupt"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgid "Detail"
+msgstr "Detail"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Temp and Backup Files"
+msgstr "Temporäre und Backup-Dateien"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Backup folder"
+msgstr "Backupverzeichnis"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Backup of uploaded files is not active."
+msgstr "Backup von hochgeladenen Dateien ist nicht aktiv."
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Current TEMP dir is:"
+msgstr "Aktuelles temporäres Verzeichnis:"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Current TEMP dir does not exist:"
+msgstr "Aktuelles temporäres Verzeichnis existiert nicht:"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Current backup dir is:"
+msgstr "Aktuelles Backup-Verzeichnis:"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Filename"
+msgstr "Dateiname"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Filetype"
+msgstr "Dateityp"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Size"
+msgstr "Grö&szlig;e"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Timestamp"
+msgstr "Zeitstempel"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Folder"
+msgstr "Ordner"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "unknown"
+msgstr "unbekannt"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "All Files"
+msgstr "Alle Dateien"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Folder is empty"
+msgstr "Ordner ist leer"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#files
+msgid "Delete selected files"
+msgstr "Lösche ausgewählte Dateien"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Error handling"
+msgstr "Fehlerbehandlung"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Errors will be shown on webpage"
+msgstr "Fehler werden auf der Webseite angezeigt"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Errors will be sent via mail"
+msgstr "Fehler werden per Mail versendet"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Errors won\'t be shown"
+msgstr "Fehler werden nicht angezeigt"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Send mail for these error levels"
+msgstr "Fehler dieser Ebenen werden versendet"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Send mail (From:)"
+msgstr "Absender der E-Mail"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "not set"
+msgstr "keine Angabe"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Send mail (To:)"
+msgstr "Empfänger der E-Mail"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Logging"
+msgstr "Aufzeichnung"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Errors will be logged"
+msgstr "Fehler werden aufgezeichnet"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Errors will not be logged"
+msgstr "Fehler werden nicht aufgezeichnet"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Logfile for %s"
+msgstr "Aufzeichnungen für %s"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Maximum length of single error log entry"
+msgstr "Maximale Länge eines einzelnen Eintrags"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "Log POST variables when errors occur"
+msgstr "Bei Fehlern auch POST-Variablen aufzeichnen"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "POST variables will be logged"
+msgstr "POST-Variablen werden aufgezeichnet"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-handling
+msgid "POST variables will not be logged"
+msgstr "POST-Variablen werden nicht aufgezeichnet"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Error Logging"
+msgstr "Fehlerlogs"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Logs"
+msgstr "Logs"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "No logfile specified"
+msgstr "Keine Logdatei angegeben"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "This is not one of the used logfiles: %s"
+msgstr "Die Datei %s ist keine der benutzten Logdateien."
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Logfile does not exist: %s"
+msgstr "Logdatei %s existiert nicht"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Date"
+msgstr "Datum"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Last Date"
+msgstr "Letztes Datum"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Level"
+msgstr "Ebene"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "User"
+msgstr "Benutzer"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Frequency"
+msgstr "Häufigkeit"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "No lines"
+msgstr "Keine Einträge"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Delete selected lines"
+msgstr "Lösche ausgewählte Einträge"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "File %s is not writable."
+msgstr "Datei %s kann nicht beschreibbar"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Cannot open %s for writing."
+msgstr "Datei %s kann nicht zum Schreiben geöffnet werden"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "%s lines deleted."
+msgstr "%s Einträge gelöscht"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
+msgid "Please choose one of the filters."
+msgstr "Bitte wählen Sie aus den Filtern aus."
+
 
