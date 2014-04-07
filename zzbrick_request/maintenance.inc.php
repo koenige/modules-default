@@ -114,8 +114,8 @@ function mod_default_maintenance($params) {
 			$page['text'] .= '<p><a href="?phpinfo">'.wrap_text('Show PHP info on server').'</a></p>';
 			if ($zz_conf['graphics_library'] === 'imagemagick') {
 				require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
-				$page['text'] .= '<p>ImageMagick:</p><blockquote><pre>'.zz_imagick_version().'</pre></blockquote>';
-				$page['text'] .= '<p>GhostScript:</p><blockquote><pre>'.zz_ghostscript_version().'</pre></blockquote>';
+				$page['text'] .= '<p>ImageMagick:</p><blockquote><pre>'.wrap_html_escape(zz_imagick_version()).'</pre></blockquote>';
+				$page['text'] .= '<p>GhostScript:</p><blockquote><pre>'.wrap_html_escape(zz_ghostscript_version()).'</pre></blockquote>';
 			}
 
 		// 	- Backup/errors, insert, update, delete
@@ -233,9 +233,9 @@ function zz_maintenance_tables() {
 	$text .= '<form action="" method="POST">';
 	$text .= '<table class="data"><thead><tr>
 		<th>'.wrap_text('Type').'</th>
-		<th>'.wrap_text('Current database').'</th>
-		<th>'.wrap_text('New database').'</th>
-		<th class="editbutton">'.wrap_text('Action').'</th>
+		<th class="block480a">'.wrap_text('Current database').'</th>
+		<th class="block480a">'.wrap_text('New database').'</th>
+		<th class="editbutton block480">'.wrap_text('Action').'</th>
 		</thead><tbody>'."\n";
 	$i = 0;
 	foreach ($dbs as $category => $db_names) {
@@ -252,9 +252,9 @@ function zz_maintenance_tables() {
 			}
 			$text .= '<tr class="'.($i & 1 ? 'uneven' : 'even').'">'
 				.'<td>'.wrap_text(ucfirst($category)).'</td>'
-				.'<td>'.$db.'</td>'
-				.'<td><select name="db_value['.$category.']['.$db.']">'.$db_select.'</select></td>'
-				.'<td>'.$keep.'</td>'
+				.'<td class="block480a">'.$db.'</td>'
+				.'<td class="block480a"><select name="db_value['.$category.']['.$db.']">'.$db_select.'</select></td>'
+				.'<td class="block480">'.$keep.'</td>'
 				.'</tr>'."\n";
 			$i++;
 		}
@@ -538,10 +538,10 @@ function zz_maintenance_folders() {
 		$text .= '<form action="" method="POST">';
 		$text .= '<table class="data"><thead><tr>
 			<th>[]</th>
-			<th>'.wrap_text('Filename').'</th>
-			<th>'.wrap_text('Filetype').'</th>
+			<th class="block480a">'.wrap_text('Filename').'</th>
+			<th class="block480">'.wrap_text('Filetype').'</th>
 			<th>'.wrap_text('Size').'</th>
-			<th>'.wrap_text('Timestamp').'</th>
+			<th class="hidden480">'.wrap_text('Timestamp').'</th>
 			</thead>'."\n";
 		$i = 0;
 		$size_total = 0;
@@ -583,18 +583,18 @@ function zz_maintenance_folders() {
 			}
 			$tbody .= '<tr class="'.($i & 1 ? 'uneven' : 'even').'">'
 				.'<td>'.($files_in_dir ? '' : '<input type="checkbox" name="files['.$file.']">').'</td>'
-				.'<td><a href="'.$link.'">'.zz_mark_search_string(str_replace('%', '%&shy;', zz_html_escape(urldecode($file)))).'</a></td>'
-				.'<td>'.$ext.'</td>'
+				.'<td class="block480a"><a href="'.$link.'">'.zz_mark_search_string(str_replace('%', '%&shy;', zz_html_escape(urldecode($file)))).'</a></td>'
+				.'<td class="block480">'.$ext.'</td>'
 				.'<td class="number">'.number_format($size).' Bytes</td>'
-				.'<td>'.$time.'</td>'
+				.'<td class="hidden480">'.$time.'</td>'
 				.'</tr>'."\n";
 			$i++;
 			$total_rows++;
 			if ($i == $zz_conf['int']['this_limit']) break;
 		}
 		closedir($folder_handle);
-		$text .= '<tfoot><tr><td></td><td>'.wrap_text('All Files').'</td><td>'
-			.$total_rows.'</td><td>'.number_format($size_total).' Bytes</td><td></td></tr></tfoot>';
+		$text .= '<tfoot><tr><td></td><td class="block480a">'.wrap_text('All Files').'</td><td class="hidden480">'
+			.$total_rows.'</td><td class="number">'.number_format($size_total).' Bytes</td><td></td></tr></tfoot>';
 		if (!$tbody) {
 			$text .= '<tbody><tr class="even"><td>&nbsp;</td><td colspan="4">&#8211; '
 				.wrap_text('Folder is empty').' &#8211;</td></tr></tbody></table>'."\n";
@@ -758,14 +758,15 @@ function zz_maintenance_errors() {
 	$lines[23]['td'] = !empty($zz_conf['upload_log']) ? '<a href="?log='.urlencode(realpath($zz_conf['upload_log']))
 				.'">'.realpath($zz_conf['upload_log']).'</a>' : wrap_text('disabled');
 
-	$text = '<table class="data"><thead><tr><th>'.wrap_text('Setting').'</th>'
-		.'<th>'.wrap_text('Value').'</th>'
+	$text = '<table class="data"><thead><tr><th class="block480a">'.wrap_text('Setting').'</th>'
+		.'<th class="block480">'.wrap_text('Value').'</th>'
 		.'</tr></thead><tbody>'."\n";
 	foreach ($lines as $index => $line) {
 		if (!$line['td']) $line['td'] = false;
+		$line['class'] = !empty($line['class']) ? $line['class'].' block480a' : 'block480';
 		$text .= '<tr class="'.($index & 1 ? 'uneven' : 'even').'">'
-			.'<td'.(!empty($line['class']) ? ' class="'.$line['class'].'"' : '').'>'.$line['th']
-			.'</td><td><strong>'.$line['td'].'</strong>'
+			.'<td class="'.$line['class'].'">'.$line['th']
+			.'</td><td class="block480"><strong>'.$line['td'].'</strong>'
 			.(!empty($line['explanation'][$line['td']]) ? ' ('.$line['explanation'][$line['td']].')' : '') 
 			.'</td></tr>'."\n";
 	}
@@ -1210,5 +1211,3 @@ function zz_delete_line_from_file($file, $lines) {
 	fclose($handle);
 	return sprintf(wrap_text('%s lines deleted.'), $deleted);
 }
-
-?>
