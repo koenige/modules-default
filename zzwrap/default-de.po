@@ -498,7 +498,7 @@ msgstr "Fremdschlüssel der Detailtabelle"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "If main record will be deleted, what should happen with detail record?"
-msgstr ""
+msgstr "Falls Haupteintrag gelöscht wird, was soll mit Detaileintrag geschehen?"
 
 #: modules/default/zzbrick_tables/database_logging.inc.php
 msgid "Query"
