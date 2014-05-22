@@ -53,13 +53,7 @@ function mod_default_thumbnails($params) {
 		.'thumbnails, if they were not created on upload. Or you can create '
 		.'completely new thumbnails if you changed the pixel size.').'</p>';
 
-	$script = $zz_conf['form_scripts'].'/'.$params[0].'.php';
-	if (!file_exists($script)) {
-		$page['text'] .= '<p>'.sprintf(wrap_text('Sorry, but the table script %s could not be found.')
-			, zz_htmltag_escape($params[0])).'</p>';
-		return $page;
-	}
-	include $script;
+	$zz = zzform_include_table($params[0]);
 
 	// get upload field definition, id field name
 	$id_field_name = '';
@@ -155,5 +149,3 @@ function zz_thumbnails_makelink($source_path, $line, $mode = false) {
 		$source = $root.$source;
 	return $source;
 }
-
-?>
