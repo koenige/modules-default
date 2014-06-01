@@ -303,6 +303,7 @@ function zz_maintenance_integrity() {
 				.sprintf(wrap_text('Field %s contains invalid values:'),
 				'<code>'.$detail_field.'</code>').' ('
 				.$relation['detail_id_field'].' => '.$relation['detail_field'].')<br>';
+			$line = '';
 			foreach ($ids as $id => $foreign_id) {
 				$line .= $id.' => '.$foreign_id.'; ';
 			}
