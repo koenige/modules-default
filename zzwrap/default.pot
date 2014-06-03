@@ -34,6 +34,7 @@ msgid "Sign in"
 msgstr ""
 
 #: modules/default/templates/login.template.txt
+#: modules/default/zzbrick_tables/settings.inc.php
 msgid "Login"
 msgstr ""
 
@@ -82,6 +83,7 @@ msgid "Setting"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
+#: modules/default/zzbrick_tables/settings.inc.php
 msgid "Value"
 msgstr ""
 
@@ -544,4 +546,24 @@ msgstr ""
 
 #: modules/default/zzbrick_tables/redirects.inc.php
 msgid "Redirects"
+msgstr ""
+
+#: modules/default/zzbrick_tables/settings.inc.php
+msgid "Settings"
+msgstr ""
+
+#: modules/default/zzbrick_tables/settings.inc.php
+msgid "Key"
+msgstr ""
+
+#: modules/default/zzbrick_tables/settings.inc.php
+msgid "Explanation"
+msgstr ""
+
+#: modules/default/zzbrick_tables/settings.inc.php
+msgid "User settings"
+msgstr ""
+
+#: modules/default/zzbrick_tables/settings.inc.php
+msgid "Website settings"
 msgstr ""

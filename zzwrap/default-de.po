@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 
 #: modules/default/templates/login.template.txt
 msgid "You have been logged out."
@@ -35,6 +35,7 @@ msgid "Sign in"
 msgstr "Anmelden"
 
 #: modules/default/templates/login.template.txt
+#: modules/default/zzbrick_tables/settings.inc.php
 msgid "Login"
 msgstr "Login"
 
@@ -88,6 +89,7 @@ msgid "Setting"
 msgstr "Einstellung"
 
 #: modules/default/zzbrick_request/maintenance.inc.php
+#: modules/default/zzbrick_tables/settings.inc.php
 msgid "Value"
 msgstr "Wert"
 
@@ -498,7 +500,8 @@ msgstr "Fremdschlüssel der Detailtabelle"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "If main record will be deleted, what should happen with detail record?"
-msgstr "Falls Haupteintrag gelöscht wird, was soll mit Detaileintrag geschehen?"
+msgstr ""
+"Falls Haupteintrag gelöscht wird, was soll mit Detaileintrag geschehen?"
 
 #: modules/default/zzbrick_tables/database_logging.inc.php
 msgid "Query"
@@ -569,3 +572,23 @@ msgstr "Bereich"
 #: modules/default/zzbrick_tables/redirects.inc.php
 msgid "Redirects"
 msgstr "Umleitungen"
+
+#: modules/default/zzbrick_tables/settings.inc.php
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: modules/default/zzbrick_tables/settings.inc.php
+msgid "Key"
+msgstr "Schlüssel"
+
+#: modules/default/zzbrick_tables/settings.inc.php
+msgid "Explanation"
+msgstr "Erläuterung"
+
+#: modules/default/zzbrick_tables/settings.inc.php
+msgid "User settings"
+msgstr "Benutzereinstellungen"
+
+#: modules/default/zzbrick_tables/settings.inc.php
+msgid "Website settings"
+msgstr "Website-Einstellungen"
