@@ -1082,7 +1082,8 @@ function zz_maintenance_logs() {
 				.'<td>'.$line['level'].'</td>'
 				.'<td>'.($line['status'] ? '<strong>'.$line['status'].'</strong>' : '')
 					.' '.($line['link'] ? '[<a href="'.str_replace('&', '&amp;', $line['link']).'">'
-					.zz_maintenance_splits($line['link'], true).'</a>]<br>' : '').$line['error'].'</td>'
+					.zz_maintenance_splits($line['link'], true).'</a>]<br>' : '')
+					.'<div class="moretext">'.$line['error'].'</div></td>'
 				.'<td>'.$line['user'].($line['time'] ? '<br>'.$line['time'] : '').'</td>'
 				.'</tr>'."\n";
 		} else {
