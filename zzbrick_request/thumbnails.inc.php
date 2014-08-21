@@ -74,6 +74,10 @@ function mod_default_thumbnails($params) {
 	// get all records, create thumbnails
 	$records = wrap_db_fetch($zz['sql'], $id_field_name);
 	foreach ($records as $line) {
+		if (!empty($line['filetype_id']) AND !empty($zz_setting['filetype_ids']['folder'])) {
+			// == because type of $line['filetype_id'] is string
+			if ($line['filetype_id'] == $zz_setting['filetype_ids']['folder']) continue;
+		}
 		$title = $line[$id_field_name];
 		$source = zz_thumbnails_makelink($source_path, $line);
 		if (!$source) {
