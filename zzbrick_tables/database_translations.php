@@ -58,6 +58,3 @@ $zz['sql'] = 'SELECT * FROM '.$zz_conf['translations_table'].'
 	ORDER BY db_name, table_name, field_name';
 
 $zz_conf['max_select'] = 100;
-$zz_conf['delete'] = true;
-
-?>

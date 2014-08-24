@@ -51,8 +51,6 @@ if (empty($_GET['filter']['area'])) {
 	$zz['list']['group'] = 'area';
 }
 
-$zz_conf['delete'] = true;
-
 $zz_conf['filter'][1]['title'] = wrap_text('Area');
 $zz_conf['filter'][1]['identifier'] = 'area';
 $zz_conf['filter'][1]['type'] = 'list';
