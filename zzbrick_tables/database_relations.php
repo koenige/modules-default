@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2010 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2010, 2014 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -111,7 +111,7 @@ $zz['fields'][9]['hide_in_list'] = true;
 */
 
 $zz['sql'] = 'SELECT * FROM '.$zz_conf['relations_table'];
-$zz['sqlorder'] = ' ORDER BY rel_id';
+$zz['sqlorder'] = ' ORDER BY detail_db, detail_table, detail_field';
 
 $zz_conf['multilang_fieldnames'] = true;
 $zz_conf['max_select'] = 200;
