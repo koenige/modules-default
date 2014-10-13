@@ -54,6 +54,7 @@ function mod_default_maintenance($params) {
 
 	$zz_conf['int_modules'] = array('debug', 'compatibility', 'validate', 'upload');
 	zz_initialize();
+	zz_init_limit();
 	$heading_prefix = '';
 	if ($zz_conf['heading_prefix']) $heading_prefix = ' ';
 	$heading_prefix .= '<a href="./">'.wrap_text('Maintenance').'</a>:';
@@ -83,7 +84,7 @@ function mod_default_maintenance($params) {
 					.'Database says: '.$result['error']['db_msg'].' [Code '
 					.$result['error']['db_errno'].']'
 					.'</div>'."\n";
-			} elseif ($result['action'] == 'nothing') {
+			} elseif ($result['action'] === 'nothing') {
 				$page['text'] .= '<p>'.wrap_text('No changes were done to database.').'</p>'."\n";
 			} else {
 				$page['text'] .= '<p>'.sprintf(wrap_text('%s was successful'), wrap_text(ucfirst($result['action'])))
@@ -191,7 +192,7 @@ function zz_maintenance_tables() {
 				foreach ($_POST['db_value'][$area] as $old => $new) {
 					if (empty($_POST['db_set'][$area][$old])) continue;
 					if ($_POST['db_set'][$area][$old] != 'change') continue;
-					if ($area == 'translation') {
+					if ($area === 'translation') {
 						$table = $zz_conf['translations_table'];
 						$field_name = 'db_name';
 					} else {
@@ -355,7 +356,7 @@ function zz_maintenance_files($dir, $base) {
 
 	$handle = opendir($dir);
 	while ($file = readdir($handle)) {
-		if ($file == '.' OR $file == '..') continue;
+		if ($file === '.' OR $file === '..') continue;
 		$files[] = $file;
 	}
 	closedir($handle);
@@ -400,7 +401,7 @@ function zz_maintenance_dirsize($dir) {
 	$handle = opendir($dir);
 	if (!$handle) return array($size, $files);
 	while ($file = readdir($handle)) {
-		if ($file == '.' OR $file == '..') continue;
+		if ($file === '.' OR $file === '..') continue;
 		if (is_dir($dir.'/'.$file)) {
 			list ($mysize, $myfiles) = zz_maintenance_dirsize($dir.'/'.$file);
 			$size += $mysize;
@@ -472,8 +473,8 @@ function zz_maintenance_folders() {
 			.'</li>'."\n";
 		if (!$exists) continue;
 		$folders[] = $key;
-		if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
-		if (!empty($_GET['folder']) AND substr($_GET['folder'], 0, strlen($key)) == $key) {
+		if (substr($dir, -1) === '/') $dir = substr($dir, 0, -1);
+		if (!empty($_GET['folder']) AND substr($_GET['folder'], 0, strlen($key)) === $key) {
 			$my_folder = $dir.substr($_GET['folder'], strlen($key));
 		}
 	}
@@ -515,7 +516,7 @@ function zz_maintenance_folders() {
 		$files = array();
 		$total_files_q = 0;
 		while ($file = readdir($folder_handle)) {
-			if (substr($file, 0, 1) == '.') continue;
+			if (substr($file, 0, 1) === '.') continue;
 			if (!empty($_POST['deleteall'])) {
 				$deleted += zz_maintenance_folders_deleteall($my_folder, $file);
 				continue;
@@ -574,7 +575,7 @@ function zz_maintenance_folders() {
 				$link = './?folder='.urlencode($_GET['folder']).'/'.urlencode($file);
 				$subfolder_handle = opendir($my_folder.'/'.$file);
 				while ($subdir = readdir($subfolder_handle)) {
-					if (substr($subdir, 0, 1) == '.') continue;
+					if (substr($subdir, 0, 1) === '.') continue;
 					$files_in_dir ++;
 				}
 				closedir($subfolder_handle);
@@ -860,13 +861,13 @@ function zz_maintenance_logs() {
 	}
 
 	if (!empty($_GET['filter']) AND !empty($_GET['filter']['type'])
-		AND $_GET['filter']['type'] == 'none') {
+		AND $_GET['filter']['type'] === 'none') {
 		$text .= '<p><strong>'.wrap_text('Please choose one of the filters.').'</strong></p>';
 		return $text;
 	}
 
 	if (!empty($_GET['filter']) AND !empty($_GET['filter']['group'])
-		AND $_GET['filter']['group'] == 'Group entries') {
+		AND $_GET['filter']['group'] === 'Group entries') {
 		$group = true;	
 		$output = array();
 	} else 
@@ -908,15 +909,15 @@ function zz_maintenance_logs() {
 			$data['time'] = '';
 
 			// get date
-			if (substr($line, 0, 1) == '[' AND $rightborder = strpos($line, ']')) {
+			if (substr($line, 0, 1) === '[' AND $rightborder = strpos($line, ']')) {
 				$data['date'] = substr($line, 1, $rightborder - 1);
 				$line = substr($line, $rightborder + 2);
 			}
 			// get user
-			if (substr($line, -1) == ']' AND strstr($line, '[')) {
+			if (substr($line, -1) === ']' AND strstr($line, '[')) {
 				$data['user'] = substr($line, strrpos($line, '[')+1, -1);
 				$data['user'] = explode(' ', $data['user']);
-				if (count($data['user']) > 1 AND substr($data['user'][0], -1) == ':') {
+				if (count($data['user']) > 1 AND substr($data['user'][0], -1) === ':') {
 					array_shift($data['user']); // get rid of User: or translations of it
 				}
 				$data['user'] = implode(' ', $data['user']);
@@ -927,9 +928,9 @@ function zz_maintenance_logs() {
 			if ($tokens AND in_array($tokens[0], $filters['type'])) {
 				$data['type'] = array_shift($tokens);
 				$data['level'] = array_shift($tokens);
-				if (substr($data['level'], -1) == ':') $data['level'] = substr($data['level'], 0, -1);
+				if (substr($data['level'], -1) === ':') $data['level'] = substr($data['level'], 0, -1);
 				else $data['level'] .= ' '.array_shift($tokens);
-				if (substr($data['level'], -1) == ':') $data['level'] = substr($data['level'], 0, -1);
+				if (substr($data['level'], -1) === ':') $data['level'] = substr($data['level'], 0, -1);
 			}
 
 			if (!empty($_GET['filter'])) {
@@ -968,7 +969,7 @@ function zz_maintenance_logs() {
 			}
 
 			$data['status'] = false;
-			if ($tokens AND substr($tokens[0], 0, 1) == '[' AND substr($tokens[0], -1) == ']') {
+			if ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[0], -1) === ']') {
 				$data['link'] = array_shift($tokens);
 				$data['link'] = substr($data['link'], 1, -1);
 				if (intval($data['link'])."" === $data['link']) {
@@ -977,8 +978,8 @@ function zz_maintenance_logs() {
 					$data['status'] = $data['link'];
 					$data['link'] = false;
 				}
-			} elseif ($tokens AND substr($tokens[0], 0, 1) == '[' AND substr($tokens[1], -1) == ']'
-				AND strlen($tokens[0]) == 4) {
+			} elseif ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[1], -1) === ']'
+				AND strlen($tokens[0]) === 4) {
 				$data['status'] = array_shift($tokens);
 				$data['status'] = substr($data['status'], 1);
 				$data['link'] = array_shift($tokens);
@@ -1051,7 +1052,7 @@ function zz_maintenance_logs() {
 			$line['level'] = '<p class="error">'.$line['level'].'</p>';
 
 		$post = false;
-		if (substr($line['error'], 0, 5) == 'POST ') {
+		if (substr($line['error'], 0, 5) === 'POST ') {
 			$post = @unserialize(substr($line['error'], 5));
 			if ($post)
 				$line['error'] = 'POST '.wrap_print($post);
