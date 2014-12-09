@@ -29,6 +29,7 @@ $zz['fields'][2]['display_field'] = 'username';
 $zz['fields'][2]['search'] = '/*_PREFIX_*/logins.username';
 
 $zz['fields'][3]['title'] = 'Key';
+$zz['fields'][3]['type'] = 'write_once';
 $zz['fields'][3]['field_name'] = 'setting_key';
 $zz['fields'][3]['list_append_next'] = true;
 
