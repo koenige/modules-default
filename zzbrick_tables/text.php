@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009-2010, 2013 Gustaf Mossakowski
+ * @copyright Copyright © 2009-2010, 2013-2015 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -51,12 +51,10 @@ if (empty($_GET['filter']['area'])) {
 	$zz['list']['group'] = 'area';
 }
 
-$zz_conf['filter'][1]['title'] = wrap_text('Area');
-$zz_conf['filter'][1]['identifier'] = 'area';
-$zz_conf['filter'][1]['type'] = 'list';
-$zz_conf['filter'][1]['where'] = 'area';
-$zz_conf['filter'][1]['field_name'] = 'area';
-$zz_conf['filter'][1]['sql'] = 'SELECT DISTINCT area, area
+$zz['filter'][1]['title'] = wrap_text('Area');
+$zz['filter'][1]['identifier'] = 'area';
+$zz['filter'][1]['type'] = 'list';
+$zz['filter'][1]['where'] = 'area';
+$zz['filter'][1]['field_name'] = 'area';
+$zz['filter'][1]['sql'] = 'SELECT DISTINCT area, area
 	FROM '.$zz_conf['text_table'];
-
-?>

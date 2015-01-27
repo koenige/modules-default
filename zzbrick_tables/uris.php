@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012-2013 Gustaf Mossakowski
+ * @copyright Copyright © 2012-2015 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -108,12 +108,10 @@ $zz['list']['group'] = 'uri_host';
 
 $zz_conf['multilang_fieldnames'] = true;
 
-$zz_conf['filter'][1]['title'] = wrap_text('Status');
-$zz_conf['filter'][1]['identifier'] = 'status';
-$zz_conf['filter'][1]['type'] = 'list';
-$zz_conf['filter'][1]['where'] = 'status_code';
-$zz_conf['filter'][1]['field_name'] = 'status_code';
-$zz_conf['filter'][1]['sql'] = 'SELECT DISTINCT status_code, status_code
+$zz['filter'][1]['title'] = wrap_text('Status');
+$zz['filter'][1]['identifier'] = 'status';
+$zz['filter'][1]['type'] = 'list';
+$zz['filter'][1]['where'] = 'status_code';
+$zz['filter'][1]['field_name'] = 'status_code';
+$zz['filter'][1]['sql'] = 'SELECT DISTINCT status_code, status_code
 	FROM /*_PREFIX_*/_uris';
-
-?>
