@@ -46,7 +46,7 @@ function mod_default_maintenance($params) {
 		require_once $file;
 	}
 	foreach ($zz_setting['modules'] as $module) {
-		if (file_exists($file = $zz_setting['module_dir'].'/'.$module.'/zzbrick_tables/_common.inc.php'))
+		if (file_exists($file = $zz_setting['modules_dir'].'/'.$module.'/zzbrick_tables/_common.inc.php'))
 		 	require_once $file;
 	}
 	if (isset($brick['page'])) $page = $brick['page'];
