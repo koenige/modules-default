@@ -42,10 +42,14 @@ function mod_default_maintenance($params) {
 	require_once $zz_conf['dir_inc'].'/output.inc.php';
 	require_once $zz_conf['dir_inc'].'/list.inc.php';
 	require_once $zz_conf['dir_inc'].'/search.inc.php';
-	if (file_exists($zz_setting['custom'].'/zzbrick_tables/_common.inc.php')) {
-		require_once($zz_setting['custom'].'/zzbrick_tables/_common.inc.php');
-		if (isset($brick['page'])) $page = $brick['page'];
+	if (file_exists($file = $zz_setting['custom'].'/zzbrick_tables/_common.inc.php')) {
+		require_once $file;
 	}
+	foreach ($zz_setting['modules'] as $module) {
+		if (file_exists($file = $zz_setting['module_dir'].'/'.$module.'/zzbrick_tables/_common.inc.php'))
+		 	require_once $file;
+	}
+	if (isset($brick['page'])) $page = $brick['page'];
 
 	if (!empty($_SESSION) AND empty($zz_conf['user']) AND !empty($zz_setting['brick_username_in_session']))
 		$zz_conf['user'] = $_SESSION[$zz_setting['brick_username_in_session']];
