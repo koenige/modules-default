@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2006-2012 Gustaf Mossakowski
+ * @copyright Copyright © 2006-2015 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -56,5 +56,4 @@ $zz['sqlorder'] = ' ORDER BY old_url, new_url';
 $zz['list']['group'] = 'area';
 
 $zz_conf['multilang_fieldnames'] = true;
-
-?>
+$zz_conf['copy'] = true;
