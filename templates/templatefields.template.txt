@@ -1,0 +1,23 @@
+# default module
+# Template for list of template fields
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2015 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+#
+%%% loop start %%%
+%%% loopposition middle|last ", " %%%%%% item key %%%
+%%% loop subkeys " { " %%%
+%%% loopposition middle|last ", " %%%%%% item key %%%
+%%% loop subkeys " { " %%%
+%%% loopposition middle|last ", " %%%%%% item key %%%
+%%% loop subkeys " { " %%%
+%%% loopposition middle|last ", " %%%%%% item key %%%
+%%% loop end " }"  %%%
+%%% loop end " }"  %%%
+%%% loop end " }"  %%%
+%%% loop end %%%
