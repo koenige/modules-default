@@ -9,6 +9,7 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #
+%%% item subkey " { " %%%
 %%% loop start %%%
 %%% loopposition middle|last ", " %%%%%% item key %%%
 %%% loop subkeys " { " %%%
@@ -21,3 +22,4 @@
 %%% loop end " }"  %%%
 %%% loop end " }"  %%%
 %%% loop end %%%
+%%% item subkey " } " %%%
