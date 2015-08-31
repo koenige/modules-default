@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2014 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2014-2015 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -34,7 +34,7 @@ function mod_default_thumbnails($params) {
 	global $zz_setting;
 	
 	if (count($params) > 2) return false;
-	if (count($params) > 1 AND $params[1] != 'overwrite') return false;
+	if (count($params) > 1 AND $params[1] !== 'overwrite') return false;
 	$mode = empty($params[1]) ? 'existing' : $params[1];
 
 	$saved_conf = $zz_conf;
@@ -60,9 +60,9 @@ function mod_default_thumbnails($params) {
 	$upload_files = array();
 	foreach ($zz['fields'] as $no => $field) {
 		if (empty($field['type'])) continue; // not of interest
-		if ($field['type'] == 'id') 
+		if ($field['type'] === 'id') 
 			$id_field_name = $zz['fields'][$no]['field_name'];
-		if ($field['type'] == 'upload_image') {
+		if ($field['type'] === 'upload_image') {
 			$upload_field = $zz['fields'][$no]['image'];
 			foreach ($upload_field as $file) {
 				if (isset($file['source'])) continue;
@@ -92,7 +92,7 @@ function mod_default_thumbnails($params) {
 			// check if destination file exists
 			$dest = zz_makelink($file['path'], $line, 'path');
 			// don't write a new file if old one already exists
-			if ($dest AND $mode == 'existing') continue;
+			if ($dest AND $mode === 'existing') continue;
 
 			$file['upload']['height'] = $size[1];
 			$file['upload']['width'] = $size[0];
@@ -122,10 +122,11 @@ function mod_default_thumbnails($params) {
 		}
 	}
 
-	if (!$output)
+	if (empty($output)) {
 		$page['text'] .= '<p>'.wrap_text('No missing thumbnails were found.').'</p>'."\n";
-
-	$page['text'] .= "<ul>\n<li>".(implode("</li>\n<li>", $output))."</li>\n</ul>\n";
+	} else {
+		$page['text'] .= "<ul>\n<li>".(implode("</li>\n<li>", $output))."</li>\n</ul>\n";
+	}
 	
 	$zz_conf = $saved_conf;
 	return $page;
