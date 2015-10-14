@@ -19,7 +19,9 @@ $zz['title'] = 'Website settings';
 
 unset($zz['fields'][2]); // login_id
 
+$zz['fields'][3]['class'] = 'block480a';
 $zz['fields'][4]['list_append_next'] = true;
+$zz['fields'][4]['class'] = 'block480';
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/_settings.*
 	FROM /*_PREFIX_*/_settings';
