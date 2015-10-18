@@ -5,7 +5,7 @@
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2011 Gustaf Mossakowski
+# @copyright Copyright © 2008-2011, 2015 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #
@@ -31,7 +31,9 @@
 </p>
 %%% loop end %%%
 <p><label for="password"><strong>%%% text "Password:" %%%</strong></label> 
-<input type="password" name="password" id="password" required="required"></p>
+<input type="password" name="password" id="password" required="required">
+%%% condition if password_link %%%<br><small><a href="%%% item password_link %%%">(%%% text Forgot your password? %%%)</a></small>%%% condition endif %%%
+</p>
 <p class="submit"><input type="submit" value="%%% text "Sign in" %%%"></p>
 %%% condition if msg %%%
 <p class="error submit">%%% item msg %%%</p>

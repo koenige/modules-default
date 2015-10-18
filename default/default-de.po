@@ -53,7 +53,7 @@ msgid ""
 "your username and password."
 msgstr ""
 "Für den Zugang zum internen Bereich ist eine Anmeldung erforderlich. Bitte "
-"geben Sie unten den von uns erhaltenen Benutzernamen mit Paßwort ein."
+"geben Sie unten den von uns erhaltenen Benutzernamen mit Passwort ein."
 
 #: modules/default/templates/login.template.txt
 msgid ""
@@ -63,6 +63,10 @@ msgstr ""
 "Damit der Login funktioniert, müssen Sie nach Übermittlung der Anmeldedaten "
 "einen Cookie akzeptieren. Nach %d Minuten Inaktivität werden Sie aus "
 "Sicherheitsgründen automatisch wieder abgemeldet!"
+
+#: modules/default/templates/login.template.txt
+msgid "Forgot your password?"
+msgstr "Passwort vergessen?"
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance"

@@ -59,6 +59,10 @@ msgid ""
 "reasons, after %d minutes of inactivity you will be logged out automatically."
 msgstr ""
 
+#: modules/default/templates/login.template.txt
+msgid "Forgot your password?"
+msgstr ""
+
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
 msgstr ""
