@@ -32,7 +32,7 @@
 %%% loop end %%%
 <p><label for="password"><strong>%%% text "Password:" %%%</strong></label> 
 <input type="password" name="password" id="password" required="required">
-%%% condition if password_link %%%<br><small><a href="%%% item password_link %%%">(%%% text Forgot your password? %%%)</a></small>%%% condition endif %%%
+%%% condition if password_link %%%<br><span class="submit"><small><a href="%%% item password_link %%%">(%%% text Forgot your password? %%%)</a></small></span>%%% condition endif %%%
 </p>
 <p class="submit"><input type="submit" value="%%% text "Sign in" %%%"></p>
 %%% condition if msg %%%
