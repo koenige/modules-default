@@ -63,6 +63,38 @@ msgstr ""
 msgid "Forgot your password?"
 msgstr ""
 
+#: modules/default/templates/login-password.template.txt
+msgid "Send me a password"
+msgstr ""
+
+#: modules/default/templates/login-password.template.txt
+msgid "Request a new password"
+msgstr ""
+
+#: modules/default/templates/login-password.template.txt
+msgid "Please enter your e-mail address."
+msgstr ""
+
+#: modules/default/templates/login-password.template.txt
+msgid "Please enter a valid e-mail address."
+msgstr ""
+
+#: modules/default/templates/login-password.template.txt
+msgid "If you have an existing login, we have sent you an e-mail with a login link."
+msgstr ""
+
+#: modules/default/templates/login-password.template.txt
+msgid "Please check your mail."
+msgstr ""
+
+#: modules/default/templates/login-password.template.txt
+msgid "The link is valid for %s minutes."
+msgstr ""
+
+#: modules/default/templates/login-password.template.txt
+msgid "Back to login"
+msgstr ""
+
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
 msgstr ""

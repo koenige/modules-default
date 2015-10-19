@@ -68,6 +68,38 @@ msgstr ""
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
+#: modules/default/templates/login-password.template.txt
+msgid "Send me a password"
+msgstr "Passwort zusenden"
+
+#: modules/default/templates/login-password.template.txt
+msgid "Request a new password"
+msgstr "Neues Passwort anfordern"
+
+#: modules/default/templates/login-password.template.txt
+msgid "Please enter your e-mail address."
+msgstr "Bitte geben Sie Ihre E-Mail-Adresse ein."
+
+#: modules/default/templates/login-password.template.txt
+msgid "Please enter a valid e-mail address."
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+
+#: modules/default/templates/login-password.template.txt
+msgid "If you have an existing login, we have sent you an e-mail with a login link."
+msgstr "Wenn Sie ein bestehendes Login haben, konnten wir Ihnen eine E-Mail mit einem Login-Link senden."
+
+#: modules/default/templates/login-password.template.txt
+msgid "Please check your mail."
+msgstr "Bitte prüfen Sie Ihre Mails."
+
+#: modules/default/templates/login-password.template.txt
+msgid "The link is valid for %s minutes."
+msgstr "Der Link ist für %s Minuten gültig."
+
+#: modules/default/templates/login-password.template.txt
+msgid "Back to login"
+msgstr "Zurück zum Login"
+
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
 msgstr "Wartung"
