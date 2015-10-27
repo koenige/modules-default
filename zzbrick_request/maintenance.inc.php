@@ -160,9 +160,7 @@ function mod_default_maintenance($params) {
 		}
 	}
 	$page['text'] .= '</div>'."\n";
-	if (!empty($zz_conf['footer_text'])) {
-		$page['text'] .= $zz_conf['footer_text'];
-	}
+	$page['text'] .= wrap_template('zzform-foot', $zz_setting);
 
 	$zz_conf['heading_prefix'] .= $heading_prefix;
 	$page['title'] = zz_output_heading($heading);
