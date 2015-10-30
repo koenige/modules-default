@@ -862,7 +862,7 @@ function zz_maintenance_logs() {
 		}
 		$f_output[$index]['output'][] = array(
 			'all' => true,
-			'link' => isset($_GET['filter'][$index] ? $my_link : ''
+			'link' => isset($_GET['filter'][$index]) ? $my_link : ''
 		);
 	}
 	if ($f_output) {
