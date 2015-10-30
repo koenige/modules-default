@@ -199,9 +199,11 @@ function zz_maintenance_tables() {
 						$table = $zz_conf['relations_table'];
 						$field_name = $area.'_db';
 					}
-					$sql = 'UPDATE '.$table
-						.' SET '.$field_name.' = "'.zz_db_escape($new)
-						.'" WHERE '.$field_name.' = "'.zz_db_escape($old).'"';
+					$sql = 'UPDATE %s SET %s = "%s" WHERE %s = "%s"';
+					$sql = sprintf($sql, $table,
+						$field_name, zz_db_escape($new),
+						$field_name, zz_db_escape($old)
+					);
 					wrap_db_query($sql);
 				}
 			}
@@ -209,17 +211,20 @@ function zz_maintenance_tables() {
 	}
 	if (!empty($zz_conf['relations_table'])) {
 	// Master database
-		$sql = 'SELECT DISTINCT master_db FROM '.$zz_conf['relations_table'];
+		$sql = 'SELECT DISTINCT master_db FROM %s';
+		$sql = sprintf($sql, $zz_conf['relations_table']);
 		$dbs['master'] = wrap_db_fetch($sql, 'master_db', 'single value');
 
 	// Detail database	
-		$sql = 'SELECT DISTINCT detail_db FROM '.$zz_conf['relations_table'];
+		$sql = 'SELECT DISTINCT detail_db FROM %s';
+		$sql = sprintf($sql, $zz_conf['relations_table']);
 		$dbs['detail'] = wrap_db_fetch($sql, 'detail_db', 'single value');
 	}
 
 	if (!empty($zz_conf['translations_table'])) {
 	// Translations database	
-		$sql = 'SELECT DISTINCT db_name FROM '.$zz_conf['translations_table'];
+		$sql = 'SELECT DISTINCT db_name FROM %s';
+		$sql = sprintf($sql, $zz_conf['relations_table']);
 		$dbs['translation'] = wrap_db_fetch($sql, 'db_name', 'single value');
 	}
 	
@@ -283,20 +288,27 @@ function zz_maintenance_tables() {
 function zz_maintenance_integrity() {
 	global $zz_conf;
 
-	$sql = 'SELECT * FROM '.$zz_conf['relations_table'];
+	$sql = 'SELECT * FROM %s';
+	$sql = sprintf($sql, $zz_conf['relations_table']);
 	$relations = wrap_db_fetch($sql, 'rel_id');
 
 	$results = array();
 	foreach ($relations as $relation) {
-		$sql = 'SELECT DISTINCT detail_table.`'.$relation['detail_id_field'].'`
-				, detail_table.`'.$relation['detail_field'].'`
-			FROM `'.$relation['detail_db'].'`.`'.$relation['detail_table'].'` detail_table
-			LEFT JOIN `'.$relation['master_db'].'`.`'.$relation['master_table'].'` master_table
-				ON detail_table.`'.$relation['detail_field'].'`
-					= master_table.`'.$relation['master_field'].'`
-			WHERE ISNULL(master_table.`'.$relation['master_field'].'`)
-			AND !ISNULL(detail_table.`'.$relation['detail_field'].'`)
+		$sql = 'SELECT DISTINCT detail_table.`%s`
+				, detail_table.`%s`
+			FROM `%s`.`%s` detail_table
+			LEFT JOIN `%s`.`%s` master_table
+				ON detail_table.`%s` = master_table.`%s`
+			WHERE ISNULL(master_table.`%s`)
+			AND !ISNULL(detail_table.`%s`)
 		';
+		$sql = sprintf($sql,
+			$relation['detail_id_field'], $relation['detail_field'],
+			$relation['detail_db'], $relation['detail_table'],
+			$relation['master_db'], $relation['master_table'],
+			$relation['detail_field'], $relation['master_field'],
+			$relation['master_field'], $relation['detail_field']
+		);
 		$ids = wrap_db_fetch($sql, '_dummy_', 'key/value', false, E_USER_NOTICE);
 		$detail_field = $relation['detail_db'].' . '.$relation['detail_table'].' . '.$relation['detail_field'];
 		if ($ids) {
@@ -425,10 +437,12 @@ function zz_maintenance_sql($sql) {
 	$sql = preg_replace("/\s+/", " ", $sql);
 	$tokens = explode(' ', $sql);
 	$sql = array();
-	$keywords = array('INSERT', 'INTO', 'DELETE', 'FROM', 'UPDATE', 'SELECT',
-		'UNION', 'WHERE', 'GROUP', 'BY', 'ORDER', 'DISTINCT', 'LEFT', 'JOIN',
-		'RIGHT', 'INNER', 'NATURAL', 'USING', 'SET', 'CONCAT', 'SUBSTRING_INDEX',
-		'VALUES');
+	$keywords = array(
+		'INSERT', 'INTO', 'DELETE', 'FROM', 'UPDATE', 'SELECT', 'UNION',
+		'WHERE', 'GROUP', 'BY', 'ORDER', 'DISTINCT', 'LEFT', 'JOIN', 'RIGHT',
+		'INNER', 'NATURAL', 'USING', 'SET', 'CONCAT', 'SUBSTRING_INDEX',
+		'VALUES'
+	);
 	$newline = array('LEFT', 'FROM', 'GROUP', 'WHERE', 'SET', 'VALUES', 'SELECT');
 	$newline_tab = array('ON', 'AND');
 	foreach ($tokens as $token) {
