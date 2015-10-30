@@ -59,6 +59,9 @@ msgid ""
 "Please allow cookies after sending your login credentials. For security "
 "reasons, after %d minutes of inactivity you will be logged out automatically."
 msgstr ""
+"Proszę pozwolić ciasteczka po wysłaniu swoich poświadczeń logowania. Ze "
+"względów bezpieczeństwa po %d min bezczynności, które Ci będą rejestrowane "
+"się automatycznie."
 
 #: modules/default/templates/login.template.txt
 msgid "Forgot your password?"
@@ -198,7 +201,7 @@ msgstr "Niestandardowe SQL kwerendy"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Relation and Translation Tables"
-msgstr ""
+msgstr "Tabele relacja i translacji"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "No table for database relations is defined"
@@ -487,7 +490,7 @@ msgstr "Nie brakuje miniatury zostały znalezione."
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Database Table Relations"
-msgstr "Bazy danych tabela stosunków"
+msgstr "Powiązania tabel"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Master Table"
@@ -507,11 +510,11 @@ msgstr "Bank danych tabeli głównej"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Name of Master Table"
-msgstr "Nazwa tabeli Master"
+msgstr "Nazwa tabeli głównej"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Primary Key of Master Table"
-msgstr "Klucz podstawowy tabeli Master"
+msgstr "Klucz główny tabeli głównej"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Database of Detail Table"
@@ -519,11 +522,11 @@ msgstr "Bazy danych tabela szczegóły"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Name of Detail Table"
-msgstr "Nazwa tabela szczegóły"
+msgstr "Nazwa tabeli podrzędnej"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Primary Key of Detail Table"
-msgstr "Klucz podstawowy tabela szczegóły"
+msgstr "Klucz główny tabela szczegóły"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Foreign Key of Detail Table"
