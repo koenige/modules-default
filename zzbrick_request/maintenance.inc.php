@@ -855,17 +855,18 @@ function zz_maintenance_logs() {
 			$is_selected = ((isset($_GET['filter'][$index]) 
 				AND $_GET['filter'][$index] == $value)) ? true : false;
 			$link = $my_link.'&amp;filter['.$index.']='.urlencode($value);
-			$f_output[$index]['output'][] = array(
+			$f_output[$index]['values'][] = array(
 				'link' => !$is_selected ? $link : '',
 				'title' => zz_text($value)
 			);
 		}
-		$f_output[$index]['output'][] = array(
+		$f_output[$index]['values'][] = array(
 			'all' => true,
 			'link' => isset($_GET['filter'][$index]) ? $my_link : ''
 		);
 	}
 	if ($f_output) {
+		$f_output = array_values($f_output);
 		$text .= wrap_template('zzform-list-filter', $f_output);
 	}
 
