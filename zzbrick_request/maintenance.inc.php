@@ -224,7 +224,7 @@ function zz_maintenance_tables() {
 	if (!empty($zz_conf['translations_table'])) {
 	// Translations database	
 		$sql = 'SELECT DISTINCT db_name FROM %s';
-		$sql = sprintf($sql, $zz_conf['relations_table']);
+		$sql = sprintf($sql, $zz_conf['translations_table']);
 		$dbs['translation'] = wrap_db_fetch($sql, 'db_name', 'single value');
 	}
 	
