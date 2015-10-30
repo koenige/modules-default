@@ -834,7 +834,7 @@ function zz_maintenance_logs() {
 	$filters['type'] = array('PHP', 'zzform', 'zzwrap');
 	$filters['level'] = array('Notice', 'Deprecated', 'Warning', 'Error', 'Parse error', 'Strict error', 'Fatal error');
 	$filters['group'] = array('Group entries');
-	$filter_output = '';
+	$f_output = array();
 	
 	$text = '<h2>'.zz_html_escape($_GET['log']).'</h2>';
 
@@ -844,7 +844,7 @@ function zz_maintenance_logs() {
 	$my_uri = $zz_conf['int']['url']['self'].zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
 	
 	foreach ($filters as $index => $filter) {
-		$filter_output[$index] = '<dt>'.zz_text('Selection').' '.zz_text(ucfirst($index)).':</dt>';
+		$f_output[$index]['title'] = zz_text(ucfirst($index));
 		$my_link = $my_uri;
 		if ($filters_set) {
 			foreach ($filters_set as $which => $filter_set) {
@@ -855,23 +855,18 @@ function zz_maintenance_logs() {
 			$is_selected = ((isset($_GET['filter'][$index]) 
 				AND $_GET['filter'][$index] == $value)) ? true : false;
 			$link = $my_link.'&amp;filter['.$index.']='.urlencode($value);
-			$filter_output[$index] .= '<dd>'
-				.(!$is_selected ? '<a href="'.$link.'">' : '<strong>')
-				.zz_text($value)
-				.(!$is_selected ? '</a>' : '</strong>')
-				.'</dd>'."\n";
+			$f_output[$index]['output'][] = array(
+				'link' => !$is_selected ? $link : '',
+				'title' => zz_text($value)
+			);
 		}
-		$filter_output[$index] .= '<dd class="filter_all">&#8211;&nbsp;'
-			.(isset($_GET['filter'][$index]) ? '<a href="'.$my_link.'">' : '<strong>')
-			.zz_text('all')
-			.(isset($_GET['filter'][$index]) ? '</a>' : '</strong>')
-			.'&nbsp;&#8211;</dd>'."\n";
+		$f_output[$index]['output'][] = array(
+			'all' => true,
+			'link' => isset($_GET['filter'][$index] ? $my_link : ''
+		);
 	}
-	if ($filter_output) {
-		$text .= '<div class="zzfilter">'."\n";
-		$text .= '<dl>'."\n";
-		$text .= implode("", $filter_output);
-		$text .= '</dl><br clear="all"></div>'."\n";
+	if ($f_output) {
+		$text .= wrap_template('zzform-list-filter', $f_output);
 	}
 
 	if (!empty($_GET['filter']) AND !empty($_GET['filter']['type'])
