@@ -157,7 +157,7 @@ msgstr "Nic nie do sprawdzenia."
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Filetree"
-msgstr ""
+msgstr "Drzewo plików"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "SQL query"
@@ -237,23 +237,23 @@ msgstr "Tłumaczenie"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Master"
-msgstr ""
+msgstr "Główny"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Detail"
-msgstr ""
+msgstr "Szczegółowo"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Temp and Backup Files"
-msgstr ""
+msgstr "Pliki tymczasowe i tworzenie kopii zapasowych"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Backup folder"
-msgstr ""
+msgstr "Folder kopii zapasowej"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Backup of uploaded files is not active."
-msgstr ""
+msgstr "Tworzenie kopii zapasowych plików wgrywanych nie jest aktywne."
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Current %s dir is: %s"
@@ -273,7 +273,7 @@ msgstr "Format pliku"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Size"
-msgstr ""
+msgstr "Rozmiar"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Timestamp"
@@ -305,7 +305,7 @@ msgstr "Usunąć"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Delete selected files"
-msgstr ""
+msgstr "Usunąć wybrane pliki?"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Error handling"
@@ -494,7 +494,7 @@ msgstr "Powiązania tabel"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Master Table"
-msgstr "tabela danych podstawowych"
+msgstr "Tabela danych podstawowych"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Detail Table"
@@ -522,7 +522,7 @@ msgstr "Bazy danych tabela szczegóły"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Name of Detail Table"
-msgstr "Nazwa tabeli podrzędnej"
+msgstr "Nazwa tabela szczegóły"
 
 #: modules/default/zzbrick_tables/database_relations.inc.php
 msgid "Primary Key of Detail Table"
@@ -544,7 +544,7 @@ msgstr "Zapytań"
 
 #: modules/default/zzbrick_tables/database_logging.inc.php
 msgid "Record"
-msgstr "Protokołowanie rozprawy"
+msgstr "Zapis"
 
 #: modules/default/zzbrick_tables/database_logging.inc.php
 msgid "Last update"
@@ -617,4 +617,4 @@ msgstr "Ustawienia użytkownika"
 
 #: modules/default/zzbrick_tables/settings.inc.php
 msgid "Website settings"
-msgstr ""
+msgstr "Ustawienia strona internetowa"
