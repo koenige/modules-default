@@ -105,6 +105,11 @@ msgstr "Zurück zum Login"
 
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
+msgid "Password"
+msgstr "Passwort"
+
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
 msgid "Change Password"
 msgstr "Passwort ändern"
 
