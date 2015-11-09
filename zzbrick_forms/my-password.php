@@ -39,9 +39,8 @@ if (isset($zz['fields'][9])) {
 $zz['fields'][99]['hide_in_form'] = true;
 
 foreach (array_keys($zz['fields']) as $no) {
-	if (in_array($no, array(1, 2, 3, 9, 99))) {
-		unset($zz['fields'][$no]);
-	}
+	if (in_array($no, array(1, 2, 3, 9, 99))) continue;
+	unset($zz['fields'][$no]);
 }
 
 $zz['title'] = 'Change Password';
