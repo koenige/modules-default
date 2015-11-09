@@ -94,6 +94,21 @@ msgstr ""
 msgid "Back to login"
 msgstr ""
 
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
+msgid "Change Password"
+msgstr ""
+
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
+msgid "Hints for secure passwords"
+msgstr ""
+
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
+msgid "password-rules"
+msgstr ""
+
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
 msgstr ""

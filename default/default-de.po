@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: modules/default/templates/login.template.txt
 msgid "You have been logged out."
@@ -85,8 +85,11 @@ msgid "Please enter a valid e-mail address."
 msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein."
 
 #: modules/default/templates/login-password.template.txt
-msgid "If you have an existing login, we have sent you an e-mail with a login link."
-msgstr "Wenn Sie ein bestehendes Login haben, konnten wir Ihnen eine E-Mail mit einem Login-Link senden."
+msgid ""
+"If you have an existing login, we have sent you an e-mail with a login link."
+msgstr ""
+"Wenn Sie ein bestehendes Login haben, konnten wir Ihnen eine E-Mail mit "
+"einem Login-Link senden."
 
 #: modules/default/templates/login-password.template.txt
 msgid "Please check your mail."
@@ -99,6 +102,26 @@ msgstr "Der Link ist für %s Minuten gültig."
 #: modules/default/templates/login-password.template.txt
 msgid "Back to login"
 msgstr "Zurück zum Login"
+
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
+msgid "Change Password"
+msgstr "Passwort ändern"
+
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
+msgid "Hints for secure passwords"
+msgstr "Tipps für sichere Passwörter"
+
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
+msgid "password-rules"
+msgstr ""
+"* Passwörter sollten wenigstens acht Zeichen lang sein.\n"
+"* Statt eines einzelnen Wortes können auch mehrere Wörter oder komplette Sätze benutzt werden.\n"
+"* Je länger das Passwort (oder der gewählte Satz) ist, desto besser ist der Zugang zu der Website gesichert.\n"
+"* Für kurze Passwörter wird empfohlen, dass sie aus Groß- und Kleinbuchstaben, Ziffern und Sonderzeichen (? = + ; etc.) bestehen.\n"
+"* Dasselbe Passwort sollte nicht auf anderen Websites genutzt werden."
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
@@ -584,10 +607,10 @@ msgstr ""
 "kurzen Adresse auf eine lange, permanent existierende Adresse, wie example."
 "com/aktuell auf example.com/nachrichten/2010/04 mittels <code>307</code>-"
 "Code für temporäre Umleitungen</li><li>Dauerhafte Umleitung von einer alten "
-"Adresse auf eine neue Adresse mittels <code>301</code>-Code für "
-"permanente Umleitungen</li><li>Umleitung von mehreren alten Adressen auf eine "
-"neue Adresse, hier muß die alten Adresse auf <code>*</code> enden. Achtung: "
-"es darf kein <code>/</code> vor dem Sternchen stehen.</li></ul>"
+"Adresse auf eine neue Adresse mittels <code>301</code>-Code für permanente "
+"Umleitungen</li><li>Umleitung von mehreren alten Adressen auf eine neue "
+"Adresse, hier muß die alten Adresse auf <code>*</code> enden. Achtung: es "
+"darf kein <code>/</code> vor dem Sternchen stehen.</li></ul>"
 
 #: modules/default/zzbrick_tables/redirects.inc.php
 msgid "Old URL"

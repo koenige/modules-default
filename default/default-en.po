@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: modules/default/templates/login.template.txt
 msgid "You have been logged out."
@@ -80,7 +80,8 @@ msgid "Please enter a valid e-mail address."
 msgstr ""
 
 #: modules/default/templates/login-password.template.txt
-msgid "If you have an existing login, we have sent you an e-mail with a login link."
+msgid ""
+"If you have an existing login, we have sent you an e-mail with a login link."
 msgstr ""
 
 #: modules/default/templates/login-password.template.txt
@@ -94,6 +95,29 @@ msgstr ""
 #: modules/default/templates/login-password.template.txt
 msgid "Back to login"
 msgstr ""
+
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
+msgid "Change Password"
+msgstr ""
+
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
+msgid "Hints for secure passwords"
+msgstr ""
+
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
+msgid "password-rules"
+msgstr ""
+"* Passwords should be at least eight characters long.\n"
+"* Instead of a single word, several words or even complete sentences can be "
+"used.\n"
+"* The longer the password (or the selected sentence), the better the access "
+"to the site is secured.\n"
+"* For short passwords, it is recommended that they consist of uppercase and "
+"lowercase letters, numbers and special characters (? = + ; etc.).\n"
+"* The same password should not be used on other sites."
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
