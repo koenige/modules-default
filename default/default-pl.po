@@ -114,6 +114,11 @@ msgstr ""
 
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
+msgid "Change My Password"
+msgstr ""
+
+# Record form: Change password
+#: modules/default/zzbrick_forms/my-password.php
 msgid "Hints for secure passwords"
 msgstr "Zasady bezpiecznego hasła"
 

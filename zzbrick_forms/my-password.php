@@ -44,4 +44,4 @@ $zz['access'] = 'edit_only';
 if (!empty($_GET['url'])) {
 	$zz_conf['redirect']['successful_update'] = $_GET['url'];
 }
-$zz_conf['text']['--']['Edit a record'] = 'Change Password';
+$zz_conf['text']['--']['Edit a record'] = 'Change My Password';
