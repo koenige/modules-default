@@ -17,6 +17,10 @@
 $zz['where']['login_id'] = $_SESSION['login_id'];
 require_once $zz_conf['form_scripts'].'/logins.php';
 
+// 2 = username
+$zz['fields'][2]['title'] = 'Username';
+$zz['fields'][2]['type'] = 'hidden';
+
 // 3 = password
 $zz['fields'][3]['type'] = 'password_change';
 unset($zz['fields'][3]['function']); // no password function, e. g. random pwd
@@ -36,8 +40,6 @@ $zz['fields'][99]['hide_in_form'] = true;
 
 foreach (array_keys($zz['fields']) as $no) {
 	if (in_array($no, array(1, 3, 9, 99))) {
-		$zz['fields'][$no]['show_title'] = false;
-	} else {
 		unset($zz['fields'][$no]);
 	}
 }
