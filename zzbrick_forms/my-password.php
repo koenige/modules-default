@@ -22,18 +22,19 @@ $zz['fields'][3]['type'] = 'password_change';
 unset($zz['fields'][3]['function']); // no password function, e. g. random pwd
 
 // 9 = password_change
-if (isset($zz['fields'][9])) {
-	$zz['fields'][9]['type'] = 'hidden';
-	$zz['fields'][9]['hide_in_form'] = true;
-	$zz['fields'][9]['value'] = 'no';
-}
+$zz['fields'][9]['type'] = 'hidden';
+$zz['fields'][9]['hide_in_form'] = true;
+$zz['fields'][9]['value'] = 'no';
 
 // 99 = last_update
 $zz['fields'][99]['hide_in_form'] = true;
 
 foreach (array_keys($zz['fields']) as $no) {
-	if (in_array($no, array(1, 3, 9, 99))) continue;
-	unset($zz['fields'][$no]);
+	if (in_array($no, array(1, 3, 9, 99))) {
+		$zz['fields'][$no]['show_title'] = false;
+	} else {
+		unset($zz['fields'][$no]);
+	}
 }
 
 $zz['title'] = 'Change Password';
