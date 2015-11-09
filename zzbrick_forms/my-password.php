@@ -39,7 +39,7 @@ if (isset($zz['fields'][9])) {
 $zz['fields'][99]['hide_in_form'] = true;
 
 foreach (array_keys($zz['fields']) as $no) {
-	if (in_array($no, array(1, 3, 9, 99))) {
+	if (in_array($no, array(1, 2, 3, 9, 99))) {
 		unset($zz['fields'][$no]);
 	}
 }
