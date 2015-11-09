@@ -20,6 +20,9 @@ require_once $zz_conf['form_scripts'].'/logins.php';
 // 3 = password
 $zz['fields'][3]['type'] = 'password_change';
 unset($zz['fields'][3]['function']); // no password function, e. g. random pwd
+if (!empty($_SESSION['dont_require_old_password'])) {
+	$zz['fields'][3]['dont_require_old_password'] = true;
+}
 
 // 9 = password_change
 if (isset($zz['fields'][9])) {
@@ -45,8 +48,16 @@ $zz['explanation'] = markdown(
 	."\n\n".wrap_text('password-rules')
 );
 $zz['access'] = 'edit_only';
+$zz['hooks']['after_update'] = 'mod_default_password_update';
 
 if (!empty($_GET['url'])) {
 	$zz_conf['redirect']['successful_update'] = $_GET['url'];
 }
 $zz_conf['text']['--']['Edit a record'] = 'Change My Password';
+
+function mod_default_password_update() {
+	if (empty($_SESSION['dont_require_old_password'])) return;
+	$success = wrap_session_start();
+	$_SESSION['dont_require_old_password'] = false;
+	session_write_close();
+}
