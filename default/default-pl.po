@@ -115,12 +115,12 @@ msgstr "Hasło"
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
 msgid "Change Password"
-msgstr ""
+msgstr "Zmiana hasła"
 
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
 msgid "Change My Password"
-msgstr ""
+msgstr "Zmiana mojego hasła"
 
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
