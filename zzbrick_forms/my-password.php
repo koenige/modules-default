@@ -13,9 +13,14 @@
  */
 
 
+require_once $zz_conf['form_scripts'].'/logins.php';
+if (empty($zz) AND !empty($zz_sub)) {
+	$zz = $zz_sub;
+	unset($zz_sub);
+}
+
 // just allow access for login table to own login ID
 $zz['where']['login_id'] = $_SESSION['login_id'];
-require_once $zz_conf['form_scripts'].'/logins.php';
 
 // 2 = username
 $zz['fields'][2]['title'] = 'Username';
