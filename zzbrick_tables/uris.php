@@ -106,8 +106,6 @@ $zz['sqlorder'] = ' ORDER BY uri_host, uri_path, uri_query';
 
 $zz['list']['group'] = 'uri_host';
 
-$zz_conf['multilang_fieldnames'] = true;
-
 $zz['filter'][1]['title'] = wrap_text('Status');
 $zz['filter'][1]['identifier'] = 'status';
 $zz['filter'][1]['type'] = 'list';

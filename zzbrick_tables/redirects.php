@@ -55,5 +55,4 @@ $zz['sqlorder'] = ' ORDER BY old_url, new_url';
 
 $zz['list']['group'] = 'area';
 
-$zz_conf['multilang_fieldnames'] = true;
 $zz_conf['copy'] = true;

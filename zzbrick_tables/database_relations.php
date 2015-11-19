@@ -113,6 +113,5 @@ $zz['fields'][9]['hide_in_list'] = true;
 $zz['sql'] = 'SELECT * FROM '.$zz_conf['relations_table'];
 $zz['sqlorder'] = ' ORDER BY detail_db, detail_table, detail_field';
 
-$zz_conf['multilang_fieldnames'] = true;
 $zz_conf['max_select'] = 200;
 $zz_conf['limit'] = 20;
