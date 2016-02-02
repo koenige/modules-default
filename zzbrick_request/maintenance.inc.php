@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2014 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2016 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -201,8 +201,8 @@ function zz_maintenance_tables() {
 					}
 					$sql = 'UPDATE %s SET %s = "%s" WHERE %s = "%s"';
 					$sql = sprintf($sql, $table,
-						$field_name, zz_db_escape($new),
-						$field_name, zz_db_escape($old)
+						$field_name, wrap_db_escape($new),
+						$field_name, wrap_db_escape($old)
 					);
 					wrap_db_query($sql);
 				}
