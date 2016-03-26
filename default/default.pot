@@ -634,43 +634,52 @@ msgstr ""
 msgid "Website settings"
 msgstr ""
 
-# Webpages
 #: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "Webpages"
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "Content"
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "Identifier"
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "none"
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "Address of page, should show hierarchy, no / at the end!<br>The identifier should contain only letters a-z, numbers 0-9 and the - sign."
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "Subpage&nbsp;of"
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "Menu"
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "top"
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "bottom"
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "internal"
 msgstr ""
