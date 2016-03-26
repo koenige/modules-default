@@ -54,7 +54,7 @@ $zz['fields'][6]['class'] = 'hidden480';
 $zz['fields'][7]['title'] = 'Subpage&nbsp;of';
 $zz['fields'][7]['field_name'] = 'mother_page_id';
 $zz['fields'][7]['type'] = 'select';
-$zz['fields'][7]['sql'] = 'SELECT page_id, title, mother_page_id
+$zz['fields'][7]['sql'] = 'SELECT page_id, title, mother_page_id, identifier
 	FROM /*_PREFIX_*/webpages
 	ORDER BY sequence';
 $zz['fields'][7]['show_hierarchy'] = 'mother_page_id';
