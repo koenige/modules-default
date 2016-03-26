@@ -757,3 +757,18 @@ msgstr ""
 msgctxt "default"
 msgid "Will language be used on website?"
 msgstr ""
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Categories"
+msgstr ""
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Category"
+msgstr ""
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Main Category"
+msgstr ""
