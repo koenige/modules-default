@@ -649,6 +649,7 @@ msgctxt "default"
 msgid "Identifier"
 msgstr ""
 
+#. Webpages: Possible ending of URL
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "none"
@@ -669,16 +670,19 @@ msgctxt "default"
 msgid "Menu"
 msgstr ""
 
+#. Webpages: Name of menu defined by position
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "top"
 msgstr ""
 
+#. Webpages: Name of menu defined by position
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "bottom"
 msgstr ""
 
+#. Webpages: Name of menu defined by position
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "internal"

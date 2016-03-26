@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7\n"
 
 #: modules/default/templates/login.template.txt
 msgid "You have been logged out."
@@ -35,7 +35,7 @@ msgid "Sign in"
 msgstr "Anmelden"
 
 #: modules/default/templates/login.template.txt
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Login"
 msgstr "Login"
 
@@ -133,9 +133,12 @@ msgstr "Tipps für sichere Passwörter"
 msgid "password-rules"
 msgstr ""
 "* Passwörter sollten wenigstens acht Zeichen lang sein.\n"
-"* Statt eines einzelnen Wortes können auch mehrere Wörter oder komplette Sätze benutzt werden.\n"
-"* Je länger das Passwort (oder der gewählte Satz) ist, desto besser ist der Zugang zu der Website gesichert.\n"
-"* Für kurze Passwörter wird empfohlen, dass sie aus Groß- und Kleinbuchstaben, Ziffern und Sonderzeichen (? = + ; etc.) bestehen.\n"
+"* Statt eines einzelnen Wortes können auch mehrere Wörter oder komplette "
+"Sätze benutzt werden.\n"
+"* Je länger das Passwort (oder der gewählte Satz) ist, desto besser ist der "
+"Zugang zu der Website gesichert.\n"
+"* Für kurze Passwörter wird empfohlen, dass sie aus Groß- und "
+"Kleinbuchstaben, Ziffern und Sonderzeichen (? = + ; etc.) bestehen.\n"
 "* Dasselbe Passwort sollte nicht auf anderen Websites genutzt werden."
 
 #: modules/default/zzbrick_request/maintenance.inc.php
@@ -163,7 +166,7 @@ msgid "Setting"
 msgstr "Einstellung"
 
 #: modules/default/zzbrick_request/maintenance.inc.php
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Value"
 msgstr "Wert"
 
@@ -528,93 +531,93 @@ msgstr "Nein. Ein Vorschaubild für %sx%s px konnte nicht erstellt werden."
 msgid "No missing thumbnails were found."
 msgstr "Es wurden keine fehlenden Vorschaubilder gefunden"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Database Table Relations"
 msgstr "Tabellenbeziehungen der Datenbank"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Master Table"
 msgstr "Haupttabelle"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Detail Table"
 msgstr "Detailtabelle"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Foreign Key"
 msgstr "Fremdschlüssel"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Database of Master Table"
 msgstr "Datenbank der Haupttabelle"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Name of Master Table"
 msgstr "Name der Haupttabelle"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Primary Key of Master Table"
 msgstr "Primärschlüssel der Haupttabelle"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Database of Detail Table"
 msgstr "Datenbank der Detailtabelle"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Name of Detail Table"
 msgstr "Name der Detailtabelle"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Primary Key of Detail Table"
 msgstr "Primärschlüssel der Detailtabelle"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Foreign Key of Detail Table"
 msgstr "Fremdschlüssel der Detailtabelle"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "If main record will be deleted, what should happen with detail record?"
 msgstr ""
 "Falls Haupteintrag gelöscht wird, was soll mit Detaileintrag geschehen?"
 
-#: modules/default/zzbrick_tables/database_logging.inc.php
+#: modules/default/zzbrick_tables/database_logging.php
 msgid "Query"
 msgstr "Abfrage"
 
-#: modules/default/zzbrick_tables/database_logging.inc.php
+#: modules/default/zzbrick_tables/database_logging.php
 msgid "Record"
 msgstr "Eintrag"
 
-#: modules/default/zzbrick_tables/database_logging.inc.php
+#: modules/default/zzbrick_tables/database_logging.php
 msgid "Last update"
 msgstr "Stand"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Translations"
 msgstr "Übersetzungen"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Database"
 msgstr "Datenbank"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Table"
 msgstr "Tabelle"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Field"
 msgstr "Feld"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Data type"
 msgstr "Datentyp"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Data Type"
 msgstr "Datentyp"
 
 #. Here, a boilerplate text for redirects is needed
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Information about redirects"
 msgstr ""
 "<p>Hier können Webseiten auf andere Webseiten umgeleitet werden. Dabei gibt "
@@ -627,43 +630,43 @@ msgstr ""
 "Adresse, hier muß die alten Adresse auf <code>*</code> enden. Achtung: es "
 "darf kein <code>/</code> vor dem Sternchen stehen.</li></ul>"
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Old URL"
 msgstr "Alte URL"
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "New URL"
 msgstr "Neue URL"
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Code"
 msgstr "Code"
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Area"
 msgstr "Bereich"
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Redirects"
 msgstr "Umleitungen"
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Key"
 msgstr "Schlüssel"
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Explanation"
 msgstr "Erläuterung"
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "User settings"
 msgstr "Benutzereinstellungen"
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Website settings"
 msgstr "Website-Einstellungen"
 
@@ -682,6 +685,7 @@ msgctxt "default"
 msgid "Identifier"
 msgstr "Kennung"
 
+#. Webpages: Possible ending of URL
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "none"
@@ -689,8 +693,13 @@ msgstr "keine"
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
-msgid "Address of page, should show hierarchy, no / at the end!<br>The identifier should contain only letters a-z, numbers 0-9 and the - sign."
-msgstr "Adresse der Seite, sollte Hierarchie zeigen, kein / am Ende!<br>Die Kennung sollte nur aus den Buchstaben a-z, Zahlen 0-9 und dem Minuszeichen (-) bestehen."
+msgid ""
+"Address of page, should show hierarchy, no / at the end!<br>The identifier "
+"should contain only letters a-z, numbers 0-9 and the - sign."
+msgstr ""
+"Adresse der Seite, sollte Hierarchie zeigen, kein / am Ende!<br>Die Kennung "
+"sollte nur aus den Buchstaben a-z, Zahlen 0-9 und dem Minuszeichen (-) "
+"bestehen."
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
@@ -702,16 +711,19 @@ msgctxt "default"
 msgid "Menu"
 msgstr "Menü"
 
+#. Webpages: Name of menu defined by position
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "top"
 msgstr "oben"
 
+#. Webpages: Name of menu defined by position
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "bottom"
 msgstr "unten"
 
+#. Webpages: Name of menu defined by position
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "internal"
