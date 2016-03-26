@@ -71,7 +71,7 @@ $zz['list']['hierarchy']['mother_id_field_name'] = $zz['fields'][4]['field_name'
 $zz['list']['hierarchy']['display_in'] = $zz['fields'][2]['field_name'];
 
 $zz['filter'][1]['sql'] = 'SELECT category_id, category
-	FROM categories
+	FROM /*_PREFIX_*/categories
 	WHERE ISNULL(main_category_id)
 	ORDER BY category';
 $zz['filter'][1]['title'] = wrap_text('Main Category');
