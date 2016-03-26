@@ -666,3 +666,44 @@ msgstr "Benutzereinstellungen"
 #: modules/default/zzbrick_tables/settings.inc.php
 msgid "Website settings"
 msgstr "Website-Einstellungen"
+
+# Webpages
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Webpages"
+msgstr "Webseiten"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Content"
+msgstr "Inhalt"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Identifier"
+msgstr "Kennung"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "none"
+msgstr "keine"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Address of page, should show hierarchy, no / at the end!<br>The identifier should contain only letters a-z, numbers 0-9 and the - sign."
+msgstr "Adresse der Seite, sollte Hierarchie zeigen, kein / am Ende!<br>Die Kennung sollte nur aus den Buchstaben a-z, Zahlen 0-9 und dem Minuszeichen (-) bestehen."
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Subpage&nbsp;of"
+msgstr "Unterseite&nbsp;von"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Menu"
+msgstr "Menü"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "top"
+msgstr "oben"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "bottom"
+msgstr "unten"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "internal"
+msgstr "intern"

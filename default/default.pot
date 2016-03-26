@@ -5,7 +5,7 @@
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014-2016 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -34,7 +34,7 @@ msgid "Sign in"
 msgstr ""
 
 #: modules/default/templates/login.template.txt
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Login"
 msgstr ""
 
@@ -149,7 +149,7 @@ msgid "Setting"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Value"
 msgstr ""
 
@@ -505,131 +505,172 @@ msgstr ""
 msgid "No missing thumbnails were found."
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Database Table Relations"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Master Table"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Detail Table"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Foreign Key"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Database of Master Table"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Name of Master Table"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Primary Key of Master Table"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Database of Detail Table"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Name of Detail Table"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Primary Key of Detail Table"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Foreign Key of Detail Table"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "If main record will be deleted, what should happen with detail record?"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_logging.inc.php
+#: modules/default/zzbrick_tables/database_logging.php
 msgid "Query"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_logging.inc.php
+#: modules/default/zzbrick_tables/database_logging.php
 msgid "Record"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_logging.inc.php
+#: modules/default/zzbrick_tables/database_logging.php
 msgid "Last update"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Translations"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Database"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Table"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Field"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Data type"
 msgstr ""
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Data Type"
 msgstr ""
 
 #. Here, a boilerplate text for redirects is needed
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Information about redirects"
 msgstr ""
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Old URL"
 msgstr ""
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "New URL"
 msgstr ""
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Code"
 msgstr ""
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Area"
 msgstr ""
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Redirects"
 msgstr ""
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Settings"
 msgstr ""
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Key"
 msgstr ""
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Explanation"
 msgstr ""
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "User settings"
 msgstr ""
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Website settings"
+msgstr ""
+
+# Webpages
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Webpages"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Content"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Identifier"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "none"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Address of page, should show hierarchy, no / at the end!<br>The identifier should contain only letters a-z, numbers 0-9 and the - sign."
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Subpage&nbsp;of"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "Menu"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "top"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "bottom"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgid "internal"
 msgstr ""
