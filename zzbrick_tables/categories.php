@@ -34,7 +34,7 @@ $zz['fields'][4]['title'] = 'Main Category';
 $zz['fields'][4]['field_name'] = 'main_category_id';
 $zz['fields'][4]['type'] = 'select';
 $zz['fields'][4]['sql'] = 'SELECT category_id, category as main_category, path, main_category_id 
-	FROM /*_PREFIX_*/categories ORDER BY main_category';
+	FROM /*_PREFIX_*/categories ORDER BY sequence, main_category';
 $zz['fields'][4]['display_field'] = 'main_category';
 $zz['fields'][4]['search'] = 'cat.category';
 $zz['fields'][4]['show_hierarchy'] = 'main_category_id';
@@ -49,8 +49,10 @@ $zz['fields'][5]['fields'] = array('main_category_id[path]', 'category');
 $zz['fields'][5]['conf_identifier'] = array('concat' => '/');
 
 $zz['fields'][6]['field_name'] = 'sequence';
+$zz['fields'][6]['title_tab'] = 'Seq.';
 $zz['fields'][6]['type'] = 'number';
 $zz['fields'][6]['auto_value'] = 'increment';
+$zz['fields'][6]['class'] = 'hidden480';
 
 // restrict access to this field if needed
 $zz['fields'][7]['field_name'] = 'parameters';
