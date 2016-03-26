@@ -19,7 +19,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.8.7\n"
 
 #: modules/default/templates/login.template.txt
 msgid "You have been logged out."
@@ -79,7 +79,8 @@ msgid "Please enter a valid e-mail address."
 msgstr ""
 
 #: modules/default/templates/login-password.template.txt
-msgid "If you have an existing login, we have sent you an e-mail with a login link."
+msgid ""
+"If you have an existing login, we have sent you an e-mail with a login link."
 msgstr ""
 
 #: modules/default/templates/login-password.template.txt
@@ -478,7 +479,10 @@ msgid "Thumbnail creation"
 msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
-msgid "Here, you can create either missing thumbnails, if they were not created on upload. Or you can create completely new thumbnails if you changed the pixel size."
+msgid ""
+"Here, you can create either missing thumbnails, if they were not created on "
+"upload. Or you can create completely new thumbnails if you changed the pixel "
+"size."
 msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
@@ -657,7 +661,9 @@ msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
-msgid "Address of page, should show hierarchy, no / at the end!<br>The identifier should contain only letters a-z, numbers 0-9 and the - sign."
+msgid ""
+"Address of page, should show hierarchy, no / at the end!<br>The identifier "
+"should contain only letters a-z, numbers 0-9 and the - sign."
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
@@ -771,4 +777,51 @@ msgstr ""
 #: modules/default/zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Main Category"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Logins"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid ""
+"\"Yes\" means that the user has to change the password next time he or she "
+"logs in."
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Active"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Change Pwd?"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Click"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Last activity in database"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Logged in"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Password"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "To deactivate a login"
 msgstr ""

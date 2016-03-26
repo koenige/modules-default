@@ -813,3 +813,51 @@ msgstr "Kategorie"
 msgctxt "default"
 msgid "Main Category"
 msgstr "Hauptkategorie"
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Logins"
+msgstr "Logins"
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid ""
+"\"Yes\" means that the user has to change the password next time he or she "
+"logs in."
+msgstr ""
+"»Ja« bedeutet, daß der Benutzer sein Paßwort beim nächsten Login ändern muß."
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Active"
+msgstr "Aktiv"
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Change Pwd?"
+msgstr "PW ändern?"
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Click"
+msgstr "Klick"
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Last activity in database"
+msgstr "Letzte Aktivität in der Datenbank"
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Logged in"
+msgstr "Eingeloggt"
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Password"
+msgstr "Passwort"
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "To deactivate a login"
+msgstr "Um einen Login zu deaktivieren"
