@@ -24,6 +24,8 @@ $zz['fields'][2]['field_name'] = 'title';
 $zz['fields'][2]['list_prefix'] = '<strong>';
 $zz['fields'][2]['list_suffix'] = '</strong>';
 $zz['fields'][2]['list_append_next'] = true;
+$zz['fields'][2]['if'][1]['list_prefix'] = '<del>';
+$zz['fields'][2]['if'][1]['list_suffix'] = '</del>';
 
 $zz['fields'][3]['field_name'] = 'content';
 $zz['fields'][3]['type'] = 'memo';
@@ -78,6 +80,8 @@ $zz['fields'][10]['hide_novalue'] = false;
 $zz['fields'][10]['enum'] = array('top', 'bottom', 'internal');
 $zz['fields'][10]['class'] = 'hidden320';
 
+$zz['fields'][15] = false; // parameters
+
 $zz['fields'][99]['title'] = 'Last Update';
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
@@ -94,5 +98,8 @@ $zz['list']['hierarchy']['mother_id_field_name'] = $zz['fields'][7]['field_name'
 $zz['list']['hierarchy']['display_in'] = $zz['fields'][2]['field_name'];
 
 $zz['set_redirect'][] = array('old' => '%s', 'new' => '%s', 'field_name' => 'identifier');
+
+$zz['conditions'][1]['scope'] = 'record';
+$zz['conditions'][1]['where'] = '/*_PREFIX_*/webpages.live = "no"';
 
 $zz_conf['copy'] = true;
