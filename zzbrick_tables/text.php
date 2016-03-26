@@ -32,6 +32,9 @@ $zz['fields'][2]['translation']['hide_in_list'] = false;
 $zz['fields'][3]['title'] = 'More Text';
 $zz['fields'][3]['field_name'] = 'more_text';
 $zz['fields'][3]['type'] = 'memo';
+// activate if needed
+$zz['fields'][3]['hide_in_list'] = true;
+$zz['fields'][3]['hide_in_form'] = true;
 
 $zz['fields'][4]['field_name'] = 'area';
 if (!empty($_GET['filter']['area'])) {
