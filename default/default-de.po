@@ -728,3 +728,73 @@ msgstr "unten"
 msgctxt "default"
 msgid "internal"
 msgstr "intern"
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Countries"
+msgstr "Länder"
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Country"
+msgstr "Land"
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Country Code"
+msgstr "Ländercode"
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Country code according to ISO 3166"
+msgstr "Ländercode gemäß ISO 3166"
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Website"
+msgstr "Website"
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Will country be used on website?"
+msgstr "Soll Land auf Website genutzt werden?"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Languages"
+msgstr "Sprachen"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language code ISO 639-1"
+msgstr "Sprachcode ISO 639-1"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language code ISO 639-2, Bibliographic"
+msgstr "Sprachcode ISO 639-2, bibliographisch"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language code ISO 639-2, Terminology"
+msgstr "Sprachcode ISO 639-2, Terminologie"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language, english"
+msgstr "Sprache, englisch"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language, french"
+msgstr "Sprache, französisch"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language, german"
+msgstr "Sprache, deutsch"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Will language be used on website?"
+msgstr "Soll Sprache auf Website genutzt werden?"
