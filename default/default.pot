@@ -825,3 +825,13 @@ msgstr ""
 msgctxt "default"
 msgid "To deactivate a login"
 msgstr ""
+
+#: modules/default/zzbrick_tables/languages.php
+#: modules/default/zzbrick_tables/countries.php
+msgid "yes"
+msgstr ""
+
+#: modules/default/zzbrick_tables/languages.php
+#: modules/default/zzbrick_tables/countries.php
+msgid "no"
+msgstr ""
