@@ -645,6 +645,11 @@ msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
+msgid "Title"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "Content"
 msgstr ""
 

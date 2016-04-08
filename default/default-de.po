@@ -677,6 +677,11 @@ msgstr "Webseiten"
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
+msgid "Title"
+msgstr "Titel"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "Content"
 msgstr "Inhalt"
 
