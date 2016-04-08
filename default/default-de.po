@@ -703,8 +703,18 @@ msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
+msgid "Sequence"
+msgstr "Reihenfolge"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "Subpage&nbsp;of"
 msgstr "Unterseite&nbsp;von"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Published?"
+msgstr "Öffentlich?"
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
@@ -728,6 +738,11 @@ msgstr "unten"
 msgctxt "default"
 msgid "internal"
 msgstr "intern"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Last Update"
+msgstr "Stand"
 
 #: modules/default/zzbrick_tables/countries.php
 msgctxt "default"
@@ -813,6 +828,16 @@ msgstr "Kategorie"
 msgctxt "default"
 msgid "Main Category"
 msgstr "Hauptkategorie"
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Description"
+msgstr "Beschreibung"
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Parameters"
+msgstr "Parameter"
 
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"

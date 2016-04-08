@@ -668,7 +668,17 @@ msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
+msgid "Sequence"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
 msgid "Subpage&nbsp;of"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Published?"
 msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
@@ -692,6 +702,11 @@ msgstr ""
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "internal"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Last Update"
 msgstr ""
 
 #: modules/default/zzbrick_tables/countries.php
@@ -777,6 +792,16 @@ msgstr ""
 #: modules/default/zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Main Category"
+msgstr ""
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Description"
+msgstr ""
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Parameters"
 msgstr ""
 
 #: modules/default/zzbrick_tables/logins.php
