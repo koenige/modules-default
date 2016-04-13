@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009-2010, 2013-2015 Gustaf Mossakowski
+ * @copyright Copyright © 2009-2010, 2013-2016 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -39,6 +39,8 @@ $zz['fields'][3]['hide_in_form'] = true;
 $zz['fields'][4]['field_name'] = 'area';
 if (!empty($_GET['filter']['area'])) {
 	$zz['fields'][4]['hide_in_list'] = true;
+} else {
+	$zz['fields'][4]['group_in_list'] = true;
 }
 
 $zz['fields'][20]['title'] = 'Last Update';
@@ -46,13 +48,8 @@ $zz['fields'][20]['field_name'] = 'last_update';
 $zz['fields'][20]['type'] = 'timestamp';
 $zz['fields'][20]['hide_in_list'] = true;
 
-	
 $zz['sql'] = 'SELECT * FROM '.$zz_conf['text_table'].'
 	ORDER BY area, text';
-
-if (empty($_GET['filter']['area'])) {
-	$zz['list']['group'] = 'area';
-}
 
 $zz['filter'][1]['title'] = wrap_text('Area');
 $zz['filter'][1]['identifier'] = 'area';

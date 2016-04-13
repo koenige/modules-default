@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012-2015 Gustaf Mossakowski
+ * @copyright Copyright © 2012-2016 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -32,6 +32,7 @@ $zz['fields'][2]['hide_in_list'] = true;
 
 $zz['fields'][3]['title'] = 'Host';
 $zz['fields'][3]['field_name'] = 'uri_host';
+$zz['fields'][3]['group_in_list'] = true;
 //$zz['fields'][3]['list_append_next'] = true;
 //$zz['fields'][3]['list_suffix'] = '<br>';
 
@@ -103,8 +104,6 @@ $zz['fields'][20]['hide_in_list'] = true;
 $zz['sql'] = 'SELECT * 
 	FROM /*_PREFIX_*/_uris';
 $zz['sqlorder'] = ' ORDER BY uri_host, uri_path, uri_query';
-
-$zz['list']['group'] = 'uri_host';
 
 $zz['filter'][1]['title'] = wrap_text('Status');
 $zz['filter'][1]['identifier'] = 'status';
