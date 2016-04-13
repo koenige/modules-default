@@ -42,8 +42,10 @@ $zz['fields'][4]['enum'] = array(301, 303, 307, 403, 410);
 $zz['fields'][4]['enum_abbr'] = array(wrap_text('Moved Permanently'), 
 	wrap_text('See Other'), wrap_text('Temporary Redirect'), 
 	wrap_text('Forbidden'), wrap_text('Gone'));
+$zz['fields'][4]['group_in_list'] = true;
 
 $zz['fields'][5]['field_name'] = 'area';
+$zz['fields'][5]['group_in_list'] = true;
 
 $zz['fields'][20]['field_name'] = 'last_update';
 $zz['fields'][20]['type'] = 'timestamp';
@@ -52,8 +54,5 @@ $zz['fields'][20]['hide_in_list'] = true;
 $zz['sql'] = 'SELECT * 
 	FROM /*_PREFIX_*/redirects';
 $zz['sqlorder'] = ' ORDER BY old_url, new_url';
-
-$zz['list']['group'][] = 'area';
-$zz['list']['group'][] = 'code';
 
 $zz_conf['copy'] = true;
