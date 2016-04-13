@@ -5,17 +5,17 @@
  * Database table for redirects of URLs
  * DB-Tabelle zur Eingabe von Umleitungen von URLs
  *
- * Part of »Zugzwang Project«
+ * Part of Â»Zugzwang ProjectÂ«
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2006-2015 Gustaf Mossakowski
+ * @copyright Copyright Â© 2006-2016 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 // access restriction has to be set in the file including this file
-// Bitte Zugriffsbeschränkungen in der Datei, die diese einbindet, definieren!
+// Bitte ZugriffsbeschrÃ¤nkungen in der Datei, die diese einbindet, definieren!
 
 $zz['title'] = 'Redirects';
 $zz['explanation'] = '%%% text Information about redirects %%%';
@@ -53,6 +53,7 @@ $zz['sql'] = 'SELECT *
 	FROM /*_PREFIX_*/redirects';
 $zz['sqlorder'] = ' ORDER BY old_url, new_url';
 
-$zz['list']['group'] = 'area';
+$zz['list']['group'][] = 'area';
+$zz['list']['group'][] = 'code';
 
 $zz_conf['copy'] = true;
