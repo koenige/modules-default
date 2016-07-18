@@ -861,6 +861,11 @@ msgctxt "default"
 msgid "Rights"
 msgstr ""
 
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Login rights"
+msgstr ""
+
 #: modules/default/zzbrick_tables/languages.php
 #: modules/default/zzbrick_tables/countries.php
 msgid "yes"
