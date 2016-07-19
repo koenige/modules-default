@@ -620,8 +620,8 @@ function zz_maintenance_folders() {
 				.'<p style="float: right;"><a href="'.zz_html_escape($_SERVER['REQUEST_URI'])
 				.'&amp;deleteall">'.wrap_text('Delete all files').'</a></p>
 				<p><input type="submit" value="'.wrap_text('Delete selected files').'">'
-				.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.zz_text('Select all').'</a> |
-				<a onclick="zz_set_checkboxes(false); return false;" href="#">'.zz_text('Deselect all').'</a>
+				.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.wrap_text('Select all').'</a> |
+				<a onclick="zz_set_checkboxes(false); return false;" href="#">'.wrap_text('Deselect all').'</a>
 				</p>';
 		}
 		$text .= '</form>';
@@ -844,7 +844,7 @@ function zz_maintenance_logs() {
 	$my_uri = $zz_conf['int']['url']['self'].zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
 	
 	foreach ($filters as $index => $filter) {
-		$f_output[$index]['title'] = zz_text(ucfirst($index));
+		$f_output[$index]['title'] = wrap_text(ucfirst($index));
 		$my_link = $my_uri;
 		if ($filters_set) {
 			foreach ($filters_set as $which => $filter_set) {
@@ -857,7 +857,7 @@ function zz_maintenance_logs() {
 			$link = $my_link.'&amp;filter['.$index.']='.urlencode($value);
 			$f_output[$index]['values'][] = array(
 				'link' => !$is_selected ? $link : '',
-				'title' => zz_text($value)
+				'title' => wrap_text($value)
 			);
 		}
 		$f_output[$index]['values'][] = array(
@@ -1148,8 +1148,8 @@ function zz_maintenance_logs() {
 		$text .= '<p style="float: right;"><a href="'.zz_html_escape($_SERVER['REQUEST_URI'])
 			.'&amp;deleteall">'.wrap_text('Delete all lines').'</a></p>'
 			.'<p><input type="submit" value="'.wrap_text('Delete selected lines').'">'
-			.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.zz_text('Select all').'</a> |
-			<a onclick="zz_set_checkboxes(false); return false;" href="#">'.zz_text('Deselect all').'</a></p>';
+			.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.wrap_text('Select all').'</a> |
+			<a onclick="zz_set_checkboxes(false); return false;" href="#">'.wrap_text('Deselect all').'</a></p>';
 	}
 	$text .= '</form>';
 
