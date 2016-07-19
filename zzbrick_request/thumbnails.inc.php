@@ -104,7 +104,6 @@ function mod_default_thumbnails($params) {
 			
 			if (empty($file['action'])) continue;
 			$func = 'zz_image_'.$file['action'];
-			$tn = false;
 			if (!function_exists($func)) {
 				$output[] = $title.': <span class="error">'.sprintf(
 					wrap_text('The function %s does not exist.'), zz_htmltag_escape($func))
