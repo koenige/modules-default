@@ -361,7 +361,7 @@ msgid "Errors will be sent via mail"
 msgstr "Fehler werden per Mail versendet"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
-msgid "Errors won't be shown"
+msgid "Errors won’t be shown"
 msgstr "Fehler werden nicht angezeigt"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling

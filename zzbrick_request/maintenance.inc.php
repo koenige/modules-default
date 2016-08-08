@@ -709,7 +709,7 @@ function zz_maintenance_errors() {
 	$lines[0]['td'] = (!empty($zz_conf['error_handling']) ? $zz_conf['error_handling'] : '');
 	$lines[0]['explanation']['output'] = wrap_text('Errors will be shown on webpage');
 	$lines[0]['explanation']['mail'] = wrap_text('Errors will be sent via mail');
-	$lines[0]['explanation'][false] = wrap_text('Errors won\'t be shown');
+	$lines[0]['explanation'][false] = wrap_text('Errors won’t be shown');
 
 	$lines[1] = array(
 		'th' => wrap_text('Send mail for these error levels'),
