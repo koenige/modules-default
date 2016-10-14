@@ -736,6 +736,7 @@ function zz_maintenance_errors() {
 	if ($zz_conf['log_errors']) {
 
 		// get logfiles
+		$logfiles = array();
 		if ($php_log = ini_get('error_log'))
 			$logfiles[realpath($php_log)][] = 'PHP';
 		$levels = array('error', 'warning', 'notice');
