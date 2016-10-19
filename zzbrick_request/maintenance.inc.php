@@ -35,6 +35,8 @@ function mod_default_maintenance($params) {
 		$zz_conf['modules'] = array();
 		$zz_conf['modules']['debug'] = false;
 	}
+	$zz_setting['extra_http_headers'][] = 'X-Frame-Options: Deny';
+	$zz_setting['extra_http_headers'][] = "Content-Security-Policy: frame-ancestors 'self'";
 
 	require_once $zz_conf['dir_inc'].'/zzform.php';
 	require_once $zz_conf['dir_inc'].'/functions.inc.php';
