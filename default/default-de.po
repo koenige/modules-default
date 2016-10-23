@@ -801,18 +801,18 @@ msgstr "Sprachcode ISO 639-2, Terminologie"
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
-msgid "Language, english"
-msgstr "Sprache, englisch"
+msgid "Language name, english"
+msgstr "Sprachname, englisch"
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
-msgid "Language, french"
-msgstr "Sprache, französisch"
+msgid "Language name, french"
+msgstr "Sprachname, französisch"
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
-msgid "Language, german"
-msgstr "Sprache, deutsch"
+msgid "Language name, german"
+msgstr "Sprachname, deutsch"
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
