@@ -34,16 +34,20 @@ $zz['fields'][4]['title_tab'] = '639-1';
 $zz['fields'][4]['field_name'] = 'iso_639_1';
 $zz['fields'][4]['explanation'] = 'Language code ISO 639-1';
 
-$zz['fields'][6]['title'] = 'Language, english';
+$zz['fields'][6]['title'] = 'Language name, english';
 $zz['fields'][6]['field_name'] = 'language_en';
 
-$zz['fields'][5]['title'] = 'Language, german';
+$zz['fields'][5]['title'] = 'Language name, german';
 $zz['fields'][5]['field_name'] = 'language_de';
 $zz['fields'][5]['hide_in_list'] = true;
 
-$zz['fields'][7]['title'] = 'Language, french';
+$zz['fields'][7]['title'] = 'Language name, french';
 $zz['fields'][7]['field_name'] = 'language_fr';
 $zz['fields'][7]['hide_in_list'] = true;
+
+$zz['fields'][8] = false; // further languages
+
+$zz['fields'][9] = false; // further languages
 
 $zz['fields'][10]['field_name'] = 'website';
 $zz['fields'][10]['type'] = 'select';
@@ -55,7 +59,8 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/languages.*
 	FROM /*_PREFIX_*/languages';
 $zz['sqlorder'] = ' ORDER BY iso_639_2t';
 
-$zz['filter'][1]['title'] = 'Web';
+$zz['filter'][1]['title'] = wrap_text('Web');
+$zz['filter'][1]['identifier'] = 'web';
 $zz['filter'][1]['type'] = 'list';
 $zz['filter'][1]['where'] = 'IF(STRCMP(website, "yes"), 2, 1)';
 $zz['filter'][1]['selection'][1] = wrap_text('yes');

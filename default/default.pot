@@ -766,17 +766,17 @@ msgstr ""
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
-msgid "Language, english"
+msgid "Language name, english"
 msgstr ""
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
-msgid "Language, french"
+msgid "Language name, french"
 msgstr ""
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
-msgid "Language, german"
+msgid "Language name, german"
 msgstr ""
 
 #: modules/default/zzbrick_tables/languages.php
