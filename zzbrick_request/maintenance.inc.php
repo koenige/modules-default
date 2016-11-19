@@ -65,13 +65,13 @@ function mod_default_maintenance($params) {
 		'folder', 'log', 'integrity', 'filetree', 'phpinfo', 'file', 'q',
 		'deleteall', 'filter', 'limit', 'scope'
 	);
-	$page['text'] = '<div id="zzform" class="maintenance">'."\n";
 	
 	$sql = '';
 	if (!empty($_POST['sql'])) {
 		$sql = $_POST['sql'];
 
 		$heading = 'SQL Query';
+		$page['text'] = '<div id="zzform" class="maintenance">'."\n";
 		$page['text'] .= '<pre style="font-size: 1.1em; white-space: pre-wrap;"><code>'.zz_maintenance_sql($sql).'</code></pre>';
 
 		$tokens = explode(' ', $sql);
@@ -98,43 +98,29 @@ function mod_default_maintenance($params) {
 		default:
 			$page['text'] .= sprintf(wrap_text('Sorry, %s is not yet supported'), zz_htmltag_escape($tokens[0]));
 		}
-	}
-
-	if (empty($_GET)) {	
-		if (!$sql) {
-			$heading = wrap_text('Maintenance');
-			$heading_prefix = '';
-
-			// 'relations'
-			// 'translations'
-			$page['text'] .= '<h2>'.wrap_text('Relation and Translation Tables').'</h2>'."\n";
-			$page['text'] .= zz_maintenance_tables();
-	
-			$page['text'] .= '<h2>'.wrap_text('Error Logging').'</h2>'."\n";
-			$page['text'] .= zz_maintenance_errors();
-		
-			$page['text'] .= '<h2>'.wrap_text('PHP & Server').'</h2>'."\n";
-			$page['text'] .= '<p><a href="?phpinfo">'.wrap_text('Show PHP info on server').'</a></p>';
-			if ($zz_conf['graphics_library'] === 'imagemagick') {
-				require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
-				$page['text'] .= '<p>ImageMagick:</p><blockquote><pre>'.wrap_html_escape(zz_imagick_version()).'</pre></blockquote>';
-				$page['text'] .= '<p>GhostScript:</p><blockquote><pre>'.wrap_html_escape(zz_ghostscript_version()).'</pre></blockquote>';
-			}
-
-		// 	- Backup/errors, insert, update, delete
-			$page['text'] .= '<h2>'.wrap_text('Temp and Backup Files').'</h2>'."\n";
-			$page['text'] .= zz_maintenance_folders();
-
-			$page['text'] .= '<h2><a href="?filetree">'.wrap_text('Filetree').'</a></h2>'."\n";
-		}
-	
 		$page['text'] .= '<h2>'.wrap_text('Custom SQL query').'</h2>'."\n";
 		$page['text'] .= '<form method="POST" action=""><textarea cols="60" rows="10" name="sql">'
 			.str_replace('%%%', '%&shy;%&shy;%', zz_html_escape($sql))
 			.'</textarea>
 			<br><input type="submit"></form>'."\n";
-	// 	- SQL query absetzen, Häkchen für zz_log_sql()
+		$page['text'] .= '</div>'."\n";
+	}
+
+	if (empty($_GET) AND !$sql) {	
+		$heading = wrap_text('Maintenance');
+		$heading_prefix = '';
+
+		$data['tables'] = zz_maintenance_tables();
+		$data['errors'] = zz_maintenance_errors();
+		if ($zz_conf['graphics_library'] === 'imagemagick') {
+			require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
+			$data['imagick'] = zz_imagick_version();
+			$data['ghostscript'] = zz_ghostscript_version();
+		}
+		$data['folders'] = zz_maintenance_folders();
+		$page['text'] = wrap_template('maintenance', $data);
 	} else {
+		$page['text'] = '<div id="zzform" class="maintenance">'."\n";
 		if (!empty($_GET['folder'])) {
 			$heading = 'Backup folder';
 			$page['text'] .= zz_maintenance_folders();
@@ -158,8 +144,8 @@ function mod_default_maintenance($params) {
 			}
 			$page['text'] .= '</pre>'."\n";
 		}
+		$page['text'] .= '</div>'."\n";
 	}
-	$page['text'] .= '</div>'."\n";
 	$page['text'] .= wrap_template('zzform-foot', $zz_setting);
 
 	$page['title'] = wrap_text($zz_conf['heading_prefix']).' '.$heading_prefix.' '.wrap_text($heading);

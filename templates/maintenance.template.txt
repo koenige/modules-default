@@ -1,0 +1,37 @@
+# default module
+# Template for maintenance script
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2016 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div id="zzform" class="maintenance">
+<h2>%%% text Relation and Translation Tables %%%</h2>
+%%% item tables %%%
+
+<h2>%%% text Error Logging %%%</h2>
+%%% item errors %%%
+
+<h2>%%% text PHP & Server %%%</h2>
+<p><a href="?phpinfo">%%% text Show PHP info on server %%%</a></p>
+%%% condition if imagick | ghostscript %%%
+<p>ImageMagick:</p><blockquote><pre>%%% item imagick wrap_html_escape %%%</pre></blockquote>
+<p>GhostScript:</p><blockquote><pre>%%% item ghostscript wrap_html_escape %%%</pre></blockquote>
+%%% condition endif %%%
+
+<h2>%%% text Temp and Backup Files %%%</h2>
+%%% item folders %%%
+
+<h2><a href="?filetree">%%% text Filetree %%%</a></h2>
+
+<h2>%%% text Custom SQL query %%%</h2>
+
+<form method="POST" action="">
+<textarea cols="60" rows="10" name="sql">
+</textarea>
+<br><input type="submit"></form>
+
+</div>
