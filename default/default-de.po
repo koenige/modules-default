@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #: modules/default/templates/login.template.txt
 msgid "You have been logged out."
@@ -491,6 +491,22 @@ msgstr "Gruppierung"
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Group entries"
 msgstr "Einträge gruppieren"
+
+#: modules/default/templates/maintenance.template.txt
+msgid "Download SQL log"
+msgstr "SQL-Log herunterladen"
+
+#: modules/default/templates/maintenance.template.txt
+msgid "Starting with ID"
+msgstr "Beginnend mit ID"
+
+#: modules/default/templates/maintenance.template.txt
+msgid "Download"
+msgstr "Herunterladen"
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqldownload
+msgid "Logfile has only %d entries."
+msgstr "Log-Datei hat nur %d Einträge."
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid "Thumbnail creation"

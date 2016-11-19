@@ -474,6 +474,22 @@ msgstr ""
 msgid "Group entries"
 msgstr ""
 
+#: modules/default/templates/maintenance.template.txt
+msgid "Download SQL log"
+msgstr ""
+
+#: modules/default/templates/maintenance.template.txt
+msgid "Starting with ID"
+msgstr ""
+
+#: modules/default/templates/maintenance.template.txt
+msgid "Download"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqldownload
+msgid "Logfile has only %d entries."
+msgstr ""
+
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid "Thumbnail creation"
 msgstr ""

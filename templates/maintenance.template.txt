@@ -80,6 +80,13 @@
 
 <h2><a href="?filetree">%%% text Filetree %%%</a></h2>
 
+%%% condition if logging_table %%%
+<h2>%%% text Download SQL log %%%</h2>
+<form method="GET" action="">
+%%% text Starting with ID %%%&nbsp; <input type="number" name="sqldownload">&nbsp; <input type="submit" value="%%% text Download %%%">
+</form>
+%%% condition endif %%%
+
 <h2>%%% text Custom SQL query %%%</h2>
 
 <form method="POST" action="">

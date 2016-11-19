@@ -63,7 +63,7 @@ function mod_default_maintenance($params) {
 	
 	$page['query_strings'] = array(
 		'folder', 'log', 'integrity', 'filetree', 'phpinfo', 'file', 'q',
-		'deleteall', 'filter', 'limit', 'scope'
+		'deleteall', 'filter', 'limit', 'scope', 'sqldownload'
 	);
 	
 	$sql = '';
@@ -119,6 +119,7 @@ function mod_default_maintenance($params) {
 			$data['ghostscript'] = zz_ghostscript_version();
 		}
 		$data['folders'] = zz_maintenance_folders();
+		$data['logging_table'] = $zz_conf['logging_table'];
 		$page['text'] = wrap_template('maintenance', $data);
 	} else {
 		$page['text'] = '<div id="zzform" class="maintenance">'."\n";
@@ -137,6 +138,8 @@ function mod_default_maintenance($params) {
 		} elseif (isset($_GET['phpinfo'])) {
 			phpinfo();
 			exit;
+		} elseif (isset($_GET['sqldownload'])) {
+			return zz_maintenance_sqldownload(wrap_text($zz_conf['heading_prefix']).' '.$heading_prefix);
 		} else {
 			$heading = 'Error';
 			$page['text'] .= wrap_text('GET should be empty, please test that:').' <pre>';
@@ -1179,4 +1182,33 @@ function zz_delete_line_from_file($file, $lines) {
 
 	fclose($handle);
 	return sprintf(wrap_text('%s lines deleted.'), $deleted);
+}
+
+/**
+ * export SQL log as JSON file
+ *
+ * @param string $heading
+ * @global int $_GET['sqldownload']
+ * @return array $page
+ */
+function zz_maintenance_sqldownload($heading) {
+	global $zz_conf;
+	
+	$sql = 'SELECT * FROM %s WHERE log_id >= %d';
+	$sql = sprintf($sql, $zz_conf['logging_table'], $_GET['sqldownload']);
+	$data = wrap_db_fetch($sql, 'log_id');
+	if (!$data) {
+		$sql = 'SELECT MAX(log_id) FROM %s';
+		$sql = sprintf($sql, $zz_conf['logging_table']);
+		$max_logs = wrap_db_fetch($sql, '', 'single value');
+		$heading .= ' '.wrap_text('Download SQL log');
+		$page['text'] = '<h1>'.$heading.'</h1><p>'.sprintf(wrap_text('Logfile has only %d entries.'), $max_logs).'</p>';
+		$page['status'] = 404;
+		return $page;
+	}
+
+	$page['text'] = json_encode($data);
+	$page['content_type'] = 'json';
+	$page['headers']['filename'] = sprintf('logging_%d.json', $_GET['sqldownload']);
+	return $page;
 }
