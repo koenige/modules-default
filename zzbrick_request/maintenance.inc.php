@@ -59,9 +59,7 @@ function mod_default_maintenance($params) {
 	$zz_conf['int_modules'] = array('debug', 'compatibility', 'validate', 'upload');
 	zz_initialize();
 	zz_init_limit();
-	$heading_prefix = '';
-	if ($zz_conf['heading_prefix']) $heading_prefix = ' ';
-	$heading_prefix .= '<a href="./">'.wrap_text('Maintenance').'</a>:';
+	$heading_prefix = '<a href="./">'.wrap_text('Maintenance').'</a>:';
 	
 	$page['query_strings'] = array(
 		'folder', 'log', 'integrity', 'filetree', 'phpinfo', 'file', 'q',
@@ -164,8 +162,7 @@ function mod_default_maintenance($params) {
 	$page['text'] .= '</div>'."\n";
 	$page['text'] .= wrap_template('zzform-foot', $zz_setting);
 
-	$zz_conf['heading_prefix'] .= $heading_prefix;
-	$page['title'] = zz_output_heading($heading);
+	$page['title'] = wrap_text($zz_conf['heading_prefix']).' '.$heading_prefix.' '.wrap_text($heading);
 	$page['dont_show_h1'] = true;
 	$page['text'] = '<h1>'.$page['title']."</h1>\n".$page['text'];
 	return $page;
