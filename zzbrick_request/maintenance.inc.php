@@ -110,7 +110,8 @@ function mod_default_maintenance($params) {
 		$heading = wrap_text('Maintenance');
 		$heading_prefix = '';
 
-		$data['tables'] = zz_maintenance_tables();
+		$data = array();
+		$data = array_merge($data, zz_maintenance_tables());
 		$data['errors'] = zz_maintenance_errors();
 		if ($zz_conf['graphics_library'] === 'imagemagick') {
 			require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
@@ -154,20 +155,19 @@ function mod_default_maintenance($params) {
 	return $page;
 }
 
+/**
+ * list and modify databases for translation and relation tables
+ *
+ * @return array
+ */
 function zz_maintenance_tables() {
 	global $zz_conf;
-	$text = false;
+	$data = array();
 
-	if (empty($zz_conf['relations_table'])) {
-		$text .= '<p>'.wrap_text('No table for database relations is defined')
-			.' (<code>$zz_conf["relations_table"]</code>)</p>';
-	} elseif (empty($zz_conf['translations_table'])) {
-		$text .= '<p>'.wrap_text('No table for database translations is defined')
-			.' (<code>$zz_conf["translations_table"]</code>)</p>';
-	}
-	
+	$data['relations_table'] = $zz_conf['relations_table'];
+	$data['translations_table'] = !empty($zz_conf['translations_table']) ? $zz_conf['translations_table'] : false;
 	if (empty($zz_conf['relations_table']) AND empty($zz_conf['translations_table']))
-		return $text;
+		return $data;
 		
 	// Update
 	if ($_POST AND !empty($_POST['db_value'])) {
@@ -216,49 +216,21 @@ function zz_maintenance_tables() {
 	// All available databases
 	$sql = 'SHOW DATABASES';
 	$databases = wrap_db_fetch($sql, 'Databases', 'single value');
-	$db_select = '';
-	foreach ($databases as $db) {
-		$db_select .= '<option value="'.$db.'">'.$db.'</option>'."\n";
-	}
+	foreach ($databases as $db) $db_list[] = array('db' => $db);
 
-	$text .= '<form action="" method="POST">';
-	$text .= '<table class="data"><thead><tr>
-		<th>'.wrap_text('Type').'</th>
-		<th class="block480a">'.wrap_text('Current database').'</th>
-		<th class="block480a">'.wrap_text('New database').'</th>
-		<th class="editbutton block480">'.wrap_text('Action').'</th>
-		</thead><tbody>'."\n";
 	$i = 0;
 	foreach ($dbs as $category => $db_names) {
 		foreach ($db_names as $db) {
-			if (in_array($db, $databases)) {
-				$keep = '<input type="radio" checked="checked" name="db_set['
-					.$category.']['.$db.']" value="keep"> '.wrap_text('Keep database')
-					.' / '.'<input type="radio" name="db_set['.$category.']['
-					.$db.']" value="change"> '.wrap_text('Change database');
-			} else {
-				$keep = wrap_text('(Database is not on server, you have to select a new database.)')
-					.'<input type="hidden" name="db_set['.$category.']['
-					.$db.']" value="change">';
-			}
-			$text .= '<tr class="'.($i & 1 ? 'uneven' : 'even').'">'
-				.'<td>'.wrap_text(ucfirst($category)).'</td>'
-				.'<td class="block480a">'.$db.'</td>'
-				.'<td class="block480a"><select name="db_value['.$category.']['.$db.']">'.$db_select.'</select></td>'
-				.'<td class="block480">'.$keep.'</td>'
-				.'</tr>'."\n";
-			$i++;
+			$data['tables'][] = array(
+				'title' => wrap_text(ucfirst($category)),
+				'db' => $db,
+				'category' => $category,
+				'keep' => in_array($db, $databases) ? true : false,
+				'databases' => $db_list
+			);
 		}
 	}
-	$text .= '</tbody></table>'."\n"
-		.'<input type="submit">';
-	$text .= '</form>';
-
-	if (!empty($zz_conf['relations_table'])) {
-		$text .= '<p><a href="?integrity">'.wrap_text('Check relational integrity').'</a></p>';
-	}
-
-	return $text;
+	return $data;
 }
 
 /**
@@ -687,6 +659,11 @@ function zz_maintenance_folders_deleteall($my_folder, $file) {
 	}
 }
 
+/**
+ * show settings for error and further logging
+ *
+ * @return array
+ */
 function zz_maintenance_errors() {
 	global $zz_conf;
 
@@ -760,20 +737,13 @@ function zz_maintenance_errors() {
 	$lines[23]['td'] = !empty($zz_conf['upload_log']) ? '<a href="?log='.urlencode(realpath($zz_conf['upload_log']))
 				.'">'.realpath($zz_conf['upload_log']).'</a>' : wrap_text('disabled');
 
-	$text = '<table class="data"><thead><tr><th class="block480a">'.wrap_text('Setting').'</th>'
-		.'<th class="block480">'.wrap_text('Value').'</th>'
-		.'</tr></thead><tbody>'."\n";
 	foreach ($lines as $index => $line) {
 		if (!$line['td']) $line['td'] = false;
-		$line['class'] = !empty($line['class']) ? $line['class'].' block480a' : 'block480';
-		$text .= '<tr class="'.($index & 1 ? 'uneven' : 'even').'">'
-			.'<td class="'.$line['class'].'">'.$line['th']
-			.'</td><td class="block480"><strong>'.$line['td'].'</strong>'
-			.(!empty($line['explanation'][$line['td']]) ? ' ('.$line['explanation'][$line['td']].')' : '') 
-			.'</td></tr>'."\n";
+		$lines[$index]['class'] = !empty($line['class']) ? $line['class'].' block480a' : 'block480';
+		$lines[$index]['td_class'] = $index & 1 ? 'uneven' : 'even';
+		$lines[$index]['explanation'] = !empty($line['explanation'][$line['td']]) ? $line['explanation'][$line['td']] : false;
 	}
-	$text .= '</tbody></table>'."\n";
-	return $text;
+	return $lines;
 }
 
 /**

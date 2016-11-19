@@ -9,11 +9,64 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
+
 <h2>%%% text Relation and Translation Tables %%%</h2>
-%%% item tables %%%
+%%% condition unless relations_table %%%
+<p>%%% text No table for database relations is defined %%% (<code>$zz_conf["relations_table"]</code>)</p>
+%%% condition endif %%%
+%%% condition unless translations_table %%%
+<p>%%% text No table for database translations is defined %%% (<code>$zz_conf["translations_table"]</code>)</p>
+%%% condition endif %%%
+%%% condition if relations_table | translations_table %%%
+<form action="" method="POST">
+<table class="data"><thead><tr>
+<th>%%% text Type %%%</th>
+<th class="block480a">%%% text Current database %%%</th>
+<th class="block480a">%%% text New database %%%</th>
+<th class="editbutton block480">%%% text Action %%%</th>
+</thead><tbody>
+%%% loop tables %%%
+<tr class="%%% loopposition uneven "un" %%%even">
+<td>%%% item title %%%</td>
+<td class="block480a">%%% item db %%%</td>
+<td class="block480a"><select name="db_value[%%% item category %%%][%%% item db %%%]">
+%%% loop databases %%%
+<option value="%%% item db %%%">%%% item db %%%</option>
+%%% loop end %%%
+</select></td>
+<td class="block480">%%% condition if keep %%%
+<input type="radio" checked="checked" name="db_set[%%% item category %%%][%%% item db %%%]" value="keep">
+ %%% text Keep database %%% / 
+<input type="radio" name="db_set[%%% item category %%%][%%% item db %%%]" value="change">
+ %%% text Change database %%%
+%%% condition else %%%
+%%% text (Database is not on server, you have to select a new database.) %%%
+<input type="hidden" name="db_set[%%% item category %%%][%%% item db %%%]" value="change">
+%%% condition endif %%%
+</td>
+</tr>
+%%% loop end %%%
+</tbody></table>
+<input type="submit">
+</form>
+%%% condition if relations_table %%%
+<p><a href="?integrity">%%% text Check relational integrity %%%</a></p>
+%%% condition endif %%%
+%%% condition endif %%%
 
 <h2>%%% text Error Logging %%%</h2>
-%%% item errors %%%
+<table class="data">
+<thead><tr>
+<th class="block480a">%%% text Setting %%%</th>
+<th class="block480">%%% text Value %%%</th>
+</tr></thead><tbody>
+%%% loop errors %%%
+<tr class="%%% item td_class %%%">
+<td class="%%% item class %%%">%%% item th %%%</td>
+<td class="block480"><strong>%%% item td %%%</strong> %%% item explanation " (%s)" %%%</td>
+</tr>
+%%% loop end %%%
+</tbody></table>
 
 <h2>%%% text PHP & Server %%%</h2>
 <p><a href="?phpinfo">%%% text Show PHP info on server %%%</a></p>
