@@ -104,6 +104,8 @@ function mod_default_maintenance($params) {
 			.'</textarea>
 			<br><input type="submit"></form>'."\n";
 		$page['text'] .= '</div>'."\n";
+	} elseif (!empty($_POST['sqlupload'])) {
+		return zz_maintenance_sqlupload(wrap_text($zz_conf['heading_prefix']).' '.$heading_prefix);
 	}
 
 	if (empty($_GET) AND !$sql) {	
@@ -1194,7 +1196,7 @@ function zz_delete_line_from_file($file, $lines) {
 function zz_maintenance_sqldownload($heading) {
 	global $zz_conf;
 	
-	$sql = 'SELECT * FROM %s WHERE log_id >= %d';
+	$sql = 'SELECT * FROM %s WHERE log_id >= %d ORDER BY log_id';
 	$sql = sprintf($sql, $zz_conf['logging_table'], $_GET['sqldownload']);
 	$data = wrap_db_fetch($sql, 'log_id');
 	if (!$data) {
@@ -1202,7 +1204,8 @@ function zz_maintenance_sqldownload($heading) {
 		$sql = sprintf($sql, $zz_conf['logging_table']);
 		$max_logs = wrap_db_fetch($sql, '', 'single value');
 		$heading .= ' '.wrap_text('Download SQL log');
-		$page['text'] = '<h1>'.$heading.'</h1><p>'.sprintf(wrap_text('Logfile has only %d entries.'), $max_logs).'</p>';
+		$page['title'] = $heading;
+		$page['text'] = '<p>'.sprintf(wrap_text('Logfile has only %d entries.'), $max_logs).'</p>';
 		$page['status'] = 404;
 		return $page;
 	}
@@ -1210,5 +1213,67 @@ function zz_maintenance_sqldownload($heading) {
 	$page['text'] = json_encode($data);
 	$page['content_type'] = 'json';
 	$page['headers']['filename'] = sprintf('logging_%d.json', $_GET['sqldownload']);
+	return $page;
+}
+
+/**
+ * export JSON file in _logging
+ *
+ * @param string $heading
+ * @return array $page
+ */
+function zz_maintenance_sqlupload($heading) {
+	global $zz_conf;
+	$page['title'] = $heading.' '.wrap_text('Upload SQL log');
+	if (empty($_FILES['sqlfile'])) {
+		$page['text'] = '<p>'.wrap_text('Please upload a file.').'</p>';
+		return $page;
+	}
+	if ($_FILES['sqlfile']['error'] !== 0) {
+		$page['text'] = '<p>'.wrap_text('There was an error while uploading the file.').'</p>';
+		return $page;
+	}
+	if ($_FILES['sqlfile']['size'] <= 3) {
+		$page['text'] = '<p>'.wrap_text('There was an error while uploading the file.').'</p>';
+		return $page;
+	}
+	$json = file_get_contents($_FILES['sqlfile']['tmp_name']);
+	$json = json_decode($json, true);
+	if (!$json) {
+		$page['text'] = '<p>'.wrap_text('The content of the file was not readable (Format needs to be JSON).').'</p>';
+		return $page;
+	}
+	$first_id = key($json);
+	$sql = 'SELECT MAX(log_id) FROM %s';
+	$sql = sprintf($sql, $zz_conf['logging_table']);
+	$max_logs = wrap_db_fetch($sql, '', 'single value');
+	if ($max_logs + 1 !== $first_id) {
+		$page['text'] = '<p>'.sprintf(wrap_text('The highest existing log entry is %d, but import starts with %d.'), $max_logs, $first_id).'</p>';
+		return $page;
+	}
+	
+	// Everything ok, we can import
+	$log_template = 'INSERT INTO %s (query, record_id, user, last_update) VALUES (_binary "%s", %s, "%s", "%s")';
+	foreach ($json as $line) {
+		$success = wrap_db_query($line['query']);
+		if ($success) {
+			$sql = sprintf($log_template,
+				$zz_conf['logging_table'], wrap_db_escape($line['query'])
+				, ($line['record_id'] ? $line['record_id'] : 'NULL')
+				, wrap_db_escape($line['user']), $line['last_update']
+			);
+			$success = wrap_db_query($sql);
+		}
+		$log_id = mysqli_insert_id($zz_conf['db_connection']);
+		if ($line['log_id'].'' !== $log_id.'') {
+			$page['text'] = '<p>'.sprintf(wrap_text('Record ID %d was added with a different log ID %d.'), $line['log_id'], $log_id).'</p>';
+			return $page;
+		}
+		if (!$success) {
+			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
+			return $page;
+		}
+	}
+	$page['text'] = '<p>'.sprintf(wrap_text('All %d log entries were added, last ID was %d.'), count($json), $line['log_id']).'</p>';
 	return $page;
 }

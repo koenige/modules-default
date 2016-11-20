@@ -475,19 +475,55 @@ msgid "Group entries"
 msgstr ""
 
 #: modules/default/templates/maintenance.template.txt
-msgid "Download SQL log"
-msgstr ""
-
-#: modules/default/templates/maintenance.template.txt
-msgid "Starting with ID"
-msgstr ""
-
-#: modules/default/templates/maintenance.template.txt
 msgid "Download"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sqldownload
 msgid "Logfile has only %d entries."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "SQL log"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "Download SQL log, starting with ID"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "Upload SQL log"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "Upload"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "Please upload a file."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "There was an error while uploading the file."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "The content of the file was not readable (Format needs to be JSON)."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "The highest existing log entry is %d, but import starts with %d."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "Record ID %d was added with a different log ID %d."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "There was an error adding record ID %d."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "All %d log entries were added, last ID was %d."
 msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
