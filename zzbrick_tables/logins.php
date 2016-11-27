@@ -50,24 +50,25 @@ $zz['fields'][9]['default'] = 'yes';
 $zz['fields'][9]['hide_in_list'] = true;
 $zz['fields'][9]['explanation'] = '"Yes" means that the user has to change the password next time he or she logs in.';
 
-if (empty($_GET['mode']) OR $_GET['mode'] !== 'add') {
-	$zz['fields'][4]['field_name'] = 'logged_in';
-	$zz['fields'][4]['type'] = 'display';
-	$zz['fields'][4]['translate_field_value'] = true;
-	$zz['fields'][4]['class'] = 'hidden480';
+$zz['fields'][4]['field_name'] = 'logged_in';
+$zz['fields'][4]['type'] = 'display';
+$zz['fields'][4]['translate_field_value'] = true;
+$zz['fields'][4]['class'] = 'hidden480';
+$zz['fields'][4]['if']['add']['hide_in_form'] = true;
 
-	$zz['fields'][5]['title'] = 'Click';
-	$zz['fields'][5]['field_name'] = 'last_click';
-	$zz['fields'][5]['type'] = 'display';
-	$zz['fields'][5]['explanation'] = 'Last activity in database';
-	$zz['fields'][5]['class'] = 'hidden480';
+$zz['fields'][5]['title'] = 'Click';
+$zz['fields'][5]['field_name'] = 'last_click';
+$zz['fields'][5]['type'] = 'display';
+$zz['fields'][5]['explanation'] = 'Last activity in database';
+$zz['fields'][5]['class'] = 'hidden480';
+$zz['fields'][5]['if']['add']['hide_in_form'] = true;
 
-	$zz['fields'][10]['field_name'] = 'active';
-	$zz['fields'][10]['type'] = 'select';
-	$zz['fields'][10]['enum'] = array('yes', 'no');
-	$zz['fields'][10]['default'] = 'yes';
-	$zz['fields'][10]['explanation'] = 'To deactivate a login';
-}
+$zz['fields'][10]['field_name'] = 'active';
+$zz['fields'][10]['type'] = 'select';
+$zz['fields'][10]['enum'] = array('yes', 'no');
+$zz['fields'][10]['default'] = 'yes';
+$zz['fields'][10]['explanation'] = 'To deactivate a login';
+$zz['fields'][10]['if']['add']['hide_in_form'] = true;
 
 $zz['fields'][12] = false; // password reminder
 
