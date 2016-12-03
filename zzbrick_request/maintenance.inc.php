@@ -58,6 +58,8 @@ function mod_default_maintenance($params) {
 		return zz_maintenance_sqldownload($page);
 	} elseif (isset($_GET['filetree'])) {
 		return zz_maintenance_filetree($page);
+	} elseif (!empty($_GET['log'])) {
+		return zz_maintenance_logs($page);
 	} elseif (isset($_GET['phpinfo'])) {
 		phpinfo();
 		exit;
@@ -77,8 +79,8 @@ function mod_default_maintenance($params) {
 	zz_init_limit();
 	
 	$page['query_strings'] = array(
-		'folder', 'log', 'file', 'q', 'deleteall',
-		'filter', 'limit', 'scope', 'sqldownload'
+		'folder', 'file', 'q', 'deleteall',
+		'filter', 'limit', 'scope'
 	);
 
 	if (empty($_GET)) {
@@ -100,9 +102,6 @@ function mod_default_maintenance($params) {
 		if (!empty($_GET['folder'])) {
 			$heading = 'Backup folder';
 			$page['text'] .= zz_maintenance_folders();
-		} elseif (!empty($_GET['log'])) {
-			$heading = 'Logs';
-			$page['text'] .= zz_maintenance_logs();
 		} else {
 			$heading = 'Error';
 			$page['text'] .= wrap_text('GET should be empty, please test that:').' <pre>';
@@ -166,7 +165,7 @@ function zz_maintenance_sqlquery($page) {
 	}
 		
 	$result['sql'] = zz_maintenance_sql($sql);
-	$result['form_sql'] = str_replace('%%%', '%&shy;%&shy;%', zz_html_escape($sql));
+	$result['form_sql'] = str_replace('%%%', '%&shy;%&shy;%', wrap_html_escape($sql));
 
 	$page['title'] .= ' '.wrap_text('SQL Query');
 	$page['breadcrumbs'][] = wrap_text('SQL Query');
@@ -451,7 +450,7 @@ function zz_maintenance_sql($sql) {
 	$newline = array('LEFT', 'FROM', 'GROUP', 'WHERE', 'SET', 'VALUES', 'SELECT');
 	$newline_tab = array('ON', 'AND');
 	foreach ($tokens as $token) {
-		$out = zz_html_escape($token);
+		$out = wrap_html_escape($token);
 		if (in_array($token, $keywords)) $out = '<strong>'.$out.'</strong>';
 		if (in_array($token, $newline)) $out = "\n".$out;
 		if (in_array($token, $newline_tab)) $out = "\n\t".$out;
@@ -550,9 +549,9 @@ function zz_maintenance_folders() {
 		if ($deleted) {
 			$text .= '<p class="error">'.sprintf(wrap_text('%s files deleted'), $deleted).'</p>';
 		}
-		$form = zz_maintenance_deleteall_form('files');
-		if ($form) {
-			$text .= $form;
+		list($form['deleteall_url'], $form['deleteall_filter']) = zz_maintenance_deleteall_form();
+		if ($form['deleteall_url']) {
+			$text .= '<form action="'.$form['deleteall_url'].'" method="POST"><input type="submit" name="deleteall" value="Delete all files?'.($form['deleteall_filter'] ? ' Search: '.$form['deleteall_filter'] : '').'"></form>';
 			return $text;
 		}
 
@@ -604,7 +603,7 @@ function zz_maintenance_folders() {
 			}
 			$tbody .= '<tr class="'.($i & 1 ? 'uneven' : 'even').'">'
 				.'<td>'.($files_in_dir ? '' : '<input type="checkbox" name="files['.$file.']">').'</td>'
-				.'<td class="block480a"><a href="'.$link.'">'.zz_mark_search_string(str_replace('%', '%&shy;', zz_html_escape(urldecode($file)))).'</a></td>'
+				.'<td class="block480a"><a href="'.$link.'">'.zz_mark_search_string(str_replace('%', '%&shy;', wrap_html_escape(urldecode($file)))).'</a></td>'
 				.'<td class="block480">'.$ext.'</td>'
 				.'<td class="number">'.number_format($size).' Bytes</td>'
 				.'<td class="hidden480">'.$time.'</td>'
@@ -622,7 +621,7 @@ function zz_maintenance_folders() {
 		} else {
 			// show submit button only if files are there
 			$text .= '<tbody>'.$tbody.'</tbody></table>'."\n"
-				.'<p style="float: right;"><a href="'.zz_html_escape($_SERVER['REQUEST_URI'])
+				.'<p style="float: right;"><a href="'.wrap_html_escape($_SERVER['REQUEST_URI'])
 				.'&amp;deleteall">'.wrap_text('Delete all files').'</a></p>
 				<p><input type="submit" value="'.wrap_text('Delete selected files').'">'
 				.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.wrap_text('Select all').'</a> |
@@ -676,23 +675,18 @@ function zz_maintenance_searched($string) {
  * HTML output of form with button to delete all lines, files etc. in list
  * 'q'-search filter will be regarded
  *
- * @param string $type
  * @global array $zz_conf
- * @return string HTML output
+ * @return array
  */
-function zz_maintenance_deleteall_form($type) {
+function zz_maintenance_deleteall_form() {
 	global $zz_conf;
-	if (!empty($_POST['deleteall'])) return false;
-	if (!isset($_GET['deleteall'])) return false;
+	if (!empty($_POST['deleteall'])) return array('', '');
+	if (!isset($_GET['deleteall'])) return array('', '');
 
-	$filter = '';
-	if (!empty($_GET['q']))
-		$filter = ' Search: '.zz_html_escape($_GET['q']);
 	$unwanted_keys = array('deleteall');
 	$qs = zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
 	$url = $zz_conf['int']['url']['full'].$qs;
-	$text = '<form action="'.$url.'" method="POST"><input type="submit" name="deleteall" value="Delete all '.$type.'?'.$filter.'"></form>';
-	return $text;
+	return array($url, !empty($_GET['q']) ? wrap_html_escape($_GET['q']) : '');
 }
 
 function zz_maintenance_folders_deleteall($my_folder, $file) {
@@ -800,12 +794,43 @@ function zz_maintenance_errors() {
  * @global array $zz_conf
  * @return string HTML output
  */
-function zz_maintenance_logs() {
+function zz_maintenance_logs($page) {
 	global $zz_conf;
+	global $zz_setting;
+
+	// zz_edit_query_string(), zz_get_url_self()
+	require_once $zz_conf['dir_inc'].'/functions.inc.php';
+	// zz_init_limit()
+	require_once $zz_conf['dir_inc'].'/output.inc.php';
+	// zz_mark_search_string(), zz_list_total_records(), zz_list_pages()
+	require_once $zz_conf['dir_inc'].'/list.inc.php';
+	// zz_search_form()
+	require_once $zz_conf['dir_inc'].'/search.inc.php';
+
+	$zz_conf['list_display'] = 'table';
+	if (empty($zz_conf['limit_all_max']))
+		$zz_conf['limit_all_max'] = 1500;
+	// range in which links to records around current selection will be shown
+	if (empty($zz_conf['limit_show_range']))
+		$zz_conf['limit_show_range'] 	= 800;
+	if (empty($zz_conf['limit_display']))
+		$zz_conf['limit_display']		= 'pages';
+	$zz_conf['search'] = true;
+
+	$zz_conf['int']['show_list'] = true;
+	$zz_conf['int']['url'] = zz_get_url_self(false);
+	zz_init_limit();
+
+	$page['title'] .= ' '.wrap_text('Logs');
+	$page['breadcrumbs'][] = wrap_text('Logs');
+	$page['query_strings'] = array(
+		'filter', 'log', 'limit', 'q', 'scope', 'deleteall'
+	);
+
 	$levels = array('error', 'warning', 'notice');
 	if (empty($_GET['log'])) {
-		$text = '<p>'.wrap_text('No logfile specified').'</p>'."\n";
-		return $text;
+		$page['text'] = '<p>'.wrap_text('No logfile specified').'</p>'."\n";
+		return $page;
 	}
 
 	$show_log = false;
@@ -821,18 +846,18 @@ function zz_maintenance_logs() {
 		$show_log = true;
 	}
 	if (!$show_log) {
-		$text = '<p>'.sprintf(wrap_text('This is not one of the used logfiles: %s'), zz_html_escape($_GET['log'])).'</p>'."\n";
-		return $text;
+		$page['text'] = '<p>'.sprintf(wrap_text('This is not one of the used logfiles: %s'), wrap_html_escape($_GET['log'])).'</p>'."\n";
+		return $page;
 	}
 	if (!file_exists($_GET['log'])) {
-		$text = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), zz_html_escape($_GET['log'])).'</p>'."\n";
-		return $text;
+		$page['text'] = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), wrap_html_escape($_GET['log'])).'</p>'."\n";
+		return $page;
 	}
 
 	// delete
-	$message = false;
+	$data['message'] = false;
 	if (!empty($_POST['line'])) {
-		$message = zz_delete_line_from_file($_GET['log'], $_POST['line']);
+		$data['message'] = zz_delete_line_from_file($_GET['log'], $_POST['line']);
 	}
 
 	$filters['type'] = array('PHP', 'zzform', 'zzwrap');
@@ -840,7 +865,7 @@ function zz_maintenance_logs() {
 	$filters['group'] = array('Group entries');
 	$f_output = array();
 	
-	$text = '<h2>'.zz_html_escape($_GET['log']).'</h2>';
+	$data['log'] = wrap_html_escape($_GET['log']);
 
 	parse_str($zz_conf['int']['url']['qs_zzform'], $my_query);
 	$filters_set = (!empty($my_query['filter']) ? $my_query['filter'] : array());
@@ -871,43 +896,43 @@ function zz_maintenance_logs() {
 	}
 	if ($f_output) {
 		$f_output = array_values($f_output);
-		$text .= wrap_template('zzform-list-filter', $f_output);
+		$data['filter'] = wrap_template('zzform-list-filter', $f_output);
 	}
 
 	if (!empty($_GET['filter']) AND !empty($_GET['filter']['type'])
 		AND $_GET['filter']['type'] === 'none') {
-		$text .= '<p><strong>'.wrap_text('Please choose one of the filters.').'</strong></p>';
-		return $text;
+		$data['choose_filter'] = true;
+		$page['text'] = wrap_template('maintenance-logs', $data);
+		return $page;
 	}
 
 	if (!empty($_GET['filter']) AND !empty($_GET['filter']['group'])
 		AND $_GET['filter']['group'] === 'Group entries') {
-		$group = true;	
+		$data['group'] = true;	
 		$output = array();
 	} else 
-		$group = false;
+		$data['group'] = false;
 
-	$form = zz_maintenance_deleteall_form('lines');
-	if ($form) {
-		$text .= $form;
-		return $text;
+	list($data['deleteall_url'], $data['deleteall_filter']) = zz_maintenance_deleteall_form();
+	if ($data['deleteall_url']) {
+		$page['text'] = wrap_template('maintenance-logs', $data);
+		return $page;
 	}
-
 
 	// get lines
 	$j = 0;
 	$delete = array();
 	$content = '';
 	$dont_highlight_levels = array('Notice', 'Deprecated', 'Warning', 'Upload');
-	$tbody = '';
+	$data['lines'] = array();
 	$log = array();
 	$handle = fopen($_GET['log'], 'r');
 	if ($handle) {
-		$total_rows = 0;
+		$data['total_rows'] = 0;
 		$index = 0;
 		$i = 0;
 		$write_log = true;
-		while (($line = fgets($handle, $zz_conf['log_errors_max_len']+2)) !== false) {
+		while (($line = fgets($handle, $zz_conf['log_errors_max_len'] + 2)) !== false) {
 			$line = trim($line);
 
 			if (!empty($_GET['q']) AND !zz_maintenance_searched($line)) {
@@ -915,55 +940,55 @@ function zz_maintenance_logs() {
 				continue;
 			}
 
-			$data = array();
-			$data['type'] = '';
-			$data['user'] = '';
-			$data['date'] = '';
-			$data['level'] = '';
-			$data['time'] = '';
+			$error = array();
+			$error['type'] = '';
+			$error['user'] = '';
+			$error['date'] = '';
+			$error['level'] = '';
+			$error['time'] = '';
 
 			// get date
 			if (substr($line, 0, 1) === '[' AND $rightborder = strpos($line, ']')) {
-				$data['date'] = substr($line, 1, $rightborder - 1);
+				$error['date'] = substr($line, 1, $rightborder - 1);
 				$line = substr($line, $rightborder + 2);
 			}
 			// get user
 			if (substr($line, -1) === ']' AND strstr($line, '[')) {
-				$data['user'] = substr($line, strrpos($line, '[')+1, -1);
-				$data['user'] = explode(' ', $data['user']);
-				if (count($data['user']) > 1 AND substr($data['user'][0], -1) === ':') {
-					array_shift($data['user']); // get rid of User: or translations of it
+				$error['user'] = substr($line, strrpos($line, '[')+1, -1);
+				$error['user'] = explode(' ', $error['user']);
+				if (count($error['user']) > 1 AND substr($error['user'][0], -1) === ':') {
+					array_shift($error['user']); // get rid of User: or translations of it
 				}
-				$data['user'] = implode(' ', $data['user']);
+				$error['user'] = implode(' ', $error['user']);
 				$line = substr($line, 0, strrpos($line, '['));
 			}
 
 			$tokens = explode(' ', $line);
 			if ($tokens AND in_array($tokens[0], $filters['type'])) {
-				$data['type'] = array_shift($tokens);
-				$data['level'] = array_shift($tokens);
-				if (substr($data['level'], -1) === ':') $data['level'] = substr($data['level'], 0, -1);
-				else $data['level'] .= ' '.array_shift($tokens);
-				if (substr($data['level'], -1) === ':') $data['level'] = substr($data['level'], 0, -1);
+				$error['type'] = array_shift($tokens);
+				$error['level'] = array_shift($tokens);
+				if (substr($error['level'], -1) === ':') $error['level'] = substr($error['level'], 0, -1);
+				else $error['level'] .= ' '.array_shift($tokens);
+				if (substr($error['level'], -1) === ':') $error['level'] = substr($error['level'], 0, -1);
 			}
 
 			if (!empty($_GET['filter'])) {
 				if (!empty($_GET['filter']['type'])) {
-					if ($data['type'] != $_GET['filter']['type']) {
+					if ($error['type'] != $_GET['filter']['type']) {
 						$index++;
 						continue;
 					}
 				}
 				if (!empty($_GET['filter']['level'])) {
-					if ($data['level'] != $_GET['filter']['level']) {
+					if ($error['level'] != $_GET['filter']['level']) {
 						$index++;
 						continue;
 					}
 				}
 			}
-			if (in_array($data['type'], array('zzform', 'zzwrap'))) {
-				if (!$data['user'])
-					$data['user'] = array_pop($tokens);
+			if (in_array($error['type'], array('zzform', 'zzwrap'))) {
+				if (!$error['user'])
+					$error['user'] = array_pop($tokens);
 				$time = '';
 				while (!$time) {
 					// ignore empty tokens
@@ -976,71 +1001,71 @@ function zz_maintenance_logs() {
 					AND is_numeric(substr($time, 1, -1))
 				) {
 					array_pop($tokens);
-					$data['time'] = substr($time, 1, -1);
+					$error['time'] = substr($time, 1, -1);
 					// shorten time to make it more readable
-					$data['time'] = substr($data['time'], 0, 6);
+					$error['time'] = substr($error['time'], 0, 6);
 				}
 			}
 
-			$data['status'] = false;
+			$error['status'] = false;
 			if ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[0], -1) === ']') {
-				$data['link'] = array_shift($tokens);
-				$data['link'] = substr($data['link'], 1, -1);
-				if (intval($data['link'])."" === $data['link']) {
+				$error['link'] = array_shift($tokens);
+				$error['link'] = substr($error['link'], 1, -1);
+				if (intval($error['link'])."" === $error['link']) {
 					// e. g. 404 has no link repeated as it's already in the
 					// error message	
-					$data['status'] = $data['link'];
-					$data['link'] = false;
+					$error['status'] = $error['link'];
+					$error['link'] = false;
 				}
 			} elseif ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[1], -1) === ']'
 				AND strlen($tokens[0]) === 4) {
-				$data['status'] = array_shift($tokens);
-				$data['status'] = substr($data['status'], 1);
-				$data['link'] = array_shift($tokens);
-				$data['link'] = substr($data['link'], 0, -1);
+				$error['status'] = array_shift($tokens);
+				$error['status'] = substr($error['status'], 1);
+				$error['link'] = array_shift($tokens);
+				$error['link'] = substr($error['link'], 0, -1);
 			} else {
-				$data['link'] = false;
+				$error['link'] = false;
 			}
-			$data['error'] = implode(' ', $tokens);
+			$error['error'] = implode(' ', $tokens);
 			
 			if (!empty($_POST['deleteall'])) {
 				$delete[] = $index;
-			} elseif (!$group) {
+			} elseif (!$data['group']) {
 				if ($i < ($zz_conf['int']['this_limit'] - $zz_conf['limit'])) {
 					$index++;
-					$total_rows++;
+					$data['total_rows']++;
 					$i++;
 					continue;
 				}
 				if ($write_log) {
-					$data['index'] = $index;
-					$log[$index] = $data;
+					$error['index'] = $index;
+					$log[$index] = $error;
 					$i++;
 				}
 				if ($zz_conf['int']['this_limit']
 					AND $i >= $zz_conf['int']['this_limit']) $write_log = false;
-				$total_rows++;
+				$data['total_rows']++;
 			} else {
-				if (empty($log[$data['error']])) {
-					$log[$data['error']] = array(
-						'date_begin' => $data['date'],
-						'type' => $data['type'],
-						'level' => $data['level'],
-						'error' => $data['error'],
-						'user' => array($data['user']),
+				if (empty($log[$error['error']])) {
+					$log[$error['error']] = array(
+						'date_begin' => $error['date'],
+						'type' => $error['type'],
+						'level' => $error['level'],
+						'error' => $error['error'],
+						'user' => array($error['user']),
 						'index' => array($index),
-						'link' => array($data['link']),
-						'status' => array($data['status']),
-						'time' => array($data['time'])
+						'link' => array($error['link']),
+						'status' => array($error['status']),
+						'time' => array($error['time'])
 					);
-					$total_rows++;
+					$data['total_rows']++;
 				} else {
-					$log[$data['error']]['index'][] = $index;
-					$log[$data['error']]['date_end'] = $data['date'];
+					$log[$error['error']]['index'][] = $index;
+					$log[$error['error']]['date_end'] = $error['date'];
 					$fields = array('user', 'link', 'status');
 					foreach ($fields as $field) {
-						if (!in_array($data[$field], $log[$data['error']][$field]))
-							$log[$data['error']][$field][] = $data[$field];
+						if (!in_array($error[$field], $log[$error['error']][$field]))
+							$log[$error['error']][$field][] = $error[$field];
 					}
 				}
 			}
@@ -1048,22 +1073,20 @@ function zz_maintenance_logs() {
 		}
 		fclose($handle);
 	}
-	if ($group) {
+	if ($data['group']) {
 		if ($zz_conf['int']['this_limit']) {
 			$log = array_slice($log, ($zz_conf['int']['this_limit'] - $zz_conf['limit']), $zz_conf['limit']);
 		}
 	}
 
 	if (!empty($_POST['deleteall'])) {
-		$message .= zz_delete_line_from_file($_GET['log'], $delete);
+		$data['message'] .= zz_delete_line_from_file($_GET['log'], $delete);
 	}
-
-	if ($message) $text .= '<p class="error">'.$message.'</p>'."\n";
 
 	// output lines
 	foreach ($log as $index => $line) {
 		if ($line['level'] AND !in_array($line['level'], $dont_highlight_levels))
-			$line['level'] = '<p class="error">'.$line['level'].'</p>';
+			$line['level_highlight'] = true;
 
 		$post = false;
 		if (substr($line['error'], 0, 5) === 'POST ') {
@@ -1088,83 +1111,42 @@ function zz_maintenance_logs() {
 		$line['error'] = str_replace(',', ', ', $line['error']);
 		$line['error'] = zz_mark_search_string($line['error']);
 
-		if (!$group) {
-			$tbody .= '<tr class="'.($j & 1 ? 'uneven' : 'even').'">'
-				.'<td><label for="line'.$index.'" class="blocklabel"><input type="checkbox" name="line['
-					.$index.']" value="'.$index.'" id="line'.$index.'"></label></td>'
-				.'<td>'.$line['date'].'</td>'
-				.'<td>'.$line['type'].'</td>'
-				.'<td>'.$line['level'].'</td>'
-				.'<td>'.($line['status'] ? '<strong>'.$line['status'].'</strong>' : '')
-					.' '.($line['link'] ? '[<a href="'.str_replace('&', '&amp;', $line['link']).'">'
-					.zz_maintenance_splits($line['link'], true).'</a>]<br>' : '')
-					.'<div class="moretext">'.$line['error'].'</div></td>'
-				.'<td>'.$line['user'].($line['time'] ? '<br>'.$line['time'] : '').'</td>'
-				.'</tr>'."\n";
+		if (!$data['group']) {
+			$line['no'] = $index;
+			$line['keys'] = $index;
+			$line['date_begin'] = $line['date'];
+			$line['links'] = ($line['link'] ? '[<a href="'.str_replace('&', '&amp;', $line['link']).'">'
+					.zz_maintenance_splits($line['link'], true).'</a>]<br>' : '');
 		} else {
-			$links = '';
-			if ($line['status']) {
-				foreach ($line['status'] as $status) {
-					if (!$status) continue;
-					$links .= '<strong>'.$status.'</strong> ';
-				}
-			}
+			$line['no'] = $j;
+			$line['keys'] = implode(',', $line['index']);
+			$line['count'] = count($line['index']);
+			$line['date_end'] = (!empty($line['date_end']) AND $line['date_end'] !== $line['date_begin']) ? $line['date_end'] : '';
+			$line['status'] = implode(' ', $line['status']);
+			$line['user'] = implode(', ', $line['user']);
+			$line['links'] = '';
 			if ($line['link']) {
 				foreach ($line['link'] as $link) {
 					if (!$link) continue;
-					$links .= '[<a href="'.str_replace('&', '&amp;', $link).'">'.zz_maintenance_splits($link, true).'</a>]<br>';
+					$line['links'] .= '[<a href="'.str_replace('&', '&amp;', $link).'">'.zz_maintenance_splits($link, true).'</a>]<br>';
 				}
 			}
-			$tbody .= '<tr class="'.($j & 1 ? 'uneven' : 'even').'">'
-				.'<td><label for="line'.$j.'" class="blocklabel"><input type="checkbox" name="line['
-					.$j.']" value="'.implode(',', $line['index']).'" id="line'.$j.'"></label></td>'
-				.'<td>'.$line['date_begin'].'</br>'
-				.((!empty($line['date_end']) AND $line['date_end'] != $line['date_begin'])
-					? '&#8211;'.$line['date_end']: '').'</td>'
-				.'<td>'.$line['type'].'</td>'
-				.'<td>'.$line['level'].'</td>'
-				.'<td>'.$links.$line['error'].'</td>'
-				.'<td>'.implode(', ', $line['user'])
-					.($line['time'] ? '<br>'.implode(', ', $line['time']) : '').'</td>'
-				.'<td>'.count($line['index']).'</td>'
-				.'</tr>'."\n";
+			$line['time'] = implode(', ', $line['time']);
 		}
+		$data['lines'][] = $line;
 		$j++;
 	}
 
-	$text .= '<form action="" method="POST">'
-		.'<table class="data"><thead><tr>
-		<th>[]</th>
-		<th>'.wrap_text('Date').'
-		'.($group ? '<br>'.wrap_text('Last Date').'' : '').'</th>
-		<th>'.wrap_text('Type').'</th>
-		<th>'.wrap_text('Level').'</th>
-		<th>'.wrap_text('Message').'</th>
-		<th>'.wrap_text('User').'</th>
-		'.($group ? '<th>'.wrap_text('Frequency').'</th>' : '').'
-		</thead>'."\n"
-		.'<tbody>'."\n".$tbody;
-	if (!$tbody)
-		$text .= '<tr><td colspan="6">'.wrap_text('No lines').'</td></tr>'."\n";
-	$text .= '</tbody></table>'."\n";
-	if ($total_rows) {
-		// show this only if there are deletable lines
-		$text .= '<p style="float: right;"><a href="'.zz_html_escape($_SERVER['REQUEST_URI'])
-			.'&amp;deleteall">'.wrap_text('Delete all lines').'</a></p>'
-			.'<p><input type="submit" value="'.wrap_text('Delete selected lines').'">'
-			.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.wrap_text('Select all').'</a> |
-			<a onclick="zz_set_checkboxes(false); return false;" href="#">'.wrap_text('Deselect all').'</a></p>';
-	}
-	$text .= '</form>';
-
-	$shown_records = $total_rows;
-	$text .= zz_list_total_records($shown_records);
-	$text .= zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $shown_records);
+	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
+	$data['total_records'] = zz_list_total_records($data['total_rows']);
+	$data['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['total_rows']);
 	$zz_conf['search_form_always'] = true;
-	$searchform = zz_search_form(array(), '', $total_rows, $shown_records);
-	$text .= $searchform['bottom'];
+	$searchform = zz_search_form(array(), '', $data['total_rows'], $data['total_rows']);
+	$data['searchform'] = $searchform['bottom'];
 
-	return $text;
+	$page['text'] = wrap_template('maintenance-logs', $data);
+	$page['text'] .= wrap_template('zzform-foot', $zz_setting);
+	return $page;
 }
 
 /**

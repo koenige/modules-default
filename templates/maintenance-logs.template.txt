@@ -1,0 +1,67 @@
+# default module
+# Template for maintenance script, logs
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2016 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div id="zzform" class="maintenance">
+<h2>%%% item log %%%</h2>
+
+%%% item filter %%%
+
+%%% condition if choose_filter %%%
+<p><strong>%%% text Please choose one of the filters. %%%</strong></p></div>
+
+%%% condition elseif deleteall_url %%%
+<form action="%%% item deleteall_url %%%" method="POST"><input type="submit" name="deleteall" value="Delete all lines?%%% item deleteall_filter " Search: %s" %%%"></form>
+%%% condition else %%%
+
+%%% item message "<p class='error'>%s</p>" %%%
+
+<form action="" method="POST">
+<table class="data"><thead><tr>
+<th>[]</th>
+<th>%%% text Date %%%
+%%% condition if group %%%<br>%%% text Last Date %%%%%% condition endif %%%</th>
+<th>%%% text Type %%%</th>
+<th>%%% text Level %%%</th>
+<th>%%% text Message %%%</th>
+<th>%%% text User %%%</th>
+%%% condition if group %%%<th>%%% text Frequency %%%</th>%%% condition endif %%%
+</thead>
+<tbody>
+%%% condition if lines %%%
+%%% loop lines %%%
+<tr class="%%% loopposition uneven un %%%even">
+<td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item no %%%]" value="%%% item keys %%%" id="line%%% item no %%%"></label></td>
+<td>%%% item date_begin %%%%%% item date_end <br>&#8211;%s %%%</td>
+<td>%%% item type %%%</td>
+<td>%%% item level_highlight "<p class='error'>" %%%%%% item level %%%%%% item level_highlight </p> %%%</td>
+<td>%%% item status <strong>%s</strong> %%% %%% item links %%%
+<div class="moretext">%%% item error %%%</div></td>
+<td>%%% item user %%%%%% item time "<br>%s" %%%</td>
+%%% item count "<td>%s</td>" %%%
+</tr>
+%%% loop end %%%
+%%% condition else %%%
+<tr><td colspan="6">%%% text No lines %%%</td></tr>
+%%% condition endif %%%
+</tbody></table>
+
+%%% condition if total_rows %%%
+<p style="float: right;"><a href="%%% item url_self %%%&amp;deleteall">%%% text Delete all lines %%%</a></p>
+<p><input type="submit" value="%%% text Delete selected lines %%%"> –
+ <a onclick="zz_set_checkboxes(true); return false;" href="#">%%% text Select all %%%</a> |
+ <a onclick="zz_set_checkboxes(false); return false;" href="#">%%% text Deselect all %%%</a></p>
+%%% condition endif %%%
+</form>
+%%% item total_records %%%
+%%% item pages %%%
+%%% item searchform %%%
+
+%%% condition endif %%%
+</div>
