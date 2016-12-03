@@ -56,6 +56,8 @@ function mod_default_maintenance($params) {
 		return zz_maintenance_sqlupload($page);
 	} elseif (isset($_GET['sqldownload'])) {
 		return zz_maintenance_sqldownload($page);
+	} elseif (isset($_GET['integrity'])) {
+		return zz_maintenance_integrity($page);
 	} elseif (isset($_GET['phpinfo'])) {
 		phpinfo();
 		exit;
@@ -73,7 +75,7 @@ function mod_default_maintenance($params) {
 	zz_init_limit();
 	
 	$page['query_strings'] = array(
-		'folder', 'log', 'integrity', 'filetree', 'file', 'q', 'deleteall',
+		'folder', 'log',  'filetree', 'file', 'q', 'deleteall',
 		'filter', 'limit', 'scope', 'sqldownload'
 	);
 
@@ -99,9 +101,6 @@ function mod_default_maintenance($params) {
 		} elseif (!empty($_GET['log'])) {
 			$heading = 'Logs';
 			$page['text'] .= zz_maintenance_logs();
-		} elseif (isset($_GET['integrity'])) {
-			$heading = 'Relational Integrity';
-			$page['text'] .= zz_maintenance_integrity();
 		} elseif (isset($_GET['filetree'])) {
 			$heading = 'Filetree';
 			$page['text'] .= zz_maintenance_filetree();
@@ -259,12 +258,17 @@ function zz_maintenance_tables() {
  * contain invalid values (e. g. values that do not have a corresponding value
  * in the master table
  *
+ * @param array $page
  * @global array $zz_conf 'relations_table'
  * @return string text output
  * @todo add translations with wrap_text()
  */
-function zz_maintenance_integrity() {
+function zz_maintenance_integrity($page) {
 	global $zz_conf;
+
+	$page['title'] .= ' '.wrap_text('Relational Integrity');
+	$page['breadcrumbs'][] = wrap_text('Relational Integrity');
+	$page['query_strings'][] = 'integrity';
 
 	$sql = 'SELECT * FROM %s';
 	$sql = sprintf($sql, $zz_conf['relations_table']);
@@ -307,11 +311,11 @@ function zz_maintenance_integrity() {
 		}
 	}
 	if ($results) {
-		$text = "<ul>".implode("\n", $results)."</ul>\n";
+		$page['text'] = "<ul>".implode("\n", $results)."</ul>\n";
 	} else {
-		$text = wrap_text('Nothing to check.');
+		$page['text'] = wrap_text('Nothing to check.');
 	}
-	return $text;
+	return $page;
 }
 
 function zz_maintenance_filetree() {
