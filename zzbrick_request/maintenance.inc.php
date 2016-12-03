@@ -52,6 +52,8 @@ function mod_default_maintenance($params) {
 
 	if (!empty($_POST['sql'])) {
 		return zz_maintenance_sqlquery($page);
+	} elseif (!empty($_POST['sqlupload'])) {
+		return zz_maintenance_sqlupload($page['title']);
 	}
 
 	require_once $zz_conf['dir_inc'].'/zzform.php';
@@ -71,9 +73,6 @@ function mod_default_maintenance($params) {
 		'deleteall', 'filter', 'limit', 'scope', 'sqldownload'
 	);
 	
-	if (!empty($_POST['sqlupload'])) {
-		return zz_maintenance_sqlupload($page['title']);
-	}
 
 	if (empty($_GET)) {
 		$heading = wrap_text('Maintenance');
@@ -1238,12 +1237,14 @@ function zz_maintenance_sqldownload($heading) {
 /**
  * export JSON file in _logging
  *
- * @param string $heading
+ * @param string $heading ($page['title'])
  * @return array $page
  */
 function zz_maintenance_sqlupload($heading) {
 	global $zz_conf;
+
 	$page['title'] = $heading.' '.wrap_text('Upload SQL log');
+	$page['breadcrumbs'][] = wrap_text('Upload SQL log');
 	if (empty($_FILES['sqlfile'])) {
 		$page['text'] = '<p>'.wrap_text('Please upload a file.').'</p>';
 		return $page;
