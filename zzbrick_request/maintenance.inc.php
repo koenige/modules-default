@@ -58,6 +58,8 @@ function mod_default_maintenance($params) {
 		return zz_maintenance_sqldownload($page);
 	} elseif (isset($_GET['filetree'])) {
 		return zz_maintenance_filetree($page);
+	} elseif (!empty($_GET['folder'])) {
+		return zz_maintenance_folders($page);
 	} elseif (!empty($_GET['log'])) {
 		return zz_maintenance_logs($page);
 	} elseif (isset($_GET['phpinfo'])) {
@@ -67,56 +69,26 @@ function mod_default_maintenance($params) {
 		return zz_maintenance_integrity($page);
 	}
 
-	require_once $zz_conf['dir_inc'].'/zzform.php';
-	require_once $zz_conf['dir_inc'].'/functions.inc.php';
-	require_once $zz_conf['dir_inc'].'/database.inc.php';
-	require_once $zz_conf['dir_inc'].'/output.inc.php';
-	require_once $zz_conf['dir_inc'].'/list.inc.php';
-	require_once $zz_conf['dir_inc'].'/search.inc.php';
-
-	$zz_conf['int_modules'] = array('debug', 'compatibility', 'validate', 'upload');
-	zz_initialize();
-	zz_init_limit();
-	
-	$page['query_strings'] = array(
-		'folder', 'file', 'q', 'deleteall',
-		'filter', 'limit', 'scope'
-	);
-
-	if (empty($_GET)) {
-		$heading = wrap_text('Maintenance');
-
-		$data = array();
-		$data = array_merge($data, zz_maintenance_tables());
-		$data['errors'] = zz_maintenance_errors();
-		if ($zz_conf['graphics_library'] === 'imagemagick') {
-			require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
-			$data['imagick'] = zz_imagick_version();
-			$data['ghostscript'] = zz_ghostscript_version();
-		}
-		$data['folders'] = zz_maintenance_folders();
-		$data['logging_table'] = $zz_conf['logging_table'];
-		$page['text'] = wrap_template('maintenance', $data);
-	} else {
-		$page['text'] = '<div id="zzform" class="maintenance">'."\n";
-		if (!empty($_GET['folder'])) {
-			$heading = 'Backup folder';
-			$page['text'] .= zz_maintenance_folders();
-		} else {
-			$heading = 'Error';
-			$page['text'] .= wrap_text('GET should be empty, please test that:').' <pre>';
-			foreach ($_GET as $key => $value) {
-				$page['text'] .= $key.' => '.$value."\n";
-			}
-			$page['text'] .= '</pre>'."\n";
-		}
-		$page['text'] .= '</div>'."\n";
+	$data = array();
+	$data = array_merge($data, zz_maintenance_tables());
+	$data['errors'] = zz_maintenance_errors();
+	// zz_write_conf()
+	require_once $zz_conf['dir'].'/zzform.php';
+	require_once $zz_conf['dir'].'/functions.inc.php';
+	require_once $zz_conf['dir'].'/upload.inc.php';
+	zz_upload_config();
+	if ($zz_conf['graphics_library'] === 'imagemagick') {
+		require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
+		$data['imagick'] = zz_imagick_version();
+		$data['ghostscript'] = zz_ghostscript_version();
 	}
-	$page['text'] .= wrap_template('zzform-foot', $zz_setting);
+	$folders = zz_maintenance_folders();
+	$data['folders'] = $folders['text'];
+	$data['logging_table'] = $zz_conf['logging_table'];
 
-	$page['title'] .= ' '.wrap_text($heading);
-	$page['dont_show_h1'] = true;
-	$page['text'] = '<h1>'.$page['title']."</h1>\n".$page['text'];
+	$page['text'] = wrap_template('maintenance', $data);
+	$page['title'] .= ' '.wrap_text('Maintenance');
+	$page['breadcrumbs'][] = wrap_text('Maintenance');
 	return $page;
 }
 
@@ -464,16 +436,28 @@ function zz_maintenance_sql($sql) {
 	return $sql;
 }
 
-function zz_maintenance_folders() {
+function zz_maintenance_folders($page = array()) {
 	global $zz_conf;
 	global $zz_setting;
-	$text = '';
+	
+	if ($page) {
+		$page['title'] .= ' '.wrap_text('Backup folder');
+		$page['breadcrumbs'][] = wrap_text('Backup folder');
+		$page['query_strings'] = array(
+			'folder', 'file', 'q', 'scope', 'deleteall', 'limit'
+		);
+		$page['text'] = '<div id="zzform" class="maintenance">';
+
+		zz_maintenance_list_init();
+	} else {
+		$page['text'] = '';
+	}
 
 	if (!isset($zz_conf['backup'])) $zz_conf['backup'] = '';
 	if ((!$zz_conf['backup'] OR empty($zz_conf['backup_dir']))
 		AND empty($zz_conf['tmp_dir']) AND empty($zz_setting['cache_dir'])) {
-		$text .= '<p>'.wrap_text('Backup of uploaded files is not active.').'</p>'."\n";
-		return $text;
+		$page['text'] = '<p>'.wrap_text('Backup of uploaded files is not active.').'</p>'."\n";
+		return $page;
 	}
 
 	$folders = array();
@@ -482,10 +466,10 @@ function zz_maintenance_folders() {
 		'BACKUP' => $zz_conf['backup_dir'],
 		'CACHE' => $zz_setting['cache_dir']
 	);
-	$text .= '<ul>';
+	$page['text'] .= '<ul>';
 	foreach ($dirs as $key => $dir) {
 		$exists = file_exists($dir) ? true : false;
-		$text .= '<li>'.sprintf(wrap_text('Current %s dir is: %s'), $key, realpath($dir))
+		$page['text'] .= '<li>'.sprintf(wrap_text('Current %s dir is: %s'), $key, realpath($dir))
 			.(!$exists AND $dir ? '<span class="error"> '
 			.wrap_text('– but this directory does not exist.').'</span>' : '')
 			.'</li>'."\n";
@@ -496,7 +480,7 @@ function zz_maintenance_folders() {
 			$my_folder = $dir.substr($_GET['folder'], strlen($key));
 		}
 	}
-	$text .= '</ul>';
+	$page['text'] .= '</ul>';
 
 	if (!empty($_GET['folder']) AND !empty($_GET['file'])) {
 		$file['name'] = $my_folder.'/'.$_GET['file'];
@@ -522,11 +506,11 @@ function zz_maintenance_folders() {
 	}
 
 	foreach ($folders as $folder) {
-		$text .= '<h3><a href="?folder='.$folder.'">'.$folder.'/</a></h3>'."\n";
+		$page['text'] .= '<h3><a href="?folder='.$folder.'">'.$folder.'/</a></h3>'."\n";
 		if (empty($_GET['folder'])) continue;
 		if (substr($_GET['folder'], 0, strlen($folder)) != $folder) continue;
 		if ($folder != $_GET['folder']) {
-			$text .= '<h4>'.zz_htmltag_escape($_GET['folder']).'</h4>'."\n";
+			$page['text'] .= '<h4>'.zz_htmltag_escape($_GET['folder']).'</h4>'."\n";
 		}
 
 		$folder_handle = opendir($my_folder);
@@ -547,16 +531,17 @@ function zz_maintenance_folders() {
 		sort($files);
 
 		if ($deleted) {
-			$text .= '<p class="error">'.sprintf(wrap_text('%s files deleted'), $deleted).'</p>';
+			$page['text'] .= '<p class="error">'.sprintf(wrap_text('%s files deleted'), $deleted).'</p>';
 		}
 		list($form['deleteall_url'], $form['deleteall_filter']) = zz_maintenance_deleteall_form();
 		if ($form['deleteall_url']) {
-			$text .= '<form action="'.$form['deleteall_url'].'" method="POST"><input type="submit" name="deleteall" value="Delete all files?'.($form['deleteall_filter'] ? ' Search: '.$form['deleteall_filter'] : '').'"></form>';
-			return $text;
+			$page['text'] .= '<form action="'.$form['deleteall_url'].'" method="POST"><input type="submit" name="deleteall" value="Delete all files?'.($form['deleteall_filter'] ? ' Search: '.$form['deleteall_filter'] : '').'"></form>';
+			$page['text'] .= '</div>';
+			return $page;
 		}
 
-		$text .= '<form action="" method="POST">';
-		$text .= '<table class="data"><thead><tr>
+		$page['text'] .= '<form action="" method="POST">';
+		$page['text'] .= '<table class="data"><thead><tr>
 			<th>[]</th>
 			<th class="block480a">'.wrap_text('Filename').'</th>
 			<th class="block480">'.wrap_text('Filetype').'</th>
@@ -613,32 +598,46 @@ function zz_maintenance_folders() {
 			if ($i == $zz_conf['int']['this_limit']) break;
 		}
 		closedir($folder_handle);
-		$text .= '<tfoot><tr><td></td><td class="block480a">'.wrap_text('All Files').'</td><td class="hidden480">'
+		$page['text'] .= '<tfoot><tr><td></td><td class="block480a">'.wrap_text('All Files').'</td><td class="hidden480">'
 			.$total_rows.'</td><td class="number">'.number_format($size_total).' Bytes</td><td></td></tr></tfoot>';
+
+		$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
+
 		if (!$tbody) {
-			$text .= '<tbody><tr class="even"><td>&nbsp;</td><td colspan="4">&#8211; '
+			$page['text'] .= '<tbody><tr class="even"><td>&nbsp;</td><td colspan="4">&#8211; '
 				.wrap_text('Folder is empty').' &#8211;</td></tr></tbody></table>'."\n";
 		} else {
 			// show submit button only if files are there
-			$text .= '<tbody>'.$tbody.'</tbody></table>'."\n"
-				.'<p style="float: right;"><a href="'.wrap_html_escape($_SERVER['REQUEST_URI'])
+			$page['text'] .= '<tbody>'.$tbody.'</tbody></table>'."\n"
+				.'<p style="float: right;"><a href="'.$data['url_self']
 				.'&amp;deleteall">'.wrap_text('Delete all files').'</a></p>
 				<p><input type="submit" value="'.wrap_text('Delete selected files').'">'
 				.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.wrap_text('Select all').'</a> |
 				<a onclick="zz_set_checkboxes(false); return false;" href="#">'.wrap_text('Deselect all').'</a>
 				</p>';
 		}
-		$text .= '</form>';
-		$shown_records = count($files);
-		if (!empty($_GET['q'])) $shown_records = $total_files_q;
-		$text .= zz_list_total_records($shown_records);
-		$text .= zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $shown_records);
+		$page['text'] .= '</form>';
+
+		$data['total_rows'] = count($files);
+		if (!empty($_GET['q'])) $data['total_rows'] = $total_files_q;
+
+		$data['total_records'] = zz_list_total_records($data['total_rows']);
+		$data['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['total_rows']);
 		$zz_conf['search_form_always'] = true;
-		$searchform = zz_search_form(array(), '', $total_rows, $shown_records);
-		$text .= $searchform['bottom'];
+		$searchform = zz_search_form(array(), '', $data['total_rows'], $data['total_rows']);
+		$data['searchform'] = $searchform['bottom'];
+
+
+		$page['text'] .= $data['total_records'];
+		$page['text'] .= $data['pages'];
+		$page['text'] .= $data['searchform'];
 	}
 
-	return $text;
+	if (!empty($_GET['folder'])) {
+		$page['text'] .= '</div>';
+		$page['text'] .= wrap_template('zzform-foot', $zz_setting);
+	}
+	return $page;
 }
 
 /**
@@ -789,14 +788,11 @@ function zz_maintenance_errors() {
 }
 
 /**
- * output of logfile per line or grouped with the possibility to delete lines
+ * initialize variables and include files to use zz_list() for maintenance
  *
- * @global array $zz_conf
- * @return string HTML output
  */
-function zz_maintenance_logs($page) {
+function zz_maintenance_list_init() {
 	global $zz_conf;
-	global $zz_setting;
 
 	// zz_edit_query_string(), zz_get_url_self()
 	require_once $zz_conf['dir_inc'].'/functions.inc.php';
@@ -809,7 +805,7 @@ function zz_maintenance_logs($page) {
 
 	$zz_conf['list_display'] = 'table';
 	if (empty($zz_conf['limit_all_max']))
-		$zz_conf['limit_all_max'] = 1500;
+		$zz_conf['limit_all_max'] 		= 1500;
 	// range in which links to records around current selection will be shown
 	if (empty($zz_conf['limit_show_range']))
 		$zz_conf['limit_show_range'] 	= 800;
@@ -820,6 +816,19 @@ function zz_maintenance_logs($page) {
 	$zz_conf['int']['show_list'] = true;
 	$zz_conf['int']['url'] = zz_get_url_self(false);
 	zz_init_limit();
+}
+
+/**
+ * output of logfile per line or grouped with the possibility to delete lines
+ *
+ * @global array $zz_conf
+ * @return string HTML output
+ */
+function zz_maintenance_logs($page) {
+	global $zz_conf;
+	global $zz_setting;
+
+	zz_maintenance_list_init();
 
 	$page['title'] .= ' '.wrap_text('Logs');
 	$page['breadcrumbs'][] = wrap_text('Logs');
