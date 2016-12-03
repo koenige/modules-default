@@ -56,11 +56,13 @@ function mod_default_maintenance($params) {
 		return zz_maintenance_sqlupload($page);
 	} elseif (isset($_GET['sqldownload'])) {
 		return zz_maintenance_sqldownload($page);
-	} elseif (isset($_GET['integrity'])) {
-		return zz_maintenance_integrity($page);
+	} elseif (isset($_GET['filetree'])) {
+		return zz_maintenance_filetree($page);
 	} elseif (isset($_GET['phpinfo'])) {
 		phpinfo();
 		exit;
+	} elseif (isset($_GET['integrity'])) {
+		return zz_maintenance_integrity($page);
 	}
 
 	require_once $zz_conf['dir_inc'].'/zzform.php';
@@ -75,7 +77,7 @@ function mod_default_maintenance($params) {
 	zz_init_limit();
 	
 	$page['query_strings'] = array(
-		'folder', 'log',  'filetree', 'file', 'q', 'deleteall',
+		'folder', 'log', 'file', 'q', 'deleteall',
 		'filter', 'limit', 'scope', 'sqldownload'
 	);
 
@@ -101,9 +103,6 @@ function mod_default_maintenance($params) {
 		} elseif (!empty($_GET['log'])) {
 			$heading = 'Logs';
 			$page['text'] .= zz_maintenance_logs();
-		} elseif (isset($_GET['filetree'])) {
-			$heading = 'Filetree';
-			$page['text'] .= zz_maintenance_filetree();
 		} else {
 			$heading = 'Error';
 			$page['text'] .= wrap_text('GET should be empty, please test that:').' <pre>';
@@ -318,34 +317,61 @@ function zz_maintenance_integrity($page) {
 	return $page;
 }
 
-function zz_maintenance_filetree() {
+/**
+ * show filetree
+ *
+ * @param array $page
+ * @return array
+ */
+function zz_maintenance_filetree($page) {
+	global $zz_conf;
+
+	$page['title'] .= ' '.wrap_text('Filetree');
+	$page['breadcrumbs'][] = wrap_text('Filetree');
+	$page['query_strings'][] = 'filetree';
+
+	// zz_htmltag_escape()
+	require_once $zz_conf['dir_inc'].'/functions.inc.php';
+
+	$files = array();
 	$topdir = $_SERVER['DOCUMENT_ROOT'].'/../';
 	$base = false;
 	if (!empty($_GET['filetree'])) {
+		$files['parts'] = array();
 		$parts = explode('/', $_GET['filetree']);
 		$text = array_pop($parts);
-		$text = '<strong>'.zz_htmltag_escape($text).'</strong>';
+		$files['parts'][] = array('title' => zz_htmltag_escape($text));
 		while ($parts) {
 			$folder = implode('/', $parts);
 			$part = array_pop($parts);
-			$text = '<a href="?filetree='.$folder.'">'.zz_htmltag_escape($part).'</a> / '.$text;
+			$files['parts'][] = array(
+				'title' => zz_htmltag_escape($part),
+				'link' => $folder
+			);
 		}
-		$text = '<p><a href="?filetree">TOP</a> / '.$text.'</p>';
+		$files['parts'] = array_reverse($files['parts']);
 		$base = $_GET['filetree'].'/';
-	} else {
-		$text = '<p><strong>TOP</strong></p>';
 	}
-	$text .= zz_maintenance_files($topdir.$base, $base);
-	return $text;
+	$files += zz_maintenance_files($topdir.$base, $base);
+	$page['text'] = wrap_template('maintenance-filetree', $files);
+	return $page;
 }
 
+/**
+ * show files in a directory, directory links to sub directories
+ *
+ * @param string $dir
+ * @param string $base
+ * @return string
+ */
 function zz_maintenance_files($dir, $base) {
-	if (!is_dir($dir)) return false;
+	if (!is_dir($dir)) return array();
 
 	$tbody = '';
 	$i = 0;
-	$total = 0;
-	$totalfiles = 0;
+	$data = array();
+	$data['total'] = 0;
+	$data['totalfiles'] = 0;
 	$files = array();
 
 	$handle = opendir($dir);
@@ -359,36 +385,33 @@ function zz_maintenance_files($dir, $base) {
 	foreach ($files as $file) {
 		$i++;
 		$files_in_folder = 0;
-		if (is_dir($dir.'/'.$file)) {
-			list ($size, $files_in_folder) = zz_maintenance_dirsize($dir.'/'.$file);
-			$link = '<strong><a href="?filetree='.$base.$file.'">';
+		$path = $dir.'/'.$file;
+		if (is_dir($path)) {
+			list ($size, $files_in_folder) = zz_maintenance_dirsize($path);
+			$link = $base.$file;
 		} else {
-			$size = filesize($dir.'/'.$file);
+			$size = filesize($path);
 			$files_in_folder = 1;
-			$link = false;
+			$link = '';
 		}
-		$tbody .= '<tr class="'.($i & 1 ? 'uneven' : 'even').'">'
-			.'<td>'.$link.$file.($link ? '</a></strong>' : '').'</td>'
-			.'<td class="number">'.number_format($size).' Bytes</td>'
-			.'<td class="number">'.number_format($files_in_folder).'</td>'
-			.'</tr>'."\n";
-		$total += $size;
-		$totalfiles += $files_in_folder;
+		$data['files'][] = array(
+			'file' => $file,
+			'link' => $link,
+			'size' => $size,
+			'files_in_folder' => $files_in_folder
+		);
+		$data['total'] += $size;
+		$data['totalfiles'] += $files_in_folder;
 	}
-
-	$text = '<table class="data"><thead><tr>
-		<th>'.wrap_text('Filename').'</th>
-		<th>'.wrap_text('Filesize').'</th>
-		<th>'.wrap_text('Files').'</th>
-		</thead>
-		<tfoot><tr><td></td><td class="number">'.number_format($total).' Bytes</td>
-		<td class="number">'.number_format($totalfiles).'</td></tr></tfoot>
-		<tbody>'."\n";
-	$text .= $tbody;
-	$text .= '</tbody></table>'."\n";
-	return $text;
+	return $data;
 }
 
+/**
+ * get size of directory and files inside, recursively
+ *
+ * @param string $dir absolute path of directory
+ * @return array
+ */
 function zz_maintenance_dirsize($dir) {
 	$size = 0;
 	$files = 0;
