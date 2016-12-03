@@ -338,7 +338,6 @@ function zz_maintenance_filetree($page) {
 function zz_maintenance_files($dir, $base) {
 	if (!is_dir($dir)) return array();
 
-	$tbody = '';
 	$i = 0;
 	$data = array();
 	$data['total'] = 0;
@@ -440,17 +439,15 @@ function zz_maintenance_folders($page = array()) {
 	global $zz_conf;
 	global $zz_setting;
 	
+	$data = array();
 	if ($page) {
 		$page['title'] .= ' '.wrap_text('Backup folder');
 		$page['breadcrumbs'][] = wrap_text('Backup folder');
 		$page['query_strings'] = array(
 			'folder', 'file', 'q', 'scope', 'deleteall', 'limit'
 		);
-		$page['text'] = '<div id="zzform" class="maintenance">';
-
+		$data['folder'] = true;
 		zz_maintenance_list_init();
-	} else {
-		$page['text'] = '';
 	}
 
 	if (!isset($zz_conf['backup'])) $zz_conf['backup'] = '';
@@ -466,13 +463,13 @@ function zz_maintenance_folders($page = array()) {
 		'BACKUP' => $zz_conf['backup_dir'],
 		'CACHE' => $zz_setting['cache_dir']
 	);
-	$page['text'] .= '<ul>';
 	foreach ($dirs as $key => $dir) {
 		$exists = file_exists($dir) ? true : false;
-		$page['text'] .= '<li>'.sprintf(wrap_text('Current %s dir is: %s'), $key, realpath($dir))
-			.(!$exists AND $dir ? '<span class="error"> '
-			.wrap_text('– but this directory does not exist.').'</span>' : '')
-			.'</li>'."\n";
+		$data['paths'][] = array(
+			'key' => $key,
+			'dir' => realpath($dir),
+			'not_exists' => !$exists AND $dir ? true: false
+		);
 		if (!$exists) continue;
 		$folders[] = $key;
 		if (substr($dir, -1) === '/') $dir = substr($dir, 0, -1);
@@ -480,7 +477,6 @@ function zz_maintenance_folders($page = array()) {
 			$my_folder = $dir.substr($_GET['folder'], strlen($key));
 		}
 	}
-	$page['text'] .= '</ul>';
 
 	if (!empty($_GET['folder']) AND !empty($_GET['file'])) {
 		$file['name'] = $my_folder.'/'.$_GET['file'];
@@ -505,12 +501,14 @@ function zz_maintenance_folders($page = array()) {
 		}
 	}
 
-	foreach ($folders as $folder) {
-		$page['text'] .= '<h3><a href="?folder='.$folder.'">'.$folder.'/</a></h3>'."\n";
+	foreach ($folders as $index => $folder) {
+		$data['folders'][$index]['title'] = $folder;
+		$data['folders'][$index]['hide_content'] = true;
 		if (empty($_GET['folder'])) continue;
 		if (substr($_GET['folder'], 0, strlen($folder)) != $folder) continue;
-		if ($folder != $_GET['folder']) {
-			$page['text'] .= '<h4>'.zz_htmltag_escape($_GET['folder']).'</h4>'."\n";
+		$data['folders'][$index]['hide_content'] = false;
+		if ($folder !== $_GET['folder']) {
+			$data['folders'][$index]['subtitle'] = zz_htmltag_escape($_GET['folder']);
 		}
 
 		$folder_handle = opendir($my_folder);
@@ -529,112 +527,77 @@ function zz_maintenance_folders($page = array()) {
 			}
 		}
 		sort($files);
-
 		if ($deleted) {
-			$page['text'] .= '<p class="error">'.sprintf(wrap_text('%s files deleted'), $deleted).'</p>';
+			$data['folders'][$index]['deleted'] = $deleted;
 		}
-		list($form['deleteall_url'], $form['deleteall_filter']) = zz_maintenance_deleteall_form();
-		if ($form['deleteall_url']) {
-			$page['text'] .= '<form action="'.$form['deleteall_url'].'" method="POST"><input type="submit" name="deleteall" value="Delete all files?'.($form['deleteall_filter'] ? ' Search: '.$form['deleteall_filter'] : '').'"></form>';
-			$page['text'] .= '</div>';
+
+		list($data['folders'][$index]['deleteall_url'], $data['folders'][$index]['deleteall_filter']) = zz_maintenance_deleteall_form();
+		if ($data['folders'][$index]['deleteall_url']) {
+			$page['text'] = wrap_template('maintenance-folders', $data);
 			return $page;
 		}
 
-		$page['text'] .= '<form action="" method="POST">';
-		$page['text'] .= '<table class="data"><thead><tr>
-			<th>[]</th>
-			<th class="block480a">'.wrap_text('Filename').'</th>
-			<th class="block480">'.wrap_text('Filetype').'</th>
-			<th>'.wrap_text('Size').'</th>
-			<th class="hidden480">'.wrap_text('Timestamp').'</th>
-			</thead>'."\n";
 		$i = 0;
-		$size_total = 0;
-		$tbody = '';
-		$total_rows = 0;
-		foreach ($files as $file) {
-			if (!empty($_GET['q']) AND !zz_maintenance_searched($file)) {
+		$data['folders'][$index]['size_total'] = 0;
+		$data['folders'][$index]['files_total'] = 0;
+		foreach ($files as $filename) {
+			if (!empty($_GET['q']) AND !zz_maintenance_searched($filename)) {
 				continue;
 			}
 			if ($i < $zz_conf['int']['this_limit'] - $zz_conf['limit']) {
 				$i++;
 				continue;
 			}
-			$size = filesize($my_folder.'/'.$file);
-			$size_total += $size;
-			if (is_dir($my_folder.'/'.$file)) {
-				$ext = wrap_text('Folder');
-			} elseif (strrpos($file, '.') > strlen($file) - 10) {
+			$path = $my_folder.'/'.$filename;
+			$file = array();
+			$file['file'] = $filename;
+			$file['size'] = filesize($path);
+			$data['folders'][$index]['size_total'] += $file['size'];
+			if (is_dir($path)) {
+				$file['ext'] = wrap_text('Folder');
+			} elseif (strrpos($filename, '.') > strlen($filename) - 10) {
 				// treat part behind last dot as file extension
 				// normally, file extensions won't be longer than 10 characters
 				// not 100% correct of course
-				$ext = substr($file, strrpos($file, '.')+1);
+				$file['ext'] = substr($filename, strrpos($filename, '.') + 1);
 			} else {
-				$ext = wrap_text('unknown');
+				$file['ext'] = wrap_text('unknown');
 			}
-			$time = date('Y-m-d H:i:s', filemtime($my_folder.'/'.$file));
-			$files_in_dir = 0;
-			if (is_dir($my_folder.'/'.$file)) {
-				$link = './?folder='.urlencode($_GET['folder']).'/'.urlencode($file);
-				$subfolder_handle = opendir($my_folder.'/'.$file);
+			$file['time'] = date('Y-m-d H:i:s', filemtime($path));
+			$file['files_in_dir'] = 0;
+			if (is_dir($path)) {
+				$file['dir'] = true;
+				$file['link'] = urlencode($_GET['folder']).'/'.urlencode($filename);
+				$subfolder_handle = opendir($path);
 				while ($subdir = readdir($subfolder_handle)) {
 					if (substr($subdir, 0, 1) === '.') continue;
-					$files_in_dir ++;
+					$file['files_in_dir']++;
 				}
 				closedir($subfolder_handle);
 			} else {
-				$link = './?folder='.urlencode($_GET['folder'])
-					.'&amp;file='.urlencode($file);
+				$file['link'] = urlencode($_GET['folder']).'&amp;file='.urlencode($filename);
 			}
-			$tbody .= '<tr class="'.($i & 1 ? 'uneven' : 'even').'">'
-				.'<td>'.($files_in_dir ? '' : '<input type="checkbox" name="files['.$file.']">').'</td>'
-				.'<td class="block480a"><a href="'.$link.'">'.zz_mark_search_string(str_replace('%', '%&shy;', wrap_html_escape(urldecode($file)))).'</a></td>'
-				.'<td class="block480">'.$ext.'</td>'
-				.'<td class="number">'.number_format($size).' Bytes</td>'
-				.'<td class="hidden480">'.$time.'</td>'
-				.'</tr>'."\n";
+			if (!$file['files_in_dir']) $file['files_in_dir'] = NULL;
+			$file['title'] = zz_mark_search_string(str_replace('%', '%&shy;', wrap_html_escape(urldecode($filename))));
+			$data['folders'][$index]['files'][] = $file;
 			$i++;
-			$total_rows++;
+			$data['folders'][$index]['files_total']++;
 			if ($i == $zz_conf['int']['this_limit']) break;
 		}
 		closedir($folder_handle);
-		$page['text'] .= '<tfoot><tr><td></td><td class="block480a">'.wrap_text('All Files').'</td><td class="hidden480">'
-			.$total_rows.'</td><td class="number">'.number_format($size_total).' Bytes</td><td></td></tr></tfoot>';
 
-		$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
-
-		if (!$tbody) {
-			$page['text'] .= '<tbody><tr class="even"><td>&nbsp;</td><td colspan="4">&#8211; '
-				.wrap_text('Folder is empty').' &#8211;</td></tr></tbody></table>'."\n";
-		} else {
-			// show submit button only if files are there
-			$page['text'] .= '<tbody>'.$tbody.'</tbody></table>'."\n"
-				.'<p style="float: right;"><a href="'.$data['url_self']
-				.'&amp;deleteall">'.wrap_text('Delete all files').'</a></p>
-				<p><input type="submit" value="'.wrap_text('Delete selected files').'">'
-				.' &#8211; <a onclick="zz_set_checkboxes(true); return false;" href="#">'.wrap_text('Select all').'</a> |
-				<a onclick="zz_set_checkboxes(false); return false;" href="#">'.wrap_text('Deselect all').'</a>
-				</p>';
-		}
-		$page['text'] .= '</form>';
-
-		$data['total_rows'] = count($files);
-		if (!empty($_GET['q'])) $data['total_rows'] = $total_files_q;
-
-		$data['total_records'] = zz_list_total_records($data['total_rows']);
-		$data['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['total_rows']);
+		$data['folders'][$index]['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
+		$data['folders'][$index]['total_rows'] = count($files);
+		if (!empty($_GET['q'])) $data['folders'][$index]['total_rows'] = $total_files_q;
+		$data['folders'][$index]['total_records'] = zz_list_total_records($data['folders'][$index]['total_rows']);
+		$data['folders'][$index]['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['folders'][$index]['total_rows']);
 		$zz_conf['search_form_always'] = true;
-		$searchform = zz_search_form(array(), '', $data['total_rows'], $data['total_rows']);
-		$data['searchform'] = $searchform['bottom'];
-
-
-		$page['text'] .= $data['total_records'];
-		$page['text'] .= $data['pages'];
-		$page['text'] .= $data['searchform'];
+		$searchform = zz_search_form(array(), '', $data['folders'][$index]['total_rows'], $data['folders'][$index]['total_rows']);
+		$data['folders'][$index]['searchform'] = $searchform['bottom'];
 	}
 
+	$page['text'] = wrap_template('maintenance-folders', $data);
 	if (!empty($_GET['folder'])) {
-		$page['text'] .= '</div>';
 		$page['text'] .= wrap_template('zzform-foot', $zz_setting);
 	}
 	return $page;

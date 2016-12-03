@@ -1,0 +1,82 @@
+# default module
+# Template for maintenance script, folders
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2016 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% condition if folder %%%
+<div id="zzform" class="maintenance">
+%%% condition endif %%%
+<ul>
+%%% loop paths %%%
+<li>%%% text "Current %s dir is: %s" key dir %%%
+%%% condition if not_exists %%%
+<span class="error"> %%% text – but this directory does not exist. %%%</span>
+%%% condition endif %%%</li>
+%%% loop end %%%
+</ul>
+
+%%% loop folders %%%
+<h3><a href="?folder=%%% item title %%%">%%% item title %%%/</a></h3>
+
+%%% condition unless hide_content %%%
+
+%%% item subtitle <h4>%s</h4> %%%
+%%% condition if deleted %%%
+<p class="error">%%% text "%s files deleted" deleted %%%</p>
+%%% condition endif %%%
+%%% condition if deleteall_url %%%
+<form action="%%% item deleteall_url %%%" method="POST"><input type="submit" name="deleteall" value='Delete all files?%%% item deleteall_filter " Search: %s" %%%'></form>
+%%% condition else %%%
+
+<form action="" method="POST">
+<table class="data"><thead><tr>
+<th>[]</th>
+<th class="block480a">%%% text Filename %%%</th>
+<th class="block480">%%% text Filetype %%%</th>
+<th>%%% text Size %%%</th>
+<th class="hidden480">%%% text Timestamp %%%</th>
+</thead>
+<tfoot><tr><td></td><td class="block480a">%%% text All Files %%%</td>
+<td class="hidden480">%%% item files_total %%%</td>
+<td class="number">%%% item size_total wrap_number %%% Bytes</td>
+<td></td></tr></tfoot>
+<tbody>
+%%% condition if files %%%
+%%% loop files %%%
+<tr class="%%% loopposition uneven un %%%even">
+<td>%%% condition unless files_in_dir %%%<input type="checkbox" name="files[%%% item file %%%]">%%% condition endif %%%</td>
+<td class="block480a">%%% item dir <strong> %%%<a href="./?folder=%%% item link %%%">%%% item title %%%</a>%%% item dir </strong> %%%</td>
+<td class="block480">%%% item ext %%%</td>
+<td class="number">%%% item size wrap_number %%% Bytes</td>
+<td class="hidden480">%%% item time %%%</td>
+</tr>
+%%% loop end %%%
+%%% condition else %%%
+<tr class="even"><td>&nbsp;</td><td colspan="4">– %%% text Folder is empty %%% –</td></tr>
+%%% condition endif %%%
+</tbody></table>
+
+%%% condition if files %%%
+<p style="float: right;"><a href="%%% item url_self %%%&amp;deleteall">%%% text Delete all files %%%</a></p>
+<p><input type="submit" value="%%% text Delete selected files %%%"> – <a onclick="zz_set_checkboxes(true); return false;" href="#">%%% text Select all %%%</a> |
+<a onclick="zz_set_checkboxes(false); return false;" href="#">%%% text Deselect all %%%</a>
+</p>
+%%% condition endif %%%
+</form>
+
+%%% item total_records %%%
+%%% item pages %%%
+%%% item searchform %%%
+
+%%% condition endif %%%
+%%% condition endif %%%
+%%% loop end %%%
+
+%%% condition if folder %%%
+</div>
+%%% condition endif %%%
