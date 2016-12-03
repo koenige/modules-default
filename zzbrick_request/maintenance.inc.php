@@ -25,7 +25,6 @@
  * @global array $zz_setting
  * @return array $page
  *		'text' => page content, 'title', 'breadcrumbs', ...
- * @author Gustaf Mossakowski <gustaf@koenige.org>
  */
 function mod_default_maintenance($params) {
 	global $zz_conf;
@@ -38,79 +37,46 @@ function mod_default_maintenance($params) {
 	$zz_setting['extra_http_headers'][] = 'X-Frame-Options: Deny';
 	$zz_setting['extra_http_headers'][] = "Content-Security-Policy: frame-ancestors 'self'";
 
+	if (file_exists($file = $zz_setting['custom'].'/zzbrick_tables/_common.inc.php')) {
+		// e. g. heading_prefix
+		require_once $file;
+	}
+	if (isset($brick['page'])) $page = $brick['page'];
+	$page['head'] = isset($page['head']) ? $page['head'] : '';
+	$page['head'] .= wrap_template('zzform-head', $zz_setting);
+	$page['title'] = !empty($zz_conf['heading_prefix']) ? wrap_text($zz_conf['heading_prefix']) : '';
+	if (!empty($_GET) OR !empty($_POST)) {
+		$page['title'] .= ' <a href="./">'.wrap_text('Maintenance').'</a>:';
+		$page['breadcrumbs'][] = '<a href="./">'.wrap_text('Maintenance').'</a>';
+	}
+
+	if (!empty($_POST['sql'])) {
+		return zz_maintenance_sqlquery($page);
+	}
+
 	require_once $zz_conf['dir_inc'].'/zzform.php';
 	require_once $zz_conf['dir_inc'].'/functions.inc.php';
 	require_once $zz_conf['dir_inc'].'/database.inc.php';
 	require_once $zz_conf['dir_inc'].'/output.inc.php';
 	require_once $zz_conf['dir_inc'].'/list.inc.php';
 	require_once $zz_conf['dir_inc'].'/search.inc.php';
-	if (file_exists($file = $zz_setting['custom'].'/zzbrick_tables/_common.inc.php')) {
-		require_once $file;
-	}
-	if (isset($brick['page'])) $page = $brick['page'];
-	$page['head'] = isset($page['head']) ? $page['head'] : '';
-	$page['head'] .= wrap_template('zzform-head', $zz_setting);
 
-	if (!empty($_SESSION) AND empty($zz_conf['user']) AND !empty($zz_setting['brick_username_in_session']))
-		$zz_conf['user'] = $_SESSION[$zz_setting['brick_username_in_session']];
-	elseif (!isset($zz_conf['user']))
-		$zz_conf['user'] = 'Maintenance robot 812';
 
 	$zz_conf['int_modules'] = array('debug', 'compatibility', 'validate', 'upload');
 	zz_initialize();
 	zz_init_limit();
-	$heading_prefix = '<a href="./">'.wrap_text('Maintenance').'</a>:';
 	
 	$page['query_strings'] = array(
 		'folder', 'log', 'integrity', 'filetree', 'phpinfo', 'file', 'q',
 		'deleteall', 'filter', 'limit', 'scope', 'sqldownload'
 	);
 	
-	$sql = '';
-	if (!empty($_POST['sql'])) {
-		$sql = $_POST['sql'];
-
-		$heading = 'SQL Query';
-		$page['text'] = '<div id="zzform" class="maintenance">'."\n";
-		$page['text'] .= '<pre style="font-size: 1.1em; white-space: pre-wrap;"><code>'.zz_maintenance_sql($sql).'</code></pre>';
-
-		$tokens = explode(' ', $sql);
-		switch ($tokens[0]) {
-		case 'INSERT':
-		case 'UPDATE':
-		case 'DELETE':
-			$result = zz_db_change($sql);
-			$page['text'] .= '<h2>'.wrap_text('Result').'</h2>'."\n";
-			if (!$result['action']) {
-				$page['text'] .= '<div class="error">'
-					.'Database says: '.$result['error']['db_msg'].' [Code '
-					.$result['error']['db_errno'].']'
-					.'</div>'."\n";
-			} elseif ($result['action'] === 'nothing') {
-				$page['text'] .= '<p>'.wrap_text('No changes were done to database.').'</p>'."\n";
-			} else {
-				$page['text'] .= '<p>'.sprintf(wrap_text('%s was successful'), wrap_text(ucfirst($result['action'])))
-					.': '.sprintf(wrap_text('%s row(s) affected'), $result['rows'])
-					.($result['id_value'] ? ' (ID: '.$result['id_value'].')' : '').'</p>'."\n";
-			}
-			break;
-		case 'SELECT':
-		default:
-			$page['text'] .= sprintf(wrap_text('Sorry, %s is not yet supported'), zz_htmltag_escape($tokens[0]));
-		}
-		$page['text'] .= '<h2>'.wrap_text('Custom SQL query').'</h2>'."\n";
-		$page['text'] .= '<form method="POST" action=""><textarea cols="60" rows="10" name="sql">'
-			.str_replace('%%%', '%&shy;%&shy;%', zz_html_escape($sql))
-			.'</textarea>
-			<br><input type="submit"></form>'."\n";
-		$page['text'] .= '</div>'."\n";
-	} elseif (!empty($_POST['sqlupload'])) {
-		return zz_maintenance_sqlupload(wrap_text($zz_conf['heading_prefix']).' '.$heading_prefix);
+	if (!empty($_POST['sqlupload'])) {
+		return zz_maintenance_sqlupload($page['title']);
 	}
 
-	if (empty($_GET) AND !$sql) {	
+	if (empty($_GET)) {
 		$heading = wrap_text('Maintenance');
-		$heading_prefix = '';
 
 		$data = array();
 		$data = array_merge($data, zz_maintenance_tables());
@@ -141,7 +107,7 @@ function mod_default_maintenance($params) {
 			phpinfo();
 			exit;
 		} elseif (isset($_GET['sqldownload'])) {
-			return zz_maintenance_sqldownload(wrap_text($zz_conf['heading_prefix']).' '.$heading_prefix);
+			return zz_maintenance_sqldownload($page['title']);
 		} else {
 			$heading = 'Error';
 			$page['text'] .= wrap_text('GET should be empty, please test that:').' <pre>';
@@ -154,9 +120,62 @@ function mod_default_maintenance($params) {
 	}
 	$page['text'] .= wrap_template('zzform-foot', $zz_setting);
 
-	$page['title'] = wrap_text($zz_conf['heading_prefix']).' '.$heading_prefix.' '.wrap_text($heading);
+	$page['title'] .= ' '.wrap_text($heading);
 	$page['dont_show_h1'] = true;
 	$page['text'] = '<h1>'.$page['title']."</h1>\n".$page['text'];
+	return $page;
+}
+
+/**
+ * change the database with a custom SQL query which is logged
+ *
+ * @param array $page
+ * @return array
+ */
+function zz_maintenance_sqlquery($page) {
+	global $zz_conf;
+	// zz_htmltag_escape()
+	require_once $zz_conf['dir_inc'].'/functions.inc.php';
+	// zz_db_change()
+	require_once $zz_conf['dir_inc'].'/database.inc.php';
+
+	if (!empty($_SESSION) AND empty($zz_conf['user']) AND !empty($zz_setting['brick_username_in_session']))
+		$zz_conf['user'] = $_SESSION[$zz_setting['brick_username_in_session']];
+	elseif (!isset($zz_conf['user']))
+		$zz_conf['user'] = 'Maintenance robot 812';
+
+	$result = array();
+	$sql = $_POST['sql'];
+	$tokens = explode(' ', $sql);
+
+	switch ($tokens[0]) {
+	case 'INSERT':
+	case 'UPDATE':
+	case 'DELETE':
+		$result = zz_db_change($sql);
+		$result['change'] = true;
+		if (!$result['action']) {
+			$result['error_db_msg'] = $result['error']['db_msg'];
+			$result['error_db_errno'] = $result['error']['db_errno'];
+		} elseif ($result['action'] === 'nothing') {
+			$result['action_nothing'] = true;
+		} else {
+			$result['action'] = wrap_text(ucfirst($result['action']));
+		}
+		break;
+	case 'SELECT':
+	default:
+		$result['not_supported'] = true;
+		$result['token'] = zz_htmltag_escape($tokens[0]);
+		break;
+	}
+		
+	$result['sql'] = zz_maintenance_sql($sql);
+	$result['form_sql'] = str_replace('%%%', '%&shy;%&shy;%', zz_html_escape($sql));
+
+	$page['title'] .= ' '.wrap_text('SQL Query');
+	$page['breadcrumbs'][] = wrap_text('SQL Query');
+	$page['text'] = wrap_template('maintenance-sql', $result);
 	return $page;
 }
 
