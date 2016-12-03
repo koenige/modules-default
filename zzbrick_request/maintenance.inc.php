@@ -53,7 +53,12 @@ function mod_default_maintenance($params) {
 	if (!empty($_POST['sql'])) {
 		return zz_maintenance_sqlquery($page);
 	} elseif (!empty($_POST['sqlupload'])) {
-		return zz_maintenance_sqlupload($page['title']);
+		return zz_maintenance_sqlupload($page);
+	} elseif (isset($_GET['sqldownload'])) {
+		return zz_maintenance_sqldownload($page);
+	} elseif (isset($_GET['phpinfo'])) {
+		phpinfo();
+		exit;
 	}
 
 	require_once $zz_conf['dir_inc'].'/zzform.php';
@@ -63,16 +68,14 @@ function mod_default_maintenance($params) {
 	require_once $zz_conf['dir_inc'].'/list.inc.php';
 	require_once $zz_conf['dir_inc'].'/search.inc.php';
 
-
 	$zz_conf['int_modules'] = array('debug', 'compatibility', 'validate', 'upload');
 	zz_initialize();
 	zz_init_limit();
 	
 	$page['query_strings'] = array(
-		'folder', 'log', 'integrity', 'filetree', 'phpinfo', 'file', 'q',
-		'deleteall', 'filter', 'limit', 'scope', 'sqldownload'
+		'folder', 'log', 'integrity', 'filetree', 'file', 'q', 'deleteall',
+		'filter', 'limit', 'scope', 'sqldownload'
 	);
-	
 
 	if (empty($_GET)) {
 		$heading = wrap_text('Maintenance');
@@ -102,11 +105,6 @@ function mod_default_maintenance($params) {
 		} elseif (isset($_GET['filetree'])) {
 			$heading = 'Filetree';
 			$page['text'] .= zz_maintenance_filetree();
-		} elseif (isset($_GET['phpinfo'])) {
-			phpinfo();
-			exit;
-		} elseif (isset($_GET['sqldownload'])) {
-			return zz_maintenance_sqldownload($page['title']);
 		} else {
 			$heading = 'Error';
 			$page['text'] .= wrap_text('GET should be empty, please test that:').' <pre>';
@@ -1207,13 +1205,15 @@ function zz_delete_line_from_file($file, $lines) {
 /**
  * export SQL log as JSON file
  *
- * @param string $heading
+ * @param array $page
  * @global int $_GET['sqldownload']
  * @return array $page
  */
-function zz_maintenance_sqldownload($heading) {
+function zz_maintenance_sqldownload($page) {
 	global $zz_conf;
 	
+	$page['query_strings'][] = 'sqldownload';
+
 	$sql = 'SELECT * FROM %s WHERE log_id >= %d ORDER BY log_id';
 	$sql = sprintf($sql, $zz_conf['logging_table'], $_GET['sqldownload']);
 	$data = wrap_db_fetch($sql, 'log_id');
@@ -1221,10 +1221,9 @@ function zz_maintenance_sqldownload($heading) {
 		$sql = 'SELECT MAX(log_id) FROM %s';
 		$sql = sprintf($sql, $zz_conf['logging_table']);
 		$max_logs = wrap_db_fetch($sql, '', 'single value');
-		$heading .= ' '.wrap_text('Download SQL log');
-		$page['title'] = $heading;
+		$page['title'] .= ' '.wrap_text('Download SQL log');
+		$page['breadcrumbs'][] = wrap_text('Download SQL log');
 		$page['text'] = '<p>'.sprintf(wrap_text('Logfile has only %d entries.'), $max_logs).'</p>';
-		$page['status'] = 404;
 		return $page;
 	}
 
@@ -1237,13 +1236,13 @@ function zz_maintenance_sqldownload($heading) {
 /**
  * export JSON file in _logging
  *
- * @param string $heading ($page['title'])
+ * @param array $page
  * @return array $page
  */
-function zz_maintenance_sqlupload($heading) {
+function zz_maintenance_sqlupload($page) {
 	global $zz_conf;
 
-	$page['title'] = $heading.' '.wrap_text('Upload SQL log');
+	$page['title'] .= ' '.wrap_text('Upload SQL log');
 	$page['breadcrumbs'][] = wrap_text('Upload SQL log');
 	if (empty($_FILES['sqlfile'])) {
 		$page['text'] = '<p>'.wrap_text('Please upload a file.').'</p>';
