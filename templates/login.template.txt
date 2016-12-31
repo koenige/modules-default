@@ -5,7 +5,7 @@
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2011, 2015 Gustaf Mossakowski
+# @copyright Copyright © 2008-2011, 2015-2016 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #
@@ -26,7 +26,7 @@
 %%% condition if output %%%
 %%% item output %%%
 %%% condition else %%%
-<input type="text" name="%%% item fieldname %%%" id="%%% item fieldname %%%"  value="%%% item value %%%">
+<input type="text" name="%%% item fieldname %%%" id="%%% item fieldname %%%"  value="%%% item value %%%" autocorrect="off" autocapitalize="off" spellcheck="false">
 %%% condition endif %%%
 </p>
 %%% loop end %%%
