@@ -1,0 +1,62 @@
+<?php 
+
+/**
+ * default module
+ * Database administration with adminer
+ *
+ * Part of »Zugzwang Project«
+ * http://www.zugzwang.org/modules/default
+ *
+ * @author Gustaf Mossakowski <gustaf@koenige.org>
+ * @copyright Copyright © 2014-2016 Gustaf Mossakowski
+ * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ */
+
+
+/**
+ * Database administration with adminer
+ * set rights in webpages table
+ *
+ * @param $params void
+ * @return array $page
+ */
+function mod_default_adminer($params) {
+	global $zz_setting;
+	if ($params) return false;
+	
+	$path = $zz_setting['lib'].'/adminer/adminer-4.2.5-mysql-de.php';
+	wrap_session_start();
+	require $path ;
+	exit;
+}
+
+function adminer_object() {
+
+    class AdminerSoftware extends Adminer {
+        
+        function name() {
+            // custom name in title and heading
+		    global $zz_conf;
+            return $zz_conf['project'];
+        }
+        
+        function credentials() {
+            // server, username and password for connecting to database
+		    global $zz_setting;
+		    if (!$zz_setting['local_access']) {
+			    require $zz_setting['custom'].'/zzwrap_sql/pwd.inc.php';
+	        } else {
+	        	require $zz_setting['local_pwd'];
+	        }
+	        return array($db_host, $db_user, $db_pwd);
+        }
+        
+        function database() {
+            // database name, will be escaped by Adminer
+		    global $zz_conf;
+            return $zz_conf['db_name'];
+        }
+    }
+    
+    return new AdminerSoftware;
+}
