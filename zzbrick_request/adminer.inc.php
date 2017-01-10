@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2016 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2017 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -22,7 +22,17 @@
  */
 function mod_default_adminer($params) {
 	global $zz_setting;
+	global $zz_page;
+	global $zz_conf;
 	if ($params) return false;
+	if (empty($zz_setting['adminer_databases']) AND empty($_GET)) {
+		// auto-login if only one database is present
+		$url = sprintf('%s?username=&db=%s'
+			, $zz_page['url']['full']['path']
+			, $zz_conf['db_name']
+		);
+		return brick_format('%%% redirect '.$url.' %%%');
+	}
 	
 	$path = $zz_setting['lib'].'/adminer/adminer-4.2.5-mysql-de.php';
 	session_start();
