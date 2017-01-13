@@ -35,6 +35,10 @@ function mod_default_adminer($params) {
 	}
 	
 	$path = $zz_setting['lib'].'/adminer/adminer-4.2.5-mysql-de.php';
+	if (!file_exists($path)) {
+		wrap_error('Library Adminer does not exist', E_USER_ERROR);
+		exit;
+	}
 	session_start();
 	require $path;
 	exit;
