@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2010 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2010, 2014, 2017 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,6 +23,7 @@ $zz['table'] = $zz_conf['logging_table'];
 $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'log_id';
 $zz['fields'][1]['type'] = 'id';
+$zz['fields'][1]['show_id'] = true;
 
 $zz['fields'][2]['field_name'] = 'query';
 $zz['fields'][2]['class'] = 'block480a';
