@@ -285,7 +285,7 @@ function zz_maintenance_integrity($page) {
 	} else {
 		$page['text'] = wrap_text('Nothing to check.');
 	}
-	return $page;
+	return mod_default_maintenance_return($page);
 }
 
 /**
@@ -454,7 +454,7 @@ function zz_maintenance_folders($page = array()) {
 	if ((!$zz_conf['backup'] OR empty($zz_conf['backup_dir']))
 		AND empty($zz_conf['tmp_dir']) AND empty($zz_setting['cache_dir'])) {
 		$page['text'] = '<p>'.wrap_text('Backup of uploaded files is not active.').'</p>'."\n";
-		return $page;
+		return mod_default_maintenance_return($page);
 	}
 
 	$folders = array();
@@ -802,7 +802,7 @@ function zz_maintenance_logs($page) {
 	$levels = array('error', 'warning', 'notice');
 	if (empty($_GET['log'])) {
 		$page['text'] = '<p>'.wrap_text('No logfile specified').'</p>'."\n";
-		return $page;
+		return mod_default_maintenance_return($page);
 	}
 
 	$show_log = false;
@@ -819,11 +819,11 @@ function zz_maintenance_logs($page) {
 	}
 	if (!$show_log) {
 		$page['text'] = '<p>'.sprintf(wrap_text('This is not one of the used logfiles: %s'), wrap_html_escape($_GET['log'])).'</p>'."\n";
-		return $page;
+		return mod_default_maintenance_return($page);
 	}
 	if (!file_exists($_GET['log'])) {
 		$page['text'] = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), wrap_html_escape($_GET['log'])).'</p>'."\n";
-		return $page;
+		return mod_default_maintenance_return($page);
 	}
 
 	// delete
@@ -1205,7 +1205,7 @@ function zz_maintenance_sqldownload($page) {
 		$page['title'] .= ' '.wrap_text('Download SQL log');
 		$page['breadcrumbs'][] = wrap_text('Download SQL log');
 		$page['text'] = '<p>'.sprintf(wrap_text('Logfile has only %d entries.'), $max_logs).'</p>';
-		return $page;
+		return mod_default_maintenance_return($page);
 	}
 
 	$page['text'] = json_encode($data);
@@ -1227,21 +1227,21 @@ function zz_maintenance_sqlupload($page) {
 	$page['breadcrumbs'][] = wrap_text('Upload SQL log');
 	if (empty($_FILES['sqlfile'])) {
 		$page['text'] = '<p>'.wrap_text('Please upload a file.').'</p>';
-		return $page;
+		return mod_default_maintenance_return($page);
 	}
 	if ($_FILES['sqlfile']['error'] !== 0) {
 		$page['text'] = '<p>'.wrap_text('There was an error while uploading the file.').'</p>';
-		return $page;
+		return mod_default_maintenance_return($page);
 	}
 	if ($_FILES['sqlfile']['size'] <= 3) {
 		$page['text'] = '<p>'.wrap_text('There was an error while uploading the file.').'</p>';
-		return $page;
+		return mod_default_maintenance_return($page);
 	}
 	$json = file_get_contents($_FILES['sqlfile']['tmp_name']);
 	$json = json_decode($json, true);
 	if (!$json) {
 		$page['text'] = '<p>'.wrap_text('The content of the file was not readable (Format needs to be JSON).').'</p>';
-		return $page;
+		return mod_default_maintenance_return($page);
 	}
 	$first_id = key($json);
 	$sql = 'SELECT MAX(log_id) FROM %s';
@@ -1249,7 +1249,7 @@ function zz_maintenance_sqlupload($page) {
 	$max_logs = wrap_db_fetch($sql, '', 'single value');
 	if ($max_logs + 1 !== $first_id) {
 		$page['text'] = '<p>'.sprintf(wrap_text('The highest existing log entry is %d, but import starts with %d.'), $max_logs, $first_id).'</p>';
-		return $page;
+		return mod_default_maintenance_return($page);
 	}
 	
 	// Everything ok, we can import
@@ -1258,7 +1258,7 @@ function zz_maintenance_sqlupload($page) {
 		$success = wrap_db_query($line['query']);
 		if (!$success) {
 			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
-			return $page;
+			return mod_default_maintenance_return($page);
 		}
 		$sql = sprintf($log_template,
 			$zz_conf['logging_table'], wrap_db_escape($line['query'])
@@ -1268,13 +1268,25 @@ function zz_maintenance_sqlupload($page) {
 		$log_id = wrap_db_query($sql);
 		if (!$log_id) {
 			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
-			return $page;
+			return mod_default_maintenance_return($page);
 		}
 		if ($line['log_id'].'' !== $log_id.'') {
 			$page['text'] = '<p>'.sprintf(wrap_text('Record ID %d was added with a different log ID %d.'), $line['log_id'], $log_id).'</p>';
-			return $page;
+			return mod_default_maintenance_return($page);
 		}
 	}
 	$page['text'] = '<p>'.sprintf(wrap_text('All %d log entries were added, last ID was %d.'), count($json), $line['log_id']).'</p>';
+	return mod_default_maintenance_return($page);
+}
+
+/**
+ * put one liners or error message in standard div
+ * only for non-template HTML pages
+ *
+ * @param array $page
+ * @return array
+ */
+function mod_default_maintenance_return($page) {
+	$page['text'] = sprintf('<div id="zzform" class="maintenance">%s</div>', $page['text']);
 	return $page;
 }
