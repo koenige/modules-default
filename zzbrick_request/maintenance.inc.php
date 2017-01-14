@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2016 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2017 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -1256,21 +1256,22 @@ function zz_maintenance_sqlupload($page) {
 	$log_template = 'INSERT INTO %s (query, record_id, user, last_update) VALUES (_binary "%s", %s, "%s", "%s")';
 	foreach ($json as $line) {
 		$success = wrap_db_query($line['query']);
-		if ($success) {
-			$sql = sprintf($log_template,
-				$zz_conf['logging_table'], wrap_db_escape($line['query'])
-				, ($line['record_id'] ? $line['record_id'] : 'NULL')
-				, wrap_db_escape($line['user']), $line['last_update']
-			);
-			$success = wrap_db_query($sql);
-		}
-		$log_id = mysqli_insert_id($zz_conf['db_connection']);
-		if ($line['log_id'].'' !== $log_id.'') {
-			$page['text'] = '<p>'.sprintf(wrap_text('Record ID %d was added with a different log ID %d.'), $line['log_id'], $log_id).'</p>';
-			return $page;
-		}
 		if (!$success) {
 			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
+			return $page;
+		}
+		$sql = sprintf($log_template,
+			$zz_conf['logging_table'], wrap_db_escape($line['query'])
+			, ($line['record_id'] ? $line['record_id'] : 'NULL')
+			, wrap_db_escape($line['user']), $line['last_update']
+		);
+		$log_id = wrap_db_query($sql);
+		if (!$log_id) {
+			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
+			return $page;
+		}
+		if ($line['log_id'].'' !== $log_id.'') {
+			$page['text'] = '<p>'.sprintf(wrap_text('Record ID %d was added with a different log ID %d.'), $line['log_id'], $log_id).'</p>';
 			return $page;
 		}
 	}
