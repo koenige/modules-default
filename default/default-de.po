@@ -314,7 +314,7 @@ msgstr "Dateityp"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Size"
-msgstr "Grö&szlig;e"
+msgstr "Größe"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Timestamp"
