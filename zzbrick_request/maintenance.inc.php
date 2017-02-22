@@ -112,12 +112,13 @@ function zz_maintenance_sqlquery($page) {
 
 	$result = [];
 	$sql = $_POST['sql'];
-	$tokens = explode(' ', $sql);
+	$statement = zz_db_statement($sql);
 
-	switch ($tokens[0]) {
+	switch ($statement) {
 	case 'INSERT':
 	case 'UPDATE':
 	case 'DELETE':
+	case 'CREATE TABLE':
 		$result = zz_db_change($sql);
 		$result['change'] = true;
 		if (!$result['action']) {
@@ -132,7 +133,7 @@ function zz_maintenance_sqlquery($page) {
 	case 'SELECT':
 	default:
 		$result['not_supported'] = true;
-		$result['token'] = zz_htmltag_escape($tokens[0]);
+		$result['token'] = zz_htmltag_escape($statement);
 		break;
 	}
 		
