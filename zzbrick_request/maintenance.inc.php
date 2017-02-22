@@ -31,7 +31,7 @@ function mod_default_maintenance($params) {
 	global $zz_setting;
 
 	if (!isset($zz_conf['modules'])) {
-		$zz_conf['modules'] = array();
+		$zz_conf['modules'] = [];
 		$zz_conf['modules']['debug'] = false;
 	}
 	$zz_setting['extra_http_headers'][] = 'X-Frame-Options: Deny';
@@ -69,7 +69,7 @@ function mod_default_maintenance($params) {
 		return zz_maintenance_integrity($page);
 	}
 
-	$data = array();
+	$data = [];
 	$data = array_merge($data, zz_maintenance_tables());
 	$data['errors'] = zz_maintenance_errors();
 	// zz_write_conf()
@@ -110,7 +110,7 @@ function zz_maintenance_sqlquery($page) {
 	elseif (!isset($zz_conf['user']))
 		$zz_conf['user'] = 'Maintenance robot 812';
 
-	$result = array();
+	$result = [];
 	$sql = $_POST['sql'];
 	$tokens = explode(' ', $sql);
 
@@ -152,7 +152,7 @@ function zz_maintenance_sqlquery($page) {
  */
 function zz_maintenance_tables() {
 	global $zz_conf;
-	$data = array();
+	$data = [];
 
 	$data['relations_table'] = $zz_conf['relations_table'];
 	$data['translations_table'] = !empty($zz_conf['translations_table']) ? $zz_conf['translations_table'] : false;
@@ -161,7 +161,7 @@ function zz_maintenance_tables() {
 		
 	// Update
 	if ($_POST AND !empty($_POST['db_value'])) {
-		$areas = array('master', 'detail', 'translation');
+		$areas = ['master', 'detail', 'translation'];
 		foreach ($areas as $area) {
 			if (!empty($_POST['db_value'][$area])) {
 				foreach ($_POST['db_value'][$area] as $old => $new) {
@@ -206,18 +206,18 @@ function zz_maintenance_tables() {
 	// All available databases
 	$sql = 'SHOW DATABASES';
 	$databases = wrap_db_fetch($sql, 'Databases', 'single value');
-	foreach ($databases as $db) $db_list[] = array('db' => $db);
+	foreach ($databases as $db) $db_list[] = ['db' => $db];
 
 	$i = 0;
 	foreach ($dbs as $category => $db_names) {
 		foreach ($db_names as $db) {
-			$data['tables'][] = array(
+			$data['tables'][] = [
 				'title' => wrap_text(ucfirst($category)),
 				'db' => $db,
 				'category' => $category,
 				'keep' => in_array($db, $databases) ? true : false,
 				'databases' => $db_list
-			);
+			];
 		}
 	}
 	return $data;
@@ -244,7 +244,7 @@ function zz_maintenance_integrity($page) {
 	$sql = sprintf($sql, $zz_conf['relations_table']);
 	$relations = wrap_db_fetch($sql, 'rel_id');
 
-	$results = array();
+	$results = [];
 	foreach ($relations as $relation) {
 		$sql = 'SELECT DISTINCT detail_table.`%s`
 				, detail_table.`%s`
@@ -304,21 +304,21 @@ function zz_maintenance_filetree($page) {
 	// zz_htmltag_escape()
 	require_once $zz_conf['dir_inc'].'/functions.inc.php';
 
-	$files = array();
+	$files = [];
 	$topdir = $_SERVER['DOCUMENT_ROOT'].'/../';
 	$base = false;
 	if (!empty($_GET['filetree'])) {
-		$files['parts'] = array();
+		$files['parts'] = [];
 		$parts = explode('/', $_GET['filetree']);
 		$text = array_pop($parts);
-		$files['parts'][] = array('title' => zz_htmltag_escape($text));
+		$files['parts'][] = ['title' => zz_htmltag_escape($text)];
 		while ($parts) {
 			$folder = implode('/', $parts);
 			$part = array_pop($parts);
-			$files['parts'][] = array(
+			$files['parts'][] = [
 				'title' => zz_htmltag_escape($part),
 				'link' => $folder
-			);
+			];
 		}
 		$files['parts'] = array_reverse($files['parts']);
 		$base = $_GET['filetree'].'/';
@@ -336,13 +336,13 @@ function zz_maintenance_filetree($page) {
  * @return string
  */
 function zz_maintenance_files($dir, $base) {
-	if (!is_dir($dir)) return array();
+	if (!is_dir($dir)) return [];
 
 	$i = 0;
-	$data = array();
+	$data = [];
 	$data['total'] = 0;
 	$data['totalfiles'] = 0;
-	$files = array();
+	$files = [];
 
 	$handle = opendir($dir);
 	while ($file = readdir($handle)) {
@@ -364,12 +364,12 @@ function zz_maintenance_files($dir, $base) {
 			$files_in_folder = 1;
 			$link = '';
 		}
-		$data['files'][] = array(
+		$data['files'][] = [
 			'file' => $file,
 			'link' => $link,
 			'size' => $size,
 			'files_in_folder' => $files_in_folder
-		);
+		];
 		$data['total'] += $size;
 		$data['totalfiles'] += $files_in_folder;
 	}
@@ -386,7 +386,7 @@ function zz_maintenance_dirsize($dir) {
 	$size = 0;
 	$files = 0;
 	$handle = opendir($dir);
-	if (!$handle) return array($size, $files);
+	if (!$handle) return [$size, $files];
 	while ($file = readdir($handle)) {
 		if ($file === '.' OR $file === '..') continue;
 		if (is_dir($dir.'/'.$file)) {
@@ -399,7 +399,7 @@ function zz_maintenance_dirsize($dir) {
 		}
 	}
 	closedir($handle);
-	return array($size, $files);
+	return [$size, $files];
 }
 
 /**
@@ -411,15 +411,18 @@ function zz_maintenance_dirsize($dir) {
 function zz_maintenance_sql($sql) {
 	$sql = preg_replace("/\s+/", " ", $sql);
 	$tokens = explode(' ', $sql);
-	$sql = array();
-	$keywords = array(
+	$sql = [];
+	$keywords = [
 		'INSERT', 'INTO', 'DELETE', 'FROM', 'UPDATE', 'SELECT', 'UNION',
 		'WHERE', 'GROUP', 'BY', 'ORDER', 'DISTINCT', 'LEFT', 'JOIN', 'RIGHT',
 		'INNER', 'NATURAL', 'USING', 'SET', 'CONCAT', 'SUBSTRING_INDEX',
-		'VALUES'
-	);
-	$newline = array('LEFT', 'FROM', 'GROUP', 'WHERE', 'SET', 'VALUES', 'SELECT');
-	$newline_tab = array('ON', 'AND');
+		'VALUES', 'CREATE', 'TABLE', 'KEY', 'CHARACTER', 'DEFAULT', 'NOT',
+		'NULL', 'AUTO_INCREMENT', 'COLLATE', 'PRIMARY', 'UNIQUE'
+	];
+	$newline = [
+		'LEFT', 'FROM', 'GROUP', 'WHERE', 'SET', 'VALUES', 'SELECT'
+	];
+	$newline_tab = ['ON', 'AND'];
 	foreach ($tokens as $token) {
 		$out = wrap_html_escape($token);
 		if (in_array($token, $keywords)) $out = '<strong>'.$out.'</strong>';
@@ -427,7 +430,7 @@ function zz_maintenance_sql($sql) {
 		if (in_array($token, $newline_tab)) $out = "\n\t".$out;
 		$sql[] = $out;
 	}
-	$replace = array('%%%' => '%&shy;%%');
+	$replace = ['%%%' => '%&shy;%%'];
 	foreach ($replace as $old => $new) {
 		$sql = str_replace($old, $new, $sql);
 	}
@@ -435,17 +438,17 @@ function zz_maintenance_sql($sql) {
 	return $sql;
 }
 
-function zz_maintenance_folders($page = array()) {
+function zz_maintenance_folders($page = []) {
 	global $zz_conf;
 	global $zz_setting;
 	
-	$data = array();
+	$data = [];
 	if ($page) {
 		$page['title'] .= ' '.wrap_text('Backup folder');
 		$page['breadcrumbs'][] = wrap_text('Backup folder');
-		$page['query_strings'] = array(
+		$page['query_strings'] = [
 			'folder', 'file', 'q', 'scope', 'deleteall', 'limit'
-		);
+		];
 		$data['folder'] = true;
 		zz_maintenance_list_init();
 	}
@@ -457,19 +460,19 @@ function zz_maintenance_folders($page = array()) {
 		return mod_default_maintenance_return($page);
 	}
 
-	$folders = array();
-	$dirs = array(
+	$folders = [];
+	$dirs = [
 		'TEMP' => $zz_conf['tmp_dir'],
 		'BACKUP' => $zz_conf['backup_dir'],
 		'CACHE' => $zz_setting['cache_dir']
-	);
+	];
 	foreach ($dirs as $key => $dir) {
 		$exists = file_exists($dir) ? true : false;
-		$data['paths'][] = array(
+		$data['paths'][] = [
 			'key' => $key,
 			'dir' => realpath($dir),
 			'not_exists' => !$exists AND $dir ? true: false
-		);
+		];
 		if (!$exists) continue;
 		$folders[] = $key;
 		if (substr($dir, -1) === '/') $dir = substr($dir, 0, -1);
@@ -513,7 +516,7 @@ function zz_maintenance_folders($page = array()) {
 
 		$folder_handle = opendir($my_folder);
 
-		$files = array();
+		$files = [];
 		$total_files_q = 0;
 		while ($file = readdir($folder_handle)) {
 			if (substr($file, 0, 1) === '.') continue;
@@ -549,7 +552,7 @@ function zz_maintenance_folders($page = array()) {
 				continue;
 			}
 			$path = $my_folder.'/'.$filename;
-			$file = array();
+			$file = [];
 			$file['file'] = $filename;
 			$file['size'] = filesize($path);
 			$data['folders'][$index]['size_total'] += $file['size'];
@@ -592,7 +595,7 @@ function zz_maintenance_folders($page = array()) {
 		$data['folders'][$index]['total_records'] = zz_list_total_records($data['folders'][$index]['total_rows']);
 		$data['folders'][$index]['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['folders'][$index]['total_rows']);
 		$zz_conf['search_form_always'] = true;
-		$searchform = zz_search_form(array(), '', $data['folders'][$index]['total_rows'], $data['folders'][$index]['total_rows']);
+		$searchform = zz_search_form([], '', $data['folders'][$index]['total_rows'], $data['folders'][$index]['total_rows']);
 		$data['folders'][$index]['searchform'] = $searchform['bottom'];
 	}
 
@@ -642,13 +645,13 @@ function zz_maintenance_searched($string) {
  */
 function zz_maintenance_deleteall_form() {
 	global $zz_conf;
-	if (!empty($_POST['deleteall'])) return array('', '');
-	if (!isset($_GET['deleteall'])) return array('', '');
+	if (!empty($_POST['deleteall'])) return ['', ''];
+	if (!isset($_GET['deleteall'])) return ['', ''];
 
-	$unwanted_keys = array('deleteall');
+	$unwanted_keys = ['deleteall'];
 	$qs = zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
 	$url = $zz_conf['int']['url']['full'].$qs;
-	return array($url, !empty($_GET['q']) ? wrap_html_escape($_GET['q']) : '');
+	return [$url, !empty($_GET['q']) ? wrap_html_escape($_GET['q']) : ''];
 }
 
 function zz_maintenance_folders_deleteall($my_folder, $file) {
@@ -677,22 +680,22 @@ function zz_maintenance_errors() {
 	$lines[0]['explanation']['mail'] = wrap_text('Errors will be sent via mail');
 	$lines[0]['explanation'][false] = wrap_text('Errors won’t be shown');
 
-	$lines[1] = array(
+	$lines[1] = [
 		'th' => wrap_text('Send mail for these error levels'),
 		'td' => (is_array($zz_conf['error_mail_level']) ? implode(', ', $zz_conf['error_mail_level']) : $zz_conf['error_mail_level'])
-	);
-	$lines[3] = array(
+	];
+	$lines[3] = [
 		'th' => wrap_text('Send mail (From:)'),
 		'td' => (!empty($zz_conf['error_mail_from']) ? $zz_conf['error_mail_from'] : ''),
-		'explanation' => array(false => wrap_text('not set')),
+		'explanation' => [false => wrap_text('not set')],
 		'class' => 'level1'
-	);
-	$lines[5] = array(
+	];
+	$lines[5] = [
 		'th' => wrap_text('Send mail (To:)'),
 		'td' => (!empty($zz_conf['error_mail_to']) ? $zz_conf['error_mail_to'] : ''),
-		'explanation' => array(false => wrap_text('not set')),
+		'explanation' => [false => wrap_text('not set')],
 		'class' => 'level1'
-	);
+	];
 
 	$lines[6]['th'] = wrap_text('Logging');
 	$lines[6]['td'] = $zz_conf['log_errors'];
@@ -702,10 +705,10 @@ function zz_maintenance_errors() {
 	if ($zz_conf['log_errors']) {
 
 		// get logfiles
-		$logfiles = array();
+		$logfiles = [];
 		if ($php_log = ini_get('error_log'))
 			$logfiles[realpath($php_log)][] = 'PHP';
-		$levels = array('error', 'warning', 'notice');
+		$levels = ['error', 'warning', 'notice'];
 		foreach ($levels as $level) {
 			if ($zz_conf['error_log'][$level]) {
 				$logfile = realpath($zz_conf['error_log'][$level]);
@@ -715,13 +718,13 @@ function zz_maintenance_errors() {
 		}
 		$no = 8;
 		foreach ($logfiles as $file => $my_levels) {
-			$lines[$no] = array(
+			$lines[$no] = [
 				'th' => sprintf(wrap_text('Logfile for %s'), '<strong>'
 				.implode(', ' , $my_levels).'</strong>'),
 				'td' => '<a href="?log='.urlencode($file)
 				.'&amp;filter[type]=none">'.$file.'</a>',
 				'class' => 'level1'
-			);
+			];
 			$no = $no +2;
 		}
 
@@ -795,11 +798,11 @@ function zz_maintenance_logs($page) {
 
 	$page['title'] .= ' '.wrap_text('Logs');
 	$page['breadcrumbs'][] = wrap_text('Logs');
-	$page['query_strings'] = array(
+	$page['query_strings'] = [
 		'filter', 'log', 'limit', 'q', 'scope', 'deleteall'
-	);
+	];
 
-	$levels = array('error', 'warning', 'notice');
+	$levels = ['error', 'warning', 'notice'];
 	if (empty($_GET['log'])) {
 		$page['text'] = '<p>'.wrap_text('No logfile specified').'</p>'."\n";
 		return mod_default_maintenance_return($page);
@@ -832,16 +835,19 @@ function zz_maintenance_logs($page) {
 		$data['message'] = zz_delete_line_from_file($_GET['log'], $_POST['line']);
 	}
 
-	$filters['type'] = array('PHP', 'zzform', 'zzwrap');
-	$filters['level'] = array('Notice', 'Deprecated', 'Warning', 'Error', 'Parse error', 'Strict error', 'Fatal error');
-	$filters['group'] = array('Group entries');
-	$f_output = array();
+	$filters['type'] = ['PHP', 'zzform', 'zzwrap'];
+	$filters['level'] = [
+		'Notice', 'Deprecated', 'Warning', 'Error', 'Parse error',
+		'Strict error', 'Fatal error'
+	];
+	$filters['group'] = ['Group entries'];
+	$f_output = [];
 	
 	$data['log'] = wrap_html_escape($_GET['log']);
 
 	parse_str($zz_conf['int']['url']['qs_zzform'], $my_query);
-	$filters_set = (!empty($my_query['filter']) ? $my_query['filter'] : array());
-	$unwanted_keys = array('filter', 'limit');
+	$filters_set = (!empty($my_query['filter']) ? $my_query['filter'] : []);
+	$unwanted_keys = ['filter', 'limit'];
 	$my_uri = $zz_conf['int']['url']['self'].zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
 	
 	foreach ($filters as $index => $filter) {
@@ -856,15 +862,15 @@ function zz_maintenance_logs($page) {
 			$is_selected = ((isset($_GET['filter'][$index]) 
 				AND $_GET['filter'][$index] == $value)) ? true : false;
 			$link = $my_link.'&amp;filter['.$index.']='.urlencode($value);
-			$f_output[$index]['values'][] = array(
+			$f_output[$index]['values'][] = [
 				'link' => !$is_selected ? $link : '',
 				'title' => wrap_text($value)
-			);
+			];
 		}
-		$f_output[$index]['values'][] = array(
+		$f_output[$index]['values'][] = [
 			'all' => true,
 			'link' => isset($_GET['filter'][$index]) ? $my_link : ''
-		);
+		];
 	}
 	if ($f_output) {
 		$f_output = array_values($f_output);
@@ -881,7 +887,7 @@ function zz_maintenance_logs($page) {
 	if (!empty($_GET['filter']) AND !empty($_GET['filter']['group'])
 		AND $_GET['filter']['group'] === 'Group entries') {
 		$data['group'] = true;	
-		$output = array();
+		$output = [];
 	} else 
 		$data['group'] = false;
 
@@ -893,11 +899,11 @@ function zz_maintenance_logs($page) {
 
 	// get lines
 	$j = 0;
-	$delete = array();
+	$delete = [];
 	$content = '';
-	$dont_highlight_levels = array('Notice', 'Deprecated', 'Warning', 'Upload');
-	$data['lines'] = array();
-	$log = array();
+	$dont_highlight_levels = ['Notice', 'Deprecated', 'Warning', 'Upload'];
+	$data['lines'] = [];
+	$log = [];
 	$handle = fopen($_GET['log'], 'r');
 	if ($handle) {
 		$data['total_rows'] = 0;
@@ -912,7 +918,7 @@ function zz_maintenance_logs($page) {
 				continue;
 			}
 
-			$error = array();
+			$error = [];
 			$error['type'] = '';
 			$error['user'] = '';
 			$error['date'] = '';
@@ -958,7 +964,7 @@ function zz_maintenance_logs($page) {
 					}
 				}
 			}
-			if (in_array($error['type'], array('zzform', 'zzwrap'))) {
+			if (in_array($error['type'], ['zzform', 'zzwrap'])) {
 				if (!$error['user'])
 					$error['user'] = array_pop($tokens);
 				$time = '';
@@ -1019,22 +1025,22 @@ function zz_maintenance_logs($page) {
 				$data['total_rows']++;
 			} else {
 				if (empty($log[$error['error']])) {
-					$log[$error['error']] = array(
+					$log[$error['error']] = [
 						'date_begin' => $error['date'],
 						'type' => $error['type'],
 						'level' => $error['level'],
 						'error' => $error['error'],
-						'user' => array($error['user']),
-						'index' => array($index),
-						'link' => array($error['link']),
-						'status' => array($error['status']),
-						'time' => array($error['time'])
-					);
+						'user' => [$error['user']],
+						'index' => [$index],
+						'link' => [$error['link']],
+						'status' => [$error['status']],
+						'time' => [$error['time']]
+					];
 					$data['total_rows']++;
 				} else {
 					$log[$error['error']]['index'][] = $index;
 					$log[$error['error']]['date_end'] = $error['date'];
-					$fields = array('user', 'link', 'status');
+					$fields = ['user', 'link', 'status'];
 					foreach ($fields as $field) {
 						if (!in_array($error[$field], $log[$error['error']][$field]))
 							$log[$error['error']][$field][] = $error[$field];
@@ -1072,7 +1078,7 @@ function zz_maintenance_logs($page) {
 		}
 		if (!$post) {
 			$no_html = false;
-			if (in_array($line['type'], array('zzform', 'zzwrap')))
+			if (in_array($line['type'], ['zzform', 'zzwrap']))
 				$no_html = true;
 			$line['error'] = zz_maintenance_splits($line['error'], $no_html);
 		}
@@ -1113,7 +1119,7 @@ function zz_maintenance_logs($page) {
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
 	$data['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['total_rows']);
 	$zz_conf['search_form_always'] = true;
-	$searchform = zz_search_form(array(), '', $data['total_rows'], $data['total_rows']);
+	$searchform = zz_search_form([], '', $data['total_rows'], $data['total_rows']);
 	$data['searchform'] = $searchform['bottom'];
 
 	$page['text'] = wrap_template('maintenance-logs', $data);
