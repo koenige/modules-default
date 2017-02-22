@@ -119,6 +119,7 @@ function zz_maintenance_sqlquery($page) {
 	case 'UPDATE':
 	case 'DELETE':
 	case 'CREATE TABLE':
+	case 'ALTER TABLE':
 		$result = zz_db_change($sql);
 		$result['change'] = true;
 		if (!$result['action']) {
@@ -418,10 +419,12 @@ function zz_maintenance_sql($sql) {
 		'WHERE', 'GROUP', 'BY', 'ORDER', 'DISTINCT', 'LEFT', 'JOIN', 'RIGHT',
 		'INNER', 'NATURAL', 'USING', 'SET', 'CONCAT', 'SUBSTRING_INDEX',
 		'VALUES', 'CREATE', 'TABLE', 'KEY', 'CHARACTER', 'DEFAULT', 'NOT',
-		'NULL', 'AUTO_INCREMENT', 'COLLATE', 'PRIMARY', 'UNIQUE'
+		'NULL', 'AUTO_INCREMENT', 'COLLATE', 'PRIMARY', 'UNIQUE', 'CHANGE',
+		'RENAME'
 	];
 	$newline = [
-		'LEFT', 'FROM', 'GROUP', 'WHERE', 'SET', 'VALUES', 'SELECT'
+		'LEFT', 'FROM', 'GROUP', 'WHERE', 'SET', 'VALUES', 'SELECT', 'CHANGE',
+		'RENAME'
 	];
 	$newline_tab = ['ON', 'AND'];
 	foreach ($tokens as $token) {
