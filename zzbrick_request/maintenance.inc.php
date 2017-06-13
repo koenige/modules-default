@@ -797,6 +797,7 @@ function zz_maintenance_list_init() {
 function zz_maintenance_logs($page) {
 	global $zz_conf;
 	global $zz_setting;
+	require_once $zz_setting['core'].'/file.inc.php';
 
 	zz_maintenance_list_init();
 
@@ -836,7 +837,7 @@ function zz_maintenance_logs($page) {
 	// delete
 	$data['message'] = false;
 	if (!empty($_POST['line'])) {
-		$data['message'] = zz_delete_line_from_file($_GET['log'], $_POST['line']);
+		$data['message'] = wrap_file_delete_line($_GET['log'], $_POST['line']);
 	}
 
 	$filters['type'] = ['PHP', 'zzform', 'zzwrap'];
@@ -1062,7 +1063,7 @@ function zz_maintenance_logs($page) {
 	}
 
 	if (!empty($_POST['deleteall'])) {
-		$data['message'] .= zz_delete_line_from_file($_GET['log'], $delete);
+		$data['message'] .= wrap_file_delete_line($_GET['log'], $delete);
 	}
 
 	// output lines
@@ -1158,39 +1159,6 @@ function zz_maintenance_make_url($array) {
 	$linktext = $array[0];
 	$link = '<a href="'.$href.'">'.$linktext.'</a>'; 
 	return $link;
-}
-
-/**
- * deletes lines from a file
- *
- * @param string $file path to file
- * @param array $lines list of line numbers to be deleted
- */
-function zz_delete_line_from_file($file, $lines) {
-
-	// check if file exists and is writable
-	if (!is_writable($file))
-		return sprintf(wrap_text('File %s is not writable.'), $file);
-
-	$deleted = 0;
-	$content = file($file);
-	foreach ($lines as $line) {
-		$line = explode(',', $line);
-		foreach ($line as $no) {
-			unset($content[$no]);
-			$deleted++;
-		}
-	}
-
-	// open file for writing
-	if (!$handle = fopen($file, 'w+'))
-		return sprintf(wrap_text('Cannot open %s for writing.'), $file);
-
-	foreach($content as $line)
-		fwrite($handle, $line);
-
-	fclose($handle);
-	return sprintf(wrap_text('%s lines deleted.'), $deleted);
 }
 
 /**
