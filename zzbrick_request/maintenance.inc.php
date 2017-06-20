@@ -910,12 +910,21 @@ function zz_maintenance_logs($page) {
 	$data['lines'] = [];
 	$log = [];
 	$handle = fopen($_GET['log'], 'r');
+	$max_len = $zz_conf['log_errors_max_len'] + 2;
+	if ($zz_conf['character_set'] === 'utf-8') {
+		// in case of a switch of the character encoding, it can be necessary
+		// to increase the maximum length
+		// this is not precise (characters may be longer than 2 bytes)
+		// but should be sufficient as most characters in error logs are ASCII
+		// anyways
+		$max_len *= 2;
+	}
 	if ($handle) {
 		$data['total_rows'] = 0;
 		$index = 0;
 		$i = 0;
 		$write_log = true;
-		while (($line = fgets($handle, $zz_conf['log_errors_max_len'] + 2)) !== false) {
+		while (($line = fgets($handle, $max_len)) !== false) {
 			$line = trim($line);
 
 			if (!empty($_GET['q']) AND !zz_maintenance_searched($line)) {
