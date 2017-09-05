@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2016-2017 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -44,9 +44,10 @@ $zz['fields'][4]['show_hierarchy_same_table'] = true;
 $zz['fields'][5]['title'] = 'Identifier';
 $zz['fields'][5]['field_name'] = 'path';
 $zz['fields'][5]['type'] = 'identifier';
-$zz['fields'][5]['fields'] = array('main_category_id[path]', 'category');
+$zz['fields'][5]['fields'] = ['main_category_id[path]', 'category'];
 //$zz['fields'][5]['hide_in_list'] = true;
-$zz['fields'][5]['conf_identifier'] = array('concat' => '/');
+$zz['fields'][5]['conf_identifier']['concat'] = '/';
+$zz['fields'][5]['conf_identifier']['strip_tags'] = true;
 
 $zz['fields'][6]['field_name'] = 'sequence';
 $zz['fields'][6]['title_tab'] = 'Seq.';
