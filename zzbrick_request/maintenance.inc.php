@@ -84,7 +84,7 @@ function mod_default_maintenance($params) {
 	}
 	$folders = zz_maintenance_folders();
 	$data['folders'] = $folders['text'];
-	$data['logging_table'] = $zz_conf['logging_table'];
+	$data['logging_table'] = !empty($zz_conf['logging_table']) ? $zz_conf['logging_table'] : '';
 
 	$page['text'] = wrap_template('maintenance', $data);
 	$page['title'] .= ' '.wrap_text('Maintenance');
