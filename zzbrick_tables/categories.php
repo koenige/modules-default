@@ -48,15 +48,20 @@ $zz['fields'][5]['fields'] = ['main_category_id[path]', 'category'];
 //$zz['fields'][5]['hide_in_list'] = true;
 $zz['fields'][5]['conf_identifier']['concat'] = '/';
 $zz['fields'][5]['conf_identifier']['strip_tags'] = true;
+$zz['fields'][5]['list_append_next'] = true;
+
+// restrict access to this field if needed
+$zz['fields'][7]['field_name'] = 'parameters';
+$zz['fields'][7]['list_prefix'] = '<pre>';
+$zz['fields'][7]['list_suffix'] = '</pre>';
+$zz['fields'][7]['type'] = 'text';
+$zz['fields'][7]['explanation'] = 'Internal parameters. Change with care.';
 
 $zz['fields'][6]['field_name'] = 'sequence';
 $zz['fields'][6]['title_tab'] = 'Seq.';
 $zz['fields'][6]['type'] = 'number';
 $zz['fields'][6]['auto_value'] = 'increment';
 $zz['fields'][6]['class'] = 'hidden480';
-
-// restrict access to this field if needed
-$zz['fields'][7]['field_name'] = 'parameters';
 
 $zz['fields'][20]['title'] = 'Updated';
 $zz['fields'][20]['field_name'] = 'last_update';
@@ -68,7 +73,7 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/categories.*,
 	FROM /*_PREFIX_*/categories
 	LEFT JOIN /*_PREFIX_*/categories AS cat
 		ON (/*_PREFIX_*/categories.main_category_id = cat.category_id)'; 
-$zz['sqlorder'] = ' ORDER BY sequence, /*_PREFIX_*/categories.path';
+$zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/categories.sequence, /*_PREFIX_*/categories.path';
 
 $zz['list']['hierarchy']['mother_id_field_name'] = $zz['fields'][4]['field_name'];
 $zz['list']['hierarchy']['display_in'] = $zz['fields'][2]['field_name'];

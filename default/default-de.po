@@ -917,6 +917,11 @@ msgctxt "default"
 msgid "Parameters"
 msgstr "Parameter"
 
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Internal parameters. Change with care."
+msgstr "Interne Parameter. Bitte mit Vorsicht ändern."
+
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Logins"
