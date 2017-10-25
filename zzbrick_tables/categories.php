@@ -42,6 +42,7 @@ $zz['fields'][4]['hide_in_list'] = true;
 $zz['fields'][4]['show_hierarchy_same_table'] = true;
 
 $zz['fields'][5]['title'] = 'Identifier';
+$zz['fields'][5]['title_tab'] = 'Identifier / Parameters';
 $zz['fields'][5]['field_name'] = 'path';
 $zz['fields'][5]['type'] = 'identifier';
 $zz['fields'][5]['fields'] = ['main_category_id[path]', 'category'];
