@@ -933,7 +933,7 @@ msgid ""
 "\"Yes\" means that the user has to change the password next time he or she "
 "logs in."
 msgstr ""
-"»Ja« bedeutet, daß der Benutzer sein Paßwort beim nächsten Login ändern muß."
+"»Ja« bedeutet, daß der Benutzer sein Passwort beim nächsten Login ändern muß."
 
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
