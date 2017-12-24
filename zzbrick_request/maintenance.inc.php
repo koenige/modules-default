@@ -1243,7 +1243,7 @@ function zz_maintenance_sqlupload($page) {
 	$log_template = 'INSERT INTO %s (query, record_id, user, last_update) VALUES (_binary "%s", %s, "%s", "%s")';
 	foreach ($json as $line) {
 		$success = wrap_db_query($line['query']);
-		if (!$success) {
+		if (empty($success['id'])) {
 			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
 			return mod_default_maintenance_return($page);
 		}
@@ -1253,12 +1253,12 @@ function zz_maintenance_sqlupload($page) {
 			, wrap_db_escape($line['user']), $line['last_update']
 		);
 		$log_id = wrap_db_query($sql);
-		if (!$log_id) {
+		if (empty($log_id['id'])) {
 			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
 			return mod_default_maintenance_return($page);
 		}
-		if ($line['log_id'].'' !== $log_id.'') {
-			$page['text'] = '<p>'.sprintf(wrap_text('Record ID %d was added with a different log ID %d.'), $line['log_id'], $log_id).'</p>';
+		if ($line['log_id'].'' !== $log_id['id'].'') {
+			$page['text'] = '<p>'.sprintf(wrap_text('Record ID %d was added with a different log ID %d.'), $line['log_id'], $log_id['id']).'</p>';
 			return mod_default_maintenance_return($page);
 		}
 	}
