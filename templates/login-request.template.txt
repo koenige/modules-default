@@ -1,0 +1,22 @@
+# default module
+# Template for form to create a login for oneself
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2018 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+#
+<div id="login">
+%%% condition if invalid_request %%%
+<p class="error">%%% text You are trying to create a new login for you. But somehow, the web address (URL) you clicked seems to be incorrect. Maybe some part is missing? %%%</p>
+<p><a href="./">%%% text Back to login page %%%</a></p>
+
+%%% condition elseif missing_user_or_login_exists %%%
+<p class="error">%%% text Sorry, you cannot create a login for this username. Either the user does not exist on our website or there already exists a login for this username. %%%</p>
+<p><a href="./">%%% text Back to login page %%%</a></p>
+
+%%% condition endif %%%
+</div>
