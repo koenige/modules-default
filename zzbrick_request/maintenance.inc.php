@@ -120,11 +120,17 @@ function zz_maintenance_sqlquery($page) {
 	case 'DELETE':
 	case 'CREATE TABLE':
 	case 'ALTER TABLE':
+	case 'CREATE VIEW':
+	case 'ALTER VIEW':
 		$result = zz_db_change($sql);
 		$result['change'] = true;
 		if (!$result['action']) {
-			$result['error_db_msg'] = $result['error']['db_msg'];
-			$result['error_db_errno'] = $result['error']['db_errno'];
+			if (empty($result['error']['db_msg']) AND !empty($result['error']['msg_dev'])) {
+				$result['error_db_msg'] = vsprintf(wrap_text($result['error']['msg_dev']), $result['error']['msg_dev_args']);
+			} else {
+				$result['error_db_msg'] = $result['error']['db_msg'];
+				$result['error_db_errno'] = $result['error']['db_errno'];
+			}
 		} elseif ($result['action'] === 'nothing') {
 			$result['action_nothing'] = true;
 		} else {
