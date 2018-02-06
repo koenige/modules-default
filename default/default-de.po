@@ -540,7 +540,7 @@ msgstr "Datensatz-ID %d wurde mit einer anderen Protokoll-ID %d hinzugefügt."
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
 msgid "There was an error adding record ID %d."
-msgstr "Es gab ein Fehler beim Hinzufügen von Datensatz-ID %d."
+msgstr "Es gab einen Fehler beim Hinzufügen von Datensatz-ID %d."
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
 msgid "All %d log entries were added, last ID was %d."
