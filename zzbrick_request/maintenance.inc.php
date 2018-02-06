@@ -1249,7 +1249,7 @@ function zz_maintenance_sqlupload($page) {
 	$log_template = 'INSERT INTO %s (query, record_id, user, last_update) VALUES (_binary "%s", %s, "%s", "%s")';
 	foreach ($json as $line) {
 		$success = wrap_db_query($line['query']);
-		if (empty($success['id'])) {
+		if (empty($success['id']) AND empty($success['rows'])) {
 			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
 			return mod_default_maintenance_return($page);
 		}
