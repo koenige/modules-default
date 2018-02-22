@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2017 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2018 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -1249,7 +1249,7 @@ function zz_maintenance_sqlupload($page) {
 	$log_template = 'INSERT INTO %s (query, record_id, user, last_update) VALUES (_binary "%s", %s, "%s", "%s")';
 	foreach ($json as $line) {
 		$success = wrap_db_query($line['query']);
-		if (empty($success['id']) AND empty($success['rows'])) {
+		if (empty($success['id']) AND empty($success['rows']) AND $success !== true) {
 			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
 			return mod_default_maintenance_return($page);
 		}
