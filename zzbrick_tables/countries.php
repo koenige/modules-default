@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2018 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -35,6 +35,7 @@ $zz['fields'][10]['explanation'] = 'Will country be used on website?';
 $zz['sql'] = 'SELECT /*_PREFIX_*/countries.*
 	FROM /*_PREFIX_*/countries';
 $zz['sqlorder'] = ' ORDER BY country_code';
+$zz['sql_translate'] = ['country_id' => 'countries'];
 
 $zz['filter'][1]['title'] = 'Web';
 $zz['filter'][1]['type'] = 'list';

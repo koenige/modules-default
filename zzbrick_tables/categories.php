@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2016-2017 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2016-2018 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -33,13 +33,14 @@ $zz['fields'][3]['list_suffix'] = '</small></p>';
 $zz['fields'][4]['title'] = 'Main Category';
 $zz['fields'][4]['field_name'] = 'main_category_id';
 $zz['fields'][4]['type'] = 'select';
-$zz['fields'][4]['sql'] = 'SELECT category_id, category as main_category, path, main_category_id 
-	FROM /*_PREFIX_*/categories ORDER BY sequence, main_category';
+$zz['fields'][4]['sql'] = 'SELECT category_id, category, path, main_category_id 
+	FROM /*_PREFIX_*/categories ORDER BY sequence, category';
 $zz['fields'][4]['display_field'] = 'main_category';
 $zz['fields'][4]['search'] = 'cat.category';
 $zz['fields'][4]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][4]['hide_in_list'] = true;
 $zz['fields'][4]['show_hierarchy_same_table'] = true;
+$zz['fields'][4]['sql_translate'] = ['category_id' => 'categories'];
 
 $zz['fields'][5]['title'] = 'Identifier';
 $zz['fields'][5]['title_tab'] = 'Identifier / Parameters';
@@ -83,9 +84,12 @@ $zz['filter'][1]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/categories
 	WHERE ISNULL(main_category_id)
 	ORDER BY category';
+$zz['filter'][1]['sql_translate'] = ['category_id' => 'categories'];
 $zz['filter'][1]['title'] = wrap_text('Main Category');
 $zz['filter'][1]['identifier'] = 'maincategory';
 $zz['filter'][1]['type'] = 'show_hierarchy';
 $zz['filter'][1]['field_name'] = 'main_category_id';
+
+$zz['sql_translate'] = ['category_id' => 'categories'];
 
 $zz_conf['max_select'] = 200;
