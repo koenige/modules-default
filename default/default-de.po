@@ -279,10 +279,12 @@ msgstr "Übersetzung"
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Master"
 msgstr "Haupt"
+msgctxt "default"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Detail"
 msgstr "Detail"
+msgctxt "default"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Temp and Backup Files"

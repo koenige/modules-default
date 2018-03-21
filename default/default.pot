@@ -261,10 +261,12 @@ msgstr ""
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Master"
 msgstr ""
+msgctxt "default"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Detail"
 msgstr ""
+msgctxt "default"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Temp and Backup Files"
