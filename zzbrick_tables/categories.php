@@ -23,12 +23,13 @@ $zz['fields'][1]['type'] = 'id';
 $zz['fields'][2]['field_name'] = 'category';
 $zz['fields'][2]['list_append_next'] = true;
 
+$zz['fields'][22] = [];
+
 $zz['fields'][3]['field_name'] = 'description';
 $zz['fields'][3]['type'] = 'memo';
 $zz['fields'][3]['format'] = 'markdown';
 $zz['fields'][3]['list_prefix'] = '<p><small>';
 $zz['fields'][3]['list_suffix'] = '</small></p>';
-//$zz['fields'][3]['hide_in_list'] = true;
 
 $zz['fields'][4]['title'] = 'Main Category';
 $zz['fields'][4]['field_name'] = 'main_category_id';
@@ -47,7 +48,6 @@ $zz['fields'][5]['title_tab'] = 'Identifier / Parameters';
 $zz['fields'][5]['field_name'] = 'path';
 $zz['fields'][5]['type'] = 'identifier';
 $zz['fields'][5]['fields'] = ['main_category_id[path]', 'category'];
-//$zz['fields'][5]['hide_in_list'] = true;
 $zz['fields'][5]['conf_identifier']['concat'] = '/';
 $zz['fields'][5]['conf_identifier']['strip_tags'] = true;
 $zz['fields'][5]['list_append_next'] = true;
