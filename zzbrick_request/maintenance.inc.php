@@ -611,7 +611,7 @@ function zz_maintenance_folders($page = []) {
 
 	$page['text'] = wrap_template('maintenance-folders', $data);
 	if (!empty($_GET['folder'])) {
-		$page['text'] .= wrap_template('zzform-foot', $zz_setting);
+		$page['text'] .= wrap_template('zzform-foot');
 	}
 	return $page;
 }
@@ -1143,7 +1143,7 @@ function zz_maintenance_logs($page) {
 	$data['searchform'] = $searchform['bottom'];
 
 	$page['text'] = wrap_template('maintenance-logs', $data);
-	$page['text'] .= wrap_template('zzform-foot', $zz_setting);
+	$page['text'] .= wrap_template('zzform-foot');
 	return $page;
 }
 
