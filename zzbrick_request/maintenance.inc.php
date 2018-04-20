@@ -1187,9 +1187,18 @@ function zz_maintenance_sqldownload($page) {
 	global $zz_conf;
 	
 	$page['query_strings'][] = 'sqldownload';
+	$limit = false;
 
+	$sql = 'SELECT COUNT(log_id) FROM %s WHERE log_id >= %d ORDER BY log_id';
+	$sql = sprintf($sql, $zz_conf['logging_table'], $_GET['sqldownload']);
+	$logcount = wrap_db_fetch($sql, '', 'single value');
+	if ($logcount > 10000) {
+		$limit = 10000;
+	}
+	
 	$sql = 'SELECT * FROM %s WHERE log_id >= %d ORDER BY log_id';
 	$sql = sprintf($sql, $zz_conf['logging_table'], $_GET['sqldownload']);
+	if ($limit) $sql .= sprintf(' LIMIT %d', 10000);
 	$data = wrap_db_fetch($sql, 'log_id');
 	if (!$data) {
 		$sql = 'SELECT MAX(log_id) FROM %s';
@@ -1203,7 +1212,11 @@ function zz_maintenance_sqldownload($page) {
 
 	$page['text'] = json_encode($data);
 	$page['content_type'] = 'json';
-	$page['headers']['filename'] = sprintf('logging_%d.json', $_GET['sqldownload']);
+	if ($limit) {
+		$page['headers']['filename'] = sprintf('logging_%d-%d.json', $_GET['sqldownload'], $_GET['sqldownload'] + $limit - 1);
+	} else {
+		$page['headers']['filename'] = sprintf('logging_%d.json', $_GET['sqldownload']);
+	}
 	return $page;
 }
 
