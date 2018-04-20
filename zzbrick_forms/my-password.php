@@ -8,12 +8,17 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015 Gustaf Mossakowski
+ * @copyright Copyright © 2015, 2018 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
-require_once $zz_conf['form_scripts'].'/logins.php';
+if (file_exists($zz_conf['form_scripts'].'/logins.php')) {
+	require_once $zz_conf['form_scripts'].'/logins.php';
+} else {
+	require_once __DIR__.'/../zzbrick_tables/logins.php';
+}
+
 if (empty($zz) AND !empty($zz_sub)) {
 	$zz = $zz_sub;
 	unset($zz_sub);
@@ -23,8 +28,7 @@ if (empty($zz) AND !empty($zz_sub)) {
 $zz['where']['login_id'] = $_SESSION['login_id'];
 
 // 2 = username
-$zz['fields'][2]['title'] = 'Username';
-$zz['fields'][2]['type'] = 'hidden';
+$zz['fields'][2]['hide_in_form'] = true;	// username
 
 // 3 = password
 $zz['fields'][3]['type'] = 'password_change';
@@ -44,7 +48,7 @@ if (isset($zz['fields'][9])) {
 $zz['fields'][99]['hide_in_form'] = true;
 
 foreach (array_keys($zz['fields']) as $no) {
-	if (in_array($no, array(1, 2, 3, 9, 99))) continue;
+	if (in_array($no, [1, 2, 3, 9, 99])) continue;
 	unset($zz['fields'][$no]);
 }
 
