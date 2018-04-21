@@ -928,8 +928,10 @@ function zz_maintenance_logs($page) {
 
 	if (!empty($_POST['deleteall'])) {
 		$data['message'] .= wrap_file_delete_line($logfile, $found);
-		$found = [];
-		$data['total_rows'] = 0;
+		// show other records without search filter
+		unset($found);
+		$file->seek(PHP_INT_MAX);
+		$data['total_rows'] = $file->key();
 	}
 
 	if ($zz_conf['int']['this_limit']) {
