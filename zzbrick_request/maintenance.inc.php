@@ -819,31 +819,34 @@ function zz_maintenance_logs($page) {
 		return mod_default_maintenance_return($page);
 	}
 
+	$logfile = realpath($_GET['log']);
+	if (!$logfile) {
+		$page['text'] = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), wrap_html_escape($_GET['log'])).'</p>'."\n";
+		return mod_default_maintenance_return($page);
+	}
+	$data['log'] = wrap_html_escape($logfile);
+
 	$show_log = false;
 	foreach ($levels as $level) {
-		if ($_GET['log'] === realpath($zz_conf['error_log'][$level])) {
+		if ($logfile === realpath($zz_conf['error_log'][$level])) {
 			$show_log = true;
 		}
 	}
-	if ($_GET['log'] === realpath(ini_get('error_log'))) {
+	if ($logfile === realpath(ini_get('error_log'))) {
 		$show_log = true;
 	}
-	if (!empty($zz_conf['upload_log']) AND $_GET['log'] === realpath($zz_conf['upload_log'])) {
+	if (!empty($zz_conf['upload_log']) AND $logfile === realpath($zz_conf['upload_log'])) {
 		$show_log = true;
 	}
 	if (!$show_log) {
-		$page['text'] = '<p>'.sprintf(wrap_text('This is not one of the used logfiles: %s'), wrap_html_escape($_GET['log'])).'</p>'."\n";
-		return mod_default_maintenance_return($page);
-	}
-	if (!file_exists($_GET['log'])) {
-		$page['text'] = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), wrap_html_escape($_GET['log'])).'</p>'."\n";
+		$page['text'] = '<p>'.sprintf(wrap_text('This is not one of the used logfiles: %s'), $data['log']).'</p>'."\n";
 		return mod_default_maintenance_return($page);
 	}
 
 	// delete
 	$data['message'] = false;
 	if (!empty($_POST['line'])) {
-		$data['message'] = wrap_file_delete_line($_GET['log'], $_POST['line']);
+		$data['message'] = wrap_file_delete_line($logfile, $_POST['line']);
 	}
 
 	$filters['type'] = ['PHP', 'zzform', 'zzwrap'];
@@ -854,8 +857,6 @@ function zz_maintenance_logs($page) {
 	$filters['group'] = ['Group entries'];
 	$f_output = [];
 	
-	$data['log'] = wrap_html_escape($_GET['log']);
-
 	parse_str($zz_conf['int']['url']['qs_zzform'], $my_query);
 	$filters_set = (!empty($my_query['filter']) ? $my_query['filter'] : []);
 	$unwanted_keys = ['filter', 'limit'];
@@ -915,7 +916,7 @@ function zz_maintenance_logs($page) {
 	$dont_highlight_levels = ['Notice', 'Deprecated', 'Warning', 'Upload'];
 	$data['lines'] = [];
 	$log = [];
-	$handle = fopen($_GET['log'], 'r');
+	$handle = fopen($logfile, 'r');
 	$max_len = $zz_conf['log_errors_max_len'] + 2;
 	if ($zz_conf['character_set'] === 'utf-8') {
 		// in case of a switch of the character encoding, it can be necessary
@@ -1078,7 +1079,7 @@ function zz_maintenance_logs($page) {
 	}
 
 	if (!empty($_POST['deleteall'])) {
-		$data['message'] .= wrap_file_delete_line($_GET['log'], $delete);
+		$data['message'] .= wrap_file_delete_line($logfile, $delete);
 	}
 
 	// output lines
