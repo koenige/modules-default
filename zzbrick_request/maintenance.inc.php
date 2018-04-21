@@ -553,6 +553,9 @@ function zz_maintenance_folders($page = []) {
 		$i = 0;
 		$data['folders'][$index]['size_total'] = 0;
 		$data['folders'][$index]['files_total'] = 0;
+		if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
+			zz_list_limit_last(count($files));
+		}
 		foreach ($files as $filename) {
 			if (!empty($_GET['q']) AND !zz_maintenance_searched($filename)) {
 				continue;
@@ -924,6 +927,9 @@ function zz_maintenance_logs($page) {
 	} else {
 		$file->seek(PHP_INT_MAX);
 		$data['total_rows'] = $file->key();
+	}
+	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
+		zz_list_limit_last($data['total_rows']); // not + 1 since logs always end with a newline
 	}
 
 	if (!empty($_POST['deleteall'])) {
