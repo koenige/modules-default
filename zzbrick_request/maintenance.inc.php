@@ -855,39 +855,8 @@ function zz_maintenance_logs($page) {
 		'Strict error', 'Fatal error'
 	];
 	$filters['group'] = ['Group entries'];
-	$f_output = [];
-	
-	parse_str($zz_conf['int']['url']['qs_zzform'], $my_query);
-	$filters_set = (!empty($my_query['filter']) ? $my_query['filter'] : []);
-	$unwanted_keys = ['filter', 'limit'];
-	$my_uri = $zz_conf['int']['url']['self'].zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
-	
-	foreach ($filters as $index => $filter) {
-		$f_output[$index]['title'] = wrap_text(ucfirst($index));
-		$my_link = $my_uri;
-		if ($filters_set) {
-			foreach ($filters_set as $which => $filter_set) {
-				if ($which != $index) $my_link .= '&amp;filter['.$which.']='.urlencode($filter_set);
-			}
-		}
-		foreach ($filter as $value) {
-			$is_selected = ((isset($_GET['filter'][$index]) 
-				AND $_GET['filter'][$index] == $value)) ? true : false;
-			$link = $my_link.'&amp;filter['.$index.']='.urlencode($value);
-			$f_output[$index]['values'][] = [
-				'link' => !$is_selected ? $link : '',
-				'title' => wrap_text($value)
-			];
-		}
-		$f_output[$index]['values'][] = [
-			'all' => true,
-			'link' => isset($_GET['filter'][$index]) ? $my_link : ''
-		];
-	}
-	if ($f_output) {
-		$f_output = array_values($f_output);
-		$data['filter'] = wrap_template('zzform-list-filter', $f_output);
-	}
+
+	$data['filter'] = mod_default_maintenance_logs_filter($filters);
 
 	if (!empty($_GET['filter']) AND !empty($_GET['filter']['type'])
 		AND $_GET['filter']['type'] === 'none') {
@@ -900,8 +869,9 @@ function zz_maintenance_logs($page) {
 		AND $_GET['filter']['group'] === 'Group entries') {
 		$data['group'] = true;	
 		$output = [];
-	} else 
+	} else {
 		$data['group'] = false;
+	}
 
 	list($data['deleteall_url'], $data['deleteall_filter']) = zz_maintenance_deleteall_form();
 	if ($data['deleteall_url']) {
@@ -1146,6 +1116,49 @@ function zz_maintenance_logs($page) {
 	$page['text'] = wrap_template('maintenance-logs', $data);
 	$page['text'] .= wrap_template('zzform-foot');
 	return $page;
+}
+
+/**
+ * output filters for log files
+ *
+ * @param array $filter
+ * @global array $zz_conf
+ * @return string
+ */
+function mod_default_maintenance_logs_filter($filters) {
+	global $zz_conf;
+	$f_output = [];
+
+	parse_str($zz_conf['int']['url']['qs_zzform'], $my_query);
+	$filters_set = (!empty($my_query['filter']) ? $my_query['filter'] : []);
+	$unwanted_keys = ['filter', 'limit'];
+	$my_uri = $zz_conf['int']['url']['self'].zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
+
+	foreach ($filters as $index => $filter) {
+		$f_output[$index]['title'] = wrap_text(ucfirst($index));
+		$my_link = $my_uri;
+		if ($filters_set) {
+			foreach ($filters_set as $which => $filter_set) {
+				if ($which != $index) $my_link .= '&amp;filter['.$which.']='.urlencode($filter_set);
+			}
+		}
+		foreach ($filter as $value) {
+			$is_selected = ((isset($_GET['filter'][$index]) 
+				AND $_GET['filter'][$index] == $value)) ? true : false;
+			$link = $my_link.'&amp;filter['.$index.']='.urlencode($value);
+			$f_output[$index]['values'][] = [
+				'link' => !$is_selected ? $link : '',
+				'title' => wrap_text($value)
+			];
+		}
+		$f_output[$index]['values'][] = [
+			'all' => true,
+			'link' => isset($_GET['filter'][$index]) ? $my_link : ''
+		];
+	}
+	if (!$f_output) return '';
+	$f_output = array_values($f_output);
+	return wrap_template('zzform-list-filter', $f_output);
 }
 
 /**
