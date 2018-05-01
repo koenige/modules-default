@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2009 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2009, 2016, 2018 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -41,7 +41,7 @@ $zz['fields'][4]['append_next'] = true;
 
 $zz['fields'][5]['field_name'] = 'ending';
 $zz['fields'][5]['type'] = 'select';
-$zz['fields'][5]['enum'] = array('/', '.html', 'none');
+$zz['fields'][5]['enum'] = ['/', '.html', 'none'];
 $zz['fields'][5]['default'] = '/';
 $zz['fields'][5]['hide_in_list'] = true;
 
@@ -69,7 +69,7 @@ $zz['fields'][9]['title_tab'] = 'WWW?';
 $zz['fields'][9]['title'] = 'Published?';
 $zz['fields'][9]['field_name'] = 'live';
 $zz['fields'][9]['type'] = 'select';
-$zz['fields'][9]['enum'] = array('yes', 'no');
+$zz['fields'][9]['enum'] = ['yes', 'no'];
 $zz['fields'][9]['default'] = 'yes';
 $zz['fields'][9]['class'] = 'hidden480';
 
@@ -77,8 +77,9 @@ $zz['fields'][10]['field_name'] = 'menu';
 $zz['fields'][10]['type'] = 'select';
 $zz['fields'][10]['show_values_as_list'] = true;
 $zz['fields'][10]['hide_novalue'] = false;
-$zz['fields'][10]['enum'] = array('top', 'bottom', 'internal');
+$zz['fields'][10]['enum'] = ['top', 'bottom', 'internal'];
 $zz['fields'][10]['class'] = 'hidden320';
+$zz['fields'][10]['hide_in_list_if_empty'] = true;
 
 $zz['fields'][15] = false; // parameters
 
@@ -97,7 +98,7 @@ $zz['sqlorder'] = ' ORDER BY sequence, identifier';
 $zz['list']['hierarchy']['mother_id_field_name'] = $zz['fields'][7]['field_name'];
 $zz['list']['hierarchy']['display_in'] = $zz['fields'][2]['field_name'];
 
-$zz['set_redirect'][] = array('old' => '%s', 'new' => '%s', 'field_name' => 'identifier');
+$zz['set_redirect'][] = ['old' => '%s', 'new' => '%s', 'field_name' => 'identifier'];
 
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = '/*_PREFIX_*/webpages.live = "no"';
