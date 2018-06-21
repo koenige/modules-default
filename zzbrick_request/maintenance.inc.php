@@ -214,7 +214,12 @@ function zz_maintenance_tables() {
 	// All available databases
 	$sql = 'SHOW DATABASES';
 	$databases = wrap_db_fetch($sql, 'Databases', 'single value');
-	foreach ($databases as $db) $db_list[] = ['db' => $db];
+	foreach ($databases as $db) {
+		$db_list[] = [
+			'db' => $db,
+			'prefered' => $db === $zz_conf['db_name'] ? true : false
+		];
+	}
 
 	$i = 0;
 	foreach ($dbs as $category => $db_names) {

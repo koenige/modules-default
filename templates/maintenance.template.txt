@@ -5,7 +5,7 @@
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2018 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -31,7 +31,7 @@
 <td class="block480a">%%% item db %%%</td>
 <td class="block480a"><select name="db_value[%%% item category %%%][%%% item db %%%]">
 %%% loop databases %%%
-<option value="%%% item db %%%">%%% item db %%%</option>
+<option value="%%% item db %%%"%%% condition unless keep %%%%%% item prefered " selected" %%%%%% condition endif %%%>%%% item db %%%</option>
 %%% loop end %%%
 </select></td>
 <td class="block480">%%% condition if keep %%%
