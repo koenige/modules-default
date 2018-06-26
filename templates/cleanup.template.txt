@@ -10,4 +10,7 @@
 #
 <ul>
 <li>%%% item session_cleanup %%% stale session cookies deleted.</li>
+%%% loop folders %%%
+<li>%%% item deleted_files %%% file(s) deleted in folder %%% item folder %%% that were older than %%% item max_age_seconds wrap_duration %%%.</li>
+%%% loop end %%%
 </ul>
