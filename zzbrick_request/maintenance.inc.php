@@ -944,6 +944,11 @@ function zz_maintenance_logs($page) {
 		unset($found);
 		$file->seek(PHP_INT_MAX);
 		$data['total_rows'] = $file->key();
+		// remove 'q' from query string
+		$zz_conf['int']['url']['qs_zzform'] = zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], ['q', 'scope']);
+		$request_uri = parse_url($_SERVER['REQUEST_URI']);
+		$request_uri['query'] = zz_edit_query_string($request_uri['query'], ['q', 'scope']);
+		$_SERVER['REQUEST_URI'] = http_build_query($request_uri);
 	}
 
 	if ($zz_conf['int']['this_limit']) {
