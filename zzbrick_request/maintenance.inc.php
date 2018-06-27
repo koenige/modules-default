@@ -34,6 +34,7 @@ function mod_default_maintenance($params) {
 		$zz_conf['modules'] = [];
 		$zz_conf['modules']['debug'] = false;
 	}
+	$zz_conf['generate_output'] = true; // allow translations in zzform
 	$zz_setting['extra_http_headers'][] = 'X-Frame-Options: Deny';
 	$zz_setting['extra_http_headers'][] = "Content-Security-Policy: frame-ancestors 'self'";
 
