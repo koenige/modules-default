@@ -1239,17 +1239,7 @@ function zz_maintenance_sqldownload($page) {
 	$page['query_strings'][] = 'sqldownload';
 	$limit = false;
 
-	$sql = 'SELECT COUNT(log_id) FROM %s WHERE log_id >= %d ORDER BY log_id';
-	$sql = sprintf($sql, $zz_conf['logging_table'], $_GET['sqldownload']);
-	$logcount = wrap_db_fetch($sql, '', 'single value');
-	if ($logcount > 10000) {
-		$limit = 10000;
-	}
-	
-	$sql = 'SELECT * FROM %s WHERE log_id >= %d ORDER BY log_id';
-	$sql = sprintf($sql, $zz_conf['logging_table'], $_GET['sqldownload']);
-	if ($limit) $sql .= sprintf(' LIMIT %d', 10000);
-	$data = wrap_db_fetch($sql, 'log_id');
+	list($data, $limit) = mod_default_maintenance_read_logging($_GET['sqldownload']);
 	if (!$data) {
 		$sql = 'SELECT MAX(log_id) FROM %s';
 		$sql = sprintf($sql, $zz_conf['logging_table']);
@@ -1268,6 +1258,30 @@ function zz_maintenance_sqldownload($page) {
 		$page['headers']['filename'] = sprintf('logging_%d.json', $_GET['sqldownload']);
 	}
 	return $page;
+}
+
+/*
+ * read logging entries from logging table
+ *
+ * @param int $start
+ * @return array
+ */
+function mod_default_maintenance_read_logging($start) {
+	global $zz_conf;
+	$limit = 0;
+
+	$sql = 'SELECT COUNT(log_id) FROM %s WHERE log_id >= %d ORDER BY log_id';
+	$sql = sprintf($sql, $zz_conf['logging_table'], $start);
+	$logcount = wrap_db_fetch($sql, '', 'single value');
+	if ($logcount > 10000) {
+		$limit = 10000;
+	}
+
+	$sql = 'SELECT * FROM %s WHERE log_id >= %d ORDER BY log_id';
+	$sql = sprintf($sql, $zz_conf['logging_table'], $start);
+	if ($limit) $sql .= sprintf(' LIMIT %d', 10000);
+	$data = wrap_db_fetch($sql, 'log_id');
+	return [$data, $limit];
 }
 
 /**
