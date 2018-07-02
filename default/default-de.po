@@ -574,8 +574,8 @@ msgid "The server returned with an error (%d)."
 msgstr "Der Server gab einen Fehler zurück (%d)."
 
 #: modules/default/templates/maintenance-sync-server.template.txt
-msgid "Both servers have %d log entries."
-msgstr "Beide Server haben %d Log-Einträge."
+msgid "Both servers have %s log entries."
+msgstr "Beide Server haben %s Log-Einträge."
 
 #: modules/default/templates/maintenance-sync-server.template.txt
 msgid "No synchronisation is necessary."

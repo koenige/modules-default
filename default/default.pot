@@ -555,7 +555,7 @@ msgid "The server returned with an error (%d)."
 msgstr ""
 
 #: modules/default/templates/maintenance-sync-server.template.txt
-msgid "Both servers have %d log entries."
+msgid "Both servers have %s log entries."
 msgstr ""
 
 #: modules/default/templates/maintenance-sync-server.template.txt

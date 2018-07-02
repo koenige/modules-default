@@ -16,7 +16,7 @@
 <p class="error">%%% text "The server returned with an error (%d)." status_error %%%</p>
 
 %%% condition elseif identical %%%
-<p>%%% text "Both servers have %d log entries." identical %%% %%% text No synchronisation is necessary. %%%</p>
+<p>%%% text "Both servers have %s log entries." identical %%% %%% text No synchronisation is necessary. %%%</p>
 
 %%% condition elseif mismatch %%%
 <p>%%% text "The log entries %d do not match." mismatch %%% %%% text A synchronisation is impossible. %%%</p>
