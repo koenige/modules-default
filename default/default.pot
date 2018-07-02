@@ -526,6 +526,10 @@ msgid "There was an error adding record ID %d."
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "There was an error adding log for record ID %d."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
 msgid "All %d log entries were added, last ID was %d."
 msgstr ""
 

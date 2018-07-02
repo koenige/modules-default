@@ -1323,7 +1323,7 @@ function zz_maintenance_sqlupload($page) {
 		);
 		$log_id = wrap_db_query($sql);
 		if (empty($log_id['id'])) {
-			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
+			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding log for record ID %d.'), $line['log_id']).'</p>';
 			return mod_default_maintenance_return($page);
 		}
 		if ($line['log_id'].'' !== $log_id['id'].'') {
