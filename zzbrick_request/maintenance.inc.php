@@ -57,6 +57,8 @@ function mod_default_maintenance($params) {
 		return zz_maintenance_sqlupload($page);
 	} elseif (isset($_GET['sqldownload'])) {
 		return zz_maintenance_sqldownload($page);
+	} elseif (isset($_POST['serversync'])) {
+		return zz_maintenance_serversync($page);
 	} elseif (isset($_GET['filetree'])) {
 		return zz_maintenance_filetree($page);
 	} elseif (!empty($_GET['folder'])) {
@@ -1348,6 +1350,78 @@ function mod_default_maintenance_add_logging($json) {
 		}
 	}
 	return ['log_id' => $line['log_id'], 'total_count' => count($json)];
+}
+
+function zz_maintenance_serversync($page) {
+	global $zz_setting;
+	
+	$page['title'] .= ' '.wrap_text('Synchronize local and remote server');
+	$sync_user = wrap_get_setting('sync_user');
+	
+	if (!$zz_setting['local_access']) {
+		$out['local_only'] = true;
+		$page['text'] = wrap_template('maintenance-sync-server', $out);
+		return $page;
+	}
+
+	$path = wrap_get_setting('sync_server_url');
+	$url = sprintf('https://%s%s', substr($zz_setting['hostname'], 0, -6), $path);
+	$data = ['return_last_logging_entry' => 1];
+	list($status, $headers, $content) = wrap_get_protected_url($url, [], 'POST', $data, $sync_user);
+	
+	if ($status !== 200) {
+		$out['status_error'] = $status;
+		$page['text'] = wrap_template('maintenance-sync-server', $out);
+		return $page;
+	}
+	$last_log = json_decode($content, true);
+	$last_log_local = mod_default_maintenance_last_log();
+	if ($last_log === $last_log_local) {
+		$out['identical'] = wrap_number($last_log['log_id']);
+	} elseif ($last_log['log_id'] < $last_log_local['log_id']) {
+		// push data from local server
+		list($log, $limit) = mod_default_maintenance_read_logging($last_log['log_id'] + 1);
+		$data = [];
+		$data['add_log'] = json_encode($log, true);
+		list($status, $headers, $content) = wrap_get_protected_url($url, [], 'POST', $data, $sync_user);
+		if ($status !== 200) {
+			$out['status_error'] = $status;
+			$page['text'] = wrap_template('maintenance-sync-server', $out);
+			return $page;
+		}
+		$out = json_decode($content, true);
+		$out['hide_upload_form'] = true;
+		$out['remote_changes'] = true;
+		$page['text'] = wrap_template('maintenance-add-logging', $out);
+		return $page;
+	} elseif ($last_log['log_id'] > $last_log_local['log_id']) {
+		// get data from remote server
+		$url .= sprintf('?get_log_from_id=%d', $last_log_local['log_id'] + 1);
+		list($status, $headers, $content) = wrap_get_protected_url($url, [], 'GET', [], $sync_user);
+		if ($status !== 200) {
+			$out['status_error'] = $status;
+			$page['text'] = wrap_template('maintenance-sync-server', $out);
+			return $page;
+		}
+		$out = mod_default_maintenance_add_logging($content);
+		$out['hide_upload_form'] = true;
+		$out['local_changes'] = true;
+		$page['text'] = wrap_template('maintenance-add-logging', $out);
+		return $page;
+	} else {
+		$out['mismatch'] = $last_log['log_id'];
+	}
+	$page['text'] = wrap_template('maintenance-sync-server', $out);
+	return $page;
+}
+
+function mod_default_maintenance_last_log() {
+	global $zz_conf;
+
+	$sql = 'SELECT * FROM %s ORDER BY log_id DESC LIMIT 1';
+	$sql = sprintf($sql, $zz_conf['logging_table']);
+	$data = wrap_db_fetch($sql);
+	return $data;
 }
 
 /**

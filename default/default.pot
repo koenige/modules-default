@@ -259,14 +259,14 @@ msgid "Translation"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgctxt "default"
 msgid "Master"
 msgstr ""
-msgctxt "default"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgctxt "default"
 msgid "Detail"
 msgstr ""
-msgctxt "default"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Temp and Backup Files"
@@ -494,6 +494,7 @@ msgid "Download SQL log, starting with ID"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+#: modules/default/templates/maintenance-add-logging.template.txt
 msgid "Upload SQL log"
 msgstr ""
 
@@ -502,35 +503,77 @@ msgid "Upload"
 msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "Synchronize local and remote server"
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
 msgid "Please upload a file."
 msgstr ""
 
-#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+#: modules/default/templates/maintenance-add-logging.template.txt
 msgid "There was an error while uploading the file."
 msgstr ""
 
-#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+#: modules/default/templates/maintenance-add-logging.template.txt
 msgid "The content of the file was not readable (Format needs to be JSON)."
 msgstr ""
 
-#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+#: modules/default/templates/maintenance-add-logging.template.txt
 msgid "The highest existing log entry is %d, but import starts with %d."
 msgstr ""
 
-#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+#: modules/default/templates/maintenance-add-logging.template.txt
 msgid "Record ID %d was added with a different log ID %d."
 msgstr ""
 
-#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+#: modules/default/templates/maintenance-add-logging.template.txt
 msgid "There was an error adding record ID %d."
 msgstr ""
 
-#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+#: modules/default/templates/maintenance-add-logging.template.txt
 msgid "There was an error adding log for record ID %d."
 msgstr ""
 
-#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+#: modules/default/templates/maintenance-add-logging.template.txt
 msgid "All %d log entries were added, last ID was %d."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "These changes were applied to the remote server."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "These changes were applied to the local server."
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "This only works from a local server!"
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "The server returned with an error (%d)."
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "Both servers have %d log entries."
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "No synchronisation is necessary."
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "The log entries %d do not match."
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "A synchronisation is impossible."
+msgstr ""
+
+#: modules/default/zzbrick_request/serversync.inc.php
+msgid ""
+"This URL is for synchronising a production and a development server only. No "
+"direct access is possible."
 msgstr ""
 
 #: modules/default/zzbrick_request/sso.inc.php
@@ -542,7 +585,8 @@ msgid "Single sign on: incorrect login credentials."
 msgstr ""
 
 #: modules/default/zzbrick_request/sso.inc.php
-msgid "Sorry, the possible login period has expired. Please get a new login link."
+msgid ""
+"Sorry, the possible login period has expired. Please get a new login link."
 msgstr ""
 
 #: modules/default/zzbrick_request/sso.inc.php
@@ -884,6 +928,11 @@ msgctxt "default"
 msgid "Parameters"
 msgstr ""
 
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Internal parameters. Change with care."
+msgstr ""
+
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Logins"
@@ -952,7 +1001,9 @@ msgid "no"
 msgstr ""
 
 #: modules/default/templates/login-request.template.txt
-msgid "You are trying to create a new login for you. But somehow, the web address (URL) you clicked seems to be incorrect. Maybe some part is missing?"
+msgid ""
+"You are trying to create a new login for you. But somehow, the web address "
+"(URL) you clicked seems to be incorrect. Maybe some part is missing?"
 msgstr ""
 
 #: modules/default/templates/login-request.template.txt
@@ -960,5 +1011,7 @@ msgid "Back to login page"
 msgstr ""
 
 #: modules/default/templates/login-request.template.txt
-msgid "Sorry, you cannot create a login for this username. Either the user does not exist on our website or there already exists a login for this username."
+msgid ""
+"Sorry, you cannot create a login for this username. Either the user does not "
+"exist on our website or there already exists a login for this username."
 msgstr ""

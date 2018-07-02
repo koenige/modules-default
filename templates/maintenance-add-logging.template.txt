@@ -35,11 +35,19 @@
 
 %%% condition endif %%%
 
+%%% condition if remote_changes %%%
+<p>%%% text These changes were applied to the remote server. %%%</p>
+%%% condition else %%%
+<p>%%% text These changes were applied to the local server. %%%</p>
+%%% condition endif %%%
+
 %%% condition if no_file | file_error | no_json %%%
+%%% condition unless hide_upload_form %%%
 <form method="POST" action="" enctype="multipart/form-data">
 %%% text Upload SQL log %%%&nbsp; <input type="file" name="sqlfile">&nbsp; <input type="submit" value="%%% text Upload %%%">
 <input type="hidden" name="sqlupload" value="1">
 </form>
 
+%%% condition endif %%%
 %%% condition endif %%%
 </div>

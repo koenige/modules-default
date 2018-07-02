@@ -82,13 +82,20 @@
 
 %%% condition if logging_table %%%
 <h2>%%% text SQL log %%%</h2>
-<form method="GET" action="">
+<ul>
+<li><form method="GET" action="">
 %%% text Download SQL log, starting with ID %%%&nbsp; <input type="number" name="sqldownload">&nbsp; <input type="submit" value="%%% text Download %%%">
-</form>
-<form method="POST" action="" enctype="multipart/form-data">
+</form></li>
+<li><form method="POST" action="" enctype="multipart/form-data">
 %%% text Upload SQL log %%%&nbsp; <input type="file" name="sqlfile">&nbsp; <input type="submit" value="%%% text Upload %%%">
 <input type="hidden" name="sqlupload" value="1">
-</form>
+</form></li>
+%%% condition if setting local_access %%%
+%%% condition if setting sync_server_url %%%
+<li><form method="POST" action="" enctype="multipart/form-data"><input type="submit" name="sync_server" value="%%% text Synchronize local and remote server %%%"></form></li>
+%%% condition endif %%%
+%%% condition endif %%%
+</ul>
 %%% condition endif %%%
 
 <h2>%%% text Custom SQL query %%%</h2>
