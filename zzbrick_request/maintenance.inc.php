@@ -1279,33 +1279,38 @@ function zz_maintenance_sqldownload($page) {
 function zz_maintenance_sqlupload($page) {
 	global $zz_conf;
 
+	$out = [];
+	if (empty($_FILES['sqlfile'])) $out['no_file'] = true;
+	elseif ($_FILES['sqlfile']['error'] === UPLOAD_ERR_NO_FILE) $out['no_file'] = true;
+	elseif ($_FILES['sqlfile']['error'] !== 0) $out['file_error'] = true;
+	elseif ($_FILES['sqlfile']['size'] <= 3) $out['file_error'] = true;
+	else {
+		$json = file_get_contents($_FILES['sqlfile']['tmp_name']);
+		$out = mod_default_maintenance_add_logging($json);
+	}
 	$page['title'] .= ' '.wrap_text('Upload SQL log');
 	$page['breadcrumbs'][] = wrap_text('Upload SQL log');
-	if (empty($_FILES['sqlfile'])) {
-		$page['text'] = '<p>'.wrap_text('Please upload a file.').'</p>';
-		return mod_default_maintenance_return($page);
-	}
-	if ($_FILES['sqlfile']['error'] !== 0) {
-		$page['text'] = '<p>'.wrap_text('There was an error while uploading the file.').'</p>';
-		return mod_default_maintenance_return($page);
-	}
-	if ($_FILES['sqlfile']['size'] <= 3) {
-		$page['text'] = '<p>'.wrap_text('There was an error while uploading the file.').'</p>';
-		return mod_default_maintenance_return($page);
-	}
-	$json = file_get_contents($_FILES['sqlfile']['tmp_name']);
+	$page['text'] = wrap_template('maintenance-add-logging', $out);
+	return $page;
+}
+
+/*
+ * add logging entries to logging table
+ *
+ * @param string $json
+ * @return array
+ */
+function mod_default_maintenance_add_logging($json) {
+	global $zz_conf;
 	$json = json_decode($json, true);
-	if (!$json) {
-		$page['text'] = '<p>'.wrap_text('The content of the file was not readable (Format needs to be JSON).').'</p>';
-		return mod_default_maintenance_return($page);
-	}
+	if (!$json) return ['no_json' => 1];
+
 	$first_id = key($json);
 	$sql = 'SELECT MAX(log_id) FROM %s';
 	$sql = sprintf($sql, $zz_conf['logging_table']);
 	$max_logs = wrap_db_fetch($sql, '', 'single value');
 	if ($max_logs + 1 !== $first_id) {
-		$page['text'] = '<p>'.sprintf(wrap_text('The highest existing log entry is %d, but import starts with %d.'), $max_logs, $first_id).'</p>';
-		return mod_default_maintenance_return($page);
+		return ['max_logs' => $max_logs, 'first_id' => $first_id];
 	}
 	
 	// Everything ok, we can import
@@ -1313,8 +1318,7 @@ function zz_maintenance_sqlupload($page) {
 	foreach ($json as $line) {
 		$success = wrap_db_query($line['query']);
 		if (empty($success['id']) AND empty($success['rows']) AND $success !== true) {
-			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding record ID %d.'), $line['log_id']).'</p>';
-			return mod_default_maintenance_return($page);
+			return ['log_id' => $line['log_id'], 'add_error' => 1];
 		}
 		$sql = sprintf($log_template,
 			$zz_conf['logging_table'], wrap_db_escape($line['query'])
@@ -1323,16 +1327,13 @@ function zz_maintenance_sqlupload($page) {
 		);
 		$log_id = wrap_db_query($sql);
 		if (empty($log_id['id'])) {
-			$page['text'] = '<p>'.sprintf(wrap_text('There was an error adding log for record ID %d.'), $line['log_id']).'</p>';
-			return mod_default_maintenance_return($page);
+			return ['log_id' => $line['log_id'], 'log_add_error' => 1];
 		}
 		if ($line['log_id'].'' !== $log_id['id'].'') {
-			$page['text'] = '<p>'.sprintf(wrap_text('Record ID %d was added with a different log ID %d.'), $line['log_id'], $log_id['id']).'</p>';
-			return mod_default_maintenance_return($page);
+			return ['log_id' => $line['log_id'], 'local_log_id' => $log_id['id']];
 		}
 	}
-	$page['text'] = '<p>'.sprintf(wrap_text('All %d log entries were added, last ID was %d.'), count($json), $line['log_id']).'</p>';
-	return mod_default_maintenance_return($page);
+	return ['log_id' => $line['log_id'], 'total_count' => count($json)];
 }
 
 /**
