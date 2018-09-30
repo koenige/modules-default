@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2015 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2015, 2018 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -21,7 +21,7 @@ unset($zz['fields'][2]); // login_id
 
 $zz['fields'][3]['class'] = 'block480a';
 $zz['fields'][4]['list_append_next'] = true;
-$zz['fields'][4]['class'] = 'block480';
+$zz['fields'][4]['class'] = 'block480 hyphenate';
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/_settings.*
 	FROM /*_PREFIX_*/_settings';
