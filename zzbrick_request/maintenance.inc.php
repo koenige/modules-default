@@ -981,7 +981,7 @@ function zz_maintenance_logs($page) {
 	$data['lines'] = [];
 
 	$log = [];
-	foreach ($found as $index) {
+	if ($data['total_rows']) foreach ($found as $index) {
 		$file->seek($index);
 		$line = $file->current();
 		$line = trim($line);
