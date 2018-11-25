@@ -18,6 +18,7 @@ if (file_exists($zz_setting['lib'].'/tfpdf/src/tFPDF.php')) {
 	require_once $zz_setting['lib'].'/tfpdf/tFPDF.php';
 }
 
+define('FPDF_FONTPATH', $zz_setting['custom'].'/tfpdf');
 
 class zzTFPDF extends tFPDF {
 	function Error($msg) {
