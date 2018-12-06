@@ -84,12 +84,12 @@ $zz_sub['fields'][4]['inherit_format'] = true;
 
 $zz_sub['sql'] = 'SELECT /*_PREFIX_*/_translations_text.*
 		, CONCAT(iso_639_1, IFNULL(CONCAT("-", variation), "")) AS lang
-		, CONCAT(tf.db_name, " / ", tf.table_name, " / ", tf.field_name) AS translationfield
+		, CONCAT(db_name, " / ", table_name, " / ", field_name) AS translationfield
 	FROM /*_PREFIX_*/_translations_text
-	LEFT JOIN '.$zz_conf['translations_table'].' tf
+	LEFT JOIN '.$zz_conf['translations_table'].'
 		USING (translationfield_id)
 	LEFT JOIN /*_PREFIX_*/languages USING (language_id)
-	ORDER BY tf.db_name, tf.table_name, tf.field_name, iso_639_1, variation
+	ORDER BY db_name, table_name, field_name, iso_639_1, variation
 ';
 
 if (empty($_GET['order']) OR $_GET['order'] === 'translationfield')
