@@ -1,11 +1,12 @@
 <?php 
 
 /**
- * Zugzwang Project
+ * default module
  * Table definition for 'translations' (varchar)
  * Tabellendefinition für Übersetzungen (varchar)
  *
- * http://www.zugzwang.org/projects/zzproject
+ * Part of »Zugzwang Project«
+ * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2010-2011, 2013, 2018 Gustaf Mossakowski
