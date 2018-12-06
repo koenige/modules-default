@@ -1000,6 +1000,16 @@ msgstr ""
 msgid "no"
 msgstr ""
 
+#: modules/default/zzbrick_tables/translations-text.php
+#: modules/default/zzbrick_tables/translations-varchar.php
+msgid "Translation to"
+msgstr ""
+
+#: modules/default/zzbrick_tables/translations-text.php
+#: modules/default/zzbrick_tables/translations-varchar.php
+msgid "Translation field"
+msgstr ""
+
 #: modules/default/templates/login-request.template.txt
 msgid ""
 "You are trying to create a new login for you. But somehow, the web address "
