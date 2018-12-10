@@ -52,6 +52,7 @@ $zz_sub['fields'][2]['sql'] = 'SELECT translationfield_id, db_name, table_name, 
 	FROM _translationfields
 	WHERE field_type = "varchar"';
 $zz_sub['fields'][2]['display_field'] = 'translationfield';
+$zz_sub['fields'][2]['exclude_from_search'] = true;
 
 $zz_sub['fields'][3]['title'] = 'ID';
 $zz_sub['fields'][3]['field_name'] = 'field_id';
@@ -77,6 +78,8 @@ $zz_sub['fields'][5]['show_title'] = false;
 $zz_sub['fields'][5]['append_next'] = true;
 $zz_sub['fields'][5]['display_field'] = 'lang';
 $zz_sub['fields'][5]['search'] = 'CONCAT(iso_639_1, IFNULL(CONCAT("-", variation), ""))';
+$zz_sub['fields'][5]['character_set'] = 'utf8';
+$zz_sub['fields'][5]['exclude_from_search'] = true;
 
 $zz_sub['fields'][4]['title'] = 'Translation';
 $zz_sub['fields'][4]['show_title'] = false;
