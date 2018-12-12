@@ -14,7 +14,7 @@
 %%% item filter %%%
 
 %%% condition if choose_filter %%%
-<p><strong>%%% text Please choose one of the filters. %%%</strong></p></div>
+<p><strong>%%% text Please choose one of the filters. %%%</strong></p>
 
 %%% condition elseif deleteall_url %%%
 <form action="%%% item deleteall_url %%%" method="POST"><input type="submit" name="deleteall" value="Delete all lines?%%% item deleteall_filter " Search: %s" %%%"></form>
