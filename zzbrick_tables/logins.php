@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2016, 2018 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -59,6 +59,7 @@ $zz['fields'][4]['if']['add']['hide_in_form'] = true;
 $zz['fields'][5]['title'] = 'Click';
 $zz['fields'][5]['field_name'] = 'last_click';
 $zz['fields'][5]['type'] = 'display';
+$zz['fields'][5]['type_detail'] = 'datetime';
 $zz['fields'][5]['explanation'] = 'Last activity in database';
 $zz['fields'][5]['class'] = 'hidden480';
 $zz['fields'][5]['if']['add']['hide_in_form'] = true;
