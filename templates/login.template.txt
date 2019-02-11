@@ -5,7 +5,7 @@
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2011, 2015-2016, 2018 Gustaf Mossakowski
+# @copyright Copyright © 2008-2011, 2015-2016, 2018-2019 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #
@@ -39,4 +39,5 @@
 <p class="error submit">%%% item msg %%%</p>
 %%% condition endif %%%
 </fieldset>
+%%% item hidden_fields %%%
 </form></div>
