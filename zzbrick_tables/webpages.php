@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2009, 2016, 2018 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2009, 2016, 2018-2019 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -60,7 +60,7 @@ $zz['fields'][7]['sql'] = 'SELECT page_id, title, mother_page_id, identifier
 $zz['fields'][7]['show_hierarchy'] = 'mother_page_id';
 $zz['fields'][7]['show_hierarchy_same_table'] = true;
 $zz['fields'][7]['display_field'] = 'mother_title';
-$zz['fields'][7]['search'] = 'motherpages.title';
+$zz['fields'][7]['exclude_from_search'] = true;
 $zz['fields'][7]['hide_in_list'] = true;
 
 $zz['fields'][8] = false; // put media subtable here if needed
