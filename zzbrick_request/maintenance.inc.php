@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2018 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2019 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -125,6 +125,7 @@ function zz_maintenance_sqlquery($page) {
 	case 'ALTER TABLE':
 	case 'CREATE VIEW':
 	case 'ALTER VIEW':
+	case 'SET':
 		$result = zz_db_change($sql);
 		$result['change'] = true;
 		if (!$result['action']) {
