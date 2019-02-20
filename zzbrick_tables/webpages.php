@@ -71,7 +71,7 @@ $zz['fields'][9]['field_name'] = 'live';
 $zz['fields'][9]['type'] = 'select';
 $zz['fields'][9]['enum'] = ['yes', 'no'];
 $zz['fields'][9]['default'] = 'yes';
-$zz['fields'][9]['class'] = 'hidden480';
+$zz['fields'][9]['hide_in_list'] = true;
 
 $zz['fields'][10]['field_name'] = 'menu';
 $zz['fields'][10]['type'] = 'select';
