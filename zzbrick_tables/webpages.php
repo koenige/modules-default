@@ -33,6 +33,8 @@ $zz['fields'][3]['rows'] = 20;
 $zz['fields'][3]['format'] = 'markdown';
 $zz['fields'][3]['hide_in_list'] = true;
 
+$zz['fields'][11] = []; // description
+
 $zz['fields'][4]['field_name'] = 'identifier';
 $zz['fields'][4]['explanation'] = 'Address of page, should show hierarchy, no / at the end!<br>The identifier should contain only letters a-z, numbers 0-9 and the - sign.';
 $zz['fields'][4]['list_prefix'] = '<p><small>';
@@ -63,7 +65,7 @@ $zz['fields'][7]['display_field'] = 'mother_title';
 $zz['fields'][7]['exclude_from_search'] = true;
 $zz['fields'][7]['hide_in_list'] = true;
 
-$zz['fields'][8] = false; // put media subtable here if needed
+$zz['fields'][8] = []; // put media subtable here if needed
 
 $zz['fields'][9]['title_tab'] = 'WWW?';
 $zz['fields'][9]['title'] = 'Published?';
@@ -81,7 +83,7 @@ $zz['fields'][10]['enum'] = ['top', 'bottom', 'internal'];
 $zz['fields'][10]['class'] = 'hidden320';
 $zz['fields'][10]['hide_in_list_if_empty'] = true;
 
-$zz['fields'][15] = false; // parameters
+$zz['fields'][15] = []; // parameters
 
 $zz['fields'][99]['title'] = 'Last Update';
 $zz['fields'][99]['field_name'] = 'last_update';
