@@ -34,12 +34,14 @@ function mod_default_adminer($params) {
 		return brick_format('%%% redirect '.$url.' %%%');
 	}
 	
-	$path = $zz_setting['lib'].'/adminer/adminer-4.7.1-mysql-de.php';
+	$path = $zz_setting['lib'].'/adminer/adminer-4.7.2-mysql-de.php';
 	if (!file_exists($path)) {
 		wrap_error('Library Adminer does not exist', E_USER_ERROR);
 		exit;
 	}
 	session_start();
+	// set a password to disable password request (from 4.7.2 on)
+	$_SESSION['pwds']['server'][''][''] = 'random';
 	require $path;
 	exit;
 }
@@ -70,10 +72,11 @@ function adminer_object() {
 		    global $zz_conf;
             return $zz_conf['db_name'];
         }
+
 		function login($login, $password) {
       		// validate user submitted credentials
       		// here: empty password, because adminer is behind login page already
-      		return ($login == '' && $password == '');
+      		return true;
     	}
     }
     
