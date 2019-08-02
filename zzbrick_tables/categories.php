@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2016-2018 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2016-2019 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -54,9 +54,8 @@ $zz['fields'][5]['list_append_next'] = true;
 
 // restrict access to this field if needed
 $zz['fields'][7]['field_name'] = 'parameters';
-$zz['fields'][7]['list_prefix'] = '<pre>';
-$zz['fields'][7]['list_suffix'] = '</pre>';
-$zz['fields'][7]['type'] = 'text';
+$zz['fields'][7]['list_prefix'] = '<br>';
+$zz['fields'][7]['type'] = 'parameter';
 $zz['fields'][7]['explanation'] = 'Internal parameters. Change with care.';
 
 $zz['fields'][6]['field_name'] = 'sequence';
