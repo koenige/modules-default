@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.12\n"
 
 #: modules/default/templates/login.template.txt
 msgid "You have been logged out."
@@ -36,7 +36,7 @@ msgid "Sign in"
 msgstr "Zaloguj się"
 
 #: modules/default/templates/login.template.txt
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Login"
 msgstr "Zaloguj"
 
@@ -165,7 +165,7 @@ msgid "Setting"
 msgstr "Ustawienia"
 
 #: modules/default/zzbrick_request/maintenance.inc.php
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Value"
 msgstr "Wartość"
 
@@ -274,18 +274,18 @@ msgid "Translation"
 msgstr "Tłumaczenie"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
-msgid "Master"
-msgstr "Główny"
 msgctxt "default"
+msgid "Master"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
+msgctxt "default"
 msgid "Detail"
 msgstr "Szczegółowo"
-msgctxt "default"
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Temp and Backup Files"
-msgstr "Pliki tymczasowe i tworzenie kopii zapasowych"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Backup folder"
@@ -323,6 +323,7 @@ msgstr "Znacznik czasu"
 msgid "Folder"
 msgstr "Folder"
 
+#: modules/default/zzbrick_request/sso.inc.php
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "unknown"
 msgstr "Nieznane"
@@ -491,6 +492,122 @@ msgstr "Grupa"
 msgid "Group entries"
 msgstr "Grupa wpisy"
 
+#: modules/default/templates/maintenance.template.txt
+msgid "Download"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqldownload
+msgid "Logfile has only %d entries."
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "SQL log"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "Download SQL log, starting with ID"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "Upload SQL log"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "Upload"
+msgstr ""
+
+#: modules/default/zzbrick_request/maintenance.inc.php#sqlupload
+msgid "Synchronize local and remote server"
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "Please upload a file."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "There was an error while uploading the file."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "The content of the file was not readable (Format needs to be JSON)."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "The highest existing log entry is %d, but import starts with %d."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "Record ID %d was added with a different log ID %d."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "There was an error adding record ID %d."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "There was an error adding log for record ID %d."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "All %d log entries were added, last ID was %d."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "These changes were applied to the remote server."
+msgstr ""
+
+#: modules/default/templates/maintenance-add-logging.template.txt
+msgid "These changes were applied to the local server."
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "This only works from a local server!"
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "The server returned with an error (%d)."
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "Both servers have %s log entries."
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "No synchronisation is necessary."
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "The log entries %d do not match."
+msgstr ""
+
+#: modules/default/templates/maintenance-sync-server.template.txt
+msgid "A synchronisation is impossible."
+msgstr ""
+
+#: modules/default/zzbrick_request/serversync.inc.php
+msgid ""
+"This URL is for synchronising a production and a development server only. No "
+"direct access is possible."
+msgstr ""
+
+#: modules/default/zzbrick_request/sso.inc.php
+msgid "Single sign on: too many URL parameters."
+msgstr ""
+
+#: modules/default/zzbrick_request/sso.inc.php
+msgid "Single sign on: incorrect login credentials."
+msgstr ""
+
+#: modules/default/zzbrick_request/sso.inc.php
+msgid ""
+"Sorry, the possible login period has expired. Please get a new login link."
+msgstr ""
+
+#: modules/default/zzbrick_request/sso.inc.php
+msgid "Single sign on: possible login period expired."
+msgstr ""
+
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid "Thumbnail creation"
 msgstr "Tworzenie miniatur"
@@ -528,133 +645,402 @@ msgstr "Miniatury dla %s x %s x px nie może być utworzony."
 msgid "No missing thumbnails were found."
 msgstr "Nie brakuje miniatury zostały znalezione."
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Database Table Relations"
 msgstr "Powiązania tabel"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Master Table"
 msgstr "Tabela danych podstawowych"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Detail Table"
 msgstr "Szczegóły tabela"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Foreign Key"
 msgstr "Klucz obcy"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Database of Master Table"
 msgstr "Bank danych tabeli głównej"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Name of Master Table"
 msgstr "Nazwa tabeli głównej"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Primary Key of Master Table"
 msgstr "Klucz główny tabeli głównej"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Database of Detail Table"
 msgstr "Bazy danych tabela szczegóły"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Name of Detail Table"
 msgstr "Nazwa tabela szczegóły"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Primary Key of Detail Table"
 msgstr "Klucz główny tabela szczegóły"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "Foreign Key of Detail Table"
 msgstr "Klucz obcy tabela szczegóły"
 
-#: modules/default/zzbrick_tables/database_relations.inc.php
+#: modules/default/zzbrick_tables/database_relations.php
 msgid "If main record will be deleted, what should happen with detail record?"
 msgstr ""
 "Jeśli głównym rekordem zostaną usunięte, co powinno się zdarzyć z rekord "
 "szczegółowy?"
 
-#: modules/default/zzbrick_tables/database_logging.inc.php
+#: modules/default/zzbrick_tables/database_logging.php
 msgid "Query"
 msgstr "Zapytań"
 
-#: modules/default/zzbrick_tables/database_logging.inc.php
+#: modules/default/zzbrick_tables/database_logging.php
 msgid "Record"
 msgstr "Zapis"
 
-#: modules/default/zzbrick_tables/database_logging.inc.php
+#: modules/default/zzbrick_tables/database_logging.php
 msgid "Last update"
 msgstr "Ostatnia aktualizacja"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Translations"
 msgstr "Tłumaczenia"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Database"
 msgstr "Baza danych"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Table"
 msgstr "Tabela"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Field"
 msgstr "Pole"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Data type"
 msgstr "Typ danych"
 
-#: modules/default/zzbrick_tables/database_translations.inc.php
+#: modules/default/zzbrick_tables/database_translations.php
 msgid "Data Type"
 msgstr "Typ danych"
 
 #. Here, a boilerplate text for redirects is needed
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Information about redirects"
 msgstr "Informacji o przekierowaniach"
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Old URL"
 msgstr "Stary adres URL"
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "New URL"
 msgstr "Nowy adres URL"
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Code"
 msgstr "Kod"
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Area"
 msgstr "Zakres"
 
-#: modules/default/zzbrick_tables/redirects.inc.php
+#: modules/default/zzbrick_tables/redirects.php
 msgid "Redirects"
 msgstr "Przekierowania"
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Key"
 msgstr "Objaśnienia"
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Explanation"
 msgstr "Wyjaśnienie"
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "User settings"
 msgstr "Ustawienia użytkownika"
 
-#: modules/default/zzbrick_tables/settings.inc.php
+#: modules/default/zzbrick_tables/settings.php
 msgid "Website settings"
 msgstr "Ustawienia strona internetowa"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Webpages"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Title"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Content"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Identifier"
+msgstr ""
+
+#. Webpages: Possible ending of URL
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "none"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid ""
+"Address of page, should show hierarchy, no / at the end!<br>The identifier "
+"should contain only letters a-z, numbers 0-9 and the - sign."
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Sequence"
+msgstr "Seria"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Subpage&nbsp;of"
+msgstr "Podstrona"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Published?"
+msgstr "Opublikowano?"
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Menu"
+msgstr ""
+
+#. Webpages: Name of menu defined by position
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "top"
+msgstr ""
+
+#. Webpages: Name of menu defined by position
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "bottom"
+msgstr ""
+
+#. Webpages: Name of menu defined by position
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "internal"
+msgstr ""
+
+#: modules/default/zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Last Update"
+msgstr ""
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Countries"
+msgstr ""
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Country"
+msgstr ""
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Country Code"
+msgstr ""
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Country code according to ISO 3166"
+msgstr ""
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Website"
+msgstr ""
+
+#: modules/default/zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Will country be used on website?"
+msgstr ""
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Languages"
+msgstr "Języki"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language code ISO 639-1"
+msgstr ""
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language code ISO 639-2, Bibliographic"
+msgstr ""
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language code ISO 639-2, Terminology"
+msgstr ""
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language name, english"
+msgstr "Nazwa języka, angielski"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language name, french"
+msgstr "Nazwa języka, francuski"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Language name, german"
+msgstr "Nazwa języka, niemiecki"
+
+#: modules/default/zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Will language be used on website?"
+msgstr "Czy na stronie będzie używany język?"
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Categories"
+msgstr "Kategorie"
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Category"
+msgstr "Kategoria"
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Main Category"
+msgstr "Główna kategoria"
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Description"
+msgstr "Opis"
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Parameters"
+msgstr "Parametry"
+
+#: modules/default/zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Internal parameters. Change with care."
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Logins"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid ""
+"\"Yes\" means that the user has to change the password next time he or she "
+"logs in."
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Active"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Change Pwd?"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Click"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Last activity in database"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Logged in"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Password"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "To deactivate a login"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Rights"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Login rights"
+msgstr ""
+
+#: modules/default/zzbrick_tables/languages.php
+#: modules/default/zzbrick_tables/countries.php
+msgid "yes"
+msgstr "tak"
+
+#: modules/default/zzbrick_tables/languages.php
+#: modules/default/zzbrick_tables/countries.php
+msgid "no"
+msgstr "nie"
+
+#: modules/default/zzbrick_tables/translations-text.php
+#: modules/default/zzbrick_tables/translations-varchar.php
+msgid "Translation to"
+msgstr "Tłumaczenia na"
+
+#: modules/default/zzbrick_tables/translations-text.php
+#: modules/default/zzbrick_tables/translations-varchar.php
+msgid "Translation field"
+msgstr ""
+
+#: modules/default/templates/login-request.template.txt
+msgid ""
+"You are trying to create a new login for you. But somehow, the web address "
+"(URL) you clicked seems to be incorrect. Maybe some part is missing?"
+msgstr ""
+
+#: modules/default/templates/login-request.template.txt
+msgid "Back to login page"
+msgstr ""
+
+#: modules/default/templates/login-request.template.txt
+msgid ""
+"Sorry, you cannot create a login for this username. Either the user does not "
+"exist on our website or there already exists a login for this username."
+msgstr ""
