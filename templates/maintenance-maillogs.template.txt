@@ -1,0 +1,52 @@
+# default module
+# Template for maintenance script, logs
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2019 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div id="zzform" class="maintenance">
+<h2>%%% text Mail log %%%</h2>
+
+%%% item message "<p class='error'>%s</p>" %%%
+
+<form action="" method="POST">
+<table class="data"><thead><tr>
+<th>[]</th>
+<th>%%% text Mail %%%</th>
+<th>%%% text Action %%%</th>
+</thead>
+<tbody>
+%%% condition if mails %%%
+%%% loop mails %%%
+<tr class="%%% loopposition uneven un %%%even">
+<td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item no %%%]" value="%%% item keys %%%" id="line%%% item no %%%"></label></td>
+<td><pre style="max-width: 90%; overflow: auto;"><strong>Date:</strong> %%% item Date wrap_html_escape %%% 
+<strong>To:</strong> %%% item To wrap_html_escape %%% 
+<strong>Subject</strong> %%% item Subject wrap_html_escape %%% 
+<strong>From:</strong>%%% item From wrap_html_escape %%% 
+
+<div class="moretext">%%% item msg %%%</div></pre>
+</td>
+<td></td>
+</tr>
+%%% loop end %%%
+%%% condition else %%%
+<tr><td colspan="3">%%% text No lines %%%</td></tr>
+%%% condition endif %%%
+</tbody></table>
+
+%%% condition if total_rows %%%
+<p style="float: right;"><a href="%%% item url_self %%%&amp;deleteall">%%% text Delete all lines %%%</a></p>
+<p><input type="submit" value="%%% text Delete selected lines %%%"> –
+ <a onclick="zz_set_checkboxes(true); return false;" href="#">%%% text Select all %%%</a> |
+ <a onclick="zz_set_checkboxes(false); return false;" href="#">%%% text Deselect all %%%</a></p>
+%%% condition endif %%%
+</form>
+%%% item total_records %%%
+%%% item pages %%%
+%%% item searchform %%%
+</div>

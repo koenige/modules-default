@@ -65,6 +65,8 @@ function mod_default_maintenance($params) {
 		return zz_maintenance_folders($page);
 	} elseif (!empty($_GET['log'])) {
 		return zz_maintenance_logs($page);
+	} elseif (isset($_GET['maillog'])) {
+		return zz_maintenance_maillogs($page);
 	} elseif (isset($_GET['phpinfo'])) {
 		phpinfo();
 		exit;
@@ -695,6 +697,7 @@ function zz_maintenance_folders_deleteall($my_folder, $file) {
  */
 function zz_maintenance_errors() {
 	global $zz_conf;
+	global $zz_setting;
 
 	$lines[0]['th'] = wrap_text('Error handling');
 	$lines[0]['td'] = (!empty($zz_conf['error_handling']) ? $zz_conf['error_handling'] : '');
@@ -765,6 +768,9 @@ function zz_maintenance_errors() {
 	$lines[23]['th'] = wrap_text('Logging (Upload)');
 	$lines[23]['td'] = !empty($zz_conf['upload_log']) ? '<a href="?log='.urlencode(realpath($zz_conf['upload_log']))
 				.'">'.realpath($zz_conf['upload_log']).'</a>' : wrap_text('disabled');
+
+	$lines[24]['th'] = wrap_text('Logging (Mail)');
+	$lines[24]['td'] = !empty($zz_setting['log_mail']) ? '<a href="?maillog">'.$zz_setting['log_dir'].'/mail.log</a>' : wrap_text('disabled');
 
 	foreach ($lines as $index => $line) {
 		if (!$line['td']) $line['td'] = false;
@@ -1154,6 +1160,71 @@ function zz_maintenance_logs($page) {
 
 	$page['text'] = wrap_template('maintenance-logs', $data);
 	$page['text'] .= wrap_template('zzform-foot');
+	return $page;
+}
+
+/**
+ * output of mail log
+ *
+ * @global array $zz_conf
+ * @return string HTML output
+ */
+function zz_maintenance_maillogs($page) {
+	global $zz_conf;
+	global $zz_setting;
+	require_once $zz_setting['core'].'/file.inc.php';
+
+	zz_maintenance_list_init();
+
+	$page['title'] .= ' '.wrap_text('Mail Logs');
+	$page['breadcrumbs'][] = wrap_text('Mail Logs');
+	$page['query_strings'] = [
+		'maillog'
+	];
+	$logfile = $zz_setting['log_dir'].'/mail.log';
+	if (!file_exists($logfile)) {
+		$page['text'] = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), wrap_html_escape($logfile)).'</p>'."\n";
+		return mod_default_maintenance_return($page);
+	}
+
+	$file = new \SplFileObject($logfile, 'r');
+	$data = [];
+	$data['mails'] = [];
+	$index = 0;
+	$new_mail = true;
+	$mail_head = true;
+	while (!$file->eof()) {
+		$line = $file->fgets();
+		$line = trim($line);
+		if ($new_mail) {
+			if (!$line) continue;
+			$index++;
+			$data['mails'][$index] = [];
+			$new_mail = false;
+			$mail_head = true;
+		}
+		if ($mail_head AND !$line) $mail_head = false;
+		if ($mail_head) {
+			$key = substr($line, 0, strpos($line, ':'));
+			$value = substr($line, strpos($line, ':') + 2);
+		} else {
+			$key = 'msg';
+			$value = $line;	
+		}
+		if (array_key_exists($key, $data['mails'][$index])) {
+			$data['mails'][$index][$key] .= "\n".$value;
+		} else {
+			$data['mails'][$index][$key] = $value;
+		}
+		if (array_key_exists('msg', $data['mails'][$index])) {
+			if (substr($data['mails'][$index]['msg'], -77) === str_repeat('-', 77)) {
+				$new_mail = true;
+				$data['mails'][$index]['msg'] = trim(substr($data['mails'][$index]['msg'], 0, -77));
+			}
+		}
+	}
+
+	$page['text'] = wrap_template('maintenance-maillogs', $data);
 	return $page;
 }
 
