@@ -62,12 +62,12 @@ $zz['sql'] = sprintf('SELECT * FROM %s
 
 $zz_conf['max_select'] = 100;
 
-$zz_conf['details'][1]['title'] = 'Translations';
-$zz_conf['details'][1]['referer'] = 1;
-$zz_conf['if'][1]['details'][1]['link'] = 'translations-varchar?where[translationfield_id]=';
-$zz_conf['if'][1]['details'][1]['sql'] = 'SELECT COUNT(*) FROM /*_PREFIX_*/_translations_varchar WHERE translationfield_id = %d';
-$zz_conf['if'][2]['details'][1]['link'] = 'translations-text?where[translationfield_id]=';
-$zz_conf['if'][2]['details'][1]['sql'] = 'SELECT COUNT(*) FROM /*_PREFIX_*/_translations_text WHERE translationfield_id = %d';
+$zz['details'][1]['title'] = 'Translations';
+$zz['details'][1]['referer'] = 1;
+$zz['if'][1]['details'][1]['link'] = 'translations-varchar?where[translationfield_id]=';
+$zz['if'][1]['details'][1]['sql'] = 'SELECT COUNT(*) FROM /*_PREFIX_*/_translations_varchar WHERE translationfield_id = %d';
+$zz['if'][2]['details'][1]['link'] = 'translations-text?where[translationfield_id]=';
+$zz['if'][2]['details'][1]['sql'] = 'SELECT COUNT(*) FROM /*_PREFIX_*/_translations_text WHERE translationfield_id = %d';
 
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = 'field_type = "varchar"';
