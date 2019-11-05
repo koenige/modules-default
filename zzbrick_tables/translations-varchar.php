@@ -9,12 +9,10 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2013, 2018 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2013, 2018-2019 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
-
-global $zz_setting;
 
 $zz_sub['title'] = 'Translation';
 $zz_sub['show_title'] = false;
@@ -48,11 +46,13 @@ $zz_sub['fields'][2]['title'] = 'Translation field';
 $zz_sub['fields'][2]['field_name'] = 'translationfield_id';
 $zz_sub['fields'][2]['type'] = 'translation_key';
 $zz_sub['fields'][2]['type_detail'] = 'select';
-$zz_sub['fields'][2]['sql'] = 'SELECT translationfield_id, db_name, table_name, field_name
+$zz_sub['fields'][2]['sql'] = 'SELECT translationfield_id
+		, CONCAT(db_name, " | ", table_name, " | ", field_name) AS translationfield
 	FROM _translationfields
 	WHERE field_type = "varchar"';
 $zz_sub['fields'][2]['display_field'] = 'translationfield';
 $zz_sub['fields'][2]['exclude_from_search'] = true;
+$zz_sub['fields'][2]['if']['where']['hide_in_list'] = true;
 
 $zz_sub['fields'][3]['title'] = 'ID';
 $zz_sub['fields'][3]['field_name'] = 'field_id';
@@ -86,10 +86,12 @@ $zz_sub['fields'][4]['show_title'] = false;
 $zz_sub['fields'][4]['field_name'] = 'translation';
 $zz_sub['fields'][4]['inherit_format'] = true;
 
+$zz_sub['subtitle']['translationfield_id']['sql'] = $zz_sub['fields'][2]['sql'];
+$zz_sub['subtitle']['translationfield_id']['var'] = ['translationfield'];
 
 $zz_sub['sql'] = 'SELECT /*_PREFIX_*/_translations_varchar.*
 		, CONCAT(iso_639_1, IFNULL(CONCAT("-", variation), "")) AS lang
-		, CONCAT(db_name, " / ", table_name, " / ", field_name) AS translationfield
+		, CONCAT(db_name, " | ", table_name, " | ", field_name) AS translationfield
 	FROM /*_PREFIX_*/_translations_varchar
 	LEFT JOIN '.$zz_conf['translations_table'].'
 		USING (translationfield_id)
