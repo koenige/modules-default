@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2006-2016 Gustaf Mossakowski
+ * @copyright Copyright © 2006-2016, 2019 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -38,10 +38,12 @@ $zz['fields'][3]['class'] = 'block480';
 $zz['fields'][4]['field_name'] = 'code';
 $zz['fields'][4]['type'] = 'select';
 $zz['fields'][4]['default'] = 301;
-$zz['fields'][4]['enum'] = array(301, 303, 307, 403, 410);
-$zz['fields'][4]['enum_abbr'] = array(wrap_text('Moved Permanently'), 
+$zz['fields'][4]['enum'] = [301, 303, 307, 403, 410];
+$zz['fields'][4]['enum_abbr'] = [
+	wrap_text('Moved Permanently'), 
 	wrap_text('See Other'), wrap_text('Temporary Redirect'), 
-	wrap_text('Forbidden'), wrap_text('Gone'));
+	wrap_text('Forbidden'), wrap_text('Gone')
+];
 $zz['fields'][4]['group_in_list'] = true;
 
 $zz['fields'][5]['field_name'] = 'area';

@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012, 2016, 2018 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2016, 2018-2019 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -30,8 +30,8 @@ $zz['fields'][6]['title_tab'] = 'Rights';
 $zz['fields'][6]['field_name'] = 'login_rights';
 $zz['fields'][6]['type'] = 'select';
 $zz['fields'][6]['default'] = 'read and write';
-$zz['fields'][6]['enum'] = array('admin', 'read and write', 'read');
-$zz['fields'][6]['enum_title'] = array('Technik', 'Redaktion', 'Gast');
+$zz['fields'][6]['enum'] = ['admin', 'read and write', 'read'];
+$zz['fields'][6]['enum_title'] = ['Technik', 'Redaktion', 'Gast'];
 $zz['fields'][6]['show_values_as_list'] = true;
 
 $zz['fields'][3]['field_name'] = 'password';
@@ -45,7 +45,7 @@ $zz['fields'][13] = false; // random password
 $zz['fields'][9]['title'] = 'Change Pwd?';
 $zz['fields'][9]['field_name'] = 'password_change';
 $zz['fields'][9]['type'] = 'select';
-$zz['fields'][9]['enum'] = array('yes', 'no');
+$zz['fields'][9]['enum'] = ['yes', 'no'];
 $zz['fields'][9]['default'] = 'yes';
 $zz['fields'][9]['hide_in_list'] = true;
 $zz['fields'][9]['explanation'] = '"Yes" means that the user has to change the password next time he or she logs in.';
@@ -66,7 +66,7 @@ $zz['fields'][5]['if']['add']['hide_in_form'] = true;
 
 $zz['fields'][10]['field_name'] = 'active';
 $zz['fields'][10]['type'] = 'select';
-$zz['fields'][10]['enum'] = array('yes', 'no');
+$zz['fields'][10]['enum'] = ['yes', 'no'];
 $zz['fields'][10]['default'] = 'yes';
 $zz['fields'][10]['explanation'] = 'To deactivate a login';
 $zz['fields'][10]['if']['add']['hide_in_form'] = true;

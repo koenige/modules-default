@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2014-2015 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2014-2016, 2019 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -26,7 +26,6 @@
  * @global array $zz_setting
  * @return array $page
  *		'text' => page content, 'title', 'breadcrumbs', ...
- * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @todo support $zz['conditions']
  */
 function mod_default_thumbnails($params) {
@@ -39,14 +38,14 @@ function mod_default_thumbnails($params) {
 
 	$saved_conf = $zz_conf;
 	require_once $zz_conf['dir'].'/zzform.php';
-	$zz_conf['int_modules'] 		= array('debug', 'compatibility', 'validate', 'upload');
+	$zz_conf['int_modules'] = ['debug', 'compatibility', 'validate', 'upload'];
 	zz_initialize();
 	if (!empty($zz_conf['graphics_library']))
 		include_once $zz_conf['dir_inc'].'/image-'.$zz_conf['graphics_library'].'.inc.php';
 	
 	if (strstr($params[0], '..')) return false;
 
-	$page = array();
+	$page = [];
 	$page['title'] = wrap_text('Thumbnail creation');
 	$page['dont_show_h1'] = true;
 	$page['text'] = '<p>'.wrap_text('Here, you can create either missing '
@@ -57,7 +56,7 @@ function mod_default_thumbnails($params) {
 
 	// get upload field definition, id field name
 	$id_field_name = '';
-	$upload_files = array();
+	$upload_files = [];
 	foreach ($zz['fields'] as $no => $field) {
 		if (empty($field['type'])) continue; // not of interest
 		if ($field['type'] === 'id') 

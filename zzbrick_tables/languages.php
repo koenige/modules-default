@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012, 2018 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2018-2019 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -54,7 +54,7 @@ $zz['fields'][11]['explanation'] = 'Variation of language, e. g. informal';
 
 $zz['fields'][10]['field_name'] = 'website';
 $zz['fields'][10]['type'] = 'select';
-$zz['fields'][10]['enum'] = array('yes', 'no');
+$zz['fields'][10]['enum'] = ['yes', 'no'];
 $zz['fields'][10]['default'] = 'no';
 $zz['fields'][10]['explanation'] = 'Will language be used on website?';
 

@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2010, 2014, 2018 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2010, 2014, 2018-2019 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -100,7 +100,7 @@ $zz['fields'][7]['class'] = 'block480';
 
 $zz['fields'][10]['field_name'] = 'delete';
 $zz['fields'][10]['type'] = 'select';
-$zz['fields'][10]['enum'] = array('delete', 'no-delete', 'update');
+$zz['fields'][10]['enum'] = ['delete', 'no-delete', 'update'];
 $zz['fields'][10]['default'] = 'no-delete';
 $zz['fields'][10]['show_values_as_list'] = true;
 $zz['fields'][10]['explanation'] = 'If main record will be deleted, what should happen with detail record?';
