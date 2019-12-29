@@ -5,17 +5,17 @@
  * Database table for translations of text blocks
  * DB-Tabelle zur Eingabe von Uebersetzungen von Textbloecken
  *
- * Part of »Zugzwang Project«
+ * Part of Â»Zugzwang ProjectÂ«
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009-2010, 2013-2016 Gustaf Mossakowski
+ * @copyright Copyright Â© 2009-2010, 2013-2016 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 // access restriction has to be set in the file including this file
-// Bitte Zugriffsbeschränkungen in der Datei, die diese einbindet, definieren!
+// Bitte ZugriffsbeschrÃ¤nkungen in der Datei, die diese einbindet, definieren!
 
 $zz['title'] = 'Text';
 $zz['table'] = $zz_conf['text_table'];

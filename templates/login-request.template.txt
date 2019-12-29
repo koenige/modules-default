@@ -1,11 +1,11 @@
 # default module
 # Template for form to create a login for oneself
 #
-# Part of »Zugzwang Project«
+# Part of Â»Zugzwang ProjectÂ«
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2018 Gustaf Mossakowski
+# @copyright Copyright Â© 2018 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #

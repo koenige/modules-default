@@ -3,19 +3,19 @@
 /**
  * default module
  * Database table to set translation fields
- * DB-Tabelle zur Eingabe von Feldern, die übersetzt werden sollen
+ * DB-Tabelle zur Eingabe von Feldern, die Ã¼bersetzt werden sollen
  *
- * Part of »Zugzwang Project«
+ * Part of Â»Zugzwang ProjectÂ«
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2010, 2014, 2019 Gustaf Mossakowski
+ * @copyright Copyright Â© 2005-2010, 2014, 2019 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 // access restriction has to be set in the file including this file
-// Bitte Zugriffsbeschränkungen in der Datei, die diese einbindet, definieren!
+// Bitte ZugriffsbeschrÃ¤nkungen in der Datei, die diese einbindet, definieren!
 
 $zz['title'] = 'Translations';
 $zz['table'] = $zz_conf['translations_table'];
