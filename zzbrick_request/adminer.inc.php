@@ -34,7 +34,7 @@ function mod_default_adminer($params) {
 		return brick_format('%%% redirect '.$url.' %%%');
 	}
 	
-	$path = $zz_setting['lib'].'/adminer/adminer-4.7.5-mysql-de.php';
+	$path = $zz_setting['lib'].'/adminer/adminer-mysql-de.php';
 	if (!file_exists($path)) {
 		wrap_error('Library Adminer does not exist', E_USER_ERROR);
 		exit;
