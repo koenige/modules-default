@@ -5,3 +5,4 @@
 2020-02-25-4	ALTER TABLE `_settings` DROP `login_id`
 2020-02-25-5	ALTER TABLE `_settings` ADD UNIQUE (`setting_key`), DROP INDEX `login_id`
 2020-02-25-6	DELETE FROM _relations WHERE master_table = "logins" AND detail_table = "_settings"
+2020-02-25-7	ALTER TABLE `webpages` ADD UNIQUE `identifier` (`identifier`)
