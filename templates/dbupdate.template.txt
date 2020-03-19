@@ -1,0 +1,28 @@
+# default module
+# Template for database update script
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div id="zzform" class="maintenance">
+
+<h2>%%% text Database Updates %%%</h2>
+
+<form action="" method="POST">
+<table class="data">
+<thead>
+<tr><th>%%% text Date %%%</th><th>%%% text Module %%%</th><th>%%% text Query %%%</th></tr>
+</thead>
+<tbody>
+%%% loop start %%%
+<tr class="%%% loopposition uneven un %%%even"><td>%%% item date %%%</td><td>%%% item module %%%</td><td>%%% item query %%%</td></tr>
+%%% loop end %%%
+</tbody>
+</table>
+</form>
+
+</div>
