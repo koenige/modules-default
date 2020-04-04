@@ -19,7 +19,19 @@
 </thead>
 <tbody>
 %%% loop start %%%
-<tr class="%%% loopposition uneven un %%%even"><td>%%% item date %%%</td><td>%%% item module %%%</td><td>%%% item query %%%</td></tr>
+<tr class="%%% loopposition uneven un %%%even%%% condition if exists %%% exists%%% condition elseif current %%% current_record%%% condition endif %%%">
+<td>%%% item date %%%</td>
+<td>%%% item module %%%</td>
+<td>%%% item query %%%
+%%% condition if current %%%
+<p>
+<input type="hidden" name="index" value="%%% item index %%%">
+<input type="submit" name="update" value="%%% text Update %%%">
+<input type="submit" name="ignore" value="%%% text Ignore %%%">
+</p>
+%%% condition endif %%%
+</td>
+</tr>
 %%% loop end %%%
 </tbody>
 </table>

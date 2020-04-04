@@ -5,7 +5,7 @@
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014-2018 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014-2018, 2020 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -1024,4 +1024,8 @@ msgstr ""
 msgid ""
 "Sorry, you cannot create a login for this username. Either the user does not "
 "exist on our website or there already exists a login for this username."
+msgstr ""
+
+#: modules/default/zzbrick_make/dbupdate.inc.php
+msgid "Ignore"
 msgstr ""

@@ -36,6 +36,25 @@ function mod_default_make_dbupdate($params) {
 	ksort($data);
 	$data = array_values($data);
 
+	foreach ($data as $index => $line) {
+		$data[$index]['index'] = $index;
+		$data[$index]['exists'] = mod_default_make_dbupdate_check($line);
+		if (!$data[$index]['exists']) {
+			$data[$index]['current'] = true;
+			$current = $index;
+			break;
+		}
+	}
+	
+	if ($_SERVER['REQUEST_METHOD'] === 'POST'
+		AND isset($current) AND array_key_exists($current, $data)
+		AND isset($_POST['index']) AND strval($current) === strval($_POST['index'])) {
+		if (array_key_exists('update', $_POST))
+			mod_default_make_dbupdate_update($data[$current]);
+		elseif (array_key_exists('ignore', $_POST))
+			mod_default_make_dbupdate_ignore($data[$current]);
+	}
+
 	$page['text'] = wrap_template('dbupdate', $data);
 	$page['title'] = wrap_text('Database Updates');
 	$page['breadcrumbs'][] = wrap_text('Database Updates');
@@ -63,11 +82,102 @@ function mod_default_make_dbupdate_readfile($filename, $module) {
 		$line[0] = explode('-', $line[0]);
 		$key = vsprintf('%04d-%02d-%02d-%06d', $line[0]);
 		$data[$key] = [
-			'query' => trim($line[1]),
+			'query' => rtrim(trim($line[1]), ';'),
 			'module' => $module,
 			'date' => vsprintf('%04d-%02d-%02d', $line[0]),
 			'key' => $key
 		];
 	}
 	return $data;
+}
+
+/**
+ * check if update already happened
+ *
+ * @param array $line
+ * @return bool
+ */
+function mod_default_make_dbupdate_check($line) {
+	global $zz_conf;
+	
+	// update already in log?
+	$success = mod_default_make_dbupdate_log($line, 'read');
+	if ($success) {
+		return true;
+	}
+
+	// update already in logging table?
+	$sql = 'SELECT log_id FROM %s WHERE query = "%s"';
+	$sql = sprintf($sql, $zz_conf['logging_table'], wrap_db_escape($line['query']));
+	$record = wrap_db_fetch($sql);
+	if ($record) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
+ * do update
+ *
+ * @param array $line
+ * @return void
+ */
+function mod_default_make_dbupdate_update($line) {
+	global $zz_setting;
+	global $zz_conf;
+	require_once $zz_conf['dir_inc'].'/database.inc.php';
+
+	$result = wrap_db_query($line['query']);
+	if ($result) {
+		zz_log_sql($line['query'], 'Maintenance robot 476');
+		mod_default_make_dbupdate_log($line, 'update');
+		wrap_http_status_header(303);
+		header('Location: '.$zz_setting['host_base'].$zz_setting['request_uri']);
+		exit;
+	}
+	wrap_error('Could not update database', E_USER_ERROR);
+}
+
+/**
+ * ignore update
+ *
+ * @param array $line
+ * @return void
+ */
+function mod_default_make_dbupdate_ignore($line) {
+	global $zz_setting;
+	mod_default_make_dbupdate_log($line, 'ignore');
+	wrap_http_status_header(303);
+	header('Location: '.$zz_setting['host_base'].$zz_setting['request_uri']);
+	exit;
+}
+
+/**
+ * read or write database update log
+ *
+ * @param array $line
+ * @param string $mode
+ * @return bool
+ */
+function mod_default_make_dbupdate_log($line, $mode) {
+	global $zz_setting;
+
+	$logfile = $zz_setting['log_dir'].'/dbupdate.log';
+	if (!file_exists($logfile)) touch($logfile);
+	switch ($mode) {
+	case 'read':
+		$logs = file($logfile);
+		foreach ($logs as $log) {
+			$log = explode(' ', $log);
+			if ($log[0] !== $line['key']) continue;
+			return true;
+		}
+		break;	
+	case 'ignore':
+	case 'update':
+		error_log(sprintf("%s %s %s %s\n", $line['key'], date('Y-m-d H:i:s'), $mode, $_SESSION['username']), 3, $logfile);		
+		return true;
+	}
+	return false;
 }
