@@ -112,6 +112,7 @@ function mod_default_make_dbupdate_check($line) {
 	$sql = sprintf($sql, $zz_conf['logging_table'], wrap_db_escape($line['query']));
 	$record = wrap_db_fetch($sql);
 	if ($record) {
+		mod_default_make_dbupdate_log($line, 'exists');
 		return true;
 	}
 
@@ -177,6 +178,7 @@ function mod_default_make_dbupdate_log($line, $mode) {
 		break;	
 	case 'ignore':
 	case 'update':
+	case 'exists':
 		error_log(sprintf("%s %s %s %s\n", $line['key'], date('Y-m-d H:i:s'), $mode, $_SESSION['username']), 3, $logfile);		
 		return true;
 	}
