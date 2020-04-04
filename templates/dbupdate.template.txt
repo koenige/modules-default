@@ -19,7 +19,7 @@
 </thead>
 <tbody>
 %%% loop start %%%
-<tr class="%%% loopposition uneven un %%%even%%% condition if exists %%% exists%%% condition elseif current %%% current_record%%% condition endif %%%">
+<tr %%% condition if current %%%id="current" %%% condition endif %%%class="%%% loopposition uneven un %%%even%%% condition if exists %%% exists%%% condition elseif current %%% current_record%%% condition endif %%%">
 <td>%%% item date %%%</td>
 <td>%%% item module %%%</td>
 <td>%%% item query %%%
