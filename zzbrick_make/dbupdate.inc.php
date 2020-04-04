@@ -56,6 +56,7 @@ function mod_default_make_dbupdate($params) {
 	}
 
 	$page['text'] = wrap_template('dbupdate', $data);
+	$page['text'] = str_replace('%%%', '%%&#8239;%', $page['text']);
 	$page['title'] = wrap_text('Database Updates');
 	$page['breadcrumbs'][] = wrap_text('Database Updates');
 	return $page;
