@@ -108,8 +108,8 @@ function mod_default_make_dbupdate_check($line) {
 	}
 
 	// update already in logging table?
-	$sql = 'SELECT log_id FROM %s WHERE query = "%s"';
-	$sql = sprintf($sql, $zz_conf['logging_table'], wrap_db_escape($line['query']));
+	$sql = 'SELECT log_id FROM %s WHERE query = "%s" AND last_update > "%s"';
+	$sql = sprintf($sql, $zz_conf['logging_table'], wrap_db_escape($line['query']), $line['date']);
 	$record = wrap_db_fetch($sql);
 	if ($record) {
 		mod_default_make_dbupdate_log($line, 'exists');
