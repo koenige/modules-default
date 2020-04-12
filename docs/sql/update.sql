@@ -9,6 +9,7 @@
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
+/* 2019-01-10-1 */	ALTER TABLE `_logging` ADD INDEX `last_update` (`last_update`);
 /* 2019-11-19-1 */	ALTER TABLE `categories` CHANGE `path` `path` varchar(100) COLLATE 'latin1_general_ci' NOT NULL AFTER `main_category_id`;
 /* 2020-02-25-1 */	ALTER TABLE `webpages` ADD INDEX `mother_page_id` (`mother_page_id`);
 /* 2020-02-25-2 */	ALTER TABLE `redirects` CHANGE `old_url` `old_url` varchar(127) COLLATE 'latin1_general_ci' NOT NULL AFTER `redirect_id`, CHANGE `new_url` `new_url` varchar(127) COLLATE 'latin1_general_ci' NOT NULL AFTER `old_url`;
@@ -415,4 +416,3 @@
 /* 2020-04-07-396 */	INSERT INTO _translations_varchar (translationfield_id, field_id, translation, language_id) SELECT (SELECT translationfield_id FROM _translationfields WHERE table_name = 'countries' AND field_name = 'country' AND field_type = "varchar"), country_id, 'Karibische Niederlande', 105 FROM countries WHERE country_code = 'BQ';
 /* 2020-04-07-397 */	INSERT INTO _translations_varchar (translationfield_id, field_id, translation, language_id) SELECT (SELECT translationfield_id FROM _translationfields WHERE table_name = 'countries' AND field_name = 'country' AND field_type = "varchar"), country_id, 'Saint Martin (Französischer Teil)', 105 FROM countries WHERE country_code = 'MF';
 /* 2020-04-07-398 */	INSERT INTO _translations_varchar (translationfield_id, field_id, translation, language_id) SELECT (SELECT translationfield_id FROM _translationfields WHERE table_name = 'countries' AND field_name = 'country' AND field_type = "varchar"), country_id, 'Sint Maarten (Holländischer Teil)', 105 FROM countries WHERE country_code = 'SX';
-/* 2020-04-10-1 */	ALTER TABLE `_logging` ADD INDEX `last_update` (`last_update`);
