@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2016-2019 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2016-2020 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -61,7 +61,6 @@ $zz['fields'][7]['explanation'] = 'Internal parameters. Change with care.';
 $zz['fields'][6]['field_name'] = 'sequence';
 $zz['fields'][6]['title_tab'] = 'Seq.';
 $zz['fields'][6]['type'] = 'number';
-$zz['fields'][6]['auto_value'] = 'increment';
 $zz['fields'][6]['class'] = 'hidden480';
 
 $zz['fields'][20]['title'] = 'Updated';
