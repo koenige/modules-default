@@ -34,11 +34,7 @@ $zz['fields'][2]['default'] = $zz_conf['db_name'];
 $zz['fields'][3]['title'] = 'Name of Master Table';
 $zz['fields'][3]['title_tab'] = 'Master Table';
 $zz['fields'][3]['field_name'] = 'master_table';
-if (!empty($_POST['master_db'])) {
-	$zz['fields'][3]['type'] = 'select';	
-	$zz['fields'][3]['sql'] = 'SHOW TABLES FROM `'.$_POST['master_db'].'`';
-} else
-	$zz['fields'][3]['type'] = 'text';	
+$zz['fields'][3]['type'] = 'text';	
 $zz['fields'][3]['list_append_next'] = true;
 $zz['fields'][3]['list_suffix'] = ' . ';
 $zz['fields'][3]['class'] = 'block480a';
@@ -48,13 +44,7 @@ $zz['fields'][3]['dependencies'] = [4];
 $zz['fields'][4]['title'] = 'Primary Key of Master Table';
 $zz['fields'][4]['title_tab'] = 'Primary Key';
 $zz['fields'][4]['field_name'] = 'master_field';
-if (!empty($_POST['master_db']) AND !empty($_POST['master_table'])) {
-	$zz['fields'][4]['type'] = 'select';	
-	$zz['fields'][4]['sql'] = 'SHOW COLUMNS FROM `'.$_POST['master_db'].'`.`'.$_POST['master_table'].'`';
-	$zz['fields'][4]['sql_index_only'] = true;
-} else {
-	$zz['fields'][4]['type'] = 'text';
-}
+$zz['fields'][4]['type'] = 'text';
 $zz['fields'][4]['separator'] = true;
 $zz['fields'][4]['sql_dependency'][3] = 'SHOW COLUMNS FROM %s WHERE `Key` = "PRI";';
 
@@ -68,12 +58,7 @@ $zz['fields'][5]['default'] = $zz_conf['db_name'];
 $zz['fields'][6]['title'] = 'Name of Detail Table';
 $zz['fields'][6]['title_tab'] = 'Detail Table';
 $zz['fields'][6]['field_name'] = 'detail_table';
-if (!empty($_POST['detail_db'])) {
-	$zz['fields'][6]['type'] = 'select';	
-	$zz['fields'][6]['sql'] = 'SHOW TABLES FROM `'.$_POST['detail_db'].'`';
-} else {
-	$zz['fields'][6]['type'] = 'text';	
-}
+$zz['fields'][6]['type'] = 'text';	
 $zz['fields'][6]['list_append_next'] = true;
 $zz['fields'][6]['list_suffix'] = ' . ';
 $zz['fields'][6]['class'] = 'block480a';
@@ -83,25 +68,13 @@ $zz['fields'][6]['dependencies'] = [8];
 $zz['fields'][8]['title'] = 'Primary Key of Detail Table';
 $zz['fields'][8]['title_tab'] = 'Detail Primary Key';
 $zz['fields'][8]['field_name'] = 'detail_id_field';	
-if (!empty($_POST['detail_db']) AND !empty($_POST['detail_table'])){
-	$zz['fields'][8]['type'] = 'select';	
-	$zz['fields'][8]['sql'] = 'SHOW COLUMNS FROM `'.$_POST['detail_db'].'`.`'.$_POST['detail_table'].'`';
-	$zz['fields'][8]['sql_index_only'] = true;
-} else {
-	$zz['fields'][8]['type'] = 'text';
-}
+$zz['fields'][8]['type'] = 'text';
 $zz['fields'][8]['sql_dependency'][6] = 'SHOW COLUMNS FROM %s WHERE `Key` = "PRI";';
 
 $zz['fields'][7]['title'] = 'Foreign Key of Detail Table';
 $zz['fields'][7]['title_tab'] = 'Foreign Key';
 $zz['fields'][7]['field_name'] = 'detail_field';
-if (!empty($_POST['detail_db']) AND !empty($_POST['detail_table'])){
-	$zz['fields'][7]['type'] = 'select';	
-	$zz['fields'][7]['sql'] = 'SHOW COLUMNS FROM `'.$_POST['detail_db'].'`.`'.$_POST['detail_table'].'`';
-	$zz['fields'][7]['sql_index_only'] = true;
-} else {
-	$zz['fields'][7]['type'] = 'text';
-}
+$zz['fields'][7]['type'] = 'text';
 $zz['fields'][7]['class'] = 'block480';
 
 $zz['fields'][10]['field_name'] = 'delete';
