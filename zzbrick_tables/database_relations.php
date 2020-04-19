@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2010, 2014, 2018-2019 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2010, 2014, 2018-2020 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -42,6 +42,8 @@ if (!empty($_POST['master_db'])) {
 $zz['fields'][3]['list_append_next'] = true;
 $zz['fields'][3]['list_suffix'] = ' . ';
 $zz['fields'][3]['class'] = 'block480a';
+$zz['fields'][3]['sql'] = 'SHOW TABLES FROM '.$zz_conf['db_name'];
+$zz['fields'][3]['dependencies'] = [4];
 
 $zz['fields'][4]['title'] = 'Primary Key of Master Table';
 $zz['fields'][4]['title_tab'] = 'Primary Key';
@@ -54,6 +56,7 @@ if (!empty($_POST['master_db']) AND !empty($_POST['master_table'])) {
 	$zz['fields'][4]['type'] = 'text';
 }
 $zz['fields'][4]['separator'] = true;
+$zz['fields'][4]['sql_dependency'][3] = 'SHOW COLUMNS FROM %s WHERE `Key` = "PRI";';
 
 $zz['fields'][5]['title'] = 'Database of Detail Table';
 $zz['fields'][5]['field_name'] = 'detail_db';
@@ -74,6 +77,8 @@ if (!empty($_POST['detail_db'])) {
 $zz['fields'][6]['list_append_next'] = true;
 $zz['fields'][6]['list_suffix'] = ' . ';
 $zz['fields'][6]['class'] = 'block480a';
+$zz['fields'][6]['sql'] = 'SHOW TABLES FROM '.$zz_conf['db_name'];
+$zz['fields'][6]['dependencies'] = [8];
 
 $zz['fields'][8]['title'] = 'Primary Key of Detail Table';
 $zz['fields'][8]['title_tab'] = 'Detail Primary Key';
@@ -85,6 +90,7 @@ if (!empty($_POST['detail_db']) AND !empty($_POST['detail_table'])){
 } else {
 	$zz['fields'][8]['type'] = 'text';
 }
+$zz['fields'][8]['sql_dependency'][6] = 'SHOW COLUMNS FROM %s WHERE `Key` = "PRI";';
 
 $zz['fields'][7]['title'] = 'Foreign Key of Detail Table';
 $zz['fields'][7]['title_tab'] = 'Foreign Key';
