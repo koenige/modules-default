@@ -9,7 +9,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2013, 2018-2019 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2013, 2018-2020 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -71,7 +71,7 @@ $zz_sub['fields'][5]['sql'] = sprintf('SELECT language_id, language_%s, variatio
 $zz_sub['fields'][5]['prefix'] = wrap_text('Translation to').' ';
 $zz_sub['fields'][5]['suffix'] = ': ';
 if (!empty($zz_setting['default_translation_language']))
-	$zz_sub['fields'][5]['default'] = $zz_setting['language_ids'][$zz_setting['default_translation_language']];
+	$zz_sub['fields'][5]['default'] = wrap_language_id($zz_setting['default_translation_language']);
 $zz_sub['fields'][5]['def_val_ignore'] = true;
 $zz_sub['fields'][5]['show_title'] = false;
 $zz_sub['fields'][5]['display_field'] = 'lang';
