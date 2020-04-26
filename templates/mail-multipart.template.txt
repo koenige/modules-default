@@ -29,7 +29,7 @@ Content-Transfer-Encoding: quoted-printable
 --0D9D3838231B7DFC99A667042CAAC05C
 Content-Type: %%% item mime_content_type %%%/%%% item mime_subtype %%% 
 Content-Transfer-Encoding: base64
-Content-Disposition: %%% item disposition %%%
+Content-Disposition: %%% item disposition %%% 
 Content-Location: %%% setting host_base %%%%%% setting files_path %%%/%%% item path %%%?v=%%% item version %%% 
 Content-ID: <%%% item cid %%%>
 
