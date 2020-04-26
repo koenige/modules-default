@@ -1,0 +1,39 @@
+# default module
+# Template for multipart mail
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+Content-Type: multipart/alternative; boundary="2917A1235575030E7D2B74C1056F93F4"
+
+--2917A1235575030E7D2B74C1056F93F4
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+%%% item text quoted_printable_encode %%%
+
+--2917A1235575030E7D2B74C1056F93F4
+Content-Type: multipart/related; boundary="0D9D3838231B7DFC99A667042CAAC05C"
+
+--0D9D3838231B7DFC99A667042CAAC05C
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+%%% item html quoted_printable_encode %%%
+
+%%% loop files %%%
+--0D9D3838231B7DFC99A667042CAAC05C
+Content-Type: %%% item mime_content_type %%%/%%% item mime_subtype %%% 
+Content-Transfer-Encoding: base64
+Content-Disposition: %%% item disposition %%%
+Content-Location: %%% setting host_base %%%%%% setting files_path %%%/%%% item path %%%?v=%%% item version %%% 
+Content-ID: <%%% item cid %%%>
+
+%%% item file_base64_encoded %%%
+%%% loop end %%%
+--0D9D3838231B7DFC99A667042CAAC05C--
+--2917A1235575030E7D2B74C1056F93F4--
