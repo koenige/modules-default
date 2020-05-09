@@ -1095,8 +1095,8 @@ function zz_maintenance_logs($page) {
 			$error['error'] = zz_maintenance_splits($error['error'], $no_html);
 		}
 		// htmlify links
-		if (stristr($error['error'], 'http:/&#8203;/&#8203;') OR stristr($error['error'], 'https:/&#8203;/&#8203;')) {
-			$error['error'] = preg_replace_callback('~(\S+):/&#8203;/&#8203;(\S+)~', 'zz_maintenance_make_url', $error['error']);
+		if (stristr($error['error'], 'http:/<wbr>/<wbr>') OR stristr($error['error'], 'https:/<wbr>/<wbr>')) {
+			$error['error'] = preg_replace_callback('~(\S+):/<wbr>/<wbr>(\S+)~', 'zz_maintenance_make_url', $error['error']);
 		}
 		$error['error'] = str_replace(',', ', ', $error['error']);
 		$error['error'] = zz_mark_search_string($error['error']);
@@ -1279,7 +1279,7 @@ function mod_default_maintenance_logs_filter($filters) {
 }
 
 /**
- * get rid of long lines with zero width space (&#8203;) - &shy; does
+ * get rid of long lines with zero width space (<wbr>) - &shy; does
  * not work at least in firefox 3.6 with slashes
  *
  * @param string $string
@@ -1287,21 +1287,21 @@ function mod_default_maintenance_logs_filter($filters) {
  * @return string
  */
 function zz_maintenance_splits($string, $no_html) {
-	$string = str_replace(';', ';&#8203;', $string);
-	$string = str_replace('&', '&#8203;&amp;', $string);
-	$string = str_replace('&amp;#8203;', '&#8203;', $string);
-	$string = str_replace('/', '/&#8203;', $string);
-	$string = str_replace('=', '=&#8203;', $string);
-	$string = str_replace('%', '&#8203;%', $string);
-	$string = str_replace('-at-', '&#8203;-at-', $string);
 	if ($no_html) {
 		$string = str_replace('<', '&lt;', $string);
 	}
+	$string = str_replace(';', ';<wbr>', $string);
+	$string = str_replace('&', '<wbr>&amp;', $string);
+	$string = str_replace('&amp;#8203;', '<wbr>', $string);
+	$string = str_replace('/', '/<wbr>', $string);
+	$string = str_replace('=', '=<wbr>', $string);
+	$string = str_replace('%', '<wbr>%', $string);
+	$string = str_replace('-at-', '<wbr>-at-', $string);
 	return $string;
 }
 
 function zz_maintenance_make_url($array) {
-	$href = str_replace('&#8203;', '', $array[0]);
+	$href = str_replace('<wbr>', '', $array[0]);
 	$linktext = $array[0];
 	$link = '<a href="'.$href.'">'.$linktext.'</a>'; 
 	return $link;
