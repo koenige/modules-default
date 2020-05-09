@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2009, 2016, 2018-2019 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2009, 2016, 2018-2020 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -64,8 +64,19 @@ $zz['fields'][7]['show_hierarchy_same_table'] = true;
 $zz['fields'][7]['display_field'] = 'mother_title';
 $zz['fields'][7]['exclude_from_search'] = true;
 $zz['fields'][7]['hide_in_list'] = true;
+$zz['fields'][7]['character_set'] = 'utf8';
 
-$zz['fields'][8] = []; // put media subtable here if needed
+if (wrap_get_setting('default_webpages_media')) {
+	$zz['fields'][8] = zzform_include_table('webpages-media');
+	$zz['fields'][8]['title'] = 'Media';
+	$zz['fields'][8]['type'] = 'subtable';
+	$zz['fields'][8]['min_records'] = 1;
+	$zz['fields'][8]['max_records'] = 10;
+	$zz['fields'][8]['form_display'] = 'horizontal';
+	$zz['fields'][8]['sql'] .= ' ORDER BY /*_PREFIX_*/webpages.title DESC, sequence';
+	$zz['fields'][8]['fields'][2]['type'] = 'foreign_key';
+	$zz['fields'][8]['class'] = 'hidden480';
+}
 
 $zz['fields'][9]['title_tab'] = 'WWW?';
 $zz['fields'][9]['title'] = 'Published?';
