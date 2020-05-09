@@ -278,7 +278,7 @@ function zz_maintenance_integrity($page) {
 			LEFT JOIN `%s`.`%s` master_table
 				ON detail_table.`%s` = master_table.`%s`
 			WHERE ISNULL(master_table.`%s`)
-			AND !ISNULL(detail_table.`%s`)
+			AND NOT ISNULL(detail_table.`%s`)
 		';
 		$sql = sprintf($sql,
 			$relation['detail_id_field'], $relation['detail_field'],
