@@ -20,7 +20,7 @@ $zz_sub['type'] = 'subtable';
 $zz_sub['hide_in_list'] = true;
 $zz_sub['min_records'] = 1;
 $zz_sub['max_records_sql'] = sprintf(
-	'SELECT COUNT(language_id) FROM /*_PREFIX_*/languages 
+	'SELECT COUNT(*) FROM /*_PREFIX_*/languages 
 	WHERE (iso_639_1 <> "%s" OR NOT ISNULL(variation))
 	AND website = "yes"', $zz_setting['default_source_language']
 );

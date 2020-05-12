@@ -1351,7 +1351,7 @@ function mod_default_maintenance_read_logging($start) {
 	global $zz_conf;
 	$limit = 0;
 
-	$sql = 'SELECT COUNT(log_id) FROM %s WHERE log_id >= %d ORDER BY log_id';
+	$sql = 'SELECT COUNT(*) FROM %s WHERE log_id >= %d ORDER BY log_id';
 	$sql = sprintf($sql, $zz_conf['logging_table'], $start);
 	$logcount = wrap_db_fetch($sql, '', 'single value');
 	if ($logcount > 10000) {
