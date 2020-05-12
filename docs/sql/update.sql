@@ -9,7 +9,6 @@
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
-/* 2019-01-10-1 */	ALTER TABLE `_logging` ADD INDEX `last_update` (`last_update`);
 /* 2019-11-19-1 */	ALTER TABLE `categories` CHANGE `path` `path` varchar(100) COLLATE 'latin1_general_ci' NOT NULL AFTER `main_category_id`;
 /* 2020-02-25-1 */	ALTER TABLE `webpages` ADD INDEX `mother_page_id` (`mother_page_id`);
 /* 2020-02-25-2 */	ALTER TABLE `redirects` CHANGE `old_url` `old_url` varchar(127) COLLATE 'latin1_general_ci' NOT NULL AFTER `redirect_id`, CHANGE `new_url` `new_url` varchar(127) COLLATE 'latin1_general_ci' NOT NULL AFTER `old_url`;
