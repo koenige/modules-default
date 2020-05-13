@@ -52,8 +52,7 @@ function adminer_object() {
         
         function name() {
             // custom name in title and heading
-		    global $zz_conf;
-            return $zz_conf['project'];
+            return wrap_get_setting('project');
         }
         
         function credentials() {
