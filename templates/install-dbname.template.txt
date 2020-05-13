@@ -1,0 +1,24 @@
+# default module
+# Template for installation: local database name
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<h1>Installation of Zugzwang Project CMS</h1>
+
+<h2>Step 1 – Local database name</h2>
+<p>Please enter the name for the database on the local server. It does not need
+to exist yet.</p>
+<form method="POST" action="">
+%%% condition if error %%%
+<p class="error">%%% item error %%%</p>
+%%% condition endif %%%
+<p><label>Local database name:
+<input type="text" name="db_name_local">
+</label></p>
+<input type="submit" value="Submit">
+</form>

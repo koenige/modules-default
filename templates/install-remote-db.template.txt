@@ -1,0 +1,32 @@
+# default module
+# Template for installation: remote database access data
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<h1>Installation of Zugzwang Project CMS</h1>
+
+<h2>Step 3 – Remote database connection data</h2>
+<p>Finally, we need the database connection data on the server.</p>
+<form method="POST" action="">
+%%% condition if error %%%
+<p class="error">%%% item error %%%</p>
+%%% condition endif %%%
+<p><label>Database name:
+<input type="text" name="db_name">
+</label></p>
+<p><label>Database user:
+<input type="text" name="db_user">
+</label></p>
+<p><label>Database password:
+<input type="text" name="db_pwd">
+</label></p>
+<p><label>Database host:
+<input type="text" name="db_host" value="localhost">
+</label></p>
+<input type="submit" value="Submit">
+</form>
