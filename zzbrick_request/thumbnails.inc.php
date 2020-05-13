@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2014-2016, 2019 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2014-2016, 2019-2020 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -73,9 +73,9 @@ function mod_default_thumbnails($params) {
 	// get all records, create thumbnails
 	$records = wrap_db_fetch($zz['sql'], $id_field_name);
 	foreach ($records as $line) {
-		if (!empty($line['filetype_id']) AND !empty($zz_setting['filetype_ids']['folder'])) {
+		if (!empty($line['filetype_id']) AND !empty(wrap_filetype_id('folder'))) {
 			// == because type of $line['filetype_id'] is string
-			if ($line['filetype_id'] == $zz_setting['filetype_ids']['folder']) continue;
+			if ($line['filetype_id'] == wrap_filetype_id('folder')) continue;
 		}
 		$title = $line[$id_field_name];
 		$source = zz_thumbnails_makelink($source_path, $line);
