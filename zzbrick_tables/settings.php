@@ -43,3 +43,5 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/_settings.*
 	FROM /*_PREFIX_*/_settings
 ';
 $zz['sqlorder'] = ' ORDER BY setting_key, setting_value';
+
+$zz_conf['copy'] = true;
