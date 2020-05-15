@@ -25,11 +25,15 @@ foreach ($zz_setting['modules'] as $module) {
 
 // key
 $zz['fields'][3]['cfg'] = $cfg;
-$zz['fields'][3]['dependencies'] = [6]; // description
-$zz['fields'][3]['dependencies_function'] = 'zz_cfg_description';
+$zz['fields'][3]['dependencies'] = [6, 4]; // description
+$zz['fields'][3]['dependencies_function'] = 'zz_cfg_read';
 
 
-function zz_cfg_description($cfg) {
-	if (!array_key_exists('description', $cfg)) return '';
-	return [$cfg['description']];
+function zz_cfg_read($cfg) {
+	if (!array_key_exists('description', $cfg)) $cfg['description'] = '';
+	if (!array_key_exists('default', $cfg)) $cfg['default'] = '';
+	return [
+		$cfg['description'],
+		$cfg['default']
+	];
 }
