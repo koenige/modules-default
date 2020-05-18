@@ -58,3 +58,4 @@ $zz['sql'] = 'SELECT *
 $zz['sqlorder'] = ' ORDER BY old_url, new_url';
 
 $zz_conf['copy'] = true;
+$zz_conf['add'] = true; // @todo remove this later, since defined globally, may be disabled
