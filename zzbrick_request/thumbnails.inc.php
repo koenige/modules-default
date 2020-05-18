@@ -40,7 +40,7 @@ function mod_default_thumbnails($params) {
 	require_once $zz_conf['dir'].'/zzform.php';
 	$zz_conf['int_modules'] = ['debug', 'compatibility', 'validate', 'upload'];
 	zz_initialize();
-	if (!empty($zz_conf['graphics_library']))
+	if ($zz_conf['graphics_library'])
 		include_once $zz_conf['dir_inc'].'/image-'.$zz_conf['graphics_library'].'.inc.php';
 	
 	if (strstr($params[0], '..')) return false;
