@@ -44,4 +44,32 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/_settings.*
 ';
 $zz['sqlorder'] = ' ORDER BY setting_key, setting_value';
 
+if (!empty($zz_setting['websites'])) {
+	$zz['fields'][5]['field_name'] = 'website_id';
+	$zz['fields'][5]['type'] = 'write_once';
+	$zz['fields'][5]['type'] = 'select';
+	$zz['fields'][5]['type_detail'] = 'select';
+	$zz['fields'][5]['sql'] = 'SELECT website_id, domain
+		FROM websites
+		ORDER BY domain';
+	$zz['fields'][5]['default'] = 0;
+	$zz['fields'][5]['null'] = true;
+	$zz['fields'][5]['display'] = 'domain';
+	$zz['fields'][5]['hide_in_list'] = true;
+
+	$zz['sql'] = 'SELECT /*_PREFIX_*/_settings.*
+			, domain
+		FROM /*_PREFIX_*/_settings
+		LEFT JOIN /*_PREFIX_*/websites USING (website_id)
+	';
+	
+	$zz['filter'][1]['title'] = 'Website';
+	$zz['filter'][1]['type'] = 'where';
+	$zz['filter'][1]['where'] = 'website_id';
+	$zz['filter'][1]['field_name'] = 'website_id';
+	$zz['filter'][1]['sql'] = 'SELECT website_id, domain
+		FROM /*_PREFIX_*/websites
+		ORDER BY domain';
+}
+
 $zz_conf['copy'] = true;
