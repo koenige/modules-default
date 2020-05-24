@@ -52,10 +52,15 @@ if (!empty($zz_setting['websites'])) {
 	$zz['fields'][5]['sql'] = 'SELECT website_id, domain
 		FROM websites
 		ORDER BY domain';
-	$zz['fields'][5]['default'] = 0;
-	$zz['fields'][5]['null'] = true;
-	$zz['fields'][5]['display'] = 'domain';
-	$zz['fields'][5]['hide_in_list'] = true;
+	$zz['fields'][5]['default'] = 1;
+	$zz['fields'][5]['display_field'] = 'domain';
+	if (!empty($_GET['filter']['website'])) {
+		$zz['fields'][5]['hide_in_list'] = true;
+	} else {
+		$zz['fields'][4]['list_append_next'];
+		$zz['fields'][5]['list_prefix'] = '<br><em>';
+		$zz['fields'][5]['list_suffix'] = '</em>';
+	}
 
 	$zz['sql'] = 'SELECT /*_PREFIX_*/_settings.*
 			, domain
@@ -64,6 +69,7 @@ if (!empty($zz_setting['websites'])) {
 	';
 	
 	$zz['filter'][1]['title'] = 'Website';
+	$zz['filter'][1]['identifier'] = 'website';
 	$zz['filter'][1]['type'] = 'where';
 	$zz['filter'][1]['where'] = 'website_id';
 	$zz['filter'][1]['field_name'] = 'website_id';
