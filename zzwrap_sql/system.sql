@@ -65,7 +65,7 @@ WHERE active = 'yes' AND username = _latin1'%s';
 SELECT path, category_id FROM categories ORDER BY path;
 
 -- ids-aliases_categories --
-SELECT path, category_id, parameters FROM categories WHERE parameters LIKE '%alias=%';
+SELECT category_id, parameters FROM categories WHERE parameters LIKE '%alias=%';
 
 -- ids_languages --
 SELECT iso_639_1, language_id FROM languages WHERE website = 'yes' ORDER BY iso_639_1;
