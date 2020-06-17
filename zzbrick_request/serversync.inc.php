@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018 Gustaf Mossakowski
+ * @copyright Copyright © 2018, 2020 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -38,6 +38,7 @@ function mod_default_serversync($params) {
 	} elseif (!empty($_GET['get_log_from_id'])) {
 		list($log, $limit) = mod_default_maintenance_read_logging($_GET['get_log_from_id']);
 		$page['text'] = json_encode($log, true);
+		$page['query_strings'] = ['get_log_from_id'];
 		$page['content_type'] = 'json';
 		if ($limit) {
 			$page['headers']['filename'] = sprintf('logging_%d-%d.json', $_GET['get_log_from_id'], $_GET['get_log_from_id'] + $limit - 1);
