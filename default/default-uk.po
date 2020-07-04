@@ -5,48 +5,48 @@
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014, 2018, 2020 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014-2018, 2020 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
 msgstr ""
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Project-Id-Version: Zugzwang Project -- default module\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.12\n"
+"Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
+"Language: uk\n"
 
 #: modules/default/templates/login.template.txt
 msgid "You have been logged out."
-msgstr "Zostałeś wylogowany."
+msgstr ""
 
 #: modules/default/templates/login.template.txt
 msgid "Please allow us to set a cookie!"
-msgstr "Proszę pozwolić nam do pliku cookie!"
+msgstr ""
 
 #: modules/default/templates/login.template.txt
 msgid "Sign in"
-msgstr "Zaloguj się"
+msgstr ""
 
 #: modules/default/templates/login.template.txt
 #: modules/default/zzbrick_tables/settings.php
 msgid "Login"
-msgstr "Zaloguj"
+msgstr ""
 
 #: modules/default/templates/login.template.txt
 msgid "Username:"
-msgstr "Nazwa użytkownika:"
+msgstr ""
 
 #: modules/default/templates/login.template.txt
 msgid "Password:"
-msgstr "Hasło:"
+msgstr ""
 
 #: modules/default/templates/login.template.txt
 msgid ""
@@ -59,187 +59,174 @@ msgid ""
 "Please allow cookies after sending your login credentials. For security "
 "reasons, after %d minutes of inactivity you will be logged out automatically."
 msgstr ""
-"Proszę pozwolić ciasteczka po wysłaniu swoich poświadczeń logowania. Ze "
-"względów bezpieczeństwa po %d min bezczynności, które Ci będą rejestrowane "
-"się automatycznie."
 
 #: modules/default/templates/login.template.txt
 msgid "Forgot your password?"
-msgstr "Czy zapomniałeś/-aś hasła?"
+msgstr ""
 
 #: modules/default/templates/login-password.template.txt
 msgid "Send me a password"
-msgstr "Prześlij nowe Hasło"
+msgstr ""
 
 #: modules/default/templates/login-password.template.txt
 msgid "Request a new password"
-msgstr "Poproś o nowe hasło"
+msgstr ""
 
 #: modules/default/templates/login-password.template.txt
 msgid "Please enter your e-mail address."
-msgstr "Podaj swój adres e-mail."
+msgstr ""
 
 #: modules/default/templates/login-password.template.txt
 msgid "Please enter a valid e-mail address."
-msgstr "Proszę wpisać prawidłowy adres e-mail"
+msgstr ""
 
 #: modules/default/templates/login-password.template.txt
 msgid ""
 "If you have an existing login, we have sent you an e-mail with a login link."
 msgstr ""
-"Jeśli masz istniejącego logowania, wysłaliśmy ci maila z linkiem do "
-"logowania."
 
 #: modules/default/templates/login-password.template.txt
 msgid "Please check your mail."
-msgstr "Proszę sprawdzić twój poczta."
+msgstr ""
 
 #: modules/default/templates/login-password.template.txt
 msgid "The link is valid for %s minutes."
-msgstr "Link jest ważny dla %s min."
+msgstr ""
 
 #: modules/default/templates/login-password.template.txt
 msgid "Back to login"
-msgstr "Powrót do strony logowania"
+msgstr ""
 
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
 msgid "Username"
-msgstr "Nazwa użytkowika"
+msgstr ""
 
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
 msgid "Password"
-msgstr "Hasło"
+msgstr ""
 
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
 msgid "Change Password"
-msgstr "Zmiana hasła"
+msgstr ""
 
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
 msgid "Change My Password"
-msgstr "Zmiana mojego hasła"
+msgstr ""
 
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
 msgid "Hints for secure passwords"
-msgstr "Zasady bezpiecznego hasła"
+msgstr ""
 
 # Record form: Change password
 #: modules/default/zzbrick_forms/my-password.php
 msgid "password-rules"
 msgstr ""
-"Hasło musi składać się z min. 8 znaków i zawierać duże i małe litery, cyfry "
-"oraz znaki specjalne.\n"
-"\n"
-"Przykłady bezpiecznych haseł:\n"
-"\n"
-"* !1Pw=ig! (Zasada: !Hasło powinno być znane tylko Tobie!)\n"
-"* 1sPh&uuml;o&auml;o&Ouml;  (Zasada: bezpieczne hasło powinno zawierać "
-"&uuml; oder &auml; oder &ouml;)"
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
-msgstr "Konserwacja"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Maintenance scripts"
-msgstr "Utrzymanie skryptów"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Type"
-msgstr "Typ"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Action"
-msgstr "Akcje"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "GET should be empty, please test that:"
-msgstr "GET powinny być puste, proszę sprawdzić to:"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Setting"
-msgstr "Ustawienia"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 #: modules/default/zzbrick_tables/settings.php
 msgid "Value"
-msgstr "Wartość"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Show PHP info on server"
-msgstr "Pokaż informacje PHP na serwerze"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Check relational integrity"
-msgstr "Sprawdź integralność relacyjnej"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Relational Integrity"
-msgstr "Relacyjna integralność"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Field %s contains only valid values."
-msgstr "Polu %s zawiera tylko prawidłowe wartości."
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Field %s contains invalid values:"
-msgstr "Polu %s zawiera nieprawidłowe wartości:"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Nothing to check."
-msgstr "Nic nie do sprawdzenia."
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php
 msgid "Filetree"
-msgstr "Drzewo plików"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "SQL query"
-msgstr "Kwerenda SQL"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "Result"
-msgstr "Wynik"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "No changes were done to database."
-msgstr "Nie dokonano żadnych zmian."
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "%s was successful"
-msgstr "%s powiodło"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "Insert"
-msgstr "Wstaw"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "Update"
-msgstr "Aktualizuj"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "Delete"
-msgstr "Usuń"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "%s row(s) affected"
-msgstr "wiersze %s wpływ"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "Sorry, %s is not yet supported"
-msgstr "Przepraszamy, %s nie jest jeszcze obsługiwany"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#sql-queries
 msgid "Custom SQL query"
-msgstr "Niestandardowe SQL kwerendy"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Relation and Translation Tables"
-msgstr "Tabele relacja i translacji"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "No table for database relations is defined"
@@ -251,27 +238,27 @@ msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Current database"
-msgstr "Bieżąca baza danych"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "New database"
-msgstr "Nowa baza danych"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Keep database"
-msgstr "Utrzymać bazy danych"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Change database"
-msgstr "Zmiana bazy danych"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "(Database is not on server, you have to select a new database.)"
-msgstr "(Baza danych nie jest na serwerze, musisz wybrać nową bazę danych)."
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgid "Translation"
-msgstr "Tłumaczenie"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgctxt "default"
@@ -281,7 +268,7 @@ msgstr ""
 #: modules/default/zzbrick_request/maintenance.inc.php#database-tables
 msgctxt "default"
 msgid "Detail"
-msgstr "Szczegółowo"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Temp and Backup Files"
@@ -289,11 +276,11 @@ msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Backup folder"
-msgstr "Folder kopii zapasowej"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Backup of uploaded files is not active."
-msgstr "Tworzenie kopii zapasowych plików wgrywanych nie jest aktywne."
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Current %s dir is: %s"
@@ -301,196 +288,196 @@ msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "– but this directory does not exist."
-msgstr "- ale ten katalog nie istnieje."
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Filename"
-msgstr "Nazwa pliku"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Filetype"
-msgstr "Format pliku"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Size"
-msgstr "Rozmiar"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Timestamp"
-msgstr "Znacznik czasu"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Folder"
-msgstr "Folder"
+msgstr ""
 
 #: modules/default/zzbrick_request/sso.inc.php
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "unknown"
-msgstr "Nieznane"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "All Files"
-msgstr "Wszystkie Pliki"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Folder is empty"
-msgstr "Ten folder jest pusty"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Delete all lines"
-msgstr "Usuń wszystkie linie"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Delete all files"
-msgstr "Usunąć"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#files
 msgid "Delete selected files"
-msgstr "Usunąć wybrane pliki?"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Error handling"
-msgstr "Obsługa błędów"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Errors will be shown on webpage"
-msgstr "Błędy pojawi się na stronie internetowej"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Errors will be sent via mail"
-msgstr "Błędy będą wysyłane za pośrednictwem poczty"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Errors won’t be shown"
-msgstr "Błędów nie będzie się"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Send mail for these error levels"
-msgstr "Wyślij mail do tych poziomów błąd"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Send mail (From:)"
-msgstr "Wysyłanie poczty (od:)"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "not set"
-msgstr "Nie ustawiono"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Send mail (To:)"
-msgstr "Wyślij mail (do:)"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Logging"
-msgstr "Rejestracja"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Errors will be logged"
-msgstr "Błędy będą rejestrowane"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Errors will not be logged"
-msgstr "Błędy nie będą rejestrowane"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Logfile for %s"
-msgstr "LogFile dla %s"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Maximum length of single error log entry"
-msgstr "Maksymalna długość pojedynczego błędu wpis dziennika"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "Log POST variables when errors occur"
-msgstr "Rejestrować zmienne POST, jeśli wystąpią błędy"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "POST variables will be logged"
-msgstr "Zmienne POST będzie zapisany w dzienniku okrętowym"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "POST variables will not be logged"
-msgstr "Zmienne POST nie będą rejestrowane"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-handling
 msgid "disabled"
-msgstr "zablokowana"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Error Logging"
-msgstr "Błąd rejestrowania"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Logs"
-msgstr "Logi"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "No logfile specified"
-msgstr "Nie określono cięcia"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "This is not one of the used logfiles: %s"
-msgstr "To nie jest jednym z używanych logfiles: %s"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Logfile does not exist: %s"
-msgstr "LogFile nie istnieje: %s"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Last Date"
-msgstr "Data ostatniej"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Level"
-msgstr "Poziom"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Message"
-msgstr "Treść"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "User"
-msgstr "Użytkownik"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Frequency"
-msgstr "Częstotliwość"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "No lines"
-msgstr "Brak linii"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Delete selected lines"
-msgstr "Usunąć wybrane wiersze"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "File %s is not writable."
-msgstr "Plik %s nie jest zapisywalny."
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Cannot open %s for writing."
-msgstr "Nie można otworzyć %s do pisania."
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "%s lines deleted."
-msgstr "%s linie usunięte."
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Please choose one of the filters."
-msgstr "Proszę wybrać jeden z filtrów."
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Group"
-msgstr "Grupa"
+msgstr ""
 
 #: modules/default/zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Group entries"
-msgstr "Grupa wpisy"
+msgstr ""
 
 #: modules/default/templates/maintenance.template.txt
 msgid "Download"
@@ -610,7 +597,7 @@ msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid "Thumbnail creation"
-msgstr "Tworzenie miniatur"
+msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid ""
@@ -618,163 +605,159 @@ msgid ""
 "upload. Or you can create completely new thumbnails if you changed the pixel "
 "size."
 msgstr ""
-"Tutaj można utworzyć albo brak miniatury, jeśli nie zostały one stworzone na "
-"upload. Lub tworzyć zupełnie nowe miniatury jeśli zmienisz rozmiar piksela."
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid "Sorry, but the table script %s could not be found."
-msgstr "Przepraszam, ale skrypt tabela %s nie został znaleziony."
+msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid "The original file does not exist."
-msgstr "Plik nie istnieje."
+msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid "The function %s does not exist."
-msgstr "Funkcja %s nie istnieje."
+msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid "Thumbnail for %s x %s x px was created."
-msgstr "Miniatury dla %s x %s x px został stworzony."
+msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid "Thumbnail for %s x %s x px could not be created."
-msgstr "Miniatury dla %s x %s x px nie może być utworzony."
+msgstr ""
 
 #: modules/default/zzbrick_request/thumbnails.inc.php
 msgid "No missing thumbnails were found."
-msgstr "Nie brakuje miniatury zostały znalezione."
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Database Table Relations"
-msgstr "Powiązania tabel"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Master Table"
-msgstr "Tabela danych podstawowych"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Detail Table"
-msgstr "Szczegóły tabela"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Foreign Key"
-msgstr "Klucz obcy"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Database of Master Table"
-msgstr "Bank danych tabeli głównej"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Name of Master Table"
-msgstr "Nazwa tabeli głównej"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Primary Key of Master Table"
-msgstr "Klucz główny tabeli głównej"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Database of Detail Table"
-msgstr "Bazy danych tabela szczegóły"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Name of Detail Table"
-msgstr "Nazwa tabela szczegóły"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Primary Key of Detail Table"
-msgstr "Klucz główny tabela szczegóły"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "Foreign Key of Detail Table"
-msgstr "Klucz obcy tabela szczegóły"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_relations.php
 msgid "If main record will be deleted, what should happen with detail record?"
 msgstr ""
-"Jeśli głównym rekordem zostaną usunięte, co powinno się zdarzyć z rekord "
-"szczegółowy?"
 
 #: modules/default/zzbrick_tables/database_logging.php
 msgid "Query"
-msgstr "Zapytań"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_logging.php
 msgid "Record"
-msgstr "Zapis"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_logging.php
 msgid "Last update"
-msgstr "Ostatnia aktualizacja"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_translations.php
 msgid "Translations"
-msgstr "Tłumaczenia"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_translations.php
 msgid "Database"
-msgstr "Baza danych"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_translations.php
 msgid "Table"
-msgstr "Tabela"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_translations.php
 msgid "Field"
-msgstr "Pole"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_translations.php
 msgid "Data type"
-msgstr "Typ danych"
+msgstr ""
 
 #: modules/default/zzbrick_tables/database_translations.php
 msgid "Data Type"
-msgstr "Typ danych"
+msgstr ""
 
 #. Here, a boilerplate text for redirects is needed
 #: modules/default/zzbrick_tables/redirects.php
 msgid "Information about redirects"
-msgstr "Informacji o przekierowaniach"
+msgstr ""
 
 #: modules/default/zzbrick_tables/redirects.php
 msgid "Old URL"
-msgstr "Stary adres URL"
+msgstr ""
 
 #: modules/default/zzbrick_tables/redirects.php
 msgid "New URL"
-msgstr "Nowy adres URL"
+msgstr ""
 
 #: modules/default/zzbrick_tables/redirects.php
 msgid "Code"
-msgstr "Kod"
+msgstr ""
 
 #: modules/default/zzbrick_tables/redirects.php
 msgid "Area"
-msgstr "Zakres"
+msgstr ""
 
 #: modules/default/zzbrick_tables/redirects.php
 msgid "Redirects"
-msgstr "Przekierowania"
+msgstr ""
 
 #: modules/default/zzbrick_tables/settings.php
 msgid "Settings"
-msgstr "Ustawienia"
+msgstr ""
 
 #: modules/default/zzbrick_tables/settings.php
 msgid "Key"
-msgstr "Objaśnienia"
+msgstr ""
 
 #: modules/default/zzbrick_tables/settings.php
 msgid "Explanation"
-msgstr "Wyjaśnienie"
+msgstr ""
 
 #: modules/default/zzbrick_tables/settings.php
 msgid "User settings"
-msgstr "Ustawienia użytkownika"
+msgstr ""
 
 #: modules/default/zzbrick_tables/settings.php
 msgid "Website settings"
-msgstr "Ustawienia strona internetowa"
+msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
@@ -812,17 +795,17 @@ msgstr ""
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Sequence"
-msgstr "Seria"
+msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Subpage&nbsp;of"
-msgstr "Podstrona"
+msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Published?"
-msgstr "Opublikowano?"
+msgstr ""
 
 #: modules/default/zzbrick_tables/webpages.php
 msgctxt "default"
@@ -885,7 +868,7 @@ msgstr ""
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Languages"
-msgstr "Języki"
+msgstr ""
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
@@ -905,47 +888,47 @@ msgstr ""
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Language name, english"
-msgstr "Nazwa języka, angielski"
+msgstr ""
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Language name, french"
-msgstr "Nazwa języka, francuski"
+msgstr ""
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Language name, german"
-msgstr "Nazwa języka, niemiecki"
+msgstr ""
 
 #: modules/default/zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Will language be used on website?"
-msgstr "Czy na stronie będzie używany język?"
+msgstr ""
 
 #: modules/default/zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Categories"
-msgstr "Kategorie"
+msgstr ""
 
 #: modules/default/zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Category"
-msgstr "Kategoria"
+msgstr ""
 
 #: modules/default/zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Main Category"
-msgstr "Główna kategoria"
+msgstr ""
 
 #: modules/default/zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Description"
-msgstr "Opis"
+msgstr ""
 
 #: modules/default/zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Parameters"
-msgstr "Parametry"
+msgstr ""
 
 #: modules/default/zzbrick_tables/categories.php
 msgctxt "default"
@@ -977,7 +960,7 @@ msgstr ""
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Click"
-msgstr "Kliknij"
+msgstr ""
 
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
@@ -992,7 +975,7 @@ msgstr ""
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Password"
-msgstr "Hasło"
+msgstr ""
 
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
@@ -1012,17 +995,17 @@ msgstr ""
 #: modules/default/zzbrick_tables/languages.php
 #: modules/default/zzbrick_tables/countries.php
 msgid "yes"
-msgstr "tak"
+msgstr ""
 
 #: modules/default/zzbrick_tables/languages.php
 #: modules/default/zzbrick_tables/countries.php
 msgid "no"
-msgstr "nie"
+msgstr ""
 
 #: modules/default/zzbrick_tables/translations-text.php
 #: modules/default/zzbrick_tables/translations-varchar.php
 msgid "Translation to"
-msgstr "Tłumaczenia na"
+msgstr ""
 
 #: modules/default/zzbrick_tables/translations-text.php
 #: modules/default/zzbrick_tables/translations-varchar.php
@@ -1043,4 +1026,8 @@ msgstr ""
 msgid ""
 "Sorry, you cannot create a login for this username. Either the user does not "
 "exist on our website or there already exists a login for this username."
+msgstr ""
+
+#: modules/default/zzbrick_make/dbupdate.inc.php
+msgid "Ignore"
 msgstr ""
