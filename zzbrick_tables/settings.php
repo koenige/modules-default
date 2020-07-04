@@ -54,6 +54,7 @@ if (!empty($zz_setting['websites'])) {
 		ORDER BY domain';
 	$zz['fields'][5]['default'] = 1;
 	$zz['fields'][5]['display_field'] = 'domain';
+	$zz['fields'][5]['exclude_from_search'] = true;
 	if (!empty($_GET['filter']['website'])) {
 		$zz['fields'][5]['hide_in_list'] = true;
 	} else {
