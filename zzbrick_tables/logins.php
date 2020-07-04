@@ -48,12 +48,15 @@ $zz['fields'][9]['type'] = 'select';
 $zz['fields'][9]['enum'] = ['yes', 'no'];
 $zz['fields'][9]['default'] = 'yes';
 $zz['fields'][9]['hide_in_list'] = true;
-$zz['fields'][9]['explanation'] = '"Yes" means that the user has to change the password next time he or she logs in.';
+$zz['fields'][9]['explanation'] = '“Yes” means that the user has to change the password next time he or she logs in.';
+$zz['fields'][9]['class'] = 'hidden480';
 
+$zz['fields'][4]['title_tab'] = '<abbr title="Is user online">Online?</abbr>';
 $zz['fields'][4]['field_name'] = 'logged_in';
 $zz['fields'][4]['type'] = 'display';
 $zz['fields'][4]['translate_field_value'] = true;
 $zz['fields'][4]['class'] = 'hidden480';
+$zz['fields'][4]['explanation'] = 'Is user logged in or did not log out last time?';
 $zz['fields'][4]['if']['add']['hide_in_form'] = true;
 
 $zz['fields'][5]['title'] = 'Click';

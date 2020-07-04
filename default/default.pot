@@ -941,8 +941,18 @@ msgstr ""
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid ""
-"\"Yes\" means that the user has to change the password next time he or she "
+"“Yes” means that the user has to change the password next time he or she "
 "logs in."
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "<abbr title="Is user online">Online?</abbr>"
+msgstr ""
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Is user logged in or did not log out last time?"
 msgstr ""
 
 #: modules/default/zzbrick_tables/logins.php

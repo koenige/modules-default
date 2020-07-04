@@ -955,24 +955,38 @@ msgstr ""
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Logins"
-msgstr ""
+msgstr "Loginy"
 
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid ""
-"\"Yes\" means that the user has to change the password next time he or she "
+"“Yes” means that the user has to change the password next time he or she "
 "logs in."
 msgstr ""
+"„Tak” oznacza, że użytkownik musi zmienić swoje hasło przy następnym "
+"logowaniu"
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "<abbr title=\"Is user online\">Online?</abbr>"
+msgstr "<abbr title=\"Czy użytkownik jest online?\">Online?</abbr>"
+
+#: modules/default/zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Is user logged in or did not log out last time?"
+msgstr ""
+"Czy użytkownik jest zalogowany, względnie czy nie wylogował się ostatnim "
+"razem?"
 
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Active"
-msgstr ""
+msgstr "Aktywny"
 
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Change Pwd?"
-msgstr ""
+msgstr "Zmiana hasła?"
 
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
@@ -982,7 +996,7 @@ msgstr "Kliknij"
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Last activity in database"
-msgstr ""
+msgstr "Ostatnia aktywność na stronie"
 
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
@@ -997,7 +1011,7 @@ msgstr "Hasło"
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
 msgid "To deactivate a login"
-msgstr ""
+msgstr "Do deaktywacji loginów"
 
 #: modules/default/zzbrick_tables/logins.php
 msgctxt "default"
@@ -1043,4 +1057,8 @@ msgstr ""
 msgid ""
 "Sorry, you cannot create a login for this username. Either the user does not "
 "exist on our website or there already exists a login for this username."
+msgstr ""
+
+#: modules/default/zzbrick_make/dbupdate.inc.php
+msgid "Ignore"
 msgstr ""
