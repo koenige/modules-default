@@ -772,8 +772,8 @@ function zz_maintenance_errors() {
 	}
 
 	$lines[23]['th'] = wrap_text('Logging (Upload)');
-	$lines[23]['td'] = !empty($zz_conf['upload_log']) ? '<a href="?log='.urlencode(realpath($zz_conf['upload_log']))
-				.'">'.realpath($zz_conf['upload_log']).'</a>' : wrap_text('disabled');
+	$lines[23]['td'] = !empty($zz_conf['upload_log']) ? '<a href="?log='.urlencode($zz_setting['log_dir'].'/upload.log')
+				.'">'.$zz_setting['log_dir'].'/upload.log</a>' : wrap_text('disabled');
 
 	$lines[24]['th'] = wrap_text('Logging (Mail)');
 	$lines[24]['td'] = !empty($zz_setting['log_mail']) ? '<a href="?maillog">'.$zz_setting['log_dir'].'/mail.log</a>' : wrap_text('disabled');
@@ -859,7 +859,7 @@ function zz_maintenance_logs($page) {
 	if ($logfile === realpath(ini_get('error_log'))) {
 		$show_log = true;
 	}
-	if (!empty($zz_conf['upload_log']) AND $logfile === realpath($zz_conf['upload_log'])) {
+	if (!empty($zz_conf['upload_log']) AND $logfile === realpath($zz_setting['log_dir'].'/upload.log')) {
 		$show_log = true;
 	}
 	if (!$show_log) {
