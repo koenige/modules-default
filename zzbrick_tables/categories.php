@@ -40,6 +40,7 @@ $zz['fields'][4]['display_field'] = 'main_category';
 $zz['fields'][4]['search'] = 'cat.category';
 $zz['fields'][4]['character_set'] = 'utf8';
 $zz['fields'][4]['hide_in_list'] = true;
+$zz['fields'][4]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][4]['show_hierarchy_same_table'] = true;
 $zz['fields'][4]['sql_translate'] = ['category_id' => 'categories'];
 
