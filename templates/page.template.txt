@@ -20,7 +20,6 @@
 %%% page head %%%
 </head>
 <body%%% page extra_body_attributes %%%>
-<div id="all">
 <div id="canvas">
 <header>
 <div id="head">
@@ -44,15 +43,12 @@
 
 <footer>
 <div id="foot">
-<div class="foot">
 <nav>
 <ul id="menufoot">
 %%% page nav_bottom %%%
 </ul>
 </nav>
 </div>
-</div>
 </footer>
-</div>
 </div>
 </html>
