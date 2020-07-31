@@ -1,0 +1,58 @@
+# Zugzwang Project
+# HTML output: webpage
+# HTML-Ausgabe: Webseite
+#
+# http://www.zugzwang.org/projects/zzproject
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2007-2012, 2015-2017, 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+#
+<!DOCTYPE html>
+<html lang="%%% page lang %%%">
+<head>
+	<title>%%% page pagetitle %%%</title>
+	<meta http-equiv="content-type" content="text/html; charset=%%% setting character_set %%%">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/favicon.ico" type="image/x-ico">
+	<link rel="stylesheet" type="text/css" href="/_layout/default/default.css" media="all">
+%%% page head %%%
+</head>
+<body%%% page extra_body_attributes %%%>
+<div id="all">
+<div id="canvas">
+<header>
+<div id="head">
+<p><strong>%%% link / "My Site" %%%</strong></p>
+%%% page logout "<p id='logout'><a href="/logout/">Logout</a></p>" %%%
+<nav>
+<ul id="menu">
+%%% page nav %%% 
+</ul>
+</nav>
+</div>
+</header>
+<div id="text" role="main">
+<p id="breadcrumbs">%%% text "You are here:" %%% %%% page breadcrumbs %%%</p>
+%%% page mainimage %%%
+%%% page text %%%
+
+%%% page gallery %%%
+%%% page footlinks %%%
+</div>
+
+<footer>
+<div id="foot">
+<div class="foot">
+<nav>
+<ul id="menufoot">
+%%% page nav_bottom %%%
+</ul>
+</nav>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</html>
