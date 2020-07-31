@@ -15,13 +15,7 @@
 
 require __DIR__.'/../zzbrick_tables/settings.php';
 
-$cfg_file_template = sprintf('%s/%%s/docs/sql/settings.cfg', $zz_setting['modules_dir']);
-$cfg = [];
-foreach ($zz_setting['modules'] as $module) {
-	$cfg_file = sprintf($cfg_file_template, $module);
-	if (!file_exists($cfg_file)) continue;
-	$cfg += parse_ini_file($cfg_file, true);
-}
+$cfg = wrap_setting_cfg();
 
 // key
 $zz['fields'][3]['cfg'] = $cfg;
