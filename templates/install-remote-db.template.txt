@@ -10,7 +10,7 @@
 #
 <h1>Installation of Zugzwang Project CMS</h1>
 
-<h2>Step 3 – Remote database connection data</h2>
+<h2>Step 4 – Remote database connection data</h2>
 <p>Finally, we need the database connection data on the server.</p>
 <form method="POST" action="">
 %%% condition if error %%%

@@ -1,0 +1,37 @@
+# default module
+# Template for installation: local user
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<h1>Installation of Zugzwang Project CMS</h1>
+
+<h2>Step 3 – Settings</h2>
+<p>Here, you can add some settings. It’s possible to add or change them later, too.</p>
+<form method="POST" action="">
+%%% condition if error %%%
+<p class="error">%%% item error %%%</p>
+%%% condition endif %%%
+<dl>
+%%% loop start %%%
+%%% condition if required | install %%%
+<dt><label for="id_%%% item key %%%">%%% item key %%%<br><small>%%% item description %%%</small></label></dt>
+<dd>
+%%% condition if bool %%%
+<label for="id_%%% item key %%%-1"><input type="radio" value="true" name="%%% item id %%%" id="id_%%% item key %%%-1">&nbsp;true</label>
+<label for="id_%%% item key %%%-2"><input type="radio" value="false" name="%%% item id %%%" id="id_%%% item key %%%-2">&nbsp;false</label>
+%%% condition elseif mail %%%
+<input type="email" id="id_%%% item key %%%" value="%%% item default %%%" name="%%% item id %%%">
+%%% condition else %%%
+<input type="text" id="id_%%% item key %%%" value="%%% item default %%%" name="%%% item id %%%">
+%%% condition endif %%%
+</dd>
+%%% condition endif %%%
+%%% loop end %%%
+</dl>
+<input type="submit" value="Submit">
+</form>

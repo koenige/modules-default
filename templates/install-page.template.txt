@@ -25,10 +25,15 @@ div.main	{ display: table-cell; vertical-align: middle; }
 div.text	{ max-width: 25em; margin: 0 auto; background: #F3F3F3; 
 			padding: .5em 1em; }
 form p		{ margin: .25em 0; }
-input		{ display: block; margin: .5em 0; width: 50%; }
+input		{ margin: .5em 0; }
 input[type=submit]
-			{ font-family: 'Source Sans Pro', Helvetica, sans-serif;
-			border: 1px solid #CCC; padding: .25em; font-size: 100%; }
+			{ display: block; font-family: 'Source Sans Pro', Helvetica, sans-serif;
+			border: 1px solid #CCC; padding: .25em; font-size: 100%; width: 50%; }
+input[type=text], input[type=email], input[type=password]
+			{ display: block; width: 25em; }
+input[type=radio]
+			{ margin: .5em; }
+dt			{ margin: 1em 0 0; }
 
 	</style>
 </head>
