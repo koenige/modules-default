@@ -30,6 +30,10 @@ WHERE extension = _latin1'%s';
 
 
 -- page_breadcrumbs --
+SELECT page_id, title
+	, CONCAT(identifier, IF(STRCMP(ending, 'none'), ending, '')) AS identifier 
+	, mother_page_id
+FROM /*_PREFIX_*/webpages;
 
 -- page_menu --
 

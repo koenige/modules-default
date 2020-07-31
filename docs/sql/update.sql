@@ -419,3 +419,4 @@
 /* 2020-05-13-1 */	ALTER TABLE `_settings` CHANGE `setting_key` `setting_key` varchar(50) COLLATE 'latin1_general_ci' NOT NULL AFTER `setting_id`;
 /* 2020-05-23-1 */	ALTER TABLE `_settings` ADD `website_id` int unsigned NOT NULL DEFAULT 1;
 /* 2020-05-24-1 */	ALTER TABLE `_settings` ADD UNIQUE `setting_key_website_id` (`setting_key`, `website_id`), ADD INDEX `website_id` (`website_id`), DROP INDEX `setting_key`;
+/* 2020-07-31-1 */	UPDATE webpages SET ending = 'none' WHERE identifier = '/';
