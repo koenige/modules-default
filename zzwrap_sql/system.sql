@@ -36,6 +36,13 @@ SELECT page_id, title
 FROM /*_PREFIX_*/webpages;
 
 -- page_menu --
+SELECT page_id, title
+	, CONCAT(identifier, IF(STRCMP(ending, 'none'), ending, '')) AS url
+	, mother_page_id, menu
+FROM /*_PREFIX_*/webpages
+WHERE NOT ISNULL(menu)
+AND live = 'yes'
+ORDER BY sequence;
 
 -- page_menu_level2 --
 
