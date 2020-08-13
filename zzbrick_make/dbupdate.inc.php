@@ -132,7 +132,12 @@ function mod_default_make_dbupdate_update($line) {
 
 	$result = wrap_db_query($line['query']);
 	if ($result) {
-		zz_log_sql($line['query'], 'Maintenance robot 476');
+		$log = true;
+		if (is_array($result) AND array_key_exists('rows', $result) AND !$result['rows']) {
+			// no changes were made, do not log
+			$log = false;
+		}
+		if ($log) zz_log_sql($line['query'], 'Maintenance robot 476');
 		mod_default_make_dbupdate_log($line, 'update');
 		wrap_http_status_header(303);
 		header('Location: '.$zz_setting['host_base'].$zz_setting['request_uri']);
