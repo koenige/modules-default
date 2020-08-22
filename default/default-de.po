@@ -1062,6 +1062,10 @@ msgstr "Übersetzung auf"
 msgid "Translation field"
 msgstr "Übersetzungsfeld"
 
+#: modules/default/zzbrick_tables/text.php
+msgid "More Text"
+msgstr "Weiterer Text"
+
 #: modules/default/templates/login-request.template.txt
 msgid ""
 "You are trying to create a new login for you. But somehow, the web address "
