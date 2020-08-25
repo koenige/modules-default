@@ -1094,8 +1094,8 @@ INSERT INTO `webpages` (`page_id`, `title`, `content`, `identifier`, `ending`, `
 (9,	'Website Settings',	'%%% forms settings-website %%%',	'/db/settings',	'none',	10,	2,	'yes',	NULL,	NULL,	NOW()),
 (10,	'Files',	'%%% request medium * %%%',	'/files*',	'/',	10,	1,	'yes',	NULL,	NULL,	NOW()),
 (11,	'Media',	'%%% forms media * %%%',	'/db/media',	'/',	9,	2,	'yes',	NULL,	NULL,	NOW()),
-(12,	'Media',	'%%% forms media * %%%',	'/db/media*',	'/',	1,	11,	'yes',	NULL,	NULL,	NOW());
-
+(12,	'Media',	'%%% forms media * %%%',	'/db/media*',	'/',	1,	11,	'yes',	NULL,	NULL,	NOW()),
+(13,	'Robots', '%%% set content_type=txt %%%\n# robots.txt', '/robots.txt', 'none', 40, 1, 'yes', NULL, NOW());
 
 CREATE TABLE `webpages_media` (
   `page_medium_id` int unsigned NOT NULL AUTO_INCREMENT,
