@@ -71,7 +71,7 @@ if (wrap_get_setting('default_webpages_media')) {
 	$zz['fields'][8]['title'] = 'Media';
 	$zz['fields'][8]['type'] = 'subtable';
 	$zz['fields'][8]['min_records'] = 1;
-	$zz['fields'][8]['max_records'] = 10;
+	$zz['fields'][8]['max_records'] = 20;
 	$zz['fields'][8]['form_display'] = 'horizontal';
 	$zz['fields'][8]['sql'] .= ' ORDER BY /*_PREFIX_*/webpages.title DESC, sequence';
 	$zz['fields'][8]['fields'][2]['type'] = 'foreign_key';
