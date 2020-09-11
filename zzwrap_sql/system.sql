@@ -86,3 +86,6 @@ SELECT filetype, filetype_id FROM filetypes;
 
 -- ids_websites --
 SELECT domain, website_id FROM websites;
+
+-- ids_countries --
+SELECT country_code, country_id FROM countries;
