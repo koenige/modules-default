@@ -63,6 +63,7 @@ function adminer_object() {
 	        } else {
 	        	require $zz_setting['local_pwd'];
 	        }
+	        if (!empty($db_port)) $db_host = sprintf('%s:%d', $db_host, $db_port);
 	        return [$db_host, $db_user, $db_pwd];
         }
         
