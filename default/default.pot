@@ -837,6 +837,22 @@ msgctxt "default"
 msgid "Last Update"
 msgstr ""
 
+#: zzbrick_tables/webpages-media.php
+msgid "Media"
+msgstr ""
+
+#: zzbrick_tables/webpages-media.php
+msgid "Preview"
+msgstr ""
+
+#: zzbrick_tables/webpages-media.php
+msgid "No."
+msgstr ""
+
+#: zzbrick_tables/webpages-media.php
+msgid "Medium"
+msgstr ""
+
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Countries"
