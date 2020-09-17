@@ -741,6 +741,14 @@ msgstr "Datentyp"
 msgid "Data Type"
 msgstr "Datentyp"
 
+#: zzbrick_tables/database_translations.php
+msgid "text line"
+msgstr "Textzeile"
+
+#: zzbrick_tables/database_translations.php
+msgid "memo"
+msgstr "Memo"
+
 #. Here, a boilerplate text for redirects is needed
 #: zzbrick_tables/redirects.php
 msgid "Information about redirects"
@@ -920,6 +928,16 @@ msgctxt "default"
 msgid "Will country be used on website?"
 msgstr "Soll Land auf Website genutzt werden?"
 
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Country Code 3"
+msgstr "Ländercode 3"
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Three letter country code according to ISO 3166"
+msgstr "Drei-Buchstaben-Ländercode gemäß ISO 3166"
+
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Languages"
@@ -959,6 +977,16 @@ msgstr "Sprachname, deutsch"
 msgctxt "default"
 msgid "Will language be used on website?"
 msgstr "Soll Sprache auf Website genutzt werden?"
+
+#: zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Variation"
+msgstr "Variante"
+
+#: zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Variation of language, e. g. informal"
+msgstr "Variante der Sprache, z. B. informell"
 
 #: zzbrick_tables/categories.php
 msgctxt "default"

@@ -53,7 +53,7 @@ if (!empty($_POST['db_name']) AND !empty($_POST['table_name'])) {
 $zz['fields'][9]['title'] = 'Data type';
 $zz['fields'][9]['field_name'] = 'field_type';		
 $zz['fields'][9]['type'] = 'select';
-$zz['fields'][9]['enum_title'] = ['text line', 'memo'];
+$zz['fields'][9]['enum_title'] = [wrap_text('text line'), wrap_text('memo')];
 $zz['fields'][9]['enum'] = ['varchar', 'text'];
 	
 $zz['sql'] = sprintf('SELECT * FROM %s
