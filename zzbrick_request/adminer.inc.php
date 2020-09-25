@@ -57,14 +57,8 @@ function adminer_object() {
         
         function credentials() {
             // server, username and password for connecting to database
-		    global $zz_setting;
-		    if (!$zz_setting['local_access']) {
-			    require $zz_setting['custom'].'/zzwrap_sql/pwd.inc.php';
-	        } else {
-	        	require $zz_setting['local_pwd'];
-	        }
-	        if (!empty($db_port)) $db_host = sprintf('%s:%d', $db_host, $db_port);
-	        return [$db_host, $db_user, $db_pwd];
+			$db = wrap_db_credentials();
+	        return [$db['db_host'], $db['db_user'], $db['db_pwd']];
         }
         
         function database() {
