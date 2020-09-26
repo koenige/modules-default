@@ -15,8 +15,10 @@ CREATE TABLE `_settings` (
   `setting_key` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `setting_value` varchar(750) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `explanation` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `website_id` int unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`setting_id`),
-  UNIQUE KEY `setting_key` (`setting_key`)
+  UNIQUE KEY `setting_key_website_id` (`setting_key`,`website_id`),
+  KEY `website_id` (`website_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
