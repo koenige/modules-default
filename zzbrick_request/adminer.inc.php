@@ -58,6 +58,8 @@ function adminer_object() {
         function credentials() {
             // server, username and password for connecting to database
 			$db = wrap_db_credentials();
+			if (!empty($db['db_port']))
+				$db['db_host'] = sprintf('%s:%s', $db['db_host'], $db['db_port']);
 	        return [$db['db_host'], $db['db_user'], $db['db_pwd']];
         }
         
