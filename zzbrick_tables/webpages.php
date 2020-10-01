@@ -121,19 +121,35 @@ $zz['conditions'][1]['where'] = '/*_PREFIX_*/webpages.live = "no"';
 $zz_conf['copy'] = true;
 
 if (!empty($zz_setting['multiple_websites'])) {
+	if (!empty($_GET['where']['website_id'])) $website = $_GET['where']['website_id'];
+	elseif (!empty($_GET['filter']['website'])) $website = $_GET['filter']['website'];
+	else $website = false;
+
 	$zz['fields'][16]['field_name'] = 'website_id';
-	$zz['fields'][16]['type'] = 'select';
+	$zz['fields'][16]['type'] = 'write_once';
+	$zz['fields'][16]['type_detail'] = 'select';
 	$zz['fields'][16]['sql'] = 'SELECT website_id, domain
 		FROM /*_PREFIX_*/websites
 		ORDER BY domain';
 	if (!empty($zz_setting['website_id_default']))
 		$zz['fields'][16]['default'] = $zz_setting['website_id_default'];
 	$zz['fields'][16]['display_field'] = 'domain';
+	$zz['fields'][16]['exclude_from_search'] = true;
+	if (!empty($_GET['filter']['website'])) {
+		$zz['fields'][16]['hide_in_list'] = true;
+		$zz['fields'][16]['hide_in_form'] = true;
+		$zz['fields'][16]['type'] = 'hidden';
+		$zz['fields'][16]['value'] = $_GET['filter']['website'];
+	}
 
-	$zz['fields'][7]['sql'] = 'SELECT page_id, title, mother_page_id, domain, identifier
+	$zz['fields'][7]['sql'] = sprintf('SELECT page_id, title, mother_page_id, domain
+			, /*_PREFIX_*/webpages.identifier
 		FROM /*_PREFIX_*/webpages
 		LEFT JOIN /*_PREFIX_*/websites USING (website_id)
-		ORDER BY sequence';
+		%s
+		ORDER BY sequence'
+		, $website ? sprintf(' WHERE website_id = %d', $website) : ''
+	);
 
 	$zz['sql'] = 'SELECT /*_PREFIX_*/webpages.*
 			, motherpages.title AS mother_title
@@ -145,6 +161,7 @@ if (!empty($zz_setting['multiple_websites'])) {
 
 	$zz['filter'][1]['sql'] = 'SELECT website_id, domain
 		FROM /*_PREFIX_*/websites
+		WHERE website_id != 1
 		ORDER BY domain';
 	$zz['filter'][1]['title'] = 'Website';
 	$zz['filter'][1]['identifier'] = 'website';
