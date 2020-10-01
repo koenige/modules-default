@@ -96,6 +96,8 @@ $zz['fields'][10]['hide_in_list_if_empty'] = true;
 
 $zz['fields'][15] = []; // parameters
 
+$zz['fields'][16] = []; // website
+
 $zz['fields'][99]['title'] = 'Last Update';
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
@@ -117,3 +119,36 @@ $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = '/*_PREFIX_*/webpages.live = "no"';
 
 $zz_conf['copy'] = true;
+
+if (!empty($zz_setting['multiple_websites'])) {
+	$zz['fields'][16]['field_name'] = 'website_id';
+	$zz['fields'][16]['type'] = 'select';
+	$zz['fields'][16]['sql'] = 'SELECT website_id, domain
+		FROM /*_PREFIX_*/websites
+		ORDER BY domain';
+	if (!empty($zz_setting['website_id_default']))
+		$zz['fields'][16]['default'] = $zz_setting['website_id_default'];
+	$zz['fields'][16]['display_field'] = 'domain';
+
+	$zz['fields'][7]['sql'] = 'SELECT page_id, title, mother_page_id, domain, identifier
+		FROM /*_PREFIX_*/webpages
+		LEFT JOIN /*_PREFIX_*/websites USING (website_id)
+		ORDER BY sequence';
+
+	$zz['sql'] = 'SELECT /*_PREFIX_*/webpages.*
+			, motherpages.title AS mother_title
+			, /*_PREFIX_*/websites.domain
+		FROM /*_PREFIX_*/webpages
+		LEFT JOIN /*_PREFIX_*/websites USING (website_id) 
+		LEFT JOIN /*_PREFIX_*/webpages AS motherpages 
+			ON /*_PREFIX_*/webpages.mother_page_id = motherpages.page_id';
+
+	$zz['filter'][1]['sql'] = 'SELECT website_id, domain
+		FROM /*_PREFIX_*/websites
+		ORDER BY domain';
+	$zz['filter'][1]['title'] = 'Website';
+	$zz['filter'][1]['identifier'] = 'website';
+	$zz['filter'][1]['type'] = 'list';
+	$zz['filter'][1]['field_name'] = 'website_id';
+	$zz['filter'][1]['where'] = '/*_PREFIX_*/webpages.website_id';
+}

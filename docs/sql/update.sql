@@ -422,3 +422,12 @@
 /* 2020-05-23-1 */	ALTER TABLE `_settings` ADD `website_id` int unsigned NOT NULL DEFAULT 1;
 /* 2020-05-24-1 */	ALTER TABLE `_settings` ADD UNIQUE `setting_key_website_id` (`setting_key`, `website_id`), ADD INDEX `website_id` (`website_id`), DROP INDEX `setting_key`;
 /* 2020-07-31-1 */	UPDATE webpages SET ending = 'none' WHERE identifier = '/';
+/* 2020-10-01-1 */	CREATE TABLE `websites` (`website_id` int unsigned NOT NULL AUTO_INCREMENT, `website` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, `domain` varchar(63) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL, PRIMARY KEY (`website_id`), UNIQUE KEY `website` (`website`), UNIQUE KEY `domainname` (`domain`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/* 2020-10-01-2 */	INSERT INTO `websites` (`website_id`, `website`, `domain`) VALUES (1, 'All Websites', '*');
+/* 2020-10-01-3 */	ALTER TABLE `webpages` ADD `website_id` int unsigned NOT NULL DEFAULT '1' AFTER `page_id`;
+/* 2020-10-01-4 */	ALTER TABLE `webpages` ADD UNIQUE `identifier_website_id` (`identifier`, `website_id`), ADD INDEX `website_id` (`website_id`), DROP INDEX `identifier`;
+/* 2020-10-01-5 */	ALTER TABLE `redirects` ADD `website_id` int unsigned NOT NULL DEFAULT '1' AFTER `area`;
+/* 2020-10-01-6 */	ALTER TABLE `redirects` ADD UNIQUE `old_url_website_id` (`old_url`, `website_id`), DROP INDEX `old_url`;
+/* 2020-10-01-7 */	ALTER TABLE `redirects` ADD INDEX `website_id` (`website_id`);
+/* 2020-10-01-8 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'redirects', 'redirect_id', 'website_id', 'delete');
+/* 2020-10-01-9 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), '_settings', 'setting_id', 'website_id', 'delete');

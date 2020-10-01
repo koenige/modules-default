@@ -49,6 +49,17 @@ $zz['fields'][4]['group_in_list'] = true;
 $zz['fields'][5]['field_name'] = 'area';
 $zz['fields'][5]['group_in_list'] = true;
 
+if (!empty($zz_setting['multiple_websites'])) {
+	$zz['fields'][6]['field_name'] = 'website_id';
+	$zz['fields'][6]['type'] = 'select';
+	$zz['fields'][6]['sql'] = 'SELECT website_id, domain
+		FROM /*_PREFIX_*/websites
+		ORDER BY domain';
+	if (!empty($zz_setting['website_id_default']))
+		$zz['fields'][6]['default'] = $zz_setting['website_id_default'];
+	$zz['fields'][6]['display_field'] = 'domain';
+}
+
 $zz['fields'][20]['field_name'] = 'last_update';
 $zz['fields'][20]['type'] = 'timestamp';
 $zz['fields'][20]['hide_in_list'] = true;
@@ -56,6 +67,22 @@ $zz['fields'][20]['hide_in_list'] = true;
 $zz['sql'] = 'SELECT * 
 	FROM /*_PREFIX_*/redirects';
 $zz['sqlorder'] = ' ORDER BY old_url, new_url';
+
+if (!empty($zz_setting['multiple_websites'])) {
+	$zz['sql'] = 'SELECT /*_PREFIX_*/redirects.*
+			, /*_PREFIX_*/websites.domain
+		FROM /*_PREFIX_*/redirects
+		LEFT JOIN /*_PREFIX_*/websites USING (website_id)';
+
+	$zz['filter'][1]['sql'] = 'SELECT website_id, domain
+		FROM /*_PREFIX_*/websites
+		ORDER BY domain';
+	$zz['filter'][1]['title'] = 'Website';
+	$zz['filter'][1]['identifier'] = 'website';
+	$zz['filter'][1]['type'] = 'list';
+	$zz['filter'][1]['field_name'] = 'website_id';
+	$zz['filter'][1]['where'] = '/*_PREFIX_*/redirects.website_id';
+}
 
 $zz_conf['copy'] = true;
 $zz_conf['add'] = true; // @todo remove this later, since defined globally, may be disabled

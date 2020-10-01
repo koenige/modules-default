@@ -21,6 +21,8 @@ CREATE TABLE `_settings` (
   KEY `website_id` (`website_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), '_settings', 'setting_id', 'website_id', 'delete');
+
 
 CREATE TABLE `_translationfields` (
   `translationfield_id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -1046,11 +1048,14 @@ CREATE TABLE `redirects` (
   `new_url` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `code` smallint unsigned NOT NULL DEFAULT '301',
   `area` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website_id` int unsigned NOT NULL DEFAULT '1',
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`redirect_id`),
-  UNIQUE KEY `alt` (`old_url`),
+  UNIQUE KEY `old_url_website_id` (`old_url`,`website_id`),
   KEY `area` (`area`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'redirects', 'redirect_id', 'website_id', 'delete');
 
 
 CREATE TABLE `text` (
@@ -1067,19 +1072,21 @@ CREATE TABLE `text` (
 
 CREATE TABLE `webpages` (
   `page_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `website_id` int unsigned NOT NULL DEFAULT '1',
   `title` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `identifier` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `ending` enum('.html','/','none') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'none',
   `sequence` tinyint NOT NULL,
   `mother_page_id` int unsigned DEFAULT NULL,
-  `live` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'yes',
-  `menu` enum('top','bottom','internal') CHARACTER SET latin1 COLLATE latin1_general_cs DEFAULT NULL,
-  `parameters` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs DEFAULT NULL,
+  `live` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
+  `menu` enum('top','bottom','internal') CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `parameters` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`page_id`),
-  UNIQUE KEY `identifier` (`identifier`),
-  KEY `mother_page_id` (`mother_page_id`)
+  UNIQUE KEY `identifier_website_id` (`identifier`,`website_id`),
+  KEY `mother_page_id` (`mother_page_id`),
+  KEY `website_id` (`website_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'webpages', 'page_id', (SELECT DATABASE()), 'webpages', 'page_id', 'mother_page_id', 'no-delete');
@@ -1112,3 +1119,18 @@ CREATE TABLE `webpages_media` (
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'media', 'medium_id', (SELECT DATABASE()), 'webpages_media', 'page_medium_id', 'medium_id', 'no-delete');
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'webpages', 'page_id', (SELECT DATABASE()), 'webpages_media', 'page_medium_id', 'page_id', 'delete');
+
+
+CREATE TABLE `websites` (
+  `website_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `website` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `domain` varchar(63) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`website_id`),
+  UNIQUE KEY `website` (`website`),
+  UNIQUE KEY `domainname` (`domain`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `websites` (`website_id`, `website`, `domain`) VALUES
+(1,	'All Websites',	'*');
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'webpages', 'page_id', 'website_id', 'no-delete');

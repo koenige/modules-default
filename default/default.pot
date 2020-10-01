@@ -1091,3 +1091,11 @@ msgstr ""
 #: zzbrick_make/dbupdate.inc.php
 msgid "Ignore"
 msgstr ""
+
+#: zzbrick_tables/websites.php
+msgid "Websites"
+msgstr ""
+
+#: zzbrick_tables/websites.php
+msgid "Domain name without subdomain www"
+msgstr ""
