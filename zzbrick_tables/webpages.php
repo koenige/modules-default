@@ -151,4 +151,9 @@ if (!empty($zz_setting['multiple_websites'])) {
 	$zz['filter'][1]['type'] = 'list';
 	$zz['filter'][1]['field_name'] = 'website_id';
 	$zz['filter'][1]['where'] = '/*_PREFIX_*/webpages.website_id';
+
+	unset($zz['set_redirect']);
+	$zz['set_redirect'][] = [
+		'old' => '%s', 'new' => '%s', 'field_name' => 'identifier', 'website_id' => 'website_id'
+	];
 }
