@@ -86,7 +86,8 @@ class BasicCallBack extends \Sabre\DAV\Auth\Backend\AbstractBasic {
     protected function validateUserPass($username, $password) {
     	$login['username'] = $username;
     	$login['password'] = $password;
-    	$success = wrap_login_db($login);
+		wrap_sql('auth', 'set');
+    	$success = wrap_login($login);
     	return $success;
     }
 }
