@@ -1052,7 +1052,8 @@ CREATE TABLE `redirects` (
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`redirect_id`),
   UNIQUE KEY `old_url_website_id` (`old_url`,`website_id`),
-  KEY `area` (`area`)
+  KEY `area` (`area`),
+  KEY `website_id` (`website_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'redirects', 'redirect_id', 'website_id', 'delete');
