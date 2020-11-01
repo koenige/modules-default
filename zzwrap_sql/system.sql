@@ -79,7 +79,7 @@ SELECT path, category_id FROM categories ORDER BY path;
 SELECT category_id, parameters FROM categories WHERE parameters LIKE '%alias=%';
 
 -- ids_languages --
-SELECT iso_639_1, language_id FROM languages WHERE website = 'yes' ORDER BY iso_639_1;
+SELECT CONCAT(iso_639_1, IFNULL(CONCAT('-', variation), '')), language_id FROM languages WHERE website = 'yes' ORDER BY iso_639_1;
 
 -- ids_filetypes --
 SELECT filetype, filetype_id FROM filetypes;
