@@ -482,7 +482,7 @@ msgstr "Datei %s kann nicht zum Schreiben geöffnet werden"
 
 #: zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "%s lines deleted."
-msgstr "%s Einträge gelöscht"
+msgstr "%s Zeilen gelöscht"
 
 #: zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Please choose one of the filters."
