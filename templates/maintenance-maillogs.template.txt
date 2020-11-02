@@ -5,7 +5,7 @@
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2019 Gustaf Mossakowski
+# @copyright Copyright © 2019-2020 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -24,12 +24,12 @@
 %%% loop mails %%%
 <tr class="%%% loopposition uneven un %%%even">
 <td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item no %%%]" value="%%% item keys %%%" id="line%%% item no %%%"></label></td>
-<td><pre style="max-width: 90%; overflow: auto;"><strong>Date:</strong> %%% item Date wrap_html_escape %%% 
-<strong>To:</strong> %%% item To wrap_html_escape %%% 
-<strong>Subject</strong> %%% item Subject wrap_html_escape %%% 
-<strong>From:</strong>%%% item From wrap_html_escape %%% 
+<td><p><strong>Date:</strong> %%% item Date wrap_html_escape %%%<br> 
+<strong>To:</strong> %%% item To wrap_html_escape %%% <br>
+<strong>Subject:</strong> %%% item Subject wrap_html_escape %%% <br>
+<strong>From:</strong> %%% item From wrap_html_escape %%% </p>
 
-<div class="moretext">%%% item msg %%%</div></pre>
+<pre style="overflow: auto;white-space: pre-wrap; margin: 1em 0; overflow-wrap: break-word;"><div class="moretext">%%% item msg %%%</div></pre>
 </td>
 <td></td>
 </tr>
