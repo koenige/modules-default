@@ -1187,68 +1187,114 @@ function zz_maintenance_maillogs($page) {
 	$page['title'] .= ' '.wrap_text('Mail Logs');
 	$page['breadcrumbs'][] = wrap_text('Mail Logs');
 	$page['query_strings'] = [
-		'maillog'
+		'maillog', 'limit'
 	];
 	$logfile = $zz_setting['log_dir'].'/mail.log';
 	if (!file_exists($logfile)) {
 		$page['text'] = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), wrap_html_escape($logfile)).'</p>'."\n";
 		return mod_default_maintenance_return($page);
 	}
+
+	// get no. of mails
+	$j = 0;
+	$data = [];
+	$data['mails'] = [];
+	$mail_no = 0;
+	$data['mails'][$mail_no]['m_start'] = 0;
+	$data['mails'][$mail_no]['m_no'] = 0;
+	$separator = trim(wrap_mail_separator());
+	$file = new \SplFileObject($logfile, 'r');
+	$mail_end = false;
+	while (!$file->eof()) {
+		$line = $file->fgets();
+		$line = trim($line);
+		if ($mail_end) {
+			if ($line) {
+				$mail_no++;
+				$data['mails'][$mail_no]['m_start'] = $j;
+				$data['mails'][$mail_no]['m_no'] = $mail_no;
+				$mail_end = false;
+			}
+		}
+		if ($line === $separator) {
+			$data['mails'][$mail_no]['m_end'] = $j + 1;
+			$mail_end = true;
+		}
+		$j++;
+	}
+	$data['mails'][$mail_no]['m_end'] = $j - 1;
 	
+	// check limits
+	list($first, $last) = zz_maintenance_maillogs_limit(count($data['mails']));
+	$display = [];
+	for ($i = $first; $i <= $last; $i++) {
+		if (empty($data['mails'][$i])) break;
+		$current = $data['mails'][$i]['m_start'];
+		$file->seek($current);
+		$data['mails'][$i]['m_raw_content'] = [];
+		while($current < $data['mails'][$i]['m_end']) {
+			$line = trim($file->current());
+			if ($line OR $data['mails'][$i]['m_raw_content']) {
+				$data['mails'][$i]['m_raw_content'][] = $line;
+			}
+			$current++;
+			$file->next();
+		}
+		$mail_head = true;
+		foreach ($data['mails'][$i]['m_raw_content'] as $index => $line) {
+			if ($mail_head) {
+				if (!$line)	{
+					$mail_head = false;
+					continue;
+				}
+				$key = substr($line, 0, strpos($line, ':'));
+				$value = substr($line, strpos($line, ':') + 2);
+			} elseif (trim($line) !== $separator) {
+				$key = 'm_msg';
+				$value = $line;	
+			}
+			if (array_key_exists($key, $data['mails'][$i])) {
+				$data['mails'][$i][$key] .= "\n".$value;
+			} else {
+				$data['mails'][$i][$key] = $value;
+			}
+		}
+		$display[] = $i;
+	}
+
 	if (!empty($_POST)) {
 		// read lines 
 		echo 'Deletion is not yet possible.';
 		exit;
 	}
 
-
-	$j = -1;
-	$file = new \SplFileObject($logfile, 'r');
-	$data = [];
-	$data['mails'] = [];
-	$index = 0;
-	$new_mail = true;
-	$mail_head = true;
-	while (!$file->eof()) {
-		$line = $file->fgets();
-		$line = trim($line);
-		$j++;
-		if ($new_mail) {
-			if (!$line) continue;
-			$index++;
-			$data['mails'][$index] = ['line_no_start' => $j];
-			$new_mail = false;
-			$mail_head = true;
-		}
-		if ($mail_head AND !$line) $mail_head = false;
-		if ($mail_head) {
-			$key = substr($line, 0, strpos($line, ':'));
-			$value = substr($line, strpos($line, ':') + 2);
-		} else {
-			$key = 'msg';
-			$value = $line;	
-		}
-		if (array_key_exists($key, $data['mails'][$index])) {
-			$data['mails'][$index][$key] .= "\n".$value;
-		} else {
-			$data['mails'][$index][$key] = $value;
-		}
-		if (array_key_exists('msg', $data['mails'][$index])) {
-			if (substr($data['mails'][$index]['msg'], -77) === str_repeat('-', 77)) {
-				$new_mail = true;
-				$data['mails'][$index]['msg'] = trim(substr($data['mails'][$index]['msg'], 0, -77));
-				$data['mails'][$index]['line_no_end'] = $j + 1; // empty line following
-			}
-		}
-		$data['mails'][$index]['no'] = $index;
+	$data['total_rows'] = count($data['mails']);
+	foreach (array_keys($data['mails']) as $index) {
+		if (in_array($index, $display)) continue;
+		unset($data['mails'][$index]);
 	}
 	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
-	$data['total_rows'] = $index;
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
+	$data['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['total_rows']);
 
 	$page['text'] = wrap_template('maintenance-maillogs', $data);
 	$page['text'] .= wrap_template('zzform-foot');
 	return $page;
+}
+
+/**
+ * get first and last mail to display in list
+ *
+ * @return array
+ */
+function zz_maintenance_maillogs_limit($total_rows) {
+	global $zz_conf;
+	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
+		zz_list_limit_last($total_rows); // not + 1 since logs always end with a newline
+	}
+	$first = $zz_conf['int']['this_limit'] - $zz_conf['limit'];
+	$last = $zz_conf['int']['this_limit'] - 1;
+	return [$first, $last];
 }
 
 /**
