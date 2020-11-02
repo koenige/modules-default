@@ -1194,6 +1194,12 @@ function zz_maintenance_maillogs($page) {
 		$page['text'] = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), wrap_html_escape($logfile)).'</p>'."\n";
 		return mod_default_maintenance_return($page);
 	}
+	
+	if (!empty($_POST)) {
+		// read lines 
+		echo 'Deletion is not yet possible.';
+		exit;
+	}
 
 
 	$j = -1;
@@ -1236,8 +1242,12 @@ function zz_maintenance_maillogs($page) {
 		}
 		$data['mails'][$index]['no'] = $index;
 	}
+	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
+	$data['total_rows'] = $index;
+	$data['total_records'] = zz_list_total_records($data['total_rows']);
 
 	$page['text'] = wrap_template('maintenance-maillogs', $data);
+	$page['text'] .= wrap_template('zzform-foot');
 	return $page;
 }
 
