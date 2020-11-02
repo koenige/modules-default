@@ -1195,6 +1195,8 @@ function zz_maintenance_maillogs($page) {
 		return mod_default_maintenance_return($page);
 	}
 
+
+	$j = -1;
 	$file = new \SplFileObject($logfile, 'r');
 	$data = [];
 	$data['mails'] = [];
@@ -1204,10 +1206,11 @@ function zz_maintenance_maillogs($page) {
 	while (!$file->eof()) {
 		$line = $file->fgets();
 		$line = trim($line);
+		$j++;
 		if ($new_mail) {
 			if (!$line) continue;
 			$index++;
-			$data['mails'][$index] = [];
+			$data['mails'][$index] = ['line_no_start' => $j];
 			$new_mail = false;
 			$mail_head = true;
 		}
@@ -1228,8 +1231,10 @@ function zz_maintenance_maillogs($page) {
 			if (substr($data['mails'][$index]['msg'], -77) === str_repeat('-', 77)) {
 				$new_mail = true;
 				$data['mails'][$index]['msg'] = trim(substr($data['mails'][$index]['msg'], 0, -77));
+				$data['mails'][$index]['line_no_end'] = $j + 1; // empty line following
 			}
 		}
+		$data['mails'][$index]['no'] = $index;
 	}
 
 	$page['text'] = wrap_template('maintenance-maillogs', $data);
