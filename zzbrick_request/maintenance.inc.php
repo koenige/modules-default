@@ -1195,9 +1195,14 @@ function zz_maintenance_maillogs($page) {
 		return mod_default_maintenance_return($page);
 	}
 
+	$data = [];
+
+	if (!empty($_POST['line'])) {
+		$data['message'] = wrap_file_delete_line($logfile, $_POST['line']);
+	}
+
 	// get no. of mails
 	$j = 0;
-	$data = [];
 	$data['mails'] = [];
 	$mail_no = 0;
 	$data['mails'][$mail_no]['m_start'] = 0;
@@ -1260,12 +1265,6 @@ function zz_maintenance_maillogs($page) {
 			}
 		}
 		$display[] = $i;
-	}
-
-	if (!empty($_POST)) {
-		// read lines 
-		echo 'Deletion is not yet possible.';
-		exit;
 	}
 
 	$data['total_rows'] = count($data['mails']);

@@ -23,7 +23,7 @@
 %%% condition if mails %%%
 %%% loop mails %%%
 <tr class="%%% loopposition uneven un %%%even">
-<td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="msg[%%% item m_no %%%]" value="%%% item m_start %%%-%%% item m_end %%%" id="line%%% item m_no %%%"></label></td>
+<td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item m_no %%%]" value="%%% item m_start %%%-%%% item m_end %%%" id="line%%% item m_no %%%"></label></td>
 <td>
 <pre style="overflow: auto; white-space: pre-wrap; margin: 1em 0; overflow-wrap: break-word; max-width: 80ch;">
 <strong>Date:</strong> %%% item Date wrap_html_escape %%% 
@@ -31,7 +31,7 @@
 <strong>Subject:</strong> %%% item Subject wrap_html_escape %%% 
 <strong>From:</strong> %%% item From wrap_html_escape %%% 
 
-<div class="moretext">%%% item m_msg %%%</div></pre>
+<div class="moretext">%%% item m_msg wrap_html_escape %%%</div></pre>
 </td>
 <td></td>
 </tr>
