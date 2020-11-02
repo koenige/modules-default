@@ -1292,7 +1292,7 @@ function zz_maintenance_maillogs($page) {
 		foreach ($maildata as $key => $value) {
 			if (in_array($key, ['To', 'Subject'])) continue;
 			if (substr($key, 0, 2) === 'm_') continue;
-			$mail['headers'][] = sprintf('%s: %s', $key, $value);
+			$mail['headers'][$key] = $value;
 		}
 		$success = wrap_mail($mail);
 		if (!$success) $data['message'] = wrap_text('Mail was not sent.');
