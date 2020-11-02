@@ -17,7 +17,6 @@
 <table class="data"><thead><tr>
 <th>[]</th>
 <th>%%% text Mail %%%</th>
-<th>%%% text Action %%%</th>
 </thead>
 <tbody>
 %%% condition if mails %%%
@@ -25,19 +24,19 @@
 <tr class="%%% loopposition uneven un %%%even">
 <td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item m_no %%%]" value="%%% item m_start %%%-%%% item m_end %%%" id="line%%% item m_no %%%"></label></td>
 <td>
-<pre style="overflow: auto; white-space: pre-wrap; margin: 1em 0; overflow-wrap: break-word; max-width: 80ch;">
+<pre style="overflow: auto; white-space: pre-wrap; margin: 0; padding-top: .25em; overflow-wrap: break-word; max-width: 80ch;">
 <strong>Date:</strong> %%% item Date wrap_html_escape %%% 
 <strong>To:</strong> %%% item To wrap_html_escape %%% 
 <strong>Subject:</strong> %%% item Subject wrap_html_escape %%% 
 <strong>From:</strong> %%% item From wrap_html_escape %%% 
 
 <div class="moretext">%%% item m_msg wrap_html_escape %%%</div></pre>
+<p style="text-align: right;"><input type="submit" value="%%% text Re-send mail %%%" name="resend[%%% item m_no %%%]"></p>
 </td>
-<td></td>
 </tr>
 %%% loop end %%%
 %%% condition else %%%
-<tr><td colspan="3">%%% text No lines %%%</td></tr>
+<tr><td colspan="2">%%% text No lines %%%</td></tr>
 %%% condition endif %%%
 </tbody></table>
 

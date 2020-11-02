@@ -1187,7 +1187,7 @@ function zz_maintenance_maillogs($page) {
 	$page['title'] .= ' '.wrap_text('Mail Logs');
 	$page['breadcrumbs'][] = wrap_text('Mail Logs');
 	$page['query_strings'] = [
-		'maillog', 'limit'
+		'maillog', 'limit', 'mail_sent'
 	];
 	$logfile = $zz_setting['log_dir'].'/mail.log';
 	if (!file_exists($logfile)) {
@@ -1199,7 +1199,12 @@ function zz_maintenance_maillogs($page) {
 
 	if (!empty($_POST['line'])) {
 		$data['message'] = wrap_file_delete_line($logfile, $_POST['line']);
+	} elseif (!empty($_POST['resend'])) {
+		$resend = array_keys($_POST['resend']);
+		$resend = reset($resend);
 	}
+	if (!empty($_GET['mail_sent']))
+		$data['message'] = wrap_text('Mail was re-sent.');
 
 	// get no. of mails
 	$j = 0;
@@ -1229,8 +1234,14 @@ function zz_maintenance_maillogs($page) {
 	}
 	$data['mails'][$mail_no]['m_end'] = $j - 1;
 	
-	// check limits
-	list($first, $last) = zz_maintenance_maillogs_limit(count($data['mails']));
+	if (!empty($resend) AND !empty($data['mails'][$resend])) {
+		$first = $resend;
+		$last = $resend;
+	} else {
+		// check limits
+		list($first, $last) = zz_maintenance_maillogs_limit(count($data['mails']));
+	}
+	
 	$display = [];
 	for ($i = $first; $i <= $last; $i++) {
 		if (empty($data['mails'][$i])) break;
@@ -1271,6 +1282,21 @@ function zz_maintenance_maillogs($page) {
 	foreach (array_keys($data['mails']) as $index) {
 		if (in_array($index, $display)) continue;
 		unset($data['mails'][$index]);
+	}
+	if (!empty($resend) AND count($data['mails']) === 1) {
+		$maildata = reset($data['mails']);
+		$mail = [];
+		$mail['to'] = $maildata['To'];
+		$mail['subject'] = $maildata['Subject'];
+		$mail['message'] = $maildata['m_msg'];
+		foreach ($maildata as $key => $value) {
+			if (in_array($key, ['To', 'Subject'])) continue;
+			if (substr($key, 0, 2) === 'm_') continue;
+			$mail['headers'][] = sprintf('%s: %s', $key, $value);
+		}
+		$success = wrap_mail($mail);
+		if (!$success) $data['message'] = wrap_text('Mail was not sent.');
+		return brick_format('%%% redirect 303 '.$_SERVER['REQUEST_URI'].'&mail_sent=1 %%%');
 	}
 	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
