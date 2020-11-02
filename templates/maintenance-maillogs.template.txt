@@ -24,12 +24,14 @@
 %%% loop mails %%%
 <tr class="%%% loopposition uneven un %%%even">
 <td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="msg[%%% item no %%%]" value="%%% item line_no_start %%%-%%% item line_no_end %%%" id="line%%% item no %%%"></label></td>
-<td><p><strong>Date:</strong> %%% item Date wrap_html_escape %%%<br> 
-<strong>To:</strong> %%% item To wrap_html_escape %%% <br>
-<strong>Subject:</strong> %%% item Subject wrap_html_escape %%% <br>
-<strong>From:</strong> %%% item From wrap_html_escape %%% </p>
+<td>
+<pre style="overflow: auto; white-space: pre-wrap; margin: 1em 0; overflow-wrap: break-word; max-width: 80ch;">
+<strong>Date:</strong> %%% item Date wrap_html_escape %%% 
+<strong>To:</strong> %%% item To wrap_html_escape %%% 
+<strong>Subject:</strong> %%% item Subject wrap_html_escape %%% 
+<strong>From:</strong> %%% item From wrap_html_escape %%% 
 
-<pre style="overflow: auto;white-space: pre-wrap; margin: 1em 0; overflow-wrap: break-word;"><div class="moretext">%%% item msg %%%</div></pre>
+<div class="moretext">%%% item msg %%%</div></pre>
 </td>
 <td></td>
 </tr>
