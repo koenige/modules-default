@@ -87,6 +87,7 @@ class BasicCallBack extends \Sabre\DAV\Auth\Backend\AbstractBasic {
     	$login['username'] = $username;
     	$login['password'] = $password;
 		wrap_sql('auth', 'set');
+		wrap_session_start();
     	$success = wrap_login($login);
     	return $success;
     }
