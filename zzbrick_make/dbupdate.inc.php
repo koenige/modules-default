@@ -139,7 +139,7 @@ function mod_default_make_dbupdate_update($line) {
 		}
 		if ($log) zz_log_sql($line['query'], 'Maintenance robot 476');
 		mod_default_make_dbupdate_log($line, 'update');
-		wrap_redirect(303, $zz_setting['host_base'].$zz_setting['request_uri'], false);
+		wrap_redirect($zz_setting['host_base'].$zz_setting['request_uri'], 303, false);
 	}
 	wrap_error('Could not update database', E_USER_ERROR);
 }
@@ -153,7 +153,7 @@ function mod_default_make_dbupdate_update($line) {
 function mod_default_make_dbupdate_ignore($line) {
 	global $zz_setting;
 	mod_default_make_dbupdate_log($line, 'ignore');
-	wrap_redirect(303, $zz_setting['host_base'].$zz_setting['request_uri'], false);
+	wrap_redirect($zz_setting['host_base'].$zz_setting['request_uri'], 303, false);
 }
 
 /**
