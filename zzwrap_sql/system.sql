@@ -89,3 +89,7 @@ SELECT domain, website_id FROM websites;
 
 -- ids_countries --
 SELECT country_code, country_id FROM countries;
+
+
+-- zzform_filetypelist --
+SELECT filetype_id, UPPER(filetype) AS filetype, filetype_description FROM filetypes WHERE filetype IN ('%s');
