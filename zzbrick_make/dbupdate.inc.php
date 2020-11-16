@@ -101,6 +101,11 @@ function mod_default_make_dbupdate_readfile($filename, $module) {
 function mod_default_make_dbupdate_check($line) {
 	global $zz_conf;
 	
+	// install date and is it before log date?
+	if ($install_date = wrap_get_setting('zzwrap_install_date')) {
+		if ($line['date'] < substr($install_date, 0, 10)) return true;
+	}
+	
 	// update already in log?
 	$success = mod_default_make_dbupdate_log($line, 'read');
 	if ($success) {
