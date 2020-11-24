@@ -94,7 +94,9 @@ $zz['fields'][10]['enum'] = ['top', 'bottom', 'internal'];
 $zz['fields'][10]['class'] = 'hidden320';
 $zz['fields'][10]['hide_in_list_if_empty'] = true;
 
-$zz['fields'][15] = []; // parameters
+$zz['fields'][15]['field_name'] = 'parameters';
+$zz['fields'][15]['type'] = 'parameter';
+$zz['fields'][15]['hide_in_list'] = true;
 
 $zz['fields'][16] = []; // website
 
