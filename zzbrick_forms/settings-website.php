@@ -15,10 +15,8 @@
 
 require __DIR__.'/../zzbrick_tables/settings.php';
 
-$cfg = wrap_setting_cfg();
-
 // key
-$zz['fields'][3]['cfg'] = $cfg;
+$zz['fields'][3]['cfg'] = wrap_setting_cfg();
 $zz['fields'][3]['dependencies'] = [6, 4]; // description
 $zz['fields'][3]['dependencies_function'] = 'zz_cfg_read';
 
