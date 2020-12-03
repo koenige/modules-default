@@ -71,6 +71,10 @@ function mod_default_maintenance($params) {
 	} elseif (isset($_GET['phpinfo'])) {
 		phpinfo();
 		exit;
+	} elseif (isset($_GET['imagick'])) {
+		return zz_maintenance_imagick($page);
+	} elseif (isset($_GET['ghostscript'])) {
+		return zz_maintenance_ghostscript($page);
 	} elseif (isset($_GET['integrity'])) {
 		return zz_maintenance_integrity($page);
 	} elseif (isset($_GET['dbupdate'])) {
@@ -86,14 +90,18 @@ function mod_default_maintenance($params) {
 	$data = array_merge($data, zz_maintenance_tables());
 	$data['errors'] = zz_maintenance_errors();
 	// zz_write_conf()
-	require_once $zz_conf['dir'].'/zzform.php';
-	require_once $zz_conf['dir'].'/functions.inc.php';
-	require_once $zz_conf['dir'].'/upload.inc.php';
-	zz_upload_config();
+	zz_maintenance_zzform_init();
+	$data['php_version'] = phpversion();
 	if ($zz_conf['graphics_library'] === 'imagemagick') {
 		require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
-		$data['imagick'] = zz_imagick_version();
-		$data['ghostscript'] = zz_ghostscript_version();
+		$data['imagick_full'] = zz_imagick_version();
+		$data['imagick'] = explode("\n", $data['imagick_full']);
+		$data['imagick'] = $data['imagick'][0];
+		$data['imagick'] = str_replace('Version: ', '', $data['imagick']);
+		$data['imagick'] = str_replace('https://imagemagick.org', '', $data['imagick']);
+		$data['ghostscript_full'] = zz_ghostscript_version();
+		$data['ghostscript'] = explode("\n", $data['ghostscript_full']);
+		$data['ghostscript'] = $data['ghostscript'][0];
 	}
 	$folders = zz_maintenance_folders();
 	$data['folders'] = $folders['text'];
@@ -1599,5 +1607,58 @@ function mod_default_maintenance_last_log() {
  */
 function mod_default_maintenance_return($page) {
 	$page['text'] = sprintf('<div id="zzform" class="maintenance">%s</div>', $page['text']);
+	return $page;
+}
+
+/**
+ * init zzform module
+ *
+ */
+function zz_maintenance_zzform_init() {
+	global $zz_conf;
+
+	require_once $zz_conf['dir'].'/zzform.php';
+	require_once $zz_conf['dir'].'/functions.inc.php';
+	require_once $zz_conf['dir'].'/upload.inc.php';
+	zz_upload_config();
+}
+
+/**
+ * show imagemagick information
+ *
+ * @global array $zz_conf
+ * @return array
+ */
+function zz_maintenance_imagick($page) {
+	global $zz_conf;
+
+	if (!$zz_conf['graphics_library'] === 'imagemagick') return false;
+	zz_maintenance_zzform_init();
+	require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
+	$page['text'] = '<pre>'.zz_imagick_version().'</pre>';
+
+	$page['title'] .= ' '.wrap_text('Image Magick');
+	$page['breadcrumbs'][] = wrap_text('Image Magick');
+	$page['query_strings'] = ['imagick'];
+	return $page;
+}
+
+/**
+ * show ghostscript information
+ *
+ * @global array $zz_conf
+ * @return array
+ */
+function zz_maintenance_ghostscript($page) {
+	global $zz_conf;
+
+	if (!$zz_conf['graphics_library'] === 'imagemagick') return false;
+	zz_maintenance_zzform_init();
+	require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
+	$page['text'] = '<pre>'.zz_ghostscript_version().'</pre>';
+
+	$page['title'] .= ' '.wrap_text('GhostScript');
+	$page['breadcrumbs'][] = wrap_text('GhostScript');
+	$page['query_strings'] = ['ghostscript'];
 	return $page;
 }

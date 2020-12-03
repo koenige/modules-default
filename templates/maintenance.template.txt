@@ -69,11 +69,13 @@
 </tbody></table>
 
 <h2>%%% text PHP & Server %%%</h2>
-<p><a href="?phpinfo">%%% text Show PHP info on server %%%</a></p>
+<ul>
+<li><a href="?phpinfo">PHP %%% item php_version %%%</a> – %%% text Show PHP info on server %%%</li>
 %%% condition if imagick | ghostscript %%%
-<p>ImageMagick:</p><blockquote><pre>%%% item imagick wrap_html_escape %%%</pre></blockquote>
-<p>GhostScript:</p><blockquote><pre>%%% item ghostscript wrap_html_escape %%%</pre></blockquote>
+<li><a href="?imagick">%%% item imagick wrap_html_escape %%%</a></li>
+<li><a href="?ghostscript">%%% item ghostscript wrap_html_escape %%%</a></li>
 %%% condition endif %%%
+</ul>
 
 <h2>%%% text Temp and Backup Files %%%</h2>
 %%% item folders %%%
