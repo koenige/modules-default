@@ -496,21 +496,21 @@ function zz_maintenance_folders($page = []) {
 		return mod_default_maintenance_return($page);
 	}
 
-	$folders = [];
 	$dirs = [
 		'TEMP' => $zz_conf['tmp_dir'],
 		'BACKUP' => $zz_conf['backup_dir'],
 		'CACHE' => $zz_setting['cache_dir']
 	];
+	$data['folders'] = [];
 	foreach ($dirs as $key => $dir) {
 		$exists = file_exists($dir) ? true : false;
-		$data['paths'][] = [
-			'key' => $key,
-			'dir' => realpath($dir),
-			'not_exists' => !$exists AND $dir ? true: false
+		$data['folders'][] = [
+			'title' => $key,
+			'hide_content' => true,
+			'not_exists' => !$exists AND $dir ? true: false,
+			'dir' => realpath($dir)
 		];
 		if (!$exists) continue;
-		$folders[] = $key;
 		if (substr($dir, -1) === '/') $dir = substr($dir, 0, -1);
 		if (!empty($_GET['folder']) AND substr($_GET['folder'], 0, strlen($key)) === $key) {
 			$my_folder = $dir.substr($_GET['folder'], strlen($key));
@@ -540,13 +540,11 @@ function zz_maintenance_folders($page = []) {
 		}
 	}
 
-	foreach ($folders as $index => $folder) {
-		$data['folders'][$index]['title'] = $folder;
-		$data['folders'][$index]['hide_content'] = true;
+	foreach ($data['folders'] as $index => $folder) {
 		if (empty($_GET['folder'])) continue;
-		if (substr($_GET['folder'], 0, strlen($folder)) != $folder) continue;
+		if (substr($_GET['folder'], 0, strlen($folder['title'])) != $folder['title']) continue;
 		$data['folders'][$index]['hide_content'] = false;
-		if ($folder !== $_GET['folder']) {
+		if ($folder['title'] !== $_GET['folder']) {
 			$data['folders'][$index]['subtitle'] = zz_htmltag_escape($_GET['folder']);
 		}
 
