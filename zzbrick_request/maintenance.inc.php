@@ -519,6 +519,16 @@ function zz_maintenance_folders($page = []) {
 
 	if (!empty($_GET['folder']) AND !empty($_GET['file'])) {
 		$file['name'] = $my_folder.'/'.$_GET['file'];
+		$extension = wrap_file_extension(substr($file['name'], strrpos($file['name'], '%2F')));
+		if (strstr($extension, '%3F')) {
+			$extension = explode('%3F', $extension);
+			$extension = $extension[0];
+			$file['ext'] = $extension;
+		}
+		switch ($extension) {
+			case 'headers': $file['ext'] = 'txt'; break;
+			case '%2F': $file['ext'] = 'txt'; break; // display HTML sourcecode
+		}
 		wrap_file_send($file);
 		exit;
 	}
@@ -593,13 +603,20 @@ function zz_maintenance_folders($page = []) {
 			$file['file'] = $filename;
 			$file['size'] = filesize($path);
 			$data['folders'][$index]['size_total'] += $file['size'];
+			$basename = substr($filename, strrpos($filename, '%2F'));
+			$ext = wrap_file_extension($basename);
+			if ($pos = strpos($ext, '%3F')) $ext = substr($ext, 0, $pos);
 			if (is_dir($path)) {
 				$file['ext'] = wrap_text('Folder');
-			} elseif (strrpos($filename, '.') > strlen($filename) - 10) {
+			} elseif ($ext === 'headers') {
+				$file['ext'] = 'TXT';
+			} elseif ($ext === '%2F') {
+				$file['ext'] = 'HTML';
+			} elseif ($ext) {
 				// treat part behind last dot as file extension
 				// normally, file extensions won't be longer than 10 characters
 				// not 100% correct of course
-				$file['ext'] = substr($filename, strrpos($filename, '.') + 1);
+				$file['ext'] = strtoupper($ext);
 			} else {
 				$file['ext'] = wrap_text('unknown');
 			}
