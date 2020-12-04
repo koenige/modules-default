@@ -1099,3 +1099,27 @@ msgstr ""
 #: zzbrick_tables/websites.php
 msgid "Domain name without subdomain www"
 msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "Modules"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "List of Modules"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "Installation"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "enabled?"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "ReadMe"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "Install module"
+msgstr ""

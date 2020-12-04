@@ -1140,3 +1140,27 @@ msgstr "Websites"
 #: zzbrick_tables/websites.php
 msgid "Domain name without subdomain www"
 msgstr "Domainname ohne www-Subdomain"
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "Modules"
+msgstr "Module"
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "List of Modules"
+msgstr "Liste der Module"
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "Installation"
+msgstr "Installation"
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "enabled?"
+msgstr "Aktiviert?"
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "ReadMe"
+msgstr "LiesMich"
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "Install module"
+msgstr "Modul installieren"

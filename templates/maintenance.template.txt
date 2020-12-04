@@ -10,6 +10,8 @@
 #
 <div id="zzform" class="maintenance">
 
+<h2><a href="?dbmodules">%%% text Modules %%%</a></h2>
+
 <h2>%%% text Relation and Translation Tables %%%</h2>
 %%% condition unless relations_table %%%
 <p>%%% text No table for database relations is defined %%% (<code>$zz_conf["relations_table"]</code>)</p>

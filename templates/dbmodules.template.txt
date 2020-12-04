@@ -1,0 +1,51 @@
+# default module
+# Template for maintenance script, modules
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright ©2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div id="zzform" class="maintenance">
+%%% condition if install_settings %%%
+%%% item install_settings %%%
+
+%%% condition else %%%
+<form action="" method="POST">
+<h2>%%% text List of Modules %%%</h2>
+
+<table class="data">
+<tbody>
+%%% loop modules %%%
+<tr class="%%% loopposition uneven un %%%even">
+<td><strong>%%% item module %%%</strong></td>
+<td>%%% condition if install_date %%%%%% item install_date wrap_date %%%
+%%% condition elseif install_sql | settings_cfg %%%
+<input type="submit" name="install[%%% item module %%%]" value="%%% text Install module %%%">
+%%% condition else %%%–
+%%% condition endif %%%</td>
+<td>%%% condition if enabled %%%%%% text yes %%%%%% condition else %%%%%% text no %%%%%% condition endif %%%</td>
+<td>%%% condition if readme %%%<a href="?dbmodules&readme=%%% item module %%%">ReadMe.md</a>%%% condition else %%%–%%% condition endif %%%</td>
+</tr>
+%%% loop end %%%
+</tbody>
+<thead>
+<tr>
+<th>%%% text Module %%%</th>
+<th>%%% text Installation %%%</th>
+<th>%%% text enabled? %%%</th>
+<th>%%% text ReadMe %%%</th>
+</tr>
+</thead>
+</table>
+
+%%% condition if readme %%%
+<hr>
+%%% item readme markdown %%%
+%%% condition endif %%%
+
+</form>
+%%% condition endif %%%
+</div>
