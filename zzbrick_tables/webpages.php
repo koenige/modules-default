@@ -75,6 +75,7 @@ if (wrap_get_setting('default_webpages_media')) {
 	$zz['fields'][8]['form_display'] = 'horizontal';
 	$zz['fields'][8]['sql'] .= ' ORDER BY /*_PREFIX_*/webpages.title DESC, sequence';
 	$zz['fields'][8]['fields'][2]['type'] = 'foreign_key';
+	$zz['fields'][8]['fields'][4]['type'] = 'sequence';
 	$zz['fields'][8]['class'] = 'hidden480';
 }
 
