@@ -82,7 +82,11 @@ function mod_default_maintenance($params) {
 		$page['title'] .= ' '.$newpage['title'];
 		$page['text'] = $newpage['text'];
 		$page['breadcrumbs'] = array_merge($page['breadcrumbs'], $newpage['breadcrumbs']);
-		$page['query_strings'] = ['dbupdate'];
+		if (!empty($newpage['query_strings']))
+			$page['query_strings'] = $newpage['query_strings'];
+		if (!empty($newpage['head']))
+			$page['head'] .= $newpage['head'];
+		$page['query_strings'][] = $key;
 		return $page;
 	}
 
