@@ -1325,9 +1325,9 @@ function zz_maintenance_maillogs($page) {
 		}
 		$success = wrap_mail($mail);
 		if (!$success) $data['message'] = wrap_text('Mail was not sent.');
-		return brick_format('%%% redirect 303 '.$_SERVER['REQUEST_URI'].'&mail_sent=1 %%%');
+		return wrap_redirect_change($zz_setting['request_uri'].'&mail_sent=1');
 	}
-	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
+	$data['url_self'] = wrap_html_escape($zz_setting['request_uri']);
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
 	$data['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['total_rows']);
 

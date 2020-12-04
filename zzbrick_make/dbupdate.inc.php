@@ -131,7 +131,6 @@ function mod_default_make_dbupdate_check($line) {
  * @return void
  */
 function mod_default_make_dbupdate_update($line) {
-	global $zz_setting;
 	global $zz_conf;
 	require_once $zz_conf['dir_inc'].'/database.inc.php';
 
@@ -144,7 +143,7 @@ function mod_default_make_dbupdate_update($line) {
 		}
 		if ($log) zz_log_sql($line['query'], 'Maintenance robot 476');
 		mod_default_make_dbupdate_log($line, 'update');
-		wrap_redirect($zz_setting['host_base'].$zz_setting['request_uri'], 303, false);
+		wrap_redirect_change();
 	}
 	wrap_error('Could not update database', E_USER_ERROR);
 }
@@ -156,9 +155,8 @@ function mod_default_make_dbupdate_update($line) {
  * @return void
  */
 function mod_default_make_dbupdate_ignore($line) {
-	global $zz_setting;
 	mod_default_make_dbupdate_log($line, 'ignore');
-	wrap_redirect($zz_setting['host_base'].$zz_setting['request_uri'], 303, false);
+	wrap_redirect_change();
 }
 
 /**
