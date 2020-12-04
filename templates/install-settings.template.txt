@@ -8,9 +8,14 @@
 # @copyright Copyright © 2020 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
+%%% condition if module %%%
+<h2>Install Settings for Module <code>%%% item module %%%</code></h2>
+%%% condition else %%%
 <h1>Installation of Zugzwang Project CMS</h1>
 
 <h2>Step 3 – Settings</h2>
+%%% condition endif %%%
+
 <p>Here, you can add some settings. It’s possible to add or change them later, too.</p>
 <form method="POST" action="">
 %%% condition if error %%%
