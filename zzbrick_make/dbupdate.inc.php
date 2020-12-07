@@ -43,6 +43,8 @@ function mod_default_make_dbupdate($params) {
 			$data[$index]['current'] = true;
 			$current = $index;
 			break;
+		} elseif ($data[$index]['exists'] === -1) {
+			unset($data[$index]);
 		}
 	}
 	
@@ -96,14 +98,18 @@ function mod_default_make_dbupdate_readfile($filename, $module) {
  * check if update already happened
  *
  * @param array $line
- * @return bool
+ * @return int (bool true, false; -1 if before install date)
  */
 function mod_default_make_dbupdate_check($line) {
 	global $zz_conf;
 	
 	// install date and is it before log date?
 	if ($install_date = wrap_get_setting('zzwrap_install_date')) {
-		if ($line['date'] < substr($install_date, 0, 10)) return true;
+		if ($line['date'] < substr($install_date, 0, 10)) return -1;
+	}
+	$module_install_key = sprintf('mod_%s_install_date', $line['module']);
+	if (wrap_get_setting($module_install_key)) {
+		if ($line['date'] < substr(wrap_get_setting($module_install_key), 0, 10)) return -1;
 	}
 	
 	// update already in log?
