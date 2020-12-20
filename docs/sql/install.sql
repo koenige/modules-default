@@ -234,7 +234,7 @@ CREATE TABLE `_uris` (
   `uri_query` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `content_type` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `character_encoding` varchar(31) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `content_length` mediumint unsigned NOT NULL,
+  `content_length` int unsigned NOT NULL,
   `user` varchar(64) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'none',
   `status_code` smallint NOT NULL,
   `etag_md5` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
