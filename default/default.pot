@@ -5,7 +5,7 @@
 # http://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014-2018, 2020 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014-2018, 2020-2021 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -899,6 +899,21 @@ msgstr ""
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Three letter country code according to ISO 3166"
+msgstr ""
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "IOC Code"
+msgstr ""
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "IOC"
+msgstr ""
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Three letter country code according to the International Olympic Committee (IOC)"
 msgstr ""
 
 #: zzbrick_tables/languages.php

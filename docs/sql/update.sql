@@ -5,7 +5,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2019-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2019-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -446,4 +446,4 @@
 /* 2020-11-13-13 */	UPDATE _translations_varchar LEFT JOIN _translationfields USING (translationfield_id) LEFT JOIN countries ON countries.country_id = _translations_varchar.field_id SET translation = 'Suriname' WHERE db_name = DATABASE() AND table_name = 'countries' AND field_name = 'country' AND field_type = 'varchar' AND country_code = 'SR';
 /* 2020-11-13-14 */	INSERT INTO _translations_varchar (translationfield_id, field_id, translation, language_id) SELECT (SELECT translationfield_id FROM _translationfields WHERE table_name = 'countries' AND field_name = 'country' AND field_type = 'varchar'), country_id, 'St. Lucia', 105 FROM countries WHERE country_code = 'LC';
 /* 2020-11-15-1 */	ALTER TABLE `webpages` ADD `parameters` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `menu`;
-/* 2020-12-20-1 */	ALTER TABLE `_uris` CHANGE `content_length` `content_length` int unsigned NOT NULL AFTER `character_encoding`;
+/* 2021-01-02-1 */	ALTER TABLE `countries` ADD `ioc_code` varchar(3) COLLATE 'latin1_general_ci' NULL AFTER `country_code3`;

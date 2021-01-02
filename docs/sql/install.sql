@@ -5,7 +5,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -269,6 +269,7 @@ CREATE TABLE `countries` (
   `country_id` int unsigned NOT NULL AUTO_INCREMENT,
   `country_code` char(2) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `country_code3` char(3) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `ioc_code` varchar(3) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `country` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `website` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'no',
   PRIMARY KEY (`country_id`),

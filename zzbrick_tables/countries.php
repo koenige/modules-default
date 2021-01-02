@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012, 2018-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2018-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -28,6 +28,11 @@ $zz['fields'][4]['title'] = 'Country Code 3';
 $zz['fields'][4]['title_tab'] = 'CC3';
 $zz['fields'][4]['field_name'] = 'country_code3';
 $zz['fields'][4]['explanation'] = 'Three letter country code according to ISO 3166';
+
+$zz['fields'][11]['title'] = 'IOC Code';
+$zz['fields'][11]['title_tab'] = 'IOC';
+$zz['fields'][11]['field_name'] = 'ioc_code';
+$zz['fields'][11]['explanation'] = 'Three letter country code according to the International Olympic Committee (IOC)';
 
 $zz['fields'][3]['title'] = 'Country';
 $zz['fields'][3]['field_name'] = 'country';
