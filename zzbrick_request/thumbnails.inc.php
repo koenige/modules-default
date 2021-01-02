@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2014-2016, 2019-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2014-2016, 2019-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -78,7 +78,7 @@ function mod_default_thumbnails($params) {
 			if ($line['filetype_id'] == wrap_filetype_id('folder')) continue;
 		}
 		$title = $line[$id_field_name];
-		$source = zz_thumbnails_makelink($source_path, $line);
+		$source = mod_default_thumbnails_makelink($source_path, $line);
 		if (!$source) {
 			$output[] = $title.': <span class="error">'.wrap_text('The original file does not exist.').'</span>';
 			continue;
@@ -97,7 +97,7 @@ function mod_default_thumbnails($params) {
 			$file['upload']['width'] = $size[0];
 
 			// get path without checking whether file exists
-			$destination = zz_thumbnails_makelink($file['path'], $line, 'inexistent');
+			$destination = mod_default_thumbnails_makelink($file['path'], $line, 'inexistent');
 			$dest_extension = substr($destination, strrpos($destination, '.')+1);
 			zz_create_topfolders(dirname($destination));
 			
@@ -138,7 +138,7 @@ function mod_default_thumbnails($params) {
  * @param string $mode
  * @return string $source (or false, if source does not exist)
  */
-function zz_thumbnails_makelink($source_path, $line, $mode = false) {
+function mod_default_thumbnails_makelink($source_path, $line, $mode = false) {
 	$root = '';
 	if (!empty($source_path['root'])) {
 		$root = $source_path['root'];
