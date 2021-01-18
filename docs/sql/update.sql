@@ -447,3 +447,5 @@
 /* 2020-11-13-14 */	INSERT INTO _translations_varchar (translationfield_id, field_id, translation, language_id) SELECT (SELECT translationfield_id FROM _translationfields WHERE table_name = 'countries' AND field_name = 'country' AND field_type = 'varchar'), country_id, 'St. Lucia', 105 FROM countries WHERE country_code = 'LC';
 /* 2020-11-15-1 */	ALTER TABLE `webpages` ADD `parameters` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `menu`;
 /* 2021-01-02-1 */	ALTER TABLE `countries` ADD `ioc_code` varchar(3) COLLATE 'latin1_general_ci' NULL AFTER `country_code3`;
+/* 2021-01-18-1 */	ALTER TABLE `categories` CHANGE `parameters` `parameters` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `path`;
+/* 2021-01-18-1 */	ALTER TABLE `webpages` CHANGE `parameters` `parameters` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `menu`;
