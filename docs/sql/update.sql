@@ -449,3 +449,4 @@
 /* 2021-01-02-1 */	ALTER TABLE `countries` ADD `ioc_code` varchar(3) COLLATE 'latin1_general_ci' NULL AFTER `country_code3`;
 /* 2021-01-18-1 */	ALTER TABLE `categories` CHANGE `parameters` `parameters` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `path`;
 /* 2021-01-18-2 */	ALTER TABLE `webpages` CHANGE `parameters` `parameters` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `menu`;
+/* 2021-01-21-1 */	ALTER TABLE `_uris` CHANGE `content_length` `content_length` int unsigned NOT NULL AFTER `character_encoding`;
