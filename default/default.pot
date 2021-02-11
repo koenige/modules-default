@@ -988,6 +988,11 @@ msgstr ""
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
+msgid "Identifier / Parameters"
+msgstr ""
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
 msgid "Parameters"
 msgstr ""
 

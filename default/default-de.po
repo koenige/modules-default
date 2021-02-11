@@ -1029,6 +1029,11 @@ msgstr "Beschreibung"
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
+msgid "Identifier / Parameters"
+msgstr "Kennung / Parameter"
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
 msgid "Parameters"
 msgstr "Parameter"
 
