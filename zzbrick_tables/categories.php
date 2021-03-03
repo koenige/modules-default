@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2016-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2016-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -22,6 +22,7 @@ $zz['fields'][1]['type'] = 'id';
 
 $zz['fields'][2]['field_name'] = 'category';
 $zz['fields'][2]['list_append_next'] = true;
+$zz['fields'][2]['typo_cleanup'] = true;
 
 $zz['fields'][22] = [];
 
@@ -30,6 +31,7 @@ $zz['fields'][3]['type'] = 'memo';
 $zz['fields'][3]['format'] = 'markdown';
 $zz['fields'][3]['list_prefix'] = '<p><small>';
 $zz['fields'][3]['list_suffix'] = '</small></p>';
+$zz['fields'][3]['typo_cleanup'] = true;
 
 $zz['fields'][4]['title'] = 'Main Category';
 $zz['fields'][4]['field_name'] = 'main_category_id';
