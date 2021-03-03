@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.12\n"
 
-#: docs/sql/settings.cfg
+#: configuration/settings.cfg
 msgid "List of services used for geocoding"
 msgstr "Liste der Dienste, die für die Geokodierung benutzt werden"
 

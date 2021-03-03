@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -27,8 +27,8 @@ function mod_default_make_dbmodules($params) {
 	$data = [];
 	foreach ($zz_setting['modules'] as $module) {
 		$readme_file = sprintf('%s/%s/README.md', $zz_setting['modules_dir'], $module);
-		$install_file = sprintf('%s/%s/docs/sql/install.sql', $zz_setting['modules_dir'], $module);
-		$cfg_file = sprintf('%s/%s/docs/sql/settings.cfg', $zz_setting['modules_dir'], $module);
+		$install_file = sprintf('%s/%s/configuration/install.sql', $zz_setting['modules_dir'], $module);
+		$cfg_file = sprintf('%s/%s/configuration/settings.cfg', $zz_setting['modules_dir'], $module);
 		$data['modules'][$module] = [
 			'module' => $module,
 			'install_sql' => file_exists($install_file) ? $install_file : false,

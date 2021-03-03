@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7\n"
 
-#: docs/sql/settings.cfg
+#: configuration/settings.cfg
 msgid "List of services used for geocoding"
 msgstr ""
 
