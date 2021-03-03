@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2015, 2018, 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2015, 2018, 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -16,7 +16,7 @@
 require __DIR__.'/../zzbrick_tables/settings.php';
 
 // key
-$zz['fields'][3]['cfg'] = wrap_setting_cfg();
+$zz['fields'][3]['cfg'] = wrap_cfg_files('settings');
 $zz['fields'][3]['dependencies'] = [6, 4]; // description
 $zz['fields'][3]['dependencies_function'] = 'zz_cfg_read';
 
