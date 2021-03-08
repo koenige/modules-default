@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018, 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2018, 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -19,7 +19,7 @@
  * @param array $params -
  * @return array $page
  */
-function mod_default_serversync($params) {
+function mod_default_make_serversync($params) {
 	global $zz_conf;
 	require __DIR__.'/maintenance.inc.php';
 	

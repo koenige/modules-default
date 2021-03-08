@@ -451,3 +451,4 @@
 /* 2021-01-18-1 */	ALTER TABLE `categories` CHANGE `parameters` `parameters` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `path`;
 /* 2021-01-18-2 */	ALTER TABLE `webpages` CHANGE `parameters` `parameters` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `menu`;
 /* 2021-01-21-1 */	ALTER TABLE `_uris` CHANGE `content_length` `content_length` int unsigned NOT NULL AFTER `character_encoding`;
+/* 2021-03-08-1 */	UPDATE webpages SET content = REPLACE(content, '%%% request serversync %%%', '%%% make serversync %%%') WHERE content LIKE '%%%% request serversync %%%%';
