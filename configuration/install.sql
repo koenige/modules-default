@@ -10,6 +10,34 @@
  */
 
 
+CREATE TABLE `_logging` (
+  `log_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `query` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `record_id` int unsigned DEFAULT NULL,
+  `user` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`log_id`),
+  KEY `record_id` (`record_id`),
+  KEY `last_update` (`last_update`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE `_relations` (
+  `rel_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `master_db` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `master_table` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `master_field` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `detail_db` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `detail_table` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `detail_field` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `delete` enum('delete','ask','no-delete','update') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'no-delete',
+  `detail_id_field` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `detail_url` varchar(63) CHARACTER SET latin1 COLLATE latin1_general_cs DEFAULT NULL,
+  PRIMARY KEY (`rel_id`),
+  UNIQUE KEY `master_db` (`master_db`,`master_table`,`master_field`,`detail_db`,`detail_table`,`detail_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+
 CREATE TABLE `_settings` (
   `setting_id` int unsigned NOT NULL AUTO_INCREMENT,
   `setting_key` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,

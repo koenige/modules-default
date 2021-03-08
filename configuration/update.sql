@@ -11,6 +11,7 @@
 
 /* 2018-08-28-1 */	ALTER TABLE `languages` CHANGE `language_id` `language_id` int unsigned NOT NULL AUTO_INCREMENT FIRST, ADD `variation` varchar(40) COLLATE 'utf8_unicode_ci' NULL AFTER `language_fr`;
 /* 2018-08-28-2 */	ALTER TABLE `languages` ADD UNIQUE `iso_639_2t_variation` (`iso_639_2t`, `variation`), DROP INDEX `iso_639_2t`;
+/* 2019-01-10-1 */	ALTER TABLE `_logging` ADD INDEX `last_update` (`last_update`);
 /* 2019-11-19-1 */	ALTER TABLE `categories` CHANGE `path` `path` varchar(100) COLLATE 'latin1_general_ci' NOT NULL AFTER `main_category_id`;
 /* 2020-02-25-1 */	ALTER TABLE `webpages` ADD INDEX `mother_page_id` (`mother_page_id`);
 /* 2020-02-25-2 */	ALTER TABLE `redirects` CHANGE `old_url` `old_url` varchar(127) COLLATE 'latin1_general_ci' NOT NULL AFTER `redirect_id`, CHANGE `new_url` `new_url` varchar(127) COLLATE 'latin1_general_ci' NOT NULL AFTER `old_url`;
