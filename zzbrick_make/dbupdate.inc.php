@@ -28,6 +28,7 @@ function mod_default_make_dbupdate($params) {
 	// look for update.sql
 	$data = [];
 	$file_template = $zz_setting['modules_dir'].'/%s/configuration/update.sql';
+	wrap_sql_ignores();
 	foreach ($zz_setting['modules'] as $module) {
 		$file = sprintf($file_template, $module);
 		if (!file_exists($file)) continue;
@@ -80,14 +81,43 @@ function mod_default_make_dbupdate_readfile($filename, $module) {
 		$line[0] = rtrim($line[0], ' */');
 		$line[0] = explode('-', $line[0]);
 		$key = vsprintf('%04d-%02d-%02d-%06d', $line[0]);
-		$data[$key] = [
-			'query' => rtrim(trim($line[1]), ';'),
-			'module' => $module,
-			'date' => vsprintf('%04d-%02d-%02d', $line[0]),
-			'key' => $key
-		];
+		$query = rtrim(trim($line[1]), ';');
+		$table = mod_default_make_dbupdate_table($query);
+		if (!$table OR !wrap_sql_ignores($module, $table)) {
+			$data[$key] = [
+				'query' => $query,
+				'module' => $module,
+				'date' => vsprintf('%04d-%02d-%02d', $line[0]),
+				'key' => $key
+			];
+		}
 	}
 	return $data;
+}
+
+/**
+ * get table name from query
+ *
+ * @param string $query
+ * @return string
+ */
+function mod_default_make_dbupdate_table($query) {
+	$sql_verbs = [
+		'ALTER TABLE', 'DELETE FROM', 'UPDATE', 'INSERT INTO', 'CREATE TABLE',
+		'DROP TABLE', 'DELETE'
+	];
+	foreach ($sql_verbs as $verb) {
+		if (wrap_substr($query, $verb.' ')) {
+			$table = substr($query, strlen($verb) + 1);
+			break;
+		}
+	}
+	if (!empty($table)) {
+		if ($pos = strpos($table, ' ')) $table = substr($table, 0, $pos);
+		$table = trim($table, '`');
+		return $table;
+	}
+	return '';
 }
 
 /**
