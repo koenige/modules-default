@@ -10,6 +10,7 @@
  */
 
 
+-- _logging --
 CREATE TABLE `_logging` (
   `log_id` int unsigned NOT NULL AUTO_INCREMENT,
   `query` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -22,6 +23,7 @@ CREATE TABLE `_logging` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
+-- _relations --
 CREATE TABLE `_relations` (
   `rel_id` int unsigned NOT NULL AUTO_INCREMENT,
   `master_db` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -38,6 +40,7 @@ CREATE TABLE `_relations` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 
+-- _settings --
 CREATE TABLE `_settings` (
   `setting_id` int unsigned NOT NULL AUTO_INCREMENT,
   `setting_key` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
@@ -52,6 +55,7 @@ CREATE TABLE `_settings` (
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), '_settings', 'setting_id', 'website_id', 'delete');
 
 
+-- _translationfields --
 CREATE TABLE `_translationfields` (
   `translationfield_id` int unsigned NOT NULL AUTO_INCREMENT,
   `db_name` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -67,6 +71,7 @@ INSERT INTO `_translationfields` (`translationfield_id`, `db_name`, `table_name`
 (2,	(SELECT DATABASE()),	'countries',	'country',	'varchar');
 
 
+-- _translations_text --
 CREATE TABLE `_translations_text` (
   `translation_id` int unsigned NOT NULL AUTO_INCREMENT,
   `translationfield_id` int unsigned NOT NULL,
@@ -84,6 +89,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), '_translationfields', 'translationfield_id', (SELECT DATABASE()), '_translations_text', 'translation_id', 'translationfield_id', 'no-delete');
 
 
+-- _translations_varchar --
 CREATE TABLE `_translations_varchar` (
   `translation_id` int unsigned NOT NULL AUTO_INCREMENT,
   `translationfield_id` int unsigned NOT NULL,
@@ -254,6 +260,7 @@ INSERT INTO `_translations_varchar` (`translation_id`, `translationfield_id`, `f
 (150,	2,	181,	'St. Lucia',	105,	NOW());
 
 
+-- _uris --
 CREATE TABLE `_uris` (
   `uri_id` int unsigned NOT NULL AUTO_INCREMENT,
   `uri_scheme` varchar(15) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
@@ -276,6 +283,7 @@ CREATE TABLE `_uris` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 
+-- categories --
 CREATE TABLE `categories` (
   `category_id` int unsigned NOT NULL AUTO_INCREMENT,
   `category` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -293,6 +301,7 @@ CREATE TABLE `categories` (
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'categories', 'category_id', 'main_category_id', 'no-delete');
 
 
+-- countries --
 CREATE TABLE `countries` (
   `country_id` int unsigned NOT NULL AUTO_INCREMENT,
   `country_code` char(2) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -558,6 +567,7 @@ INSERT INTO `countries` (`country_id`, `country_code`, `country_code3`, `country
 (251,	'XK',	'XKX',	'Kosovo', 'no');
 
 
+-- languages --
 CREATE TABLE `languages` (
   `language_id` int unsigned NOT NULL AUTO_INCREMENT,
   `iso_639_2t` char(3) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -1061,6 +1071,7 @@ INSERT INTO `languages` (`language_id`, `iso_639_2t`, `iso_639_2b`, `iso_639_1`,
 (485,	'zza',	NULL,	NULL,	'Zazaki',	'Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki',	'zaza; dimili; dimli; kirdki; kirmanjki; zazaki',	NULL,	'no');
 
 
+-- logins --
 CREATE TABLE `logins` (
   `login_id` int unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(63) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -1076,6 +1087,7 @@ CREATE TABLE `logins` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
 
 
+-- redirects --
 CREATE TABLE `redirects` (
   `redirect_id` int unsigned NOT NULL AUTO_INCREMENT,
   `old_url` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
@@ -1093,6 +1105,7 @@ CREATE TABLE `redirects` (
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'redirects', 'redirect_id', 'website_id', 'delete');
 
 
+-- text --
 CREATE TABLE `text` (
   `text_id` int unsigned NOT NULL AUTO_INCREMENT,
   `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
@@ -1105,6 +1118,7 @@ CREATE TABLE `text` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
+-- webpages --
 CREATE TABLE `webpages` (
   `page_id` int unsigned NOT NULL AUTO_INCREMENT,
   `website_id` int unsigned NOT NULL DEFAULT '1',
@@ -1141,6 +1155,8 @@ INSERT INTO `webpages` (`page_id`, `title`, `content`, `identifier`, `ending`, `
 (12,	'Media',	'%%% forms media * %%%',	'/db/media*',	'/',	1,	11,	'yes',	NULL,	NULL,	NOW()),
 (13,	'Robots', '%%% set content_type=txt %%%\n# robots.txt', '/robots.txt', 'none', 40, 1, 'yes', NULL, NULL, NOW());
 
+
+-- webpages_media --
 CREATE TABLE `webpages_media` (
   `page_medium_id` int unsigned NOT NULL AUTO_INCREMENT,
   `page_id` int unsigned NOT NULL,
@@ -1156,6 +1172,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'webpages', 'page_id', (SELECT DATABASE()), 'webpages_media', 'page_medium_id', 'page_id', 'delete');
 
 
+-- websites --
 CREATE TABLE `websites` (
   `website_id` int unsigned NOT NULL AUTO_INCREMENT,
   `website` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
