@@ -72,13 +72,9 @@ function mod_default_make_dbupdate($params) {
  */
 function mod_default_make_dbupdate_readfile($filename, $module) {
 	$data = [];
-	$lines = file($filename);
-	foreach ($lines as $line) {
-		$line = trim($line);
-		if (!$line) continue;
-		if (substr($line, 0, 3) === '/**') continue;
-		if (substr($line, 0, 1) === '*') continue;
-		if (substr($line, 0, 2) === '*/') continue;
+	$lines = wrap_sql_file($filename);
+	if (!$lines) return [];
+	foreach ($lines['file'] as $line) {
 		$line = explode("\t", $line);
 		$line[0] = ltrim($line[0], '/* ');
 		$line[0] = rtrim($line[0], ' */');
