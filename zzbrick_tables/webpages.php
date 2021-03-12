@@ -8,7 +8,7 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2009, 2016, 2018-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2009, 2016, 2018-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -40,6 +40,9 @@ $zz['fields'][4]['explanation'] = 'Address of page, should show hierarchy, no / 
 $zz['fields'][4]['list_prefix'] = '<p><small>';
 $zz['fields'][4]['list_suffix'] = '</small></p>';
 $zz['fields'][4]['append_next'] = true;
+$zz['fields'][4]['link'] = [
+	'field' => 'webpage_url'
+];
 
 $zz['fields'][5]['field_name'] = 'ending';
 $zz['fields'][5]['type'] = 'select';
@@ -107,7 +110,11 @@ $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/webpages.* 
-	, motherpages.title AS mother_title
+		, motherpages.title AS mother_title
+		, IF(/*_PREFIX_*/webpages.live = "yes", IF(LOCATE("*", /*_PREFIX_*/webpages.identifier), NULL,
+				IF(LOCATE("%", /*_PREFIX_*/webpages.identifier), NULL, 
+			CONCAT(/*_PREFIX_*/webpages.identifier, IF(STRCMP(/*_PREFIX_*/webpages.ending, "none"), /*_PREFIX_*/webpages.ending, "")))
+		), NULL) AS webpage_url
 	FROM /*_PREFIX_*/webpages
 	LEFT JOIN /*_PREFIX_*/webpages AS motherpages 
 		ON /*_PREFIX_*/webpages.mother_page_id = motherpages.page_id';
