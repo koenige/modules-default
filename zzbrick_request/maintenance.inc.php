@@ -29,6 +29,7 @@
 function mod_default_maintenance($params) {
 	global $zz_conf;
 	global $zz_setting;
+	if (!wrap_access('default_maintenance')) wrap_quit(403);
 	$zz_setting['dont_show_h1'] = false; // internal, no need to hide it
 
 	if (!isset($zz_conf['modules'])) {

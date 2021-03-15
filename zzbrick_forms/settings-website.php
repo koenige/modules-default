@@ -13,6 +13,8 @@
  */
 
 
+if (!wrap_access('default_settings')) wrap_quit(403);
+
 require __DIR__.'/../zzbrick_tables/settings.php';
 
 // key

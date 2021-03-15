@@ -110,14 +110,14 @@ $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/webpages.* 
-		, motherpages.title AS mother_title
+		, main_pages.title AS mother_title
 		, IF(/*_PREFIX_*/webpages.live = "yes", IF(LOCATE("*", /*_PREFIX_*/webpages.identifier), NULL,
 				IF(LOCATE("%", /*_PREFIX_*/webpages.identifier), NULL, 
 			CONCAT(/*_PREFIX_*/webpages.identifier, IF(STRCMP(/*_PREFIX_*/webpages.ending, "none"), /*_PREFIX_*/webpages.ending, "")))
 		), NULL) AS webpage_url
 	FROM /*_PREFIX_*/webpages
-	LEFT JOIN /*_PREFIX_*/webpages AS motherpages 
-		ON /*_PREFIX_*/webpages.mother_page_id = motherpages.page_id';
+	LEFT JOIN /*_PREFIX_*/webpages AS main_pages 
+		ON /*_PREFIX_*/webpages.mother_page_id = main_pages.page_id';
 $zz['sqlorder'] = ' ORDER BY sequence, identifier';
 
 $zz['list']['hierarchy']['mother_id_field_name'] = $zz['fields'][7]['field_name'];
@@ -129,6 +129,12 @@ $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = '/*_PREFIX_*/webpages.live = "no"';
 
 $zz_conf['copy'] = true;
+
+if (wrap_access('default_webpages_admin')) {
+	unset($zz['fields'][15]); // no parameters
+	$zz['sql'] .= ' WHERE (ISNULL(webpages.parameters) OR !LOCATE("access=admin", webpages.parameters))
+		AND (ISNULL(main_pages.parameters) OR !LOCATE("access=admin", main_pages.parameters))';
+}
 
 if (!empty($zz_setting['multiple_websites'])) {
 	if (!empty($_GET['where']['website_id'])) $website = $_GET['where']['website_id'];
@@ -162,12 +168,12 @@ if (!empty($zz_setting['multiple_websites'])) {
 	);
 
 	$zz['sql'] = 'SELECT /*_PREFIX_*/webpages.*
-			, motherpages.title AS mother_title
+			, main_pages.title AS mother_title
 			, /*_PREFIX_*/websites.domain
 		FROM /*_PREFIX_*/webpages
 		LEFT JOIN /*_PREFIX_*/websites USING (website_id) 
-		LEFT JOIN /*_PREFIX_*/webpages AS motherpages 
-			ON /*_PREFIX_*/webpages.mother_page_id = motherpages.page_id';
+		LEFT JOIN /*_PREFIX_*/webpages AS main_pages 
+			ON /*_PREFIX_*/webpages.mother_page_id = main_pages.page_id';
 
 	$zz['filter'][1]['sql'] = 'SELECT website_id, domain
 		FROM /*_PREFIX_*/websites

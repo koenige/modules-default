@@ -9,13 +9,12 @@
  * http://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2010, 2014, 2018-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2010, 2014, 2018-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
-// access restriction has to be set in the file including this file
-// Bitte Zugriffsbeschränkungen in der Datei, die diese einbindet, definieren!
+if (!wrap_access('default_relations')) wrap_quit(403);
 
 $zz['title'] = 'Database Table Relations';
 $zz['table'] = $zz_conf['relations_table'];
