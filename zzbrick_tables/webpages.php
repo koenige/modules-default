@@ -132,8 +132,8 @@ $zz_conf['copy'] = true;
 
 if (!wrap_access('default_webpages_admin')) {
 	unset($zz['fields'][15]); // no parameters
-	$zz['sql'] .= ' WHERE (ISNULL(webpages.parameters) OR !LOCATE("access=admin", webpages.parameters))
-		AND (ISNULL(main_pages.parameters) OR !LOCATE("access=admin", main_pages.parameters))';
+	$zz['sql'] .= ' WHERE (ISNULL(webpages.parameters) OR !LOCATE("edit=admin", webpages.parameters))
+		AND (ISNULL(main_pages.parameters) OR !LOCATE("edit=admin", main_pages.parameters))';
 }
 
 if (!empty($zz_setting['multiple_websites'])) {
