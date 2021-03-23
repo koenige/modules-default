@@ -58,7 +58,7 @@ function mod_default_cfgfile($params) {
 	$page['text'] = str_replace('\%', '%', $page['text']);
 	$page['text'] = explode("\n", $page['text']);
 	foreach ($page['text'] as $index => $line) {
-		$page['text'][$index] = trim($line);
+		$page['text'][$index] = rtrim($line);
 	}
 	$page['text'] = implode("\n", $page['text']);
 	$page['content_type'] = 'txt';
