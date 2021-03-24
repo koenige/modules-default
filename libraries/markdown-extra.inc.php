@@ -30,6 +30,7 @@ function markdown_inline($text) {
 	$html = trim($html);
 	$html = str_replace('<p>', ' ', $html);
 	$html = str_replace('</p>', ' ', $html);
+	$html = trim($html);
 	return $html;	
 }
 
