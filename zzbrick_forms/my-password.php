@@ -5,10 +5,10 @@
  * Database form for own password
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015, 2018, 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2015, 2018, 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -65,6 +65,8 @@ if (!empty($_GET['url'])) {
 }
 $zz_conf['text']['--']['Edit a record'] = 'Change My Password';
 $zz_conf['no_timeframe'] = true;
+$zz_conf['referer'] = $zz_setting['login_entryurl'];
+
 
 function mod_default_password_update() {
 	if (empty($_SESSION['dont_require_old_password'])) return;
