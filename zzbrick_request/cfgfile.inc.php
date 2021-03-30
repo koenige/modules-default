@@ -34,6 +34,7 @@ function mod_default_cfgfile($params) {
 			if (in_array($key, ['identifier', 'parameters'])) continue;
 			if (!$value AND $value !== 0 AND $value !== '0') continue;
 			if (wrap_substr($key, '_list', 'end')) {
+				$key = substr($key, 0, - strlen('_list'));
 				$value = explode(',', $value);
 				foreach ($value as $subkey => $subval) {
 					$data[$index]['keys'][] = [
