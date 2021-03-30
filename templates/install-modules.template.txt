@@ -1,0 +1,25 @@
+# default module
+# Template for installation: module specific installation
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2021 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<h1>Installation of Zugzwang Project CMS</h1>
+
+<h2>Step 4 – Install Modules</h2>
+<p>The following modules come with their own install scripts:</p>
+<form method="POST" action="">
+%%% condition if error %%%
+<p class="error">%%% item error %%%</p>
+%%% condition endif %%%
+<ul>
+%%% loop modules %%%
+<li>%%% item module %%%</li>
+%%% loop end %%%
+</ul>
+<input type="submit" value="Install modules">
+</form>
