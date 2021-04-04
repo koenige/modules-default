@@ -21,7 +21,7 @@
  */
 function mod_default_make_serversync($params) {
 	global $zz_conf;
-	require __DIR__.'/maintenance.inc.php';
+	require __DIR__.'/../zzbrick_request/maintenance.inc.php';
 	
 	if (!empty($_POST['return_last_logging_entry'])) {
 		$data = mod_default_maintenance_last_log();
