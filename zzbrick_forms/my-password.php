@@ -65,7 +65,14 @@ if (!empty($_GET['url'])) {
 }
 $zz_conf['text']['--']['Edit a record'] = 'Change My Password';
 $zz_conf['no_timeframe'] = true;
-$zz_conf['referer'] = $zz_setting['login_entryurl'];
+if (empty($_GET['referer'])) {
+	if (is_array($zz_setting['login_entryurl'])) {
+		if (!empty($_SESSION['domain']) AND !empty($zz_setting['login_entryurl'][$_SESSION['domain']]))
+			$zz_conf['referer'] = $zz_setting['login_entryurl'][$_SESSION['domain']];
+	} else {
+		$zz_conf['referer'] = $zz_setting['login_entryurl'];
+	}
+}
 
 
 function mod_default_password_update() {
