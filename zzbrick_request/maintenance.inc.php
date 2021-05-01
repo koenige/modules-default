@@ -891,8 +891,7 @@ function zz_maintenance_logs($page) {
 	}
 	if ($logfile === realpath(ini_get('error_log'))) {
 		$show_log = true;
-	}
-	if (!empty($zz_conf['upload_log']) AND $logfile === realpath($zz_setting['log_dir'].'/upload.log')) {
+	} elseif (!empty($zz_conf['upload_log']) AND $logfile === realpath($zz_setting['log_dir'].'/upload.log')) {
 		$show_log = true;
 	}
 	if (!$show_log) {
@@ -1133,6 +1132,7 @@ function zz_maintenance_logs($page) {
 		$error['error'] = str_replace(',', ', ', $error['error']);
 		$error['error'] = zz_mark_search_string($error['error']);
 		$error['error'] = zz_list_word_split($error['error']);
+		$error['error'] = str_replace('%%%', '\%\%\%', $error['error']);
 
 		$error['no'] = $index;
 		$error['keys'] = $index;
