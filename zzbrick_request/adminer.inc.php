@@ -32,7 +32,7 @@ function mod_default_adminer($params) {
 			, $zz_page['url']['full']['path']
 			, $zz_conf['db_name']
 		);
-		return brick_format('%%% redirect '.$url.' %%%');
+		return wrap_redirect($url, 302, false);
 	}
 	
 	$path = $zz_setting['lib'].'/adminer/adminer-mysql-de.php';
