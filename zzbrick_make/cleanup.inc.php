@@ -35,6 +35,9 @@ function mod_default_make_cleanup() {
 		}
 	}
 	
+	// Compress old logfiles
+	$data['http_log_compression'] = mod_default_make_cleanup_gzip_logs();
+	
 	$page['text'] = wrap_template('cleanup', $data);
 	return $page;
 }
@@ -117,4 +120,45 @@ function mod_default_file_cleanup_recursive($folder, $invalid, $delete_folder = 
 	// needed
 	if (!$filecount AND $delete_folder AND filemtime($folder) < $invalid) rmdir($folder);
 	return $counter;	
+}
+
+/**
+ * compress old http log files with gzip
+ *
+ * @return int
+ */
+function mod_default_make_cleanup_gzip_logs() {
+	global $zz_setting;
+
+	$counter = 0;
+	if (empty($zz_setting['http_log'])) return $counter;
+
+	$dir = sprintf('%s/access', $zz_setting['log_dir']);
+	$years = scandir($dir);
+	foreach ($years as $year) {
+		if (substr($year, 0, 1) === '.') continue;
+		$year_dir = sprintf('%s/%s', $dir, $year);
+		if (!is_dir($year_dir)) continue;
+		$months = scandir($year_dir);
+		foreach ($months as $month) {
+			if (substr($month, 0, 1) === '.') continue;
+			$month_dir = sprintf('%s/%s/%s', $dir, $year, $month);
+			$logfiles = scandir($month_dir);
+			foreach ($logfiles as $logfile) {
+				if (substr($logfile, -4) !== '.log') continue;
+				if ($year == date('Y') AND $month == date('m')) continue;
+				$logfile_path = sprintf('%s/%s', $month_dir, $logfile);
+				$time = filemtime($logfile_path);
+				$data = file_get_contents($logfile_path);
+				$gzdata = gzencode($data, 9);
+				$gzip_logfile_path = $logfile_path.'.gz';
+				file_put_contents($gzip_logfile_path, $gzdata);
+				if (!file_exists($gzip_logfile_path)) continue;
+				touch($gzip_logfile_path, $time);
+				unlink($logfile_path);
+				$counter++;
+			}
+		}
+	}
+	return $counter;
 }
