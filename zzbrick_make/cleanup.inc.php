@@ -148,14 +148,18 @@ function mod_default_make_cleanup_gzip_logs() {
 				if (substr($logfile, -4) !== '.log') continue;
 				if ($year == date('Y') AND $month == date('m')) continue;
 				$logfile_path = sprintf('%s/%s', $month_dir, $logfile);
-				$time = filemtime($logfile_path);
-				$data = file_get_contents($logfile_path);
-				$gzdata = gzencode($data, 9);
 				$gzip_logfile_path = $logfile_path.'.gz';
-				file_put_contents($gzip_logfile_path, $gzdata);
-				if (!file_exists($gzip_logfile_path)) continue;
-				touch($gzip_logfile_path, $time);
-				unlink($logfile_path);
+				if (!strstr(ini_get('disable_functions'), 'exec')) {
+					// gzip preserves timestamp
+					$command = sprintf('gzip -N -9 %s %s', $logfile_path, $gzip_logfile_path);
+					exec($command);
+				} else {
+					$time = filemtime($logfile_path);
+					copy($logfile_path, 'compress.zlib://'.$gzip_logfile_path);
+					if (!file_exists($gzip_logfile_path)) continue;
+					touch($gzip_logfile_path, $time);
+					unlink($logfile_path);
+				}
 				$counter++;
 			}
 		}
