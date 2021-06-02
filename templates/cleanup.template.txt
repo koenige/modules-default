@@ -2,10 +2,10 @@
 # Template for cleanup
 #
 # Part of »Zugzwang Project«
-# http://www.zugzwang.org/modules/default
+# https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2018 Gustaf Mossakowski
+# @copyright Copyright © 2018, 2021 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <ul>
@@ -13,4 +13,5 @@
 %%% loop folders %%%
 <li>%%% item deleted_files %%% file(s) deleted in folder %%% item folder %%% that were older than %%% item max_age_seconds wrap_duration %%%.</li>
 %%% loop end %%%
+<li>%%% item http_log_compression %%% log file(s) compressed.</li>
 </ul>
