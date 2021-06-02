@@ -1025,7 +1025,9 @@ function zz_maintenance_logs($page) {
 	if ($data['total_rows']) {
 		foreach ($found as $index) {
 			$file->seek($index);
-			$data['lines'][$index] = zz_maintenance_logs_line($file->current(), $index);
+			$data['lines'][$index] = zz_maintenance_logs_line($file->current(), $filters['type']);
+			$data['lines'][$index]['no'] = $index;
+			$data['lines'][$index]['keys'] = $index;
 		}
 	}
 
@@ -1049,13 +1051,13 @@ function zz_maintenance_logs($page) {
  * format a single line from log
  *
  * @param string $line
- * @param int $index
- * @param array $filters
+ * @param array $types
  * @return array
  */
-function zz_maintenance_logs_line($line, $index) {
+function zz_maintenance_logs_line($line, $types) {
+	zz_maintenance_list_init();
+	
 	$dont_highlight_levels = ['Notice', 'Deprecated', 'Warning', 'Upload'];
-	$types = ['PHP', 'zzform', 'zzwrap'];
 
 	$out = [];
 	$out['type'] = '';
@@ -1066,6 +1068,7 @@ function zz_maintenance_logs_line($line, $index) {
 	$out['status'] = false;
 
 	$line = trim($line);
+	if (!$line) return [];
 
 	// get date
 	if (substr($line, 0, 1) === '[' AND $rightborder = strpos($line, ']')) {
@@ -1157,8 +1160,6 @@ function zz_maintenance_logs_line($line, $index) {
 	$out['error'] = zz_list_word_split($out['error']);
 	$out['error'] = str_replace('%%%', '\%\%\%', $out['error']);
 
-	$out['no'] = $index;
-	$out['keys'] = $index;
 	$out['date_begin'] = $out['date'];
 	$out['links'] = ($out['link'] ? '[<a href="'.str_replace('&', '&amp;', $out['link']).'">'
 			.zz_maintenance_splits($out['link'], true).'</a>]<br>' : '');
