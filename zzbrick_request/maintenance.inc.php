@@ -908,7 +908,7 @@ function zz_maintenance_logs($page) {
 	$filters['type'] = ['PHP', 'zzform', 'zzwrap'];
 	$filters['level'] = [
 		'Notice', 'Deprecated', 'Warning', 'Error', 'Parse error',
-		'Strict error', 'Fatal error'
+		'Strict error', 'Fatal error', 'Upload'
 	];
 	$filters['group'] = ['Group entries'];
 
@@ -1021,174 +1021,16 @@ function zz_maintenance_logs($page) {
 	}
 
 	// output lines
-	$j = 0;
-	$dont_highlight_levels = ['Notice', 'Deprecated', 'Warning', 'Upload'];
 	$data['lines'] = [];
-
-	$log = [];
-	if ($data['total_rows']) foreach ($found as $index) {
-		$file->seek($index);
-		$line = $file->current();
-		$line = trim($line);
-
-		$error = [];
-		$error['type'] = '';
-		$error['user'] = '';
-		$error['date'] = '';
-		$error['level'] = '';
-		$error['time'] = '';
-
-		// get date
-		if (substr($line, 0, 1) === '[' AND $rightborder = strpos($line, ']')) {
-			$error['date'] = substr($line, 1, $rightborder - 1);
-			$line = substr($line, $rightborder + 2);
+	if ($data['total_rows']) {
+		foreach ($found as $index) {
+			$file->seek($index);
+			$data['lines'][$index] = zz_maintenance_logs_line($file->current(), $index);
 		}
-		// get user
-		if (substr($line, -1) === ']' AND strstr($line, '[')) {
-			$error['user'] = substr($line, strrpos($line, '[')+1, -1);
-			$error['user'] = explode(' ', $error['user']);
-			if (count($error['user']) > 1 AND substr($error['user'][0], -1) === ':') {
-				array_shift($error['user']); // get rid of User: or translations of it
-			}
-			$error['user'] = implode(' ', $error['user']);
-			$line = substr($line, 0, strrpos($line, '['));
-		}
-
-		$tokens = explode(' ', $line);
-		if ($tokens AND in_array($tokens[0], $filters['type'])) {
-			$error['type'] = array_shift($tokens);
-			$error['level'] = array_shift($tokens);
-			if (substr($error['level'], -1) === ':') $error['level'] = substr($error['level'], 0, -1);
-			else $error['level'] .= ' '.array_shift($tokens);
-			if (substr($error['level'], -1) === ':') $error['level'] = substr($error['level'], 0, -1);
-		}
-
-		if (in_array($error['type'], ['zzform', 'zzwrap'])) {
-			if (!$error['user'])
-				$error['user'] = array_pop($tokens);
-			$time = '';
-			while (!$time) {
-				// ignore empty tokens
-				$time = trim(end($tokens));
-				if (!$time) array_pop($tokens);
-				if (!$tokens) break;
-			}
-			if (substr($time, 0, 1) === '{'
-				AND substr($time, -1) === '}'
-				AND is_numeric(substr($time, 1, -1))
-			) {
-				array_pop($tokens);
-				$error['time'] = substr($time, 1, -1);
-				// shorten time to make it more readable
-				$error['time'] = substr($error['time'], 0, 6);
-			}
-		}
-
-		$error['status'] = false;
-		if ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[0], -1) === ']') {
-			$error['link'] = array_shift($tokens);
-			$error['link'] = substr($error['link'], 1, -1);
-			if (intval($error['link'])."" === $error['link']) {
-				// e. g. 404 has no link repeated as it's already in the
-				// error message	
-				$error['status'] = $error['link'];
-				$error['link'] = false;
-			}
-		} elseif ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[1], -1) === ']'
-			AND strlen($tokens[0]) === 4) {
-			$error['status'] = array_shift($tokens);
-			$error['status'] = substr($error['status'], 1);
-			$error['link'] = array_shift($tokens);
-			$error['link'] = substr($error['link'], 0, -1);
-		} else {
-			$error['link'] = false;
-		}
-		$error['error'] = implode(' ', $tokens);
-		$error['index'] = $index;
-
-		if ($error['level'] AND !in_array($error['level'], $dont_highlight_levels))
-			$error['level_highlight'] = true;
-
-		$post = false;
-		if (substr($error['error'], 0, 5) === 'POST ') {
-			$post = @unserialize(substr($error['error'], 5));
-			if ($post)
-				$error['error'] = 'POST '.wrap_print($post);
-		} elseif (substr($error['error'], 0, 11) === 'POST[json] ') {
-			$post = @json_decode(substr($error['error'], 11));
-			if ($post)
-				$error['error'] = 'POST '.wrap_print($post);
-		}
-		if (!$post) {
-			$no_html = false;
-			if (in_array($error['type'], ['zzform', 'zzwrap']))
-				$no_html = true;
-			$error['error'] = zz_maintenance_splits($error['error'], $no_html);
-		}
-		// htmlify links
-		if (stristr($error['error'], 'http:/<wbr>/<wbr>') OR stristr($error['error'], 'https:/<wbr>/<wbr>')) {
-			$error['error'] = preg_replace_callback('~(\S+):/<wbr>/<wbr>(\S+)~', 'zz_maintenance_make_url', $error['error']);
-		}
-		$error['error'] = str_replace(',', ', ', $error['error']);
-		$error['error'] = zz_mark_search_string($error['error']);
-		$error['error'] = zz_list_word_split($error['error']);
-		$error['error'] = str_replace('%%%', '\%\%\%', $error['error']);
-
-		$error['no'] = $index;
-		$error['keys'] = $index;
-		$error['date_begin'] = $error['date'];
-		$error['links'] = ($error['link'] ? '[<a href="'.str_replace('&', '&amp;', $error['link']).'">'
-				.zz_maintenance_splits($error['link'], true).'</a>]<br>' : '');
-		$data['lines'][$index] = $error;
-		$j++;
 	}
 
 	if ($data['group']) {
-		$raw = $data['lines'];
-		$data['lines'] = [];
-		foreach ($group as $gindex => $lines) {
-			if (count($lines) === 1) {
-				$raw[$lines[0]]['count'] = 1;
-				$data['lines'][] = $raw[$lines[0]];
-				continue;
-			}
-			$my = [
-				'user' => [],
-				'links' => [],
-				'status' => [],
-				'time' => [],
-				'index' => []
-			];
-			$date_end = '';
-			foreach ($lines as $lindex => $line) {
-				$my['index'][] = $raw[$line]['no'];
-				if ($raw[$line]['time']) $my['time'][] = $raw[$line]['time'];
-				if ($lindex AND $lindex === count($lines) - 1
-					AND $raw[$lines[0]]['date'] !== $raw[$line]['date']) {
-					$date_end = $raw[$line]['date'];
-				}
-				if ($raw[$line]['user'] AND !in_array($raw[$line]['user'], $my['user']))
-					$my['user'][] = $raw[$line]['user'];
-				if ($raw[$line]['links'] AND !in_array($raw[$line]['links'], $my['links']))
-					$my['links'][] = $raw[$line]['links'];
-				if ($raw[$line]['status'] AND !in_array($raw[$line]['status'], $my['status']))
-					$my['status'][] = $raw[$line]['status'];
-			}
-			$data['lines'][] = [
-				'count' => count($lines),
-				'no' => $gindex,
-				'date_begin' => $raw[$lines[0]]['date'],
-				'date_end' => $date_end,
-				'type' => $raw[$lines[0]]['type'],
-				'level' => $raw[$lines[0]]['level'],
-				'error' => $raw[$lines[0]]['error'],
-				'status' => implode(' ', $my['status']),
-				'user' => implode(', ', $my['user']),
-				'keys' => implode(',', $my['index']),
-				'time' => implode(', ', $my['time']),
-				'links' => implode('', $my['links'])
-			];
-		}
+		$data['lines'] = zz_maintenance_logs_group($data['lines'], $group);
 	}
 
 	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
@@ -1201,6 +1043,181 @@ function zz_maintenance_logs($page) {
 	$page['text'] = wrap_template('maintenance-logs', $data);
 	$page['text'] .= wrap_template('zzform-foot');
 	return $page;
+}
+
+/**
+ * format a single line from log
+ *
+ * @param string $line
+ * @param int $index
+ * @param array $filters
+ * @return array
+ */
+function zz_maintenance_logs_line($line, $index) {
+	$dont_highlight_levels = ['Notice', 'Deprecated', 'Warning', 'Upload'];
+	$types = ['PHP', 'zzform', 'zzwrap'];
+
+	$out = [];
+	$out['type'] = '';
+	$out['user'] = '';
+	$out['date'] = '';
+	$out['level'] = '';
+	$out['time'] = '';
+	$out['status'] = false;
+
+	$line = trim($line);
+
+	// get date
+	if (substr($line, 0, 1) === '[' AND $rightborder = strpos($line, ']')) {
+		$out['date'] = substr($line, 1, $rightborder - 1);
+		$line = substr($line, $rightborder + 2);
+	}
+	// get user
+	if (substr($line, -1) === ']' AND strstr($line, '[')) {
+		$out['user'] = substr($line, strrpos($line, '[')+1, -1);
+		$out['user'] = explode(' ', $out['user']);
+		if (count($out['user']) > 1 AND substr($out['user'][0], -1) === ':') {
+			array_shift($out['user']); // get rid of User: or translations of it
+		}
+		$out['user'] = implode(' ', $out['user']);
+		$line = substr($line, 0, strrpos($line, '['));
+	}
+
+	$tokens = explode(' ', $line);
+	if ($tokens AND in_array($tokens[0], $types)) {
+		$out['type'] = array_shift($tokens);
+		$out['level'] = array_shift($tokens);
+		if (substr($out['level'], -1) === ':') $out['level'] = substr($out['level'], 0, -1);
+		else $out['level'] .= ' '.array_shift($tokens);
+		if (substr($out['level'], -1) === ':') $out['level'] = substr($out['level'], 0, -1);
+	}
+
+	if (in_array($out['type'], ['zzform', 'zzwrap'])) {
+		if (!$out['user'])
+			$out['user'] = array_pop($tokens);
+		$time = '';
+		while (!$time) {
+			// ignore empty tokens
+			$time = trim(end($tokens));
+			if (!$time) array_pop($tokens);
+			if (!$tokens) break;
+		}
+		if (substr($time, 0, 1) === '{'
+			AND substr($time, -1) === '}'
+			AND is_numeric(substr($time, 1, -1))
+		) {
+			array_pop($tokens);
+			$out['time'] = substr($time, 1, -1);
+			// shorten time to make it more readable
+			$out['time'] = substr($out['time'], 0, 6);
+		}
+	}
+
+	if ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[0], -1) === ']') {
+		$out['link'] = array_shift($tokens);
+		$out['link'] = substr($out['link'], 1, -1);
+		if (intval($out['link'])."" === $out['link']) {
+			// e. g. 404 has no link repeated as it's already in the
+			// error message	
+			$out['status'] = $out['link'];
+			$out['link'] = false;
+		}
+	} elseif ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[1], -1) === ']'
+		AND strlen($tokens[0]) === 4) {
+		$out['status'] = array_shift($tokens);
+		$out['status'] = substr($out['status'], 1);
+		$out['link'] = array_shift($tokens);
+		$out['link'] = substr($out['link'], 0, -1);
+	} else {
+		$out['link'] = false;
+	}
+	$out['error'] = implode(' ', $tokens);
+
+	if ($out['level'] AND !in_array($out['level'], $dont_highlight_levels))
+		$out['level_highlight'] = true;
+
+	$post = false;
+	if (substr($out['error'], 0, 11) === 'POST[json] ') {
+		$post = @json_decode(substr($out['error'], 11));
+		if ($post)
+			$out['error'] = 'POST '.wrap_print($post);
+	}
+	if (!$post) {
+		$no_html = false;
+		if (in_array($out['type'], ['zzform', 'zzwrap']))
+			$no_html = true;
+		$out['error'] = zz_maintenance_splits($out['error'], $no_html);
+	}
+	// htmlify links
+	if (stristr($out['error'], 'http:/<wbr>/<wbr>') OR stristr($out['error'], 'https:/<wbr>/<wbr>')) {
+		$out['error'] = preg_replace_callback('~(\S+):/<wbr>/<wbr>(\S+)~', 'zz_maintenance_make_url', $out['error']);
+	}
+	$out['error'] = str_replace(',', ', ', $out['error']);
+	$out['error'] = zz_mark_search_string($out['error']);
+	$out['error'] = zz_list_word_split($out['error']);
+	$out['error'] = str_replace('%%%', '\%\%\%', $out['error']);
+
+	$out['no'] = $index;
+	$out['keys'] = $index;
+	$out['date_begin'] = $out['date'];
+	$out['links'] = ($out['link'] ? '[<a href="'.str_replace('&', '&amp;', $out['link']).'">'
+			.zz_maintenance_splits($out['link'], true).'</a>]<br>' : '');
+	return $out;
+}
+
+/**
+ * group lines in log (identical lines are combined)
+ *
+ * @param array $raw
+ * @param array $group
+ * @return array
+ */
+function zz_maintenance_logs_group($raw, $group) {
+	$out = [];
+	foreach ($group as $gindex => $lines) {
+		if (count($lines) === 1) {
+			$raw[$lines[0]]['count'] = 1;
+			$out[] = $raw[$lines[0]];
+			continue;
+		}
+		$my = [
+			'user' => [],
+			'links' => [],
+			'status' => [],
+			'time' => [],
+			'index' => []
+		];
+		$date_end = '';
+		foreach ($lines as $lindex => $line) {
+			$my['index'][] = $raw[$line]['no'];
+			if ($raw[$line]['time']) $my['time'][] = $raw[$line]['time'];
+			if ($lindex AND $lindex === count($lines) - 1
+				AND $raw[$lines[0]]['date'] !== $raw[$line]['date']) {
+				$date_end = $raw[$line]['date'];
+			}
+			if ($raw[$line]['user'] AND !in_array($raw[$line]['user'], $my['user']))
+				$my['user'][] = $raw[$line]['user'];
+			if ($raw[$line]['links'] AND !in_array($raw[$line]['links'], $my['links']))
+				$my['links'][] = $raw[$line]['links'];
+			if ($raw[$line]['status'] AND !in_array($raw[$line]['status'], $my['status']))
+				$my['status'][] = $raw[$line]['status'];
+		}
+		$out[] = [
+			'count' => count($lines),
+			'no' => $gindex,
+			'date_begin' => $raw[$lines[0]]['date'],
+			'date_end' => $date_end,
+			'type' => $raw[$lines[0]]['type'],
+			'level' => $raw[$lines[0]]['level'],
+			'error' => $raw[$lines[0]]['error'],
+			'status' => implode(' ', $my['status']),
+			'user' => implode(', ', $my['user']),
+			'keys' => implode(',', $my['index']),
+			'time' => implode(', ', $my['time']),
+			'links' => implode('', $my['links'])
+		];
+	}
+	return $out;
 }
 
 /**
