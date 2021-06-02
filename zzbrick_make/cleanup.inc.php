@@ -5,15 +5,15 @@
  * Cleanup script
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018 Gustaf Mossakowski
+ * @copyright Copyright © 2018, 2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
-function mod_default_cleanup() {
+function mod_default_make_cleanup() {
 	global $zz_setting;
 	
 	// Sessions

@@ -1,8 +1,9 @@
 /**
- * Zugzwang Project
- * SQL updates for default module
+ * default module
+ * SQL updates
  *
- * http://www.zugzwang.org/modules/default
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2019-2021 Gustaf Mossakowski
@@ -452,3 +453,4 @@
 /* 2021-01-18-2 */	ALTER TABLE `webpages` CHANGE `parameters` `parameters` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `menu`;
 /* 2021-01-21-1 */	ALTER TABLE `_uris` CHANGE `content_length` `content_length` int unsigned NOT NULL AFTER `character_encoding`;
 /* 2021-03-08-1 */	UPDATE webpages SET content = REPLACE(content, '%%% request serversync %%%', '%%% make serversync %%%') WHERE content LIKE '%%%% request serversync %%%%';
+/* 2021-06-02-1 */	UPDATE webpages SET content = REPLACE(content, '%%% request cleanup %%%', '%%% make cleanup %%%') WHERE content LIKE '%%%% request cleanup %%%%';
