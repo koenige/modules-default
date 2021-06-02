@@ -36,21 +36,22 @@ function mod_default_make_cleanup() {
 	}
 	
 	// Logfiles via settings
-	if (!empty($zz_setting['cleanup_logs'])) {
-		foreach ($zz_setting['cleanup_logs'] as $logfile) {
-			if (substr($logfile['filename'], -4) !== '.log')
-				$logfile['filename'] = sprintf('%s.log', $logfile['filename']);
-			if (substr($logfile['filename'], 0, 1) !== '/')
-				$logfile['filename'] = sprintf('%s/%s', $zz_setting['log_dir'], $logfile['filename']);
-			$logfile['filename_real'] = realpath($logfile['filename']);
-			if (!$logfile['filename_real']) {
-				wrap_error(sprintf('Logfile to clean up does not exist: %s', $logfile['filename']));
+	if (!empty($zz_setting['cleanup_logfiles'])) {
+		foreach ($zz_setting['cleanup_logfiles'] as $logfile => $max_age_seconds) {
+			$logfile_given = $logfile;
+			if (substr($logfile, -4) !== '.log')
+				$logfile = sprintf('%s.log', $logfile);
+			if (substr($logfile, 0, 1) !== '/')
+				$logfile = sprintf('%s/%s', $zz_setting['log_dir'], $logfile);
+			$logfile = realpath($logfile);
+			if (!$logfile) {
+				wrap_error(sprintf('Logfile to clean up does not exist: %s', $logfile_given));
 				continue;
 			}
 			$data['logfiles'][] = [
-				'filename' => $logfile['filename_real'],
-				'max_age_seconds' => $logfile['max_age_seconds'],
-				'deleted_lines' => mod_default_make_cleanup_log($logfile['filename'], $logfile['max_age_seconds'])
+				'filename' => $logfile,
+				'max_age_seconds' => $max_age_seconds,
+				'deleted_lines' => mod_default_make_cleanup_log($logfile, $max_age_seconds)
 			];
 		}
 	}
