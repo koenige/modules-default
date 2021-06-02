@@ -35,6 +35,27 @@ function mod_default_make_cleanup() {
 		}
 	}
 	
+	// Logfiles via settings
+	if (!empty($zz_setting['cleanup_logs'])) {
+		foreach ($zz_setting['cleanup_logs'] as $logfile) {
+			if (substr($logfile['filename'], -4) !== '.log')
+				$logfile['filename'] = sprintf('%s.log', $logfile['filename']);
+			if (substr($logfile['filename'], 0, 1) !== '/')
+				$logfile['filename'] = sprintf('%s/%s', $zz_setting['log_dir'], $logfile['filename']);
+			$logfile['filename_real'] = realpath($logfile['filename']);
+			if (!$logfile['filename_real']) {
+				wrap_error(sprintf('Logfile to clean up does not exist: %s', $logfile['filename']));
+				continue;
+			}
+			$data['logfiles'][] = [
+				'filename' => $logfile['filename_real'],
+				'max_age_seconds' => $logfile['max_age_seconds'],
+				'deleted_lines' => mod_default_make_cleanup_log($logfile['filename'], $logfile['max_age_seconds'])
+			];
+		}
+	}
+	
+	
 	// Compress old logfiles
 	$data['http_log_compression'] = mod_default_make_cleanup_gzip_logs();
 	
@@ -163,6 +184,43 @@ function mod_default_make_cleanup_gzip_logs() {
 				$counter++;
 			}
 		}
+	}
+	return $counter;
+}
+
+/**
+ * delete files (and subfolders) inside a folder after a given time
+ *
+ * @param string $filename
+ * @param int $max_age_seconds maximum allowed age in seconds
+ * @return int $counter number of deleted lines
+ */
+function mod_default_make_cleanup_log($filename, $max_age_seconds) {
+	global $zz_setting;
+	global $zz_conf;
+	$zz_conf['word_split'] = $zz_conf['word_split'] ?? 32;
+	require_once $zz_setting['core'].'/file.inc.php';
+	require_once $zz_setting['modules_dir'].'/default/zzbrick_request/maintenance.inc.php';
+
+	$invalid = time() - $max_age_seconds;
+
+	$deletable = [];
+	$i = 0;
+	$file = new \SplFileObject($filename, 'r');
+	while (!$file->eof()) {
+		$line = zz_maintenance_logs_line($file->fgets(), ['hubspot']);
+		if ($line) {
+			if (strtotime($line['date']) < $invalid) {
+				$deletable[] = $i;
+			}
+		}
+		$i++;
+	}
+	if ($deletable) {
+		wrap_file_delete_line($filename, $deletable);
+		$counter = count($deletable);
+	} else {
+		$counter = 0;
 	}
 	return $counter;
 }
