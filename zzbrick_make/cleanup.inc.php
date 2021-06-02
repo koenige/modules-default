@@ -22,13 +22,13 @@ function mod_default_make_cleanup() {
 	// Folders via settings
 	if (!empty($zz_setting['cleanup_folders'])) {
 		foreach ($zz_setting['cleanup_folders'] as $folder) {
-			$folder['folder'] = realpath($folder['folder']);
-			if (!$folder['folder']) {
+			$folder['folder_real'] = realpath($folder['folder']);
+			if (!$folder['folder_real']) {
 				wrap_error(sprintf('Folder to clean up does not exist: %s', $folder['folder']));
 				continue;
 			}
 			$data['folders'][] = [
-				'folder' => $folder['folder'],
+				'folder' => $folder['folder_real'],
 				'max_age_seconds' => $folder['max_age_seconds'],
 				'deleted_files' => mod_default_file_cleanup($folder['folder'], $folder['max_age_seconds'])
 			];
