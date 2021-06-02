@@ -11,10 +11,10 @@
 <ul>
 <li>%%% item session_cleanup %%% stale session cookies deleted.</li>
 %%% loop folders %%%
-<li>%%% item deleted_files %%% file(s) deleted in folder %%% item folder %%% that were older than %%% item max_age_seconds wrap_duration %%%.</li>
+<li>%%% item deleted_files %%% file(s) deleted in folder <code>%%% item folder %%%</code> that were older than %%% item max_age_seconds wrap_duration %%%.</li>
 %%% loop end %%%
 <li>%%% item http_log_compression %%% log file(s) compressed.</li>
 %%% loop logfiles %%%
-<li>%%% item deleted_lines %%% lines(s) deleted in logfile %%% item logfile %%% that were older than %%% item max_age_seconds wrap_duration %%%.</li>
+<li>%%% item deleted_lines %%% lines(s) deleted in logfile <code>%%% item filename %%%</code> that were older than %%% item max_age_seconds wrap_duration %%%.</li>
 %%% loop end %%%
 </ul>
