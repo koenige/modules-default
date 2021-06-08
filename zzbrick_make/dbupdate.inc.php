@@ -107,7 +107,7 @@ function mod_default_make_dbupdate_table($query) {
 		'DROP TABLE', 'DELETE'
 	];
 	foreach ($sql_verbs as $verb) {
-		if (wrap_substr($query, $verb.' ')) {
+		if (str_starts_with($query, $verb.' ')) {
 			$table = substr($query, strlen($verb) + 1);
 			break;
 		}

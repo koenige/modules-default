@@ -33,7 +33,7 @@ function mod_default_cfgfile($params) {
 		foreach ($entry as $key => $value) {
 			if (in_array($key, ['identifier', 'parameters'])) continue;
 			if (!$value AND $value !== 0 AND $value !== '0') continue;
-			if (wrap_substr($key, '_list', 'end')) {
+			if (str_ends_with($key, '_list')) {
 				$key = substr($key, 0, - strlen('_list'));
 				$value = explode(',', $value);
 				foreach ($value as $subkey => $subval) {
