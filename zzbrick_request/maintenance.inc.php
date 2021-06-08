@@ -826,6 +826,8 @@ function zz_maintenance_errors() {
  */
 function zz_maintenance_list_init() {
 	global $zz_conf;
+	static $init;
+	if (!empty($init)) return; // just once
 
 	// zz_edit_query_string(), zz_get_url_self()
 	require_once $zz_conf['dir_inc'].'/functions.inc.php';
@@ -849,6 +851,7 @@ function zz_maintenance_list_init() {
 	$zz_conf['int']['show_list'] = true;
 	$zz_conf['int']['url'] = zz_get_url_self();
 	zz_init_limit();
+	$init = true;
 }
 
 /**
