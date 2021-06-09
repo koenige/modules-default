@@ -5,7 +5,7 @@
  * update database structure/content
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2020-2021 Gustaf Mossakowski
@@ -35,6 +35,7 @@ function mod_default_make_dbupdate($params) {
 		$data = array_merge($data, mod_default_make_dbupdate_readfile($file, $module));
 	}
 	ksort($data);
+	mod_default_make_dbupdate_log(array_keys($data), 'structure_check');
 	$data = array_values($data);
 
 	foreach ($data as $index => $line) {
@@ -80,7 +81,7 @@ function mod_default_make_dbupdate_readfile($filename, $module) {
 		$line[0] = ltrim($line[0], '/* ');
 		$line[0] = rtrim($line[0], ' */');
 		$line[0] = explode('-', $line[0]);
-		$key = vsprintf('%04d-%02d-%02d-%06d', $line[0]);
+		$key = vsprintf('%04d-%02d-%02d-%06d-%\'_12s', array_merge($line[0], [$module]));
 		$query = rtrim(trim($line[1]), ';');
 		$table = mod_default_make_dbupdate_table($query);
 		if (!$table OR !wrap_sql_ignores($module, $table)) {
@@ -204,6 +205,24 @@ function mod_default_make_dbupdate_log($line, $mode) {
 	$logfile = $zz_setting['log_dir'].'/dbupdate.log';
 	if (!file_exists($logfile)) touch($logfile);
 	switch ($mode) {
+	case 'structure_check':
+		// check structure
+		$logs = file($logfile);
+		$log = explode(' ', $logs[0]);
+		if (strlen($log[0]) === 30) return true;
+		rename($logfile, $zz_setting['log_dir'].'/dbupdate-bak.log');
+		touch($logfile);
+
+		foreach ($logs as $index => $log) {
+			$log = explode(' ', $log);
+			foreach ($line as $index => $key) {
+				if (!str_starts_with($key, $log[0])) continue;
+				$log[0] = $key;
+				error_log(implode(' ', $log), 3, $logfile);
+			}
+		}
+		unlink($zz_setting['log_dir'].'/dbupdate-bak.log');
+		return true;
 	case 'read':
 		$logs = file($logfile);
 		foreach ($logs as $log) {
@@ -211,7 +230,7 @@ function mod_default_make_dbupdate_log($line, $mode) {
 			if ($log[0] !== $line['key']) continue;
 			return true;
 		}
-		break;	
+		break;
 	case 'ignore':
 	case 'update':
 	case 'exists':
