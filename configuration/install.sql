@@ -1,8 +1,9 @@
 /**
- * Zugzwang Project
- * SQL for installation of default module
+ * default module
+ * SQL for installation
  *
- * http://www.zugzwang.org/modules/default
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2020-2021 Gustaf Mossakowski
@@ -290,7 +291,7 @@ CREATE TABLE `categories` (
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `main_category_id` int unsigned DEFAULT NULL,
   `path` varchar(100) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `parameters` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parameters` varchar(750) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sequence` tinyint unsigned DEFAULT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`category_id`),

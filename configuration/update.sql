@@ -454,3 +454,4 @@
 /* 2021-01-21-1 */	ALTER TABLE `_uris` CHANGE `content_length` `content_length` int unsigned NOT NULL AFTER `character_encoding`;
 /* 2021-03-08-1 */	UPDATE webpages SET content = REPLACE(content, '%%% request serversync %%%', '%%% make serversync %%%') WHERE content LIKE '%%%% request serversync %%%%';
 /* 2021-06-02-1 */	UPDATE webpages SET content = REPLACE(content, '%%% request cleanup %%%', '%%% make cleanup %%%') WHERE content LIKE '%%%% request cleanup %%%%';
+/* 2021-06-09-1 */	ALTER TABLE `categories` CHANGE `parameters` `parameters` varchar(750) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `path`;
