@@ -1159,8 +1159,8 @@ function zz_maintenance_logs_line($line, $types) {
 		$out['error'] = preg_replace_callback('~(\S+):/<wbr>/<wbr>(\S+)~', 'zz_maintenance_make_url', $out['error']);
 	}
 	$out['error'] = str_replace(',', ', ', $out['error']);
-	$out['error'] = zz_mark_search_string($out['error']);
 	$out['error'] = zz_list_word_split($out['error']);
+	$out['error'] = zz_mark_search_string($out['error']);
 	$out['error'] = str_replace('%%%', '\%\%\%', $out['error']);
 
 	$out['date_begin'] = $out['date'];
