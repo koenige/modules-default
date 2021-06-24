@@ -5,10 +5,10 @@
  * Table definition for 'logins' (passwords, who's online)
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012, 2016, 2018-2019 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2016, 2018-2019, 2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -21,6 +21,18 @@ $zz['fields'][1]['field_name'] = 'login_id';
 $zz['fields'][1]['type'] = 'id';
 
 $zz['fields'][11] = false; // person_id
+
+if (wrap_access('default_masquerade')) {
+	$zz['fields'][19]['field_name'] = 'user_id'; // extend query to include this
+	$zz['fields'][19]['type'] = 'display';
+	$zz['fields'][19]['link'] = [
+		'function' => 'mf_default_masquerade_path',
+		'fields' => ['user_id']
+	];
+	$zz['fields'][19]['exclude_from_search'] = true;
+	$zz['fields'][19]['hide_in_form'] = true;
+	$zz['fields'][19]['class'] = 'number';
+}
 
 $zz['fields'][2]['field_name'] = 'username';
 $zz['fields'][2]['type'] = 'text';
@@ -82,7 +94,7 @@ $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/logins.*
-	, IF(ISNULL(last_click), last_click, FROM_UNIXTIME(last_click, "%Y-%m-%d %H:%i")) AS last_click
+		, IF(ISNULL(last_click), last_click, FROM_UNIXTIME(last_click, "%Y-%m-%d %H:%i")) AS last_click
 	FROM /*_PREFIX_*/logins
 ';
 $zz['sqlorder'] = ' ORDER BY username';
