@@ -98,3 +98,7 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/logins.*
 	FROM /*_PREFIX_*/logins
 ';
 $zz['sqlorder'] = ' ORDER BY username';
+
+if (!wrap_access('default_logins_full')) {
+	$zz['access'] = 'none';
+}

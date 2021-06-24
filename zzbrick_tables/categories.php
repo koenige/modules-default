@@ -54,13 +54,18 @@ $zz['fields'][5]['type'] = 'identifier';
 $zz['fields'][5]['fields'] = ['main_category_id[path]', 'category'];
 $zz['fields'][5]['conf_identifier']['concat'] = '/';
 $zz['fields'][5]['conf_identifier']['strip_tags'] = true;
-$zz['fields'][5]['list_append_next'] = true;
 
-// restrict access to this field if needed
 $zz['fields'][7]['field_name'] = 'parameters';
 $zz['fields'][7]['list_prefix'] = '<br>';
 $zz['fields'][7]['type'] = 'parameter';
 $zz['fields'][7]['explanation'] = 'Internal parameters. Change with care.';
+
+if (wrap_access('default_categories_parameters')) {
+	$zz['fields'][5]['list_append_next'] = true;
+} else {
+	$zz['fields'][7]['hide_in_form'] = true;
+	$zz['fields'][7]['hide_in_list'] = true;
+}
 
 $zz['fields'][6]['field_name'] = 'sequence';
 $zz['fields'][6]['title_tab'] = 'Seq.';
