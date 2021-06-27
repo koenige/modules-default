@@ -61,10 +61,10 @@
 %%% condition endif %%%
 <tr class="uneven">
 <td class="block480">%%% text Logging (Upload) %%%</td>
-<td class="block480"><strong>%%% condition if setting zzform_upload_log %%%log folder<a href="?log=%%% setting log_dir %%%/upload.log">/upload.log</a>%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</strong> (%%% item upload_log_filesize wrap_bytes %%%)</td>
+<td class="block480">%%% condition if setting zzform_upload_log %%%<strong>log folder<a href="?log=%%% setting log_dir %%%/upload.log">/upload.log</a></strong> (%%% item upload_log_filesize wrap_bytes %%%)%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</td>
 </tr>
 <tr class="even">
 <td class="block480">%%% text Logging (Mail) %%%</td>
-<td class="block480"><strong>%%% condition if setting log_mail %%%log folder<a href="?maillog">/mail.log</a>%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</strong> (%%% item mail_log_filesize wrap_bytes %%%)</td>
+<td class="block480">%%% condition if setting log_mail %%%<strong>log folder<a href="?maillog">/mail.log</a></strong> (%%% item mail_log_filesize wrap_bytes %%%)%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</td>
 </tr>
 </tbody></table>
