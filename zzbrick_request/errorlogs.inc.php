@@ -29,25 +29,7 @@ function mod_default_errorlogs() {
 		? implode(', ', $zz_conf['error_mail_level']) : $zz_conf['error_mail_level'];
 	
 	if ($zz_conf['log_errors']) {
-		$data['logfiles'] = [];
-
-		// PHP logfile?
-		if ($php_log = ini_get('error_log')) {
-			$php_log = realpath($php_log);
-			$data['logfiles'][$php_log]['path'] = $php_log;
-			$data['logfiles'][$php_log]['title'][] = 'PHP';
-		}
-		// zzform, zzwrap logfiles?
-		$levels = ['error', 'warning', 'notice'];
-		foreach ($levels as $level) {
-			if ($zz_conf['error_log'][$level]) {
-				$logfile = realpath($zz_conf['error_log'][$level]);
-				if (!$logfile) continue;
-				$data['logfiles'][$logfile]['path'] = $logfile;
-				$data['logfiles'][$logfile]['log'] = basename($logfile);
-				$data['logfiles'][$logfile]['title'][] = ucfirst($level);
-			}
-		}
+		$data['logfiles'] = mf_default_logfiles();
 		$data['logfiles'] = array_values($data['logfiles']);
 		foreach ($data['logfiles'] as $index => $logfile) {
 			$data['logfiles'][$index]['title'] = implode(', ', $logfile['title']);
@@ -58,4 +40,34 @@ function mod_default_errorlogs() {
 
 	$page['text'] = wrap_template('errorlogs', $data);
 	return $page;
+}
+
+/**
+ * get all used logfiles with standard error log format
+ *
+ * @return array
+ */
+function mf_default_logfiles() {
+	global $zz_conf;
+	global $zz_setting;
+
+	$logfiles = [];
+	// PHP logfile?
+	if ($php_log = ini_get('error_log')) {
+		$php_log = realpath($php_log);
+		$logfiles[$php_log]['path'] = $php_log;
+		$logfiles[$php_log]['title'][] = 'PHP';
+	}
+	// zzform, zzwrap logfiles?
+	$levels = ['error', 'warning', 'notice'];
+	foreach ($levels as $level) {
+		if ($zz_conf['error_log'][$level]) {
+			$logfile = realpath($zz_conf['error_log'][$level]);
+			if (!$logfile) continue;
+			$logfiles[$logfile]['path'] = $logfile;
+			$logfiles[$logfile]['log'] = basename($logfile);
+			$logfiles[$logfile]['title'][] = ucfirst($level);
+		}
+	}
+	return $logfiles;
 }
