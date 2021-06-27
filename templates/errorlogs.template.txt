@@ -47,7 +47,7 @@
 	%%% loop logfiles %%%
 	<tr class="even">
 	<td class="level1 block480a">%%% text "Logfile for <strong>%s</strong>" title %%%</td>
-	<td class="block480"><strong>%%% condition if inside_log_dir %%%log folder%%% condition endif %%%<a href="?log=%%% item path rawurlencode %%%%%% condition if types %%%&amp;filter[type]=none%%% condition endif %%%">%%% condition if inside_log_dir %%%/%%% item log %%%%%% condition else %%%%%% item path %%%%%% condition endif %%%</a></strong></td>
+	<td class="block480"><strong>%%% condition if inside_log_dir %%%log folder%%% condition endif %%%<a href="?log=%%% item path rawurlencode %%%%%% condition if types %%%&amp;filter[type]=none%%% condition endif %%%">%%% condition if inside_log_dir %%%/%%% item log %%%%%% condition else %%%%%% item path %%%%%% condition endif %%%</a></strong> (%%% item filesize wrap_bytes %%%)</td>
 	</tr>
 	%%% loop end %%%
 	<tr class="even">
@@ -61,10 +61,10 @@
 %%% condition endif %%%
 <tr class="uneven">
 <td class="block480">%%% text Logging (Upload) %%%</td>
-<td class="block480"><strong>%%% condition if setting zzform_upload_log %%%log folder<a href="?log=%%% setting log_dir %%%/upload.log">/upload.log</a>%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</strong></td>
+<td class="block480"><strong>%%% condition if setting zzform_upload_log %%%log folder<a href="?log=%%% setting log_dir %%%/upload.log">/upload.log</a>%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</strong> (%%% item upload_log_filesize wrap_bytes %%%)</td>
 </tr>
 <tr class="even">
 <td class="block480">%%% text Logging (Mail) %%%</td>
-<td class="block480"><strong>%%% condition if setting log_mail %%%log folder<a href="?maillog">/mail.log</a>%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</strong></td>
+<td class="block480"><strong>%%% condition if setting log_mail %%%log folder<a href="?maillog">/mail.log</a>%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</strong> (%%% item mail_log_filesize wrap_bytes %%%)</td>
 </tr>
 </tbody></table>

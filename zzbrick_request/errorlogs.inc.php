@@ -33,11 +33,21 @@ function mod_default_errorlogs() {
 		$data['logfiles'] = array_values($data['logfiles']);
 		foreach ($data['logfiles'] as $index => $logfile) {
 			$data['logfiles'][$index]['title'] = implode(', ', $logfile['title']);
+			$data['logfiles'][$index]['filesize'] = filesize($logfile['path']);
 			if (str_starts_with($logfile['path'], $zz_setting['cms_dir']))
 				$data['logfiles'][$index]['inside_log_dir'] = true;
 			if (count($data['logfiles'][$index]['types']) === 1)
 				$data['logfiles'][$index]['types'] = false;
 		}
+	}
+
+	if (!empty($zz_setting['log_mail'])) {
+		$data['mail_log_filesize'] = file_exists($zz_setting['log_dir'].'/mail.log')
+			? filesize($zz_setting['log_dir'].'/mail.log') : 0;		
+	}
+	if ($zz_conf['upload_log']) {
+		$data['upload_log_filesize'] = file_exists($zz_setting['log_dir'].'/upload.log')
+			? filesize($zz_setting['log_dir'].'/upload.log') : 0;		
 	}
 
 	$page['text'] = wrap_template('errorlogs', $data);
