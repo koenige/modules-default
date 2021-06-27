@@ -2,7 +2,7 @@
 # Translations
 #
 # Part of »Zugzwang Project«
-# http://www.zugzwang.org/modules/default
+# https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
 # @copyright Copyright © 2008-2009, 2014-2018, 2020-2021 Gustaf Mossakowski
@@ -352,71 +352,71 @@ msgstr "Lösche alle Dateien"
 msgid "Delete selected files"
 msgstr "Lösche ausgewählte Dateien"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Error handling"
 msgstr "Fehlerbehandlung"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Errors will be shown on webpage"
 msgstr "Fehler werden auf der Webseite angezeigt"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Errors will be sent via mail"
 msgstr "Fehler werden per Mail versendet"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Errors won’t be shown"
 msgstr "Fehler werden nicht angezeigt"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Send mail for these error levels"
 msgstr "Fehler dieser Ebenen werden versendet"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Send mail (From:)"
 msgstr "Absender der E-Mail"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "not set"
 msgstr "keine Angabe"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Send mail (To:)"
 msgstr "Empfänger der E-Mail"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Logging"
 msgstr "Aufzeichnung"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Errors will be logged"
 msgstr "Fehler werden aufgezeichnet"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Errors will not be logged"
 msgstr "Fehler werden nicht aufgezeichnet"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
-msgid "Logfile for %s"
-msgstr "Aufzeichnungen für %s"
+#: templates/errorlogs.template.txt
+msgid "Logfile for <strong>%s</strong>"
+msgstr "Aufzeichnungen für <strong>%s</strong>"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Maximum length of single error log entry"
 msgstr "Maximale Länge eines einzelnen Eintrags"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Log POST variables when errors occur"
 msgstr "Bei Fehlern auch POST-Variablen aufzeichnen"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "POST variables will be logged"
 msgstr "POST-Variablen werden aufgezeichnet"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "POST variables will not be logged"
 msgstr "POST-Variablen werden nicht aufgezeichnet"
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "disabled"
 msgstr "deaktiviert"
 

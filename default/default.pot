@@ -2,7 +2,7 @@
 # Translations
 #
 # Part of »Zugzwang Project«
-# http://www.zugzwang.org/modules/default
+# https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
 # @copyright Copyright © 2008-2009, 2014-2018, 2020-2021 Gustaf Mossakowski
@@ -337,71 +337,71 @@ msgstr ""
 msgid "Delete selected files"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Error handling"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Errors will be shown on webpage"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Errors will be sent via mail"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Errors won’t be shown"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Send mail for these error levels"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Send mail (From:)"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "not set"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Send mail (To:)"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Logging"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Errors will be logged"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Errors will not be logged"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
-msgid "Logfile for %s"
+#: templates/errorlogs.template.txt
+msgid "Logfile for <strong>%s</strong>"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Maximum length of single error log entry"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "Log POST variables when errors occur"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "POST variables will be logged"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "POST variables will not be logged"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-handling
+#: templates/errorlogs.template.txt
 msgid "disabled"
 msgstr ""
 

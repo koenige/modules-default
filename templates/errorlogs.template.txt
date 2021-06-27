@@ -14,10 +14,57 @@
 <th class="block480a">%%% text Setting %%%</th>
 <th class="block480">%%% text Value %%%</th>
 </tr></thead><tbody>
-%%% loop start %%%
-<tr class="%%% item td_class %%%">
-<td class="%%% item class %%%">%%% item th %%%</td>
-<td class="block480"><strong>%%% item td %%%</strong> %%% item explanation " (%s)" %%%</td>
+<tr class="even">
+<td class="block480">%%% text Error handling %%%</td>
+<td class="block480">%%% condition if error_handling_output %%%<strong>output</strong> (%%% text Errors will be shown on webpage %%%)
+%%% condition elseif error_handling_mail %%%<strong>mail</strong> (%%% text Errors will be sent via mail %%%)
+%%% condition else %%%%%% text Errors won’t be shown %%%
+%%% condition endif %%%</td>
 </tr>
-%%% loop end %%%
+<tr class="uneven">
+<td class="block480">%%% text Send mail for these error levels %%%</td>
+<td class="block480"><strong>%%% item error_mail_level %%%</strong> </td>
+</tr>
+<tr class="uneven">
+<td class="level1 block480a">%%% text Send mail (From:) %%%</td>
+<td class="block480">%%% condition if setting error_mail_from %%%<strong>%%% setting error_mail_from %%%</strong>
+%%% condition else %%%(%%% text not set %%%)
+%%% condition endif %%%</td>
+</tr>
+<tr class="uneven">
+<td class="level1 block480a">%%% text Send mail (To:) %%%</td>
+<td class="block480">%%% condition if setting error_mail_to %%%<strong>%%% setting error_mail_to %%%</strong>
+%%% condition else %%%(%%% text not set %%%)
+%%% condition endif %%%</td>
+</tr>
+<tr class="even">
+<td class="block480">%%% text Logging %%%</td>
+<td class="block480">%%% condition if setting log_errors %%%<strong>1</strong> (%%% text Errors will be logged %%%)
+%%% condition else %%%(%%% text Errors will not be logged %%%)
+%%% condition endif %%%</td>
+</tr>
+%%% condition if setting log_errors %%%
+	%%% loop logfiles %%%
+	<tr class="even">
+	<td class="level1 block480a">%%% text "Logfile for <strong>%s</strong>" title %%%</td>
+	<td class="block480"><strong><a href="?log=%%% item path rawurlencode %%%&amp;filter[type]=none">%%% item path %%%</a></strong></td>
+	</tr>
+	%%% loop end %%%
+	<tr class="even">
+	<td class="level1 block480a">%%% text Maximum length of single error log entry %%%</td>
+	<td class="block480"><strong>%%% setting log_errors_max_len %%%</strong></td>
+	</tr>
+	<tr class="even">
+	<td class="level1 block480a">%%% text Log POST variables when errors occur %%%</td>
+	<td class="block480">%%% condition if setting error_log_post %%%<strong>1</strong> (%%% text POST variables will be logged %%%)%%% condition else %%%(%%% text POST variables will not be logged %%%)%%% condition endif %%%</td>
+	</tr>
+%%% condition endif %%%
+<tr class="uneven">
+<td class="block480">%%% text Logging (Upload) %%%</td>
+<td class="block480"><strong>%%% condition if setting zzform_upload_log %%%<a href="?log=%%% setting log_dir %%%/upload.log">%%% setting log_dir %%%/upload.log</a>%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</strong></td>
+</tr>
+<tr class="even">
+<td class="block480">%%% text Logging (Mail) %%%</td>
+<td class="block480"><strong>%%% condition if setting log_mail %%%<a href="?maillog">%%% setting log_dir %%%/mail.log</a>%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</strong></td>
+</tr>
 </tbody></table>
