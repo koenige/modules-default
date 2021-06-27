@@ -41,33 +41,3 @@ function mod_default_errorlogs() {
 	$page['text'] = wrap_template('errorlogs', $data);
 	return $page;
 }
-
-/**
- * get all used logfiles with standard error log format
- *
- * @return array
- */
-function mf_default_logfiles() {
-	global $zz_conf;
-	global $zz_setting;
-
-	$logfiles = [];
-	// PHP logfile?
-	if ($php_log = ini_get('error_log')) {
-		$php_log = realpath($php_log);
-		$logfiles[$php_log]['path'] = $php_log;
-		$logfiles[$php_log]['title'][] = 'PHP';
-	}
-	// zzform, zzwrap logfiles?
-	$levels = ['error', 'warning', 'notice'];
-	foreach ($levels as $level) {
-		if ($zz_conf['error_log'][$level]) {
-			$logfile = realpath($zz_conf['error_log'][$level]);
-			if (!$logfile) continue;
-			$logfiles[$logfile]['path'] = $logfile;
-			$logfiles[$logfile]['log'] = basename($logfile);
-			$logfiles[$logfile]['title'][] = ucfirst($level);
-		}
-	}
-	return $logfiles;
-}
