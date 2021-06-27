@@ -1,0 +1,23 @@
+# default module
+# show overview of error logs
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2021 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<h2>%%% text Error Logging %%%</h2>
+<table class="data">
+<thead><tr>
+<th class="block480a">%%% text Setting %%%</th>
+<th class="block480">%%% text Value %%%</th>
+</tr></thead><tbody>
+%%% loop start %%%
+<tr class="%%% item td_class %%%">
+<td class="%%% item class %%%">%%% item th %%%</td>
+<td class="block480"><strong>%%% item td %%%</strong> %%% item explanation " (%s)" %%%</td>
+</tr>
+%%% loop end %%%
+</tbody></table>

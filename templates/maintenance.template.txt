@@ -2,10 +2,10 @@
 # Template for maintenance script
 #
 # Part of »Zugzwang Project«
-# http://www.zugzwang.org/modules/default
+# https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016, 2018, 2020 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2018, 2020-2021 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -56,19 +56,7 @@
 %%% condition endif %%%
 %%% condition endif %%%
 
-<h2>%%% text Error Logging %%%</h2>
-<table class="data">
-<thead><tr>
-<th class="block480a">%%% text Setting %%%</th>
-<th class="block480">%%% text Value %%%</th>
-</tr></thead><tbody>
-%%% loop errors %%%
-<tr class="%%% item td_class %%%">
-<td class="%%% item class %%%">%%% item th %%%</td>
-<td class="block480"><strong>%%% item td %%%</strong> %%% item explanation " (%s)" %%%</td>
-</tr>
-%%% loop end %%%
-</tbody></table>
+%%% request errorlogs %%%
 
 <h2>%%% text PHP & Server %%%</h2>
 <ul>
