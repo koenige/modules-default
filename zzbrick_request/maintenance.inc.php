@@ -794,17 +794,8 @@ function zz_maintenance_logs($page) {
 	}
 	$data['log'] = wrap_html_escape($logfile);
 
-	$show_log = false;
-	foreach ($levels as $level) {
-		if ($logfile === realpath($zz_conf['error_log'][$level])) {
-			$show_log = true;
-		}
-	}
-	if ($logfile === realpath(ini_get('error_log'))) {
-		$show_log = true;
-	} elseif (!empty($zz_conf['upload_log']) AND $logfile === realpath($zz_setting['log_dir'].'/upload.log')) {
-		$show_log = true;
-	}
+	$logfiles = mf_default_logfiles();
+	$show_log = array_key_exists($logfile, $logfiles) ? true : false;
 	if (!$show_log) {
 		$page['text'] = '<p>'.sprintf(wrap_text('This is not one of the used logfiles: %s'), $data['log']).'</p>'."\n";
 		return mod_default_maintenance_return($page);
@@ -816,7 +807,7 @@ function zz_maintenance_logs($page) {
 		$data['message'] = wrap_file_delete_line($logfile, $_POST['line']);
 	}
 
-	$filters['type'] = ['PHP', 'zzform', 'zzwrap'];
+	$filters['type'] = $logfiles[$logfile]['types'];
 	$filters['level'] = [
 		'Notice', 'Deprecated', 'Warning', 'Error', 'Parse error',
 		'Strict error', 'Fatal error', 'Upload'
@@ -1299,6 +1290,7 @@ function mod_default_maintenance_logs_filter($filters) {
 	$unwanted_keys = ['filter', 'limit'];
 	$my_uri = $zz_conf['int']['url']['self'].zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
 
+	if (count($filters['type']) === 1) unset($filters['type']);
 	foreach ($filters as $index => $filter) {
 		$f_output[$index]['title'] = wrap_text(ucfirst($index));
 		$my_link = $my_uri;

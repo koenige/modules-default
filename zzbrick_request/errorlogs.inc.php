@@ -35,6 +35,8 @@ function mod_default_errorlogs() {
 			$data['logfiles'][$index]['title'] = implode(', ', $logfile['title']);
 			if (str_starts_with($logfile['path'], $zz_setting['cms_dir']))
 				$data['logfiles'][$index]['inside_log_dir'] = true;
+			if (count($data['logfiles'][$index]['types']) === 1)
+				$data['logfiles'][$index]['types'] = false;
 		}
 	}
 
