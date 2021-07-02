@@ -31,7 +31,7 @@ if (wrap_access('default_masquerade')) {
 	];
 	$zz['fields'][19]['exclude_from_search'] = true;
 	$zz['fields'][19]['hide_in_form'] = true;
-	$zz['fields'][19]['class'] = 'number';
+	$zz['fields'][19]['class'] = 'block480a number';
 }
 
 $zz['fields'][2]['field_name'] = 'username';
