@@ -5,7 +5,7 @@
  * Database form for website settings
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2014-2015, 2018, 2020-2021 Gustaf Mossakowski
@@ -26,6 +26,9 @@ $zz['fields'][3]['dependencies_function'] = 'zz_cfg_read';
 function zz_cfg_read($cfg) {
 	if (!array_key_exists('description', $cfg)) $cfg['description'] = '';
 	if (!array_key_exists('default', $cfg)) $cfg['default'] = '';
+	if (!empty($cfg['type'] AND $cfg['type'] === 'random')) {
+		$cfg['default'] = wrap_random_hash(42, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-=+$%_/& ');
+	}
 	return [
 		$cfg['description'],
 		$cfg['default']
