@@ -20,7 +20,24 @@ $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'login_id';
 $zz['fields'][1]['type'] = 'id';
 
-$zz['fields'][11] = false; // person_id
+$zz['fields'][11] = []; // contact_id
+if (wrap_get_setting('login_with_contact_id')) {
+	$zz['fields'][11]['field_name'] = 'contact_id';
+	$zz['fields'][11]['type'] = 'select';
+	$zz['fields'][11]['sql'] = 'SELECT contact_id, contact, identifier
+		FROM /*_PREFIX_*/contacts
+		ORDER BY identifier';
+	$zz['fields'][11]['sql_character_set'][1] = 'utf8'; 
+	$zz['fields'][11]['display_field'] = 'contact';
+	$zz['fields'][11]['link'] = [
+		'function' => 'mf_contacts_profile_path',
+		'fields' => ['identifier', 'contact_parameters']
+	];
+	$zz['fields'][11]['unique'] = true;
+	$zz['fields'][11]['class'] = 'block480a';
+	$zz['fields'][11]['character_set'] = 'utf8';
+}
+
 
 if (wrap_access('default_masquerade')) {
 	$zz['fields'][19]['field_name'] = 'user_id'; // extend query to include this
@@ -31,12 +48,21 @@ if (wrap_access('default_masquerade')) {
 	];
 	$zz['fields'][19]['exclude_from_search'] = true;
 	$zz['fields'][19]['hide_in_form'] = true;
+	$zz['fields'][19]['hide_in_list_if_empty'] = true;
 	$zz['fields'][19]['class'] = 'block480a number';
 }
 
-$zz['fields'][2]['field_name'] = 'username';
-$zz['fields'][2]['type'] = 'text';
-$zz['fields'][2]['class'] = 'block480a';
+if (wrap_get_setting('login_with_contact_id')) {
+	$zz['fields'][2]['title'] = 'Username';
+	$zz['fields'][2]['field_name'] = 'contact_identifier';
+	$zz['fields'][2]['type'] = 'display';
+	$zz['fields'][2]['search'] = '/*_PREFIX_*/contacts.identifier';
+	$zz['fields'][2]['character_set'] = 'latin1';
+} else {
+	$zz['fields'][2]['field_name'] = 'username';
+	$zz['fields'][2]['type'] = 'text';
+	$zz['fields'][2]['class'] = 'block480a';
+}
 
 $zz['fields'][6]['title_tab'] = 'Rights';
 $zz['fields'][6]['field_name'] = 'login_rights';
@@ -98,6 +124,22 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/logins.*
 	FROM /*_PREFIX_*/logins
 ';
 $zz['sqlorder'] = ' ORDER BY username';
+
+if (wrap_get_setting('login_with_contact_id')) {
+	$zz['sql'] = 'SELECT /*_PREFIX_*/logins.*
+			, /*_PREFIX_*/logins.login_id AS user_id
+			, contact
+			, /*_PREFIX_*/contacts.identifier AS contact_identifier
+			, IF(ISNULL(last_click), last_click, FROM_UNIXTIME(last_click, "%Y-%m-%d %H:%i")) AS last_click
+			, contact_categories.parameters AS contact_parameters
+		FROM /*_PREFIX_*/logins
+		LEFT JOIN /*_PREFIX_*/persons USING (contact_id)
+		LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
+		LEFT JOIN /*_PREFIX_*/categories contact_categories
+			ON contact_categories.category_id = /*_PREFIX_*/contacts.contact_category_id
+	';
+	$zz['sqlorder'] = ' ORDER BY last_click DESC, contact';
+}
 
 if (!wrap_access('default_logins_full')) {
 	$zz['access'] = 'none';

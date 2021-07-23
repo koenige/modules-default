@@ -1,11 +1,12 @@
 /**
- * Zugzwang Project
+ * default module
  * SQL queries for core, page, auth and database IDs
  *
- * http://www.zugzwang.org/modules/default
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -64,6 +65,12 @@ UPDATE /*_PREFIX_*/logins SET logged_in = 'yes', last_click = %s WHERE login_id 
 SELECT password, username, logins.login_id AS user_id, logins.login_id
 FROM /*_PREFIX_*/logins logins
 WHERE active = 'yes' AND username = _latin1'%s';
+
+-- auth_login_contact --
+SELECT password, identifier AS username, contacts.contact_id AS user_id, logins.login_id
+FROM /*_PREFIX_*/logins logins
+LEFT JOIN /*_PREFIX_*/contacts contacts USING (contact_id)
+WHERE active = 'yes' AND identifier = _latin1'%s';
 
 -- auth_last_masquerade --
 
