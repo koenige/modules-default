@@ -54,7 +54,7 @@ if (wrap_access('default_masquerade')) {
 
 if (wrap_get_setting('login_with_contact_id')) {
 	$zz['fields'][2]['title'] = 'Username';
-	$zz['fields'][2]['field_name'] = 'contact_identifier';
+	$zz['fields'][2]['field_name'] = 'username';
 	$zz['fields'][2]['type'] = 'display';
 	$zz['fields'][2]['search'] = '/*_PREFIX_*/contacts.identifier';
 	$zz['fields'][2]['character_set'] = 'latin1';
@@ -129,7 +129,7 @@ if (wrap_get_setting('login_with_contact_id')) {
 	$zz['sql'] = 'SELECT /*_PREFIX_*/logins.*
 			, /*_PREFIX_*/logins.login_id AS user_id
 			, contact
-			, /*_PREFIX_*/contacts.identifier AS contact_identifier
+			, /*_PREFIX_*/contacts.identifier AS username
 			, IF(ISNULL(last_click), last_click, FROM_UNIXTIME(last_click, "%Y-%m-%d %H:%i")) AS last_click
 			, contact_categories.parameters AS contact_parameters
 		FROM /*_PREFIX_*/logins
