@@ -499,13 +499,13 @@ function zz_maintenance_folders($page = []) {
 	}
 
 	if ((!$zz_conf['backup'] OR !$zz_conf['backup_dir'])
-		AND empty($zz_conf['tmp_dir']) AND empty($zz_setting['cache_dir'])) {
+		AND empty($zz_setting['tmp_dir']) AND empty($zz_setting['cache_dir'])) {
 		$page['text'] = '<p>'.wrap_text('Backup of uploaded files is not active.').'</p>'."\n";
 		return mod_default_maintenance_return($page);
 	}
 
 	$dirs = [
-		'TEMP' => $zz_conf['tmp_dir'],
+		'TEMP' => $zz_setting['tmp_dir'],
 		'BACKUP' => $zz_conf['backup_dir'],
 		'CACHE' => $zz_setting['cache_dir']
 	];

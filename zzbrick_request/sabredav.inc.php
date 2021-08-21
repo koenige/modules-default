@@ -5,7 +5,7 @@
  * adding sabreDAV as a WebDAV server
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2014, 2020 Gustaf Mossakowski
@@ -28,7 +28,6 @@ require_once $zz_setting['lib'].'/sabredav/vendor/autoload.php';
 function mod_default_sabredav() {
 	global $zz_setting;
 	global $zz_page;
-	global $zz_conf;
 
 	$webdav_path = $zz_setting['cms_dir'].'/webdav/';
 	$base_uri = $zz_page['db']['identifier'];
@@ -62,8 +61,8 @@ function mod_default_sabredav() {
 	$server->addPlugin($auth);
 
 	// Temporary file filter
-	wrap_mkdir($zz_conf['tmp_dir'].'/webdav');
-	$tffp = new \Sabre\DAV\TemporaryFileFilterPlugin($zz_conf['tmp_dir'].'/webdav');
+	wrap_mkdir($zz_setting['tmp_dir'].'/webdav');
+	$tffp = new \Sabre\DAV\TemporaryFileFilterPlugin($zz_setting['tmp_dir'].'/webdav');
 	$server->addPlugin($tffp);
 
 	// All we need to do now, is to fire up the server
