@@ -24,7 +24,7 @@ function mod_default_make_cleanup() {
 		foreach ($zz_setting['cleanup_folders'] as $folder => $max_age_seconds) {
 			$folder_given = $folder;
 			if (substr($folder, 0, 1) !== '/')
-				$folder = sprintf('%s/%s', $zz_setting['cache_dir'], $folder);
+				$folder = sprintf('%s/%s', $zz_setting['tmp_dir'], $folder);
 			$folder = realpath($folder);
 			if (!$folder) {
 				wrap_error(sprintf('Folder to clean up does not exist: %s', $folder_given));
