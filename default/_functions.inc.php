@@ -14,23 +14,6 @@
 
 
 /**
- * get path to masquerade login
- *
- * @param array $values
- *		int user_id (or whatever it is called, first parameter)
- * @return string
- */
-function mf_default_masquerade_path($values) {
-	global $zz_setting;
-	if (!wrap_access('default_masquerade')) return false;
-	if (empty($zz_setting['default_masquerade_path'])) {
-		$success = wrap_setting_path('default_masquerade_path');
-		if (!$success) return false;
-	}
-	return sprintf($zz_setting['base'].$zz_setting['default_masquerade_path'], reset($values));
-}
-
-/**
  * get all used logfiles with standard error log format
  *
  * @return array

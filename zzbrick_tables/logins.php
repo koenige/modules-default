@@ -43,7 +43,7 @@ if (wrap_access('default_masquerade')) {
 	$zz['fields'][19]['field_name'] = 'user_id'; // extend query to include this
 	$zz['fields'][19]['type'] = 'display';
 	$zz['fields'][19]['link'] = [
-		'function' => 'mf_default_masquerade_path',
+		'area' => 'default_masquerade',
 		'fields' => ['user_id']
 	];
 	$zz['fields'][19]['exclude_from_search'] = true;
