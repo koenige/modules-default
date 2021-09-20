@@ -2,10 +2,10 @@
 # Template for Login form
 #
 # Part of »Zugzwang Project«
-# http://www.zugzwang.org/modules/default
+# https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2011, 2015-2016, 2018-2019 Gustaf Mossakowski
+# @copyright Copyright © 2008-2011, 2015-2016, 2018-2019, 2021 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #
@@ -17,7 +17,7 @@
 <p><strong class="error">%%% text "Please allow us to set a cookie!" %%%</strong></p>
 %%% condition endif %%%
 <p>%%% text "To access the internal area, a registration is required. Please enter below your username and password." %%%</p>
-<p>%%% item logout_inactive_after "%{'Please allow cookies after sending your login credentials. For security reasons, after %d minutes of inactivity you will be logged out automatically.'}%" %%%</p>
+<p>%%% setting logout_inactive_after "%{'Please allow cookies after sending your login credentials. For security reasons, after %d minutes of inactivity you will be logged out automatically.'}%" %%%</p>
 </div>
 <form action="%%% item action_url %%%%%% item params %%%" method="POST" class="login">
 <fieldset><legend>%%% text "Login" %%%</legend>
