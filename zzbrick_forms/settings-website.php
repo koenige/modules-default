@@ -26,7 +26,7 @@ $zz['fields'][3]['dependencies_function'] = 'zz_cfg_read';
 function zz_cfg_read($cfg) {
 	if (!array_key_exists('description', $cfg)) $cfg['description'] = '';
 	if (!array_key_exists('default', $cfg)) $cfg['default'] = '';
-	if (!empty($cfg['type'] AND $cfg['type'] === 'random')) {
+	if (!empty($cfg['type']) AND $cfg['type'] === 'random') {
 		$cfg['default'] = wrap_random_hash(42, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-=+$%_/& ');
 	}
 	return [
