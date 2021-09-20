@@ -83,6 +83,17 @@ LEFT JOIN /*_PREFIX_*/contacts contacts USING (contact_id)
 WHERE active = 'yes'
 HAVING username = _latin1'%s';
 
+-- auth_login_exists --
+SELECT login_id
+FROM /*_PREFIX_*/logins
+LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
+WHERE /*_PREFIX_*/contacts.identifier = '%s';
+
+-- auth_username_exists --
+SELECT contact_id AS user_id, identifier AS username
+FROM /*_PREFIX_*/contacts
+WHERE identifier = '%s';
+
 -- auth_last_masquerade --
 
 -- auth_login_masquerade --
