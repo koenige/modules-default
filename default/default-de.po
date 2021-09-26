@@ -1083,8 +1083,8 @@ msgstr "Klick"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
-msgid "Last activity in database"
-msgstr "Letzte Aktivität in der Datenbank"
+msgid "Last activity online"
+msgstr "Letzte Aktivität online"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"

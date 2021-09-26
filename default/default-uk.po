@@ -974,7 +974,7 @@ msgstr ""
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
-msgid "Last activity in database"
+msgid "Last activity online"
 msgstr ""
 
 #: zzbrick_tables/logins.php

@@ -100,7 +100,7 @@ $zz['fields'][5]['title'] = 'Click';
 $zz['fields'][5]['field_name'] = 'last_click';
 $zz['fields'][5]['type'] = 'display';
 $zz['fields'][5]['type_detail'] = 'datetime';
-$zz['fields'][5]['explanation'] = 'Last activity in database';
+$zz['fields'][5]['explanation'] = 'Last activity online';
 $zz['fields'][5]['class'] = 'hidden480';
 $zz['fields'][5]['if']['add']['hide_in_form'] = true;
 
