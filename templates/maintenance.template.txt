@@ -20,7 +20,9 @@
 <p>%%% text No table for database translations is defined %%% (<code>$zz_conf["translations_table"]</code>)</p>
 %%% condition endif %%%
 %%% condition if relations_table | translations_table %%%
+%%% condition if database_changeable %%%
 <form action="" method="POST">
+%%% condition endif %%%
 <table class="data"><thead><tr>
 <th>%%% text Type %%%</th>
 <th class="block480a">%%% text Current database %%%</th>
@@ -31,12 +33,18 @@
 <tr class="%%% loopposition uneven "un" %%%even">
 <td>%%% item title %%%</td>
 <td class="block480a">%%% item db %%%</td>
-<td class="block480a"><select name="db_value[%%% item category %%%][%%% item db %%%]">
+<td class="block480a">
+%%% condition if databases %%%
+<select name="db_value[%%% item category %%%][%%% item db %%%]">
 %%% loop databases %%%
 <option value="%%% item db %%%"%%% condition unless keep %%%%%% item prefered " selected" %%%%%% condition endif %%%>%%% item db %%%</option>
 %%% loop end %%%
-</select></td>
-<td class="block480">%%% condition if keep %%%
+</select>
+%%% condition endif %%%
+</td>
+<td class="block480">
+%%% condition if databases %%%
+%%% condition if keep %%%
 <input type="radio" checked="checked" name="db_set[%%% item category %%%][%%% item db %%%]" value="keep">
  %%% text Keep database %%% / 
 <input type="radio" name="db_set[%%% item category %%%][%%% item db %%%]" value="change">
@@ -45,12 +53,15 @@
 %%% text (Database is not on server, you have to select a new database.) %%%
 <input type="hidden" name="db_set[%%% item category %%%][%%% item db %%%]" value="change">
 %%% condition endif %%%
+%%% condition endif %%%
 </td>
 </tr>
 %%% loop end %%%
 </tbody></table>
+%%% condition if database_changeable %%%
 <input type="submit">
 </form>
+%%% condition endif %%%
 %%% condition if relations_table %%%
 <p><a href="?integrity">%%% text Check relational integrity %%%</a></p>
 %%% condition endif %%%

@@ -245,6 +245,8 @@ function zz_maintenance_tables() {
 	$sql = 'SHOW DATABASES';
 	$databases = wrap_db_fetch($sql, 'Databases', 'single value');
 	foreach ($databases as $db) {
+		// no system databases
+		if (in_array($db, ['information_schema'])) continue;
 		$db_list[] = [
 			'db' => $db,
 			'prefered' => $db === $zz_conf['db_name'] ? true : false
@@ -259,10 +261,11 @@ function zz_maintenance_tables() {
 				'db' => $db,
 				'category' => $category,
 				'keep' => in_array($db, $databases) ? true : false,
-				'databases' => $db_list
+				'databases' => count($db_list) > 1 ? $db_list : []
 			];
 		}
 	}
+	$data['database_changeable'] = count($db_list) > 1 ? true : false;
 	return $data;
 }
 
