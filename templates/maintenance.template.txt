@@ -26,24 +26,24 @@
 <table class="data"><thead><tr>
 <th>%%% text Type %%%</th>
 <th class="block480a">%%% text Current database %%%</th>
+%%% condition if database_changeable %%%
 <th class="block480a">%%% text New database %%%</th>
 <th class="editbutton block480">%%% text Action %%%</th>
+%%% condition endif %%%
 </thead><tbody>
 %%% loop tables %%%
 <tr class="%%% loopposition uneven "un" %%%even">
 <td>%%% item title %%%</td>
 <td class="block480a">%%% item db %%%</td>
-<td class="block480a">
 %%% condition if databases %%%
+<td class="block480a">
 <select name="db_value[%%% item category %%%][%%% item db %%%]">
 %%% loop databases %%%
 <option value="%%% item db %%%"%%% condition unless keep %%%%%% item prefered " selected" %%%%%% condition endif %%%>%%% item db %%%</option>
 %%% loop end %%%
 </select>
-%%% condition endif %%%
 </td>
 <td class="block480">
-%%% condition if databases %%%
 %%% condition if keep %%%
 <input type="radio" checked="checked" name="db_set[%%% item category %%%][%%% item db %%%]" value="keep">
  %%% text Keep database %%% / 
@@ -53,8 +53,8 @@
 %%% text (Database is not on server, you have to select a new database.) %%%
 <input type="hidden" name="db_set[%%% item category %%%][%%% item db %%%]" value="change">
 %%% condition endif %%%
-%%% condition endif %%%
 </td>
+%%% condition endif %%%
 </tr>
 %%% loop end %%%
 </tbody></table>
