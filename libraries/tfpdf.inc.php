@@ -5,7 +5,7 @@
  * use tFPDF with zzwrap error logging
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0

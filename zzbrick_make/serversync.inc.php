@@ -5,7 +5,7 @@
  * Synchronisation of data from development and production server
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2018, 2020-2021 Gustaf Mossakowski

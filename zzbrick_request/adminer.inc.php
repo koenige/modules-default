@@ -5,7 +5,7 @@
  * Database administration with adminer
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2014-2021 Gustaf Mossakowski

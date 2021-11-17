@@ -5,7 +5,7 @@
  * Table definition for 'webpages/media'
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2014-2015, 2017-2020 Gustaf Mossakowski

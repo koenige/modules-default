@@ -6,7 +6,7 @@
  * DB-Tabelle zur Eingabe von Beziehungen fuer die referentielle Integritaet
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2005-2010, 2014, 2018-2021 Gustaf Mossakowski

@@ -6,7 +6,7 @@
  * DB-Tabelle zur Eingabe von Uebersetzungen von Textbloecken
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2009-2010, 2013-2016, 2021 Gustaf Mossakowski

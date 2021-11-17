@@ -5,7 +5,7 @@
  * Table definition for 'webpages'
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2007-2009, 2016, 2018-2021 Gustaf Mossakowski

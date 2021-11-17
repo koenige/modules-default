@@ -6,7 +6,7 @@
  * DB-Tabelle zur Eingabe von Umleitungen von URLs
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2006-2016, 2019 Gustaf Mossakowski

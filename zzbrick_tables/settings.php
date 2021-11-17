@@ -5,7 +5,7 @@
  * Database table for settings (website settings, user settings)
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2008-2014, 2020 Gustaf Mossakowski

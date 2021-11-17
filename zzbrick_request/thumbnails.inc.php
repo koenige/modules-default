@@ -5,7 +5,7 @@
  * Additional thumbnail creation
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2010, 2014-2016, 2019-2021 Gustaf Mossakowski

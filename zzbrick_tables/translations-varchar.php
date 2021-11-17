@@ -6,7 +6,7 @@
  * Tabellendefinition für Übersetzungen (varchar)
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2010-2011, 2013, 2018-2020 Gustaf Mossakowski

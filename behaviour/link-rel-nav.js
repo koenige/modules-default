@@ -3,7 +3,7 @@
  * navigation with <link rel=""> elements for arrow keys and swipe
  * 
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  * 
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2010, 2013, 2018-2019 Gustaf Mossakowski

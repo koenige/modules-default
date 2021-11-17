@@ -5,7 +5,7 @@
  * Table definition for 'languages' according to ISO 639-1 and -2
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2010-2012, 2018-2019 Gustaf Mossakowski

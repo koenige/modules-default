@@ -6,7 +6,7 @@
  * DB-Tabelle für Liste von URIs
  *
  * Part of »Zugzwang Project«
- * http://www.zugzwang.org/modules/default
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2012-2016, 2019 Gustaf Mossakowski
