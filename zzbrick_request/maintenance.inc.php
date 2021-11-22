@@ -310,7 +310,7 @@ function zz_maintenance_integrity($page) {
 		$ids = wrap_db_fetch($sql, '_dummy_', 'key/value', false, E_USER_NOTICE);
 		$detail_field = $relation['detail_db'].' . '.$relation['detail_table'].' . '.$relation['detail_field'];
 		if ($ids) {
-			$results[] = '<li class="error">'.wrap_text('Error').' &#8211; '
+			$results[] = '<li class="error">'.wrap_text('Error').' – '
 				.sprintf(wrap_text('Field %s contains invalid values:'),
 				'<code>'.$detail_field.'</code>').' ('
 				.$relation['detail_id_field'].' => '.$relation['detail_field'].')<br>';
@@ -321,7 +321,7 @@ function zz_maintenance_integrity($page) {
 			$line .= '</li>';
 			$results[] = $line;
 		} else {
-			$results[] = '<li class="ok">'.wrap_text('OK').' &#8211; '
+			$results[] = '<li class="ok">'.wrap_text('OK').' – '
 				.sprintf(wrap_text('Field %s contains only valid values.'),
 				'<code>'.$detail_field.'</code>').'</li>';
 		}
