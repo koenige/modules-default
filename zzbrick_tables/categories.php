@@ -24,7 +24,13 @@ $zz['fields'][2]['field_name'] = 'category';
 $zz['fields'][2]['list_append_next'] = true;
 $zz['fields'][2]['typo_cleanup'] = true;
 
-$zz['fields'][22] = [];
+$zz['fields'][22]['title'] = 'Abbreviation';
+$zz['fields'][22]['title_tab'] = 'Abbr.';
+$zz['fields'][22]['field_name'] = 'category_short';
+$zz['fields'][22]['type'] = 'text';
+$zz['fields'][22]['list_append_next'] = true;
+$zz['fields'][22]['list_prefix'] = '<br><em>(';
+$zz['fields'][22]['list_suffix'] = ')</em> ';
 
 $zz['fields'][3]['field_name'] = 'description';
 $zz['fields'][3]['type'] = 'memo';
@@ -51,9 +57,10 @@ $zz['fields'][5]['title'] = 'Identifier';
 $zz['fields'][5]['title_tab'] = 'Identifier / Parameters';
 $zz['fields'][5]['field_name'] = 'path';
 $zz['fields'][5]['type'] = 'identifier';
-$zz['fields'][5]['fields'] = ['main_category_id[path]', 'category'];
+$zz['fields'][5]['fields'] = ['main_category_id[path]', 'category_short', 'category'];
 $zz['fields'][5]['conf_identifier']['concat'] = '/';
 $zz['fields'][5]['conf_identifier']['strip_tags'] = true;
+$zz['fields'][5]['conf_identifier']['ignore_this_if']['category'] = 'category_short';
 
 $zz['fields'][7]['field_name'] = 'parameters';
 $zz['fields'][7]['list_prefix'] = '<br>';

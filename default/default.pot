@@ -1001,6 +1001,16 @@ msgctxt "default"
 msgid "Internal parameters. Change with care."
 msgstr ""
 
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Abbreviation"
+msgstr ""
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Abbr."
+msgstr ""
+
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Logins"
