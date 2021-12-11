@@ -27,6 +27,7 @@ $zz['fields'][2]['field_name'] = 'text';
 $zz['fields'][2]['type'] = 'write_once';
 $zz['fields'][2]['type_detail'] = 'text';
 $zz['fields'][2]['translation']['hide_in_list'] = false;
+$zz['fields'][2]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][3]['title'] = 'More Text';
 $zz['fields'][3]['field_name'] = 'more_text';

@@ -23,6 +23,7 @@ $zz['fields'][1]['type'] = 'id';
 $zz['fields'][2]['field_name'] = 'category';
 $zz['fields'][2]['list_append_next'] = true;
 $zz['fields'][2]['typo_cleanup'] = true;
+$zz['fields'][2]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][22]['title'] = 'Abbreviation';
 $zz['fields'][22]['title_tab'] = 'Abbr.';

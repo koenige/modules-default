@@ -26,6 +26,8 @@ $zz['fields'][2]['list_suffix'] = '</strong>';
 $zz['fields'][2]['list_append_next'] = true;
 $zz['fields'][2]['if'][1]['list_prefix'] = '<del>';
 $zz['fields'][2]['if'][1]['list_suffix'] = '</del>';
+$zz['fields'][2]['typo_cleanup'] = true;
+$zz['fields'][2]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][3]['field_name'] = 'content';
 $zz['fields'][3]['type'] = 'memo';

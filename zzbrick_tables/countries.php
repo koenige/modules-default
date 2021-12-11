@@ -36,6 +36,7 @@ $zz['fields'][11]['explanation'] = 'Three letter country code according to the I
 
 $zz['fields'][3]['title'] = 'Country';
 $zz['fields'][3]['field_name'] = 'country';
+$zz['fields'][3]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][10]['field_name'] = 'website';
 $zz['fields'][10]['type'] = 'select';

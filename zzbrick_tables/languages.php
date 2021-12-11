@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012, 2018-2019 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2018-2019, 2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -36,14 +36,17 @@ $zz['fields'][4]['explanation'] = 'Language code ISO 639-1';
 
 $zz['fields'][6]['title'] = 'Language name, english';
 $zz['fields'][6]['field_name'] = 'language_en';
+$zz['fields'][6]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][5]['title'] = 'Language name, german';
 $zz['fields'][5]['field_name'] = 'language_de';
 $zz['fields'][5]['hide_in_list'] = true;
+$zz['fields'][5]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][7]['title'] = 'Language name, french';
 $zz['fields'][7]['field_name'] = 'language_fr';
 $zz['fields'][7]['hide_in_list'] = true;
+$zz['fields'][7]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][8] = false; // further languages
 
