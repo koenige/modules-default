@@ -252,7 +252,18 @@ function zz_maintenance_tables() {
 			'prefered' => $db === $zz_conf['db_name'] ? true : false
 		];
 	}
-
+	$data['database_changeable'] = false;
+	if (count($db_list) > 1) {
+		$data['database_changeable'] = true;
+	} else {
+		foreach ($dbs as $db) {
+			if (reset($db) === $zz_conf['db_name']) continue;
+			$data['database_changeable'] = true;
+			break;
+		}
+		
+	}
+		
 	$i = 0;
 	foreach ($dbs as $category => $db_names) {
 		foreach ($db_names as $db) {
@@ -261,11 +272,10 @@ function zz_maintenance_tables() {
 				'db' => $db,
 				'category' => $category,
 				'keep' => in_array($db, $databases) ? true : false,
-				'databases' => count($db_list) > 1 ? $db_list : []
+				'databases' => $data['database_changeable'] ? $db_list : []
 			];
 		}
 	}
-	$data['database_changeable'] = count($db_list) > 1 ? true : false;
 	return $data;
 }
 
