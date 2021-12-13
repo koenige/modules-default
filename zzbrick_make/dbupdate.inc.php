@@ -208,6 +208,7 @@ function mod_default_make_dbupdate_log($line, $mode) {
 	case 'structure_check':
 		// check structure
 		$logs = file($logfile);
+		if (!$logs) return true;
 		$log = explode(' ', $logs[0]);
 		if (strlen($log[0]) === 30) return true;
 		rename($logfile, $zz_setting['log_dir'].'/dbupdate-bak.log');
