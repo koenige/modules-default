@@ -261,7 +261,6 @@ function zz_maintenance_tables() {
 			$data['database_changeable'] = true;
 			break;
 		}
-		
 	}
 		
 	$i = 0;
