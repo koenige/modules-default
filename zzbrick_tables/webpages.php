@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2009, 2016, 2018-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2009, 2016, 2018-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -38,6 +38,7 @@ $zz['fields'][3]['hide_in_list'] = true;
 $zz['fields'][11] = []; // description
 
 $zz['fields'][4]['field_name'] = 'identifier';
+$zz['fields'][4]['type'] = 'url+placeholder';
 $zz['fields'][4]['explanation'] = 'Address of page, should show hierarchy, no / at the end!<br>The identifier should contain only letters a-z, numbers 0-9 and the - sign.';
 $zz['fields'][4]['list_prefix'] = '<p><small>';
 $zz['fields'][4]['list_suffix'] = '</small></p>';
