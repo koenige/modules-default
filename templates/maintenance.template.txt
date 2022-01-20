@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016, 2018, 2020-2021 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2018, 2020-2022 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -73,8 +73,8 @@
 <ul>
 <li><a href="?phpinfo">PHP %%% item php_version %%%</a> – %%% text Show PHP info on server %%%</li>
 %%% condition if imagick | ghostscript %%%
-<li><a href="?imagick">%%% item imagick wrap_html_escape %%%</a></li>
-<li><a href="?ghostscript">%%% item ghostscript wrap_html_escape %%%</a></li>
+<li>%%% condition if imagick %%%<a href="?imagick">%%% item imagick wrap_html_escape %%%</a>%%% condition else %%%<p class="error">%%% text ImageMagick not found. %%%</p>%%% condition endif %%%</li>
+<li>%%% condition if ghostscript %%%<a href="?ghostscript">%%% item ghostscript wrap_html_escape %%%</a>%%% condition else %%%<p class="error">%%% text GhostScript not found. %%%</p>%%% condition endif %%%</li>
 %%% condition endif %%%
 </ul>
 
