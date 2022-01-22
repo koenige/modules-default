@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012, 2016, 2018-2019, 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2016, 2018-2019, 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -77,7 +77,7 @@ $zz['fields'][3]['sql_password_check'] = 'SELECT /*_PREFIX_*/logins.password
 	FROM /*_PREFIX_*/logins WHERE login_id = ';
 $zz['fields'][3]['hide_in_list'] = 'true';
 
-$zz['fields'][13] = false; // random password
+$zz['fields'][13] = []; // random password
 
 $zz['fields'][9]['title'] = 'Change Pwd?';
 $zz['fields'][9]['field_name'] = 'password_change';
@@ -111,7 +111,7 @@ $zz['fields'][10]['default'] = 'yes';
 $zz['fields'][10]['explanation'] = 'To deactivate a login';
 $zz['fields'][10]['if']['add']['hide_in_form'] = true;
 
-$zz['fields'][12] = false; // password reminder
+$zz['fields'][12] = []; // password reminder
 
 $zz['fields'][99]['title'] = 'Updated';
 $zz['fields'][99]['field_name'] = 'last_update';
