@@ -20,12 +20,14 @@ use \Michelf\MarkdownExtra;
 
 
 function markdown($text) {
+	if (!$text) return '';
 	# Pass content through the Markdown parser
 	$html = MarkdownExtra::defaultTransform($text);
 	return $html;	
 }
 
 function markdown_inline($text) {
+	if (!$text) return '';
 	$html = MarkdownExtra::defaultTransform($text);
 	$html = trim($html);
 	$html = str_replace('<p>', ' ', $html);
@@ -35,6 +37,7 @@ function markdown_inline($text) {
 }
 
 function markdown_attribute($text) {
+	if (!$text) return '';
 	$text = markdown_inline($text);
 	$text = strip_tags($text);
 	return $text;
