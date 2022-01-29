@@ -35,7 +35,11 @@ $zz['fields'][3]['rows'] = 20;
 $zz['fields'][3]['format'] = 'markdown';
 $zz['fields'][3]['hide_in_list'] = true;
 
-$zz['fields'][11] = []; // description
+$zz['fields'][11]['field_name'] = 'description';
+$zz['fields'][11]['type'] = 'memo';
+$zz['fields'][11]['rows'] = 2;
+$zz['fields'][11]['hide_in_list'] = true;
+$zz['fields'][11]['explanation'] = 'Short text (max. 160 characters), only appears in search results.';
 
 $zz['fields'][4]['field_name'] = 'identifier';
 $zz['fields'][4]['type'] = 'url+placeholder';

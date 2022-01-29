@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014-2018, 2020-2021 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014-2018, 2020-2022 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -881,6 +881,11 @@ msgstr "intern"
 msgctxt "default"
 msgid "Last Update"
 msgstr "Stand"
+
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Short text (max. 160 characters), only appears in search results. "
+msgstr "Kurztext (max. 160 Zeichen), taucht nur bei Suchergebnissen auf."
 
 #: zzbrick_tables/webpages-media.php
 msgid "Media"
