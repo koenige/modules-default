@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2017-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2017-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -478,3 +478,4 @@
 /* 2021-06-02-1 */	UPDATE webpages SET content = REPLACE(content, '%%% request cleanup %%%', '%%% make cleanup %%%') WHERE content LIKE '%%%% request cleanup %%%%';
 /* 2021-06-09-1 */	ALTER TABLE `categories` CHANGE `parameters` `parameters` varchar(750) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `path`;
 /* 2021-11-26-1 */	ALTER TABLE `categories` CHANGE `category` `category` varchar(100) COLLATE 'utf8mb4_unicode_ci' NOT NULL AFTER `category_id`, ADD `category_short` varchar(20) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `category`;
+/* 2022-01-29-1 */	ALTER TABLE `webpages` ADD `description` varchar(160) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `content`;

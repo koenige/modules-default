@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -1126,6 +1126,7 @@ CREATE TABLE `webpages` (
   `website_id` int unsigned NOT NULL DEFAULT '1',
   `title` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(160) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `identifier` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `ending` enum('.html','/','none') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'none',
   `sequence` tinyint NOT NULL,
