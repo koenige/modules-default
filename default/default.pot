@@ -847,7 +847,7 @@ msgstr ""
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
-msgid "Short text (max. 160 characters), only appears in search results. "
+msgid "Short text (max. 160 characters), only appears in search results."
 msgstr ""
 
 #: zzbrick_tables/webpages-media.php
