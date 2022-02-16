@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018, 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2018, 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -204,7 +204,7 @@ function mod_default_make_cleanup_log($filename, $max_age_seconds) {
 	global $zz_conf;
 	$zz_conf['word_split'] = $zz_conf['word_split'] ?? 32;
 	require_once $zz_setting['core'].'/file.inc.php';
-	require_once $zz_setting['modules_dir'].'/default/zzbrick_request/maintenance.inc.php';
+	wrap_include_files('zzbrick_request/maintenance', 'default');
 
 	$invalid = time() - $max_age_seconds;
 

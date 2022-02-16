@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -41,10 +41,8 @@ function mod_default_maintenance($params) {
 	$zz_setting['extra_http_headers'][] = 'X-Frame-Options: Deny';
 	$zz_setting['extra_http_headers'][] = "Content-Security-Policy: frame-ancestors 'self'";
 
-	if (file_exists($file = $zz_setting['custom'].'/zzbrick_tables/_common.inc.php')) {
-		// e. g. heading_prefix
-		require_once $file;
-	}
+	wrap_include_files('zzbrick_tables/_common', 'custom'); // e. g. heading_prefix
+
 	if (isset($brick['page'])) $page = $brick['page'];
 	$page['head'] = isset($page['head']) ? $page['head'] : '';
 	$page['head'] .= wrap_template('zzform-head');
