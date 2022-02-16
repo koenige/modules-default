@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -27,11 +27,9 @@ function mod_default_make_dbupdate($params) {
 
 	// look for update.sql
 	$data = [];
-	$file_template = $zz_setting['modules_dir'].'/%s/configuration/update.sql';
+	$files = wrap_collect_files('configuration/update.sql', 'modules');
 	wrap_sql_ignores();
-	foreach ($zz_setting['modules'] as $module) {
-		$file = sprintf($file_template, $module);
-		if (!file_exists($file)) continue;
+	foreach ($files as $module => $file) {
 		$data = array_merge($data, mod_default_make_dbupdate_readfile($file, $module));
 	}
 	ksort($data);

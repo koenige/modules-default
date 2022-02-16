@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -25,16 +25,16 @@ function mod_default_make_dbmodules($params) {
 	global $zz_setting;
 
 	$data = [];
+	$files['readme'] = wrap_collect_files('./README.md', 'modules');
+	$files['install'] = wrap_collect_files('configuration/install.sql', 'modules');
+	$files['settings'] = wrap_collect_files('configuration/settings.cfg', 'modules');
 	foreach ($zz_setting['modules'] as $module) {
-		$readme_file = sprintf('%s/%s/README.md', $zz_setting['modules_dir'], $module);
-		$install_file = sprintf('%s/%s/configuration/install.sql', $zz_setting['modules_dir'], $module);
-		$cfg_file = sprintf('%s/%s/configuration/settings.cfg', $zz_setting['modules_dir'], $module);
 		$data['modules'][$module] = [
 			'module' => $module,
-			'install_sql' => file_exists($install_file) ? $install_file : false,
+			'install_sql' => !empty($files['install'][$module]) ? $files['install'][$module] : false,
 			'install_date' => wrap_get_setting('mod_'.$module.'_install_date'),
-			'settings_cfg' => file_exists($cfg_file) ? $cfg_file : false,
-			'readme' => file_exists($readme_file) ? $readme_file : false,
+			'settings_cfg' => !empty($files['settings'][$module]) ? $files['settings'][$module] : false,
+			'readme' => !empty($files['readme'][$module]) ? $files['readme'][$module] : false,
 			'enabled' => 1
 		];
 	}
