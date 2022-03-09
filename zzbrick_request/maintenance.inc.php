@@ -77,9 +77,7 @@ function mod_default_maintenance($params) {
 		return zz_maintenance_ghostscript($page);
 	} elseif (isset($_GET['integrity'])) {
 		return zz_maintenance_integrity($page);
-	} elseif (isset($_GET['dbupdate']) OR isset($_GET['dbmodules'])) {
-		if (isset($_GET['dbupdate'])) $key = 'dbupdate';
-		elseif (isset($_GET['dbmodules'])) $key = 'dbmodules';
+	} elseif ($key = zz_maintenance_keycheck()) {
 		$newpage = brick_format('%%% make '.$key.' %%%');
 		$page['title'] .= ' '.$newpage['title'];
 		$page['text'] = $newpage['text'];
@@ -116,6 +114,19 @@ function mod_default_maintenance($params) {
 	$page['title'] .= ' '.wrap_text('Maintenance');
 	$page['breadcrumbs'][] = wrap_text('Maintenance');
 	return $page;
+}
+
+/**
+ * check script depending on GET variable
+ *
+ * @return string
+ */
+function zz_maintenance_keycheck() {
+	$keys = ['dbupdate', 'dbmodules'];
+	foreach ($keys as $key) {
+		if (isset($_GET[$key])) return $key;
+	}
+	return '';
 }
 
 /**
