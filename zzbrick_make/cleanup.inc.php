@@ -212,7 +212,7 @@ function mod_default_make_cleanup_log($filename, $max_age_seconds) {
 	$i = 0;
 	$file = new \SplFileObject($filename, 'r');
 	while (!$file->eof()) {
-		$line = zz_maintenance_logs_line($file->fgets(), ['hubspot']);
+		$line = zz_maintenance_logs_line($file->fgets());
 		if ($line) {
 			if (strtotime($line['date']) < $invalid) {
 				$deletable[] = $i;

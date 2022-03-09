@@ -963,10 +963,10 @@ function zz_maintenance_logs($page) {
  * format a single line from log
  *
  * @param string $line
- * @param array $types
+ * @param array $types (optional)
  * @return array
  */
-function zz_maintenance_logs_line($line, $types) {
+function zz_maintenance_logs_line($line, $types = []) {
 	zz_maintenance_list_init();
 	
 	$dont_highlight_levels = ['Notice', 'Deprecated', 'Warning', 'Upload'];
