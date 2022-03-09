@@ -189,8 +189,6 @@ function zz_maintenance_tables() {
 	global $zz_conf;
 	$data = [];
 
-	$data['relations_table'] = $zz_conf['relations_table'];
-	$data['translations_table'] = !empty($zz_conf['translations_table']) ? $zz_conf['translations_table'] : false;
 	if (empty($zz_conf['relations_table']) AND empty($zz_conf['translations_table']))
 		return $data;
 		
