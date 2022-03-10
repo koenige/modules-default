@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2013, 2018-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2013, 2018-2020, 2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -85,6 +85,8 @@ $zz_sub['fields'][4]['title'] = 'Translation';
 $zz_sub['fields'][4]['show_title'] = false;
 $zz_sub['fields'][4]['field_name'] = 'translation';
 $zz_sub['fields'][4]['inherit_format'] = true;
+$zz_sub['fields'][4]['unless'][1]['list_prefix'] = '<del>';
+$zz_sub['fields'][4]['unless'][1]['list_suffix'] = '</del>';
 
 $zz_sub['subtitle']['translationfield_id']['sql'] = $zz_sub['fields'][2]['sql'];
 $zz_sub['subtitle']['translationfield_id']['var'] = ['translationfield'];
@@ -101,3 +103,38 @@ $zz_sub['sql'] = 'SELECT /*_PREFIX_*/_translations_varchar.*
 
 if (empty($_GET['order']) OR $_GET['order'] === 'translationfield')
 	$zz_sub['list']['group'] = 'translationfield';
+
+if (!empty($_GET['where']['translationfield_id'])) {
+	$sql = 'SELECT db_name, table_name, field_name, field_type
+		FROM %s
+		WHERE translationfield_id = %d';
+	$sql = sprintf($sql
+		, $zz_conf['translations_table']
+		, $_GET['where']['translationfield_id']
+	);
+	$translation_field = wrap_db_fetch($sql);
+	if ($translation_field AND $translation_field['field_type'] === 'varchar') {
+		$sql = 'SELECT DISTINCT COLUMN_NAME
+			FROM INFORMATION_SCHEMA.STATISTICS
+			WHERE TABLE_SCHEMA = "%s"
+			AND TABLE_NAME = "%s"
+			AND INDEX_NAME = "PRIMARY"';
+		$sql = sprintf($sql
+			, $translation_field['db_name']
+			, $translation_field['table_name']
+		);
+		$key_field_name = wrap_db_fetch($sql, '', 'single value');
+	
+		$zz_sub['conditions'][1]['scope'] = 'query';
+		$zz_sub['conditions'][1]['sql'] = 'SELECT translation_id
+			FROM %s.%s source_table
+			LEFT JOIN /*_PREFIX_*/_translations_varchar
+				ON source_table.%s = /*_PREFIX_*/_translations_varchar.field_id';
+		$zz_sub['conditions'][1]['sql'] = sprintf($zz_sub['conditions'][1]['sql']
+			, $translation_field['db_name']
+			, $translation_field['table_name']
+			, $key_field_name
+		);
+		$zz_sub['conditions'][1]['key_field_name'] = 'translation_id';
+	}
+}
