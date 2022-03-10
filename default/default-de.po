@@ -425,6 +425,10 @@ msgid "Translations without a corresponding record"
 msgstr "Übersetzungen ohne entsprechenden Datensatz"
 
 #: templates/translationscheck.template.txt
+msgid "%s records were deleted."
+msgstr "%s Einträge wurden gelöscht."
+
+#: templates/translationscheck.template.txt
 msgid "Check Translations"
 msgstr "Übersetzungen prüfen"
 

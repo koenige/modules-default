@@ -12,6 +12,10 @@
 
 <h2>%%% text Translations without a corresponding record %%%</h2>
 
+%%% condition if deleted %%%
+<p><strong>%%% text "%s records were deleted." deleted %%%</strong></p>
+%%% condition endif %%%
+
 <form action="" method="POST">
 <table class="data">
 <thead>
@@ -21,6 +25,7 @@
 	<th>%%% text Field %%%</th>
 	<th>%%% text Type %%%</th>
 	<th class="number">%%% text Records %%%</th>
+	<th class="number">%%% text Delete %%%</th>
 </tr>
 </thead>
 %%% loop start %%%
@@ -33,6 +38,7 @@
 	<td>%%% condition if path %%%<a href="%%% item path %%%?where[translationfield_id]=%%% item translationfield_id %%%&referer=%%% setting request_uri %%%">%%% condition endif %%%%%% item field_name %%%%%% condition if path %%%</a>%%% condition endif %%%</td>
 	<td>%%% item field_type %%%</td>
 	<td class="number">%%% condition if records %%%%%% item records %%%%%% condition endif %%%</td>
+	<td class="number">%%% condition if records %%%<input type="submit" value="%%% text Delete %%%" name="field_id_%%% item translationfield_id %%%">%%% condition endif %%%</td>
 </tr>
 %%% loop end %%%
 </tbody>
