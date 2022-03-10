@@ -61,6 +61,7 @@ function mod_default_make_translationscheck($params) {
 			$data[$database]['database'] = $database;
 			$data[$database]['tables'][$field['translationfield_id']] = $field;
 			$data[$database]['tables'][$field['translationfield_id']]['records'] = wrap_db_fetch($sql, '', 'single value');
+			$data[$database]['tables'][$field['translationfield_id']]['path'] = wrap_path('default_tables', 'translations-'.$field['field_type']);
 		}
 	}
 	$data = array_values($data);

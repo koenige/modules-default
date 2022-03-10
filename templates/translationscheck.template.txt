@@ -1,11 +1,11 @@
 # default module
-# Template for database update script
+# Template for translations checking
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020 Gustaf Mossakowski
+# @copyright Copyright © 2022 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -30,7 +30,7 @@
 <tr class="%%% loopposition uneven un %%%even">
 	<td class="number">%%% item translationfield_id %%%</td>
 	<td>%%% item table_name %%%</td>
-	<td>%%% item field_name %%%</td>
+	<td>%%% condition if path %%%<a href="%%% item path %%%?where[translationfield_id]=%%% item translationfield_id %%%&referer=%%% setting request_uri %%%">%%% condition endif %%%%%% item field_name %%%%%% condition if path %%%</a>%%% condition endif %%%</td>
 	<td>%%% item field_type %%%</td>
 	<td class="number">%%% condition if records %%%%%% item records %%%%%% condition endif %%%</td>
 </tr>
