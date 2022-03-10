@@ -1,0 +1,43 @@
+# default module
+# Template for database update script
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2020 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div id="zzform" class="maintenance">
+
+<h2>%%% text Translations without a corresponding record %%%</h2>
+
+<form action="" method="POST">
+<table class="data">
+<thead>
+<tr>
+	<th class="number">%%% text ID %%%</th>
+	<th>%%% text Table %%%</th>
+	<th>%%% text Field %%%</th>
+	<th>%%% text Type %%%</th>
+	<th class="number">%%% text Records %%%</th>
+</tr>
+</thead>
+%%% loop start %%%
+<tbody>
+<tr><td colspan="5"><h3>%%% text Database: %%% %%% item database %%%</h3></td></tr>
+%%% loop tables %%%
+<tr class="%%% loopposition uneven un %%%even">
+	<td class="number">%%% item translationfield_id %%%</td>
+	<td>%%% item table_name %%%</td>
+	<td>%%% item field_name %%%</td>
+	<td>%%% item field_type %%%</td>
+	<td class="number">%%% condition if records %%%%%% item records %%%%%% condition endif %%%</td>
+</tr>
+%%% loop end %%%
+</tbody>
+%%% loop end %%%
+</table>
+</form>
+
+</div>

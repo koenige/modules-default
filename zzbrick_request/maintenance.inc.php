@@ -122,7 +122,7 @@ function mod_default_maintenance($params) {
  * @return string
  */
 function zz_maintenance_keycheck() {
-	$keys = ['dbupdate', 'dbmodules'];
+	$keys = ['dbupdate', 'dbmodules', 'translationscheck'];
 	foreach ($keys as $key) {
 		if (isset($_GET[$key])) return $key;
 	}

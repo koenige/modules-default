@@ -420,6 +420,22 @@ msgstr "POST-Variablen werden nicht aufgezeichnet"
 msgid "disabled"
 msgstr "deaktiviert"
 
+#: templates/translationscheck.template.txt
+msgid "Translations without a corresponding record"
+msgstr "Übersetzungen ohne entsprechenden Datensatz"
+
+#: templates/translationscheck.template.txt
+msgid "Check Translations"
+msgstr "Übersetzungen prüfen"
+
+#: templates/translationscheck.template.txt
+msgid "Database:"
+msgstr "Datenbank:"
+
+#: templates/translationscheck.template.txt
+msgid "Records"
+msgstr "Einträge"
+
 #: zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Error Logging"
 msgstr "Fehlerlogs"

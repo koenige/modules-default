@@ -65,6 +65,9 @@
 %%% condition if setting zzform_relations_table %%%
 <p><a href="?integrity">%%% text Check relational integrity %%%</a></p>
 %%% condition endif %%%
+%%% condition if setting zzform_translations_table %%%
+<p><a href="?translationscheck">%%% text Check translations %%%</a></p>
+%%% condition endif %%%
 %%% condition endif %%%
 
 %%% request errorlogs %%%

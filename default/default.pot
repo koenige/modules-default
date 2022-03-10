@@ -405,6 +405,22 @@ msgstr ""
 msgid "disabled"
 msgstr ""
 
+#: templates/translationscheck.template.txt
+msgid "Translations without a corresponding record"
+msgstr ""
+
+#: templates/translationscheck.template.txt
+msgid "Check Translations"
+msgstr ""
+
+#: templates/translationscheck.template.txt
+msgid "Database:"
+msgstr ""
+
+#: templates/translationscheck.template.txt
+msgid "Records"
+msgstr ""
+
 #: zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Error Logging"
 msgstr ""
