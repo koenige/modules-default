@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2015, 2017-2020 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2015, 2017-2020, 2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -27,6 +27,7 @@ $zz_sub['fields'][2]['sql'] = 'SELECT page_id, title, mother_page_id
 	FROM /*_PREFIX_*/webpages
 	ORDER BY sequence';
 $zz_sub['fields'][2]['display_field'] = 'webpage';
+$zz_sub['fields'][2]['search'] = '/*_PREFIX_*/webpages.title';
 $zz_sub['fields'][2]['show_hierarchy'] = 'mother_page_id';
 
 $zz_sub['fields'][4]['title'] = 'No.';
