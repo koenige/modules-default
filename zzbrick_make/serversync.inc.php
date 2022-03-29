@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018, 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2018, 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -20,7 +20,7 @@
  * @return array $page
  */
 function mod_default_make_serversync($params) {
-	global $zz_conf;
+	if (!wrap_access('default_maintenance')) wrap_quit(403);
 	require __DIR__.'/../zzbrick_request/maintenance.inc.php';
 	
 	if (!empty($_POST['return_last_logging_entry'])) {
