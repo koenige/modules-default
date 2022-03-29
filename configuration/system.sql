@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -37,7 +37,8 @@ SELECT page_id, title
 FROM /*_PREFIX_*/webpages;
 
 -- page_menu --
-SELECT page_id, title
+SELECT page_id
+	, SUBSTRING_INDEX(title, "–", 1) AS title
 	, CONCAT(identifier, IF(STRCMP(ending, 'none'), ending, '')) AS url
 	, mother_page_id, menu
 FROM /*_PREFIX_*/webpages
