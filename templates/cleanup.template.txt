@@ -5,9 +5,13 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2018, 2021 Gustaf Mossakowski
+# @copyright Copyright © 2018, 2021-2022 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
+%%% condition if locked %%%
+<p>Cleanup in progress, please wait until a new process can start.</p>
+
+%%% condition else %%%
 <ul>
 <li>%%% item session_cleanup %%% stale session cookies deleted.</li>
 %%% loop folders %%%
@@ -18,3 +22,5 @@
 <li>%%% item deleted_lines %%% lines(s) deleted in logfile <code>%%% item filename %%%</code> that were older than %%% item max_age_seconds wrap_duration %%%.</li>
 %%% loop end %%%
 </ul>
+
+%%% condition endif %%%

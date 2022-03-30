@@ -16,6 +16,13 @@
 function mod_default_make_cleanup() {
 	global $zz_setting;
 	
+	$lock = wrap_lock('cleanup');
+	if ($lock) {
+		$data['locked'] = true;
+		$page['text'] = wrap_template('cleanup', $data);
+		return $page;
+	}
+
 	// Sessions
 	$data['session_cleanup'] = mod_default_session_cleanup();
 	
