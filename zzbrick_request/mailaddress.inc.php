@@ -22,23 +22,21 @@
  * @return array
  */
 function mod_default_mailaddress($params) {
-	global $zz_setting;
-	
 	$name = wrap_get_setting('own_name');
 	$mail = wrap_get_setting('own_e_mail');
 	
 	if (count($params) === 2) {
-		if (wrap_mail_valid($params[1])) {
+		if (wrap_mail_valid($params[1], false)) {
 			$mail = $params[1];
 			$name = $params[0];
-		} elseif (wrap_mail_valid($params[0])) {
+		} elseif (wrap_mail_valid($params[0], false)) {
 			$mail = $params[0];
 			$name = $params[1];
 		} else {
 			$name = implode(' ', $params);
 		}
 	} elseif (count($params) === 1) {
-		if (wrap_mail_valid($params[0])) {
+		if (wrap_mail_valid($params[0], false)) {
 			$mail = $params[0];
 		} else {
 			$name = $params[0];
