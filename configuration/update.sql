@@ -479,3 +479,4 @@
 /* 2021-06-09-1 */	ALTER TABLE `categories` CHANGE `parameters` `parameters` varchar(750) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `path`;
 /* 2021-11-26-1 */	ALTER TABLE `categories` CHANGE `category` `category` varchar(100) COLLATE 'utf8mb4_unicode_ci' NOT NULL AFTER `category_id`, ADD `category_short` varchar(20) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `category`;
 /* 2022-01-29-1 */	ALTER TABLE `webpages` ADD `description` varchar(160) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `content`;
+/* 2022-04-05-1 */	UPDATE _settings SET setting_key = 'mail_subject_prefix' WHERE setting_key = 'zzform_mail_subject_prefix';
