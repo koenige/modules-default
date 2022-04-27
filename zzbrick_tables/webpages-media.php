@@ -81,6 +81,7 @@ $zz_sub['subselect']['sql'] = 'SELECT page_id, filename, t_mime.extension, versi
 	LEFT JOIN /*_PREFIX_*/filetypes AS t_mime 
 		ON /*_PREFIX_*/media.thumb_filetype_id = t_mime.filetype_id
 	WHERE o_mime.mime_content_type = "image"
+	AND /*_PREFIX_*/webpages_media.sequence = 1
 ';
 $zz_sub['subselect']['concat_fields'] = '';
 $zz_sub['subselect']['field_suffix'][0] = '.'.$zz_setting['media_preview_size'].'.';
