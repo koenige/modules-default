@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009-2010, 2013-2016, 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2009-2010, 2013-2016, 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -58,3 +58,5 @@ $zz['filter'][1]['where'] = 'area';
 $zz['filter'][1]['field_name'] = 'area';
 $zz['filter'][1]['sql'] = 'SELECT DISTINCT area, area
 	FROM '.$zz_conf['text_table'];
+	
+$zz_conf['export'] = 'CSV Excel';
