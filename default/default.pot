@@ -207,10 +207,12 @@ msgid "Insert"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
+#: zzbrick_tables/database_logging.php
 msgid "Update"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
+#: zzbrick_tables/database_logging.php
 msgid "Delete"
 msgstr ""
 
@@ -710,6 +712,10 @@ msgstr ""
 
 #: zzbrick_tables/database_logging.php
 msgid "Last update"
+msgstr ""
+
+#: zzbrick_tables/database_logging.php
+msgid "Don’t delete"
 msgstr ""
 
 #: zzbrick_tables/database_translations.php
