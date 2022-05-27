@@ -97,7 +97,7 @@ function mod_default_make_cachedircheck_folders($path, $folder, $counter) {
 		}
 		// file exists? left over from older days
 		$new_dir = dirname($new_path);
-		if (file_exists($new_dir) AND !is_dir($new_dir)) unlink($new_dir);
+		if (file_exists($new_dir) AND !is_dir($new_dir)) rmdir($new_dir);
 		wrap_mkdir($new_dir);
 		$success = rename($old_path, $new_path);
 		$counter++;
