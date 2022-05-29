@@ -1178,7 +1178,7 @@ msgid ""
 "(URL) you clicked seems to be incorrect. Maybe some part is missing?"
 msgstr ""
 "Sie versuchen, einen neuen Zugang für sich zu erstellen. Aber irgendwie "
-"scheint die Webadresse (URL), die sie angeklickt haben, nicht korrekt zu "
+"scheint die Webadresse (URL), die Sie angeklickt haben, nicht korrekt zu "
 "sein. Vielleicht fehlt ein Teil?"
 
 #: templates/login-request.template.txt
