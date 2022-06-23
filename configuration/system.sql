@@ -77,7 +77,7 @@ WHERE active = 'yes' AND identifier = _latin1'%s';
 SELECT password
 , (SELECT identification FROM /*_PREFIX_*/contactdetails cd
 WHERE cd.contact_id = contacts.contact_id
-AND provider_category_id = /*_ID CATEGORIES provider/e-mail _*/) AS username
+AND provider_category_id = /*_ID CATEGORIES provider/e-mail _*/ ORDER BY identification LIMIT 1) AS username
 , contacts.contact_id AS user_id, logins.login_id
 FROM /*_PREFIX_*/logins logins
 LEFT JOIN /*_PREFIX_*/contacts contacts USING (contact_id)
