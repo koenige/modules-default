@@ -8,21 +8,12 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015, 2018, 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2015, 2018, 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
-if (file_exists($zz_conf['form_scripts'].'/logins.php')) {
-	require_once $zz_conf['form_scripts'].'/logins.php';
-} else {
-	require_once __DIR__.'/../zzbrick_tables/logins.php';
-}
-
-if (empty($zz) AND !empty($zz_sub)) {
-	$zz = $zz_sub;
-	unset($zz_sub);
-}
+$zz = zzform_include_table('logins');
 
 // just allow access for login table to own login ID
 $zz['where']['login_id'] = $_SESSION['login_id'];
@@ -58,7 +49,7 @@ $zz['explanation'] = markdown(
 	."\n\n".wrap_text('password-rules')
 );
 $zz['access'] = 'edit_only';
-$zz['hooks']['after_update'] = 'mod_default_password_update';
+$zz['hooks']['after_update'] = 'mf_default_password_update';
 
 if (!empty($_GET['url'])) {
 	$zz_conf['redirect']['successful_update'] = $_GET['url'];
@@ -75,7 +66,7 @@ if (empty($_GET['referer'])) {
 }
 
 
-function mod_default_password_update() {
+function mf_default_password_update() {
 	if (empty($_SESSION['dont_require_old_password'])) return;
 	$success = wrap_session_start();
 	$_SESSION['dont_require_old_password'] = false;
