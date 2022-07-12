@@ -695,7 +695,7 @@ function zz_maintenance_folders($page = []) {
  *		active and string was found
  */
 function zz_maintenance_searched($string) {
-	global $zz_conf;
+	global $zz_setting;
 	if (empty($_GET['q'])) return false;
 	if (stristr($string, $_GET['q'])) return true;
 	if (stristr(urldecode($string), $_GET['q'])) return true;
@@ -703,7 +703,7 @@ function zz_maintenance_searched($string) {
 	// allow for searching ignoring replaced zero width space
 	// PHPs char does not support unicode
 	$q = urlencode($_GET['q']);
-	if ($zz_conf['character_set'] === 'utf-8') {
+	if ($zz_setting['character_set'] === 'utf-8') {
 		$char8203 = '%E2%80%8B';
 	} else {
 		// this does not work for all other character sets
