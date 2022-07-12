@@ -208,8 +208,6 @@ function mod_default_make_cleanup_gzip_logs() {
  */
 function mod_default_make_cleanup_log($filename, $max_age_seconds) {
 	global $zz_setting;
-	global $zz_conf;
-	$zz_conf['word_split'] = $zz_conf['word_split'] ?? 32;
 	require_once $zz_setting['core'].'/file.inc.php';
 	wrap_include_files('zzbrick_request/maintenance', 'default');
 
