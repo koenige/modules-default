@@ -37,7 +37,6 @@ function mod_default_maintenance($params) {
 		$zz_conf['modules']['debug'] = false;
 	}
 	$zz_conf['generate_output'] = true; // allow translations in zzform
-	if (empty($zz_conf['word_split'])) $zz_conf['word_split'] = 32;
 	$zz_setting['extra_http_headers'][] = 'X-Frame-Options: Deny';
 	$zz_setting['extra_http_headers'][] = "Content-Security-Policy: frame-ancestors 'self'";
 
