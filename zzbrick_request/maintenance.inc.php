@@ -766,13 +766,6 @@ function zz_maintenance_list_init() {
 	require_once $zz_conf['dir_inc'].'/search.inc.php';
 
 	$zz_conf['list_display'] = 'table';
-	if (empty($zz_conf['limit_all_max']))
-		$zz_conf['limit_all_max'] 		= 1500;
-	// range in which links to records around current selection will be shown
-	if (empty($zz_conf['limit_show_range']))
-		$zz_conf['limit_show_range'] 	= 800;
-	if (empty($zz_conf['limit_display']))
-		$zz_conf['limit_display']		= 'pages';
 	$zz_conf['search'] = true;
 
 	$zz_conf['int']['show_list'] = true;
