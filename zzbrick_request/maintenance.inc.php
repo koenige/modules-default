@@ -1257,6 +1257,9 @@ function zz_maintenance_maillogs($page) {
 			if (substr($key, 0, 2) === 'm_') continue;
 			$mail['headers'][$key] = $value;
 		}
+		// no signature, no prefix, was already added
+		$zz_setting['mail_with_signature'] = false;
+		$zz_setting['mail_subject_prefix'] = '';
 		$success = wrap_mail($mail);
 		if (!$success) $data['message'] = wrap_text('Mail was not sent.');
 		return wrap_redirect_change($zz_setting['request_uri'].'&mail_sent=1');
