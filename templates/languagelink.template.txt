@@ -1,0 +1,23 @@
+# default module
+# HTML template for language link
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2014, 2019, 2022 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% loop start %%%
+<li>%%% condition if link %%%
+<a href="%%% setting base_path %%%%%% item iso "/%s" %%%%%% item link wrap_html_escape %%%" rel="alternate" hreflang="%%% item iso %%%">
+%%% condition else %%%
+<strong>
+%%% condition endif %%%
+<abbr title="%%% item language %%%">%%% item iso %%%</abbr>
+%%% condition if link %%%
+</a>
+%%% condition else %%%
+</strong>
+%%% condition endif %%%</li>
+%%% loop end %%%
