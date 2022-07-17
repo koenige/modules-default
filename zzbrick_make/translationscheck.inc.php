@@ -25,7 +25,6 @@ function mod_default_make_translationscheck($params) {
 	global $zz_setting;
 	global $zz_conf;
 	if (empty($zz_conf['translations_table'])) return false;
-	require_once $zz_conf['dir'].'/zzform.php';
 	
 	$to_delete = false;
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
