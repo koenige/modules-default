@@ -27,7 +27,7 @@ function mod_default_search() {
 		foreach (array_keys($files) as $module) {
 			$function = sprintf('mf_%s_search', $module);
 			$results = $function($q);
-			if ($results) $data['search_results'] = true;
+			if ($results[$module]) $data['search_results'] = true;
 			$data['modules'][$module]['results'] = wrap_template(sprintf('search-%s', $module), $results);
 		}
 		if (wrap_get_setting('search_module_order')) {
