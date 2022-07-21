@@ -21,21 +21,20 @@ function mod_default_search() {
 		} else {
 			$q = [$q];
 		}
+		$files = wrap_include_files('search');
+		if (!$files) return false;
+		$data['search_results'] = false;
+		foreach (array_keys($files) as $module) {
+			$function = sprintf('mf_%s_search', $module);
+			$results = $function($q);
+			if ($results) $data['search_results'] = true;
+			$data['modules'][$module]['results'] = wrap_template(sprintf('search-%s', $module), $results);
+		}
+		if (wrap_get_setting('search_module_order')) {
+			array_multisort(wrap_get_setting('search_module_order'), $data['modules']);
+		}
+		$data['modules'] = array_values($data['modules']);
 	}
-	
-	$files = wrap_include_files('search');
-	if (!$files) return false;
-	$data['search_results'] = false;
-	foreach (array_keys($files) as $module) {
-		$function = sprintf('mf_%s_search', $module);
-		$results = $function($q);
-		if ($results) $data['search_results'] = true;
-		$data['modules'][$module]['results'] = wrap_template(sprintf('search-%s', $module), $results);
-	}
-	if (wrap_get_setting('search_module_order')) {
-		array_multisort(wrap_get_setting('search_module_order'), $data['modules']);
-	}
-	$data['modules'] = array_values($data['modules']);
 
 	$page['query_strings'] = ['q'];
 	$data['q'] = !empty($_GET['q']) ? $_GET['q'] : '';
