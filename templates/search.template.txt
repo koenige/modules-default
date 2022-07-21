@@ -12,9 +12,9 @@
 %%% condition if search_results %%%
 <h2>%%% text "Search results for “%s”" q wrap_html_escape %%%</h2>
 
-%%% item contacts %%%
-%%% item news %%%
-%%% item events %%%
+%%% loop modules %%%
+%%% item results %%%
+%%% loop end %%%
 
 %%% condition else %%%
 

@@ -29,8 +29,12 @@ function mod_default_search() {
 		$function = sprintf('mf_%s_search', $module);
 		$results = $function($q);
 		if ($results) $data['search_results'] = true;
-		$data[$module] = wrap_template(sprintf('search-%s', $module), $results);
+		$data['modules'][$module]['results'] = wrap_template(sprintf('search-%s', $module), $results);
 	}
+	if (wrap_get_setting('search_module_order')) {
+		array_multisort(wrap_get_setting('search_module_order'), $data['modules']);
+	}
+	$data['modules'] = array_values($data['modules']);
 
 	$page['query_strings'] = ['q'];
 	$data['q'] = !empty($_GET['q']) ? $_GET['q'] : '';
