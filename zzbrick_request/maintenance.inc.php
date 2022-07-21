@@ -762,7 +762,7 @@ function zz_maintenance_list_init() {
 	// zz_mark_search_string(), zz_list_total_records(), zz_list_pages()
 	require_once $zz_conf['dir_inc'].'/list.inc.php';
 	// zz_search_form()
-	require_once $zz_conf['dir_inc'].'/search.inc.php';
+	require_once $zz_conf['dir_inc'].'/searchform.inc.php';
 
 	$zz_conf['list_display'] = 'table';
 	$zz_conf['search'] = true;
