@@ -24,6 +24,7 @@ function mod_default_search() {
 	}
 	
 	$files = wrap_include_files('search');
+	if (!$files) return false;
 	$data['search_results'] = false;
 	foreach (array_keys($files) as $module) {
 		$function = sprintf('mf_%s_search', $module);
