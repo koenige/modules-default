@@ -1,0 +1,36 @@
+# default module
+# HTML output: search
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2020, 2022 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div class="searchresults">
+%%% condition if search_results %%%
+<h2>%%% text "Search results for “%s”" q wrap_html_escape %%%</h2>
+
+%%% item contacts %%%
+%%% item news %%%
+%%% item events %%%
+
+%%% condition else %%%
+
+%%% condition if q %%%
+<p>%%% text "We found nothing matching “%s”." q wrap_html_escape %%%</p>
+%%% condition endif %%%
+
+
+<p>%%% text Please enter a search term. %%%</p>
+
+%%% condition endif %%%
+
+<div class="noprint">
+<form method="GET" action="%%% setting base %%%%%% setting search_path %%%">
+<input type="search" name="q" value="%%% item q wrap_html_escape %%%"> <input type="submit" value="%%% text Search %%%">
+</form>
+</div>
+
+</div>

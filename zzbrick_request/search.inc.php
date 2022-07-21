@@ -24,10 +24,12 @@ function mod_default_search() {
 	}
 	
 	$files = wrap_include_files('search');
-	$data = [];
+	$data['search_results'] = false;
 	foreach (array_keys($files) as $module) {
 		$function = sprintf('mf_%s_search', $module);
-		$data += $function($q);
+		$results = $function($q);
+		if ($results) $data['search_results'] = true;
+		$data[$module] = wrap_template(sprintf('search-%s', $module), $results);
 	}
 
 	$page['query_strings'] = ['q'];

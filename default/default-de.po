@@ -106,6 +106,22 @@ msgstr "Der Link ist für %s Minuten gültig."
 msgid "Back to login"
 msgstr "Zurück zum Login"
 
+#: templates/search.template.txt
+msgid "Search results for “%s”"
+msgstr "Suchergebnisse für „%s”"
+
+#: templates/search.template.txt
+msgid "We found nothing matching “%s”."
+msgstr "Wir haben keinen Treffer für „%s“ gefunden."
+
+#: templates/search.template.txt
+msgid "Please enter a search term."
+msgstr "Geben Sie bitte einen Suchbegriff ein."
+
+#: templates/search.template.txt
+msgid "Search"
+msgstr "Suchen"
+
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Username"

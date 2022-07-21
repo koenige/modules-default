@@ -99,6 +99,22 @@ msgstr ""
 msgid "Back to login"
 msgstr ""
 
+#: templates/search.template.txt
+msgid "Search results for “%s”"
+msgstr ""
+
+#: templates/search.template.txt
+msgid "We found nothing matching “%s”."
+msgstr ""
+
+#: templates/search.template.txt
+msgid "Please enter a search term."
+msgstr ""
+
+#: templates/search.template.txt
+msgid "Search"
+msgstr ""
+
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Username"
