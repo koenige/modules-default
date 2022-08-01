@@ -41,3 +41,54 @@ function mod_default_search() {
 	$page['text'] = wrap_template('search', $data);
 	return $page;
 }
+
+/**
+ * get conditions for values from translated fields
+ *
+ * @param array $q
+ * @param array $search
+ * @return string
+ */
+function mod_default_search_translations($q, $fields) {
+	$where = [];
+	$translations = [];
+	foreach ($fields as $table => $definition) {
+		$sql = 'SELECT translationfield_id, table_name, field_name, field_type
+				, "%s" AS id_field_name
+			FROM _translationfields
+			WHERE db_name = DATABASE()
+			AND table_name = "%s"
+			AND field_name IN ("%s")';
+		$sql = sprintf($sql
+			, $definition['id_field_name']
+			, $table
+			, implode('", "', $definition['fields'])
+		);
+		$translations = array_merge_recursive($translations
+			, wrap_db_fetch($sql, ['field_type', 'translationfield_id'])
+		);
+	}
+	$sql = 'SELECT translationfield_id, field_id
+		FROM _translations_%s
+		WHERE translation LIKE "%%%s%%"
+		AND translationfield_id IN (%s)';
+	foreach ($translations as $translation_table => $fields) {
+		$tkeys = [];
+		foreach ($fields as $field) {
+			$tkeys[$field['translationfield_id']] = $field;
+		}
+		foreach ($q as $string) {
+			$this_sql = sprintf($sql, $translation_table, $string, implode(',', array_keys($tkeys)));
+			$result = wrap_db_fetch($this_sql, ['translationfield_id', 'field_id']);
+			foreach ($result as $t_field_id => $field_id) {
+				$where[] = sprintf('%s.%s IN (%s)'
+					, $tkeys[$t_field_id]['table_name']
+					, $tkeys[$t_field_id]['id_field_name']
+					, implode(',', array_keys($field_id))
+				);
+			}
+		}
+	}
+	$where = implode(' OR ', $where);
+	return $where;
+}
