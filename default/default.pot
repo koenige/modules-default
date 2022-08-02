@@ -115,6 +115,10 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+#: templates/search-default.template.txt
+msgid "No webpages were found matching your search."
+msgstr ""
+
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Username"

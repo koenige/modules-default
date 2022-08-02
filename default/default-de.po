@@ -122,6 +122,10 @@ msgstr "Geben Sie bitte einen Suchbegriff ein."
 msgid "Search"
 msgstr "Suchen"
 
+#: templates/search-default.template.txt
+msgid "No webpages were found matching your search."
+msgstr "Es wurden keine zu Ihrer Suche passenden Webseiten gefunden."
+
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Username"
