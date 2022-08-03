@@ -1,0 +1,15 @@
+# default module
+# HTML output: search form
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2022 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div class="searchform noprint">
+<form method="GET" action="%%% setting base %%%%%% setting search_path %%%">
+<input type="search" name="q" value="%%% page searchword %%%"> <input type="submit" value="%%% text Search %%%">
+</form>
+</div>

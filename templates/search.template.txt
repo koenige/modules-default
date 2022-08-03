@@ -27,10 +27,5 @@
 
 %%% condition endif %%%
 
-<div class="noprint">
-<form method="GET" action="%%% setting base %%%%%% setting search_path %%%">
-<input type="search" name="q" value="%%% item q wrap_html_escape %%%"> <input type="submit" value="%%% text Search %%%">
-</form>
-</div>
-
+%%% template searchform %%%
 </div>
