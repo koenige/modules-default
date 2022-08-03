@@ -34,6 +34,10 @@ function mod_default_search() {
 			array_multisort(wrap_get_setting('search_module_order'), $data['modules']);
 		}
 		$data['modules'] = array_values($data['modules']);
+		$page['meta'][] = [
+			'name' => 'robots',
+			'content' => 'noindex, follow, noarchive'
+		];
 	}
 
 	$page['query_strings'] = ['q'];
