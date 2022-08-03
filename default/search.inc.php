@@ -45,6 +45,9 @@ function mf_default_search($q) {
 		, $t_where ? ' OR '.$t_where : ''
 	);
 	$data['default'][0]['webpages'] = wrap_db_fetch($sql, 'page_id');
+	if (!$data['default'][0]['webpages']) {
+		return ['default' => []];
+	}
 	foreach ($data['default'][0]['webpages'] as $page_id => $page) {
 		foreach ($zz_setting['auth_urls'] as $url) {
 			if (!str_starts_with($page['identifier'], $url)) continue;
