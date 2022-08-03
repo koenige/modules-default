@@ -108,7 +108,7 @@ msgstr "Zurück zum Login"
 
 #: templates/search.template.txt
 msgid "Search results for “%s”"
-msgstr "Suchergebnisse für „%s”"
+msgstr "Suchergebnisse für „%s“"
 
 #: templates/search.template.txt
 msgid "We found nothing matching “%s”."
