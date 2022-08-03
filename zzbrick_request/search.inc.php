@@ -38,6 +38,8 @@ function mod_default_search() {
 			'name' => 'robots',
 			'content' => 'noindex, follow, noarchive'
 		];
+		if (!$data['search_results'] AND wrap_get_setting('default_404_no_search_results'))
+			$page['status'] = 404;
 	}
 
 	$page['query_strings'] = ['q'];
