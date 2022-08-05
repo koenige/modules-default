@@ -30,8 +30,13 @@ function mod_default_search() {
 			if ($results[$module]) $data['search_results'] = true;
 			$data['modules'][$module]['results'] = wrap_template(sprintf('search-%s', $module), $results);
 		}
-		if (wrap_get_setting('search_module_order')) {
-			array_multisort(wrap_get_setting('search_module_order'), $data['modules']);
+		if ($search_order = wrap_get_setting('search_module_order')) {
+			$unsorted = $data['modules'];
+			$data['modules'] = [];
+			foreach ($search_order as $module) {
+				if (!array_key_exists($module, $unsorted)) continue;
+				$data['modules'][$module] = $unsorted[$module];
+			}
 		}
 		$data['modules'] = array_values($data['modules']);
 		$page['meta'][] = [
