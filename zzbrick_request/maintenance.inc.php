@@ -853,6 +853,12 @@ function zz_maintenance_logs($page) {
 		$found = [];
 		while (!$file->eof()) {
 			$line = $file->fgets();
+			$line_key = $file->key() - 1;
+			// fgets moves on to next key, but not in older PHP versions
+			if (version_compare(PHP_VERSION, '8.0.18', '<=')
+			    OR (version_compare(PHP_VERSION, '8.1.0', '>=') AND version_compare(PHP_VERSION, '8.1.5', '<='))) {
+				$line_key++;
+			}
 			$line = trim($line);
 			if (!$line) continue;
 			if (!empty($_GET['q'])) {
@@ -884,9 +890,9 @@ function zz_maintenance_logs($page) {
 					if (substr($line, 0, 1) === '[')
 						$line = trim(substr($line, strpos($line, ']') + 1));
 				}
-				$found[$line][] = $file->key();
+				$found[$line][] = $line_key;
 			} else {
-				$found[] = $file->key();
+				$found[] = $line_key;
 			}
 		}
 		$data['total_rows'] = count($found);
