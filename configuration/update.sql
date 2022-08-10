@@ -482,3 +482,4 @@
 /* 2022-04-05-1 */	UPDATE _settings SET setting_key = 'mail_subject_prefix' WHERE setting_key = 'zzform_mail_subject_prefix';
 /* 2022-07-12-1 */	UPDATE _settings SET setting_key = 'error_mail_from' WHERE setting_key = 'zzform_error_mail_from';
 /* 2022-07-12-2 */	UPDATE _settings SET setting_key = 'error_mail_to' WHERE setting_key = 'zzform_error_mail_to';
+/* 2022-08-10-1 */	UPDATE webpages SET content = REPLACE(content, '%%% forms media * %%%', '%%% forms media %%%') WHERE content LIKE '%%% forms media * %%%' AND SUBSTRING(identifier, -1) != '*';
