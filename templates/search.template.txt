@@ -9,9 +9,14 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div class="searchresults">
-%%% condition if search_results %%%
+%%% condition if q %%%
 <h2>%%% text "Search results for “%s”" q wrap_html_escape %%%</h2>
+%%% condition endif %%%
+%%% condition if setting default_searchform_top %%%
+%%% template searchform %%%
+%%% condition endif %%%
 
+%%% condition if search_results %%%
 %%% loop modules %%%
 %%% item results %%%
 %%% loop end %%%
@@ -27,5 +32,7 @@
 
 %%% condition endif %%%
 
+%%% condition if setting default_searchform_bottom %%%
 %%% template searchform %%%
+%%% condition endif %%%
 </div>
