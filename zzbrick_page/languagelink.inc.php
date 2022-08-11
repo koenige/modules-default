@@ -16,10 +16,15 @@
 /** 
  * language switcher
  * 
+ * @param array $params (HTML-Code, if value will be returned)
+ * @param array $page
  * @return string $text
  */
-function page_languagelink() {
+function page_languagelink($params, $page) {
 	global $zz_setting;
+
+	// language switcher makes only sense for valid URLs
+	if ($page['status'] !== 200) return '';
 	
 	$link = $zz_setting['request_uri'];
 	if (str_starts_with($link, '/'.$zz_setting['lang']))
