@@ -25,6 +25,7 @@ function mod_default_search() {
 		if (!$files) return false;
 		$data['search_results'] = false;
 		foreach (array_keys($files) as $module) {
+			if (!$module) $module = 'custom';
 			$function = sprintf('mf_%s_search', $module);
 			$results = $function($q);
 			if ($results[$module]) $data['search_results'] = true;
@@ -49,6 +50,7 @@ function mod_default_search() {
 
 	$page['query_strings'] = ['q'];
 	$data['q'] = !empty($_GET['q']) ? $_GET['q'] : '';
+	$page['title'] = wrap_text('Search');
 	$page['text'] = wrap_template('search', $data);
 	return $page;
 }
