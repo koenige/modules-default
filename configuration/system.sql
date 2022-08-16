@@ -13,7 +13,10 @@
 
 -- core_pages --
 SELECT webpages.* FROM /*_PREFIX_*/webpages webpages
-WHERE webpages.identifier = _latin1'%s';
+WHERE webpages.identifier IN (%s);
+
+-- core_pages_fields --
+/* _latin1'/%s' */
 
 -- core_redirects --
 SELECT * FROM /*_PREFIX_*/redirects
