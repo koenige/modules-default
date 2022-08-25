@@ -123,6 +123,9 @@ SELECT domain, website_id FROM websites;
 -- ids_countries --
 SELECT country_code, country_id FROM countries;
 
+-- ids_folders --
+SELECT filename, medium_id FROM media WHERE filetype_id = /*_ID FILETYPES folder */;
+
 
 -- zzform_filetypelist --
 SELECT filetype_id, UPPER(filetype) AS filetype, filetype_description FROM filetypes WHERE filetype IN ('%s');
