@@ -1,0 +1,13 @@
+# default module
+# HTML template for CSS from modules
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2022 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% loop start %%%
+	<link rel="stylesheet" type="text/css" href="/_layout/%%% item filename %%%/%%% item filename %%%.css%%% page nocache %%%">
+%%% loop end %%%
