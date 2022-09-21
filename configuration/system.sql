@@ -106,26 +106,26 @@ WHERE identifier = '%s';
 
 
 -- ids_categories --
-SELECT path, category_id FROM categories ORDER BY path;
+SELECT path, category_id FROM /*_PREFIX_*/categories ORDER BY path;
 
 -- ids-aliases_categories --
-SELECT category_id, parameters FROM categories WHERE parameters LIKE '%alias=%';
+SELECT category_id, parameters FROM /*_PREFIX_*/categories WHERE parameters LIKE '%alias=%';
 
 -- ids_languages --
-SELECT CONCAT(iso_639_1, IFNULL(CONCAT('-', variation), '')), language_id FROM languages WHERE website = 'yes' ORDER BY iso_639_1;
+SELECT CONCAT(iso_639_1, IFNULL(CONCAT('-', variation), '')), language_id FROM /*_PREFIX_*/languages WHERE website = 'yes' ORDER BY iso_639_1;
 
 -- ids_filetypes --
-SELECT filetype, filetype_id FROM filetypes;
+SELECT filetype, filetype_id FROM /*_PREFIX_*/filetypes;
 
 -- ids_websites --
-SELECT domain, website_id FROM websites;
+SELECT domain, website_id FROM /*_PREFIX_*/websites;
 
 -- ids_countries --
-SELECT country_code, country_id FROM countries;
+SELECT country_code, country_id FROM /*_PREFIX_*/countries;
 
 -- ids_folders --
-SELECT filename, medium_id FROM media WHERE filetype_id = /*_ID FILETYPES folder */;
+SELECT filename, medium_id FROM /*_PREFIX_*/media WHERE filetype_id = /*_ID FILETYPES folder */;
 
 
 -- zzform_filetypelist --
-SELECT filetype_id, UPPER(filetype) AS filetype, filetype_description FROM filetypes WHERE filetype IN ('%s');
+SELECT filetype_id, UPPER(filetype) AS filetype, filetype_description FROM /*_PREFIX_*/filetypes WHERE filetype IN ('%s');
