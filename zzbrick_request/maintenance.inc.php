@@ -620,7 +620,7 @@ function zz_maintenance_folders($page = []) {
 			if (!empty($_GET['q']) AND !zz_maintenance_searched($filename)) {
 				continue;
 			}
-			if ($i < $zz_conf['int']['this_limit'] - $zz_conf['limit']) {
+			if ($i < $zz_conf['int']['this_limit'] - wrap_get_setting('zzform_limit')) {
 				$i++;
 				continue;
 			}
@@ -673,7 +673,7 @@ function zz_maintenance_folders($page = []) {
 		$data['folders'][$index]['total_rows'] = count($files);
 		if (!empty($_GET['q'])) $data['folders'][$index]['total_rows'] = $total_files_q;
 		$data['folders'][$index]['total_records'] = zz_list_total_records($data['folders'][$index]['total_rows']);
-		$data['folders'][$index]['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['folders'][$index]['total_rows']);
+		$data['folders'][$index]['pages'] = zz_list_pages(wrap_get_setting('zzform_limit'), $zz_conf['int']['this_limit'], $data['folders'][$index]['total_rows']);
 		$zz_conf['search_form_always'] = true;
 		$searchform = zz_search_form([], '', $data['folders'][$index]['total_rows'], $data['folders'][$index]['total_rows']);
 		$data['folders'][$index]['searchform'] = $searchform['bottom'];
@@ -919,7 +919,7 @@ function zz_maintenance_logs($page) {
 
 	if ($zz_conf['int']['this_limit']) {
 		if (isset($found)) {
-			$found = array_slice($found, ($zz_conf['int']['this_limit'] - $zz_conf['limit']), $zz_conf['limit']);
+			$found = array_slice($found, ($zz_conf['int']['this_limit'] - wrap_get_setting('zzform_limit')), wrap_get_setting('zzform_limit'));
 			if ($data['group'] AND empty($_POST['deleteall'])) {
 				$group = $found;
 				$found = [];
@@ -931,7 +931,7 @@ function zz_maintenance_logs($page) {
 			}
 		} else {
 			$found = range(
-				$zz_conf['int']['this_limit'] - $zz_conf['limit'],
+				$zz_conf['int']['this_limit'] - wrap_get_setting('zzform_limit'),
 				($data['total_rows'] < $zz_conf['int']['this_limit'] ? $data['total_rows'] : $zz_conf['int']['this_limit']) - 1
 			);
 		}
@@ -956,7 +956,7 @@ function zz_maintenance_logs($page) {
 
 	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
-	$data['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['total_rows']);
+	$data['pages'] = zz_list_pages(wrap_get_setting('zzform_limit'), $zz_conf['int']['this_limit'], $data['total_rows']);
 	$zz_conf['search_form_always'] = true;
 	$searchform = zz_search_form([], '', $data['total_rows'], $data['total_rows']);
 	$data['searchform'] = $searchform['bottom'];
@@ -1272,7 +1272,7 @@ function zz_maintenance_maillogs($page) {
 	}
 	$data['url_self'] = wrap_html_escape($zz_setting['request_uri']);
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
-	$data['pages'] = zz_list_pages($zz_conf['limit'], $zz_conf['int']['this_limit'], $data['total_rows']);
+	$data['pages'] = zz_list_pages(wrap_get_setting('zzform_limit'), $zz_conf['int']['this_limit'], $data['total_rows']);
 
 	$page['text'] = wrap_template('maintenance-maillogs', $data);
 	$page['text'] .= wrap_template('zzform-foot');
@@ -1289,7 +1289,7 @@ function zz_maintenance_maillogs_limit($total_rows) {
 	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
 		zz_list_limit_last($total_rows); // not + 1 since logs always end with a newline
 	}
-	$first = $zz_conf['int']['this_limit'] - $zz_conf['limit'];
+	$first = $zz_conf['int']['this_limit'] - wrap_get_setting('zzform_limit');
 	$last = $zz_conf['int']['this_limit'] - 1;
 	return [$first, $last];
 }
