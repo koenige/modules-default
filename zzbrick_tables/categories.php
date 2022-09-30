@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2016-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2016-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -85,8 +85,9 @@ $zz['fields'][20]['field_name'] = 'last_update';
 $zz['fields'][20]['type'] = 'timestamp';
 $zz['fields'][20]['hide_in_list'] = true;
 
-$zz['sql'] = 'SELECT /*_PREFIX_*/categories.*,
-	cat.category AS main_category
+$zz['sql'] = 'SELECT /*_PREFIX_*/categories.*
+		, cat.category AS main_category
+		, SUBSTRING(/*_PREFIX_*/categories.path, LENGTH(SUBSTRING_INDEX(/*_PREFIX_*/categories.path, "/", 1)) + 2) AS path_level1
 	FROM /*_PREFIX_*/categories
 	LEFT JOIN /*_PREFIX_*/categories AS cat
 		ON (/*_PREFIX_*/categories.main_category_id = cat.category_id)'; 
