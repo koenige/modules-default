@@ -25,6 +25,12 @@ if (!empty($brick['local_settings']['title']))
 $zz['fields'][4]['show_hierarchy_subtree'] = $category_id;
 $zz['fields'][4]['show_hierarchy_use_top_value_instead_NULL'] = true;
 
+if ($brick['local_settings']['hide_identifier']) {
+	$zz['fields'][5]['hide_in_list'] = true;
+	if (!empty($zz['fields'][7]))
+		$zz['fields'][7]['hide_in_list'] = true;
+}
+
 $zz['list']['hierarchy']['id'] = $category_id;
 $zz['list']['hierarchy']['hide_top_value'] = true;
 
