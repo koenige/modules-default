@@ -135,6 +135,9 @@ $zz['set_redirect'][] = ['old' => '%s', 'new' => '%s', 'field_name' => 'identifi
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = '/*_PREFIX_*/webpages.live = "no"';
 
+if (!empty($values['website_id']))
+	$zz['where']['website_id'] = $values['website_id'];
+
 $zz_conf['copy'] = true;
 
 if (!wrap_access('default_webpages_admin')) {
@@ -146,6 +149,7 @@ if (!wrap_access('default_webpages_admin')) {
 if (!empty($zz_setting['multiple_websites'])) {
 	if (!empty($_GET['where']['website_id'])) $website = $_GET['where']['website_id'];
 	elseif (!empty($_GET['filter']['website'])) $website = $_GET['filter']['website'];
+	elseif (!empty($zz['where']['website_id'])) $website = $zz['where']['website_id'];
 	else $website = false;
 
 	$zz['fields'][16]['field_name'] = 'website_id';
@@ -158,6 +162,7 @@ if (!empty($zz_setting['multiple_websites'])) {
 		$zz['fields'][16]['default'] = $zz_setting['website_id_default'];
 	$zz['fields'][16]['display_field'] = 'domain';
 	$zz['fields'][16]['exclude_from_search'] = true;
+	$zz['fields'][16]['if']['where']['hide_in_list'] = true;
 	if (!empty($_GET['filter']['website'])) {
 		$zz['fields'][16]['hide_in_list'] = true;
 		$zz['fields'][16]['hide_in_form'] = true;
@@ -182,15 +187,17 @@ if (!empty($zz_setting['multiple_websites'])) {
 		LEFT JOIN /*_PREFIX_*/webpages AS main_pages 
 			ON /*_PREFIX_*/webpages.mother_page_id = main_pages.page_id';
 
-	$zz['filter'][1]['sql'] = 'SELECT website_id, domain
-		FROM /*_PREFIX_*/websites
-		WHERE website_id != 1
-		ORDER BY domain';
-	$zz['filter'][1]['title'] = 'Website';
-	$zz['filter'][1]['identifier'] = 'website';
-	$zz['filter'][1]['type'] = 'list';
-	$zz['filter'][1]['field_name'] = 'website_id';
-	$zz['filter'][1]['where'] = '/*_PREFIX_*/webpages.website_id';
+	if (empty($zz['where']['website_id']) AND empty($_GET['where']['website_id'])) {
+		$zz['filter'][1]['sql'] = 'SELECT website_id, domain
+			FROM /*_PREFIX_*/websites
+			WHERE website_id != 1
+			ORDER BY domain';
+		$zz['filter'][1]['title'] = 'Website';
+		$zz['filter'][1]['identifier'] = 'website';
+		$zz['filter'][1]['type'] = 'list';
+		$zz['filter'][1]['field_name'] = 'website_id';
+		$zz['filter'][1]['where'] = '/*_PREFIX_*/webpages.website_id';
+	}
 
 	unset($zz['set_redirect']);
 	$zz['set_redirect'][] = [
