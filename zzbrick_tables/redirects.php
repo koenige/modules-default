@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2006-2016, 2019 Gustaf Mossakowski
+ * @copyright Copyright © 2006-2016, 2019, 2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -58,6 +58,7 @@ if (!empty($zz_setting['multiple_websites'])) {
 	if (!empty($zz_setting['website_id_default']))
 		$zz['fields'][6]['default'] = $zz_setting['website_id_default'];
 	$zz['fields'][6]['display_field'] = 'domain';
+	$zz['fields'][6]['if']['where']['hide_in_list'] = true;
 }
 
 $zz['fields'][20]['field_name'] = 'last_update';
@@ -68,20 +69,26 @@ $zz['sql'] = 'SELECT *
 	FROM /*_PREFIX_*/redirects';
 $zz['sqlorder'] = ' ORDER BY old_url, new_url';
 
+if (!empty($brick['data']['website_id'])) {
+	$zz['where']['website_id'] = $brick['data']['website_id'];
+}
+
 if (!empty($zz_setting['multiple_websites'])) {
 	$zz['sql'] = 'SELECT /*_PREFIX_*/redirects.*
 			, /*_PREFIX_*/websites.domain
 		FROM /*_PREFIX_*/redirects
 		LEFT JOIN /*_PREFIX_*/websites USING (website_id)';
 
-	$zz['filter'][1]['sql'] = 'SELECT website_id, domain
-		FROM /*_PREFIX_*/websites
-		ORDER BY domain';
-	$zz['filter'][1]['title'] = 'Website';
-	$zz['filter'][1]['identifier'] = 'website';
-	$zz['filter'][1]['type'] = 'list';
-	$zz['filter'][1]['field_name'] = 'website_id';
-	$zz['filter'][1]['where'] = '/*_PREFIX_*/redirects.website_id';
+	if (empty($zz['where']['website_id'])) {
+		$zz['filter'][1]['sql'] = 'SELECT website_id, domain
+			FROM /*_PREFIX_*/websites
+			ORDER BY domain';
+		$zz['filter'][1]['title'] = 'Website';
+		$zz['filter'][1]['identifier'] = 'website';
+		$zz['filter'][1]['type'] = 'list';
+		$zz['filter'][1]['field_name'] = 'website_id';
+		$zz['filter'][1]['where'] = '/*_PREFIX_*/redirects.website_id';
+	}
 }
 
 $zz_conf['copy'] = true;
