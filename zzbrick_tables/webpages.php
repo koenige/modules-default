@@ -135,8 +135,8 @@ $zz['set_redirect'][] = ['old' => '%s', 'new' => '%s', 'field_name' => 'identifi
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = '/*_PREFIX_*/webpages.live = "no"';
 
-if (!empty($values['website_id']))
-	$zz['where']['website_id'] = $values['website_id'];
+if (!empty($brick['data']['website_id']))
+	$zz['where']['website_id'] = $brick['data']['website_id'];
 
 $zz_conf['copy'] = true;
 
