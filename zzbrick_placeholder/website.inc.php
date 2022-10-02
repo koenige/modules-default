@@ -14,6 +14,7 @@
 
 
 function mod_default_placeholder_website($brick) {
+	global $zz_setting;
 	if (empty($brick['parameter'])) return $brick;
 	
 	$sql = 'SELECT website_id, website, domain
@@ -22,6 +23,10 @@ function mod_default_placeholder_website($brick) {
 	$sql = sprintf($sql, wrap_db_escape($brick['parameter']));
 	$website = wrap_db_fetch($sql);
 	if (!$website) wrap_quit(404);
+
+	// make settings of website available for this backend
+	$zz_setting['backend_website_id'] = $website['website_id'];
+	wrap_setting_backend();
 
 	// @todo breadcrumbs
 
