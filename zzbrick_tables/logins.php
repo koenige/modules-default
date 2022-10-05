@@ -63,13 +63,15 @@ if (wrap_get_setting('login_with_contact_id')) {
 	$zz['fields'][2]['class'] = 'block480a';
 }
 
-$zz['fields'][6]['title_tab'] = 'Rights';
-$zz['fields'][6]['field_name'] = 'login_rights';
-$zz['fields'][6]['type'] = 'select';
-$zz['fields'][6]['default'] = 'read and write';
-$zz['fields'][6]['enum'] = ['admin', 'read and write', 'read'];
-$zz['fields'][6]['enum_title'] = ['Technik', 'Redaktion', 'Gast'];
-$zz['fields'][6]['show_values_as_list'] = true;
+if (wrap_get_setting('login_with_login_rights')) {
+	$zz['fields'][6]['title_tab'] = 'Rights';
+	$zz['fields'][6]['field_name'] = 'login_rights';
+	$zz['fields'][6]['type'] = 'select';
+	$zz['fields'][6]['default'] = 'read and write';
+	$zz['fields'][6]['enum'] = ['admin', 'read and write', 'read'];
+	$zz['fields'][6]['enum_title'] = ['Technik', 'Redaktion', 'Gast'];
+	$zz['fields'][6]['show_values_as_list'] = true;
+}
 
 $zz['fields'][3]['field_name'] = 'password';
 $zz['fields'][3]['type'] = 'password';
