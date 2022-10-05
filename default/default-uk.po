@@ -1,11 +1,11 @@
 # default module
-# Translations
+# Translations to Ukrainian
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014-2018, 2020 Gustaf Mossakowski
+# @copyright Copyright © 2022 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -126,6 +126,12 @@ msgstr ""
 #: zzbrick_forms/my-password.php
 msgid "password-rules"
 msgstr ""
+"* замість одного слова можуть бути використані кілька слів або навіть повні "
+"речення\n"
+"* Чим довший пароль (або вибране речення), тим краще захищений доступ до "
+"сайту\n"
+"* Для коротких паролів рекомендується, щоб вони складалися з верхнього "
+"регістру та малих літер, цифр та спеціальних символів (?=+; тощо)"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Maintenance"

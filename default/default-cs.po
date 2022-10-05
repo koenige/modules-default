@@ -125,6 +125,8 @@ msgstr ""
 #: zzbrick_forms/my-password.php
 msgid "password-rules"
 msgstr ""
+"Doporučuje se používat velká i "
+"malá písmena, čísla a speciální znaky jako ?=+; atd."
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Maintenance"

@@ -131,7 +131,7 @@ msgstr "Zasady bezpiecznego hasła"
 #: zzbrick_forms/my-password.php
 msgid "password-rules"
 msgstr ""
-"Hasło musi składać się z min. 8 znaków i zawierać duże i małe litery, cyfry "
+"Hasło musi zawierać duże i małe litery, cyfry "
 "oraz znaki specjalne.\n"
 "\n"
 "Przykłady bezpiecznych haseł:\n"

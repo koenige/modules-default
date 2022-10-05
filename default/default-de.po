@@ -155,7 +155,6 @@ msgstr "Tipps für sichere Passwörter"
 #: zzbrick_forms/my-password.php
 msgid "password-rules"
 msgstr ""
-"* Passwörter sollten wenigstens acht Zeichen lang sein.\n"
 "* Statt eines einzelnen Wortes können auch mehrere Wörter oder komplette "
 "Sätze benutzt werden.\n"
 "* Je länger das Passwort (oder der gewählte Satz) ist, desto besser ist der "
