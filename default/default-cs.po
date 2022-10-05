@@ -119,7 +119,7 @@ msgstr ""
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Hints for secure passwords"
-msgstr ""
+msgstr "Pravidla pro tvorbu bezpečného hesla"
 
 # Record form: Change password
 #: zzbrick_forms/my-password.php
