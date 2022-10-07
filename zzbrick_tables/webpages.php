@@ -140,12 +140,6 @@ if (!empty($brick['data']['website_id']))
 
 $zz_conf['copy'] = true;
 
-if (!wrap_access('default_webpages_admin')) {
-	unset($zz['fields'][15]); // no parameters
-	$zz['sql'] .= ' WHERE (ISNULL(webpages.parameters) OR !LOCATE("edit=admin", webpages.parameters))
-		AND (ISNULL(main_pages.parameters) OR !LOCATE("edit=admin", main_pages.parameters))';
-}
-
 if (!empty($zz_setting['multiple_websites'])) {
 	if (!empty($_GET['where']['website_id'])) $website = $_GET['where']['website_id'];
 	elseif (!empty($_GET['filter']['website'])) $website = $_GET['filter']['website'];
@@ -203,4 +197,10 @@ if (!empty($zz_setting['multiple_websites'])) {
 	$zz['set_redirect'][] = [
 		'old' => '%s', 'new' => '%s', 'field_name' => 'identifier', 'website_id' => 'website_id'
 	];
+}
+
+if (!wrap_access('default_webpages_admin')) {
+	unset($zz['fields'][15]); // no parameters
+	$zz['sql'] = wrap_edit_sql($zz['sql'], 'WHERE', '(ISNULL(webpages.parameters) OR !LOCATE("edit=admin", webpages.parameters))
+		AND (ISNULL(main_pages.parameters) OR !LOCATE("edit=admin", main_pages.parameters))');
 }
