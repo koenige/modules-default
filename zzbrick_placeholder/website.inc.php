@@ -26,6 +26,7 @@ function mod_default_placeholder_website($brick) {
 
 	// make settings of website available for this backend
 	$zz_setting['backend_website_id'] = $website['website_id'];
+	$zz_setting['backend_path'] = $brick['placeholder'];
 	wrap_setting_backend();
 
 	// @todo breadcrumbs
