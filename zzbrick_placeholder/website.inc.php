@@ -15,12 +15,12 @@
 
 function mod_default_placeholder_website($brick) {
 	global $zz_setting;
-	if (empty($brick['parameter'])) return $brick;
+	if (empty($brick['placeholder'])) return $brick;
 	
 	$sql = 'SELECT website_id, website, domain
 		FROM websites
 		WHERE domain = "%s"';
-	$sql = sprintf($sql, wrap_db_escape($brick['parameter']));
+	$sql = sprintf($sql, wrap_db_escape($brick['placeholder']));
 	$website = wrap_db_fetch($sql);
 	if (!$website) wrap_quit(404);
 
