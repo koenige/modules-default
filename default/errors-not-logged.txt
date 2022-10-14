@@ -1,0 +1,359 @@
+# zzwrap
+# URLs or parts of URLs for which errors shall not be logged
+#
+# Part of »Zugzwang Project«
+# http://www.zugzwang.org/projects/zzwrap
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2012-2022 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+# begin = check if begin of string is identical; end = check end; all: check full
+# errorcode	begin|end|all	string
+
+# browsers know how to handle unkown protocols (bad script)
+404	begin	/webcal://
+
+# pseudo-clever script, excluding this string is not 100% correct
+# but should do no harm ('webcal:' as a part of a string is valid,
+# so if you use it, errors on pages with this URI part won't get logged)
+404	begin	/webcal:/
+
+# wrong CMS, don't send enerving errors
+404	begin	/plugins/editors/tinymce/
+
+# JavaScript errors
+404	end	/undefined
+
+# encoded mail addresses, some bots are too stupid for them
+404	end	&
+404	end	%26
+
+# will normally be resolved by browser (bad script)
+404	end	/./
+404	end	/../
+
+# this is a data-URL misinterpreted
+404	end	data:image/gif;base64,AAAA
+
+# Chrome extension Ginyas Browser Companion going wild
+# see http://code.google.com/p/chromium/issues/detail?id=132059
+404	regex	~/cache/[a-z0-9]{32}$~
+
+# Blue Coat ProxySG
+# Some system that blocks websites, unclear why they expect content
+# on a remote website (maybe proxy problem)
+# https://hypersonic.bluecoat.com/doc/578
+# https://bto.bluecoat.com/doc/8577
+404	begin	/notified-
+404	begin	/verify-
+404	begin	/accepted-
+
+# - unknown -
+404	end	/undefinedsf_main.jsp?clientVersion=null&dlsource=null&CTID=null&userId=userIdFail&statsReporter=false
+404	end	/6_S3_
+
+# WordPress login and bugs
+404	end	/wp-login.php
+404	end	/xmlrpc.php
+503	end	/xmlrpc.php
+404	end	/wp-admin/admin-ajax.php?action=revslider_show_image&img=../wp-config.php
+503	end	/wp-admin/admin-ajax.php?action=revslider_show_image&img=../wp-config.php
+404	all	/wp-includes/wlwmanifest.xml
+404	all	/wp-includes/css/buttons.css
+404	end	/wp-admin/admin-ajax.php?action=showbiz_show_image&img=../wp-config.php
+404	end	/wp-admin/admin-ajax.php?action=revolution-slider_show_image&img=../wp-config.php
+404	end	/wp-config.php~
+503	end	/wp-config.php~
+404	end	/wp-content/uploads/2015/08/info.php
+404	end	/wordpr
+404	end	/wp-admin
+404	end	/wp-admin/
+404	begin	/wp-content/plugins/Login-wall-etgFB/login_wall.php
+404	all	/wp-includes/pomo/index.php?php
+404	all	/wp-content/uploads/sites/rwb.php?php
+404	all	/wp-admin/includes/images.php?php
+404	all	/wp-content/uploads/woo.php
+404	end	/wp-foot.php
+404	all	/wp-content/
+404	end	/wp-content/plugins/logo_img.php
+404	end	/license.php
+404	end	/wp-admin/admin-ajax.php
+404	end	/uploadify/uploadify.php?folder=/
+404	begin	/wp-admin/admin-post.php?swp_debug=load_options&swp_url=
+404	end	/wp-json/wp/v2/users
+404	end	/license.txt
+404	request	*/wp-config*
+404	request	*/wp-includes/*
+404	begin	/wp-content/plugins
+
+# Joomla
+404	end	/administrator/index.php
+404	all	/index.php?option=com_users&view=registration
+404	all	/index.php?option=com_kide
+404	all	/index.php?option=com_easyblog&view=dashboard&layout=write
+404	all	/index.php/component/users/?view=registration
+404	all	/component/users/?view=registration
+404	end	/webconfig.txt.php
+
+# Magento
+404	end	/js/mage/cookies.js
+
+# DedeCMS
+404	all	/data/admin/ver.txt
+404	all	/templets/default/style/dedecms.css
+
+# ModX
+404	end	/connectors/system/phpthumb.php
+503	end	/connectors/system/phpthumb.php
+
+# Discuz X
+404	all	/template/default/common/footer.htm
+
+# FCK editor
+404	end	/fckeditor.js
+404	end	/fckconfig.js
+404	all	/admin/fckeditor/editor/filemanager/upload/php/upload.phpindex.php
+404	all	/admin/fckeditor/editor/filemanager/upload/php/upload.php
+404	all	/admin/fckeditor/editor/filemanager/connectors/php/upload.php
+404	referer	*/fckeditor/editor/filemanager/connectors/asp/connector.asp?Command=FileUpload&Type=Image&CurrentFolder=%2F
+
+# phpMoAdmin
+404	end	/moadmin.php
+
+# Looking for security flaws
+404	end	/register.asp
+404	end	/reg.asp
+404	end	/user/CreateUser.aspx?ReturnUrl=
+404	end	/register.php
+404	end	/logging.php?action=login
+404	end	/member.php?mod=register
+404	end	/member.php?mod=logging&action=login
+404	end	/user/create_form/
+404	all	/js/transport.js
+404	all	/js/tools.js
+404	all	/includes/general.js
+404	all	/templates/cn/template.xml
+404	all	/catalog/view/javascript/common.js
+404	end	/error.php?err=404
+404	all	/editor/dialogs/dialog.php?module=spawfm&dialog=spawfm&theme=spaw2lite&type=imagesundefined
+404	all	/spaw/dialogs/dialog.php?module=spawfm&dialog=spawfm&theme=spaw2lite&type=imagesundefined
+404	all	/spaw2/dialogs/dialog.php?module=spawfm&dialog=spawfm&theme=spaw2lite&type=imagesundefined
+404	all	/license.php
+
+# - unknown, probably a toolbar or something else; request are made
+# even if referer URL is redirected with a HTTP 302
+404	end	/[object]
+
+# Broken spider which does not say if it's supporting robots.txt
+# and creates links from every string it sees in JavaScript files
+404	ua	Mozilla/5.0 (compatible;WI Job Roboter Spider Version 3;+http://www.webintegration.at)
+404	ua	Mozilla/5.0 (compatible;Webintegration Jobroboter WebSpider/7;+http://www.webintegration.at)
+404	ua	Mozilla/5.0 (compatible;picmole/1.0 +http://www.picmole.com)
+404	ua	Mozilla/5.0 (compatible; heritrix/3.1.1 +http://www.mixdata.com)
+404	ua	arquivo-web-crawler (compatible; heritrix/3.4.0-20200304 +http://arquivo.pt)
+404	ua	Mozilla/5.0 (compatible; heritrix/3.4.0-SNAPSHOT-2021-01-14T20:13:18Z +https://www.fim.uni-passau.de/data-science/forschung/open-search)
+
+# Facebook is broken as well
+404	ua	facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)
+# Coming via http://m.facebook.com/
+404	end	/.google-analytics.com/ga.js
+
+# Script testing over 100 URIs at a time thinking it's clever to use a referer
+# but real referer will always include query string
+404	referer	http://www.baidu.com
+404	referer	http://baidu.com/
+404	referer	https://www.baidu.com/
+404	ua	Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html
+
+# The real GoogleBot does not use this referer
+404	referer	http://www.googlebot.com/bot.html
+
+# There is no Google.com without www or without https
+404	referer	https://google.com
+404	referer	https://google.com/
+404	referer	http://google.com
+404	referer	http://www.google.com/
+404	referer	http://www.google.com.hk
+
+# Trackback-Spam, normally with POST
+404	end	/trackback/
+
+# Bot with a referrer on a non-existent domain, creates URLs with
+# wrong hostnames
+404	referer	http://www.diebestesuchmaschinederwelt.de/
+
+# Malware Adpeak
+404	regex	/\?o=3&g=&s=&z=/
+
+# malware marking the begin of its attack
+404	all	/Ringing.at.your.dorbell!
+
+# Badly written bots coming via Yahoo
+404	end	/RK=0
+
+# Whatever malware with referer http://search.mail.com/web?q=domain.example&search=
+404	all	/media/index.html
+
+# JBoss HttpAdaptor JMXInvokerServlet
+404	all	/invoker/JMXInvokerServlet
+404	all	/jmx-console/HtmlAdaptor?action=inspectMBean&name=jboss.system:type=ServerInfo
+404	all	/web-console/ServerInfo.jsp
+
+# Malware unkown
+404	regex	~/clike.su/adbstyles.js\?u=\d+~
+
+# http://www.ewebeditor.com
+404	end	/ewebeditor.js
+404	end	/ewebeditor/Include/menu.js
+404	end	/Include/menu.js
+
+# Spaw Editor
+404	all	/admin/spaw2/dialogs/dialog.php?module=spawfm&dialog=spawfm&theme=spaw2lite&type=imagesundefined
+
+# WebVTT
+404	end	/node_modules/vtt.js/dist/vtt.js
+
+# unknown
+404	end	/resource/UserFollowResource/create/
+
+# Bot which has problems with scrambled e-mail addresses
+404	ua	Mozilla/5.0 (compatible; spbot/4.4.2; +http://OpenLinkProfiler.org/bot )
+
+# D-Link Multiple Routers HNAP Protocol Security Bypass Vulnerability
+404	all	/HNAP1/
+
+# Uploadify jQuery plugin for Uploads
+404	end	/uploadify.css
+
+# Unknown
+404	end	/bocadmin/j/custom.js
+
+# Uploadify
+404	end	/uploadify/uploadify.swf
+
+# Some weirdo adding some random referer for his hacking attempts
+404	end	/cache/label/909.php
+
+# Old HTML injection bugs, old scanners, e. g. <script>
+404	referer	<*
+
+# UTM = Urchin Traffic Monitor
+qs	string	utm_source
+qs	string	utm_medium
+qs	string	utm_campaign
+qs	string	utm_content
+
+# Buggy virus on client side ? Troj/Agent-AJRU
+404	regex	~://pixel.yabidos.com/fltiu.js~
+
+# unknown
+404	all	/submit.php
+
+# there are no links on example.com, another broken script
+404	referer	http://www.example.com
+404	referer	http://www.example.com/
+
+# and if someone has set up a local machine, we do not care
+404	referer	http://localhost/
+
+# elFinder
+404	all	/scripts/elfinder/connectors/php/connector.php
+404	end	/elfinder.html
+503	end	/elfinder.html
+
+# ownCloud etc.
+404	all	/nextcloud/status.php
+404	all	/owncloud/status.php
+404	all	/oc-shib/status.php
+404	all	/oc/status.php
+404	all	/status.php
+
+# unknown
+404	end	/&wd=test
+404	end	/user/swfupload.asp
+
+# spammers trying to promote their URLs via 404s
+404	end	/SOS-Admin-Help
+
+# some installation routine?
+404	end	/da.php
+404	end	/install.php?finish=1
+
+# unknown, but zealous (?author=1 up to ?author=15)
+qs	string	author
+
+# Facebook Click Identifier (for tracking)
+qs	string	fbclid
+
+# Microsoft Click ID (for tracking)
+qs	string	msclkid
+
+# looking for a blog
+404	all	/blog/
+
+# whatever this means
+404	end	/images/kitten-large.png
+
+# Drupal
+404	end	/user/register/?element_parents=account/mail/%23value&ajax_form=1&_wrapper_format=drupal_ajax
+
+# just generating 404s on purpose
+404	end	/th1s_1s_a_4o4.html
+
+# access via server and Browser Chrome-Lighthouse
+404	all	/asset-manifest.json
+
+# ads, @see https://iabtechlab.com
+404	end	/ads.txt
+404	end	/app-ads.txt
+
+# authors behind website, @see http://humanstxt.org
+404	end	/humans.txt
+
+# Script kiddies
+404	post	*xbshell*
+
+# Bot with severe problems parsing URLs
+404	ua	Mozilla/5.0 (compatible; Adsbot/3.1)
+404	ua	Mozilla/5.0 (compatible; Adsbot/3.1; +https://seostar.co/robot/)
+
+# looking for uploaded git repository information
+404	end	/.git/HEAD
+404	end	/.git/INDEX
+404	end	/.git/config
+
+# .well-known URLs are normally not linked from a webpage
+404	begin	/.well-known
+
+# some guys from Tallin looking for unprotected environment variables
+404	end	/.env
+# possibly the same?
+404	end	/.production
+404	end	/.local
+404	end	/.remote
+
+# Sypex Dumper
+404	end	/sxd.js
+
+# Laravel Health Panel
+404	end	/laravel/_ignition/health-check/
+
+# Looking for forgotten archives
+404	end	/dump/archive.zip
+
+# we are looking for real problems on websites only, not script’s problems
+404	ua	Go-http-client/1.1
+
+# webcal-URL problems from a bot, using google.com/?url={site}&yahoo.com as referer
+404	referer	*&yahoo.com
+
+# Movable Type vulnerability
+404	end	/mt/mt-xmlrpc.cgi
+
+# Microsoft Exchange
+404	end	/autodiscover/autodiscover.xml
+
+# Broken search bot that fails to resolve relative URLs
+404	ua	Mozilla/5.0 (compatible;PetalBot;+https://webmaster.petalsearch.com/site/petalbot)
+404	ua	Mozilla/5.0 (Linux; Android 7.0;) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; PetalBot;+https://webmaster.petalsearch.com/site/petalbot)
