@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2007-2012, 2015-2017, 2020 Gustaf Mossakowski
+# @copyright Copyright © 2007-2012, 2015-2017, 2020, 2022 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #
@@ -18,6 +18,7 @@
 	<link rel="icon" href="/favicon.ico" type="image/x-ico">
 	<link rel="stylesheet" type="text/css" href="/_layout/default/default.css" media="all">
 %%% page head %%%
+%%% page packagecss %%%
 </head>
 <body%%% page extra_body_attributes %%%>
 <div id="canvas">
