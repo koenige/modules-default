@@ -1028,22 +1028,6 @@ msgstr ""
 msgid "Translation field"
 msgstr ""
 
-#: templates/login-request.template.txt
-msgid ""
-"You are trying to create a new login for you. But somehow, the web address "
-"(URL) you clicked seems to be incorrect. Maybe some part is missing?"
-msgstr ""
-
-#: templates/login-request.template.txt
-msgid "Back to login page"
-msgstr ""
-
-#: templates/login-request.template.txt
-msgid ""
-"Sorry, you cannot create a login for this username. Either the user does not "
-"exist on our website or there already exists a login for this username."
-msgstr ""
-
 #: zzbrick_make/dbupdate.inc.php
 msgid "Ignore"
 msgstr ""

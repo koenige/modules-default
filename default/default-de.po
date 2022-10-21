@@ -1191,28 +1191,6 @@ msgstr "Übersetzungsfeld"
 msgid "More Text"
 msgstr "Weiterer Text"
 
-#: templates/login-request.template.txt
-msgid ""
-"You are trying to create a new login for you. But somehow, the web address "
-"(URL) you clicked seems to be incorrect. Maybe some part is missing?"
-msgstr ""
-"Sie versuchen, einen neuen Zugang für sich zu erstellen. Aber irgendwie "
-"scheint die Webadresse (URL), die Sie angeklickt haben, nicht korrekt zu "
-"sein. Vielleicht fehlt ein Teil?"
-
-#: templates/login-request.template.txt
-msgid "Back to login page"
-msgstr "Zurück zur Login-Seite"
-
-#: templates/login-request.template.txt
-msgid ""
-"Sorry, you cannot create a login for this username. Either the user does not "
-"exist on our website or there already exists a login for this username."
-msgstr ""
-"Entschuldigung, Sie können für diesen Nutzernamen keinen Login erstellen. "
-"Entweder gibt es den Nutzernamen nicht auf unserer Website oder es besteht "
-"bereits ein Login für Sie."
-
 #: zzbrick_make/dbupdate.inc.php
 msgid "Ignore"
 msgstr "Ignorieren"
