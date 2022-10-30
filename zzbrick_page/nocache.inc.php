@@ -17,7 +17,7 @@
  * check if JS or CSS files should not be cached
  *
  * @param $params void
- * @return array $page
+ * @return string
  */
 function page_nocache($params) {
 	global $zz_setting;

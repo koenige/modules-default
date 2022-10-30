@@ -2,7 +2,7 @@
 
 /**
  * default module
- * show search word
+ * show SESSION contact
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/default
@@ -14,12 +14,12 @@
 
 
 /**
- * show search word
+ * show SESSION contact
  *
  * @param $params void
  * @return string
  */
-function page_searchword($params) {
-	if (empty($_GET['q'])) return '';
-	return wrap_html_escape($_GET['q']);
+function page_sessioncontact($params) {
+	if (empty($_SESSION['contact'])) return '';
+	return $_SESSION['contact'];
 }
