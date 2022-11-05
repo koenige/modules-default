@@ -17,7 +17,7 @@
 if (!wrap_access('default_relations')) wrap_quit(403);
 
 $zz['title'] = 'Database Table Relations';
-$zz['table'] = $zz_conf['relations_table'];
+$zz['table'] = wrap_get_setting('zzform_relations_table');
 
 $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'rel_id';
@@ -91,7 +91,7 @@ $zz['fields'][9]['type'] = 'text';
 $zz['fields'][9]['hide_in_list'] = true;
 */
 
-$zz['sql'] = 'SELECT * FROM '.$zz_conf['relations_table'];
+$zz['sql'] = 'SELECT * FROM '.wrap_get_setting('zzform_relations_table');
 $zz['sqlorder'] = ' ORDER BY detail_db, detail_table, detail_field';
 
 $zz_conf['max_select'] = 200;

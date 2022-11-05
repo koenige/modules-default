@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2014-2016, 2019-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2014-2016, 2019-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -40,8 +40,8 @@ function mod_default_thumbnails($params) {
 	require_once $zz_conf['dir'].'/zzform.php';
 	$zz_conf['int_modules'] = ['debug', 'compatibility', 'validate', 'upload'];
 	zz_initialize();
-	if ($zz_conf['graphics_library'])
-		include_once $zz_conf['dir_inc'].'/image-'.$zz_conf['graphics_library'].'.inc.php';
+	if ($graphics_library = wrap_get_setting('zzform_graphics_library'))
+		include_once $zz_conf['dir_inc'].'/image-'.$graphics_library.'.inc.php';
 	
 	if (strstr($params[0], '..')) return false;
 

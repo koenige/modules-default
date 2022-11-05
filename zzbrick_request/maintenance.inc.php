@@ -94,7 +94,7 @@ function mod_default_maintenance($params) {
 	// zz_write_conf()
 	zz_maintenance_zzform_init();
 	$data['php_version'] = phpversion();
-	if ($zz_conf['graphics_library'] === 'imagemagick') {
+	if (wrap_get_setting('zzform_graphics_library') === 'imagemagick') {
 		require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
 		$data['imagick_full'] = zz_imagick_version();
 		$data['imagick'] = explode("\n", $data['imagick_full']);
@@ -107,7 +107,6 @@ function mod_default_maintenance($params) {
 	}
 	$folders = zz_maintenance_folders();
 	$data['folders'] = $folders['text'];
-	$data['logging_table'] = !empty($zz_conf['logging_table']) ? $zz_conf['logging_table'] : '';
 
 	$page['text'] = wrap_template('maintenance', $data);
 	$page['title'] .= ' '.wrap_text('Maintenance');
@@ -199,7 +198,7 @@ function zz_maintenance_tables() {
 	global $zz_conf;
 	$data = [];
 
-	if (empty($zz_conf['relations_table']) AND empty($zz_conf['translations_table']))
+	if (!wrap_get_setting('zzform_relations_table') AND empty($zz_conf['translations_table']))
 		return $data;
 		
 	// Update
@@ -214,7 +213,7 @@ function zz_maintenance_tables() {
 						$table = $zz_conf['translations_table'];
 						$field_name = 'db_name';
 					} else {
-						$table = $zz_conf['relations_table'];
+						$table = wrap_get_setting('zzform_relations_table');
 						$field_name = $area.'_db';
 					}
 					$sql = 'UPDATE %s SET %s = "%s" WHERE %s = "%s"';
@@ -228,15 +227,15 @@ function zz_maintenance_tables() {
 		}
 		wrap_redirect_change();
 	}
-	if (!empty($zz_conf['relations_table'])) {
+	if (wrap_get_setting('zzform_relations_table')) {
 	// Master database
 		$sql = 'SELECT DISTINCT master_db FROM %s';
-		$sql = sprintf($sql, $zz_conf['relations_table']);
+		$sql = sprintf($sql, wrap_get_setting('zzform_relations_table'));
 		$dbs['master'] = wrap_db_fetch($sql, 'master_db', 'single value');
 
 	// Detail database	
 		$sql = 'SELECT DISTINCT detail_db FROM %s';
-		$sql = sprintf($sql, $zz_conf['relations_table']);
+		$sql = sprintf($sql, wrap_get_setting('zzform_relations_table'));
 		$dbs['detail'] = wrap_db_fetch($sql, 'detail_db', 'single value');
 	}
 
@@ -290,19 +289,16 @@ function zz_maintenance_tables() {
  * in the master table
  *
  * @param array $page
- * @global array $zz_conf 'relations_table'
  * @return string text output
  * @todo add translations with wrap_text()
  */
 function zz_maintenance_integrity($page) {
-	global $zz_conf;
-
 	$page['title'] .= ' '.wrap_text('Relational Integrity');
 	$page['breadcrumbs'][] = wrap_text('Relational Integrity');
 	$page['query_strings'][] = 'integrity';
 
 	$sql = 'SELECT * FROM %s';
-	$sql = sprintf($sql, $zz_conf['relations_table']);
+	$sql = sprintf($sql, wrap_get_setting('zzform_relations_table'));
 	$relations = wrap_db_fetch($sql, 'rel_id');
 
 	$results = [];
@@ -516,7 +512,7 @@ function zz_maintenance_folders($page = []) {
 		zz_maintenance_list_init();
 	}
 
-	if ((!$zz_conf['backup'] OR !$zz_conf['backup_dir'])
+	if ((!wrap_get_setting('zzform_backup') OR !wrap_get_setting('zzform_backup_dir'))
 		AND empty($zz_setting['tmp_dir']) AND empty($zz_setting['cache_dir'])) {
 		$page['text'] = '<p>'.wrap_text('Backup of uploaded files is not active.').'</p>'."\n";
 		return mod_default_maintenance_return($page);
@@ -524,7 +520,7 @@ function zz_maintenance_folders($page = []) {
 
 	$dirs = [
 		'TEMP' => $zz_setting['tmp_dir'],
-		'BACKUP' => $zz_conf['backup_dir'],
+		'BACKUP' => wrap_get_setting('zzform_backup_dir'),
 		'CACHE' => $zz_setting['cache_dir']
 	];
 	$data['folders'] = [];
@@ -1375,15 +1371,13 @@ function zz_maintenance_make_url($array) {
  * @return array $page
  */
 function zz_maintenance_sqldownload($page) {
-	global $zz_conf;
-	
 	$page['query_strings'][] = 'sqldownload';
 	$limit = false;
 
 	list($data, $limit) = mod_default_maintenance_read_logging($_GET['sqldownload']);
 	if (!$data) {
 		$sql = 'SELECT MAX(log_id) FROM %s';
-		$sql = sprintf($sql, $zz_conf['logging_table']);
+		$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'));
 		$max_logs = wrap_db_fetch($sql, '', 'single value');
 		$page['title'] .= ' '.wrap_text('Download SQL log');
 		$page['breadcrumbs'][] = wrap_text('Download SQL log');
@@ -1408,18 +1402,17 @@ function zz_maintenance_sqldownload($page) {
  * @return array
  */
 function mod_default_maintenance_read_logging($start) {
-	global $zz_conf;
 	$limit = 0;
 
 	$sql = 'SELECT COUNT(*) FROM %s WHERE log_id >= %d ORDER BY log_id';
-	$sql = sprintf($sql, $zz_conf['logging_table'], $start);
+	$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'), $start);
 	$logcount = wrap_db_fetch($sql, '', 'single value');
 	if ($logcount > 10000) {
 		$limit = 10000;
 	}
 
 	$sql = 'SELECT * FROM %s WHERE log_id >= %d ORDER BY log_id';
-	$sql = sprintf($sql, $zz_conf['logging_table'], $start);
+	$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'), $start);
 	if ($limit) $sql .= sprintf(' LIMIT %d', 10000);
 	$data = wrap_db_fetch($sql, 'log_id');
 	return [$data, $limit];
@@ -1432,8 +1425,6 @@ function mod_default_maintenance_read_logging($start) {
  * @return array $page
  */
 function zz_maintenance_sqlupload($page) {
-	global $zz_conf;
-
 	$out = [];
 	if (empty($_FILES['sqlfile'])) $out['no_file'] = true;
 	elseif ($_FILES['sqlfile']['error'] === UPLOAD_ERR_NO_FILE) $out['no_file'] = true;
@@ -1456,13 +1447,12 @@ function zz_maintenance_sqlupload($page) {
  * @return array
  */
 function mod_default_maintenance_add_logging($json) {
-	global $zz_conf;
 	$json = json_decode($json, true);
 	if (!$json) return ['no_json' => 1];
 
 	$first_id = key($json);
 	$sql = 'SELECT MAX(log_id) FROM %s';
-	$sql = sprintf($sql, $zz_conf['logging_table']);
+	$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'));
 	$max_logs = wrap_db_fetch($sql, '', 'single value');
 	if ($max_logs + 1 !== $first_id) {
 		return ['max_logs' => $max_logs, 'first_id' => $first_id];
@@ -1476,7 +1466,7 @@ function mod_default_maintenance_add_logging($json) {
 			return ['log_id' => $line['log_id'], 'add_error' => 1];
 		}
 		$sql = sprintf($log_template,
-			$zz_conf['logging_table'], wrap_db_escape($line['query'])
+			wrap_get_setting('zzform_logging_table'), wrap_db_escape($line['query'])
 			, ($line['record_id'] ? $line['record_id'] : 'NULL')
 			, wrap_db_escape($line['user']), $line['last_update']
 		);
@@ -1555,10 +1545,8 @@ function zz_maintenance_serversync($page) {
 }
 
 function mod_default_maintenance_last_log() {
-	global $zz_conf;
-
 	$sql = 'SELECT * FROM %s ORDER BY log_id DESC LIMIT 1';
-	$sql = sprintf($sql, $zz_conf['logging_table']);
+	$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'));
 	$data = wrap_db_fetch($sql);
 	return $data;
 }
@@ -1597,7 +1585,7 @@ function zz_maintenance_zzform_init() {
 function zz_maintenance_imagick($page) {
 	global $zz_conf;
 
-	if (!$zz_conf['graphics_library'] === 'imagemagick') return false;
+	if (wrap_get_setting('zzform_graphics_library') !== 'imagemagick') return false;
 	zz_maintenance_zzform_init();
 	require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
 	$page['text'] = '<pre>'.zz_imagick_version().'</pre>';
@@ -1617,7 +1605,7 @@ function zz_maintenance_imagick($page) {
 function zz_maintenance_ghostscript($page) {
 	global $zz_conf;
 
-	if (!$zz_conf['graphics_library'] === 'imagemagick') return false;
+	if (wrap_get_setting('zzform_graphics_library') !== 'imagemagick') return false;
 	zz_maintenance_zzform_init();
 	require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
 	$page['text'] = '<pre>'.zz_ghostscript_version().'</pre>';

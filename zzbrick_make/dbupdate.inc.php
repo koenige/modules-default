@@ -126,8 +126,6 @@ function mod_default_make_dbupdate_table($query) {
  * @return int (bool true, false; -1 if before install date)
  */
 function mod_default_make_dbupdate_check($line) {
-	global $zz_conf;
-	
 	// install date and is it before log date?
 	if ($install_date = wrap_get_setting('zzwrap_install_date')) {
 		if ($line['date'] < substr($install_date, 0, 10)) return -1;
@@ -145,7 +143,7 @@ function mod_default_make_dbupdate_check($line) {
 
 	// update already in logging table?
 	$sql = 'SELECT log_id FROM %s WHERE query = "%s" AND last_update > "%s"';
-	$sql = sprintf($sql, $zz_conf['logging_table'], wrap_db_escape($line['query']), $line['date']);
+	$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'), wrap_db_escape($line['query']), $line['date']);
 	$record = wrap_db_fetch($sql);
 	if ($record) {
 		mod_default_make_dbupdate_log($line, 'exists');

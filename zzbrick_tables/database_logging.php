@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2010, 2014, 2017-2018, 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2010, 2014, 2017-2018, 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -17,7 +17,7 @@
 if (!wrap_access('default_logging')) wrap_quit(403);
 
 $zz['title'] = 'Logging';
-$zz['table'] = $zz_conf['logging_table'];
+$zz['table'] = wrap_get_setting('zzform_logging_table');
 
 $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'log_id';
@@ -28,7 +28,7 @@ $zz['fields'][2]['field_name'] = 'query';
 $zz['fields'][2]['class'] = 'block480a hyphenate';
 $zz['fields'][2]['list_format'] = 'htmlspecialchars';
 
-if (!empty($zz_conf['logging_id'])) {
+if (wrap_get_setting('zzform_logging_id')) {
 	$zz['fields'][3]['title'] = 'Record';
 	$zz['fields'][3]['field_name'] = 'record_id';
 	$zz['fields'][3]['type'] = 'number';
@@ -43,7 +43,7 @@ $zz['fields'][99]['type'] = 'display';
 $zz['fields'][99]['type_detail'] = 'timestamp';
 $zz['fields'][99]['class'] = 'block480';
 
-$zz['sql'] = 'SELECT * FROM '.$zz_conf['logging_table'];
+$zz['sql'] = 'SELECT * FROM '.wrap_get_setting('zzform_logging_table');
 $zz['sqlorder'] = ' ORDER BY log_id DESC';
 
 $zz_conf['max_select'] = 200;
