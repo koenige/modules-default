@@ -44,7 +44,10 @@ function mod_default_maintenance($params) {
 
 	if (isset($brick['page'])) $page = $brick['page'];
 	$page['head'] = isset($page['head']) ? $page['head'] : '';
-	$page['head'] .= wrap_template('zzform-head');
+	if (wrap_get_setting('zzform_no_packagecss'))
+		$page['head'] .= wrap_template('zzform-head');
+	else
+		wrap_package_activate('zzform'); // for CSS
 	$page['title'] = !empty($zz_conf['heading_prefix']) ? wrap_text($zz_conf['heading_prefix']) : '';
 	if (!empty($_GET) OR !empty($_POST)) {
 		$page['title'] .= ' <a href="./">'.wrap_text('Maintenance').'</a>:';
