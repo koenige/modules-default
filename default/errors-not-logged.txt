@@ -357,3 +357,6 @@ qs	string	msclkid
 # Broken search bot that fails to resolve relative URLs
 404	ua	Mozilla/5.0 (compatible;PetalBot;+https://webmaster.petalsearch.com/site/petalbot)
 404	ua	Mozilla/5.0 (Linux; Android 7.0;) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; PetalBot;+https://webmaster.petalsearch.com/site/petalbot)
+
+# Probably referer SPAM
+404	referer	http://www.gumbo.com/
