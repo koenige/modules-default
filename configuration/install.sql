@@ -1124,7 +1124,7 @@ CREATE TABLE `text` (
 CREATE TABLE `webpages` (
   `page_id` int unsigned NOT NULL AUTO_INCREMENT,
   `website_id` int unsigned NOT NULL DEFAULT '1',
-  `title` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(72) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(160) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `identifier` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
