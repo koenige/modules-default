@@ -15,7 +15,7 @@
 SELECT webpages.* FROM /*_PREFIX_*/webpages webpages
 WHERE webpages.identifier IN (%s);
 
--- core_pages_fields --
+-- core_pages__fields --
 /* _latin1'/%s' */
 
 -- core_redirects --
