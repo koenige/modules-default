@@ -201,7 +201,7 @@ function zz_maintenance_tables() {
 	global $zz_conf;
 	$data = [];
 
-	if (!wrap_sql_table('zzform_relations') AND empty($zz_conf['translations_table']))
+	if (!wrap_get_setting('zzform_check_referential_integrity') AND empty($zz_conf['translations_of_fields']))
 		return $data;
 		
 	// Update
@@ -213,7 +213,7 @@ function zz_maintenance_tables() {
 					if (empty($_POST['db_set'][$area][$old])) continue;
 					if ($_POST['db_set'][$area][$old] != 'change') continue;
 					if ($area === 'translation') {
-						$table = $zz_conf['translations_table'];
+						$table = wrap_sql_table('default_translationfields');
 						$field_name = 'db_name';
 					} else {
 						$table = wrap_sql_table('zzform_relations');
@@ -230,7 +230,7 @@ function zz_maintenance_tables() {
 		}
 		wrap_redirect_change();
 	}
-	if (wrap_sql_table('zzform_relations')) {
+	if (wrap_get_setting('zzform_check_referential_integrity')) {
 	// Master database
 		$sql = 'SELECT DISTINCT master_db FROM %s';
 		$sql = sprintf($sql, wrap_sql_table('zzform_relations'));
@@ -242,10 +242,10 @@ function zz_maintenance_tables() {
 		$dbs['detail'] = wrap_db_fetch($sql, 'detail_db', 'single value');
 	}
 
-	if (!empty($zz_conf['translations_table'])) {
+	if (!empty($zz_conf['translations_of_fields'])) {
 	// Translations database	
 		$sql = 'SELECT DISTINCT db_name FROM %s';
-		$sql = sprintf($sql, $zz_conf['translations_table']);
+		$sql = sprintf($sql, wrap_sql_table('default_translationfields'));
 		$dbs['translation'] = wrap_db_fetch($sql, 'db_name', 'single value');
 	}
 	

@@ -16,10 +16,10 @@
 %%% condition unless setting zzform_check_referential_integrity %%%
 <p>%%% text The referential integrity of the database is not checked automatically. %%%</p>
 %%% condition endif %%%
-%%% condition unless setting zzform_translations_table %%%
-<p>%%% text No table for database translations is defined %%% (<code>$zz_conf['translations_table']</code>)</p>
+%%% condition unless setting zzform_translations_of_fields %%%
+<p>%%% text The fields in the database are not translated. %%%</p>
 %%% condition endif %%%
-%%% condition if setting zzform_check_referential_integrity | setting zzform_translations_table %%%
+%%% condition if setting zzform_check_referential_integrity | setting zzform_translations_of_fields %%%
 %%% condition if database_changeable %%%
 <form action="" method="POST">
 %%% condition endif %%%
@@ -65,7 +65,7 @@
 %%% condition if setting zzform_check_referential_integrity %%%
 <p><a href="?integrity">%%% text Check relational integrity %%%</a></p>
 %%% condition endif %%%
-%%% condition if setting zzform_translations_table %%%
+%%% condition if setting zzform_translations_of_fields %%%
 <p><a href="?translationscheck">%%% text Check Translations %%%</a></p>
 %%% condition endif %%%
 %%% condition endif %%%

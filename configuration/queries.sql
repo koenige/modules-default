@@ -13,3 +13,6 @@
 
 -- default_text__table --
 /* text */
+
+-- default_translationfields__table --
+/* _translationfields */

@@ -24,7 +24,7 @@
 function mod_default_make_translationscheck($params) {
 	global $zz_setting;
 	global $zz_conf;
-	if (empty($zz_conf['translations_table'])) return false;
+	if (empty($zz_conf['translations_of_fields'])) return false;
 	
 	$to_delete = false;
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,7 +39,7 @@ function mod_default_make_translationscheck($params) {
 		%s
 		ORDER BY translationfield_id';
 	$sql = sprintf($sql
-		, $zz_conf['translations_table']
+		, wrap_sql_table('default_translationfields')
 		, $to_delete ? sprintf('WHERE translationfield_id = %d', $to_delete) : ''
 	);
 	$fields = wrap_db_fetch($sql, ['db_name', 'translationfield_id']);

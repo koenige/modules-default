@@ -234,7 +234,7 @@ msgid "The referential integrity of the database is not checked automatically."
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#database-tables
-msgid "No table for database translations is defined"
+msgid "The fields in the database are not translated."
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#database-tables

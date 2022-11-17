@@ -270,8 +270,8 @@ msgid "The referential integrity of the database is not checked automatically."
 msgstr "Es wurde keine Tabelle für Datenbankbeziehungen angegeben"
 
 #: zzbrick_request/maintenance.inc.php#database-tables
-msgid "No table for database translations is defined"
-msgstr "Es wurde keine Tabelle für Übersetzungen angegeben"
+msgid "The fields in the database are not translated."
+msgstr "Die Felder in der Datenbank werden nicht übersetzt."
 
 #: zzbrick_request/maintenance.inc.php#database-tables
 msgid "Current database"

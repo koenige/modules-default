@@ -45,10 +45,10 @@ $zz_sub['fields'][2]['title'] = 'Translation field';
 $zz_sub['fields'][2]['field_name'] = 'translationfield_id';
 $zz_sub['fields'][2]['type'] = 'translation_key';
 $zz_sub['fields'][2]['type_detail'] = 'select';
-$zz_sub['fields'][2]['sql'] = 'SELECT translationfield_id
+$zz_sub['fields'][2]['sql'] = sprintf('SELECT translationfield_id
 		, CONCAT(db_name, " | ", table_name, " | ", field_name) AS translationfield
-	FROM _translationfields
-	WHERE field_type = "text"';
+	FROM %s
+	WHERE field_type = "text"', wrap_sql_table('default_translationfields'));
 $zz_sub['fields'][2]['display_field'] = 'translationfield';
 $zz_sub['fields'][2]['exclude_from_search'] = true;
 $zz_sub['fields'][2]['if']['where']['hide_in_list'] = true;
@@ -94,7 +94,7 @@ $zz_sub['sql'] = 'SELECT /*_PREFIX_*/_translations_text.*
 		, CONCAT(iso_639_1, IFNULL(CONCAT("-", variation), "")) AS lang
 		, CONCAT(db_name, " | ", table_name, " | ", field_name) AS translationfield
 	FROM /*_PREFIX_*/_translations_text
-	LEFT JOIN '.$zz_conf['translations_table'].'
+	LEFT JOIN '.wrap_sql_table('default_translationfields').'
 		USING (translationfield_id)
 	LEFT JOIN /*_PREFIX_*/languages USING (language_id)
 	ORDER BY db_name, table_name, field_name, iso_639_1, variation
@@ -108,7 +108,7 @@ if (!empty($_GET['where']['translationfield_id'])) {
 		FROM %s
 		WHERE translationfield_id = %d';
 	$sql = sprintf($sql
-		, $zz_conf['translations_table']
+		, wrap_sql_table('default_translationfields')
 		, $_GET['where']['translationfield_id']
 	);
 	$translation_field = wrap_db_fetch($sql);
