@@ -17,7 +17,7 @@
 if (!wrap_access('default_text')) wrap_quit(403);
 
 $zz['title'] = 'Text';
-$zz['table'] = wrap_sql_query('default_text__table');
+$zz['table'] = wrap_sql_table('default_text');
 
 $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'text_id';
@@ -48,7 +48,7 @@ $zz['fields'][20]['field_name'] = 'last_update';
 $zz['fields'][20]['type'] = 'timestamp';
 $zz['fields'][20]['hide_in_list'] = true;
 
-$zz['sql'] = 'SELECT * FROM '.wrap_sql_query('default_text__table').'
+$zz['sql'] = 'SELECT * FROM '.wrap_sql_table('default_text').'
 	ORDER BY area, text';
 
 $zz['filter'][1]['title'] = wrap_text('Area');
@@ -57,6 +57,6 @@ $zz['filter'][1]['type'] = 'list';
 $zz['filter'][1]['where'] = 'area';
 $zz['filter'][1]['field_name'] = 'area';
 $zz['filter'][1]['sql'] = 'SELECT DISTINCT area, area
-	FROM '.wrap_sql_query('default_text__table');
+	FROM '.wrap_sql_table('default_text');
 	
 $zz_conf['export'] = 'CSV Excel';
