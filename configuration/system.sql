@@ -32,12 +32,36 @@ SELECT * FROM /*_PREFIX_*/redirects WHERE old_url = _latin1'*%s';
 SELECT CONCAT(mime_content_type, '/', mime_subtype) FROM /*_PREFIX_*/filetypes
 WHERE extension = _latin1'%s';
 
+-- core_redirects_new_url__fields --
+/* new_url */
+
+-- core_redirects_old_url__fields --
+/* old_url */
+
+
+-- page_author_id__fields --
+/* author_person_id */
 
 -- page_breadcrumbs --
 SELECT page_id, title
 	, CONCAT(identifier, IF(STRCMP(ending, 'none'), ending, '')) AS identifier 
 	, mother_page_id
 FROM /*_PREFIX_*/webpages;
+
+-- page_content__fields --
+/* content */
+
+-- page_ending__fields --
+/* ending */
+
+-- page_id__fields --
+/* page_id */
+
+-- page_last_update__fields --
+/* last_update */
+
+-- page_live__fields --
+/* live = "yes" */
 
 -- page_menu --
 SELECT page_id
@@ -57,6 +81,12 @@ ORDER BY sequence;
 
 -- page_menu_hierarchy --
 SELECT mother_page_id FROM /*_PREFIX_*/webpages WHERE page_id = %d;
+
+-- page_menu__table --
+/* webpages */
+
+-- page_title__fields --
+/* title */
 
 
 -- auth_logout --
