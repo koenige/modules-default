@@ -266,7 +266,7 @@ msgid "Relation and Translation Tables"
 msgstr "Beziehungs- und Übersetzungstabellen"
 
 #: zzbrick_request/maintenance.inc.php#database-tables
-msgid "No table for database relations is defined"
+msgid "The referential integrity of the database is not checked automatically."
 msgstr "Es wurde keine Tabelle für Datenbankbeziehungen angegeben"
 
 #: zzbrick_request/maintenance.inc.php#database-tables

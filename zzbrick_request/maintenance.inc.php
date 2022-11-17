@@ -201,7 +201,7 @@ function zz_maintenance_tables() {
 	global $zz_conf;
 	$data = [];
 
-	if (!wrap_get_setting('zzform_relations_table') AND empty($zz_conf['translations_table']))
+	if (!wrap_sql_query('zzform_relations__table') AND empty($zz_conf['translations_table']))
 		return $data;
 		
 	// Update
@@ -216,7 +216,7 @@ function zz_maintenance_tables() {
 						$table = $zz_conf['translations_table'];
 						$field_name = 'db_name';
 					} else {
-						$table = wrap_get_setting('zzform_relations_table');
+						$table = wrap_sql_query('zzform_relations__table');
 						$field_name = $area.'_db';
 					}
 					$sql = 'UPDATE %s SET %s = "%s" WHERE %s = "%s"';
@@ -230,15 +230,15 @@ function zz_maintenance_tables() {
 		}
 		wrap_redirect_change();
 	}
-	if (wrap_get_setting('zzform_relations_table')) {
+	if (wrap_sql_query('zzform_relations__table')) {
 	// Master database
 		$sql = 'SELECT DISTINCT master_db FROM %s';
-		$sql = sprintf($sql, wrap_get_setting('zzform_relations_table'));
+		$sql = sprintf($sql, wrap_sql_query('zzform_relations__table'));
 		$dbs['master'] = wrap_db_fetch($sql, 'master_db', 'single value');
 
 	// Detail database	
 		$sql = 'SELECT DISTINCT detail_db FROM %s';
-		$sql = sprintf($sql, wrap_get_setting('zzform_relations_table'));
+		$sql = sprintf($sql, wrap_sql_query('zzform_relations__table'));
 		$dbs['detail'] = wrap_db_fetch($sql, 'detail_db', 'single value');
 	}
 
@@ -301,7 +301,7 @@ function zz_maintenance_integrity($page) {
 	$page['query_strings'][] = 'integrity';
 
 	$sql = 'SELECT * FROM %s';
-	$sql = sprintf($sql, wrap_get_setting('zzform_relations_table'));
+	$sql = sprintf($sql, wrap_sql_query('zzform_relations__table'));
 	$relations = wrap_db_fetch($sql, 'rel_id');
 
 	$results = [];

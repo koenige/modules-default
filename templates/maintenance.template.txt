@@ -13,13 +13,13 @@
 <h2><a href="?dbmodules">%%% text Modules %%%</a></h2>
 
 <h2>%%% text Relation and Translation Tables %%%</h2>
-%%% condition unless setting zzform_relations_table %%%
-<p>%%% text No table for database relations is defined %%% (<code>$zz_setting['zzform_relations_table']</code>)</p>
+%%% condition unless setting zzform_check_referential_integrity %%%
+<p>%%% text The referential integrity of the database is not checked automatically. %%%</p>
 %%% condition endif %%%
 %%% condition unless setting zzform_translations_table %%%
 <p>%%% text No table for database translations is defined %%% (<code>$zz_conf['translations_table']</code>)</p>
 %%% condition endif %%%
-%%% condition if setting zzform_relations_table | setting zzform_translations_table %%%
+%%% condition if setting zzform_check_referential_integrity | setting zzform_translations_table %%%
 %%% condition if database_changeable %%%
 <form action="" method="POST">
 %%% condition endif %%%
@@ -62,7 +62,7 @@
 <input type="submit">
 </form>
 %%% condition endif %%%
-%%% condition if setting zzform_relations_table %%%
+%%% condition if setting zzform_check_referential_integrity %%%
 <p><a href="?integrity">%%% text Check relational integrity %%%</a></p>
 %%% condition endif %%%
 %%% condition if setting zzform_translations_table %%%
