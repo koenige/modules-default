@@ -11,11 +11,14 @@
  */
 
 
--- default_password__fields --
-/* password */
-
 -- default_text__table --
 /* text */
 
 -- default_translationfields__table --
 /* _translationfields */
+
+-- default_translation_breadcrumbs__table --
+/* webpages */
+
+-- default_translation_pages__table --
+/* webpages */

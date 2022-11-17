@@ -106,6 +106,9 @@ WHERE active = 'yes' AND username = _latin1'%s';
 
 -- auth_login_settings --
 
+-- auth_password__fields --
+/* password */
+
 
 -- ids_categories --
 SELECT path, category_id FROM /*_PREFIX_*/categories ORDER BY path;
