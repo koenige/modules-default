@@ -11,6 +11,18 @@
  */
 
 
+-- default_menu__table --
+/* webpages */
+
+-- default_password__field --
+/* password */
+
+-- default_redirects_new_url__field --
+/* new_url */
+
+-- default_redirects_old_url__field --
+/* old_url */
+
 -- default_text__table --
 /* text */
 
