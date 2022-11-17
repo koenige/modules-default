@@ -86,7 +86,7 @@
 
 <h2><a href="?filetree">%%% text Filetree %%%</a></h2>
 
-%%% condition if setting zzform_logging_table %%%
+%%% condition if setting zzform_logging %%%
 <h2>%%% text SQL log %%%</h2>
 <ul>
 <li><form method="GET" action="">

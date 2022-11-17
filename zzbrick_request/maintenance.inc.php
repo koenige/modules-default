@@ -1380,7 +1380,7 @@ function zz_maintenance_sqldownload($page) {
 	list($data, $limit) = mod_default_maintenance_read_logging($_GET['sqldownload']);
 	if (!$data) {
 		$sql = 'SELECT MAX(log_id) FROM %s';
-		$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'));
+		$sql = sprintf($sql, wrap_sql_query('zzform_logging__table'));
 		$max_logs = wrap_db_fetch($sql, '', 'single value');
 		$page['title'] .= ' '.wrap_text('Download SQL log');
 		$page['breadcrumbs'][] = wrap_text('Download SQL log');
@@ -1408,14 +1408,14 @@ function mod_default_maintenance_read_logging($start) {
 	$limit = 0;
 
 	$sql = 'SELECT COUNT(*) FROM %s WHERE log_id >= %d ORDER BY log_id';
-	$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'), $start);
+	$sql = sprintf($sql, wrap_sql_query('zzform_logging__table'), $start);
 	$logcount = wrap_db_fetch($sql, '', 'single value');
 	if ($logcount > 10000) {
 		$limit = 10000;
 	}
 
 	$sql = 'SELECT * FROM %s WHERE log_id >= %d ORDER BY log_id';
-	$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'), $start);
+	$sql = sprintf($sql, wrap_sql_query('zzform_logging__table'), $start);
 	if ($limit) $sql .= sprintf(' LIMIT %d', 10000);
 	$data = wrap_db_fetch($sql, 'log_id');
 	return [$data, $limit];
@@ -1455,7 +1455,7 @@ function mod_default_maintenance_add_logging($json) {
 
 	$first_id = key($json);
 	$sql = 'SELECT MAX(log_id) FROM %s';
-	$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'));
+	$sql = sprintf($sql, wrap_sql_query('zzform_logging__table'));
 	$max_logs = wrap_db_fetch($sql, '', 'single value');
 	if ($max_logs + 1 !== $first_id) {
 		return ['max_logs' => $max_logs, 'first_id' => $first_id];
@@ -1469,7 +1469,7 @@ function mod_default_maintenance_add_logging($json) {
 			return ['log_id' => $line['log_id'], 'add_error' => 1];
 		}
 		$sql = sprintf($log_template,
-			wrap_get_setting('zzform_logging_table'), wrap_db_escape($line['query'])
+			wrap_sql_query('zzform_logging__table'), wrap_db_escape($line['query'])
 			, ($line['record_id'] ? $line['record_id'] : 'NULL')
 			, wrap_db_escape($line['user']), $line['last_update']
 		);
@@ -1549,7 +1549,7 @@ function zz_maintenance_serversync($page) {
 
 function mod_default_maintenance_last_log() {
 	$sql = 'SELECT * FROM %s ORDER BY log_id DESC LIMIT 1';
-	$sql = sprintf($sql, wrap_get_setting('zzform_logging_table'));
+	$sql = sprintf($sql, wrap_sql_query('zzform_logging__table'));
 	$data = wrap_db_fetch($sql);
 	return $data;
 }

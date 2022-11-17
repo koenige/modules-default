@@ -17,7 +17,7 @@
 if (!wrap_access('default_logging')) wrap_quit(403);
 
 $zz['title'] = 'Logging';
-$zz['table'] = wrap_get_setting('zzform_logging_table');
+$zz['table'] = wrap_sql_query('zzform_logging__table');
 
 $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'log_id';
@@ -43,7 +43,7 @@ $zz['fields'][99]['type'] = 'display';
 $zz['fields'][99]['type_detail'] = 'timestamp';
 $zz['fields'][99]['class'] = 'block480';
 
-$zz['sql'] = 'SELECT * FROM '.wrap_get_setting('zzform_logging_table');
+$zz['sql'] = 'SELECT * FROM '.wrap_sql_query('zzform_logging__table');
 $zz['sqlorder'] = ' ORDER BY log_id DESC';
 
 $zz_conf['max_select'] = 200;
