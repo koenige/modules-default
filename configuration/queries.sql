@@ -22,3 +22,12 @@
 
 -- default_translation_pages__table --
 /* webpages */
+
+-- default_translations --
+SELECT translation_id, translationfield_id, translation, field_id,
+"/*_SETTING default_source_language _*/" AS source_language
+FROM /*_PREFIX_*/_translations_%s translations
+LEFT JOIN /*_PREFIX_*/languages languages USING (language_id)
+WHERE translationfield_id IN (%s) 
+AND field_id IN (%s)
+AND languages.iso_639_1 = "%s"
