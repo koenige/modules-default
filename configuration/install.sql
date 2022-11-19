@@ -1092,7 +1092,7 @@ CREATE TABLE `logins` (
 -- redirects --
 CREATE TABLE `redirects` (
   `redirect_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `old_url` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `old_url` varchar(160) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `new_url` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `code` smallint unsigned NOT NULL DEFAULT '301',
   `area` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
