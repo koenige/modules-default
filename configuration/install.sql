@@ -287,7 +287,7 @@ CREATE TABLE `_uris` (
 -- categories --
 CREATE TABLE `categories` (
   `category_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `category` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_short` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `main_category_id` int unsigned DEFAULT NULL,

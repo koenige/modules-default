@@ -485,3 +485,4 @@
 /* 2022-08-10-1 */	UPDATE webpages SET content = REPLACE(content, '%%% forms media * %%%', '%%% forms media %%%') WHERE content LIKE '%%% forms media * %%%' AND SUBSTRING(identifier, -1) != '*';
 /* 2022-11-13-1 */	ALTER TABLE `webpages` CHANGE `title` `title` varchar(72) COLLATE 'utf8mb4_unicode_ci' NOT NULL AFTER `website_id`;
 /* 2022-11-19-1 */	ALTER TABLE `redirects` CHANGE `old_url` `old_url` varchar(160) COLLATE 'latin1_general_ci' NOT NULL AFTER `redirect_id`;
+/* 2022-11-19-2 */	ALTER TABLE `categories` CHANGE `category` `category` varchar(120) COLLATE 'utf8mb4_unicode_ci' NOT NULL AFTER `category_id`;
