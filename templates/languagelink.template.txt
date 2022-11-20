@@ -14,7 +14,11 @@
 %%% condition else %%%
 <strong>
 %%% condition endif %%%
+%%% condition if setting default_languagelink_full_language %%%
+%%% item language %%%
+%%% condition else %%%
 <abbr title="%%% item language %%%">%%% item iso %%%</abbr>
+%%% condition endif %%%
 %%% condition if link %%%
 </a>
 %%% condition else %%%
