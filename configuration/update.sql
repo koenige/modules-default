@@ -486,3 +486,5 @@
 /* 2022-11-13-1 */	ALTER TABLE `webpages` CHANGE `title` `title` varchar(72) COLLATE 'utf8mb4_unicode_ci' NOT NULL AFTER `website_id`;
 /* 2022-11-19-1 */	ALTER TABLE `redirects` CHANGE `old_url` `old_url` varchar(160) COLLATE 'latin1_general_ci' NOT NULL AFTER `redirect_id`;
 /* 2022-11-19-2 */	ALTER TABLE `categories` CHANGE `category` `category` varchar(120) COLLATE 'utf8mb4_unicode_ci' NOT NULL AFTER `category_id`;
+/* 2022-11-21-1 */	UPDATE _settings SET setting_key = 'error_log_post' WHERE setting_key = 'zzform_error_log_post';
+/* 2022-11-21-2 */	UPDATE _settings SET setting_key = 'log_errors_max_len' WHERE setting_key = 'zzform_log_errors_max_len';
