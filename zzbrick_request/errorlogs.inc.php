@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -22,13 +22,12 @@ function mod_default_errorlogs() {
 	global $zz_setting;
 	global $zz_conf;
 
-	if (!empty($zz_conf['error_handling'])) {
-		$data['error_handling_'.$zz_conf['error_handling']] = true;
+	if (wrap_get_setting('error_handling')) {
+		$data['error_handling_'.wrap_get_setting('error_handling')] = true;
 	}
-	$data['error_mail_level'] = is_array($zz_conf['error_mail_level'])
-		? implode(', ', $zz_conf['error_mail_level']) : $zz_conf['error_mail_level'];
+	$data['error_mail_level'] = implode(', ', wrap_get_setting('error_mail_level'));
 	
-	if ($zz_conf['log_errors']) {
+	if (wrap_get_setting('log_errors')) {
 		$data['logfiles'] = mf_default_logfiles();
 		$data['logfiles'] = array_values($data['logfiles']);
 		foreach ($data['logfiles'] as $index => $logfile) {

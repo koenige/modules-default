@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -33,8 +33,8 @@ function mf_default_logfiles() {
 	// zzform, zzwrap logfiles?
 	$levels = ['error', 'warning', 'notice'];
 	foreach ($levels as $level) {
-		if ($zz_conf['error_log'][$level]) {
-			$logfile = realpath($zz_conf['error_log'][$level]);
+		if (wrap_get_setting('error_log['.$level.']')) {
+			$logfile = realpath(wrap_get_setting('error_log['.$level.']'));
 			if (!$logfile) continue;
 			$logfiles[$logfile]['path'] = $logfile;
 			$logfiles[$logfile]['log'] = basename($logfile);
@@ -44,8 +44,7 @@ function mf_default_logfiles() {
 		}
 	}
 	// module logfiles, extra logfiles?
-	if (empty($zz_setting['logfiles_custom'])) $zz_setting['logfiles_custom'] = [];
-	$extra_logfiles = array_merge($zz_setting['modules'], $zz_setting['logfiles_custom']);
+	$extra_logfiles = array_merge($zz_setting['modules'], wrap_get_setting('logfiles_custom'));
 	foreach ($extra_logfiles as $log) {
 		$logfile = sprintf('%s/%s.log', $zz_setting['log_dir'], $log);
 		if (file_exists($logfile)) {
