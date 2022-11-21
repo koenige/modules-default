@@ -25,13 +25,13 @@ function page_languagelink($params, $page) {
 
 	// language switcher makes only sense for valid URLs
 	if (!empty($page['status']) AND $page['status'] !== 200) return '';
-	if (empty($zz_setting['languages_allowed'])) return '';
+	if (!wrap_get_setting('languages_allowed')) return '';
 	
 	$link = $zz_setting['request_uri'];
 	if (str_starts_with($link, '/'.$zz_setting['lang']))
 		$link = substr($link, 3);
 
-	foreach ($zz_setting['languages_allowed'] as $lang) {
+	foreach (wrap_get_setting('languages_allowed') as $lang) {
 		$languages[] = [
 			'iso' => $lang,
 			'language' => $zz_setting['languages_names'][$lang] ?? $lang
