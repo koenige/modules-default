@@ -46,7 +46,7 @@ $zz_sub['fields'][5]['path'] = [
 	'string1' => '/',
 	'field1' => 'filename',
 	'string2' => '.',
-	'string3' => $zz_setting['media_preview_size'],
+	'string3' => wrap_get_setting('media_preview_size'),
 	'string4' => '.',
 	'extension' => 'thumb_extension',
 	'webstring1' => '?v=',
@@ -84,7 +84,7 @@ $zz_sub['subselect']['sql'] = 'SELECT page_id, filename, t_mime.extension, versi
 	AND /*_PREFIX_*/webpages_media.sequence = 1
 ';
 $zz_sub['subselect']['concat_fields'] = '';
-$zz_sub['subselect']['field_suffix'][0] = '.'.$zz_setting['media_preview_size'].'.';
+$zz_sub['subselect']['field_suffix'][0] = '.'.wrap_get_setting('media_preview_size').'.';
 $zz_sub['subselect']['field_suffix'][1] = '?v=';
 $zz_sub['subselect']['prefix'] = '<img src="'.$zz_setting['files_path'].'/';
 $zz_sub['subselect']['suffix'] = '">';
