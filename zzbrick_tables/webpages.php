@@ -175,11 +175,21 @@ if (!empty($zz_setting['multiple_websites'])) {
 
 	$zz['sql'] = 'SELECT /*_PREFIX_*/webpages.*
 			, main_pages.title AS mother_title
+			, IF(/*_PREFIX_*/webpages.live = "yes", IF(LOCATE("*", /*_PREFIX_*/webpages.identifier), NULL,
+					IF(LOCATE("%", /*_PREFIX_*/webpages.identifier), NULL, 
+				CONCAT(IF(SUBSTRING(/*_PREFIX_*/webpages.identifier, 1, 1) = "/", 
+					CONCAT("https://", IFNULL(/*_PREFIX_*/_settings.setting_value, domain)), ""
+				), /*_PREFIX_*/webpages.identifier, IF(STRCMP(/*_PREFIX_*/webpages.ending, "none"), /*_PREFIX_*/webpages.ending, "")))
+			), NULL) AS webpage_url
 			, /*_PREFIX_*/websites.domain
 		FROM /*_PREFIX_*/webpages
 		LEFT JOIN /*_PREFIX_*/websites USING (website_id) 
 		LEFT JOIN /*_PREFIX_*/webpages AS main_pages 
-			ON /*_PREFIX_*/webpages.mother_page_id = main_pages.page_id';
+			ON /*_PREFIX_*/webpages.mother_page_id = main_pages.page_id
+		LEFT JOIN /*_PREFIX_*/_settings
+			ON /*_PREFIX_*/_settings.website_id = /*_PREFIX_*/websites.website_id
+			AND setting_key = "canonical_hostname"
+		';
 
 	if (empty($zz['where']['website_id']) AND empty($_GET['where']['website_id'])) {
 		$zz['filter'][1]['sql'] = 'SELECT website_id, domain
