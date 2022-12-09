@@ -31,6 +31,8 @@ function page_languagelink($params, $page) {
 	if (str_starts_with($link, '/'.$zz_setting['lang']))
 		$link = substr($link, 3);
 	$links_translated = wrap_translate_url_other();
+	if (array_key_exists(wrap_get_setting('default_source_language'), $links_translated))
+		$link = $links_translated[wrap_get_setting('default_source_language')];
 	
 	foreach (wrap_get_setting('languages_allowed') as $lang) {
 		$languages[] = [
@@ -44,6 +46,5 @@ function page_languagelink($params, $page) {
 		$languages[$index]['link'] = $links_translated[$values['iso']] ?? $link;
 	}
 	
-	$text = wrap_template('languagelink', $languages);
-	return $text;
+	return wrap_template('languagelink', $languages);
 }
