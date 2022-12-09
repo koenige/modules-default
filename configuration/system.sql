@@ -86,6 +86,16 @@ SELECT mother_page_id FROM /*_PREFIX_*/webpages WHERE page_id = %d;
 -- page_menu__table --
 /* webpages */
 
+-- page_subpages --
+SELECT page_id
+	, title, description, identifier
+	, IF(STRCMP(ending, 'none'), ending, '') AS ending
+	, parameters
+FROM /*_PREFIX_*/webpages
+WHERE mother_page_id = %d
+AND live = 'yes'
+ORDER BY sequence, identifier;
+
 -- page_title__fields --
 /* title */
 

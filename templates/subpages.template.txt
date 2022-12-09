@@ -1,0 +1,17 @@
+# default module
+# HTML output: sub pages
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2022 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<nav class="subpages">
+<ul>
+%%% loop start %%%
+<li><a href="%%% setting base %%%%%% item identifier %%%%%% item ending %%%">%%% item title %%%</a> %%% item description "– %s" %%%</li>
+%%% loop end %%%
+</ul>
+</nav>
