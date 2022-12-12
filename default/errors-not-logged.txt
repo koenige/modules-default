@@ -363,3 +363,6 @@ qs	string	msclkid
 
 # Probably referer SPAM
 404	referer	http://www.gumbo.com/
+
+# Looking from 5.188. for admins
+404	all	/admin
