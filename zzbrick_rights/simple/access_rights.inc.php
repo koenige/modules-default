@@ -14,28 +14,32 @@
 
 
 function brick_access_rights($parameter = []) {
-	if (empty($_SESSION['login_rights'])) 
-		return false; // no rights for this person = no access
-
 	// allow parameter to be array or string
 	if (!$parameter) $group = false;
 	elseif (is_array($parameter)) $group = $parameter[0];
 	else $group = $parameter;
 
+	$login_rights = $_SESSION['login_rights'] ?? false;
+
 	$group = strtolower($group);
 	switch ($group) {
+	case 'localhost':
+		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') return true;
+		if ($_SERVER['REMOTE_ADDR'] === '::1') return true;
+		if ($login_rights) return true; // a user is logged in
+		break;
 	case 'admin':
 	default:
-		if ($_SESSION['login_rights'] === 'admin') return true;
+		if ($login_rights === 'admin') return true;
 		break;
 	case 'read and write':
-		if ($_SESSION['login_rights'] === 'admin') return true;
-		if ($_SESSION['login_rights'] === 'read and write') return true;
+		if ($login_rights === 'admin') return true;
+		if ($login_rights === 'read and write') return true;
 		break;
 	case 'read':
-		if ($_SESSION['login_rights'] === 'admin') return true;
-		if ($_SESSION['login_rights'] === 'read and write') return true;
-		if ($_SESSION['login_rights'] === 'read') return true;
+		if ($login_rights === 'admin') return true;
+		if ($login_rights === 'read and write') return true;
+		if ($login_rights === 'read') return true;
 		break;
 	}
 	return false;
