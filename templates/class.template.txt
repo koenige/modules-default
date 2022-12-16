@@ -1,0 +1,15 @@
+# default module
+# HTML output: class
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2022 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% condition if class %%%
+<div markdown="1" class="%%% item class %%%">
+%%% condition elseif close %%%
+</div>
+%%% condition endif %%%
