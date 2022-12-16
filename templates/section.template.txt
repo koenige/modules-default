@@ -1,0 +1,17 @@
+# default module
+# HTML output: section
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2022 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% condition if section %%%
+<section class="%%% item section %%%">
+<div markdown="1">
+%%% condition elseif close %%%
+</div>
+</section>
+%%% condition endif %%%
