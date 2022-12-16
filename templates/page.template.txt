@@ -39,7 +39,7 @@
 %%% page text %%%
 
 %%% page gallery %%%
-%%% page footlinks %%%
+%%% page docs %%%
 </div>
 
 <footer>
