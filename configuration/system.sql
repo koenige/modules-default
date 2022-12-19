@@ -100,6 +100,13 @@ ORDER BY sequence, identifier;
 /* title */
 
 
+-- auth_acces_token --
+SELECT username
+FROM /*_PREFIX_*/tokens
+LEFT JOIN /*_PREFIX_*/logins USING (login_id)
+WHERE access_token = "%s"
+AND access_token_expires > NOW()
+
 -- auth_logout --
 UPDATE /*_PREFIX_*/logins SET logged_in = 'no' WHERE login_id = %s;
 
