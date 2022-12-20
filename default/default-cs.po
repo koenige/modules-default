@@ -20,7 +20,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 1.7.1\n"
+
+#: configuration/settings.cfg
+msgid "List of services used for geocoding"
+msgstr ""
 
 #: templates/login.template.txt
 msgid "You have been logged out."
@@ -34,8 +38,7 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: templates/login.template.txt
-#: zzbrick_tables/settings.php
+#: templates/login.template.txt zzbrick_tables/settings.php
 msgid "Login"
 msgstr ""
 
@@ -96,6 +99,26 @@ msgstr ""
 msgid "Back to login"
 msgstr ""
 
+#: templates/search.template.txt
+msgid "Search results for “%s”"
+msgstr "Výsledky hledání pro “%s”"
+
+#: templates/search.template.txt
+msgid "We found nothing matching “%s”."
+msgstr "Nenašli jsme nic, co by odpovídalo „%s“."
+
+#: templates/search.template.txt
+msgid "Please enter a search term."
+msgstr "Zadejte prosím hledaný termín."
+
+#: templates/search.template.txt
+msgid "Search"
+msgstr "Hledat"
+
+#: templates/search-default.template.txt
+msgid "No webpages were found matching your search."
+msgstr "Nebyly nalezeny žádné webové stránky odpovídající vašemu vyhledávání."
+
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Username"
@@ -125,8 +148,8 @@ msgstr "Pravidla pro tvorbu bezpečného hesla"
 #: zzbrick_forms/my-password.php
 msgid "password-rules"
 msgstr ""
-"Doporučuje se používat velká i "
-"malá písmena, čísla a speciální znaky jako ?=+; atd."
+"Doporučuje se používat velká i malá písmena, čísla a speciální znaky jako ?="
+"+; atd."
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
@@ -152,8 +175,7 @@ msgstr ""
 msgid "Setting"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php
-#: zzbrick_tables/settings.php
+#: zzbrick_request/maintenance.inc.php zzbrick_tables/settings.php
 msgid "Value"
 msgstr ""
 
@@ -206,10 +228,12 @@ msgid "Insert"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
+#: zzbrick_tables/database_logging.php
 msgid "Update"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
+#: zzbrick_tables/database_logging.php
 msgid "Delete"
 msgstr ""
 
@@ -311,8 +335,7 @@ msgstr ""
 msgid "Folder"
 msgstr ""
 
-#: zzbrick_request/sso.inc.php
-#: zzbrick_request/maintenance.inc.php#files
+#: zzbrick_request/sso.inc.php zzbrick_request/maintenance.inc.php#files
 msgid "unknown"
 msgstr ""
 
@@ -402,6 +425,26 @@ msgstr ""
 
 #: templates/errorlogs.template.txt
 msgid "disabled"
+msgstr ""
+
+#: templates/translationscheck.template.txt
+msgid "Translations without a corresponding record"
+msgstr ""
+
+#: templates/translationscheck.template.txt
+msgid "%s records were deleted."
+msgstr ""
+
+#: templates/translationscheck.template.txt
+msgid "Check Translations"
+msgstr ""
+
+#: templates/translationscheck.template.txt
+msgid "Database:"
+msgstr ""
+
+#: templates/translationscheck.template.txt
+msgid "Records"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#error-logfiles
@@ -691,6 +734,10 @@ msgstr ""
 msgid "Last update"
 msgstr ""
 
+#: zzbrick_tables/database_logging.php
+msgid "Don’t delete"
+msgstr ""
+
 #: zzbrick_tables/database_translations.php
 msgid "Translations"
 msgstr ""
@@ -713,6 +760,14 @@ msgstr ""
 
 #: zzbrick_tables/database_translations.php
 msgid "Data Type"
+msgstr ""
+
+#: zzbrick_tables/database_translations.php
+msgid "text line"
+msgstr ""
+
+#: zzbrick_tables/database_translations.php
+msgid "memo"
 msgstr ""
 
 #. Here, a boilerplate text for redirects is needed
@@ -763,28 +818,28 @@ msgstr ""
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Webpages"
-msgstr ""
+msgstr "Webové stránky"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Title"
-msgstr ""
+msgstr "Title"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Content"
-msgstr ""
+msgstr "Obsah"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Identifier"
-msgstr ""
+msgstr "Identifikátor"
 
 #. Webpages: Possible ending of URL
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "none"
-msgstr ""
+msgstr "žádný"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
@@ -796,7 +851,7 @@ msgstr ""
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Sequence"
-msgstr ""
+msgstr "Postup"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
@@ -836,6 +891,27 @@ msgctxt "default"
 msgid "Last Update"
 msgstr ""
 
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Short text (max. 160 characters), only appears in search results."
+msgstr ""
+
+#: zzbrick_tables/webpages-media.php
+msgid "Media"
+msgstr ""
+
+#: zzbrick_tables/webpages-media.php
+msgid "Preview"
+msgstr ""
+
+#: zzbrick_tables/webpages-media.php
+msgid "No."
+msgstr ""
+
+#: zzbrick_tables/webpages-media.php
+msgid "Medium"
+msgstr ""
+
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Countries"
@@ -864,6 +940,33 @@ msgstr ""
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Will country be used on website?"
+msgstr ""
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Country Code 3"
+msgstr ""
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Three letter country code according to ISO 3166"
+msgstr ""
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "IOC Code"
+msgstr ""
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "IOC"
+msgstr ""
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid ""
+"Three letter country code according to the International Olympic Committee "
+"(IOC)"
 msgstr ""
 
 #: zzbrick_tables/languages.php
@@ -906,6 +1009,16 @@ msgctxt "default"
 msgid "Will language be used on website?"
 msgstr ""
 
+#: zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Variation"
+msgstr ""
+
+#: zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Variation of language, e. g. informal"
+msgstr ""
+
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Categories"
@@ -928,12 +1041,27 @@ msgstr ""
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
+msgid "Identifier / Parameters"
+msgstr ""
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
 msgid "Parameters"
 msgstr ""
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Internal parameters. Change with care."
+msgstr ""
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Abbreviation"
+msgstr ""
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Abbr."
 msgstr ""
 
 #: zzbrick_tables/logins.php
@@ -1003,13 +1131,11 @@ msgctxt "default"
 msgid "Login rights"
 msgstr ""
 
-#: zzbrick_tables/languages.php
-#: zzbrick_tables/countries.php
+#: zzbrick_tables/languages.php zzbrick_tables/countries.php
 msgid "yes"
 msgstr ""
 
-#: zzbrick_tables/languages.php
-#: zzbrick_tables/countries.php
+#: zzbrick_tables/languages.php zzbrick_tables/countries.php
 msgid "no"
 msgstr ""
 
@@ -1023,6 +1149,42 @@ msgstr ""
 msgid "Translation field"
 msgstr ""
 
+#: zzbrick_tables/text.php
+msgid "More Text"
+msgstr ""
+
 #: zzbrick_make/dbupdate.inc.php
 msgid "Ignore"
+msgstr ""
+
+#: zzbrick_tables/websites.php
+msgid "Websites"
+msgstr ""
+
+#: zzbrick_tables/websites.php
+msgid "Domain name without subdomain www"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "Modules"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "List of Modules"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "Installation"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "enabled?"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "ReadMe"
+msgstr ""
+
+#: zzbrick_make/dbmodules.inc.php
+msgid "Install module"
 msgstr ""

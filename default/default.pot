@@ -1076,7 +1076,7 @@ msgstr ""
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
-msgid "<abbr title="Is user online">Online?</abbr>"
+msgid "<abbr title=\"Is user online\">Online?</abbr>"
 msgstr ""
 
 #: zzbrick_tables/logins.php
