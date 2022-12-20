@@ -45,7 +45,7 @@ WHERE extension = _latin1'%s';
 -- page_breadcrumbs --
 SELECT page_id
 	, SUBSTRING_INDEX(title, "–", 1) AS title
-	, CONCAT(identifier, IF(STRCMP(ending, 'none'), ending, '')) AS identifier 
+	, identifier, IF(STRCMP(ending, 'none'), ending, '') AS ending
 	, mother_page_id
 FROM /*_PREFIX_*/webpages;
 
