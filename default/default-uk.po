@@ -102,11 +102,11 @@ msgstr ""
 
 #: templates/search.template.txt
 msgid "Search results for “%s”"
-msgstr "Результати пошуку для \"%s\""
+msgstr "Результати пошуку для «%s»"
 
 #: templates/search.template.txt
 msgid "We found nothing matching “%s”."
-msgstr "Ми не знайшли нічого, що відповідає “%s”."
+msgstr "Ми не знайшли нічого, що відповідає «%s»."
 
 #: templates/search.template.txt
 msgid "Please enter a search term."
