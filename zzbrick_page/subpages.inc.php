@@ -26,5 +26,23 @@ function page_subpages() {
 	$sql = sprintf($sql, $zz_page['db'][wrap_sql_fields('page_id')]);
 	$data = wrap_db_fetch($sql, wrap_sql_fields('page_id'));
 	$data = wrap_translate($data, 'webpages');
+	
+	foreach ($data as $id => $line) {
+		if (strstr($line['identifier'], $zz_page['db']['identifier'].'/')) {
+			$data[$id]['identifier'] = str_replace(
+				$zz_page['db']['identifier'].'/', $zz_page['url']['full']['path'], $line['identifier']
+			);
+		}
+		$access = wrap_access_page($line, $zz_page['access'] ?? [], false);
+		if (!$access) {
+			unset($data[$id]);
+			continue;
+		}
+		if (!empty($line['parameters'])) {
+			parse_str($line['parameters'], $data[$id]['parameters']);
+			if (!empty($data[$id]['parameters']['description']) AND !$line['description'])
+				$data[$id]['description'] = rtrim(ltrim($data[$id]['parameters']['description'], '"'), '"');
+		}
+	}
 	return wrap_template('subpages', $data);
 }
