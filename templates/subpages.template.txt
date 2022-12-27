@@ -8,10 +8,14 @@
 # @copyright Copyright © 2022 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
+%%% condition unless just_list_elements %%%
 <nav class="subpages">
 <ul>
+%%% condition endif %%%
 %%% loop start %%%
 <li><a href="%%% setting base %%%%%% item identifier %%%%%% item ending %%%">%%% item title %%%</a> %%% item description "– %s" %%%</li>
 %%% loop end %%%
+%%% condition unless just_list_elements %%%
 </ul>
 </nav>
+%%% condition endif %%%
