@@ -77,7 +77,7 @@ $zz['fields'][3]['field_name'] = 'password';
 $zz['fields'][3]['type'] = 'password';
 $zz['fields'][3]['sql_password_check'] = 'SELECT /*_PREFIX_*/logins.password 
 	FROM /*_PREFIX_*/logins WHERE login_id = ';
-$zz['fields'][3]['hide_in_list'] = 'true';
+$zz['fields'][3]['hide_in_list'] = true;
 $zz['fields'][3]['minlength'] = wrap_get_setting('login_password_minlength');
 
 $zz['fields'][13] = []; // random password
