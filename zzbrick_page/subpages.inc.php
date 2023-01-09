@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -35,6 +35,7 @@ function page_subpages(&$params = []) {
 	}
 	$params = [];
 	
+	$last_level = 1;
 	foreach ($data as $id => $line) {
 		if (!is_numeric($id)) continue;
 		if (strstr($line['identifier'], $zz_page['db']['identifier'].'/')) {
@@ -53,9 +54,17 @@ function page_subpages(&$params = []) {
 				unset($data[$id]);
 				continue;
 			}
+			if (!empty($data[$id]['parameters']['subpages_qs']))
+				$data[$id]['qs'] = '?'.$data[$id]['parameters']['subpages_qs'];
 			if (!empty($data[$id]['parameters']['description']) AND !$line['description'])
 				$data[$id]['description'] = rtrim(ltrim($data[$id]['parameters']['description'], '"'), '"');
 		}
+		$level = $data[$id]['parameters']['subpages_level'] ?? 1;
+		if ($level < $last_level)
+			$data[$id]['levelup'] = true;
+		elseif ($last_level < $level)
+			$data[$id]['leveldown'] = true;
+		$last_level = $level;
 	}
 	return wrap_template('subpages', $data);
 }
