@@ -5,11 +5,11 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2022 Gustaf Mossakowski
+# @copyright Copyright © 2022-2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div class="searchform noprint">
 <form method="GET" action="%%% setting base %%%%%% setting search_path %%%">
-<input type="search" name="q" value="%%% page searchword %%%"> <input type="submit" value="%%% text Search %%%">
+<label for="site_search">%%% text Search %%%</label> <input type="search" name="q" value="%%% page searchword %%%" id="site_search"> <input type="submit" value="%%% text Search %%%">
 </form>
 </div>
