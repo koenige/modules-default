@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -50,7 +50,7 @@ function mod_default_search() {
 
 	$page['query_strings'] = ['q'];
 	$data['q'] = !empty($_GET['q']) ? $_GET['q'] : '';
-	$page['title'] = wrap_text('Search');
+	$page['title'] = wrap_text('Search').(!empty($_GET['q']) ? sprintf(': %s', wrap_html_escape($_GET['q'])) : '');
 	$page['text'] = wrap_template('search', $data);
 	return $page;
 }
