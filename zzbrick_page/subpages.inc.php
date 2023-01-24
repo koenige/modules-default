@@ -58,6 +58,8 @@ function page_subpages(&$params = []) {
 				$data[$id]['qs'] = '?'.$data[$id]['parameters']['subpages_qs'];
 			if (!empty($data[$id]['parameters']['description']) AND !$line['description'])
 				$data[$id]['description'] = rtrim(ltrim($data[$id]['parameters']['description'], '"'), '"');
+			if (!empty($data[$id]['parameters']['subpages_class']))
+				$data[$id]['class'] = $data[$id]['parameters']['subpages_class'];
 		}
 		$level = $data[$id]['parameters']['subpages_level'] ?? 1;
 		if ($level < $last_level)

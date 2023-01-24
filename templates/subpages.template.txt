@@ -19,7 +19,7 @@
 %%% condition if levelup %%%
 </ul>
 %%% condition endif %%%
-<li><a href="%%% setting base %%%%%% item identifier %%%%%% item ending %%%%%% item qs %%%">%%% item title %%%</a> %%% item description "– %s" %%%</li>
+<li%%% item class " class='%s'"%%%><a href="%%% setting base %%%%%% item identifier %%%%%% item ending %%%%%% item qs %%%">%%% item title %%%</a> %%% item description "– %s" %%%</li>
 %%% loop end %%%
 %%% condition unless just_list_elements %%%
 </ul>
