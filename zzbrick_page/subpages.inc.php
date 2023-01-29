@@ -60,6 +60,14 @@ function page_subpages(&$params = []) {
 				$data[$id]['description'] = rtrim(ltrim($data[$id]['parameters']['description'], '"'), '"');
 			if (!empty($data[$id]['parameters']['subpages_class']))
 				$data[$id]['class'] = $data[$id]['parameters']['subpages_class'];
+
+			if (!empty($data[$id]['parameters']['subpages_extra_title']))
+				foreach (array_keys($data[$id]['parameters']['subpages_extra_title']) as $index)
+					$data[$id]['extra'][$index] = [
+						'title' => trim($data[$id]['parameters']['subpages_extra_title'][$index], '"'),
+						'qs' => '?'.$data[$id]['parameters']['subpages_extra_qs'][$index],
+						'description' => trim($data[$id]['parameters']['subpages_extra_description'][$index] ?? '', '"')
+					];
 		}
 		$level = $data[$id]['parameters']['subpages_level'] ?? 1;
 		if ($level < $last_level)
