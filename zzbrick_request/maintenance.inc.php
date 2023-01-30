@@ -143,7 +143,7 @@ function zz_maintenance_sqlquery($page) {
 	// zz_db_change()
 	require_once $zz_conf['dir_inc'].'/database.inc.php';
 
-	if (!empty($_SESSION) AND empty($zz_conf['user']) AND wrap_get_setting('brick_username_in_session')))
+	if (!empty($_SESSION) AND empty($zz_conf['user']) AND wrap_get_setting('brick_username_in_session'))
 		$zz_conf['user'] = $_SESSION[wrap_get_setting('brick_username_in_session')];
 	elseif (!isset($zz_conf['user']))
 		$zz_conf['user'] = 'Maintenance robot 812';
