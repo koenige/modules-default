@@ -43,7 +43,7 @@ function page_subpages(&$params = []) {
 				$zz_page['db']['identifier'].'/', $zz_page['url']['full']['path'], $line['identifier']
 			);
 		}
-		$access = wrap_access_page($line, $zz_page['access'] ?? [], false);
+		$access = wrap_access_page($line['parameters'] ?? '', $zz_page['access'] ?? [], false);
 		if (!$access) {
 			unset($data[$id]);
 			continue;
