@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -44,7 +44,7 @@ WHERE extension = _latin1'%s';
 
 -- page_breadcrumbs --
 SELECT page_id
-	, SUBSTRING_INDEX(title, "–", 1) AS title
+	, SUBSTRING_INDEX(title, " – ", 1) AS title
 	, identifier, IF(STRCMP(ending, 'none'), ending, '') AS ending
 	, mother_page_id
 FROM /*_PREFIX_*/webpages;
@@ -66,7 +66,7 @@ FROM /*_PREFIX_*/webpages;
 
 -- page_menu --
 SELECT page_id
-	, SUBSTRING_INDEX(title, "–", 1) AS title
+	, SUBSTRING_INDEX(title, " – ", 1) AS title
 	, CONCAT(identifier, IF(STRCMP(ending, 'none'), ending, '')) AS url
 	, mother_page_id, menu
 FROM /*_PREFIX_*/webpages
