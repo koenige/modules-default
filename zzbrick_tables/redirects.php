@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2006-2016, 2019, 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2006-2016, 2019, 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -89,6 +89,9 @@ if (!empty($zz_setting['multiple_websites'])) {
 		$zz['filter'][1]['field_name'] = 'website_id';
 		$zz['filter'][1]['where'] = '/*_PREFIX_*/redirects.website_id';
 	}
+
+	$zz['subtitle']['website_id']['sql'] = $zz['fields'][6]['sql'];
+	$zz['subtitle']['website_id']['var'] = ['domain'];
 }
 
 $zz_conf['copy'] = true;

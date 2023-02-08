@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2008-2014, 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2008-2014, 2020, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -55,6 +55,7 @@ if (!empty($zz_setting['websites'])) {
 	$zz['fields'][5]['default'] = 1;
 	$zz['fields'][5]['display_field'] = 'domain';
 	$zz['fields'][5]['exclude_from_search'] = true;
+	$zz['fields'][5]['if']['where']['hide_in_list'] = true;
 	if (!empty($_GET['filter']['website'])) {
 		$zz['fields'][5]['hide_in_list'] = true;
 	} else {
@@ -77,6 +78,9 @@ if (!empty($zz_setting['websites'])) {
 	$zz['filter'][1]['sql'] = 'SELECT website_id, domain
 		FROM /*_PREFIX_*/websites
 		ORDER BY domain';
+
+	$zz['subtitle']['website_id']['sql'] = $zz['fields'][5]['sql'];
+	$zz['subtitle']['website_id']['var'] = ['domain'];
 }
 
 $zz_conf['copy'] = true;
