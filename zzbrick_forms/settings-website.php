@@ -17,6 +17,11 @@ if (!wrap_access('default_settings')) wrap_quit(403);
 
 require __DIR__.'/../zzbrick_tables/settings.php';
 
+if (!empty($brick['data']['website_id'])) {
+	$zz['where']['website_id'] = $brick['data']['website_id'];
+	unset($zz['filter'][1]);
+}
+
 // key
 $zz['fields'][3]['cfg'] = wrap_cfg_files('settings', ['scope' => 'website']);
 $zz['fields'][3]['dependencies'] = [6, 4]; // description
