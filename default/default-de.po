@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014-2018, 2020-2022 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014-2018, 2020-2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -125,6 +125,10 @@ msgstr "Suchen"
 #: templates/search-default.template.txt
 msgid "No webpages were found matching your search."
 msgstr "Es wurden keine zu Ihrer Suche passenden Webseiten gefunden."
+
+#: templates/website.template.txt
+msgid "Tools"
+msgstr "Werkzeuge"
 
 # Record form: Change password
 #: zzbrick_forms/my-password.php
