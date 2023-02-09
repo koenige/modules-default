@@ -8,12 +8,13 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 function mod_default_placeholder_website($brick) {
+	global $zz_page;
 	global $zz_setting;
 	if (empty($brick['placeholder'])) return $brick;
 	
@@ -29,7 +30,11 @@ function mod_default_placeholder_website($brick) {
 	$zz_setting['backend_path'] = $brick['placeholder'];
 	wrap_setting_backend();
 
-	// @todo breadcrumbs
+	// breadcrumbs
+	if (!str_ends_with($zz_page['url']['full']['path'], sprintf('%s/', $website['domain'])))
+		$brick['page']['breadcrumbs'][] = sprintf(
+			'<a href="./">%s</a>', $website['domain'], $website['domain']
+		);
 
 	$brick['data'] = $website;
 	return $brick;
