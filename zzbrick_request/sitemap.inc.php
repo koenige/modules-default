@@ -43,10 +43,13 @@ function mod_default_sitemap($params, $settings) {
 			foreach ($languages_allowed as $language)
 				if (str_starts_with($file, sprintf('/%s%s', $language, $identifier))) continue 3;
 		}
-		// no lang= in URL if there is already a language in the path
 		$query = parse_url($file, PHP_URL_QUERY);
 		if ($query) {
 			parse_str($query, $query);
+			if (array_key_exists('url', $query)) continue;
+			// no lang= in URL if it is just a one language website
+			if (!$languages_allowed AND array_key_exists('lang', $query)) continue;
+			// no lang= in URL if there is already a language in the path
 			foreach ($languages_allowed as $language) {
 				if (!str_starts_with($file, '/'.$language)) continue;
 				if (array_key_exists('lang', $query)) continue 2;
