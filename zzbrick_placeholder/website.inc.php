@@ -31,11 +31,11 @@ function mod_default_placeholder_website($brick) {
 	wrap_setting_backend();
 
 	// breadcrumbs
-	if (!str_ends_with($zz_page['url']['full']['path'], sprintf('%s/', $website['domain'])))
-		$brick['page']['breadcrumbs'][] = sprintf(
-			'<a href="./">%s</a>', $website['domain'], $website['domain']
-		);
-
+	$zz_page['breadcrumb_placeholder'][] = [
+		'title' => $website['domain'],
+		'url_path' => $website['domain']
+	];
+	
 	$brick['data'] = $website;
 	return $brick;
 }
