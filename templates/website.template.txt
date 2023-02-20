@@ -8,6 +8,8 @@
 # @copyright Copyright © 2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
+<div class="%%% setting default_website_tpl_class %%%">
 <h2>%%% text Tools %%%</h2>
 
 %%% page subpages %%%
+</div>
