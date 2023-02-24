@@ -24,6 +24,7 @@ $zz['fields'][3]['field_name'] = 'domain';
 $zz['fields'][3]['explanation'] = 'Domain name without subdomain www';
 $zz['fields'][3]['link'] = [
 	'area' => 'default_website',
+	'restrict_to' => 'website_id',
 	'fields' => ['domain']
 ];
 
