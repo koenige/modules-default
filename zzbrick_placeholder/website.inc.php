@@ -30,6 +30,9 @@ function mod_default_placeholder_website($brick) {
 	$zz_setting['backend_path'] = $brick['placeholder'];
 	wrap_setting_backend();
 
+	$zz_page['access'][] = sprintf('website_id:%d', $website['website_id']);
+	wrap_access_page($zz_page['db']['parameters'] ?? '', $zz_page['access']);
+
 	// breadcrumbs
 	$zz_page['breadcrumb_placeholder'][] = [
 		'title' => $website['domain'],
