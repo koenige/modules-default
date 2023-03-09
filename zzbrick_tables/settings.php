@@ -56,6 +56,7 @@ if (!empty($zz_setting['websites'])) {
 	$zz['fields'][5]['display_field'] = 'domain';
 	$zz['fields'][5]['exclude_from_search'] = true;
 	$zz['fields'][5]['if']['where']['hide_in_list'] = true;
+	$zz['fields'][5]['if']['where']['hide_in_form'] = true;
 	if (!empty($_GET['filter']['website'])) {
 		$zz['fields'][5]['hide_in_list'] = true;
 	} else {
