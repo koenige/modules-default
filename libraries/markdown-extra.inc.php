@@ -13,7 +13,7 @@
  */
 
 
-require_once $zz_setting['lib'].'/markdown-extra/Michelf/MarkdownExtra.inc.php';
+require_once wrap_setting('lib').'/markdown-extra/Michelf/MarkdownExtra.inc.php';
 
 # Get Markdown class
 use \Michelf\MarkdownExtra;

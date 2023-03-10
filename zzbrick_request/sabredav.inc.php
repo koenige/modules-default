@@ -8,13 +8,12 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2020, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
-global $zz_setting;
-require_once $zz_setting['lib'].'/sabredav/vendor/autoload.php';
+require_once wrap_setting('lib').'/sabredav/vendor/autoload.php';
 
 /**
  * use sabreDAV for a webDAV server

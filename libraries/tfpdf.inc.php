@@ -12,14 +12,14 @@
  */
 
 
-if (file_exists($zz_setting['lib'].'/tfpdf/src/tFPDF.php'))
-	require_once $zz_setting['lib'].'/tfpdf/src/tFPDF.php';
-elseif (file_exists($zz_setting['lib'].'/tfpdf/src/tfpdf.php'))
-	require_once $zz_setting['lib'].'/tfpdf/src/tfpdf.php';
-elseif (file_exists($zz_setting['lib'].'/tfpdf/tFPDF.php'))
-	require_once $zz_setting['lib'].'/tfpdf/tFPDF.php';
+if (file_exists(wrap_setting('lib').'/tfpdf/src/tFPDF.php'))
+	require_once wrap_setting('lib').'/tfpdf/src/tFPDF.php';
+elseif (file_exists(wrap_setting('lib').'/tfpdf/src/tfpdf.php'))
+	require_once wrap_setting('lib').'/tfpdf/src/tfpdf.php';
+elseif (file_exists(wrap_setting('lib').'/tfpdf/tFPDF.php'))
+	require_once wrap_setting('lib').'/tfpdf/tFPDF.php';
 else
-	require_once $zz_setting['lib'].'/tfpdf/tfpdf.php';
+	require_once wrap_setting('lib').'/tfpdf/tfpdf.php';
 
 define('FPDF_FONTPATH', $zz_setting['custom'].'/tfpdf');
 ini_set('error_reporting', E_ALL & ~E_DEPRECATED & ~E_STRICT);

@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -35,7 +35,7 @@ function mod_default_adminer($params) {
 		return wrap_redirect($url, 302, false);
 	}
 	
-	$path = $zz_setting['lib'].'/adminer/adminer-mysql-de.php';
+	$path = wrap_setting('lib').'/adminer/adminer-mysql-de.php';
 	if (!file_exists($path)) {
 		wrap_error('Library Adminer does not exist', E_USER_ERROR);
 		exit;

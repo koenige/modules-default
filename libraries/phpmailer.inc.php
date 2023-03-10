@@ -18,6 +18,6 @@
 //use PHPMailer\PHPMailer\SMTP;
 //use PHPMailer\PHPMailer\Exception;
 
-require_once $zz_setting['lib'].'/phpmailer/src/Exception.php';
-require_once $zz_setting['lib'].'/phpmailer/src/PHPMailer.php';
-require_once $zz_setting['lib'].'/phpmailer/src/SMTP.php';
+require_once wrap_setting('lib').'/phpmailer/src/Exception.php';
+require_once wrap_setting('lib').'/phpmailer/src/PHPMailer.php';
+require_once wrap_setting('lib').'/phpmailer/src/SMTP.php';
