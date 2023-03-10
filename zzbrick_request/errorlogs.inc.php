@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -19,34 +19,31 @@
  * @return array
  */
 function mod_default_errorlogs() {
-	global $zz_setting;
-	global $zz_conf;
-
-	if (wrap_get_setting('error_handling')) {
-		$data['error_handling_'.wrap_get_setting('error_handling')] = true;
+	if (wrap_setting('error_handling')) {
+		$data['error_handling_'.wrap_setting('error_handling')] = true;
 	}
-	$data['error_mail_level'] = implode(', ', wrap_get_setting('error_mail_level'));
+	$data['error_mail_level'] = implode(', ', wrap_setting('error_mail_level'));
 	
-	if (wrap_get_setting('log_errors')) {
+	if (wrap_setting('log_errors')) {
 		$data['logfiles'] = mf_default_logfiles();
 		$data['logfiles'] = array_values($data['logfiles']);
 		foreach ($data['logfiles'] as $index => $logfile) {
 			$data['logfiles'][$index]['title'] = implode(', ', $logfile['title']);
 			$data['logfiles'][$index]['filesize'] = filesize($logfile['path']);
-			if (str_starts_with($logfile['path'], $zz_setting['cms_dir']))
+			if (str_starts_with($logfile['path'], wrap_setting('cms_dir')))
 				$data['logfiles'][$index]['inside_log_dir'] = true;
 			if (count($data['logfiles'][$index]['types']) === 1)
 				$data['logfiles'][$index]['types'] = false;
 		}
 	}
 
-	if (!empty($zz_setting['log_mail'])) {
-		$data['mail_log_filesize'] = file_exists($zz_setting['log_dir'].'/mail.log')
-			? filesize($zz_setting['log_dir'].'/mail.log') : 0;		
+	if (wrap_setting('log_mail'))) {
+		$data['mail_log_filesize'] = file_exists(wrap_setting('log_dir').'/mail.log')
+			? filesize(wrap_setting('log_dir').'/mail.log') : 0;		
 	}
-	if ($zz_conf['upload_log']) {
-		$data['upload_log_filesize'] = file_exists($zz_setting['log_dir'].'/upload.log')
-			? filesize($zz_setting['log_dir'].'/upload.log') : 0;		
+	if (wrap_setting('zzform_upload_log')) {
+		$data['upload_log_filesize'] = file_exists(wrap_setting('log_dir').'/upload.log')
+			? filesize(wrap_setting('log_dir').'/upload.log') : 0;		
 	}
 
 	$page['text'] = wrap_template('errorlogs', $data);
