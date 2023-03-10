@@ -71,7 +71,7 @@ function mf_default_webpages_media($data) {
 		if (!empty($line['images'])) continue;
 		if (empty($zz_setting['active_theme'])) continue;
 		if (empty($opengraph_img)) {
-			$filename = sprintf('%s/%s/opengraph.png', $zz_setting['themes_dir'], $zz_setting['active_theme']);
+			$filename = sprintf('%s/%s/opengraph.png', wrap_setting('themes_dir'), $zz_setting['active_theme']);
 			if (!file_exists($filename)) break;
 			$opengraph_img = [
 				'filename' => 'opengraph',
