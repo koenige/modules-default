@@ -23,7 +23,7 @@ if (!empty($brick['data']['website_id'])) {
 }
 
 // key
-$zz['fields'][3]['cfg'] = wrap_cfg_files('settings', ['scope' => 'website']);
+$zz['fields'][3]['cfg'] = wrap_cfg_files('settings', ['scope' => 'website', 'translate' => true]);
 $zz['fields'][3]['dependencies'] = [6, 4]; // description
 $zz['fields'][3]['dependencies_function'] = 'zz_cfg_read';
 
