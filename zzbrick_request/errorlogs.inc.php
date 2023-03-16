@@ -37,7 +37,7 @@ function mod_default_errorlogs() {
 		}
 	}
 
-	if (wrap_setting('log_mail'))) {
+	if (wrap_setting('log_mail')) {
 		$data['mail_log_filesize'] = file_exists(wrap_setting('log_dir').'/mail.log')
 			? filesize(wrap_setting('log_dir').'/mail.log') : 0;		
 	}
