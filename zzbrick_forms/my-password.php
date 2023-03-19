@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015, 2018, 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2015, 2018, 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -56,14 +56,8 @@ if (!empty($_GET['url'])) {
 }
 $zz_conf['text']['--']['Edit a record'] = 'Change My Password';
 $zz_conf['no_timeframe'] = true;
-if (empty($_GET['referer'])) {
-	if (is_array($zz_setting['login_entryurl'])) {
-		if (!empty($_SESSION['domain']) AND !empty($zz_setting['login_entryurl'][$_SESSION['domain']]))
-			$zz_conf['referer'] = $zz_setting['login_entryurl'][$_SESSION['domain']];
-	} else {
-		$zz_conf['referer'] = $zz_setting['login_entryurl'];
-	}
-}
+if (empty($_GET['referer']))
+	$zz_conf['referer'] = wrap_domain_path('login_entry');
 
 
 function mf_default_password_update() {
