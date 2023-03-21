@@ -40,6 +40,7 @@ $zz['fields'][11]['type'] = 'memo';
 $zz['fields'][11]['rows'] = 2;
 $zz['fields'][11]['hide_in_list'] = true;
 $zz['fields'][11]['explanation'] = 'Short text (max. 160 characters), only appears in search results.';
+$zz['fields'][11]['typo_cleanup'] = true;
 
 $zz['fields'][4]['field_name'] = 'identifier';
 $zz['fields'][4]['type'] = 'url+placeholder';
