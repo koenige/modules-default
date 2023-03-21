@@ -493,4 +493,4 @@
 /* 2023-03-21-1 */	UPDATE _settings SET setting_key = 'translate_fields' WHERE setting_key = 'zzform_translations_of_fields';
 /* 2023-03-21-2 */	UPDATE _settings SET setting_key = 'db_name_local' WHERE setting_key = 'zzform_db_name_local';
 /* 2023-03-21-3 */	UPDATE _settings SET setting_key = 'debug' WHERE setting_key = 'zzform_debug';
-/* 2023-03-21-4 */	UPDATE _settings SET setting_key = 'dp_prefix' WHERE setting_key = 'zzform_prefix';
+/* 2023-03-21-4 */	UPDATE _settings SET setting_key = 'db_prefix' WHERE setting_key = 'zzform_prefix';
