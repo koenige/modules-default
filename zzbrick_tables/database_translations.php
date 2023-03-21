@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2010, 2014, 2019-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2010, 2014, 2019-2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -27,7 +27,7 @@ $zz['fields'][2]['title'] = 'Database';
 $zz['fields'][2]['field_name'] = 'db_name';
 $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = 'SHOW DATABASES';
-$zz['fields'][2]['default'] = $zz_conf['db_name'];
+$zz['fields'][2]['default'] = wrap_setting('db_name');
 $zz['fields'][2]['hide_in_list'] = true;
 
 $zz['fields'][3]['title'] = 'Table';

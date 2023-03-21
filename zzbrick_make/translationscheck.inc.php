@@ -21,7 +21,6 @@
  *		'text' => page content, 'title', 'breadcrumbs', ...
  */
 function mod_default_make_translationscheck($params) {
-	global $zz_conf;
 	if (!wrap_setting('translate_fields')) return false;
 	
 	$to_delete = false;
@@ -50,7 +49,7 @@ function mod_default_make_translationscheck($params) {
 		AND ISNULL(%s)';
 
 	$data = [];
-	$current_db = wrap_setting('local_access') ? wrap_setting('db_name_local') : $zz_conf['db_name'];
+	$current_db = wrap_setting('local_access') ? wrap_setting('db_name_local') : wrap_setting('db_name');
 	foreach ($fields as $database => $fields) {
 		if ($database !== $current_db) mysqli_select_db(wrap_db_connection(), $database);
 		$sql = 'SELECT DISTINCT TABLE_NAME, COLUMN_NAME

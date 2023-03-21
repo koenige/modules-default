@@ -22,14 +22,13 @@
  */
 function mod_default_adminer($params) {
 	global $zz_page;
-	global $zz_conf;
 	if ($params) return false;
 	if (!wrap_access('default_adminer')) wrap_quit(403);
 	if (empty($_GET)) {
 		// auto-login if only one database is present
 		$url = sprintf('%s?username=&db=%s'
 			, $zz_page['url']['full']['path']
-			, $zz_conf['db_name']
+			, wrap_setting('db_name')
 		);
 		return wrap_redirect($url, 302, false);
 	}
@@ -52,7 +51,7 @@ function adminer_object() {
         
         function name() {
             // custom name in title and heading
-            return wrap_setting('project');
+			return wrap_setting('project');
         }
         
         function credentials() {
@@ -65,8 +64,7 @@ function adminer_object() {
         
         function database() {
             // database name, will be escaped by Adminer
-		    global $zz_conf;
-            return $zz_conf['db_name'];
+			return wrap_setting('db_name');
         }
 
 		function login($login, $password) {

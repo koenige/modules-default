@@ -196,7 +196,6 @@ function zz_maintenance_sqlquery($page) {
  * @return array
  */
 function zz_maintenance_tables() {
-	global $zz_conf;
 	$data = [];
 
 	if (!wrap_setting('zzform_check_referential_integrity') AND !wrap_setting('translate_fields'))
@@ -255,7 +254,7 @@ function zz_maintenance_tables() {
 		if (in_array($db, ['information_schema'])) continue;
 		$db_list[] = [
 			'db' => $db,
-			'prefered' => $db === $zz_conf['db_name'] ? true : false
+			'prefered' => $db === wrap_setting('db_name') ? true : false
 		];
 	}
 	$data['database_changeable'] = false;
@@ -263,7 +262,7 @@ function zz_maintenance_tables() {
 		$data['database_changeable'] = true;
 	} else {
 		foreach ($dbs as $db) {
-			if (reset($db) === $zz_conf['db_name']) continue;
+			if (reset($db) === wrap_setting('db_name')) continue;
 			$data['database_changeable'] = true;
 			break;
 		}

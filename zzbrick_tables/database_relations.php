@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2010, 2014, 2018-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2010, 2014, 2018-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -28,7 +28,7 @@ $zz['fields'][2]['field_name'] = 'master_db';
 $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = 'SHOW DATABASES';
 $zz['fields'][2]['hide_in_list'] = true;
-$zz['fields'][2]['default'] = $zz_conf['db_name'];
+$zz['fields'][2]['default'] = wrap_setting('db_name');
 
 $zz['fields'][3]['title'] = 'Name of Master Table';
 $zz['fields'][3]['title_tab'] = 'Master Table';
@@ -37,7 +37,7 @@ $zz['fields'][3]['type'] = 'text';
 $zz['fields'][3]['list_append_next'] = true;
 $zz['fields'][3]['list_suffix'] = ' . ';
 $zz['fields'][3]['class'] = 'block480a';
-$zz['fields'][3]['sql'] = 'SHOW TABLES FROM '.$zz_conf['db_name'];
+$zz['fields'][3]['sql'] = 'SHOW TABLES FROM '.wrap_setting('db_name');
 $zz['fields'][3]['dependencies'] = [4];
 
 $zz['fields'][4]['title'] = 'Primary Key of Master Table';
@@ -52,7 +52,7 @@ $zz['fields'][5]['field_name'] = 'detail_db';
 $zz['fields'][5]['type'] = 'select';
 $zz['fields'][5]['sql'] = 'SHOW DATABASES';
 $zz['fields'][5]['hide_in_list'] = true;
-$zz['fields'][5]['default'] = $zz_conf['db_name'];
+$zz['fields'][5]['default'] = wrap_setting('db_name');
 
 $zz['fields'][6]['title'] = 'Name of Detail Table';
 $zz['fields'][6]['title_tab'] = 'Detail Table';
@@ -61,7 +61,7 @@ $zz['fields'][6]['type'] = 'text';
 $zz['fields'][6]['list_append_next'] = true;
 $zz['fields'][6]['list_suffix'] = ' . ';
 $zz['fields'][6]['class'] = 'block480a';
-$zz['fields'][6]['sql'] = 'SHOW TABLES FROM '.$zz_conf['db_name'];
+$zz['fields'][6]['sql'] = 'SHOW TABLES FROM '.wrap_setting('db_name');
 $zz['fields'][6]['dependencies'] = [8];
 
 $zz['fields'][8]['title'] = 'Primary Key of Detail Table';
