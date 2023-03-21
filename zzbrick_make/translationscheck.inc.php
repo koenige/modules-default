@@ -50,7 +50,7 @@ function mod_default_make_translationscheck($params) {
 		AND ISNULL(%s)';
 
 	$data = [];
-	$current_db = wrap_setting('local_access') ? $zz_conf['db_name_local'] : $zz_conf['db_name'];
+	$current_db = wrap_setting('local_access') ? wrap_setting('db_name_local') : $zz_conf['db_name'];
 	foreach ($fields as $database => $fields) {
 		if ($database !== $current_db) mysqli_select_db($zz_conf['db_connection'], $database);
 		$sql = 'SELECT DISTINCT TABLE_NAME, COLUMN_NAME
