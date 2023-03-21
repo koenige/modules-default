@@ -199,7 +199,7 @@ function zz_maintenance_tables() {
 	global $zz_conf;
 	$data = [];
 
-	if (!wrap_setting('zzform_check_referential_integrity') AND empty($zz_conf['translations_of_fields']))
+	if (!wrap_setting('zzform_check_referential_integrity') AND !wrap_setting('translate_fields'))
 		return $data;
 		
 	// Update
@@ -240,7 +240,7 @@ function zz_maintenance_tables() {
 		$dbs['detail'] = wrap_db_fetch($sql, 'detail_db', 'single value');
 	}
 
-	if (!empty($zz_conf['translations_of_fields'])) {
+	if (wrap_setting('translate_fields')) {
 	// Translations database	
 		$sql = 'SELECT DISTINCT db_name FROM %s';
 		$sql = sprintf($sql, wrap_sql_table('default_translationfields'));

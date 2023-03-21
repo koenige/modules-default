@@ -22,7 +22,7 @@
  */
 function mod_default_make_translationscheck($params) {
 	global $zz_conf;
-	if (empty($zz_conf['translations_of_fields'])) return false;
+	if (!wrap_setting('translate_fields')) return false;
 	
 	$to_delete = false;
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {

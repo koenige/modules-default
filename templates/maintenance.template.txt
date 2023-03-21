@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016, 2018, 2020-2022 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2018, 2020-2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -16,10 +16,10 @@
 %%% condition unless setting zzform_check_referential_integrity %%%
 <p>%%% text The referential integrity of the database is not checked automatically. %%%</p>
 %%% condition endif %%%
-%%% condition unless setting zzform_translations_of_fields %%%
+%%% condition unless setting translate_fields %%%
 <p>%%% text The fields in the database are not translated. %%%</p>
 %%% condition endif %%%
-%%% condition if setting zzform_check_referential_integrity | setting zzform_translations_of_fields %%%
+%%% condition if setting zzform_check_referential_integrity | setting translate_fields %%%
 %%% condition if database_changeable %%%
 <form action="" method="POST">
 %%% condition endif %%%
@@ -65,7 +65,7 @@
 %%% condition if setting zzform_check_referential_integrity %%%
 <p><a href="?integrity">%%% text Check relational integrity %%%</a></p>
 %%% condition endif %%%
-%%% condition if setting zzform_translations_of_fields %%%
+%%% condition if setting translate_fields %%%
 <p><a href="?translationscheck">%%% text Check Translations %%%</a></p>
 %%% condition endif %%%
 %%% condition endif %%%
