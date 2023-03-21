@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009-2010, 2017 Gustaf Mossakowski
+ * @copyright Copyright © 2009-2010, 2017, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -20,7 +20,7 @@
  * @return array $page
  */
 function mod_default_sso($params) {
-	$single_sign_on_secret = wrap_get_setting('single_sign_on_secret');
+	$single_sign_on_secret = wrap_setting('single_sign_on_secret');
 
 	// no parameter allowed!
 	if (!empty($params)) return false;

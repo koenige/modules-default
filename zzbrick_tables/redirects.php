@@ -49,14 +49,14 @@ $zz['fields'][4]['group_in_list'] = true;
 $zz['fields'][5]['field_name'] = 'area';
 $zz['fields'][5]['group_in_list'] = true;
 
-if (!empty($zz_setting['multiple_websites'])) {
+if (wrap_setting('multiple_websites')) {
 	$zz['fields'][6]['field_name'] = 'website_id';
 	$zz['fields'][6]['type'] = 'select';
 	$zz['fields'][6]['sql'] = 'SELECT website_id, domain
 		FROM /*_PREFIX_*/websites
 		ORDER BY domain';
-	if (!empty($zz_setting['website_id_default']))
-		$zz['fields'][6]['default'] = $zz_setting['website_id_default'];
+	if (wrap_setting('website_id_default'))
+		$zz['fields'][6]['default'] = wrap_setting('website_id_default');
 	$zz['fields'][6]['display_field'] = 'domain';
 	$zz['fields'][6]['if']['where']['hide_in_list'] = true;
 }
@@ -73,7 +73,7 @@ if (!empty($brick['data']['website_id'])) {
 	$zz['where']['website_id'] = $brick['data']['website_id'];
 }
 
-if (!empty($zz_setting['multiple_websites'])) {
+if (wrap_setting('multiple_websites')) {
 	$zz['sql'] = 'SELECT /*_PREFIX_*/redirects.*
 			, /*_PREFIX_*/websites.domain
 		FROM /*_PREFIX_*/redirects

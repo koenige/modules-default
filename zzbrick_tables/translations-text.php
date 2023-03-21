@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2013, 2018-2020, 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2013, 2018-2020, 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -22,7 +22,7 @@ $zz_sub['min_records'] = 1;
 $zz_sub['max_records_sql'] = sprintf(
 	'SELECT COUNT(*) FROM /*_PREFIX_*/languages 
 	WHERE (iso_639_1 <> "%s" OR NOT ISNULL(variation))
-	AND website = "yes"', $zz_setting['default_source_language']
+	AND website = "yes"', wrap_setting('default_source_language')
 );
 
 $zz_sub['table'] = '/*_PREFIX_*/_translations_text';
@@ -64,14 +64,13 @@ $zz_sub['fields'][5]['sql'] = sprintf('SELECT language_id, language_%s, variatio
 	WHERE iso_639_1 <> "%s"
 	AND website = "yes"
 	ORDER BY language_%s'
-	, in_array($zz_setting['lang'], $zz_setting['language_translations']) ? $zz_setting['lang'] : reset($zz_setting['language_translations'])
-	, $zz_setting['default_source_language']
-	, in_array($zz_setting['lang'], $zz_setting['language_translations']) ? $zz_setting['lang'] : reset($zz_setting['language_translations'])
+	, in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : reset(wrap_setting('language_translations'))
+	, wrap_setting('default_source_language')
+	, in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : reset(wrap_setting('language_translations'))
 );
 $zz_sub['fields'][5]['prefix'] = wrap_text('Translation to').' ';
 $zz_sub['fields'][5]['suffix'] = ': ';
-if (!empty($zz_setting['default_translation_language']))
-	$zz_sub['fields'][5]['default'] = wrap_language_id($zz_setting['default_translation_language']);
+$zz_sub['fields'][5]['default'] = wrap_language_id(wrap_setting('default_translation_language'));
 $zz_sub['fields'][5]['def_val_ignore'] = true;
 $zz_sub['fields'][5]['show_title'] = false;
 $zz_sub['fields'][5]['display_field'] = 'lang';

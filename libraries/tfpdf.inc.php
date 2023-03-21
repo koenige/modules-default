@@ -21,7 +21,7 @@ elseif (file_exists(wrap_setting('lib').'/tfpdf/tFPDF.php'))
 else
 	require_once wrap_setting('lib').'/tfpdf/tfpdf.php';
 
-define('FPDF_FONTPATH', $zz_setting['custom'].'/tfpdf');
+define('FPDF_FONTPATH', wrap_setting('custom').'/tfpdf');
 ini_set('error_reporting', E_ALL & ~E_DEPRECATED & ~E_STRICT);
 
 class zzTFPDF extends tFPDF {

@@ -8,13 +8,12 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 function mf_default_search($q) {
-	global $zz_setting;
 	$where_sql = '(title LIKE "%%%s%%"
 		OR content LIKE "%%%s%%"
 		OR description LIKE "%%%s%%")';
@@ -49,7 +48,7 @@ function mf_default_search($q) {
 		return ['default' => []];
 	}
 	foreach ($data['default'][0]['webpages'] as $page_id => $page) {
-		foreach ($zz_setting['auth_urls'] as $url) {
+		foreach (wrap_setting('auth_urls') as $url) {
 			if (!str_starts_with($page['identifier'], $url)) continue;
 			unset($data['default'][0]['webpages'][$page_id]);
 		}
@@ -60,7 +59,6 @@ function mf_default_search($q) {
 }
 
 function mf_default_webpages_media($data) {
-	global $zz_setting;
 	static $opengraph_img;
 	if (!$data) return [];
 	$media = wrap_get_media(array_keys($data), 'webpages', 'page');
@@ -69,9 +67,9 @@ function mf_default_webpages_media($data) {
 	}
 	foreach ($data as $id => $line) {
 		if (!empty($line['images'])) continue;
-		if (empty($zz_setting['active_theme'])) continue;
+		if (!wrap_setting('active_theme')) continue;
 		if (empty($opengraph_img)) {
-			$filename = sprintf('%s/%s/opengraph.png', wrap_setting('themes_dir'), $zz_setting['active_theme']);
+			$filename = sprintf('%s/%s/opengraph.png', wrap_setting('themes_dir'), wrap_setting('active_theme'));
 			if (!file_exists($filename)) break;
 			$opengraph_img = [
 				'filename' => 'opengraph',

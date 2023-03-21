@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -16,15 +16,12 @@
 /**
  * include CSS from all active modules and themes
  *
- * @global array $zz_setting
  * @return string
  */
 function page_packagecss() {
-	global $zz_setting;
-
-	if (empty($zz_setting['activated'])) return '';
-	ksort($zz_setting['activated']); // first modules, then themes
-	$activated = $zz_setting['activated'];
+	if (!wrap_setting('activated')) return '';
+	$activated = wrap_setting('activated');
+	ksort($activated); // first modules, then themes
 
 	// include CSS from all active modules, but only main theme
 	if (!empty($activated['themes']) AND count($activated['themes']) > 1)

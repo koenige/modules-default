@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -18,13 +18,10 @@
  * based on update.sql per module
  *
  * @param array $params
- * @global array $zz_setting
  * @return array $page
  *		'text' => page content, 'title', 'breadcrumbs', ...
  */
 function mod_default_make_dbupdate($params) {
-	global $zz_setting;
-
 	// look for update.sql
 	$data = [];
 	$files = wrap_collect_files('configuration/update.sql', 'modules');
@@ -127,12 +124,12 @@ function mod_default_make_dbupdate_table($query) {
  */
 function mod_default_make_dbupdate_check($line) {
 	// install date and is it before log date?
-	if ($install_date = wrap_get_setting('zzwrap_install_date')) {
+	if ($install_date = wrap_setting('zzwrap_install_date')) {
 		if ($line['date'] < substr($install_date, 0, 10)) return -1;
 	}
 	$module_install_key = sprintf('mod_%s_install_date', $line['module']);
-	if (wrap_get_setting($module_install_key)) {
-		if ($line['date'] < substr(wrap_get_setting($module_install_key), 0, 10)) return -1;
+	if (wrap_setting($module_install_key)) {
+		if ($line['date'] < substr(wrap_setting($module_install_key), 0, 10)) return -1;
 	}
 	
 	// update already in log?
@@ -196,9 +193,7 @@ function mod_default_make_dbupdate_ignore($line) {
  * @return bool
  */
 function mod_default_make_dbupdate_log($line, $mode) {
-	global $zz_setting;
-
-	$logfile = $zz_setting['log_dir'].'/dbupdate.log';
+	$logfile = wrap_setting('log_dir').'/dbupdate.log';
 	if (!file_exists($logfile)) touch($logfile);
 	switch ($mode) {
 	case 'structure_check':
@@ -207,7 +202,7 @@ function mod_default_make_dbupdate_log($line, $mode) {
 		if (!$logs) return true;
 		$log = explode(' ', $logs[0]);
 		if (strlen($log[0]) === 30) return true;
-		rename($logfile, $zz_setting['log_dir'].'/dbupdate-bak.log');
+		rename($logfile, wrap_setting('log_dir').'/dbupdate-bak.log');
 		touch($logfile);
 
 		foreach ($logs as $index => $log) {
@@ -218,7 +213,7 @@ function mod_default_make_dbupdate_log($line, $mode) {
 				error_log(implode(' ', $log), 3, $logfile);
 			}
 		}
-		unlink($zz_setting['log_dir'].'/dbupdate-bak.log');
+		unlink(wrap_setting('log_dir').'/dbupdate-bak.log');
 		return true;
 	case 'read':
 		$logs = file($logfile);

@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2010, 2014, 2017-2018, 2021-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2010, 2014, 2017-2018, 2021-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -28,7 +28,7 @@ $zz['fields'][2]['field_name'] = 'query';
 $zz['fields'][2]['class'] = 'block480a hyphenate';
 $zz['fields'][2]['list_format'] = 'htmlspecialchars';
 
-if (wrap_get_setting('zzform_logging_id')) {
+if (wrap_setting('zzform_logging_id')) {
 	$zz['fields'][3]['title'] = 'Record';
 	$zz['fields'][3]['field_name'] = 'record_id';
 	$zz['fields'][3]['type'] = 'number';

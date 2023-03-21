@@ -76,7 +76,7 @@ $zz['fields'][7]['exclude_from_search'] = true;
 $zz['fields'][7]['hide_in_list'] = true;
 $zz['fields'][7]['character_set'] = 'utf8';
 
-if (wrap_get_setting('default_webpages_media')) {
+if (wrap_setting('default_webpages_media')) {
 	$zz['fields'][8] = zzform_include_table('webpages-media');
 	$zz['fields'][8]['title'] = 'Media';
 	$zz['fields'][8]['type'] = 'subtable';
@@ -140,7 +140,7 @@ if (!empty($brick['data']['website_id']))
 
 $zz_conf['copy'] = true;
 
-if (!empty($zz_setting['multiple_websites'])) {
+if (wrap_setting('multiple_websites')) {
 	if (!empty($_GET['where']['website_id'])) $website = $_GET['where']['website_id'];
 	elseif (!empty($_GET['filter']['website'])) $website = $_GET['filter']['website'];
 	elseif (!empty($zz['where']['website_id'])) $website = $zz['where']['website_id'];
@@ -152,8 +152,7 @@ if (!empty($zz_setting['multiple_websites'])) {
 	$zz['fields'][16]['sql'] = 'SELECT website_id, domain
 		FROM /*_PREFIX_*/websites
 		ORDER BY domain';
-	if (!empty($zz_setting['website_id_default']))
-		$zz['fields'][16]['default'] = $zz_setting['website_id_default'];
+	$zz['fields'][16]['default'] = wrap_setting('website_id_default');
 	$zz['fields'][16]['display_field'] = 'domain';
 	$zz['fields'][16]['exclude_from_search'] = true;
 	$zz['fields'][16]['if']['where']['hide_in_list'] = true;

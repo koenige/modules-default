@@ -21,12 +21,11 @@
  * @return array $page
  */
 function mod_default_adminer($params) {
-	global $zz_setting;
 	global $zz_page;
 	global $zz_conf;
 	if ($params) return false;
 	if (!wrap_access('default_adminer')) wrap_quit(403);
-	if (empty($zz_setting['adminer_databases']) AND empty($_GET)) {
+	if (empty($_GET)) {
 		// auto-login if only one database is present
 		$url = sprintf('%s?username=&db=%s'
 			, $zz_page['url']['full']['path']
@@ -53,7 +52,7 @@ function adminer_object() {
         
         function name() {
             // custom name in title and heading
-            return wrap_get_setting('project');
+            return wrap_setting('project');
         }
         
         function credentials() {

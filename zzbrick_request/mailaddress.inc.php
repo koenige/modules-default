@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2016, 2021-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2016, 2021-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -22,8 +22,8 @@
  * @return array
  */
 function mod_default_mailaddress($params) {
-	$name = wrap_get_setting('own_name');
-	$mail = wrap_get_setting('own_e_mail');
+	$name = wrap_setting('own_name');
+	$mail = wrap_setting('own_e_mail');
 	
 	if (count($params) === 2) {
 		if (wrap_mail_valid($params[1], false)) {

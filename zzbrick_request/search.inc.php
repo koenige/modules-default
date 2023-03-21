@@ -31,7 +31,7 @@ function mod_default_search() {
 			if ($results[$module]) $data['search_results'] = true;
 			$data['modules'][$module]['results'] = wrap_template(sprintf('search-%s', $module), $results);
 		}
-		if ($search_order = wrap_get_setting('search_module_order')) {
+		if ($search_order = wrap_setting('search_module_order')) {
 			$unsorted = $data['modules'];
 			$data['modules'] = [];
 			foreach ($search_order as $module) {
@@ -44,7 +44,7 @@ function mod_default_search() {
 			'name' => 'robots',
 			'content' => 'noindex, follow, noarchive'
 		];
-		if (!$data['search_results'] AND wrap_get_setting('default_404_no_search_results'))
+		if (!$data['search_results'] AND wrap_setting('default_404_no_search_results'))
 			$page['status'] = 404;
 	}
 

@@ -44,7 +44,7 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/_settings.*
 ';
 $zz['sqlorder'] = ' ORDER BY setting_key, setting_value';
 
-if (!empty($zz_setting['websites'])) {
+if (wrap_setting('multiple_websites')) {
 	$zz['fields'][5]['field_name'] = 'website_id';
 	$zz['fields'][5]['type'] = 'write_once';
 	$zz['fields'][5]['type'] = 'select';

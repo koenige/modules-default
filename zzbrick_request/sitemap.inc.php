@@ -26,17 +26,17 @@ function mod_default_sitemap($params, $settings) {
 	$sql = 'SELECT identifier FROM webpages WHERE parameters LIKE "%&search=0%"';
 	$excluded = wrap_db_fetch($sql, 'identifier', 'single value');
 	
-	$languages_allowed = wrap_get_setting('languages_allowed');
+	$languages_allowed = wrap_setting('languages_allowed');
 
-	$dir = sprintf('%s/%s', wrap_get_setting('cache_dir'), wrap_get_setting('hostname'));
+	$dir = sprintf('%s/%s', wrap_setting('cache_dir'), wrap_setting('hostname'));
 	$files = scandir($dir);
 	$urls = [];
 	foreach ($files as $index => $file) {
 		$file = urldecode($file);
 		if (str_ends_with($file, '.headers')) continue;
 		if (str_starts_with($file, '.')) continue;
-		if (str_starts_with($file, wrap_get_setting('layout_path'))) continue;
-		if (str_starts_with($file, wrap_get_setting('behaviour_path'))) continue;
+		if (str_starts_with($file, wrap_setting('layout_path'))) continue;
+		if (str_starts_with($file, wrap_setting('behaviour_path'))) continue;
 		if (str_starts_with($file, '/robots.txt')) continue;
 		foreach ($excluded as $identifier) {
 			if (str_starts_with($file, $identifier)) continue 2;
@@ -55,7 +55,7 @@ function mod_default_sitemap($params, $settings) {
 				if (array_key_exists('lang', $query)) continue 2;
 			}
 		}
-		$urls[$index]['url'] = wrap_get_setting('host_base').$file;
+		$urls[$index]['url'] = wrap_setting('host_base').$file;
 		$urls[$index]['lastmod'] = date('Y-m-d', filemtime($dir.'/'.$files[$index]));
 	}
 	$output = $settings['output'] ?? 'xml';

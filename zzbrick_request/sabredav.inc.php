@@ -20,15 +20,14 @@ require_once wrap_setting('lib').'/sabredav/vendor/autoload.php';
  * use CMS authentication
  * sabreDAV only supports macOS Finder with mod_php!
  *
- * currently need to set $zz_setting['dav_url'] = '' in config.inc
+ * currently need to set setting 'dav_url', too
  * @param void
  * @return void
  */
 function mod_default_sabredav() {
-	global $zz_setting;
 	global $zz_page;
 
-	$webdav_path = $zz_setting['cms_dir'].'/webdav/';
+	$webdav_path = wrap_setting('cms_dir').'/webdav/';
 	$base_uri = $zz_page['db']['identifier'];
 	$base_uri = rtrim($base_uri, '*');
 
@@ -56,12 +55,12 @@ function mod_default_sabredav() {
 	$server->addPlugin(new \Sabre\DAV\Browser\GuessContentType());
 
 	$authBackend = new BasicCallBack();
-	$auth = new \Sabre\DAV\Auth\Plugin($authBackend, $zz_setting['site']);
+	$auth = new \Sabre\DAV\Auth\Plugin($authBackend, wrap_setting('site'));
 	$server->addPlugin($auth);
 
 	// Temporary file filter
-	wrap_mkdir($zz_setting['tmp_dir'].'/webdav');
-	$tffp = new \Sabre\DAV\TemporaryFileFilterPlugin($zz_setting['tmp_dir'].'/webdav');
+	wrap_mkdir(wrap_setting('tmp_dir').'/webdav');
+	$tffp = new \Sabre\DAV\TemporaryFileFilterPlugin(wrap_setting('tmp_dir').'/webdav');
 	$server->addPlugin($tffp);
 
 	// All we need to do now, is to fire up the server

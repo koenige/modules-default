@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012, 2016, 2018-2019, 2021-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2016, 2018-2019, 2021-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -21,7 +21,7 @@ $zz['fields'][1]['field_name'] = 'login_id';
 $zz['fields'][1]['type'] = 'id';
 
 $zz['fields'][11] = []; // contact_id
-if (wrap_get_setting('login_with_contact_id')) {
+if (wrap_setting('login_with_contact_id')) {
 	$zz['fields'][11]['field_name'] = 'contact_id';
 	$zz['fields'][11]['type'] = 'select';
 	$zz['fields'][11]['sql'] = 'SELECT contact_id, contact, identifier
@@ -51,7 +51,7 @@ if (wrap_access('default_masquerade')) {
 	$zz['fields'][19]['class'] = 'block480a number';
 }
 
-if (wrap_get_setting('login_with_contact_id')) {
+if (wrap_setting('login_with_contact_id')) {
 	$zz['fields'][2]['title'] = 'Username';
 	$zz['fields'][2]['field_name'] = 'username';
 	$zz['fields'][2]['type'] = 'display';
@@ -63,7 +63,7 @@ if (wrap_get_setting('login_with_contact_id')) {
 	$zz['fields'][2]['class'] = 'block480a';
 }
 
-if (wrap_get_setting('login_with_login_rights')) {
+if (wrap_setting('login_with_login_rights')) {
 	$zz['fields'][6]['title_tab'] = 'Rights';
 	$zz['fields'][6]['field_name'] = 'login_rights';
 	$zz['fields'][6]['type'] = 'select';
@@ -78,7 +78,7 @@ $zz['fields'][3]['type'] = 'password';
 $zz['fields'][3]['sql_password_check'] = 'SELECT /*_PREFIX_*/logins.password 
 	FROM /*_PREFIX_*/logins WHERE login_id = ';
 $zz['fields'][3]['hide_in_list'] = true;
-$zz['fields'][3]['minlength'] = wrap_get_setting('login_password_minlength');
+$zz['fields'][3]['minlength'] = wrap_setting('login_password_minlength');
 
 $zz['fields'][13] = []; // random password
 
@@ -127,7 +127,7 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/logins.*
 ';
 $zz['sqlorder'] = ' ORDER BY username';
 
-if (wrap_get_setting('login_with_contact_id')) {
+if (wrap_setting('login_with_contact_id')) {
 	$zz['sql'] = 'SELECT /*_PREFIX_*/logins.*
 			, /*_PREFIX_*/contacts.contact_id AS user_id
 			, contact, identifier

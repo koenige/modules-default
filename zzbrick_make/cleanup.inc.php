@@ -8,14 +8,12 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018, 2021-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2018, 2021-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 function mod_default_make_cleanup() {
-	global $zz_setting;
-	
 	$lock = wrap_lock('cleanup');
 	if ($lock) {
 		$data['locked'] = true;
@@ -27,11 +25,11 @@ function mod_default_make_cleanup() {
 	$data['session_cleanup'] = mod_default_session_cleanup();
 	
 	// Folders via settings
-	if (!empty($zz_setting['cleanup_folders'])) {
-		foreach ($zz_setting['cleanup_folders'] as $folder => $max_age_seconds) {
+	if (wrap_setting('cleanup_folders')) {
+		foreach (wrap_setting('cleanup_folders') as $folder => $max_age_seconds) {
 			$folder_given = $folder;
 			if (substr($folder, 0, 1) !== '/')
-				$folder = sprintf('%s/%s', $zz_setting['tmp_dir'], $folder);
+				$folder = sprintf('%s/%s', wrap_setting('tmp_dir'), $folder);
 			$folder = realpath($folder);
 			if (!$folder) {
 				wrap_error(sprintf('Folder to clean up does not exist: %s', $folder_given));
@@ -46,13 +44,13 @@ function mod_default_make_cleanup() {
 	}
 	
 	// Logfiles via settings
-	if (!empty($zz_setting['cleanup_logfiles'])) {
-		foreach ($zz_setting['cleanup_logfiles'] as $logfile => $max_age_seconds) {
+	if (wrap_setting('cleanup_logfiles')) {
+		foreach (wrap_setting('cleanup_logfiles') as $logfile => $max_age_seconds) {
 			$logfile_given = $logfile;
 			if (substr($logfile, -4) !== '.log')
 				$logfile = sprintf('%s.log', $logfile);
 			if (substr($logfile, 0, 1) !== '/')
-				$logfile = sprintf('%s/%s', $zz_setting['log_dir'], $logfile);
+				$logfile = sprintf('%s/%s', wrap_setting('log_dir'), $logfile);
 			$logfile = realpath($logfile);
 			if (!$logfile) {
 				wrap_error(sprintf('Logfile to clean up does not exist: %s', $logfile_given));
@@ -82,15 +80,14 @@ function mod_default_make_cleanup() {
  */
 function mod_default_session_cleanup() {
 	$counter = 0;
-	global $zz_setting;
-	if (empty($zz_setting['session_save_path'])) return $counter;
-	if (!is_dir($zz_setting['session_save_path'])) return $counter;
-	$files = scandir($zz_setting['session_save_path']);
+	if (!wrap_setting('session_save_path')) return $counter;
+	if (!is_dir(wrap_setting('session_save_path'))) return $counter;
+	$files = scandir(wrap_setting('session_save_path'));
 	if (!$files) return $counter;
-	$invalid = time() - $zz_setting['logout_inactive_after'] * 60;
+	$invalid = time() - wrap_setting('logout_inactive_after') * 60;
 	foreach ($files as $file) {
 		if (substr($file, 0, 1) === '.') continue;
-		$filename = $zz_setting['session_save_path'].'/'.$file;
+		$filename = wrap_setting('session_save_path').'/'.$file;
 		if (filemtime($filename) < $invalid) {
 			unlink($filename);
 			$counter++;
@@ -160,12 +157,10 @@ function mod_default_file_cleanup_recursive($folder, $invalid, $delete_folder = 
  * @return int
  */
 function mod_default_make_cleanup_gzip_logs() {
-	global $zz_setting;
-
 	$counter = 0;
-	if (empty($zz_setting['http_log'])) return $counter;
+	if (!wrap_setting('http_log')) return $counter;
 
-	$dir = sprintf('%s/access', $zz_setting['log_dir']);
+	$dir = sprintf('%s/access', wrap_setting('log_dir'));
 	$years = scandir($dir);
 	foreach ($years as $year) {
 		if (substr($year, 0, 1) === '.') continue;
@@ -207,8 +202,7 @@ function mod_default_make_cleanup_gzip_logs() {
  * @return int $counter number of deleted lines
  */
 function mod_default_make_cleanup_log($filename, $max_age_seconds) {
-	global $zz_setting;
-	require_once $zz_setting['core'].'/file.inc.php';
+	require_once wrap_setting('core').'/file.inc.php';
 	wrap_include_files('zzbrick_request/maintenance', 'default');
 
 	$invalid = time() - $max_age_seconds;

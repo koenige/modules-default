@@ -22,29 +22,27 @@
  * - enter an sql query
  * @param array $params
  * @global array $zz_conf configuration variables
- * @global array $zz_setting
  * @return array $page
  *		'text' => page content, 'title', 'breadcrumbs', ...
  */
 function mod_default_maintenance($params) {
 	global $zz_conf;
-	global $zz_setting;
 	if (!wrap_access('default_maintenance')) wrap_quit(403);
-	$zz_setting['dont_show_h1'] = false; // internal, no need to hide it
+	wrap_setting('dont_show_h1', false); // internal, no need to hide it
 
 	if (!isset($zz_conf['modules'])) {
 		$zz_conf['modules'] = [];
 		$zz_conf['modules']['debug'] = false;
 	}
 	$zz_conf['generate_output'] = true; // allow translations in zzform
-	$zz_setting['extra_http_headers'][] = 'X-Frame-Options: Deny';
-	$zz_setting['extra_http_headers'][] = "Content-Security-Policy: frame-ancestors 'self'";
+	wrap_setting_add('extra_http_headers', 'X-Frame-Options: Deny');
+	wrap_setting_add('extra_http_headers', "Content-Security-Policy: frame-ancestors 'self'");
 
 	wrap_include_files('zzbrick_tables/_common', 'custom'); // e. g. heading_prefix
 
 	if (isset($brick['page'])) $page = $brick['page'];
 	$page['head'] = isset($page['head']) ? $page['head'] : '';
-	if (wrap_get_setting('zzform_no_packagecss'))
+	if (wrap_setting('zzform_no_packagecss'))
 		$page['head'] .= wrap_template('zzform-head');
 	else
 		wrap_package_activate('zzform'); // for CSS
@@ -97,7 +95,7 @@ function mod_default_maintenance($params) {
 	// zz_write_conf()
 	zz_maintenance_zzform_init();
 	$data['php_version'] = phpversion();
-	if (wrap_get_setting('zzform_graphics_library') === 'imagemagick') {
+	if (wrap_setting('zzform_graphics_library') === 'imagemagick') {
 		require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
 		$data['imagick_full'] = zz_imagick_version();
 		$data['imagick'] = explode("\n", $data['imagick_full']);
@@ -143,8 +141,8 @@ function zz_maintenance_sqlquery($page) {
 	// zz_db_change()
 	require_once $zz_conf['dir_inc'].'/database.inc.php';
 
-	if (!empty($_SESSION) AND empty($zz_conf['user']) AND wrap_get_setting('brick_username_in_session'))
-		$zz_conf['user'] = $_SESSION[wrap_get_setting('brick_username_in_session')];
+	if (!empty($_SESSION) AND empty($zz_conf['user']) AND wrap_setting('brick_username_in_session'))
+		$zz_conf['user'] = $_SESSION[wrap_setting('brick_username_in_session')];
 	elseif (!isset($zz_conf['user']))
 		$zz_conf['user'] = 'Maintenance robot 812';
 
@@ -201,7 +199,7 @@ function zz_maintenance_tables() {
 	global $zz_conf;
 	$data = [];
 
-	if (!wrap_get_setting('zzform_check_referential_integrity') AND empty($zz_conf['translations_of_fields']))
+	if (!wrap_setting('zzform_check_referential_integrity') AND empty($zz_conf['translations_of_fields']))
 		return $data;
 		
 	// Update
@@ -230,7 +228,7 @@ function zz_maintenance_tables() {
 		}
 		wrap_redirect_change();
 	}
-	if (wrap_get_setting('zzform_check_referential_integrity')) {
+	if (wrap_setting('zzform_check_referential_integrity')) {
 	// Master database
 		$sql = 'SELECT DISTINCT master_db FROM %s';
 		$sql = sprintf($sql, wrap_sql_table('zzform_relations'));
@@ -502,7 +500,6 @@ function zz_maintenance_sql($sql) {
 
 function zz_maintenance_folders($page = []) {
 	global $zz_conf;
-	global $zz_setting;
 	
 	$data = [];
 	if ($page) {
@@ -515,16 +512,16 @@ function zz_maintenance_folders($page = []) {
 		zz_maintenance_list_init();
 	}
 
-	if ((!wrap_get_setting('zzform_backup') OR !wrap_get_setting('zzform_backup_dir'))
-		AND empty($zz_setting['tmp_dir']) AND empty($zz_setting['cache_dir'])) {
+	if ((!wrap_setting('zzform_backup') OR !wrap_setting('zzform_backup_dir'))
+		AND !wrap_setting('tmp_dir') AND !wrap_setting('cache_dir')) {
 		$page['text'] = '<p>'.wrap_text('Backup of uploaded files is not active.').'</p>'."\n";
 		return mod_default_maintenance_return($page);
 	}
 
 	$dirs = [
-		'TEMP' => $zz_setting['tmp_dir'],
-		'BACKUP' => wrap_get_setting('zzform_backup_dir'),
-		'CACHE' => $zz_setting['cache_dir']
+		'TEMP' => wrap_setting('tmp_dir'),
+		'BACKUP' => wrap_setting('zzform_backup_dir'),
+		'CACHE' => wrap_setting('cache_dir')
 	];
 	$data['folders'] = [];
 	foreach ($dirs as $key => $dir) {
@@ -619,7 +616,7 @@ function zz_maintenance_folders($page = []) {
 			if (!empty($_GET['q']) AND !zz_maintenance_searched($filename)) {
 				continue;
 			}
-			if ($i < $zz_conf['int']['this_limit'] - wrap_get_setting('zzform_limit')) {
+			if ($i < $zz_conf['int']['this_limit'] - wrap_setting('zzform_limit')) {
 				$i++;
 				continue;
 			}
@@ -693,7 +690,6 @@ function zz_maintenance_folders($page = []) {
  *		active and string was found
  */
 function zz_maintenance_searched($string) {
-	global $zz_setting;
 	if (empty($_GET['q'])) return false;
 	if (stristr($string, $_GET['q'])) return true;
 	if (stristr(urldecode($string), $_GET['q'])) return true;
@@ -701,7 +697,7 @@ function zz_maintenance_searched($string) {
 	// allow for searching ignoring replaced zero width space
 	// PHPs char does not support unicode
 	$q = urlencode($_GET['q']);
-	if ($zz_setting['character_set'] === 'utf-8') {
+	if (wrap_setting('character_set') === 'utf-8') {
 		$char8203 = '%E2%80%8B';
 	} else {
 		// this does not work for all other character sets
@@ -780,8 +776,7 @@ function zz_maintenance_list_init() {
  */
 function zz_maintenance_logs($page) {
 	global $zz_conf;
-	global $zz_setting;
-	require_once $zz_setting['core'].'/file.inc.php';
+	require_once wrap_setting('core').'/file.inc.php';
 
 	zz_maintenance_list_init();
 
@@ -918,7 +913,7 @@ function zz_maintenance_logs($page) {
 
 	if ($zz_conf['int']['this_limit']) {
 		if (isset($found)) {
-			$found = array_slice($found, ($zz_conf['int']['this_limit'] - wrap_get_setting('zzform_limit')), wrap_get_setting('zzform_limit'));
+			$found = array_slice($found, ($zz_conf['int']['this_limit'] - wrap_setting('zzform_limit')), wrap_setting('zzform_limit'));
 			if ($data['group'] AND empty($_POST['deleteall'])) {
 				$group = $found;
 				$found = [];
@@ -930,7 +925,7 @@ function zz_maintenance_logs($page) {
 			}
 		} else {
 			$found = range(
-				$zz_conf['int']['this_limit'] - wrap_get_setting('zzform_limit'),
+				$zz_conf['int']['this_limit'] - wrap_setting('zzform_limit'),
 				($data['total_rows'] < $zz_conf['int']['this_limit'] ? $data['total_rows'] : $zz_conf['int']['this_limit']) - 1
 			);
 		}
@@ -1147,8 +1142,7 @@ function zz_maintenance_logs_group($raw, $group) {
  */
 function zz_maintenance_maillogs($page) {
 	global $zz_conf;
-	global $zz_setting;
-	require_once $zz_setting['core'].'/file.inc.php';
+	require_once wrap_setting('core').'/file.inc.php';
 
 	zz_maintenance_list_init();
 
@@ -1157,7 +1151,7 @@ function zz_maintenance_maillogs($page) {
 	$page['query_strings'] = [
 		'maillog', 'limit', 'mail_sent'
 	];
-	$logfile = $zz_setting['log_dir'].'/mail.log';
+	$logfile = wrap_setting('log_dir').'/mail.log';
 	if (!file_exists($logfile)) {
 		$page['text'] = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), wrap_html_escape($logfile)).'</p>'."\n";
 		return mod_default_maintenance_return($page);
@@ -1263,13 +1257,13 @@ function zz_maintenance_maillogs($page) {
 			$mail['headers'][$key] = $value;
 		}
 		// no signature, no prefix, was already added
-		$zz_setting['mail_with_signature'] = false;
-		$zz_setting['mail_subject_prefix'] = '';
+		wrap_setting('mail_with_signature', false);
+		wrap_setting('mail_subject_prefix', '');
 		$success = wrap_mail($mail);
 		if (!$success) $data['message'] = wrap_text('Mail was not sent.');
-		return wrap_redirect_change($zz_setting['request_uri'].'&mail_sent=1');
+		return wrap_redirect_change(wrap_setting('request_uri').'&mail_sent=1');
 	}
-	$data['url_self'] = wrap_html_escape($zz_setting['request_uri']);
+	$data['url_self'] = wrap_html_escape(wrap_setting('request_uri'));
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
 	$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);
 
@@ -1288,7 +1282,7 @@ function zz_maintenance_maillogs_limit($total_rows) {
 	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
 		zz_list_limit_last($total_rows); // not + 1 since logs always end with a newline
 	}
-	$first = $zz_conf['int']['this_limit'] - wrap_get_setting('zzform_limit');
+	$first = $zz_conf['int']['this_limit'] - wrap_setting('zzform_limit');
 	$last = $zz_conf['int']['this_limit'] - 1;
 	return [$first, $last];
 }
@@ -1485,19 +1479,17 @@ function mod_default_maintenance_add_logging($json) {
 }
 
 function zz_maintenance_serversync($page) {
-	global $zz_setting;
-	
 	$page['title'] .= ' '.wrap_text('Synchronize local and remote server');
-	$sync_user = wrap_get_setting('sync_user');
+	$sync_user = wrap_setting('sync_user');
 	
-	if (!$zz_setting['local_access']) {
+	if (!wrap_setting('local_access')) {
 		$out['local_only'] = true;
 		$page['text'] = wrap_template('maintenance-sync-server', $out);
 		return $page;
 	}
 
-	$path = wrap_get_setting('sync_server_url');
-	$url = sprintf('https://%s%s', substr($zz_setting['hostname'], 0, -6), $path);
+	$path = wrap_setting('sync_server_url');
+	$url = sprintf('https://%s%s', substr(wrap_setting('hostname'), 0, -6), $path);
 	$data = ['return_last_logging_entry' => 1];
 	list($status, $headers, $content) = wrap_get_protected_url($url, [], 'POST', $data, $sync_user);
 	
@@ -1588,7 +1580,7 @@ function zz_maintenance_zzform_init() {
 function zz_maintenance_imagick($page) {
 	global $zz_conf;
 
-	if (wrap_get_setting('zzform_graphics_library') !== 'imagemagick') return false;
+	if (wrap_setting('zzform_graphics_library') !== 'imagemagick') return false;
 	zz_maintenance_zzform_init();
 	require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
 	$page['text'] = '<pre>'.zz_imagick_version().'</pre>';
@@ -1608,7 +1600,7 @@ function zz_maintenance_imagick($page) {
 function zz_maintenance_ghostscript($page) {
 	global $zz_conf;
 
-	if (wrap_get_setting('zzform_graphics_library') !== 'imagemagick') return false;
+	if (wrap_setting('zzform_graphics_library') !== 'imagemagick') return false;
 	zz_maintenance_zzform_init();
 	require_once $zz_conf['dir'].'/image-imagemagick.inc.php';
 	$page['text'] = '<pre>'.zz_ghostscript_version().'</pre>';

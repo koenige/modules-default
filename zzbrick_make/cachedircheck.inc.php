@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -17,21 +17,18 @@
  * check cache directories
  *
  * @param array $params
- * @global array $zz_setting
  * @return array $page
  *		'text' => page content, 'title', 'breadcrumbs', ...
  */
 function mod_default_make_cachedircheck($params) {
-	global $zz_setting;
-
-	if (empty($zz_setting['cache'])) return false;
+	if (!wrap_setting('cache')) return false;
 	
-	$data['active_cache_folder'] = $zz_setting['cache_dir_zz'];
-	if (!empty($zz_setting['cache_directories'])) {
-		$data['inactive_cache_folder'] = substr($zz_setting['cache_dir_zz'], 0, -2);
+	$data['active_cache_folder'] = wrap_setting('cache_dir_zz');
+	if (wrap_setting('cache_directories')) {
+		$data['inactive_cache_folder'] = substr(wrap_setting('cache_dir_zz'), 0, -2);
 		$data['inactive_cache_folder_dir'] = '';
 	} else {
-		$data['inactive_cache_folder'] = $zz_setting['cache_dir_zz'].'/d';
+		$data['inactive_cache_folder'] = wrap_setting('cache_dir_zz').'/d';
 		$data['inactive_cache_folder_dir'] = '/d';
 	}
 	
@@ -64,10 +61,8 @@ function mod_default_make_cachedircheck($params) {
 }
 
 function mod_default_make_cachedircheck_folders($path, $folder, $counter) {
-	global $zz_setting;
-
 	// not using scandir() here because number of files might be too big
-	$handle = opendir($zz_setting['cache_dir'].$path.'/'.$folder);
+	$handle = opendir(wrap_setting('cache_dir').$path.'/'.$folder);
 	$break = false;
 	while (($filename = readdir($handle)) !== false) {
 		if (str_starts_with($filename, '.')) continue;
@@ -88,8 +83,8 @@ function mod_default_make_cachedircheck_folders($path, $folder, $counter) {
 			// @todo never tested if this works (and if there is a need for it)
 			$new_filename = urlencode($filename);
 		}
-		$old_path = $zz_setting['cache_dir'].$path.'/'.$folder.'/'.$filename;
-		$new_path = $zz_setting['cache_dir_zz'].$path.'/'.$folder.'/'.$new_filename;
+		$old_path = wrap_setting('cache_dir').$path.'/'.$folder.'/'.$filename;
+		$new_path = wrap_setting('cache_dir_zz').$path.'/'.$folder.'/'.$new_filename;
 		if (file_exists($new_path)) {
 			unlink($old_path);
 			$counter++;
@@ -106,6 +101,6 @@ function mod_default_make_cachedircheck_folders($path, $folder, $counter) {
 			break;
 		}
 	}
-	if (!$break) unlink($zz_setting['cache_dir'].$path.'/'.$folder);
+	if (!$break) unlink(wrap_setting('cache_dir').$path.'/'.$folder);
 	return $counter;
 }

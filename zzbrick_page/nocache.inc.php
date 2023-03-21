@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -20,15 +20,14 @@
  * @return string
  */
 function page_nocache($params) {
-	global $zz_setting;
-	if (empty($zz_setting['js_css_nocache'])) return '';
+	if (!wrap_setting('js_css_nocache')) return '';
 
 	// readable timestamp?
-	$timestamp = strtotime($zz_setting['js_css_nocache']);
+	$timestamp = strtotime(wrap_setting('js_css_nocache'));
 	if (!$timestamp) return '';
 
 	$now = time();
-	if ($timestamp + $zz_setting['cache_control_text'] > $now)
+	if ($timestamp + wrap_setting('cache_control_text') > $now)
 		return '?nocache';
 
 	return '';

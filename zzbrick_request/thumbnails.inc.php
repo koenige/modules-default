@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2014-2016, 2019-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2014-2016, 2019-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,14 +23,12 @@
  *		[1]: mode (default false: only missing images are created; 'overwrite':
  *			existing images are being deleted)
  * @global array $zz_conf configuration variables
- * @global array $zz_setting
  * @return array $page
  *		'text' => page content, 'title', 'breadcrumbs', ...
  * @todo support $zz['conditions']
  */
 function mod_default_thumbnails($params) {
 	global $zz_conf;
-	global $zz_setting;
 	
 	if (count($params) > 2) return false;
 	if (count($params) > 1 AND $params[1] !== 'overwrite') return false;
@@ -40,7 +38,7 @@ function mod_default_thumbnails($params) {
 	require_once $zz_conf['dir'].'/zzform.php';
 	$zz_conf['int_modules'] = ['debug', 'compatibility', 'validate', 'upload'];
 	zz_initialize();
-	if ($graphics_library = wrap_get_setting('zzform_graphics_library'))
+	if ($graphics_library = wrap_setting('zzform_graphics_library'))
 		include_once $zz_conf['dir_inc'].'/image-'.$graphics_library.'.inc.php';
 	
 	if (strstr($params[0], '..')) return false;

@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -26,7 +26,7 @@ $zz['fields'][4]['sql'] = 'SELECT login_id, username
 	FROM /*_PREFIX_*/logins
 	ORDER BY username';
 $zz['fields'][4]['display_field'] = 'username';
-if (wrap_get_setting('login_with_contact_id')) {
+if (wrap_setting('login_with_contact_id')) {
 	$zz['fields'][4]['sql'] = 'SELECT login_id, identifier AS username
 		FROM /*_PREFIX_*/logins logins
 		LEFT JOIN /*_PREFIX_*/contacts contacts USING (contact_id)
@@ -91,7 +91,7 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/tokens.*
 ';
 $zz['sqlorder'] = 'ORDER BY username';
 
-if (wrap_get_setting('login_with_contact_id')) {
+if (wrap_setting('login_with_contact_id')) {
 	$zz['sql'] = 'SELECT /*_PREFIX_*/tokens.*
 			, /*_PREFIX_*/contacts.identifier AS username
 		FROM /*_PREFIX_*/tokens

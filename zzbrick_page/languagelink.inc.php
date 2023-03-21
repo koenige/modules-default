@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2015, 2018-2019, 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2015, 2018-2019, 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -21,28 +21,26 @@
  * @return string $text
  */
 function page_languagelink($params, $page) {
-	global $zz_setting;
-
 	// language switcher makes only sense for valid URLs
 	if (!empty($page['status']) AND $page['status'] !== 200) return '';
-	if (!wrap_get_setting('languages_allowed')) return '';
+	if (!wrap_setting('languages_allowed')) return '';
 	
-	$link = $zz_setting['request_uri'];
-	if (str_starts_with($link, '/'.$zz_setting['lang']))
+	$link = wrap_setting('request_uri');
+	if (str_starts_with($link, '/'.wrap_setting('lang')))
 		$link = substr($link, 3);
 	$links_translated = wrap_translate_url_other();
-	if (array_key_exists(wrap_get_setting('default_source_language'), $links_translated))
-		$link = $links_translated[wrap_get_setting('default_source_language')];
+	if (array_key_exists(wrap_setting('default_source_language'), $links_translated))
+		$link = $links_translated[wrap_setting('default_source_language')];
 	
-	foreach (wrap_get_setting('languages_allowed') as $lang) {
+	foreach (wrap_setting('languages_allowed') as $lang) {
 		$languages[] = [
 			'iso' => $lang,
-			'language' => $zz_setting['languages_names'][$lang] ?? $lang
+			'language' => wrap_setting('languages_names['.$lang.']') ?? $lang
 		];
 	}
 
 	foreach ($languages as $index => $values) {
-		if ($values['iso'] === $zz_setting['lang']) continue;
+		if ($values['iso'] === wrap_setting('lang')) continue;
 		$languages[$index]['link'] = $links_translated[$values['iso']] ?? $link;
 	}
 	

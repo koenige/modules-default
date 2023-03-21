@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -17,12 +17,10 @@
  * check translations
  *
  * @param array $params
- * @global array $zz_setting
  * @return array $page
  *		'text' => page content, 'title', 'breadcrumbs', ...
  */
 function mod_default_make_translationscheck($params) {
-	global $zz_setting;
 	global $zz_conf;
 	if (empty($zz_conf['translations_of_fields'])) return false;
 	
@@ -52,7 +50,7 @@ function mod_default_make_translationscheck($params) {
 		AND ISNULL(%s)';
 
 	$data = [];
-	$current_db = $zz_setting['local_access'] ? $zz_conf['db_name_local'] : $zz_conf['db_name'];
+	$current_db = wrap_setting('local_access') ? $zz_conf['db_name_local'] : $zz_conf['db_name'];
 	foreach ($fields as $database => $fields) {
 		if ($database !== $current_db) mysqli_select_db($zz_conf['db_connection'], $database);
 		$sql = 'SELECT DISTINCT TABLE_NAME, COLUMN_NAME

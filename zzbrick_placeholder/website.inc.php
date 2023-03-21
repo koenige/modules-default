@@ -15,7 +15,6 @@
 
 function mod_default_placeholder_website($brick) {
 	global $zz_page;
-	global $zz_setting;
 	if (empty($brick['placeholder'])) return $brick;
 	
 	$sql = 'SELECT website_id, website, domain
@@ -26,8 +25,8 @@ function mod_default_placeholder_website($brick) {
 	if (!$website) wrap_quit(404);
 
 	// make settings of website available for this backend
-	$zz_setting['backend_website_id'] = $website['website_id'];
-	$zz_setting['backend_path'] = $brick['placeholder'];
+	wrap_setting('backend_website_id', $website['website_id']);
+	wrap_setting('backend_path', $brick['placeholder']);
 	wrap_setting_backend();
 
 	$zz_page['access'][] = sprintf('website_id:%d', $website['website_id']);
