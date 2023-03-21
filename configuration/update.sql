@@ -492,3 +492,4 @@
 /* 2022-12-14-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'logins', 'login_id', (SELECT DATABASE()), 'tokens', 'token_id', 'login_id', 'delete');
 /* 2023-03-21-1 */	UPDATE _settings SET setting_key = 'translate_fields' WHERE setting_key = 'zzform_translations_of_fields';
 /* 2023-03-21-2 */	UPDATE _settings SET setting_key = 'db_name_local' WHERE setting_key = 'zzform_db_name_local';
+/* 2023-03-21-3 */	UPDATE _settings SET setting_key = 'debug' WHERE setting_key = 'zzform_debug';
