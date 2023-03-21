@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2017-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2017-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -491,3 +491,4 @@
 /* 2022-12-14-1 */	CREATE TABLE `tokens` (`token_id` int unsigned NOT NULL AUTO_INCREMENT, `access_token` varchar(192) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, `access_token_expires` datetime NOT NULL, `login_id` int unsigned NOT NULL, `client_identifier` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, `client_secret` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, `refresh_token` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, `created` datetime NOT NULL, `last_update` timestamp NOT NULL, PRIMARY KEY (`token_id`), UNIQUE KEY `access_token` (`access_token`), UNIQUE KEY `client_identifier` (`client_identifier`), UNIQUE KEY `login_id` (`login_id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /* 2022-12-14-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'logins', 'login_id', (SELECT DATABASE()), 'tokens', 'token_id', 'login_id', 'delete');
 /* 2023-03-21-1 */	UPDATE _settings SET setting_key = 'translate_fields' WHERE setting_key = 'zzform_translations_of_fields';
+/* 2023-03-21-2 */	UPDATE _settings SET setting_key = 'db_name_local' WHERE setting_key = 'zzform_db_name_local';
