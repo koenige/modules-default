@@ -52,7 +52,7 @@ function mod_default_make_translationscheck($params) {
 	$data = [];
 	$current_db = wrap_setting('local_access') ? wrap_setting('db_name_local') : $zz_conf['db_name'];
 	foreach ($fields as $database => $fields) {
-		if ($database !== $current_db) mysqli_select_db($zz_conf['db_connection'], $database);
+		if ($database !== $current_db) mysqli_select_db(wrap_db_connection(), $database);
 		$sql = 'SELECT DISTINCT TABLE_NAME, COLUMN_NAME
 			FROM INFORMATION_SCHEMA.STATISTICS
 			WHERE TABLE_SCHEMA = "%s"
@@ -88,7 +88,7 @@ function mod_default_make_translationscheck($params) {
 	}
 	$data = array_values($data);
 	if (!empty($_GET['deleted'])) $data['deleted'] = $_GET['deleted'];
-	mysqli_select_db($zz_conf['db_connection'], $current_db);
+	mysqli_select_db(wrap_db_connection(), $current_db);
 
 	$page['text'] = wrap_template('translationscheck', $data);
 	$page['query_strings'][] = 'deleted';
