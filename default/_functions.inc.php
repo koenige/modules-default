@@ -19,8 +19,6 @@
  * @return array
  */
 function mf_default_logfiles() {
-	global $zz_conf;
-
 	$logfiles = [];
 	// PHP logfile?
 	if ($php_log = ini_get('error_log')) {
