@@ -13,7 +13,7 @@
  */
 
 
-require_once wrap_setting('lib').'/sabredav/vendor/autoload.php';
+wrap_lib('sabredav');
 
 /**
  * use sabreDAV for a webDAV server
