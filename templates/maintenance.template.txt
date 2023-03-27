@@ -75,10 +75,14 @@
 <h2>%%% text PHP & Server %%%</h2>
 <ul>
 <li><a href="?phpinfo">PHP %%% item php_version %%%</a> – %%% text Show PHP info on server %%%</li>
-%%% condition if imagick | ghostscript %%%
-<li>%%% condition if imagick %%%<a href="?imagick">%%% item imagick wrap_html_escape %%%</a>%%% condition else %%%<p class="error">%%% text ImageMagick not found. %%%</p>%%% condition endif %%%</li>
-<li>%%% condition if ghostscript %%%<a href="?ghostscript">%%% item ghostscript wrap_html_escape %%%</a>%%% condition else %%%<p class="error">%%% text GhostScript not found. %%%</p>%%% condition endif %%%</li>
-%%% condition endif %%%
+%%% condition if convert %%%<li><a href="?toolinfo=convert">%%% item convert wrap_html_escape %%%</a></li>
+%%% condition elseif setting zzform_upload_tools_identify %%%<li class="error">%%% text ImageMagick not found. %%%</li>%%% condition endif %%%
+%%% condition if gs %%%<li><a href="?toolinfo=gs">%%% item gs wrap_html_escape %%%</a></li>
+%%% condition elseif setting zzform_upload_tools_gs %%%<li class="error">%%% text GhostScript not found. %%%</li>%%% condition endif %%%
+%%% condition if exiftool %%%<li><a href="?toolinfo=exiftool">%%% item exiftool wrap_html_escape %%%</a></li>
+%%% condition elseif zzform_upload_tools_exiftool %%%<li class="error">%%% text ExifTool not found. %%%</li>%%% condition endif %%%
+%%% condition if file %%%<li><a href="?toolinfo=file">%%% item file wrap_html_escape %%%</a></li>
+%%% condition elseif zzform_upload_tools_file %%%<li class="error">%%% text Unix file not found. %%%</li>%%% condition endif %%%
 </ul>
 
 <h2>%%% text Temp and Backup Files %%%</h2>

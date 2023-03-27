@@ -71,14 +71,10 @@ function mod_default_maintenance($params) {
 	} elseif (isset($_GET['phpinfo'])) {
 		phpinfo();
 		exit;
-	} elseif (isset($_GET['imagick'])) {
-		return zz_maintenance_imagick($page);
-	} elseif (isset($_GET['ghostscript'])) {
-		return zz_maintenance_ghostscript($page);
 	} elseif (isset($_GET['integrity'])) {
 		return zz_maintenance_integrity($page);
-	} elseif ($key = zz_maintenance_keycheck()) {
-		$newpage = brick_format('%%% make '.$key.' %%%');
+	} elseif ($type = zz_maintenance_keycheck()) {
+		$newpage = brick_format('%%% '.$type['verb'].' '.$type['key'].' %%%');
 		$page['title'] .= ' '.$newpage['title'];
 		$page['text'] = $newpage['text'];
 		$page['breadcrumbs'] = array_merge($page['breadcrumbs'], $newpage['breadcrumbs']);
@@ -86,7 +82,7 @@ function mod_default_maintenance($params) {
 			$page['query_strings'] = $newpage['query_strings'];
 		if (!empty($newpage['head']))
 			$page['head'] .= $newpage['head'];
-		$page['query_strings'][] = $key;
+		$page['query_strings'][] = $type['key'];
 		return $page;
 	}
 
@@ -94,16 +90,17 @@ function mod_default_maintenance($params) {
 	$data = array_merge($data, zz_maintenance_tables());
 	// zz_write_conf()
 	$data['php_version'] = phpversion();
-	if (wrap_setting('zzform_graphics_library') === 'imagemagick') {
-		wrap_include_files('upload', 'zzform');
-		$data['imagick_full'] = zz_upload_binary_version('convert');
-		$data['imagick'] = explode("\n", $data['imagick_full']);
-		$data['imagick'] = $data['imagick'][0];
-		$data['imagick'] = str_replace('Version: ', '', $data['imagick']);
-		$data['imagick'] = str_replace('https://imagemagick.org', '', $data['imagick']);
-		$data['ghostscript_full'] = zz_upload_binary_version('gs');
-		$data['ghostscript'] = explode("\n", $data['ghostscript_full']);
-		$data['ghostscript'] = $data['ghostscript'][0];
+	wrap_include_files('upload', 'zzform');
+	$functions = ['convert', 'gs', 'exiftool', 'file'];
+	// @todo check why 'pdfinfo' does not return anything
+	foreach ($functions as $function) {
+		$full = zz_upload_binary_version($function, false);
+		$data[$function] = explode("\n", $full);
+		if ($function === 'convert') {
+			$data['convert'] = str_replace('Version: ', '', $data['convert']);
+			$data['convert'] = str_replace('https://imagemagick.org', '', $data['convert']);
+		}
+		$data[$function] = $data[$function][0];
 	}
 	$folders = zz_maintenance_folders();
 	$data['folders'] = $folders['text'];
@@ -120,9 +117,15 @@ function mod_default_maintenance($params) {
  * @return string
  */
 function zz_maintenance_keycheck() {
-	$keys = ['dbupdate', 'dbmodules', 'translationscheck', 'cachedircheck'];
-	foreach ($keys as $key) {
-		if (isset($_GET[$key])) return $key;
+	$keys = [
+		'dbupdate' => 'make',
+		'dbmodules' => 'make',
+		'translationscheck' => 'make',
+		'cachedircheck' => 'make',
+		'toolinfo' => 'request'
+	];
+	foreach ($keys as $key => $verb) {
+		if (isset($_GET[$key])) return ['key' => $key, 'verb' => $verb];
 	}
 	return '';
 }
@@ -1553,38 +1556,5 @@ function mod_default_maintenance_last_log() {
  */
 function mod_default_maintenance_return($page) {
 	$page['text'] = sprintf('<div id="zzform" class="maintenance">%s</div>', $page['text']);
-	return $page;
-}
-
-/**
- * show imagemagick information
- *
- * @global array $zz_conf
- * @return array
- */
-function zz_maintenance_imagick($page) {
-	if (wrap_setting('zzform_graphics_library') !== 'imagemagick') return false;
-	wrap_include_files('upload', 'zzform');
-	$page['text'] = '<pre>'.zz_upload_binary_version('convert').'</pre>';
-
-	$page['title'] .= ' '.wrap_text('Image Magick');
-	$page['breadcrumbs'][] = wrap_text('Image Magick');
-	$page['query_strings'] = ['imagick'];
-	return $page;
-}
-
-/**
- * show ghostscript information
- *
- * @global array $zz_conf
- * @return array
- */
-function zz_maintenance_ghostscript($page) {
-	wrap_include_files('upload', 'zzform');
-	$page['text'] = '<pre>'.zz_upload_binary_version('gs').'</pre>';
-
-	$page['title'] .= ' '.wrap_text('GhostScript');
-	$page['breadcrumbs'][] = wrap_text('GhostScript');
-	$page['query_strings'] = ['ghostscript'];
 	return $page;
 }
