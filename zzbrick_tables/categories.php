@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2016-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2016-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -62,6 +62,7 @@ $zz['fields'][5]['fields'] = ['main_category_id[path]', 'category_short', 'categ
 $zz['fields'][5]['conf_identifier']['concat'] = '/';
 $zz['fields'][5]['conf_identifier']['strip_tags'] = true;
 $zz['fields'][5]['conf_identifier']['ignore_this_if']['category'] = 'category_short';
+$zz['fields'][5]['conf_identifier']['max_length'] = 24; // because of hierarchies
 
 $zz['fields'][7]['field_name'] = 'parameters';
 $zz['fields'][7]['list_prefix'] = '<br>';
