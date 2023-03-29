@@ -60,13 +60,15 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 		$zz['fields'][$no]['title'] = $category['category'];
 		$zz['fields'][$no]['table_name'] = $table.'_categories_'.$category['category_id'];
 		$zz['fields'][$no]['unless']['export_mode']['subselect']['prefix'] = '<br><em>'.wrap_text($category['category']).': ';
+		$zz['fields'][$no]['form_display'] = $category['form_display'] ?? 'lines';
 		if (isset($category['min_records']))
 			$zz['fields'][$no]['min_records'] = $category['min_records'];
+		elseif ($zz['fields'][$no]['form_display'] === 'set')
+			$zz['fields'][$no]['min_records'] = 1;
 		if (isset($category['min_records_required']))
 			$zz['fields'][$no]['min_records_required'] = $category['min_records_required'];
 		if (isset($category['max_records']))
 			$zz['fields'][$no]['max_records'] = $category['max_records'];
-		$zz['fields'][$no]['form_display'] = 'lines';
 		if (!empty($zz['fields'][$no]['fields'][4]) AND !empty($category['property_of_category'])) {
 			$zz['fields'][$no]['sql'] .= sprintf(' WHERE category_id = %d', $category['category_id']);
 			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE category_id = %d', $category['category_id']);
