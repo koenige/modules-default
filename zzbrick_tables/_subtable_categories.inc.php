@@ -22,6 +22,10 @@
  * @param int $start_no no of field to start with
  */
 function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
+	// are there any categories to choose from?
+	$tree = wrap_id_tree('categories', $path);
+	if (count($tree) === 1) return;
+
 	$sql = 'SELECT parameters FROM categories WHERE category_id = %d';
 	$sql = sprintf($sql, wrap_category_id($path));
 	$parameters = wrap_db_fetch($sql, '', 'single value');
