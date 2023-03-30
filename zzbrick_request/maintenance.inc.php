@@ -139,9 +139,9 @@ function zz_maintenance_keycheck() {
 function zz_maintenance_sqlquery($page) {
 	global $zz_conf;
 	// zz_htmltag_escape()
-	require_once $zz_conf['dir_inc'].'/functions.inc.php';
+	wrap_include_files('functions', 'zzform');
 	// zz_db_change()
-	require_once $zz_conf['dir_inc'].'/database.inc.php';
+	wrap_include_files('database', 'zzform');
 
 	if (!empty($_SESSION) AND empty($zz_conf['user']) AND wrap_setting('brick_username_in_session'))
 		$zz_conf['user'] = $_SESSION[wrap_setting('brick_username_in_session')];
@@ -354,14 +354,12 @@ function zz_maintenance_integrity($page) {
  * @return array
  */
 function zz_maintenance_filetree($page) {
-	global $zz_conf;
-
 	$page['title'] .= ' '.wrap_text('Filetree');
 	$page['breadcrumbs'][] = wrap_text('Filetree');
 	$page['query_strings'][] = 'filetree';
 
 	// zz_htmltag_escape()
-	require_once $zz_conf['dir_inc'].'/functions.inc.php';
+	wrap_include_files('functions', 'zzform');
 
 	$files = [];
 	$topdir = $_SERVER['DOCUMENT_ROOT'].'/../';
@@ -752,13 +750,13 @@ function zz_maintenance_list_init() {
 	if (!empty($init)) return; // just once
 
 	// zz_edit_query_string(), zz_get_url_self()
-	require_once $zz_conf['dir_inc'].'/functions.inc.php';
+	wrap_include_files('functions', 'zzform');
 	// zz_init_limit()
-	require_once $zz_conf['dir_inc'].'/output.inc.php';
+	wrap_include_files('output', 'zzform');
 	// zz_mark_search_string(), zz_list_total_records(), zz_list_pages()
-	require_once $zz_conf['dir_inc'].'/list.inc.php';
+	wrap_include_files('list', 'zzform');
 	// zz_search_form()
-	require_once $zz_conf['dir_inc'].'/searchform.inc.php';
+	wrap_include_files('searchform', 'zzform');
 
 	$zz_conf['list_display'] = 'table';
 	$zz_conf['search'] = true;

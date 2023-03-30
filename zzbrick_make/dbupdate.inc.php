@@ -157,8 +157,7 @@ function mod_default_make_dbupdate_check($line) {
  * @return void
  */
 function mod_default_make_dbupdate_update($line) {
-	global $zz_conf;
-	require_once $zz_conf['dir_inc'].'/database.inc.php';
+	wrap_include_files('database', 'zzform');
 
 	$result = wrap_db_query($line['query']);
 	if ($result) {

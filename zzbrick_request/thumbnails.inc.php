@@ -39,7 +39,7 @@ function mod_default_thumbnails($params) {
 	$zz_conf['int_modules'] = ['debug', 'compatibility', 'validate', 'upload'];
 	zz_initialize();
 	if ($graphics_library = wrap_setting('zzform_graphics_library'))
-		include_once $zz_conf['dir_inc'].'/image-'.$graphics_library.'.inc.php';
+		wrap_include_files('image-'.$graphics_library, 'zzform');
 	
 	if (strstr($params[0], '..')) return false;
 
