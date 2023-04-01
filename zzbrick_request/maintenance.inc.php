@@ -88,7 +88,6 @@ function mod_default_maintenance($params) {
 
 	$data = [];
 	$data = array_merge($data, zz_maintenance_tables());
-	// zz_write_conf()
 	$data['php_version'] = phpversion();
 	wrap_include_files('upload', 'zzform');
 	$functions = ['convert', 'gs', 'exiftool', 'file'];
