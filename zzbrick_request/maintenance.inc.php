@@ -30,10 +30,6 @@ function mod_default_maintenance($params) {
 	if (!wrap_access('default_maintenance')) wrap_quit(403);
 	wrap_setting('dont_show_h1', false); // internal, no need to hide it
 
-	if (!isset($zz_conf['modules'])) {
-		$zz_conf['modules'] = [];
-		$zz_conf['modules']['debug'] = false;
-	}
 	$zz_conf['generate_output'] = true; // allow translations in zzform
 	wrap_setting_add('extra_http_headers', 'X-Frame-Options: Deny');
 	wrap_setting_add('extra_http_headers', "Content-Security-Policy: frame-ancestors 'self'");
