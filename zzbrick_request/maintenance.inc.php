@@ -42,7 +42,7 @@ function mod_default_maintenance($params) {
 		$page['head'] .= wrap_template('zzform-head');
 	else
 		wrap_package_activate('zzform'); // for CSS
-	$page['title'] = !empty($zz_conf['heading_prefix']) ? wrap_text($zz_conf['heading_prefix']) : '';
+	$page['title'] = wrap_setting('zzform_heading_prefix') ? wrap_text(wrap_setting('zzform_heading_prefix')) : '';
 	if (!empty($_GET) OR !empty($_POST)) {
 		$page['title'] .= ' <a href="./">'.wrap_text('Maintenance').'</a>:';
 		$page['breadcrumbs'][] = '<a href="./">'.wrap_text('Maintenance').'</a>';
