@@ -132,16 +132,12 @@ function zz_maintenance_keycheck() {
  * @return array
  */
 function zz_maintenance_sqlquery($page) {
-	global $zz_conf;
 	// zz_htmltag_escape()
 	wrap_include_files('functions', 'zzform');
 	// zz_db_change()
 	wrap_include_files('database', 'zzform');
-
-	if (!empty($_SESSION) AND empty($zz_conf['user']) AND wrap_setting('brick_username_in_session'))
-		$zz_conf['user'] = $_SESSION[wrap_setting('brick_username_in_session')];
-	elseif (!isset($zz_conf['user']))
-		$zz_conf['user'] = 'Maintenance robot 812';
+	
+	wrap_setting('log_username_default', 'Maintenance robot 812');
 
 	$result = [];
 	$sql = $_POST['sql'];
