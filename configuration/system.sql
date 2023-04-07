@@ -100,7 +100,7 @@ ORDER BY sequence, identifier;
 /* title */
 
 
--- auth_acces_token --
+-- auth_access_token --
 SELECT username
 FROM /*_PREFIX_*/tokens
 LEFT JOIN /*_PREFIX_*/logins USING (login_id)
