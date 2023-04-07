@@ -8,15 +8,14 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 function mod_default_cfgfile($params) {
 	// does query exist?
-	wrap_sql('cfg', 'set');
-	$sql = wrap_sql('data_'.$params[0]);
+	$sql = wrap_sql_query('cfg_data_'.$params[0]);
 	if (!$sql) return false;
 
 	// get raw data
