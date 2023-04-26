@@ -85,7 +85,7 @@ $zz['sql'] = 'SELECT _jobqueue.*, categories.category
 ';
 $zz['sqlorder'] = ' ORDER BY category, IF(ISNULL(_jobqueue.started), 0, 1), IF(ISNULL(_jobqueue.finished), 0, 1), _jobqueue.started DESC, _jobqueue.finished DESC, priority ASC, job_id';
 
-$zz['filter'][1]['title'] = 'Category';
+$zz['filter'][1]['title'] = wrap_text('Category');
 $zz['filter'][1]['type'] = 'list';
 $zz['filter'][1]['where'] = 'job_category_id';
 $zz['filter'][1]['sql'] = 'SELECT DISTINCT category_id, category
