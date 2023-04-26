@@ -303,6 +303,30 @@ CREATE TABLE `categories` (
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'categories', 'category_id', 'main_category_id', 'no-delete');
 
 
+-- _jobqueue --
+CREATE TABLE `_jobqueue` (
+  `job_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `job_category_id` int unsigned NOT NULL,
+  `job_url` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `priority` tinyint NOT NULL DEFAULT '0',
+  `created` datetime NOT NULL,
+  `started` datetime DEFAULT NULL,
+  `finished` datetime DEFAULT NULL,
+  `wait_until` datetime DEFAULT NULL,
+  `job_status` enum('not_started','running','successful','failed','abandoned') CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT 'not_started',
+  `try_no` tinyint unsigned NOT NULL DEFAULT '0',
+  `error_msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `job_category_no` tinyint unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`job_id`),
+  UNIQUE KEY `job_category_id_job_url_started` (`job_category_id`,`job_url`,`started`),
+  KEY `priority` (`priority`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), '_jobqueue', 'job_id', 'job_category_id', 'no-delete');
+
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Jobs', NULL, NULL, 'jobs', '&alias=jobs', NULL, NOW());
+
+
 -- countries --
 CREATE TABLE `countries` (
   `country_id` int unsigned NOT NULL AUTO_INCREMENT,
