@@ -774,6 +774,62 @@ msgstr ""
 msgid "memo"
 msgstr ""
 
+#: zzbrick_tables/jobqueue.php
+msgid "Background Job Queue"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "Job URL"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "Started"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "Finished"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "Wait until"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "Job Status"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "not started"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "running"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "successful"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "failed"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "abandoned"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "Try No."
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "Error Message"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
+msgid "Category No."
+msgstr ""
+
 #. Here, a boilerplate text for redirects is needed
 #: zzbrick_tables/redirects.php
 msgid "Information about redirects"
