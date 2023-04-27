@@ -308,6 +308,7 @@ CREATE TABLE `_jobqueue` (
   `job_id` int unsigned NOT NULL AUTO_INCREMENT,
   `job_category_id` int unsigned NOT NULL,
   `job_url` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `priority` tinyint NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
   `started` datetime DEFAULT NULL,

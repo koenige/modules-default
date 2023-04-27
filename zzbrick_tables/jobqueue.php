@@ -35,6 +35,9 @@ $zz['fields'][3]['title'] = 'Job URL';
 $zz['fields'][3]['field_name'] = 'job_url';
 $zz['fields'][3]['type'] = 'url';
 
+$zz['fields'][13]['field_name'] = 'username';
+$zz['fields'][13]['hide_in_list_if_empty'] = true;
+
 $zz['fields'][4]['field_name'] = 'priority';
 $zz['fields'][4]['type'] = 'number';
 $zz['fields'][4]['null'] = true;
