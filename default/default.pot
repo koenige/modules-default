@@ -25,6 +25,14 @@ msgstr ""
 msgid "List of services used for geocoding"
 msgstr ""
 
+#: templates/jobmanager.template.txt
+msgid "Start jobs manually"
+msgstr ""
+
+#: templates/jobmanager.template.txt
+msgid "Start jobs"
+msgstr ""
+
 #: templates/login.template.txt
 msgid "You have been logged out."
 msgstr ""
