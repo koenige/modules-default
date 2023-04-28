@@ -29,6 +29,7 @@ $zz['fields'][2]['sql'] = 'SELECT category_id, category, main_category_id
 $zz['fields'][2]['display_field'] = 'category';
 $zz['fields'][2]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][2]['show_hierarchy_subtree'] = wrap_category_id('jobs');
+$zz['fields'][2]['default'] = wrap_category_id('jobs/background');
 $zz['fields'][2]['key_field_name'] = 'category_id';
 
 $zz['fields'][3]['title'] = 'Job URL';

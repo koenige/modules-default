@@ -9,11 +9,22 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div class="jobmanager">
-%%% condition if show_form %%%
+%%% condition if results %%%
+<h2>%%% text Results %%%</h2>
+
+<ul>
+%%% condition if delete | abandon | fail | success %%%
+%%% condition if success %%%<li>%%% text "%d jobs were successful." success %%%</li>%%% condition endif %%%
+%%% condition if fail %%%<li>%%% text "%d jobs failed." fail %%%</li>%%% condition endif %%%
+%%% condition if abandon %%%<li>%%% text "%d jobs were abanoned." abandon %%%</li>%%% condition endif %%%
+%%% condition if delete %%%<li>%%% text "%d successful jobs deleted." delete %%%</li>%%% condition endif %%%
+%%% condition else %%%<li>%%% text No jobs. %%%</li>
+%%% condition endif %%%
+</ul>
+%%% condition endif %%%
 <form action="" method="POST">
 <p>%%% text Start jobs manually %%%</p>
 
 <input type="submit" value="%%% text Start jobs %%%">
 </form>
-%%% condition endif %%%
 </div>

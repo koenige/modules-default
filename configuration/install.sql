@@ -326,6 +326,7 @@ CREATE TABLE `_jobqueue` (
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), '_jobqueue', 'job_id', 'job_category_id', 'no-delete');
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Jobs', NULL, NULL, 'jobs', '&alias=jobs', NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Background', NULL, (SELECT category_id FROM categories c WHERE path = 'jobs'), 'jobs/background', '&alias=jobs/background', NULL, NOW());
 
 
 -- countries --
