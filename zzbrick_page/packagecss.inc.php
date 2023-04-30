@@ -29,6 +29,7 @@ function page_packagecss() {
 
 	$css = [];
 	foreach ($activated as $type => $packages) {
+		if (!$packages) continue; // 400 bad request etc.
 		foreach ($packages as $package) {
 			// do not include CSS from default module
 			if ($package === 'default') continue;
