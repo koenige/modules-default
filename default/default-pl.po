@@ -241,12 +241,12 @@ msgid "Insert"
 msgstr "Wstaw"
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Update"
 msgstr "Aktualizuj"
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Delete"
 msgstr "Usuń"
 
@@ -695,101 +695,101 @@ msgstr "Nie utworzono miniatury dla %s x %s x px."
 msgid "No missing thumbnails were found."
 msgstr "Nie brakuje żadnych miniatur."
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Database Table Relations"
 msgstr "Powiązania tabel"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Master Table"
 msgstr "Tabela danych podstawowych"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Detail Table"
 msgstr "Szczegóły tabela"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Foreign Key"
 msgstr "Klucz obcy"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Database of Master Table"
 msgstr "Bank danych tabeli głównej"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Name of Master Table"
 msgstr "Nazwa tabeli głównej"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Primary Key of Master Table"
 msgstr "Klucz główny tabeli głównej"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Database of Detail Table"
 msgstr "Bazy danych tabela szczegóły"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Name of Detail Table"
 msgstr "Nazwa tabela szczegóły"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Primary Key of Detail Table"
 msgstr "Klucz główny tabela szczegóły"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Foreign Key of Detail Table"
 msgstr "Klucz obcy tabela szczegóły"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "If main record will be deleted, what should happen with detail record?"
 msgstr ""
 "Jeśli głównym rekordem zostaną usunięte, co powinno się zdarzyć z rekord "
 "szczegółowy?"
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Query"
 msgstr "Zapytań"
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Record"
 msgstr "Zapis"
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Last update"
 msgstr "Ostatnia aktualizacja"
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Don’t delete"
 msgstr "Nie usuwaj"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Translations"
 msgstr "Tłumaczenia"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Database"
 msgstr "Baza danych"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Table"
 msgstr "Tabela"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Field"
 msgstr "Pole"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Data type"
 msgstr "Typ danych"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Data Type"
 msgstr "Typ danych"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "text line"
 msgstr "wiesz tekstu"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "memo"
 msgstr "notatka"
 

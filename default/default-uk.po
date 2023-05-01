@@ -233,12 +233,12 @@ msgid "Insert"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Update"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Delete"
 msgstr ""
 
@@ -679,99 +679,99 @@ msgstr ""
 msgid "No missing thumbnails were found."
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Database Table Relations"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Master Table"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Detail Table"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Foreign Key"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Database of Master Table"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Name of Master Table"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Primary Key of Master Table"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Database of Detail Table"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Name of Detail Table"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Primary Key of Detail Table"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Foreign Key of Detail Table"
 msgstr ""
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "If main record will be deleted, what should happen with detail record?"
 msgstr ""
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Query"
 msgstr ""
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Record"
 msgstr ""
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Last update"
 msgstr ""
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Don’t delete"
 msgstr ""
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Translations"
 msgstr ""
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Database"
 msgstr ""
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Table"
 msgstr ""
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Field"
 msgstr ""
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Data type"
 msgstr ""
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Data Type"
 msgstr ""
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "text line"
 msgstr ""
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "memo"
 msgstr ""
 

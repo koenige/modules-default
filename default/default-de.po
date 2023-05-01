@@ -252,12 +252,12 @@ msgid "Insert"
 msgstr "Einfügen"
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Update"
 msgstr "Aktualisierung"
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Delete"
 msgstr "Löschen"
 
@@ -709,100 +709,100 @@ msgstr "Nein. Ein Vorschaubild für %sx%s px konnte nicht erstellt werden."
 msgid "No missing thumbnails were found."
 msgstr "Es wurden keine fehlenden Vorschaubilder gefunden"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Database Table Relations"
 msgstr "Tabellenbeziehungen der Datenbank"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Master Table"
 msgstr "Haupttabelle"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Detail Table"
 msgstr "Detailtabelle"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Foreign Key"
 msgstr "Fremdschlüssel"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Database of Master Table"
 msgstr "Datenbank der Haupttabelle"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Name of Master Table"
 msgstr "Name der Haupttabelle"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Primary Key of Master Table"
 msgstr "Primärschlüssel der Haupttabelle"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Database of Detail Table"
 msgstr "Datenbank der Detailtabelle"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Name of Detail Table"
 msgstr "Name der Detailtabelle"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Primary Key of Detail Table"
 msgstr "Primärschlüssel der Detailtabelle"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "Foreign Key of Detail Table"
 msgstr "Fremdschlüssel der Detailtabelle"
 
-#: zzbrick_tables/database_relations.php
+#: zzbrick_tables/relations.php
 msgid "If main record will be deleted, what should happen with detail record?"
 msgstr ""
 "Falls Haupteintrag gelöscht wird, was soll mit Detaileintrag geschehen?"
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Query"
 msgstr "Abfrage"
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Record"
 msgstr "Eintrag"
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Last update"
 msgstr "Stand"
 
-#: zzbrick_tables/database_logging.php
+#: zzbrick_tables/logging.php
 msgid "Don’t delete"
 msgstr "Nicht löschen"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Translations"
 msgstr "Übersetzungen"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Database"
 msgstr "Datenbank"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Table"
 msgstr "Tabelle"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Field"
 msgstr "Feld"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Data type"
 msgstr "Datentyp"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "Data Type"
 msgstr "Datentyp"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "text line"
 msgstr "Textzeile"
 
-#: zzbrick_tables/database_translations.php
+#: zzbrick_tables/translations.php
 msgid "memo"
 msgstr "Memo"
 
