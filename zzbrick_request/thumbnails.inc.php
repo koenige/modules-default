@@ -50,7 +50,7 @@ function mod_default_thumbnails($params) {
 		.'thumbnails, if they were not created on upload. Or you can create '
 		.'completely new thumbnails if you changed the pixel size.').'</p>';
 
-	$zz = zzform_include_table($params[0]);
+	$zz = zzform_include($params[0]);
 
 	// get upload field definition, id field name
 	$id_field_name = '';

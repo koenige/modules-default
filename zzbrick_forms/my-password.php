@@ -13,7 +13,7 @@
  */
 
 
-$zz = zzform_include_table('logins');
+$zz = zzform_include('logins');
 
 // just allow access for login table to own login ID
 $zz['where']['login_id'] = $_SESSION['login_id'];

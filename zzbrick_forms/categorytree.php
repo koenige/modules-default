@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -18,7 +18,7 @@ if (!$category_id = wrap_category_id($brick['vars'][0]))
 
 // @todo add access restrictions
 
-$zz = zzform_include_table('categories');
+$zz = zzform_include('categories');
 if (!empty($brick['local_settings']['title']))
 	$zz['title'] = $brick['local_settings']['title'];
 

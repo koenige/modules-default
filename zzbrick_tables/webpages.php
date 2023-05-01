@@ -78,7 +78,7 @@ $zz['fields'][7]['hide_in_list'] = true;
 $zz['fields'][7]['character_set'] = 'utf8';
 
 if (wrap_setting('default_webpages_media')) {
-	$zz['fields'][8] = zzform_include_table('webpages-media');
+	$zz['fields'][8] = zzform_include('webpages-media');
 	$zz['fields'][8]['title'] = 'Media';
 	$zz['fields'][8]['type'] = 'subtable';
 	$zz['fields'][8]['min_records'] = 1;

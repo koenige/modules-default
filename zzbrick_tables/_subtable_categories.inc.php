@@ -59,7 +59,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 	$pc = array_values($pc); // re-write $index
 	foreach ($pc as $index => $category) {
 		$no = $start_no + $index;
-		$zz['fields'][$no] = zzform_include_table($table.'-categories');
+		$zz['fields'][$no] = zzform_include($table.'-categories');
 		$zz['fields'][$no]['type'] = 'subtable';
 		$zz['fields'][$no]['title'] = $category['category'];
 		$zz['fields'][$no]['table_name'] = $table.'_categories_'.$category['category_id'];
