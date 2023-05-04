@@ -58,8 +58,11 @@ if (wrap_setting('multiple_websites')) {
 $zz['fields'][3]['title'] = 'Job URL';
 $zz['fields'][3]['list_append_show_title'] = true;
 $zz['fields'][3]['field_name'] = 'job_url';
-$zz['fields'][3]['type'] = 'url';
+$zz['fields'][3]['type'] = 'text';
 $zz['fields'][3]['list_prefix'] = '<br>';
+$zz['fields'][3]['link'] = [
+	'field' => 'webpage_url'
+];
 
 $zz['fields'][13]['field_name'] = 'username';
 $zz['fields'][13]['hide_in_list_if_empty'] = true;
@@ -125,10 +128,17 @@ $zz['fields'][15]['hide_in_list'] = true;
 $zz['sql'] = 'SELECT _jobqueue.*
 		, categories.category
 		, websites.domain
+		, CONCAT(IF(SUBSTRING(/*_PREFIX_*/_jobqueue.job_url, 1, 1) = "/", 
+				CONCAT("https://", IFNULL(/*_PREFIX_*/_settings.setting_value, domain)), ""
+			), /*_PREFIX_*/_jobqueue.job_url
+		) AS webpage_url
 	FROM _jobqueue
 	LEFT JOIN categories
 		ON categories.category_id = _jobqueue.job_category_id
 	LEFT JOIN websites USING (website_id)
+	LEFT JOIN /*_PREFIX_*/_settings
+		ON /*_PREFIX_*/_settings.website_id = /*_PREFIX_*/websites.website_id
+		AND setting_key = "canonical_hostname"
 ';
 $zz['sqlorder'] = ' ORDER BY domain, category, IF(ISNULL(_jobqueue.started), 0, 1), IF(ISNULL(_jobqueue.finished), 0, 1), _jobqueue.started DESC, _jobqueue.finished DESC, priority ASC, job_id';
 
