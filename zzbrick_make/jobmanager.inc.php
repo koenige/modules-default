@@ -72,12 +72,13 @@ function mod_default_make_jobmanager() {
 function mod_default_make_jobmanager_add($data) {
 	$values = [];
 	$values['action'] = 'insert';
-	$values['ids'] = ['job_category_id'];
+	$values['ids'] = ['job_category_id', 'website_id'];
 	$values['POST']['job_url'] = $data['url'];
 	$values['POST']['job_category_id'] = $data['job_category_id'] ?? NULL;
 	$values['POST']['username'] = wrap_username();
 	$values['POST']['priority'] = $data['priority'] ?? 0;
 	$values['POST']['wait_until'] = $data['wait_until'] ?? NULL;
+	$values['POST']['website_id'] = wrap_setting('website_id');
 	$ops = zzform_multi('jobqueue', $values);
 	if (!empty($ops['id'])) return $ops['id'];
 	wrap_error(sprintf('Job Manager: unable to add job with URL %s (Error: %s)', $data['url'], json_encode($ops['error'])));
@@ -95,10 +96,14 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 		FROM _jobqueue
 		WHERE job_status IN ("not_started", "failed")
 		AND (ISNULL(wait_until) OR wait_until < NOW())
+		AND website_id = %d
 		%s
 		ORDER BY priority ASC, try_no ASC, created ASC
 		LIMIT 1';
-	$sql = sprintf($sql, ($job_id ? sprintf('AND job_id = %d', $job_id) : ''));
+	$sql = sprintf($sql
+		, wrap_setting('website_id')
+		, ($job_id ? sprintf('AND job_id = %d', $job_id) : '')
+	);
 	$job = wrap_db_fetch($sql);
 	if (!$job) return [];
 	$job['job_url'] = wrap_job_url_base($job['job_url']);

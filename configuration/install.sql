@@ -318,12 +318,15 @@ CREATE TABLE `_jobqueue` (
   `try_no` tinyint unsigned NOT NULL DEFAULT '0',
   `error_msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `job_category_no` tinyint unsigned NOT NULL DEFAULT '1',
+  `website_id` int unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`job_id`),
   UNIQUE KEY `job_category_id_job_url_started` (`job_category_id`,`job_url`,`started`),
-  KEY `priority` (`priority`)
+  KEY `priority` (`priority`),
+  KEY `website_id` (`website_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), '_jobqueue', 'job_id', 'job_category_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), '_jobqueue', 'job_id', 'website_id', 'delete');
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Jobs', NULL, NULL, 'jobs', '&alias=jobs', NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Background', NULL, (SELECT category_id FROM categories c WHERE path = 'jobs'), 'jobs/background', '&alias=jobs/background', NULL, NOW());

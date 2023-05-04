@@ -251,13 +251,11 @@ msgstr "%s war erfolgreich"
 msgid "Insert"
 msgstr "Einfügen"
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
-#: zzbrick_tables/logging.php
+#: zzbrick_request/maintenance.inc.php#sql-queries zzbrick_tables/logging.php
 msgid "Update"
 msgstr "Aktualisierung"
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
-#: zzbrick_tables/logging.php
+#: zzbrick_request/maintenance.inc.php#sql-queries zzbrick_tables/logging.php
 msgid "Delete"
 msgstr "Löschen"
 
@@ -861,6 +859,11 @@ msgstr "Fehlermeldung"
 #: zzbrick_tables/jobqueue.php
 msgid "Category No."
 msgstr "Kategorie Nr."
+
+#. Abbreviation for priority, head of table
+#: zzbrick_tables/jobqueue.php
+msgid "P."
+msgstr "P."
 
 #. Here, a boilerplate text for redirects is needed
 #: zzbrick_tables/redirects.php

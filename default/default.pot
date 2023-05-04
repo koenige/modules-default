@@ -838,6 +838,11 @@ msgstr ""
 msgid "Category No."
 msgstr ""
 
+#. Abbreviation for priority, head of table
+#: zzbrick_tables/jobqueue.php
+msgid "P."
+msgstr ""
+
 #. Here, a boilerplate text for redirects is needed
 #: zzbrick_tables/redirects.php
 msgid "Information about redirects"

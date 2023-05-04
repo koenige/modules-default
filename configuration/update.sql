@@ -500,3 +500,5 @@
 /* 2023-04-27-4 */	ALTER TABLE `_jobqueue` ADD `username` varchar(255) COLLATE 'latin1_general_ci' NULL AFTER `job_url`;
 /* 2023-04-28-1 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Background', NULL, (SELECT category_id FROM categories c WHERE path = 'jobs'), 'jobs/background', '&alias=jobs/background', NULL, NOW());
 /* 2023-05-01-1 */	UPDATE _settings SET setting_key = 'default_tables' WHERE setting_key = 'brick_default_tables';
+/* 2023-05-04-1 */	ALTER TABLE `_jobqueue` ADD `website_id` int unsigned NOT NULL DEFAULT '1', ADD INDEX `website_id` (`website_id`);
+/* 2023-05-04-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), '_jobqueue', 'job_id', 'website_id', 'delete');
