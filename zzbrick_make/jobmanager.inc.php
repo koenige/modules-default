@@ -36,24 +36,11 @@ function mod_default_make_jobmanager() {
 
 		list($status, $headers, $response)
 			= wrap_get_protected_url($job['job_url'], [], 'POST', [], $job['username']);
-		if ($status === 200) {
-			$result = mod_default_make_jobmanager_success($job['job_id']);
-			if ($result) {
-				if (!array_key_exists('success', $data)) $data['success'] = 0;
-				$data['success']++;
-			}
-		} elseif ($job['try_no'] + 1 < wrap_setting('default_jobs_max_tries')) {
-			$result = mod_default_make_jobmanager_fail($job, $status, $response);
-			if ($result) {
-				if (!array_key_exists('fail', $data)) $data['fail'] = 0;
-				$data['fail']++;
-			}
-		} else {
-			$result = mod_default_make_jobmanager_abandon($job, $status, $response);
-			if ($result) {
-				if (!array_key_exists('abandon', $data)) $data['abandon'] = 0;
-				$data['abandon']++;
-			}
+
+		$result = mod_default_make_jobmanager_finish($job, $status, $response);
+		if ($result) {
+			if (!array_key_exists($result, $data)) $data[$result] = 0;
+			$data[$result]++;
 		}
 	}
 
@@ -131,6 +118,30 @@ function mod_default_make_jobmanager_start($job_id) {
 }
 
 /**
+ * finish a job after completion if triggered or called locally
+ *
+ * @param array $job
+ * @param int $status
+ * @param array $response
+ * @return string
+ */
+function mod_default_make_jobmanager_finish($job, $status, $response) {
+	if (!$job) return ''; // no job, nothing to finish
+
+	if ($status === 200) {
+		$result = mod_default_make_jobmanager_success($job['job_id']);
+		if ($result) return 'success';
+	} elseif ($job['try_no'] + 1 < wrap_setting('default_jobs_max_tries')) {
+		$result = mod_default_make_jobmanager_fail($job, $status, $response);
+		if ($result) return 'fail';
+	} else {
+		$result = mod_default_make_jobmanager_abandon($job, $status, $response);
+		if ($result) return 'abandon';
+	}
+	return '';
+}
+
+/**
  * successfully finishing a job
  *
  * @param int $job_id
@@ -162,7 +173,9 @@ function mod_default_make_jobmanager_fail($job, $status, $response) {
 			, wait_until = DATE_ADD(NOW(), INTERVAL %s MINUTE)
 		WHERE job_id = %d';
 	$sql = sprintf($sql
-		, $job['job_url'], $status, json_encode($response)
+		, $job['job_url']
+		, $status
+		, wrap_db_escape(is_array($response) ? json_encode($response) : $response)
 		, pow(wrap_setting('default_jobs_delay_base_value'), $job['try_no'])
 		, $job['job_id']
 	);
@@ -216,4 +229,56 @@ function mod_default_make_jobmanager_delete() {
 	if ($success) return count($job_ids);
 	wrap_error(sprintf('Job Manager: unable to delete jobs ID %s', implode(',', $job_ids)));
 	return false;
+}
+
+/**
+ * check if a job might be started
+ *
+ * @return array
+ */
+function mod_default_make_jobmanager_check() {
+	$sql = 'SELECT job_id
+			, IF(ISNULL(wait_until), NULL, IF(wait_until < NOW(), NULL, 1)) AS wait
+			, IF(job_status = "running", IF(DATE_ADD(started, INTERVAL %d MINUTE) > NOW(), 1, NULL), NULL) AS running
+			, username, job_status, lock_hash, try_no, job_url
+			, CONCAT(SUBSTRING_INDEX(categories.path, "/", -1), "-", job_category_no) AS realm
+		FROM _jobqueue
+		LEFT JOIN categories
+			ON _jobqueue.job_category_id = categories.category_id
+		WHERE job_url = "%s"
+		AND website_id = %d
+		AND job_status != "successful"
+		ORDER BY IF(job_status = "not_started", 1, NULL)
+			, IF(job_status = "running", 1, NULL)
+			, IF(job_status = "failed", 1, NULL)
+			, IF(job_status = "abandoned", 1, NULL)
+	';
+	$sql = sprintf($sql
+		, wrap_setting('default_jobs_resume_running_minutes')
+		, wrap_db_escape(wrap_setting('request_uri'))
+		, wrap_setting('website_id')
+	);
+	$jobs = wrap_db_fetch($sql, 'job_id');
+	
+	if (!$jobs) return [];
+
+	// wait for the job to start?	
+	foreach ($jobs as $job)
+		if ($job['wait']) wrap_quit(403, wrap_text('The job should start later.'));
+
+	// is a job already running?
+	foreach ($jobs as $job)
+		if ($job['running']) {
+			if ($job['lock_hash'] !== wrap_lock_hash())
+				wrap_quit(403, wrap_text('Another job is running.'));
+			else
+				return $job;
+		}
+
+	// start the job, preferences set by ORDER BY
+	$job = reset($jobs);
+	$success = mod_default_make_jobmanager_start($job['job_id']);
+	if (!$success) wrap_quit(403, wrap_text('Unable to start job.'));
+	wrap_setting('log_username', $job['username']);
+	return $job;
 }

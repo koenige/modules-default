@@ -1266,6 +1266,18 @@ msgstr "Weiterer Text"
 msgid "Ignore"
 msgstr "Ignorieren"
 
+#: zzbrick_make/jobmanager.inc.php
+msgid "The job should start later."
+msgstr "Der Job soll erst später starten."
+
+#: zzbrick_make/jobmanager.inc.php
+msgid "Another job is running."
+msgstr "Ein anderer Job läuft."
+
+#: zzbrick_make/jobmanager.inc.php
+msgid "Unable to start job."
+msgstr "Der Job kann nicht gestartet werden."
+
 #: zzbrick_tables/websites.php
 msgid "Websites"
 msgstr "Websites"

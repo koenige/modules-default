@@ -1230,6 +1230,18 @@ msgstr ""
 msgid "Ignore"
 msgstr ""
 
+#: zzbrick_make/jobmanager.inc.php
+msgid "The job should start later."
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php
+msgid "Another job is running."
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php
+msgid "Unable to start job."
+msgstr ""
+
 #: zzbrick_tables/websites.php
 msgid "Websites"
 msgstr ""
