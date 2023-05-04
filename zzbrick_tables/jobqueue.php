@@ -117,6 +117,11 @@ $zz['fields'][12]['type'] = 'number';
 $zz['fields'][12]['hide_in_list'] = true;
 $zz['fields'][12]['default'] = 1;
 
+$zz['fields'][15]['field_name'] = 'lock_hash';
+$zz['fields'][15]['type'] = 'hidden';
+$zz['fields'][15]['hide_in_list'] = true;
+
+
 $zz['sql'] = 'SELECT _jobqueue.*
 		, categories.category
 		, websites.domain
