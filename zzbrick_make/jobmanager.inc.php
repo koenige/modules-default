@@ -65,7 +65,7 @@ function mod_default_make_jobmanager_add($data) {
 	$values['POST']['username'] = wrap_username();
 	$values['POST']['priority'] = $data['priority'] ?? 0;
 	$values['POST']['wait_until'] = $data['wait_until'] ?? NULL;
-	$values['POST']['website_id'] = wrap_setting('website_id');
+	$values['POST']['website_id'] = wrap_setting('website_id') ?? 1;
 	$ops = zzform_multi('jobqueue', $values);
 	if (!empty($ops['id'])) return $ops['id'];
 	wrap_error(sprintf('Job Manager: unable to add job with URL %s (Error: %s)', $data['url'], json_encode($ops['error'])));
@@ -88,7 +88,7 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 		ORDER BY priority ASC, try_no ASC, created ASC
 		LIMIT 1';
 	$sql = sprintf($sql
-		, wrap_setting('website_id')
+		, wrap_setting('website_id') ?? 1
 		, ($job_id ? sprintf('AND job_id = %d', $job_id) : '')
 	);
 	$job = wrap_db_fetch($sql);
@@ -256,7 +256,7 @@ function mod_default_make_jobmanager_check() {
 	$sql = sprintf($sql
 		, wrap_setting('default_jobs_resume_running_minutes')
 		, wrap_db_escape(wrap_setting('request_uri'))
-		, wrap_setting('website_id')
+		, wrap_setting('website_id') ?? 1
 	);
 	$jobs = wrap_db_fetch($sql, 'job_id');
 	

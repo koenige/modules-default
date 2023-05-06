@@ -40,7 +40,7 @@ if (wrap_setting('multiple_websites')) {
 	$zz['fields'][14]['sql'] = 'SELECT website_id, domain
 		FROM /*_PREFIX_*/websites
 		ORDER BY domain';
-	$zz['fields'][14]['default'] = wrap_setting('website_id_default');
+	$zz['fields'][14]['default'] = wrap_setting('website_id_default') ?? 1;
 	$zz['fields'][14]['display_field'] = 'domain';
 	$zz['fields'][14]['exclude_from_search'] = true;
 	$zz['fields'][14]['if']['where']['hide_in_list'] = true;
@@ -128,7 +128,7 @@ $zz['fields'][15]['hide_in_list'] = true;
 $zz['sql'] = 'SELECT _jobqueue.*
 		, categories.category
 		, websites.domain
-		, CONCAT(IF(SUBSTRING(/*_PREFIX_*/_jobqueue.job_url, 1, 1) = "/", 
+		, CONCAT(IF(SUBSTRING(/*_PREFIX_*/_jobqueue.job_url, 1, 1) = "/" AND domain != "*", 
 				CONCAT("https://", IFNULL(/*_PREFIX_*/_settings.setting_value, domain)), ""
 			), /*_PREFIX_*/_jobqueue.job_url
 		) AS webpage_url
