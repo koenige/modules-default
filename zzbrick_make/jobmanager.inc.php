@@ -63,6 +63,21 @@ function mod_default_make_jobmanager() {
  * @return int
  */
 function mod_default_make_jobmanager_add($data) {
+	// check if already a job by this name exists that will be started again
+	$sql = 'SELECT job_id
+		FROM _jobqueue
+		WHERE job_url = "%s"
+		AND website_id = %d
+		AND (ISNULL(wait_until) OR wait_until <= %s)
+		AND job_status IN ("not_started", "failed")';
+	$sql = sprintf($sql
+		, $data['url']
+		, wrap_setting('website_id') ?? 1
+		, !empty($data['wait_until']) ? sprintf('"%s"', $data['wait_until']) : "NOW()"
+	);
+	$job_id = wrap_db_fetch($sql, '', 'single value');
+	if ($job_id) return $job_id;
+
 	$values = [];
 	$values['action'] = 'insert';
 	$values['ids'] = ['job_category_id', 'website_id'];
