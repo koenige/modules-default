@@ -34,10 +34,14 @@ function mod_default_make_jobmanager() {
 		$started = mod_default_make_jobmanager_start($job['job_id']);
 		if (!$started) break;
 
-		list($status, $headers, $response)
-			= wrap_get_protected_url($job['job_url'], [], 'POST', [], $job['username']);
+		if (!empty($_SERVER['X_TIMEOUT_IGNORE']))
+			list($status, $headers, $response)
+				= wrap_trigger_protected_url($job['job_url'], $job['username']);
+		else
+			list($status, $headers, $response)
+				= wrap_get_protected_url($job['job_url'], [], 'POST', [], $job['username']);
 		if ($status !== 200)
-			wrap_error(sprintf('Job Manager with URL %s failed. (Status: %d, Headers: %s)', $url, $status, json_encode($headers)));
+			wrap_error(sprintf('Job Manager with URL %s failed. (Status: %d, Headers: %s)', $job['job_url'], $status, json_encode($headers)));
 
 		$result = mod_default_make_jobmanager_finish($job, $status, $response);
 		if ($result) {
