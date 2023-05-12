@@ -366,3 +366,6 @@ qs	string	msclkid
 
 # Looking from 5.188. for admins
 404	all	/admin
+
+# ProxyChecker
+404	ua	https://www.proxychecker.ai/proxy-checker
