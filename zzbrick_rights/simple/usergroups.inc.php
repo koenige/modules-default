@@ -14,9 +14,15 @@
 
 
 function wrap_register_usergroups($user_id) {
-	$sql = 'SELECT login_rights
-		FROM /*_PREFIX_*/logins
-		WHERE login_id = %d';
+	if (wrap_setting('login_with_email') OR wrap_setting('login_with_contact_id')) {
+		$sql = 'SELECT login_rights
+			FROM /*_PREFIX_*/logins
+			WHERE contact_id = %d';
+	} else {
+		$sql = 'SELECT login_rights
+			FROM /*_PREFIX_*/logins
+			WHERE login_id = %d';
+	}
 	$sql = sprintf($sql, $user_id);
 	$_SESSION['login_rights'] = wrap_db_fetch($sql, '', 'single value');
 }
