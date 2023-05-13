@@ -163,4 +163,10 @@ $zz['filter'][1]['sql'] = 'SELECT DISTINCT category_id, category
 		ON categories.category_id = _jobqueue.job_category_id
 	ORDER BY category';
 
+$zz['filter'][3]['title'] = wrap_text('Job Status');
+$zz['filter'][3]['identifier'] = 'status';
+$zz['filter'][3]['where'] = 'job_status';
+$zz['filter'][3]['type'] = 'list';
+$zz['filter'][3]['selection'] = array_combine($zz['fields'][9]['enum'], $zz['fields'][9]['enum_title']);
+
 wrap_setting('zzform_logging', false);
