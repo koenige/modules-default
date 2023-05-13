@@ -830,7 +830,7 @@ msgstr "Memo"
 
 #: zzbrick_tables/jobqueue.php
 msgid "Background Job Queue"
-msgstr "Warteschlange der Hintergrundjobs"
+msgstr "Warteschlange der Hintergrundaufträge"
 
 #: zzbrick_tables/jobqueue.php
 msgid "Job URL"
