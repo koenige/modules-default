@@ -48,6 +48,7 @@ function mod_default_make_jobmanager() {
 			if (!array_key_exists($result, $data)) $data[$result] = 0;
 			$data[$result]++;
 		}
+		usleep(wrap_setting('default_jobs_sleep_between_microseconds'));
 	}
 
 	$data['results'] = true;
@@ -101,11 +102,19 @@ function mod_default_make_jobmanager_add($data) {
  */
 function mod_default_make_jobmanager_get($job_id = 0) {
 	$sql = 'SELECT job_id, job_url, username, try_no
+			, (SELECT COUNT(*) FROM _jobqueue jq
+				WHERE jq.job_category_id = _jobqueue.job_category_id
+				AND job_status = "running"
+			) AS running_jobs
+			, SUBSTRING_INDEX(SUBSTRING_INDEX(parameters, "max_requests=", -1), "&", 1) AS max_request
 		FROM _jobqueue
+		LEFT JOIN categories
+			ON _jobqueue.job_category_id = categories.category_id
 		WHERE job_status IN ("not_started", "failed")
 		AND (ISNULL(wait_until) OR wait_until < NOW())
 		AND website_id = %d
 		%s
+		HAVING (running_jobs < max_request OR max_request = "")
 		ORDER BY priority ASC, try_no ASC, created ASC
 		LIMIT 1';
 	$sql = sprintf($sql
