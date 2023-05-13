@@ -14,14 +14,34 @@
 
 
 function mod_default_make_jobmanager() {
+	wrap_package_activate('zzform'); // for CSS
+	// get count of jobs
+	$sql = 'SELECT CONCAT(category_id, "-", job_status) AS id
+			, COUNT(*) AS jobs, job_status, category_id, category
+		FROM _jobqueue
+		LEFT JOIN categories
+			ON _jobqueue.job_category_id = categories.category_id
+		WHERE job_status != "successful"
+		GROUP BY category_id, job_status';
+	$categories = wrap_db_fetch($sql, 'id');
+	if ($categories)
+		$categories = wrap_translate($categories, 'categories', 'category_id');
+	$data = [];
+	foreach ($categories as $category) {
+		$id = $category['category_id'];
+		$data[$id]['category_id'] = $id;
+		$data[$id]['category'] = $category['category'];
+		$data[$id][$category['job_status']] = $category['jobs'];
+	}
+	$data['jobqueue_path'] = wrap_path('default_tables', 'jobqueue');
+
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-		$page['text'] = wrap_template('jobmanager');
+		$page['text'] = wrap_template('jobmanager', $data);
 		return $page;
 	}
 	if (!empty($_POST['url']))
 		$job_id = mod_default_make_jobmanager_add($_POST);
 
-	$data = [];
 	$time = time();
 	while ($time + wrap_setting('default_jobs_request_runtime_secs') > time()) {
 		$job = mod_default_make_jobmanager_get($job_id ?? 0);

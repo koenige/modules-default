@@ -8,10 +8,31 @@
 # @copyright Copyright © 2020, 2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
-<div class="jobmanager">
+<div class="jobmanager" id="zzform">
+<table class="data">
+<thead>
+<tr>
+	<th>%%% text Category %%%</th>
+	<th class="number">%%% text not started %%%</th>
+	<th class="number">%%% text running %%%</th>
+	<th class="number">%%% text failed %%%</th>
+	<th class="number">%%% text abandoned %%%</th>
+</tr>
+</thead>
+<tbody>
+%%% loop start %%%
+<tr class="%%% loopposition uneven un %%%even">
+	<td>%%% item category %%%</td>
+	<td class="number">%%% item not_started %%%</td>
+	<td class="number">%%% item running %%%</td>
+	<td class="number">%%% item failed %%%</td>
+	<td class="number">%%% item abandoned %%%</td>
+</tr>
+%%% loop end %%%
+</tbody>
+</table>
 %%% condition if results %%%
 <h2>%%% text Results %%%</h2>
-
 <ul>
 %%% condition if delete | abandon | fail | success %%%
 %%% condition if success %%%<li>%%% text "%d jobs were successful." success %%%</li>%%% condition endif %%%
@@ -22,9 +43,13 @@
 %%% condition endif %%%
 </ul>
 %%% condition endif %%%
-<form action="" method="POST">
-<p>%%% text Start jobs manually %%%</p>
+%%% condition if jobqueue_path %%%
+<h2><a href="%%% item jobqueue_path %%%">%%% text Background Job Queue %%%</a></h2>
 
-<input type="submit" value="%%% text Start jobs %%%">
-</form>
+%%% condition endif %%%
+<h2>%%% text Start jobs manually %%%</h2>
+<p><form action="" method="POST">
+<input type="submit" value="%%% text Start jobs %%%"></p>
+</form></p>
+
 </div>
