@@ -26,6 +26,30 @@ msgid "List of services used for geocoding"
 msgstr ""
 
 #: templates/jobmanager.template.txt
+msgid "Results"
+msgstr ""
+
+#: templates/jobmanager.template.txt
+msgid "%d jobs were successful."
+msgstr ""
+
+#: templates/jobmanager.template.txt
+msgid "%d jobs failed."
+msgstr ""
+
+#: templates/jobmanager.template.txt
+msgid "%d jobs were abanoned."
+msgstr ""
+
+#: templates/jobmanager.template.txt
+msgid "%d successful jobs deleted"
+msgstr ""
+
+#: templates/jobmanager.template.txt
+msgid "No jobs."
+msgstr ""
+
+#: templates/jobmanager.template.txt
 msgid "Start jobs manually"
 msgstr ""
 
