@@ -145,6 +145,7 @@ $zz['sqlorder'] = ' ORDER BY domain, category, IF(ISNULL(_jobqueue.started), 0, 
 if (wrap_setting('multiple_websites')) {
 	$zz['filter'][2]['sql'] = 'SELECT website_id, domain
 		FROM /*_PREFIX_*/websites
+		JOIN _jobqueue USING (website_id)
 		WHERE website_id != 1
 		ORDER BY domain';
 	$zz['filter'][2]['title'] = 'Website';
