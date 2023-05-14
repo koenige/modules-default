@@ -54,19 +54,21 @@ function mod_default_make_jobmanager() {
 		$started = mod_default_make_jobmanager_start($job['job_id']);
 		if (!$started) break;
 
-		if (!empty($_SERVER['X_TIMEOUT_IGNORE']))
+		if (!empty($_SERVER['HTTP_X_TIMEOUT_IGNORE']))
 			list($status, $headers, $response)
 				= wrap_trigger_protected_url($job['job_url'], $job['username']);
 		else
 			list($status, $headers, $response)
 				= wrap_get_protected_url($job['job_url'], [], 'POST', [], $job['username']);
-		if ($status !== 200)
+		if (!in_array($status, [100, 200]))
 			wrap_error(sprintf('Job Manager with URL %s failed. (Status: %d, Headers: %s)', $job['job_url'], $status, json_encode($headers)));
 
-		$result = mod_default_make_jobmanager_finish($job, $status, $response);
-		if ($result) {
-			if (!array_key_exists($result, $data)) $data[$result] = 0;
-			$data[$result]++;
+		if (empty($_SERVER['HTTP_X_TIMEOUT_IGNORE'])) {
+			$result = mod_default_make_jobmanager_finish($job, $status, $response);
+			if ($result) {
+				if (!array_key_exists($result, $data)) $data[$result] = 0;
+				$data[$result]++;
+			}
 		}
 		usleep(wrap_setting('default_jobs_sleep_between_microseconds'));
 	}
@@ -108,6 +110,7 @@ function mod_default_make_jobmanager_add($data) {
 	$values['POST']['priority'] = $data['priority'] ?? 0;
 	$values['POST']['wait_until'] = $data['wait_until'] ?? NULL;
 	$values['POST']['website_id'] = wrap_setting('website_id') ?? 1;
+	$values['POST']['lock_hash'] = wrap_lock_hash();
 	$ops = zzform_multi('jobqueue', $values);
 	if (!empty($ops['id'])) return $ops['id'];
 	wrap_error(sprintf('Job Manager: unable to add job with URL %s (Error: %s)', $data['url'], json_encode($ops['error'])));
