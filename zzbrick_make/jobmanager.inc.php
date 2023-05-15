@@ -36,7 +36,7 @@ function mod_default_make_jobmanager() {
 		// @todo allow to run a certain number of jobs per category in parallel
 		// with wrap_lock(), category, parameters, e. g. `max_requests`
 
-		$started = mod_default_make_jobmanager_start($job['job_id']);
+		$started = mod_default_make_jobmanager_start($job);
 		if (!$started) break;
 
 		if (!empty($_SERVER['HTTP_X_TIMEOUT_IGNORE']))
@@ -157,6 +157,7 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 	);
 	$job = wrap_db_fetch($sql);
 	if (!$job) return [];
+	$job['job_url_raw'] = $job['job_url'];
 	$job['job_url'] = wrap_job_url_base($job['job_url']);
 	if (!$job['username'])
 		$job['username'] = wrap_setting('default_robot_username');
@@ -166,16 +167,40 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 /**
  * start a job
  *
- * @param int $job_id
+ * @param array $job
  * @return bool
  */
-function mod_default_make_jobmanager_start($job_id) {
+function mod_default_make_jobmanager_start($job) {
+	require_once wrap_setting('core').'/syndication.inc.php';
+
+	$locked = wrap_lock('jobqueue', 'wait'); // to avoid race conditions
+	if ($locked) return false;
+
+	// is an identical job already running?
+	$sql = 'SELECT COUNT(*) FROM _jobqueue
+	    WHERE job_url = "%s"
+	    AND job_status = "running"';
+	$sql = sprintf($sql, $job['job_url_raw']);
+	$running = wrap_db_fetch($sql, '', 'single value');
+	if ($running) {
+		wrap_unlock('jobqueue');
+		return false;
+	}
+	
 	$sql = 'UPDATE _jobqueue
-		SET job_status = "running", started = NOW(), finished = NULL, try_no = try_no + 1
+		SET job_status = "running"
+			, started = NOW()
+			, finished = NULL
+			, try_no = try_no + 1
+			, lock_hash = "%s"
 		WHERE job_id = %d
 		AND job_status != "running"';
-	$sql = sprintf($sql, $job_id);
+	$sql = sprintf($sql
+		, wrap_lock_hash()
+		, $job['job_id']
+	);
 	$success = wrap_db_query($sql);
+	wrap_unlock('jobqueue', 'delete');
 	if ($success) return true;
 	wrap_error(sprintf('Job Manager: unable to start job ID %d', $job_id));
 	return false;
