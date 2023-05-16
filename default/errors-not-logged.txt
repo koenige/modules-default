@@ -369,3 +369,10 @@ qs	string	msclkid
 
 # ProxyChecker
 404	ua	https://www.proxychecker.ai/proxy-checker
+
+# Looking for Admin
+404	all	/admin/
+404	all	/admin.php
+404	all	/admin/login
+404	all	/admin/login/
+404	all	/admin/login.php
