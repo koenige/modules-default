@@ -331,6 +331,7 @@ function mod_default_make_jobmanager_check() {
 			, IF(job_status = "running", IF(DATE_ADD(started, INTERVAL %d MINUTE) > NOW(), 1, NULL), NULL) AS running
 			, username, job_status, lock_hash, try_no, job_url
 			, CONCAT(SUBSTRING_INDEX(categories.path, "/", -1), "-", job_category_no) AS realm
+			, job_url AS job_url_raw
 		FROM _jobqueue
 		LEFT JOIN categories
 			ON _jobqueue.job_category_id = categories.category_id
@@ -352,8 +353,10 @@ function mod_default_make_jobmanager_check() {
 	if (!$jobs) return [];
 
 	// wait for the job to start?	
-	foreach ($jobs as $job)
+	foreach ($jobs as $job_id => $job) {
+		$jobs[$job_id]['job_url'] = wrap_job_url_base($job['job_url']);
 		if ($job['wait']) wrap_quit(403, wrap_text('The job should start later.'));
+	}
 
 	// is a job already running?
 	foreach ($jobs as $job)
@@ -366,7 +369,7 @@ function mod_default_make_jobmanager_check() {
 
 	// start the job, preferences set by ORDER BY
 	$job = reset($jobs);
-	$success = mod_default_make_jobmanager_start($job['job_id']);
+	$success = mod_default_make_jobmanager_start($job);
 	if (!$success) wrap_quit(403, wrap_text('Unable to start job.'));
 	wrap_setting('log_username', $job['username']);
 	return $job;
