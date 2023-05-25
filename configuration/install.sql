@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -323,7 +323,8 @@ CREATE TABLE `_jobqueue` (
   PRIMARY KEY (`job_id`),
   UNIQUE KEY `job_category_id_job_url_started` (`job_category_id`,`job_url`,`started`),
   KEY `priority` (`priority`),
-  KEY `website_id` (`website_id`)
+  KEY `website_id` (`website_id`),
+  KEY `job_status` (`job_status`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), '_jobqueue', 'job_id', 'job_category_id', 'no-delete');

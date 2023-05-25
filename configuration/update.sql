@@ -503,3 +503,4 @@
 /* 2023-05-04-1 */	ALTER TABLE `_jobqueue` ADD `website_id` int unsigned NOT NULL DEFAULT '1', ADD INDEX `website_id` (`website_id`);
 /* 2023-05-04-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), '_jobqueue', 'job_id', 'website_id', 'delete');
 /* 2023-05-04-3 */	ALTER TABLE `_jobqueue` ADD `lock_hash` varchar(32) COLLATE 'latin1_general_ci' NULL AFTER `job_category_no`;
+/* 2023-05-25-1 */	ALTER TABLE `_jobqueue` ADD INDEX `job_status` (`job_status`);
