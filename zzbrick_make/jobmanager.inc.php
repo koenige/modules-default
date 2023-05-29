@@ -60,6 +60,7 @@ function mod_default_make_jobmanager() {
 
 	$data['results'] = true;
 	$data['delete'] = mod_default_make_jobmanager_delete();
+	$data['recover'] = mod_default_make_jobmanager_release();
 	$page['text'] = wrap_template('jobmanager', $data);
 	return $page;
 }
@@ -317,6 +318,29 @@ function mod_default_make_jobmanager_delete() {
 	$success = wrap_db_query($sql);
 	if ($success) return count($job_ids);
 	wrap_error(sprintf('Job Manager: unable to delete jobs ID %s', implode(',', $job_ids)));
+	return false;
+}
+
+/**
+ * release stuck jobs
+ *
+ * @return void
+ * @return bool
+ */
+function mod_default_make_jobmanager_release() {
+	$sql = 'SELECT job_id
+		FROM _jobqueue
+		WHERE job_status = "running"
+		AND DATE_ADD(started, INTERVAL %d MINUTE) < NOW()';
+	$sql = sprintf($sql, wrap_setting('default_jobs_resume_running_minutes'));
+	$job_ids = wrap_db_fetch($sql, 'job_id', 'single value');
+	if (!$job_ids) return false;
+
+	$sql = 'UPDATE _jobqueue SET job_status = "failed" WHERE job_id IN (%s) AND job_status = "running"';
+	$sql = sprintf($sql, implode(',', $job_ids));
+	$success = wrap_db_query($sql);
+	if ($success) return count($job_ids);
+	wrap_error(sprintf('Job Manager: unable to release jobs ID %s', implode(',', $job_ids)));
 	return false;
 }
 
