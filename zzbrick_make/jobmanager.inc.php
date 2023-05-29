@@ -110,8 +110,8 @@ function mod_default_make_jobmanager_add($data) {
 		, wrap_setting('website_id') ?? 1
 		, !empty($data['wait_until']) ? sprintf('"%s"', $data['wait_until']) : "NOW()"
 	);
-	$job_id = wrap_db_fetch($sql, '', 'single value');
-	if ($job_id) return $job_id;
+	$job_ids = wrap_db_fetch($sql, 'job_id', 'single value');
+	if ($job_ids) return reset($job_id);
 
 	$values = [];
 	$values['action'] = 'insert';
@@ -146,7 +146,7 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 		LEFT JOIN categories
 			ON _jobqueue.job_category_id = categories.category_id
 		WHERE job_status IN ("not_started", "failed")
-		AND (ISNULL(wait_until) OR wait_until < NOW())
+		AND (ISNULL(wait_until) OR wait_until <= NOW())
 		AND website_id = %d
 		%s
 		HAVING (running_jobs < max_request OR max_request = "")
@@ -351,7 +351,7 @@ function mod_default_make_jobmanager_release() {
  */
 function mod_default_make_jobmanager_check() {
 	$sql = 'SELECT job_id
-			, IF(ISNULL(wait_until), NULL, IF(wait_until < NOW(), NULL, 1)) AS wait
+			, IF(ISNULL(wait_until), NULL, IF(wait_until <= NOW(), NULL, 1)) AS wait
 			, IF(job_status = "running", IF(DATE_ADD(started, INTERVAL %d MINUTE) > NOW(), 1, NULL), NULL) AS running
 			, username, job_status, lock_hash, try_no, job_url
 			, CONCAT(SUBSTRING_INDEX(categories.path, "/", -1), "-", job_category_no) AS realm
