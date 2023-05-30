@@ -76,7 +76,7 @@ function mod_default_make_jobmanager_count() {
 		FROM _jobqueue
 		LEFT JOIN categories
 			ON _jobqueue.job_category_id = categories.category_id
-		WHERE job_status != "successful"
+		WHERE job_status NOT IN ("successful", "not_found")
 		GROUP BY category_id, job_status';
 	$categories = wrap_db_fetch($sql, 'id');
 	if ($categories)
@@ -175,7 +175,10 @@ function mod_default_make_jobmanager_start($job) {
 	require_once wrap_setting('core').'/syndication.inc.php';
 
 	$locked = wrap_lock('jobqueue', 'wait'); // to avoid race conditions
-	if ($locked) return false;
+	if ($locked) {
+		wrap_error(sprintf('Job Manager: unable to start job ID %d, jobqueue is locked', $job['job_id']));
+		return false;
+	}
 
 	// is an identical job already running?
 	$sql = 'SELECT COUNT(*) FROM _jobqueue
@@ -184,6 +187,7 @@ function mod_default_make_jobmanager_start($job) {
 	$sql = sprintf($sql, $job['job_url_raw']);
 	$running = wrap_db_fetch($sql, '', 'single value');
 	if ($running) {
+		wrap_error(sprintf('Job Manager: unable to start job ID %d, identical job is running', $job['job_id']));
 		wrap_unlock('jobqueue');
 		return false;
 	}
@@ -203,7 +207,7 @@ function mod_default_make_jobmanager_start($job) {
 	$success = wrap_db_query($sql);
 	wrap_unlock('jobqueue', 'delete');
 	if ($success) return true;
-	wrap_error(sprintf('Job Manager: unable to start job ID %d', $job_id));
+	wrap_error(sprintf('Job Manager: unable to start job ID %d', $job['job_id']));
 	return false;
 }
 
@@ -351,11 +355,12 @@ function mod_default_make_jobmanager_check() {
 			ON _jobqueue.job_category_id = categories.category_id
 		WHERE job_url = "%s"
 		AND website_id = %d
-		AND job_status != "successful"
+		AND job_status NOT IN ("successful", "not_found")
 		ORDER BY IF(job_status = "not_started", 1, NULL)
 			, IF(job_status = "running", 1, NULL)
 			, IF(job_status = "failed", 1, NULL)
 			, IF(job_status = "abandoned", 1, NULL)
+			, wait_until ASC
 	';
 	$sql = sprintf($sql
 		, wrap_setting('default_jobs_resume_running_minutes')
@@ -369,7 +374,8 @@ function mod_default_make_jobmanager_check() {
 	// wait for the job to start?	
 	foreach ($jobs as $job_id => $job) {
 		$jobs[$job_id]['job_url'] = wrap_job_url_base($job['job_url']);
-		if ($job['wait']) wrap_quit(403, wrap_text('The job should start later.'));
+		if ($job['wait'] AND $job['job_status'] !== 'failed')
+			wrap_quit(403, wrap_text('The job should start later.'));
 	}
 
 	// is a job already running?
