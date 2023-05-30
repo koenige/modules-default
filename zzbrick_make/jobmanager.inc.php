@@ -251,30 +251,40 @@ function mod_default_make_jobmanager_success($job_id) {
  * @return string
  */
 function mod_default_make_jobmanager_fail($job, $status, $response) {
-	$job_status = ($job['try_no'] + 1 < wrap_setting('default_jobs_max_tries')) ? 'failed' : 'abandoned';
+	if ($status === 404) {
+		$job_status = 'not_found';
+		$error_msg = 'unable to mark job ID %d as not found';
+		$wait_until_sql = '';
+	} elseif ($job['try_no'] + 1 < wrap_setting('default_jobs_max_tries')) {
+		$job_status = 'failed';
+		$error_msg = 'unable to delay failed job ID %d';
+		$wait_until_sql = sprintf(
+			', wait_until = DATE_ADD(NOW(), INTERVAL %s MINUTE)',
+			pow(wrap_setting('default_jobs_delay_base_value'), $job['try_no'])
+		);
+	} else {
+		$job_status = 'abandoned';
+		$error_msg = 'unable to abandon job ID %d';
+		$wait_until_sql = '';
+	}
+
 	$sql = 'UPDATE _jobqueue
 		SET job_status = "%s", finished = NOW()
 			, error_msg = CONCAT(IFNULL(error_msg, ""), "Date: ", NOW(), ", URL: %s, Status: %d, Response: %s\n")
-			, wait_until = DATE_ADD(NOW(), INTERVAL %s MINUTE)
+			%s
 		WHERE job_id = %d';
 	$sql = sprintf($sql
 		, $job_status
 		, $job['job_url']
 		, $status
 		, wrap_db_escape(is_array($response) ? json_encode($response) : $response)
-		, pow(wrap_setting('default_jobs_delay_base_value'), $job['try_no'])
+		, $wait_until_sql
 		, $job['job_id']
 	);
 	$success = wrap_db_query($sql);
 	if ($success) return $job_status;
-	switch ($job_status) {
-	case 'failed':
-		wrap_error(sprintf('Job Manager: unable to delay failed job ID %d', $job['job_id']));
-		break;
-	case 'abandoned':
-		wrap_error(sprintf('Job Manager: unable to abandon job ID %d', $job['job_id']));
-		break;
-	}
+	$error_msg = sprintf($error_msg, $job['job_id']);
+	wrap_error(sprintf('Job Manager: %s', $error_msg]));
 	return '';
 }
 
@@ -287,7 +297,7 @@ function mod_default_make_jobmanager_fail($job, $status, $response) {
 function mod_default_make_jobmanager_delete() {
 	$sql = 'SELECT job_id
 		FROM _jobqueue
-		WHERE job_status = "successful"
+		WHERE job_status IN ("successful", "not_found")
 		AND DATE_ADD(finished, INTERVAL %d HOUR) < NOW()';
 	$sql = sprintf($sql, wrap_setting('default_jobs_delete_successful_hours'));
 	$job_ids = wrap_db_fetch($sql, 'job_id', 'single value');
