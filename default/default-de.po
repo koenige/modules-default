@@ -43,8 +43,12 @@ msgid "%d jobs were abanoned."
 msgstr "%d Aufträge wurden abgebrochen."
 
 #: templates/jobmanager.template.txt
-msgid "%d successful jobs deleted"
+msgid "%d successful jobs deleted."
 msgstr "%d erfolgreiche Aufträge gelöscht"
+
+#: templates/jobmanager.template.txt
+msgid "%d running jobs released again."
+msgstr "%d laufende Aufträge wieder freigegeben."
 
 #: templates/jobmanager.template.txt
 msgid "No jobs."

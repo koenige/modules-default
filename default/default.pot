@@ -42,7 +42,11 @@ msgid "%d jobs were abanoned."
 msgstr ""
 
 #: templates/jobmanager.template.txt
-msgid "%d successful jobs deleted"
+msgid "%d successful jobs deleted."
+msgstr ""
+
+#: templates/jobmanager.template.txt
+msgid "%d running jobs released again."
 msgstr ""
 
 #: templates/jobmanager.template.txt

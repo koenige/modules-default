@@ -59,8 +59,8 @@ function mod_default_make_jobmanager() {
 	}
 
 	$data['results'] = true;
-	$data['delete'] = mod_default_make_jobmanager_delete();
-	$data['recover'] = mod_default_make_jobmanager_release();
+	$data['deleted'] = mod_default_make_jobmanager_delete();
+	$data['released'] = mod_default_make_jobmanager_release();
 	$page['text'] = wrap_template('jobmanager', $data);
 	return $page;
 }
@@ -111,7 +111,7 @@ function mod_default_make_jobmanager_add($data) {
 		, !empty($data['wait_until']) ? sprintf('"%s"', $data['wait_until']) : "NOW()"
 	);
 	$job_ids = wrap_db_fetch($sql, 'job_id', 'single value');
-	if ($job_ids) return reset($job_id);
+	if ($job_ids) return reset($job_ids);
 
 	$values = [];
 	$values['action'] = 'insert';
@@ -218,24 +218,18 @@ function mod_default_make_jobmanager_start($job) {
 function mod_default_make_jobmanager_finish($job, $status, $response) {
 	if (!$job) return ''; // no job, nothing to finish
 
-	if ($status === 200) {
+	if ($status === 200)
 		$result = mod_default_make_jobmanager_success($job['job_id']);
-		if ($result) return 'success';
-	} elseif ($job['try_no'] + 1 < wrap_setting('default_jobs_max_tries')) {
+	else
 		$result = mod_default_make_jobmanager_fail($job, $status, $response);
-		if ($result) return 'fail';
-	} else {
-		$result = mod_default_make_jobmanager_abandon($job, $status, $response);
-		if ($result) return 'abandon';
-	}
-	return '';
+	return $result;
 }
 
 /**
  * successfully finishing a job
  *
  * @param int $job_id
- * @return bool
+ * @return string
  */
 function mod_default_make_jobmanager_success($job_id) {
 	$sql = 'UPDATE _jobqueue
@@ -243,9 +237,9 @@ function mod_default_make_jobmanager_success($job_id) {
 		WHERE job_id = %d';
 	$sql = sprintf($sql, $job_id);
 	$success = wrap_db_query($sql);
-	if ($success) return true;
+	if ($success) return 'successful';
 	wrap_error(sprintf('Job Manager: unable to finish job ID %d successfully', $job_id));
-	return false;
+	return '';
 }
 
 /**
@@ -254,15 +248,17 @@ function mod_default_make_jobmanager_success($job_id) {
  * @param array $job
  * @param int $status
  * @param array $response
- * @return bool
+ * @return string
  */
 function mod_default_make_jobmanager_fail($job, $status, $response) {
+	$job_status = ($job['try_no'] + 1 < wrap_setting('default_jobs_max_tries')) ? 'failed' : 'abandoned';
 	$sql = 'UPDATE _jobqueue
-		SET job_status = "failed", finished = NOW()
+		SET job_status = "%s", finished = NOW()
 			, error_msg = CONCAT(IFNULL(error_msg, ""), "Date: ", NOW(), ", URL: %s, Status: %d, Response: %s\n")
 			, wait_until = DATE_ADD(NOW(), INTERVAL %s MINUTE)
 		WHERE job_id = %d';
 	$sql = sprintf($sql
+		, $job_status
 		, $job['job_url']
 		, $status
 		, wrap_db_escape(is_array($response) ? json_encode($response) : $response)
@@ -270,32 +266,16 @@ function mod_default_make_jobmanager_fail($job, $status, $response) {
 		, $job['job_id']
 	);
 	$success = wrap_db_query($sql);
-	if ($success) return true;
-	wrap_error(sprintf('Job Manager: unable to delay failed job ID %d', $job_id));
-	return false;
-}
-
-/**
- * abandon a failed job
- *
- * @param array $job
- * @param int $status
- * @param array $response
- * @return bool
- */
-function mod_default_make_jobmanager_abandon($job, $status, $response) {
-	$sql = 'UPDATE _jobqueue
-		SET job_status = "abandoned", finished = NOW()
-			, error_msg = CONCAT(IFNULL(error_msg, ""), "Date: ", NOW(), ", URL: %s, Status: %d, Response: %s\n")
-		WHERE job_id = %d';
-	$sql = sprintf($sql
-		, $job['job_url'], $status, json_encode($response)
-		, $job['job_id']
-	);
-	$success = wrap_db_query($sql);
-	if ($success) return true;
-	wrap_error(sprintf('Job Manager: unable to abandon job ID %d', $job_id));
-	return false;
+	if ($success) return $job_status;
+	switch ($job_status) {
+	case 'failed':
+		wrap_error(sprintf('Job Manager: unable to delay failed job ID %d', $job['job_id']));
+		break;
+	case 'abandoned':
+		wrap_error(sprintf('Job Manager: unable to abandon job ID %d', $job['job_id']));
+		break;
+	}
+	return '';
 }
 
 /**
