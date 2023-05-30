@@ -355,7 +355,7 @@ function mod_default_make_jobmanager_check() {
 			ON _jobqueue.job_category_id = categories.category_id
 		WHERE job_url = "%s"
 		AND website_id = %d
-		AND job_status NOT IN ("successful", "not_found")
+		AND job_status IN ("not_started", "running", "failed")
 		ORDER BY IF(job_status = "not_started", 1, NULL)
 			, IF(job_status = "running", 1, NULL)
 			, IF(job_status = "failed", 1, NULL)
