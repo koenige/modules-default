@@ -284,7 +284,7 @@ function mod_default_make_jobmanager_fail($job, $status, $response) {
 	$success = wrap_db_query($sql);
 	if ($success) return $job_status;
 	$error_msg = sprintf($error_msg, $job['job_id']);
-	wrap_error(sprintf('Job Manager: %s', $error_msg]));
+	wrap_error(sprintf('Job Manager: %s', $error_msg));
 	return '';
 }
 
