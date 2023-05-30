@@ -314,7 +314,7 @@ CREATE TABLE `_jobqueue` (
   `started` datetime DEFAULT NULL,
   `finished` datetime DEFAULT NULL,
   `wait_until` datetime DEFAULT NULL,
-  `job_status` enum('not_started','running','successful','failed','abandoned') CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT 'not_started',
+  `job_status` enum('not_started','running','successful','failed','abandoned','not_found') CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT 'not_started',
   `try_no` tinyint unsigned NOT NULL DEFAULT '0',
   `error_msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `job_category_no` tinyint unsigned NOT NULL DEFAULT '1',

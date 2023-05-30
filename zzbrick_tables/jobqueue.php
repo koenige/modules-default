@@ -95,10 +95,10 @@ $zz['fields'][7]['list_append_show_title'] = true;
 $zz['fields'][9]['title'] = 'Job Status';
 $zz['fields'][9]['field_name'] = 'job_status';
 $zz['fields'][9]['type'] = 'select';
-$zz['fields'][9]['enum'] = ['not_started', 'running', 'successful', 'failed', 'abandoned'];
+$zz['fields'][9]['enum'] = ['not_started', 'running', 'successful', 'failed', 'abandoned', 'not_found'];
 $zz['fields'][9]['enum_title'] = [
 	wrap_text('not started'), wrap_text('running'), wrap_text('successful'),
-	wrap_text('failed'), wrap_text('abandoned')
+	wrap_text('failed'), wrap_text('abandoned'), wrap_text('not found')
 ];
 $zz['fields'][9]['default'] = 'not_started';
 

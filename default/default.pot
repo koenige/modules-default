@@ -855,6 +855,10 @@ msgid "abandoned"
 msgstr ""
 
 #: zzbrick_tables/jobqueue.php
+msgid "not found"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php
 msgid "Try No."
 msgstr ""
 

@@ -504,3 +504,4 @@
 /* 2023-05-04-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), '_jobqueue', 'job_id', 'website_id', 'delete');
 /* 2023-05-04-3 */	ALTER TABLE `_jobqueue` ADD `lock_hash` varchar(32) COLLATE 'latin1_general_ci' NULL AFTER `job_category_no`;
 /* 2023-05-25-1 */	ALTER TABLE `_jobqueue` ADD INDEX `job_status` (`job_status`);
+/* 2023-05-30-1 */	ALTER TABLE `_jobqueue` CHANGE `job_status` `job_status` enum('not_started','running','successful','failed','abandoned','not_found') COLLATE 'latin1_general_ci' NULL DEFAULT 'not_started' AFTER `wait_until`;
