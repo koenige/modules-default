@@ -174,7 +174,12 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 function mod_default_make_jobmanager_start($job) {
 	require_once wrap_setting('core').'/syndication.inc.php';
 
-	$locked = wrap_lock('jobqueue', 'wait'); // to avoid race conditions
+	// @todo jobs on different servers might collide here if they share the same URLs
+	// in that case, add hostname
+	$lock_realm = parse_url($job['job_url_raw'], PHP_URL_PATH);
+	$lock_realm = 'jobqueue-'.str_replace('/', '-', trim($lock_realm, '/'));
+
+	$locked = wrap_lock($lock_realm, 'wait'); // to avoid race conditions
 	if ($locked) {
 		wrap_error(sprintf('Job Manager: unable to start job ID %d, jobqueue is locked', $job['job_id']));
 		return false;
@@ -187,8 +192,7 @@ function mod_default_make_jobmanager_start($job) {
 	$sql = sprintf($sql, $job['job_url_raw']);
 	$running = wrap_db_fetch($sql, '', 'single value');
 	if ($running) {
-		wrap_error(sprintf('Job Manager: unable to start job ID %d, identical job is running', $job['job_id']));
-		wrap_unlock('jobqueue');
+		wrap_unlock($lock_realm, 'delete');
 		return false;
 	}
 	
@@ -204,8 +208,8 @@ function mod_default_make_jobmanager_start($job) {
 		, wrap_lock_hash()
 		, $job['job_id']
 	);
-	$success = wrap_db_query($sql);
-	wrap_unlock('jobqueue', 'delete');
+	$success = wrap_db_query($sql, E_USER_NOTICE);
+	wrap_unlock($lock_realm, 'delete');
 	if ($success) return true;
 	wrap_error(sprintf('Job Manager: unable to start job ID %d', $job['job_id']));
 	return false;
