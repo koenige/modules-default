@@ -14,6 +14,7 @@
 
 
 function mod_default_make_cleanup() {
+	wrap_setting('cache', false);
 	$lock = wrap_lock('cleanup');
 	if ($lock) {
 		$data['locked'] = true;
