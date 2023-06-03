@@ -28,10 +28,6 @@ SELECT * FROM /*_PREFIX_*/redirects WHERE old_url = _latin1'%s*';
 -- core_redirects*_ --
 SELECT * FROM /*_PREFIX_*/redirects WHERE old_url = _latin1'*%s';
 
--- core_filetypes --
-SELECT CONCAT(mime_content_type, '/', mime_subtype) FROM /*_PREFIX_*/filetypes
-WHERE extension = _latin1'%s';
-
 -- core_redirects_new_url__fields --
 /* new_url */
 
@@ -137,14 +133,8 @@ SELECT category_id, parameters FROM /*_PREFIX_*/categories WHERE parameters LIKE
 -- ids_languages --
 SELECT CONCAT(iso_639_1, IFNULL(CONCAT('-', variation), '')), language_id FROM /*_PREFIX_*/languages WHERE website = 'yes' ORDER BY iso_639_1;
 
--- ids_filetypes --
-SELECT filetype, filetype_id FROM /*_PREFIX_*/filetypes;
-
 -- ids_websites --
 SELECT domain, website_id FROM /*_PREFIX_*/websites;
 
 -- ids_countries --
 SELECT country_code, country_id FROM /*_PREFIX_*/countries;
-
--- ids_folders --
-SELECT filename, medium_id FROM /*_PREFIX_*/media WHERE filetype_id = /*_ID FILETYPES folder */;
