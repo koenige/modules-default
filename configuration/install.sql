@@ -1114,10 +1114,16 @@ CREATE TABLE `logins` (
   `logged_in` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'no',
   `last_click` int unsigned DEFAULT NULL,
   `active` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'yes',
+  `login_category_id` int unsigned DEFAULT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`login_id`),
-  UNIQUE KEY `benutzername` (`username`)
+  UNIQUE KEY `benutzername` (`username`),
+  KEY `login_category_id` (`login_category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'logins', 'login_id', 'login_category_id', 'no-delete');
+
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Logins', NULL, NULL, 'logins', '&alias=logins', NULL, NOW());
 
 
 -- redirects --

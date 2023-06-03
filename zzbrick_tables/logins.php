@@ -116,6 +116,19 @@ $zz['fields'][10]['if']['add']['hide_in_form'] = true;
 
 $zz['fields'][12] = []; // password reminder
 
+if ($logins = wrap_category_id('logins', 'check') AND $logins > 1) {
+	$zz['fields'][20]['field_name'] = 'login_category_id';
+	$zz['fields'][20]['type'] = 'select';
+	$zz['fields'][20]['sql'] = 'SELECT category_id, category, main_category_id
+		FROM /*_PREFIX_*/categories ORDER BY category';
+	$zz['fields'][20]['display_field'] = 'login_category';
+	$zz['fields'][20]['search'] = 'login_categories.category';
+	$zz['fields'][20]['character_set'] = 'utf8';
+	$zz['fields'][20]['add_details'] = sprintf('categories?filter[maincategory]=%d', wrap_category_id('logins'));
+	$zz['fields'][20]['show_hierarchy'] = 'main_category_id';
+	$zz['fields'][20]['show_hierarchy_subtree'] = wrap_category_id('logins');
+}
+
 $zz['fields'][99]['title'] = 'Updated';
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
@@ -123,7 +136,10 @@ $zz['fields'][99]['hide_in_list'] = true;
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/logins.*
 		, IF(ISNULL(last_click), last_click, FROM_UNIXTIME(last_click, "%Y-%m-%d %H:%i")) AS last_click
+		, login_categories.category AS login_category
 	FROM /*_PREFIX_*/logins
+	LEFT JOIN /*_PREFIX_*/categories login_categories
+		ON login_categories.category_id = /*_PREFIX_*/logins.login_category_id
 ';
 $zz['sqlorder'] = ' ORDER BY username';
 
@@ -134,11 +150,14 @@ if (wrap_setting('login_with_contact_id')) {
 			, /*_PREFIX_*/contacts.identifier AS username
 			, IF(ISNULL(last_click), last_click, FROM_UNIXTIME(last_click, "%Y-%m-%d %H:%i")) AS last_click
 			, contact_categories.parameters AS contact_parameters
+			, login_categories.category AS login_category
 		FROM /*_PREFIX_*/logins
 		LEFT JOIN /*_PREFIX_*/persons USING (contact_id)
 		LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
 		LEFT JOIN /*_PREFIX_*/categories contact_categories
 			ON contact_categories.category_id = /*_PREFIX_*/contacts.contact_category_id
+		LEFT JOIN /*_PREFIX_*/categories login_categories
+			ON login_categories.category_id = /*_PREFIX_*/logins.login_category_id
 	';
 	$zz['sqlorder'] = ' ORDER BY last_click DESC, contact';
 }
