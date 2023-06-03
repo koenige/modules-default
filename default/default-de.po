@@ -1274,6 +1274,10 @@ msgctxt "default"
 msgid "Login rights"
 msgstr "Login-Rechte"
 
+#: zzbrick_tables/logins.php
+msgid "Service"
+msgstr "Dienst"
+
 #: zzbrick_tables/languages.php zzbrick_tables/countries.php
 msgid "yes"
 msgstr "ja"

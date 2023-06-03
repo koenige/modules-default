@@ -117,6 +117,7 @@ $zz['fields'][10]['if']['add']['hide_in_form'] = true;
 $zz['fields'][12] = []; // password reminder
 
 if ($logins = wrap_category_id('logins', 'check') AND $logins > 1) {
+	$zz['fields'][20]['title'] = 'Service';
 	$zz['fields'][20]['field_name'] = 'login_category_id';
 	$zz['fields'][20]['type'] = 'select';
 	$zz['fields'][20]['sql'] = 'SELECT category_id, category, main_category_id
@@ -127,6 +128,7 @@ if ($logins = wrap_category_id('logins', 'check') AND $logins > 1) {
 	$zz['fields'][20]['add_details'] = sprintf('categories?filter[maincategory]=%d', wrap_category_id('logins'));
 	$zz['fields'][20]['show_hierarchy'] = 'main_category_id';
 	$zz['fields'][20]['show_hierarchy_subtree'] = wrap_category_id('logins');
+	$zz['fields'][20]['hide_in_list_if_empty'] = true;
 }
 
 $zz['fields'][99]['title'] = 'Updated';
