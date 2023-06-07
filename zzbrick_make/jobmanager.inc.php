@@ -114,7 +114,19 @@ function mod_default_make_jobmanager_add($data) {
 		, !empty($data['wait_until']) ? sprintf('"%s"', $data['wait_until']) : "NOW()"
 	);
 	$job_ids = wrap_db_fetch($sql, 'job_id', 'single value');
-	if ($job_ids) return reset($job_ids);
+	if ($job_ids) {
+		// prolong waiting period if new wait_until is given
+		if (!empty($data['wait_until']) AND count($job_ids) === 1) {
+			$sql = 'UPDATE _jobqueue
+				SET wait_until = "%s"
+				WHERE job_id = %d
+				AND NOT ISNULL(wait_until)
+				AND wait_until < "%s"';
+			$sql = sprintf($sql, $data['wait_until'], reset($job_ids), $data['wait_until']);
+			$success = wrap_db_query($sql);
+		}
+		return reset($job_ids);
+	}
 
 	$values = [];
 	$values['action'] = 'insert';
