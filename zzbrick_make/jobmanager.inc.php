@@ -98,6 +98,9 @@ function mod_default_make_jobmanager_count() {
  * @return int
  */
 function mod_default_make_jobmanager_add($data) {
+	// allow wait_until to be numeric
+	if (!empty($data['wait_until']) AND is_numeric($data['wait_until']))
+		$data['wait_until'] = date('Y-m-d H:i:s', time() + $data['wait_until']);
 	// check if already a job by this name exists that will be started again
 	$sql = 'SELECT job_id
 		FROM _jobqueue
@@ -121,8 +124,6 @@ function mod_default_make_jobmanager_add($data) {
 	$values['POST']['username'] = wrap_username();
 	$values['POST']['priority'] = $data['priority'] ?? 0;
 	$values['POST']['wait_until'] = $data['wait_until'] ?? NULL;
-	if (is_numeric($values['POST']['wait_until']))
-		$values['POST']['wait_until'] = date('Y-m-d H:i:s', time() + $values['POST']['wait_until']);
 	$values['POST']['website_id'] = wrap_setting('website_id') ?? 1;
 	$values['POST']['lock_hash'] = wrap_lock_hash();
 	$ops = zzform_multi('jobqueue', $values);
