@@ -118,11 +118,16 @@ function mod_default_make_jobmanager_add($data) {
 		// prolong waiting period if new wait_until is given
 		if (!empty($data['wait_until']) AND count($job_ids) === 1) {
 			$sql = 'UPDATE _jobqueue
-				SET wait_until = "%s"
+				SET wait_until = "%s", try_no = try_no + %d
 				WHERE job_id = %d
 				AND NOT ISNULL(wait_until)
 				AND wait_until < "%s"';
-			$sql = sprintf($sql, $data['wait_until'], reset($job_ids), $data['wait_until']);
+			$sql = sprintf($sql
+				, $data['wait_until']
+				, $data['try_no_increase'] ?? 0
+				, reset($job_ids)
+				, $data['wait_until']
+			);
 			$success = wrap_db_query($sql);
 		}
 		return reset($job_ids);
