@@ -38,9 +38,8 @@ $zz['fields'][2]['title'] = 'Access Token';
 $zz['fields'][2]['field_name'] = 'access_token';
 $zz['fields'][2]['type'] = 'identifier';
 $zz['fields'][2]['fields'] = ['login_id'];
-$zz['fields'][2]['conf_identifier']['function'] = 'wrap_random_hash';
-$zz['fields'][2]['conf_identifier']['function_parameter'][] = 192;
-$zz['fields'][2]['conf_identifier']['function_parameter'][] = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789abcdefghijklmnopqrstuvwxyz-';
+$zz['fields'][2]['conf_identifier']['random_hash'] = 192;
+$zz['fields'][2]['conf_identifier']['random_hash_charset'] = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789abcdefghijklmnopqrstuvwxyz-';
 $zz['fields'][2]['hide_in_list'] = true;
 
 $zz['fields'][3]['title'] = 'Access Token Expires';
@@ -52,26 +51,23 @@ $zz['fields'][5]['title'] = 'Client Identifier';
 $zz['fields'][5]['field_name'] = 'client_identifier';
 $zz['fields'][5]['type'] = 'identifier';
 $zz['fields'][5]['fields'] = ['login_id', 'client_identifier'];
-$zz['fields'][5]['conf_identifier']['function'] = 'wrap_random_hash';
-$zz['fields'][5]['conf_identifier']['function_parameter'][] = 36;
-$zz['fields'][5]['conf_identifier']['function_parameter'][] = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789abcdefghijklmnopqrstuvwxyz-';
+$zz['fields'][5]['conf_identifier']['random_hash'] = 36;
+$zz['fields'][5]['conf_identifier']['random_hash_charset'] = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789abcdefghijklmnopqrstuvwxyz-';
 
 $zz['fields'][6]['title'] = 'Client Secret';
 $zz['fields'][6]['field_name'] = 'client_secret';
 $zz['fields'][6]['type'] = 'identifier';
 $zz['fields'][6]['fields'] = ['login_id', 'client_secret'];
-$zz['fields'][6]['conf_identifier']['function'] = 'wrap_random_hash';
-$zz['fields'][6]['conf_identifier']['function_parameter'][] = 36;
-$zz['fields'][6]['conf_identifier']['function_parameter'][] = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789abcdefghijklmnopqrstuvwxyz-';
+$zz['fields'][6]['conf_identifier']['random_hash'] = 36;
+$zz['fields'][6]['conf_identifier']['random_hash_charset'] = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789abcdefghijklmnopqrstuvwxyz-';
 $zz['fields'][6]['hide_in_list'] = true;
 
 $zz['fields'][7]['title'] = 'Refresh Token';
 $zz['fields'][7]['field_name'] = 'refresh_token';
 $zz['fields'][7]['type'] = 'identifier';
 $zz['fields'][7]['fields'] = ['login_id'];
-$zz['fields'][7]['conf_identifier']['function'] = 'wrap_random_hash';
-$zz['fields'][7]['conf_identifier']['function_parameter'][] = 36;
-$zz['fields'][7]['conf_identifier']['function_parameter'][] = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789abcdefghijklmnopqrstuvwxyz-';
+$zz['fields'][7]['conf_identifier']['random_hash'] = 36;
+$zz['fields'][7]['conf_identifier']['random_hash_charset'] = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789abcdefghijklmnopqrstuvwxyz-';
 $zz['fields'][7]['hide_in_list'] = true;
 
 $zz['fields'][8]['field_name'] = 'created';
