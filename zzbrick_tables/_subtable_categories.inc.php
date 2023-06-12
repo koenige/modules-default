@@ -22,6 +22,7 @@
  * @param int $start_no no of field to start with
  */
 function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
+	static $definition = [];
 	// are there any categories to choose from?
 	$tree = wrap_id_tree('categories', $path);
 	if (count($tree) === 1) return;
@@ -60,6 +61,10 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 	foreach ($pc as $index => $category) {
 		$no = $start_no + $index;
 		$zz['fields'][$no] = zzform_include($table.'-categories');
+		if (!array_key_exists($table, $definition))
+			$definition[$table] = mf_default_categories_subtable_definition($zz['fields'][$no]);
+		$def = $definition[$table];
+
 		$zz['fields'][$no]['type'] = 'subtable';
 		$zz['fields'][$no]['title'] = $category['category'];
 		$zz['fields'][$no]['table_name'] = $table.'_categories_'.$category['category_id'];
@@ -73,24 +78,29 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 			$zz['fields'][$no]['min_records_required'] = $category['min_records_required'];
 		if (isset($category['max_records']))
 			$zz['fields'][$no]['max_records'] = $category['max_records'];
-		if (!empty($zz['fields'][$no]['fields'][4]) AND !empty($category['property_of_category'])) {
-			$zz['fields'][$no]['sql'] .= sprintf(' WHERE category_id = %d', $category['category_id']);
-			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE category_id = %d', $category['category_id']);
-			$zz['fields'][$no]['fields'][3]['hide_in_form'] = true;
-			$zz['fields'][$no]['fields'][3]['type'] = 'hidden';
-			$zz['fields'][$no]['fields'][3]['value'] = $category['category_id'];
-			$zz['fields'][$no]['fields'][3]['def_val_ignore'] = true;
+		if (!empty($def['property']) AND !empty($category['property_of_category'])) {
+			$zz['fields'][$no]['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.category_id = %d', $category['category_id']);
+			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.category_id = %d', $category['category_id']);
+			$zz['fields'][$no]['fields'][$def['category_id']]['hide_in_form'] = true;
+			$zz['fields'][$no]['fields'][$def['category_id']]['type'] = 'hidden';
+			$zz['fields'][$no]['fields'][$def['category_id']]['value'] = $category['category_id'];
+			$zz['fields'][$no]['fields'][$def['category_id']]['def_val_ignore'] = true;
 		} elseif (!empty($category['category_id'])) {
-			$zz['fields'][$no]['fields'][3]['show_hierarchy_subtree'] = $category['category_id'];
-			$zz['fields'][$no]['fields'][3]['sql_ignore'] = 'main_category';
+			$zz['fields'][$no]['fields'][$def['category_id']]['show_hierarchy_subtree'] = $category['category_id'];
+			$zz['fields'][$no]['fields'][$def['category_id']]['sql_ignore'] = 'main_category';
 			$main_category_ids = wrap_id_tree('categories', $category['path']);
-			$zz['fields'][$no]['sql'] .= sprintf(' WHERE main_category_id IN (%s)', implode(',', $main_category_ids));
-			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE main_category_id IN (%s)', implode(',', $main_category_ids));
+			$zz['fields'][$no]['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.main_category_id IN (%s)', implode(',', $main_category_ids));
+			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.main_category_id IN (%s)', implode(',', $main_category_ids));
 		}
-		if (!empty($zz['fields'][$no]['fields'][4]) AND empty($category['property']))
-			$zz['fields'][$no]['fields'][4]['hide_in_form'] = true;
+		if (!empty($def['property']) AND !empty($category['unit']))
+				$zz['fields'][$no]['fields'][$def['property']]['unit'] = $category['unit'];
+		if (!empty($def['property']) AND empty($category['property']))
+			$zz['fields'][$no]['fields'][$def['property']]['hide_in_form'] = true;
 		$zz['fields'][$no]['sql'] .= ' '.$zz['fields'][$no]['sqlorder'];
 		$zz['fields'][$no]['fields'][2]['type'] = 'foreign_key';
+		if (!empty($def['type_category_id']))
+			$zz['fields'][$no]['fields'][$def['type_category_id']]['value'] = wrap_category_id($category['type_category'] ?? $path);
+
 		$zz['fields'][$no]['if'][1]['list_suffix'] = '</del>';
 		if ($index < count($pc) -1) {
 			$zz['fields'][$no]['unless']['export_mode']['list_append_next'] = true;
@@ -98,4 +108,19 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 			$zz['fields'][$no]['separator'] = true;
 		}
 	}
+}
+
+/**
+ * get field nos. of subtable
+ *
+ * @param array $zz
+ * @return array key = field_name, value = no.
+ */
+function mf_default_categories_subtable_definition($zz) {
+	$def = [];
+	foreach ($zz['fields'] as $no => $field) {
+		if (empty($field['field_name'])) continue;
+		$def[$field['field_name']] = $no;
+	}
+	return $def;
 }
