@@ -69,7 +69,9 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 		$zz['fields'][$no]['title'] = $category['category'];
 		$zz['fields'][$no]['table_name'] = $table.'_categories_'.$category['category_id'];
 		$zz['fields'][$no]['unless']['export_mode']['subselect']['prefix'] = '<br><em>'.wrap_text($category['category']).': ';
+		$zz['fields'][$no]['unless']['export_mode']['subselect']['suffix'] = '';
 		$zz['fields'][$no]['form_display'] = $category['form_display'] ?? 'lines';
+		$zz['fields'][$no]['hide_in_list'] = $category['hide_in_list'] ?? false;
 		if (isset($category['min_records']))
 			$zz['fields'][$no]['min_records'] = $category['min_records'];
 		elseif ($zz['fields'][$no]['form_display'] === 'set')
