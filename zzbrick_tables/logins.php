@@ -116,7 +116,7 @@ $zz['fields'][10]['if']['add']['hide_in_form'] = true;
 
 $zz['fields'][12] = []; // password reminder
 
-if ($logins = wrap_category_id('logins', 'check') AND $logins > 1) {
+if ($logins = wrap_category_id('logins', 'list') AND count($logins) > 1) {
 	$zz['fields'][20]['title'] = 'Service';
 	$zz['fields'][20]['field_name'] = 'login_category_id';
 	$zz['fields'][20]['type'] = 'select';
