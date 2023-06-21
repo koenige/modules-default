@@ -35,6 +35,6 @@ function mod_default_toolinfo($params) {
 	wrap_include_files('upload', 'zzform');
 	$page['text'] = '<pre>'.zz_upload_binary_version($params[0]).'</pre>';
 	$page['title'] = ' '.wrap_text($allowed[$params[0]]);
-	$page['breadcrumbs'][] = wrap_text($allowed[$params[0]]);
+	$page['breadcrumbs'][]['title'] = wrap_text($allowed[$params[0]]);
 	return $page;
 }

@@ -56,7 +56,7 @@ function mod_default_make_cachedircheck($params) {
 	
 	$page['text'] = wrap_template('cachedircheck', $data);
 	$page['title'] = wrap_text('Check Cache Directories');
-	$page['breadcrumbs'][] = wrap_text('Check Cache Directories');
+	$page['breadcrumbs'][]['title']= wrap_text('Check Cache Directories');
 	return $page;
 }
 

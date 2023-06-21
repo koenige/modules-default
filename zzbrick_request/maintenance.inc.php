@@ -102,7 +102,7 @@ function mod_default_maintenance($params) {
 
 	$page['text'] = wrap_template('maintenance', $data);
 	$page['title'] .= ' '.wrap_text('Maintenance');
-	$page['breadcrumbs'][] = wrap_text('Maintenance');
+	$page['breadcrumbs'][]['title'] = wrap_text('Maintenance');
 	return $page;
 }
 
@@ -178,7 +178,7 @@ function zz_maintenance_sqlquery($page) {
 	$result['form_sql'] = str_replace('%%%', '%&shy;%&shy;%', wrap_html_escape($sql));
 
 	$page['title'] .= ' '.wrap_text('SQL Query');
-	$page['breadcrumbs'][] = wrap_text('SQL Query');
+	$page['breadcrumbs'][]['title'] = wrap_text('SQL Query');
 	$page['text'] = wrap_template('maintenance-sql', $result);
 	return $page;
 }
@@ -287,7 +287,7 @@ function zz_maintenance_tables() {
  */
 function zz_maintenance_integrity($page) {
 	$page['title'] .= ' '.wrap_text('Relational Integrity');
-	$page['breadcrumbs'][] = wrap_text('Relational Integrity');
+	$page['breadcrumbs'][]['title'] = wrap_text('Relational Integrity');
 	$page['query_strings'][] = 'integrity';
 
 	$sql = 'SELECT * FROM %s';
@@ -346,7 +346,7 @@ function zz_maintenance_integrity($page) {
  */
 function zz_maintenance_filetree($page) {
 	$page['title'] .= ' '.wrap_text('Filetree');
-	$page['breadcrumbs'][] = wrap_text('Filetree');
+	$page['breadcrumbs'][]['title'] = wrap_text('Filetree');
 	$page['query_strings'][] = 'filetree';
 
 	// zz_htmltag_escape()
@@ -494,7 +494,7 @@ function zz_maintenance_folders($page = []) {
 	$data = [];
 	if ($page) {
 		$page['title'] .= ' '.wrap_text('Backup folder');
-		$page['breadcrumbs'][] = wrap_text('Backup folder');
+		$page['breadcrumbs'][]['title'] = wrap_text('Backup folder');
 		$page['query_strings'] = [
 			'folder', 'file', 'q', 'scope', 'deleteall', 'limit'
 		];
@@ -771,7 +771,7 @@ function zz_maintenance_logs($page) {
 	zz_maintenance_list_init();
 
 	$page['title'] .= ' '.wrap_text('Logs');
-	$page['breadcrumbs'][] = wrap_text('Logs');
+	$page['breadcrumbs'][]['title'] = wrap_text('Logs');
 	$page['query_strings'] = [
 		'filter', 'log', 'limit', 'q', 'scope', 'deleteall'
 	];
@@ -1137,7 +1137,7 @@ function zz_maintenance_maillogs($page) {
 	zz_maintenance_list_init();
 
 	$page['title'] .= ' '.wrap_text('Mail Logs');
-	$page['breadcrumbs'][] = wrap_text('Mail Logs');
+	$page['breadcrumbs'][]['title'] = wrap_text('Mail Logs');
 	$page['query_strings'] = [
 		'maillog', 'limit', 'mail_sent'
 	];
@@ -1367,7 +1367,7 @@ function zz_maintenance_sqldownload($page) {
 		$sql = sprintf($sql, wrap_sql_table('zzform_logging'));
 		$max_logs = wrap_db_fetch($sql, '', 'single value');
 		$page['title'] .= ' '.wrap_text('Download SQL log');
-		$page['breadcrumbs'][] = wrap_text('Download SQL log');
+		$page['breadcrumbs'][]['title'] = wrap_text('Download SQL log');
 		$page['text'] = '<p>'.sprintf(wrap_text('Logfile has only %d entries.'), $max_logs).'</p>';
 		return mod_default_maintenance_return($page);
 	}
@@ -1422,7 +1422,7 @@ function zz_maintenance_sqlupload($page) {
 		$out = mod_default_maintenance_add_logging($json);
 	}
 	$page['title'] .= ' '.wrap_text('Upload SQL log');
-	$page['breadcrumbs'][] = wrap_text('Upload SQL log');
+	$page['breadcrumbs'][]['title'] = wrap_text('Upload SQL log');
 	$page['text'] = wrap_template('maintenance-add-logging', $out);
 	return $page;
 }

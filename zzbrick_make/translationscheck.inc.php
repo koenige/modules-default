@@ -92,6 +92,6 @@ function mod_default_make_translationscheck($params) {
 	$page['text'] = wrap_template('translationscheck', $data);
 	$page['query_strings'][] = 'deleted';
 	$page['title'] = wrap_text('Check Translations');
-	$page['breadcrumbs'][] = wrap_text('Check Translations');
+	$page['breadcrumbs'][]['title'] = wrap_text('Check Translations');
 	return $page;
 }

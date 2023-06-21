@@ -17,7 +17,7 @@ function mod_default_website($params, $settings, $data) {
 	if (count($params) !== 1) return false;
 
 	$page['title'] = $data['domain'];
-	$page['breadcrumbs'][] = $data['domain'];
+	$page['breadcrumbs'][]['title'] = $data['domain'];
 	$page['text'] = wrap_template('website', $data);
 	return $page;
 }

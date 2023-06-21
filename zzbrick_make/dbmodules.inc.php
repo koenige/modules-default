@@ -62,11 +62,11 @@ function mod_default_make_dbmodules($params) {
 	if (!empty($data['install_settings'])) {
 		$page['title'] =  '<a href="?dbmodules">'.wrap_text('Modules').'</a> – '.wrap_text('Install Settings');
 		$page['breadcrumbs'][] = '<a href="?dbmodules">'.wrap_text('Modules').'</a>';
-		$page['breadcrumbs'][] = wrap_text('Install Settings');
+		$page['breadcrumbs'][]['title'] = wrap_text('Install Settings');
 		$page['head'] = '<style type="text/css"> input[type=text] {width: 30em; } dt { margin: 1em 0 0; }</style>';
 	} else {
 		$page['title'] = wrap_text('Modules');
-		$page['breadcrumbs'][] = wrap_text('Modules');
+		$page['breadcrumbs'][]['title'] = wrap_text('Modules');
 	}
 	return $page;
 }
