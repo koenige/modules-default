@@ -55,7 +55,7 @@ if (!empty($_GET['url'])) {
 	$zz_conf['redirect']['successful_update'] = $_GET['url'];
 }
 $zz_conf['text']['--']['Edit a record'] = 'Change My Password';
-$zz_conf['no_timeframe'] = true;
+$zz['record']['no_timeframe'] = true;
 if (empty($_GET['referer']))
 	$zz_conf['referer'] = wrap_domain_path('login_entry');
 
