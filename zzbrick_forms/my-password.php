@@ -50,14 +50,14 @@ $zz['explanation'] = markdown(
 );
 $zz['access'] = 'edit_only';
 $zz['hooks']['after_update'] = 'mf_default_password_update';
-
-if (!empty($_GET['url'])) {
-	$zz_conf['redirect']['successful_update'] = $_GET['url'];
-}
-$zz_conf['text']['--']['Edit a record'] = 'Change My Password';
 $zz['record']['no_timeframe'] = true;
+
+if (!empty($_GET['url']))
+	$zz_conf['redirect']['successful_update'] = $_GET['url'];
 if (empty($_GET['referer']))
 	$zz_conf['referer'] = wrap_domain_path('login_entry');
+
+wrap_text('Edit a record', ['set' => 'Change My Password']);
 
 
 function mf_default_password_update() {
