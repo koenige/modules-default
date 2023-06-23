@@ -156,7 +156,9 @@ function zz_maintenance_sqlquery($page) {
 		$result['change'] = true;
 		if (!$result['action']) {
 			if (empty($result['error']['db_msg']) AND !empty($result['error']['msg_dev'])) {
-				$result['error_db_msg'] = vsprintf(wrap_text($result['error']['msg_dev']), $result['error']['msg_dev_args']);
+				$result['error_db_msg'] = wrap_text($result['error']['msg_dev']
+					, ['values' => $result['error']['msg_dev_args']]
+				);
 			} else {
 				$result['error_db_msg'] = $result['error']['db_msg'];
 				$result['error_db_errno'] = $result['error']['db_errno'];
@@ -315,8 +317,9 @@ function zz_maintenance_integrity($page) {
 		$detail_field = $relation['detail_db'].' . '.$relation['detail_table'].' . '.$relation['detail_field'];
 		if ($ids) {
 			$results[] = '<li class="error">'.wrap_text('Error').' – '
-				.sprintf(wrap_text('Field %s contains invalid values:'),
-				'<code>'.$detail_field.'</code>').' ('
+				.wrap_text('Field %s contains invalid values:'
+					, ['values' => '<code>'.$detail_field.'</code>']
+				).' ('
 				.$relation['detail_id_field'].' => '.$relation['detail_field'].')<br>';
 			$line = '';
 			foreach ($ids as $id => $foreign_id) {
@@ -326,8 +329,9 @@ function zz_maintenance_integrity($page) {
 			$results[] = $line;
 		} else {
 			$results[] = '<li class="ok">'.wrap_text('OK').' – '
-				.sprintf(wrap_text('Field %s contains only valid values.'),
-				'<code>'.$detail_field.'</code>').'</li>';
+				.wrap_text('Field %s contains only valid values.'
+					, ['values' => '<code>'.$detail_field.'</code>']
+				).'</li>';
 		}
 	}
 	if ($results) {
@@ -784,7 +788,9 @@ function zz_maintenance_logs($page) {
 
 	$logfile = realpath($_GET['log']);
 	if (!$logfile) {
-		$page['text'] = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), wrap_html_escape($_GET['log'])).'</p>'."\n";
+		$page['text'] = '<p>'.wrap_text('Logfile does not exist: %s'
+			, ['values' => wrap_html_escape($_GET['log'])]
+		).'</p>'."\n";
 		return mod_default_maintenance_return($page);
 	}
 	$data['log'] = wrap_html_escape($logfile);
@@ -792,7 +798,9 @@ function zz_maintenance_logs($page) {
 	$logfiles = mf_default_logfiles();
 	$show_log = array_key_exists($logfile, $logfiles) ? true : false;
 	if (!$show_log) {
-		$page['text'] = '<p>'.sprintf(wrap_text('This is not one of the used logfiles: %s'), $data['log']).'</p>'."\n";
+		$page['text'] = '<p>'.wrap_text('This is not one of the used logfiles: %s'
+			, ['values' => $data['log']]
+		).'</p>'."\n";
 		return mod_default_maintenance_return($page);
 	}
 
@@ -1143,7 +1151,9 @@ function zz_maintenance_maillogs($page) {
 	];
 	$logfile = wrap_setting('log_dir').'/mail.log';
 	if (!file_exists($logfile)) {
-		$page['text'] = '<p>'.sprintf(wrap_text('Logfile does not exist: %s'), wrap_html_escape($logfile)).'</p>'."\n";
+		$page['text'] = '<p>'.wrap_text('Logfile does not exist: %s'
+			, ['values' => wrap_html_escape($logfile)]
+		).'</p>'."\n";
 		return mod_default_maintenance_return($page);
 	}
 
@@ -1368,7 +1378,7 @@ function zz_maintenance_sqldownload($page) {
 		$max_logs = wrap_db_fetch($sql, '', 'single value');
 		$page['title'] .= ' '.wrap_text('Download SQL log');
 		$page['breadcrumbs'][]['title'] = wrap_text('Download SQL log');
-		$page['text'] = '<p>'.sprintf(wrap_text('Logfile has only %d entries.'), $max_logs).'</p>';
+		$page['text'] = '<p>'.wrap_text('Logfile has only %d entries.', ['values' => $max_logs]).'</p>';
 		return mod_default_maintenance_return($page);
 	}
 

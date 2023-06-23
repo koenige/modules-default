@@ -109,8 +109,8 @@ function mod_default_thumbnails($params) {
 			}
 			$tn = $func($source, $destination, $dest_extension, $file);
 			if ($tn)
-				$output[] = $title.': '.sprintf(wrap_text('Thumbnail for %s x %s x px was created.'),
-					$file['width'], $file['height']);
+				$output[] = $title.': '.wrap_text('Thumbnail for %s x %s x px was created.',
+					 ['values' => [$file['width'], $file['height']]]);
 			else
 				$output[] = $title.': <span class="error">'.sprintf(
 					wrap_text('Thumbnail for %s x %s x px could not be created.'), $file['width'], $file['height'])
