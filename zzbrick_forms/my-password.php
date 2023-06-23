@@ -57,7 +57,7 @@ if (!empty($_GET['url']))
 if (empty($_GET['referer']))
 	$zz_conf['referer'] = wrap_domain_path('login_entry');
 
-wrap_text('Edit a record', ['set' => 'Change My Password']);
+wrap_text_set('Edit a record', 'Change My Password');
 
 
 function mf_default_password_update() {
