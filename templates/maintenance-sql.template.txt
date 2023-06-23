@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016-2018 Gustaf Mossakowski
+# @copyright Copyright © 2016-2018, 2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -20,7 +20,7 @@
 
 %%% condition elseif action %%%
 <p>%%% text "%s was successful" action %%%%%% condition if rows %%%: 
-%%% text "%s row(s) affected" rows %%%
+%%% text "%d rows affected" rows %%%
 %%% item id_value " (ID: %s)" %%%%%% condition endif %%%</p>
 
 %%% condition else %%%

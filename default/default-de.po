@@ -288,8 +288,10 @@ msgid "Delete"
 msgstr "Löschen"
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
-msgid "%s row(s) affected"
-msgstr "%s Einträge bearbeitet"
+msgid "%d row affected"
+msgid_plural "%d rows affected"
+msgstr[0] "%d Eintrag bearbeitet"
+msgstr[1] "%d Einträge bearbeitet"
 
 #: zzbrick_request/maintenance.inc.php#sql-queries
 msgid "Sorry, %s is not yet supported"
