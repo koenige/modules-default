@@ -664,15 +664,14 @@ function zz_maintenance_folders($page = []) {
 		if (!empty($_GET['q'])) $data['folders'][$index]['total_rows'] = $total_files_q;
 		$data['folders'][$index]['total_records'] = zz_list_total_records($data['folders'][$index]['total_rows']);
 		$data['folders'][$index]['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['folders'][$index]['total_rows']);
-		$zz_conf['search_form_always'] = true;
+		wrap_setting('zzform_search_form_always', true);
 		$searchform = zz_search_form([], '', $data['folders'][$index]['total_rows'], $data['folders'][$index]['total_rows']);
 		$data['folders'][$index]['searchform'] = $searchform['bottom'];
 	}
 
 	$page['text'] = wrap_template('maintenance-folders', $data);
-	if (!empty($_GET['folder'])) {
+	if (!empty($_GET['folder']))
 		$page['text'] .= wrap_template('zzform-foot');
-	}
 	return $page;
 }
 
@@ -754,7 +753,7 @@ function zz_maintenance_list_init() {
 	wrap_include_files('searchform', 'zzform');
 
 	$zz_conf['list_display'] = 'table';
-	$zz_conf['search'] = true;
+	wrap_setting('zzform_search', 'bottom');
 
 	$zz_conf['int']['show_list'] = true;
 	$zz_conf['int']['url'] = zz_get_url_self();
@@ -949,7 +948,7 @@ function zz_maintenance_logs($page) {
 	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
 	$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);
-	$zz_conf['search_form_always'] = true;
+	wrap_setting('zzform_search_form_always', true);
 	$searchform = zz_search_form([], '', $data['total_rows'], $data['total_rows']);
 	$data['searchform'] = $searchform['bottom'];
 
