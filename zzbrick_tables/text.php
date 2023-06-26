@@ -39,11 +39,10 @@ $zz['fields'][3]['hide_in_list'] = true;
 $zz['fields'][3]['hide_in_form'] = true;
 
 $zz['fields'][4]['field_name'] = 'area';
-if (!empty($_GET['filter']['area'])) {
+if (!empty($_GET['filter']['area']))
 	$zz['fields'][4]['hide_in_list'] = true;
-} else {
+else
 	$zz['fields'][4]['group_in_list'] = true;
-}
 
 $zz['fields'][20]['title'] = 'Last Update';
 $zz['fields'][20]['field_name'] = 'last_update';
@@ -61,4 +60,4 @@ $zz['filter'][1]['field_name'] = 'area';
 $zz['filter'][1]['sql'] = 'SELECT DISTINCT area, area
 	FROM '.wrap_sql_table('default_text');
 	
-$zz_conf['export'] = 'CSV Excel';
+$zz['export'] = 'CSV Excel';
