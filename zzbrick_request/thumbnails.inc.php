@@ -36,7 +36,7 @@ function mod_default_thumbnails($params) {
 
 	$saved_conf = $zz_conf;
 	wrap_include_files('zzform.php', 'zzform');
-	$zz_conf['int_modules'] = ['debug', 'compatibility', 'validate', 'upload'];
+	$zz_conf['int_modules'] = ['debug', 'validate', 'upload'];
 	zz_initialize();
 	if ($graphics_library = wrap_setting('zzform_graphics_library'))
 		wrap_include_files('image-'.$graphics_library, 'zzform');
