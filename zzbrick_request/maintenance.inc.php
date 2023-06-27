@@ -752,7 +752,6 @@ function zz_maintenance_list_init() {
 	// zz_search_form()
 	wrap_include_files('searchform', 'zzform');
 
-	$zz_conf['list_display'] = 'table';
 	wrap_setting('zzform_search', 'bottom');
 
 	$zz_conf['int']['show_list'] = true;
