@@ -109,5 +109,5 @@ $zz['filter'][1]['field_name'] = 'main_category_id';
 
 $zz['sql_translate'] = ['category_id' => 'categories'];
 
-$zz_conf['max_select'] = 200;
+wrap_setting('zzform_max_select', 200);
 $zz_conf['copy'] = true;

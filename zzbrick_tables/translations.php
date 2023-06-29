@@ -60,7 +60,7 @@ $zz['sql'] = sprintf('SELECT * FROM %s
 	, wrap_sql_table('default_translationfields')
 );
 
-$zz_conf['max_select'] = 100;
+wrap_setting('zzform_max_select', 100);
 
 $zz['details'][1]['title'] = 'Translations';
 $zz['details'][1]['referer'] = 1;
