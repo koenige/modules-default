@@ -47,7 +47,7 @@ $zz['sql'] = 'SELECT * FROM '.wrap_sql_table('zzform_logging');
 $zz['sqlorder'] = ' ORDER BY log_id DESC';
 
 wrap_setting('zzform_max_select', 200);
-$zz_conf['limit'] = 20;
+wrap_setting('zzform_limit', 20);
 $zz_conf['add'] = false;
 $zz_conf['edit'] = false;
 $zz_conf['delete'] = false;

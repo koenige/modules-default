@@ -95,4 +95,4 @@ $zz['sql'] = 'SELECT * FROM '.wrap_sql_table('zzform_relations');
 $zz['sqlorder'] = ' ORDER BY detail_db, detail_table, detail_field';
 
 wrap_setting('zzform_max_select', 200);
-$zz_conf['limit'] = 20;
+wrap_setting('zzform_limit', 20);
