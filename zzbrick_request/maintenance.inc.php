@@ -26,11 +26,9 @@
  *		'text' => page content, 'title', 'breadcrumbs', ...
  */
 function mod_default_maintenance($params) {
-	global $zz_conf;
 	if (!wrap_access('default_maintenance')) wrap_quit(403);
 	wrap_setting('dont_show_h1', false); // internal, no need to hide it
 
-	$zz_conf['generate_output'] = true; // allow translations in zzform
 	wrap_setting_add('extra_http_headers', 'X-Frame-Options: Deny');
 	wrap_setting_add('extra_http_headers', "Content-Security-Policy: frame-ancestors 'self'");
 
