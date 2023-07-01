@@ -94,5 +94,4 @@ if (wrap_setting('multiple_websites')) {
 	$zz['subtitle']['website_id']['var'] = ['domain'];
 }
 
-$zz_conf['copy'] = true;
-$zz_conf['add'] = true; // @todo remove this later, since defined globally, may be disabled
+$zz['record']['copy'] = true;

@@ -48,6 +48,6 @@ $zz['sqlorder'] = ' ORDER BY log_id DESC';
 
 wrap_setting('zzform_max_select', 200);
 wrap_setting('zzform_limit', 20);
-$zz_conf['add'] = false;
-$zz_conf['edit'] = false;
-$zz_conf['delete'] = false;
+$zz['record']['add'] = false;
+$zz['record']['edit'] = false;
+$zz['record']['delete'] = false;

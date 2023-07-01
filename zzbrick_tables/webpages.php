@@ -139,7 +139,7 @@ $zz['conditions'][1]['where'] = '/*_PREFIX_*/webpages.live = "no"';
 if (!empty($brick['data']['website_id']))
 	$zz['where']['website_id'] = $brick['data']['website_id'];
 
-$zz_conf['copy'] = true;
+$zz['record']['copy'] = true;
 
 if (wrap_setting('multiple_websites')) {
 	if (!empty($_GET['where']['website_id'])) $website = $_GET['where']['website_id'];
