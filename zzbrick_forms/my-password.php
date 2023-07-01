@@ -55,7 +55,7 @@ $zz['record']['no_timeframe'] = true;
 if (!empty($_GET['url']))
 	$zz['record']['redirect']['successful_update'] = $_GET['url'];
 if (empty($_GET['referer']))
-	$zz_conf['referer'] = wrap_domain_path('login_entry');
+	$zz['page']['referer'] = wrap_domain_path('login_entry');
 
 wrap_text_set('Edit a record', 'Change My Password');
 
