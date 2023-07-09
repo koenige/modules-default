@@ -379,3 +379,10 @@ qs	string	msclkid
 404	all	/admin/login
 404	all	/admin/login/
 404	all	/admin/login.php
+
+# file in tmp folder was already deleted by system
+php	string_regex	unlink(/tmp/php.*): No such file or directory in .*/modules/zzform/zzform/upload.inc.php:.*
+
+# adminer library
+php	string_regex	ini_set(): A session is active. .*adminer-mysql-de.php:.*
+php	string_regex	session_start(): Cannot send session cache limiter - headers already sent.*adminer-mysql-de.php:.*
