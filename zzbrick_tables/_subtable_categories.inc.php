@@ -43,7 +43,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 	} else {
 		$sql = 'SELECT category_id, category, parameters, path
 				, (SELECT COUNT(*) FROM categories sc WHERE sc.main_category_id = categories.category_id) AS category_count
-			FROM categories WHERE main_category_id = %d';
+			FROM categories WHERE main_category_id = %d
+			ORDER BY sequence, path';
 		$sql = sprintf($sql, wrap_category_id($path));
 		$pc = wrap_db_fetch($sql, 'category_id', 'numeric');
 		$pc = wrap_translate($pc, 'categories', 'category_id');
@@ -100,8 +101,10 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 			$zz['fields'][$no]['fields'][$def['property']]['hide_in_form'] = true;
 		$zz['fields'][$no]['sql'] .= ' '.$zz['fields'][$no]['sqlorder'];
 		$zz['fields'][$no]['fields'][2]['type'] = 'foreign_key';
-		if (!empty($def['type_category_id']))
+		if (!empty($def['type_category_id'])) {
 			$zz['fields'][$no]['fields'][$def['type_category_id']]['value'] = wrap_category_id($category['type_category'] ?? $path);
+			$zz['fields'][$no]['fields'][$def['type_category_id']]['for_action_ignore'] = true;
+		}
 
 		$zz['fields'][$no]['if'][1]['list_suffix'] = '</del>';
 		if ($index < count($pc) -1) {
