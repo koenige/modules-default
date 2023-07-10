@@ -383,3 +383,4 @@ qs	string	msclkid
 # adminer library
 php	string_regex	ini_set\(\): A session is active. .*adminer-mysql-de.php:.*
 php	string_regex	session_start\(\): Cannot send session cache limiter - headers already sent.*adminer-mysql-de.php:.*
+php	string_regex	file_get_contents\(.*/adminer.invalid\): failed to open stream: No such file or directory in .*/library/adminer/adminer-mysql-de.php.*
