@@ -14,6 +14,9 @@
  */
 
 
+$language_translations = wrap_setting('language_translations');
+$standard_lang = reset($language_translations);
+
 $zz_sub['title'] = 'Translation';
 $zz_sub['show_title'] = false;
 $zz_sub['type'] = 'subtable';
@@ -64,9 +67,9 @@ $zz_sub['fields'][5]['sql'] = sprintf('SELECT language_id, language_%s, variatio
 	WHERE iso_639_1 <> "%s"
 	AND website = "yes"
 	ORDER BY language_%s'
-	, in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : reset(wrap_setting('language_translations'))
+	, in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : $standard_lang
 	, wrap_setting('default_source_language')
-	, in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : reset(wrap_setting('language_translations'))
+	, in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : $standard_lang
 );
 $zz_sub['fields'][5]['prefix'] = wrap_text('Translation to').' ';
 $zz_sub['fields'][5]['suffix'] = ': ';
