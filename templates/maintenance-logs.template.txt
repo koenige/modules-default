@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016, 2018, 2020-2021 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2018, 2020-2021, 2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -17,7 +17,7 @@
 <p><strong>%%% text Please choose one of the filters. %%%</strong></p>
 
 %%% condition elseif deleteall_url %%%
-<form action="%%% item deleteall_url %%%" method="POST"><input type="submit" name="deleteall" value="Delete all lines?%%% item deleteall_filter " Search: %s" %%%"></form>
+<form action="%%% item deleteall_url %%%" method="POST"><input type="submit" name="deleteall" value="%%% text Delete all lines %%%?%%% item deleteall_filter " Search: %s" %%%"></form>
 %%% condition else %%%
 
 %%% item message "<p class='error'>%s</p>" %%%
