@@ -517,18 +517,6 @@ msgid "Delete selected lines"
 msgstr "Usuń wybrane wiersze"
 
 #: zzbrick_request/maintenance.inc.php#error-logfiles
-msgid "File %s is not writable."
-msgstr "Plik %s nie jest zapisywalny."
-
-#: zzbrick_request/maintenance.inc.php#error-logfiles
-msgid "Cannot open %s for writing."
-msgstr "Nie można otworzyć %s w celu pisania."
-
-#: zzbrick_request/maintenance.inc.php#error-logfiles
-msgid "%s lines deleted."
-msgstr "Usunięto %s wierszy."
-
-#: zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Please choose one of the filters."
 msgstr "Wybierz jeden z filtrów."
 
