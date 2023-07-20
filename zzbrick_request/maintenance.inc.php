@@ -752,7 +752,6 @@ function zz_maintenance_list_init() {
 
 	wrap_setting('zzform_search', 'bottom');
 
-	$zz_conf['int']['show_list'] = true;
 	$zz_conf['int']['url'] = zz_get_url_self();
 	zz_init_limit();
 	$init = true;
