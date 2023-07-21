@@ -296,6 +296,18 @@ function mod_default_make_jobmanager_fail($job, $status, $response) {
 		$wait_until_sql = '';
 	}
 
+	// do not log overly long responses
+	if (is_array($response)) {
+		foreach ($response as $key => $value) {
+			if (is_array($value)) continue;
+			if (mb_strlen($value) <= wrap_setting('default_jobs_response_maxlen')) continue;
+			$response[$key] = mb_substr($value, 0, wrap_setting('default_jobs_response_maxlen'));
+		}
+		$response = json_encode($response);
+	} elseif (mb_strlen($response) > wrap_setting('default_jobs_response_maxlen')) {
+		$response = mb_substr($response, 0, wrap_setting('default_jobs_response_maxlen'));
+	}
+
 	$sql = 'UPDATE _jobqueue
 		SET job_status = "%s", finished = NOW()
 			, error_msg = CONCAT(IFNULL(error_msg, ""), "Date: ", NOW(), ", URL: %s, Status: %d, Response: %s\n")
@@ -305,7 +317,7 @@ function mod_default_make_jobmanager_fail($job, $status, $response) {
 		, $job_status
 		, $job['job_url']
 		, $status
-		, wrap_db_escape(is_array($response) ? json_encode($response) : $response)
+		, wrap_db_escape($response)
 		, $wait_until_sql
 		, $job['job_id']
 	);
