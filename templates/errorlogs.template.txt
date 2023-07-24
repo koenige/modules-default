@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2021 Gustaf Mossakowski
+# @copyright Copyright © 2021, 2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <h2>%%% text Error Logging %%%</h2>
@@ -59,10 +59,6 @@
 	<td class="block480">%%% condition if setting error_log_post %%%<strong>1</strong> (%%% text POST variables will be logged %%%)%%% condition else %%%(%%% text POST variables will not be logged %%%)%%% condition endif %%%</td>
 	</tr>
 %%% condition endif %%%
-<tr class="uneven">
-<td class="block480">%%% text Logging (Upload) %%%</td>
-<td class="block480">%%% condition if setting zzform_upload_log %%%<strong>log folder<a href="?log=%%% setting log_dir %%%/upload.log">/upload.log</a></strong> (%%% item upload_log_filesize wrap_bytes %%%)%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</td>
-</tr>
 <tr class="even">
 <td class="block480">%%% text Logging (Mail) %%%</td>
 <td class="block480">%%% condition if setting log_mail %%%<strong>log folder<a href="?maillog">/mail.log</a></strong> (%%% item mail_log_filesize wrap_bytes %%%)%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</td>
