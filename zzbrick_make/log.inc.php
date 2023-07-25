@@ -92,6 +92,7 @@ function mod_default_make_log($params) {
 	}
 
 	$file = new \SplFileObject($logfile, 'r');
+	$last_found_line_key = NULL;
 	if (!empty($_GET['q']) OR !empty($_GET['filter'])) {
 		$found = [];
 		while (!$file->eof()) {
@@ -105,7 +106,17 @@ function mod_default_make_log($params) {
 			$line = trim($line);
 			if (!$line) continue;
 			if (!empty($_GET['q'])) {
-				if (!zz_maintenance_searched($line)) continue;
+				$found_search = false;
+				if ($line_key -1 === $last_found_line_key) {
+					// add POST data, PHP error lines in search
+					if (preg_match('/^\[\d\d-...-\d{4} \d+:\d+:\d+\] zzwrap Notice: POST\[json\] {/', $line)) $found_search = true;
+					elseif (preg_match('/^Stack trace:/', $line)) $found_search = true;
+					elseif (preg_match('/^#\d+ [\/{]/', $line)) $found_search = true;
+					elseif (preg_match('/^thrown in \//', $line)) $found_search = true;
+				}
+				if (zz_maintenance_searched($line)) $found_search = true;
+				if (!$found_search) continue;
+				$last_found_line_key = $line_key;
 			}
 			if (!empty($_GET['filter']['type']) OR !empty($_GET['filter']['level']) OR $data['group']) {
 				if (substr($line, 0, 1) === '[') $line = substr($line, strpos($line, ']') + 2);
