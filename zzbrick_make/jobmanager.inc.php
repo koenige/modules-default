@@ -46,7 +46,10 @@ function mod_default_make_jobmanager() {
 			list($status, $headers, $response)
 				= wrap_get_protected_url($job['job_url'], [], 'POST', [], $job['username']);
 		if (!in_array($status, [100, 200]))
-			wrap_error(sprintf('Job Manager with URL %s failed. (Status: %d, Headers: %s)', $job['job_url'], $status, json_encode($headers)));
+			wrap_error(sprintf(
+				'Job Manager with URL %s failed. (Status: %d, Headers: %s)'
+				, $job['job_url'], $status, json_encode($headers)
+			), E_USER_NOTICE, ['log_post_data' => false]);
 
 		if (empty($_SERVER['HTTP_X_TIMEOUT_IGNORE'])) {
 			$result = mod_default_make_jobmanager_finish($job, $status, $response);
@@ -145,7 +148,9 @@ function mod_default_make_jobmanager_add($data) {
 	$values['POST']['lock_hash'] = wrap_lock_hash();
 	$ops = zzform_multi('jobqueue', $values);
 	if (!empty($ops['id'])) return $ops['id'];
-	wrap_error(sprintf('Job Manager: unable to add job with URL %s (Error: %s)', $data['url'], json_encode($ops['error'])));
+	wrap_error(sprintf(
+		'Job Manager: unable to add job with URL %s (Error: %s)', $data['url'], json_encode($ops['error'])
+	), E_USER_NOTICE, ['log_post_data' => false]);
 	return 0;
 }
 
@@ -201,7 +206,9 @@ function mod_default_make_jobmanager_start($job) {
 
 	$locked = wrap_lock($lock_realm, 'wait'); // to avoid race conditions
 	if ($locked) {
-		wrap_error(sprintf('Job Manager: unable to start job ID %d, jobqueue is locked', $job['job_id']));
+		wrap_error(sprintf(
+			'Job Manager: unable to start job ID %d, jobqueue is locked', $job['job_id']
+		), E_USER_NOTICE, ['log_post_data' => false]);
 		return false;
 	}
 
@@ -231,7 +238,9 @@ function mod_default_make_jobmanager_start($job) {
 	$success = wrap_db_query($sql, E_USER_NOTICE);
 	wrap_unlock($lock_realm, 'delete');
 	if ($success) return true;
-	wrap_error(sprintf('Job Manager: unable to start job ID %d', $job['job_id']));
+	wrap_error(sprintf(
+		'Job Manager: unable to start job ID %d', $job['job_id']
+	), E_USER_NOTICE, ['log_post_data' => false]);
 	return false;
 }
 
@@ -266,7 +275,9 @@ function mod_default_make_jobmanager_success($job_id) {
 	$sql = sprintf($sql, $job_id);
 	$success = wrap_db_query($sql);
 	if ($success) return 'successful';
-	wrap_error(sprintf('Job Manager: unable to finish job ID %d successfully', $job_id));
+	wrap_error(sprintf(
+		'Job Manager: unable to finish job ID %d successfully', $job_id
+	), E_USER_NOTICE, ['log_post_data' => false]);
 	return '';
 }
 
@@ -324,7 +335,9 @@ function mod_default_make_jobmanager_fail($job, $status, $response) {
 	$success = wrap_db_query($sql);
 	if ($success) return $job_status;
 	$error_msg = sprintf($error_msg, $job['job_id']);
-	wrap_error(sprintf('Job Manager: %s', $error_msg));
+	wrap_error(sprintf(
+		'Job Manager: %s', $error_msg
+	), E_USER_NOTICE, ['log_post_data' => false]);
 	return '';
 }
 
@@ -347,7 +360,9 @@ function mod_default_make_jobmanager_delete() {
 	$sql = sprintf($sql, implode(',', $job_ids));
 	$success = wrap_db_query($sql);
 	if ($success) return count($job_ids);
-	wrap_error(sprintf('Job Manager: unable to delete jobs ID %s', implode(',', $job_ids)));
+	wrap_error(sprintf(
+		'Job Manager: unable to delete jobs ID %s', implode(',', $job_ids)
+	), E_USER_NOTICE, ['log_post_data' => false]);
 	return false;
 }
 
