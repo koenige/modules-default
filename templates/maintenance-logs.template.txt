@@ -9,6 +9,17 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
+%%% condition if no_logfile_specified %%%
+<p>%%% text No logfile specified %%%</p>
+
+%%% condition elseif logfile_does_not_exist %%%
+<p>%%% text "Logfile does not exist: %s" logfile_does_not_exist %%%</p>
+
+%%% condition elseif logfile_not_in_use %%%
+<p>%%% text "This is not one of the used logfiles: %s" logfile_not_in_use %%%</p>
+
+%%% condition else %%%
+
 <h2>%%% item log %%%</h2>
 
 %%% item filter %%%
@@ -63,5 +74,6 @@
 %%% item pages %%%
 %%% item searchform %%%
 
+%%% condition endif %%%
 %%% condition endif %%%
 </div>
