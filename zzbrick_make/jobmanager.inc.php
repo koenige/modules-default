@@ -43,10 +43,10 @@ function mod_default_make_jobmanager() {
 			list($status, $headers, $response)
 				= wrap_trigger_protected_url($job['job_url'], $job['username']);
 		else {
-			$headers = [];
-			$headers[] = sprintf('X-Lock-Hash: %s', wrap_lock_hash());
+			$headers_to_send = [];
+			$headers_to_send[] = sprintf('X-Lock-Hash: %s', wrap_lock_hash());
 			list($status, $headers, $response)
-				= wrap_get_protected_url($job['job_url'], $headers, 'POST', [], $job['username']);
+				= wrap_get_protected_url($job['job_url'], $headers_to_send, 'POST', [], $job['username']);
 		}
 		if (!in_array($status, [100, 200]))
 			wrap_error(sprintf(
