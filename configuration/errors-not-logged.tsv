@@ -15,6 +15,7 @@
 # browsers know how to handle unkown protocols (bad script)
 404	begin	/webcal://
 404	request	*/tel:+*
+404	request	*/mailto:*
 
 # pseudo-clever script, excluding this string is not 100% correct
 # but should do no harm ('webcal:' as a part of a string is valid,
