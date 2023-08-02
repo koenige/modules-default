@@ -382,10 +382,17 @@ qs	string	msclkid
 404	all	/admin/login.php
 
 # adminer library
-php	string_regex	ini_set\(\): A session is active. .*adminer-mysql-de.php:.*
-php	string_regex	session_start\(\): Cannot send session cache limiter - headers already sent.*adminer-mysql-de.php:.*
-php	string_regex	file_get_contents\(.*/adminer.invalid\): failed to open stream: No such file or directory in .*/library/adminer/adminer-mysql-de.php.*
-php	string_regex	Undefined array key .* in /var/www/_inc/library/adminer/adminer-mysql-de.php:\d+
+php	string_regex	ini_set\(\): A session is active. .*adminer-.*.php:\d+
+php	string_regex	ini_set\(\): Session ini settings cannot be changed when a session is active in .*/library/adminer/adminer-.*.php:\d+	
+php	string_regex	session_start\(\): Cannot send session cache limiter - headers already sent.*adminer-.*.php:.*
+php	string_regex	session_start\(\): Session cache limiter cannot be sent after headers have already been sent (output started at .*/library/adminer/adminer-.*.php:\d+)
+php	string_regex	file_get_contents\(.*/adminer.invalid\): failed to open stream: No such file or directory in .*/library/adminer/adminer-.*.php.\d+
+php	string_regex	Undefined array key .* in .*/library/adminer/adminer-.*.php:\d+
+php	string_regex	Undefined variable .* in .*/library/adminer/adminer-.*.php:\d+		
+php	string_regex	Trying to access array offset on value of type .* in /var/www/_inc/library/adminer/adminer-.*.php:\d+		
 
 # broken spider that uses data-title attributes as links
 404	ua	*Bytespider; spider-feedback@bytedance.com*
+
+# Search Defender Prime browser extension, not good
+404	end	/css/blockedPage.css
