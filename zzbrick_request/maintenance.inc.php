@@ -26,9 +26,9 @@
  *		'text' => page content, 'title', 'breadcrumbs', ...
  */
 function mod_default_maintenance($params) {
-	if (!wrap_access('default_maintenance')) wrap_quit(403);
-	wrap_setting('dont_show_h1', false); // internal, no need to hide it
+	wrap_access_quit('default_maintenance');
 
+	wrap_setting('dont_show_h1', false); // internal, no need to hide it
 	wrap_setting_add('extra_http_headers', 'X-Frame-Options: Deny');
 	wrap_setting_add('extra_http_headers', "Content-Security-Policy: frame-ancestors 'self'");
 
@@ -1191,10 +1191,13 @@ function zz_maintenance_serversync($page) {
 	$path = wrap_path('default_sync_server');
 	$url = sprintf('https://%s%s', substr(wrap_setting('hostname'), 0, -6), $path);
 	$data = ['return_last_logging_entry' => 1];
-	list($status, $headers, $content) = wrap_get_protected_url($url, [], 'POST', $data);
+	$headers_to_send[] = 'Accept: application/json';
+	list($status, $headers, $content) = wrap_get_protected_url($url, $headers_to_send, 'POST', $data);
 	
 	if ($status !== 200) {
 		$out['status_error'] = $status;
+		$content = json_decode($content, true);
+		$out['error_explanation'] = $content['error_explanation'] ?? '';
 		$page['text'] = wrap_template('maintenance-sync-server', $out);
 		return $page;
 	}
@@ -1207,9 +1210,11 @@ function zz_maintenance_serversync($page) {
 		list($log, $limit) = mod_default_maintenance_read_logging($last_log['log_id'] + 1);
 		$data = [];
 		$data['add_log'] = json_encode($log, true);
-		list($status, $headers, $content) = wrap_get_protected_url($url, [], 'POST', $data);
+		list($status, $headers, $content) = wrap_get_protected_url($url, $headers_to_send, 'POST', $data);
 		if ($status !== 200) {
 			$out['status_error'] = $status;
+			$content = json_decode($content, true);
+			$out['error_explanation'] = $content['error_explanation'] ?? '';
 			$page['text'] = wrap_template('maintenance-sync-server', $out);
 			return $page;
 		}
@@ -1221,9 +1226,11 @@ function zz_maintenance_serversync($page) {
 	} elseif ($last_log['log_id'] > $last_log_local['log_id']) {
 		// get data from remote server
 		$url .= sprintf('?get_log_from_id=%d', $last_log_local['log_id'] + 1);
-		list($status, $headers, $content) = wrap_get_protected_url($url);
+		list($status, $headers, $content) = wrap_get_protected_url($url, $headers_to_send);
 		if ($status !== 200) {
 			$out['status_error'] = $status;
+			$content = json_decode($content, true);
+			$out['error_explanation'] = $content['error_explanation'] ?? '';
 			$page['text'] = wrap_template('maintenance-sync-server', $out);
 			return $page;
 		}
