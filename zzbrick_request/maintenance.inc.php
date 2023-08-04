@@ -1180,7 +1180,7 @@ function mod_default_maintenance_add_logging($json) {
 
 function zz_maintenance_serversync($page) {
 	$page['title'] .= ' '.wrap_text('Synchronize local and remote server');
-	$sync_user = wrap_setting('sync_user');
+	wrap_setting('log_username_default', wrap_setting('sync_user'));
 	
 	if (!wrap_setting('local_access')) {
 		$out['local_only'] = true;
@@ -1191,7 +1191,7 @@ function zz_maintenance_serversync($page) {
 	$path = wrap_path('default_sync_server');
 	$url = sprintf('https://%s%s', substr(wrap_setting('hostname'), 0, -6), $path);
 	$data = ['return_last_logging_entry' => 1];
-	list($status, $headers, $content) = wrap_get_protected_url($url, [], 'POST', $data, $sync_user);
+	list($status, $headers, $content) = wrap_get_protected_url($url, [], 'POST', $data);
 	
 	if ($status !== 200) {
 		$out['status_error'] = $status;
@@ -1207,7 +1207,7 @@ function zz_maintenance_serversync($page) {
 		list($log, $limit) = mod_default_maintenance_read_logging($last_log['log_id'] + 1);
 		$data = [];
 		$data['add_log'] = json_encode($log, true);
-		list($status, $headers, $content) = wrap_get_protected_url($url, [], 'POST', $data, $sync_user);
+		list($status, $headers, $content) = wrap_get_protected_url($url, [], 'POST', $data);
 		if ($status !== 200) {
 			$out['status_error'] = $status;
 			$page['text'] = wrap_template('maintenance-sync-server', $out);
@@ -1221,7 +1221,7 @@ function zz_maintenance_serversync($page) {
 	} elseif ($last_log['log_id'] > $last_log_local['log_id']) {
 		// get data from remote server
 		$url .= sprintf('?get_log_from_id=%d', $last_log_local['log_id'] + 1);
-		list($status, $headers, $content) = wrap_get_protected_url($url, [], 'GET', [], $sync_user);
+		list($status, $headers, $content) = wrap_get_protected_url($url);
 		if ($status !== 200) {
 			$out['status_error'] = $status;
 			$page['text'] = wrap_template('maintenance-sync-server', $out);
