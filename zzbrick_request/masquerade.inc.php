@@ -23,7 +23,8 @@
 function mod_default_masquerade($params) {
 	if (count($params) !== 1) return false;
 
-	if (!wrap_access('default_masquerade')) wrap_quit(403);
+	wrap_access_quit('default_masquerade');
+
 	wrap_session_start();
 	wrap_register($params[0]);
 	wrap_redirect_change(wrap_domain_path('login_entry'));

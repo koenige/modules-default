@@ -14,7 +14,7 @@
  */
 
 
-if (!wrap_access('default_text')) wrap_quit(403);
+wrap_access_quit('default_text');
 
 wrap_setting('default_source_language', wrap_setting('default_source_language_text_db'));
 

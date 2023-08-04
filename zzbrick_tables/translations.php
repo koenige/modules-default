@@ -14,7 +14,7 @@
  */
 
 
-if (!wrap_access('default_translations')) wrap_quit(403);
+wrap_access_quit('default_translations');
 
 $zz['title'] = 'Translations';
 $zz['table'] = wrap_sql_table('default_translationfields');

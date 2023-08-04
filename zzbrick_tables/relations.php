@@ -14,7 +14,7 @@
  */
 
 
-if (!wrap_access('default_relations')) wrap_quit(403);
+wrap_access_quit('default_relations');
 
 $zz['title'] = 'Database Table Relations';
 $zz['table'] = wrap_sql_table('zzform_relations');

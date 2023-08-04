@@ -14,7 +14,7 @@
  */
 
 
-if (!wrap_access('default_logging')) wrap_quit(403);
+wrap_access_quit('default_logging');
 
 $zz['title'] = 'Logging';
 $zz['table'] = wrap_sql_table('zzform_logging');

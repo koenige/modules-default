@@ -23,7 +23,7 @@
 function mod_default_adminer($params) {
 	global $zz_page;
 	if ($params) return false;
-	if (!wrap_access('default_adminer')) wrap_quit(403);
+	wrap_access_quit('default_adminer');
 	if (empty($_GET)) {
 		// auto-login if only one database is present
 		$url = sprintf('%s?username=&db=%s'
