@@ -1188,7 +1188,7 @@ function zz_maintenance_serversync($page) {
 		return $page;
 	}
 
-	$path = wrap_setting('sync_server_url');
+	$path = wrap_path('default_sync_server');
 	$url = sprintf('https://%s%s', substr(wrap_setting('hostname'), 0, -6), $path);
 	$data = ['return_last_logging_entry' => 1];
 	list($status, $headers, $content) = wrap_get_protected_url($url, [], 'POST', $data, $sync_user);

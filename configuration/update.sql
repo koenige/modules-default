@@ -509,3 +509,4 @@
 /* 2023-06-03-2 */	ALTER TABLE `logins` ADD INDEX `login_category_id` (`login_category_id`);
 /* 2023-06-03-3 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'logins', 'login_id', 'login_category_id', 'no-delete');
 /* 2023-06-03-4 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Logins', NULL, NULL, 'logins', '&alias=logins', NULL, NOW());
+/* 2023-08-04-1 */	UPDATE _settings SET setting_key = 'default_sync_server_path' WHERE setting_key = 'sync_server_url';

@@ -101,7 +101,7 @@
 <input type="hidden" name="sqlupload" value="1">
 </form></li>
 %%% condition if setting local_access %%%
-%%% condition if setting sync_server_url %%%
+%%% condition if path default_sync_server %%%
 <li><form method="POST" action="" enctype="multipart/form-data"><input type="submit" name="serversync" value="%%% text Synchronize local and remote server %%%"></form></li>
 %%% condition endif %%%
 %%% condition endif %%%
