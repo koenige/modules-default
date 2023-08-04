@@ -621,7 +621,7 @@ msgstr "Wpisy w logu %d nie są zgodne."
 msgid "A synchronisation is impossible."
 msgstr "Synchronizacja jest niemożliwa."
 
-#: zzbrick_request/serversync.inc.php
+#: zzbrick_make/serversync.inc.php
 msgid ""
 "This URL is for synchronising a production and a development server only. No "
 "direct access is possible."
