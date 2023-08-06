@@ -396,3 +396,13 @@ php	string_regex	Trying to access array offset on value of type .* in /var/www/_
 
 # Search Defender Prime browser extension, not good
 404	end	/css/blockedPage.css
+
+# exif_read_data()
+php	string_regex	exif_read_data\(.+Illegal pointer offset.+
+php	string_regex	exif_read_data\(.+Illegal byte_count.+
+php	string_regex	exif_read_data\(.+Illegal format code.+
+php	string_regex	exif_read_data\(.+Illegal IFD size.+
+php	string_regex	exif_read_data\(.+corrupt EXIF header.+
+php	string_regex	exif_read_data\(.+Incorrect APP1 Exif Identifier Code.+
+php	string_regex	exif_read_data\(.+IFD data bad offset.+
+php	string_regex	exif_read_data\(\): Further exif parsing errors have been suppressed.+
