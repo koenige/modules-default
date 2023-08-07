@@ -13,7 +13,7 @@
  */
 
 
-if (!wrap_access('default_settings')) wrap_quit(403);
+wrap_access_quit('default_settings');
 
 require __DIR__.'/../zzbrick_tables/settings.php';
 
