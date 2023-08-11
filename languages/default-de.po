@@ -624,8 +624,10 @@ msgid "There was an error adding log for record ID %d."
 msgstr "Es gab einen Fehler beim Hinzufügen des Logs von Datensatz-ID %d."
 
 #: templates/maintenance-add-logging.template.txt
-msgid "All %d log entries were added, last ID was %d."
-msgstr "Alle %d Log-Einträge wurden hinzugefügt, letzte ID war %d."
+msgid "%d log entry was added, ID was %d."
+msgid_plural "All %d log entries were added, last ID was %d."
+msgstr[0] "%d Log-Eintrag wurde hinzugefügt, ID war %d."
+msgstr[1] "Alle %d Log-Einträge wurden hinzugefügt, letzte ID war %d."
 
 #: templates/maintenance-add-logging.template.txt
 msgid "These changes were applied to the remote server."
