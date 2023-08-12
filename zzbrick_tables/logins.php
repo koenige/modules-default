@@ -167,3 +167,11 @@ if (wrap_setting('login_with_contact_id')) {
 if (!wrap_access('default_logins_full')) {
 	$zz['access'] = 'none';
 }
+
+$zz['filter'][10]['title'] = wrap_text('Active');
+$zz['filter'][10]['type'] = 'list';
+$zz['filter'][10]['where'] = 'active';
+$zz['filter'][10]['selection']['yes'] = wrap_text('yes');
+$zz['filter'][10]['selection']['no'] = wrap_text('no');
+$zz['filter'][10]['default_selection'] = 'yes';
+

@@ -1229,6 +1229,10 @@ msgstr ""
 msgid "Service"
 msgstr ""
 
+#: zzbrick_tables/logins.php
+msgid "Active"
+msgstr ""
+
 #: zzbrick_tables/languages.php
 #: zzbrick_tables/countries.php
 msgid "yes"
