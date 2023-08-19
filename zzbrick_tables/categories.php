@@ -59,10 +59,10 @@ $zz['fields'][5]['title_tab'] = 'Identifier / Parameters';
 $zz['fields'][5]['field_name'] = 'path';
 $zz['fields'][5]['type'] = 'identifier';
 $zz['fields'][5]['fields'] = ['main_category_id[path]', 'category_short', 'category'];
-$zz['fields'][5]['conf_identifier']['concat'] = '/';
-$zz['fields'][5]['conf_identifier']['strip_tags'] = true;
-$zz['fields'][5]['conf_identifier']['ignore_this_if']['category'] = 'category_short';
-$zz['fields'][5]['conf_identifier']['max_length'] = 24; // because of hierarchies
+$zz['fields'][5]['identifier']['concat'] = '/';
+$zz['fields'][5]['identifier']['strip_tags'] = true;
+$zz['fields'][5]['identifier']['ignore_this_if']['category'] = 'category_short';
+$zz['fields'][5]['identifier']['max_length'] = 24; // because of hierarchies
 
 $zz['fields'][7]['field_name'] = 'parameters';
 $zz['fields'][7]['list_prefix'] = '<br>';
