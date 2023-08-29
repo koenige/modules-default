@@ -105,10 +105,20 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 			$zz['fields'][$no]['fields'][$def['type_category_id']]['value'] = wrap_category_id($category['type_category'] ?? $path);
 			$zz['fields'][$no]['fields'][$def['type_category_id']]['for_action_ignore'] = true;
 		}
-
 		$zz['fields'][$no]['if'][1]['list_suffix'] = '</del>';
-		if ($index < count($pc) -1) {
+	}
+
+	// do not set list_append_next for last visible element
+	array_reverse($pc);
+	$last_visible_found = false;
+
+	foreach ($pc as $index => $category) {
+		$no = $start_no + $index;
+		if ($zz['fields'][$no]['hide_in_list']) {
+			$zz['fields'][$no]['separator'] = true;
+		} elseif (!$last_visible_found) {
 			$zz['fields'][$no]['unless']['export_mode']['list_append_next'] = true;
+			$last_visible_found = true;
 		} else {
 			$zz['fields'][$no]['separator'] = true;
 		}
