@@ -49,7 +49,7 @@ function mod_default_search() {
 	}
 
 	$page['query_strings'] = ['q'];
-	$data['q'] = !empty($_GET['q']) ? $_GET['q'] : '';
+	$data['q'] = $_GET['q'] ?? '';
 	$page['title'] = wrap_text('Search').(!empty($_GET['q']) ? sprintf(': %s', wrap_html_escape($_GET['q'])) : '');
 	$page['text'] = wrap_template('search', $data);
 	return $page;
