@@ -140,3 +140,9 @@ if (!empty($_GET['where']['translationfield_id'])) {
 		$zz_sub['conditions'][1]['key_field_name'] = 'translation_id';
 	}
 }
+
+// if not used as a subtable:
+$zz_sub['init_ignore_log'] = [
+	'show_title', 'type', 'hide_in_list', 'min_records', 'max_records_sql', 'table_name',
+	'form_display'
+];
