@@ -44,9 +44,8 @@ function mf_default_search($q) {
 		, $t_where ? ' OR '.$t_where : ''
 	);
 	$data['default'][0]['webpages'] = wrap_db_fetch($sql, 'page_id');
-	if (!$data['default'][0]['webpages']) {
+	if (!$data['default'][0]['webpages'])
 		return ['default' => []];
-	}
 	foreach ($data['default'][0]['webpages'] as $page_id => $page) {
 		foreach (wrap_setting('auth_urls') as $url) {
 			if (!str_starts_with($page['identifier'], $url)) continue;
@@ -59,16 +58,15 @@ function mf_default_search($q) {
 }
 
 function mf_default_webpages_media($data) {
-	static $opengraph_img;
+	static $opengraph_img = [];
 	if (!$data) return [];
 	$media = wrap_get_media(array_keys($data), 'webpages', 'page');
-	foreach ($media as $id => $files) {
+	foreach ($media as $id => $files)
 		$data[$id] += $files;
-	}
 	foreach ($data as $id => $line) {
 		if (!empty($line['images'])) continue;
 		if (!wrap_setting('active_theme')) continue;
-		if (empty($opengraph_img)) {
+		if (!$opengraph_img) {
 			$filename = sprintf('%s/%s/opengraph.png', wrap_setting('themes_dir'), wrap_setting('active_theme'));
 			if (!file_exists($filename)) break;
 			$opengraph_img = [
@@ -79,7 +77,6 @@ function mf_default_webpages_media($data) {
 			];
 		}
 		$data[$id]['images'][] = $opengraph_img;
-		
 	}
 	return $data;
 }

@@ -737,8 +737,8 @@ function zz_maintenance_folders_deleteall($my_folder, $file) {
  */
 function zz_maintenance_list_init() {
 	global $zz_conf;
-	static $init;
-	if (!empty($init)) return; // just once
+	static $init = false;
+	if ($init) return; // just once
 
 	// zz_edit_query_string(), zz_get_url_self()
 	wrap_include_files('functions', 'zzform');
