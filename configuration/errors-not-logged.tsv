@@ -388,6 +388,7 @@ php	string_regex	ini_set\(\): Session ini settings cannot be changed when a sess
 php	string_regex	session_start\(\): Cannot send session cache limiter - headers already sent.*adminer-.*.php:.*
 php	string_regex	session_start\(\): Session cache limiter cannot be sent after headers have already been sent \(output started at .*/library/adminer/adminer-.*.php:\d+\)
 php	string_regex	file_get_contents\(.*/adminer.invalid\): Failed to open stream: No such file or directory.*
+php	string_regex	fopen\(.*/adminer.version\): Failed to open stream: No such file or directory.*
 php	string_regex	Undefined array key .* in .*/library/adminer/adminer-.*.php:\d+
 php	string_regex	Undefined variable .* in .*/library/adminer/adminer-.*.php:\d+		
 php	string_regex	Trying to access array offset on value of type .* in .*/library/adminer/adminer-.*.php:\d+		
