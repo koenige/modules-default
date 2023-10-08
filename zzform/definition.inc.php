@@ -13,6 +13,8 @@
  */
 
 
+wrap_include_files('zzbrick_tables/_subtable_categories', 'default');
+
 /**
  * get a list of categories to include subtable depending on these categories
  *
@@ -23,7 +25,7 @@
  * @param string $category_path (optional, set only if different from $type)
  * @return array
  */
-function mf_default_restrict_categories(&$values, $type, $category_path = '') {
+function mf_default_categories_restrict(&$values, $type, $category_path = '') {
 	if (!$category_path) $category_path = $type;
 	if (isset($values[$type])) return false;
 	if (isset($values[$type.'_restrict_to']))
