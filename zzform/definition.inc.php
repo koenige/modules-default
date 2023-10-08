@@ -43,10 +43,15 @@ function mf_default_categories_restrict(&$values, $type, $category_path = '') {
 		, $restrict_to
 	);
 	$values[$type] = wrap_db_fetch($sql, 'category_id');
-	foreach ($values[$type] as $category_id => $line)
+	foreach ($values[$type] as $category_id => $line) {
 		if ($line['parameters'])
 			parse_str($line['parameters'], $values[$type][$category_id]['parameters']);
 		else
 			$values[$type][$category_id]['parameters'] = [];
+		if (!empty($values[$type][$category_id]['parameters']['alias']))
+			$values[$type][$category_id]['path'] = $values[$type][$category_id]['parameters']['alias'];
+		if ($pos = strrpos($values[$type][$category_id]['path'], '/'))
+			$values[$type][$category_id]['path'] = substr($values[$type][$category_id]['path'], $pos + 1);
+	}
 	return true;
 }
