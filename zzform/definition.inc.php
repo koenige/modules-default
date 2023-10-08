@@ -43,6 +43,8 @@ function mf_default_categories_restrict(&$values, $type, $category_path = '') {
 		, $restrict_to
 	);
 	$values[$type] = wrap_db_fetch($sql, 'category_id');
+	$last_category_id = array_keys($values[$type]);
+	$last_category_id = end($last_category_id);
 	foreach ($values[$type] as $category_id => $line) {
 		if ($line['parameters'])
 			parse_str($line['parameters'], $values[$type][$category_id]['parameters']);
@@ -52,6 +54,8 @@ function mf_default_categories_restrict(&$values, $type, $category_path = '') {
 			$values[$type][$category_id]['path'] = $values[$type][$category_id]['parameters']['alias'];
 		if ($pos = strrpos($values[$type][$category_id]['path'], '/'))
 			$values[$type][$category_id]['path'] = substr($values[$type][$category_id]['path'], $pos + 1);
+		if ($category_id === $last_category_id)
+			$values[$type][$category_id]['last_category'] = true;
 	}
 	return true;
 }
