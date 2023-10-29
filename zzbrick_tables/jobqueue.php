@@ -170,4 +170,4 @@ $zz['filter'][3]['where'] = 'job_status';
 $zz['filter'][3]['type'] = 'list';
 $zz['filter'][3]['selection'] = array_combine($zz['fields'][9]['enum'], $zz['fields'][9]['enum_title']);
 
-wrap_setting('zzform_logging', false);
+$zz['setting']['zzform_logging'] = false;

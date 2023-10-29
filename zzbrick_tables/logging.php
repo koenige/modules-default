@@ -46,8 +46,8 @@ $zz['fields'][99]['class'] = 'block480';
 $zz['sql'] = 'SELECT * FROM '.wrap_sql_table('zzform_logging');
 $zz['sqlorder'] = ' ORDER BY log_id DESC';
 
-wrap_setting('zzform_max_select', 200);
-wrap_setting('zzform_limit', 20);
+$zz['setting']['zzform_max_select'] = 200;
+$zz['setting']['zzform_limit'] = 20;
 $zz['record']['add'] = false;
 $zz['record']['edit'] = false;
 $zz['record']['delete'] = false;

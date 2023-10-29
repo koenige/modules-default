@@ -94,5 +94,5 @@ $zz['fields'][9]['hide_in_list'] = true;
 $zz['sql'] = 'SELECT * FROM '.wrap_sql_table('zzform_relations');
 $zz['sqlorder'] = ' ORDER BY detail_db, detail_table, detail_field';
 
-wrap_setting('zzform_max_select', 200);
-wrap_setting('zzform_limit', 20);
+$zz['setting']['zzform_max_select'] = 200;
+$zz['setting']['zzform_limit'] = 20;
