@@ -85,11 +85,9 @@ function mod_default_sso($params) {
 		// Login-URL is invalid. Please get a new link, this link is too old./
 		// All links using the trusted login mechanism are only valid for x minutes
 		// echo 'Login-URL is invalid, time\'s up';
-		global $zz_page;
-		$zz_page['error_msg'] = '<strong>'.wrap_text('Sorry, the possible login period has expired. Please get a new login link.').'</strong>';
 		wrap_error(wrap_text('Single sign on: possible login period expired.')
 			.' ('.$full_username.') ', E_USER_NOTICE);
-		wrap_quit(403);
+		wrap_quit(403, '<strong>'.wrap_text('Sorry, the possible login period has expired. Please get a new login link.').'</strong>');
 	}
 
 	// everything okay, so check if this user is not already logged in!
