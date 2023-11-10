@@ -22,7 +22,7 @@
  * @param string $filesize_key (optional, key in $files that denotes file size)
  * @return array (empty = everything ok, otherwise, it is an error page)
  */
-function mf_default_download_restrictions($files, $backlink, $filesize_key = 'filesize') {
+function mf_default_download_restrictions($files, $backlink = '', $filesize_key = 'filesize') {
 	$size = 0;
 	foreach ($files as $file) $size += $file[$filesize_key];
 	
