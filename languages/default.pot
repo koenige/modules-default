@@ -34,22 +34,26 @@ msgid "Download: Archive Too Big"
 msgstr ""
 
 #: default/download.inc.php
+msgid "None of the files for the requested archive could be found on the server."
+msgstr ""
+
+#: templates/download-error.template.txt
 msgid "Sorry, but you might only download up to %s files at once."
 msgstr ""
 
-#: default/download.inc.php
+#: templates/download-error.template.txt
 msgid "This archive would contain %s files."
 msgstr ""
 
-#: default/download.inc.php
+#: templates/download-error.template.txt
 msgid "We recommend that you download every single subfolder instead of this main folder."
 msgstr ""
 
-#: default/download.inc.php
+#: templates/download-error.template.txt
 msgid "Sorry, but you might only download an archive up to %s."
 msgstr ""
 
-#: default/download.inc.php
+#: templates/download-error.template.txt
 msgid "The requested archive would include files of %s size."
 msgstr ""
 

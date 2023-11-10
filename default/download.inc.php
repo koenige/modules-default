@@ -23,6 +23,9 @@
  * @return array (empty = everything ok, otherwise, it is an error page)
  */
 function mf_default_download_restrictions($files, $backlink = '', $filesize_key = 'filesize') {
+	if (!$files)
+		wrap_quit(503, wrap_text('None of the files for the requested archive could be found on the server.'));
+
 	$size = 0;
 	foreach ($files as $file) $size += $file[$filesize_key];
 	
@@ -76,7 +79,7 @@ function mf_default_download_zip($files, $download_file) {
 	$file['name'] = $zip_file;
 	$file['cleanup'] = true; // delete file after downloading
 	$file['cleanup_dir'] = $temp_folder; // remove folder after downloading
-	return $file;
+	return wrap_file_send($file);
 }
 
 /**
