@@ -54,6 +54,8 @@ function mf_default_download_zip($files, $download_file) {
 	// Temporary folder, so we do not mess this ZIP with other file downloads
 	$temp_folder = sprintf('%s/%s%s', wrap_setting('tmp_dir'), rand(), time());
 	mkdir($temp_folder);
+	if (!str_ends_with($download_file, '.zip'))
+		 $download_file = sprintf('%s.zip', $download_file);
 	$zip_file = sprintf('%s/%s', $temp_folder, $download_file);
 
 	switch (wrap_setting('default_download_zip_mode')) {
