@@ -57,9 +57,27 @@ function mf_default_download_zip($files, $download_file) {
 	// Temporary folder, so we do not mess this ZIP with other file downloads
 	$temp_folder = sprintf('%s/%s%s', wrap_setting('tmp_dir'), rand(), time());
 	mkdir($temp_folder);
-	if (!str_ends_with($download_file, '.zip'))
-		 $download_file = sprintf('%s.zip', $download_file);
-	$zip_file = sprintf('%s/%s', $temp_folder, $download_file);
+	$zip_file = sprintf('%s/%s.zip', $temp_folder, $download_file);
+	$metadata_file = sprintf('%s/Metadata.csv', $temp_folder, $download_file);
+	$pointer = fopen($metadata_file, 'w');
+	
+	// metadata?
+	$metadata = false;
+	foreach ($files as $file) {
+		if (empty($file['meta'])) continue;
+		if (!$metadata) {
+			$metadata = true;
+			fputcsv($pointer, array_keys($file['meta']));
+		}
+		fputcsv($pointer, $file['meta']);
+	}
+	fclose($pointer);
+	if ($metadata) {
+		$files[] = [
+			'filename' => strtolower($metadata_file),
+			'local_filename' => basename($metadata_file)
+		];
+	}
 
 	switch (wrap_setting('default_download_zip_mode')) {
 		case 'php':
@@ -70,6 +88,7 @@ function mf_default_download_zip($files, $download_file) {
 			$success = mf_default_download_zip_shell($zip_file, $files, $temp_folder);
 			break;
 	}
+	unlink($metadata_file);
 	if (!$success) {
 		wrap_error(wrap_text('Creation of ZIP file “%s” failed.', ['values' => [$download_file]]), E_USER_ERROR);
 		exit;
