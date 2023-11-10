@@ -102,7 +102,7 @@ function mf_default_download_zip_shell($zip_file, $files, $temp_path) {
 	$created = [];
 	foreach ($files as $file) {
 		$return = wrap_mkdir(dirname($current_folder.'/'.$file['local_filename']));
-		if (is_array($return)) $created += $return;
+		if (is_array($return)) $created = array_merge($created, $return);
 		link(realpath($file['filename']), $current_folder.'/'.$file['local_filename']);
 		$filelist[] = $file['local_filename'];
 	}
@@ -110,8 +110,8 @@ function mf_default_download_zip_shell($zip_file, $files, $temp_path) {
 	// zip files
 	// -o	make zipfile as old as latest entry
 	// -0	store files (no compression)
-	$command = 'zip -o -0 %s %s';
-	$command = sprintf($command, $zip_file, implode(' ', $filelist));
+	$command = 'zip -o -0 %s "%s"';
+	$command = sprintf($command, $zip_file, implode('" "', $filelist));
 	exec($command);
 	
 	// cleanup files, remove hardlinks
