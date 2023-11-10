@@ -16,34 +16,39 @@
 /**
  * create a ZIP archive from a list of files
  *
- * @param array $files_to_zip list of files, with for each file:
+ * @param array $files list of files, with for each file:
  *   string 'local_filename'
  *   string 'filename'
- * @param string $dl_file file name of ZIP archive
+ * @param string $download_file file name of ZIP archive
  * @return array
  */
-function mf_default_download_zip($files_to_zip, $dl_file) {
-	// Temporary folder, so we do not mess this ZIP with other file downloads
-	ignore_user_abort(1); // make sure we can delete temporary files at the end
-	$temp_folder = rand().time();
-	mkdir(wrap_setting('tmp_dir').'/'.$temp_folder);
-	$zip_file = wrap_setting('tmp_dir').'/'.$temp_folder.'/'.$dl_file;
+function mf_default_download_zip($files, $download_file) {
+	// make sure we can delete temporary files at the end
+	ignore_user_abort(1);
 
-	$download_zip_mode = wrap_setting('download_zip_mode');
-	if (!$download_zip_mode OR $download_zip_mode === 'shell') {
-		$success = mod_mediadb_download_zip_shell($zip_file, $files_to_zip, wrap_setting('tmp_dir').'/'.$temp_folder);
-	} else {
-		$success = mod_mediadb_download_zip_php($zip_file, $files_to_zip);
+	// Temporary folder, so we do not mess this ZIP with other file downloads
+	$temp_folder = sprintf('%s/%s%s', wrap_setting('tmp_dir'), rand(), time());
+	mkdir($temp_folder);
+	$zip_file = sprintf('%s/%s', $temp_folder, $download_file);
+
+	switch (wrap_setting('download_zip_mode')) {
+		case 'php':
+			$success = mf_default_download_zip_php($zip_file, $files);
+			break;
+		case 'shell':
+		default:
+			$success = mf_default_download_zip_shell($zip_file, $files, $temp_folder);
+			break;
 	}
 	if (!$success) {
-		wrap_error('Creation of ZIP file '. $dl_file.' failed', E_USER_ERROR);
+		wrap_error(wrap_text('Creation of ZIP file “%s” failed.', ['values' => [$download_file]]), E_USER_ERROR);
 		exit;
 	}
 
 	$file = [];
 	$file['name'] = $zip_file;
 	$file['cleanup'] = true; // delete file after downloading
-	$file['cleanup_dir'] = wrap_setting('tmp_dir').'/'.$temp_folder; // remove folder after downloading
+	$file['cleanup_dir'] = $temp_folder; // remove folder after downloading
 	return $file;
 }
 
@@ -57,7 +62,7 @@ function mf_default_download_zip($files_to_zip, $dl_file) {
  *		[n]['local_filename'] relative path for ZIP archive
  * @return bool true: everything ok, false: error
  */
-function mod_mediadb_download_zip_shell($zip_file, $files_to_zip, $temp_path) {
+function mf_default_download_zip_shell($zip_file, $files, $temp_path) {
 	$filelist = [];
 
 	// create hard links to filesystem
@@ -65,7 +70,7 @@ function mod_mediadb_download_zip_shell($zip_file, $files_to_zip, $temp_path) {
 	chdir($temp_path.'/ln');
 	$current_folder = getcwd();
 	$created = [];
-	foreach ($files_to_zip as $file) {
+	foreach ($files as $file) {
 		$return = wrap_mkdir(dirname($current_folder.'/'.$file['local_filename']));
 		if (is_array($return)) $created += $return;
 		link(realpath($file['filename']), $current_folder.'/'.$file['local_filename']);
@@ -80,13 +85,11 @@ function mod_mediadb_download_zip_shell($zip_file, $files_to_zip, $temp_path) {
 	exec($command);
 	
 	// cleanup files, remove hardlinks
-	foreach ($files_to_zip as $file) {
+	foreach ($files as $file)
 		unlink($current_folder.'/'.$file['local_filename']);
-	}
 	$created = array_reverse($created);
-	foreach ($created as $folder) {
+	foreach ($created as $folder)
 		rmdir($folder);
-	}
 	chdir($temp_path);
 	rmdir($temp_path.'/ln');
 	return true;
@@ -102,15 +105,12 @@ function mod_mediadb_download_zip_shell($zip_file, $files_to_zip, $temp_path) {
  *		[n]['local_filename'] relative path for ZIP archive
  * @return bool true: everything ok, false: error
  */
-function mod_mediadb_download_zip_php($zip_file, $files_to_zip) {
+function mf_default_download_zip_php($zip_file, $files) {
 	$zip = new ZipArchive;
-	if ($zip->open($zip_file, ZIPARCHIVE::CREATE) !== TRUE) {
-		return false;
-	}
-	foreach ($files_to_zip as $file) {
+	if ($zip->open($zip_file, ZIPARCHIVE::CREATE) !== TRUE) return false;
+	foreach ($files as $file)
 		$zip->addFile($file['filename'], $file['local_filename']);
 		// @todo maybe check if connection_aborted() but with what as a flush?
-	}
 	$zip->close();
 	return true;
 }

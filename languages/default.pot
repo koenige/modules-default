@@ -25,6 +25,10 @@ msgstr ""
 msgid "List of services used for geocoding"
 msgstr ""
 
+#: default/download.inc.php
+msgid "Creation of ZIP file “%s” failed."
+msgstr ""
+
 #: templates/jobmanager.template.txt
 msgid "Results"
 msgstr ""

@@ -20,11 +20,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: configuration/settings.cfg
 msgid "List of services used for geocoding"
 msgstr "Liste der Dienste, die für die Geokodierung benutzt werden"
+
+#: default/download.inc.php
+msgid "Creation of ZIP file “%s” failed."
+msgstr "Die Erstellung der ZIP-Datei „%s“ ist fehlgeschlagen."
 
 #: templates/jobmanager.template.txt
 msgid "Results"
@@ -44,7 +48,7 @@ msgstr "%d Aufträge wurden abgebrochen."
 
 #: templates/jobmanager.template.txt
 msgid "%d successful jobs deleted."
-msgstr "%d erfolgreiche Aufträge gelöscht"
+msgstr "%d erfolgreiche Aufträge gelöscht."
 
 #: templates/jobmanager.template.txt
 msgid "%d running jobs released again."
@@ -52,7 +56,7 @@ msgstr "%d laufende Aufträge wieder freigegeben."
 
 #: templates/jobmanager.template.txt
 msgid "No jobs."
-msgstr "Keine Aufträge"
+msgstr "Keine Aufträge."
 
 #: templates/jobmanager.template.txt
 msgid "Start jobs manually"
@@ -307,7 +311,7 @@ msgstr "Beziehungs- und Übersetzungstabellen"
 
 #: zzbrick_request/maintenance.inc.php#database-tables
 msgid "The referential integrity of the database is not checked automatically."
-msgstr "Es wurde keine Tabelle für Datenbankbeziehungen angegeben"
+msgstr "Es wurde keine Tabelle für Datenbankbeziehungen angegeben."
 
 #: zzbrick_request/maintenance.inc.php#database-tables
 msgid "The fields in the database are not translated."
@@ -596,7 +600,7 @@ msgstr "Synchronisierung des lokalen und entfernten Servers"
 
 #: templates/maintenance-add-logging.template.txt
 msgid "Please upload a file."
-msgstr "Bitte laden Sie eine Datei hoch!"
+msgstr "Bitte laden Sie eine Datei hoch."
 
 #: templates/maintenance-add-logging.template.txt
 msgid "There was an error while uploading the file."
@@ -682,7 +686,7 @@ msgid ""
 "Sorry, the possible login period has expired. Please get a new login link."
 msgstr ""
 "Entschuldigung, der für einen Login mögliche Zeitraum ist vorbei. Bitte "
-"besorgen Sie sich einen neuen Login-Link"
+"besorgen Sie sich einen neuen Login-Link."
 
 #: zzbrick_request/sso.inc.php
 msgid "Single sign on: possible login period expired."
@@ -725,7 +729,7 @@ msgstr "Nein. Ein Vorschaubild für %sx%s px konnte nicht erstellt werden."
 
 #: zzbrick_request/thumbnails.inc.php
 msgid "No missing thumbnails were found."
-msgstr "Es wurden keine fehlenden Vorschaubilder gefunden"
+msgstr "Es wurden keine fehlenden Vorschaubilder gefunden."
 
 #: zzbrick_tables/relations.php
 msgid "Database Table Relations"
