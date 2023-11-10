@@ -74,7 +74,7 @@ function mf_default_download_zip($files, $download_file) {
 	fclose($pointer);
 	if ($metadata) {
 		$files[] = [
-			'filename' => strtolower($metadata_file),
+			'filename' => $metadata_file,
 			'local_filename' => basename($metadata_file)
 		];
 	}
