@@ -30,6 +30,30 @@ msgstr "Liste der Dienste, die für die Geokodierung benutzt werden"
 msgid "Creation of ZIP file “%s” failed."
 msgstr "Die Erstellung der ZIP-Datei „%s“ ist fehlgeschlagen."
 
+#: default/download.inc.php
+msgid "Download: Archive Too Big"
+msgstr "Download: Archiv zu groß"
+
+#: default/download.inc.php
+msgid "Sorry, but you might only download up to %s files at once."
+msgstr "Entschuldigung, aber Sie können nur %s Dateien auf einmal herunterladen."
+
+#: default/download.inc.php
+msgid "This archive would contain %s files."
+msgstr "Dieses Archiv würde aus %s Dateien bestehen."
+
+#: default/download.inc.php
+msgid "We recommend that you download every single subfolder instead of this main folder."
+msgstr "Wir empfehlen, dass Sie jeden einzelnen Unterordner einzeln statt dieses Ordners komplett herunterladen."
+
+#: default/download.inc.php
+msgid "Sorry, but you might only download an archive up to %s."
+msgstr "Entschuldigung, aber Sie können nur ein Archiv bis %s herunterladen."
+
+#: default/download.inc.php
+msgid "The requested archive would include files of %s size."
+msgstr "Die Dateien in diesem Archiv wären %s groß."
+
 #: templates/jobmanager.template.txt
 msgid "Results"
 msgstr "Ergebnisse"

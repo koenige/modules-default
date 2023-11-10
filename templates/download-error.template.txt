@@ -1,0 +1,19 @@
+# default module
+# Template for download errors
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2023 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% condition if too_many_files %%%
+<p class="error">%%% text "Sorry, but you might only download up to %s files at once." setting default_download_max_files %%%</p>
+<p>%%% text "This archive would contain %s files." too_many_files %%%</p>
+
+%%% condition elseif size_too_big %%%
+<p class="error">%%% text "Sorry, but you might only download an archive up to %s." setting default_download_max_filesize wrap_bytes %%%</p>
+<p>%%% text "The requested archive would include files of %s size." size_too_big wrap_bytes %%%</p>
+%%% condition endif %%%
+<p>%%% text We recommend that you download every single subfolder instead of this main folder. %%%</p>

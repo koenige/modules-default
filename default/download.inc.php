@@ -14,6 +14,31 @@
 
 
 /**
+ * check download restrictions
+ * no. of files, size of files
+ *
+ * @param array $files
+ * @param string $backlink link back to page before as second line of heading
+ * @param string $filesize_key (optional, key in $files that denotes file size)
+ * @return array (empty = everything ok, otherwise, it is an error page)
+ */
+function mf_default_download_restrictions($files, $backlink, $filesize_key = 'filesize') {
+	$size = 0;
+	foreach ($files as $file) $size += $file[$filesize_key];
+	
+	$data = [];
+	if (count($files) > wrap_setting('default_download_max_files'))
+		$data['too_many_files'] = count($files);
+	elseif ($size > wrap_setting('default_download_max_filesize'))
+		$data['size_too_big'] = $size;
+	if (!$data) return [];
+
+	$page['title'] = wrap_text('Download: Archive Too Big').$backlink;
+	$page['text'] = wrap_template('download-error', $data);
+	return $page;
+}	
+
+/**
  * create a ZIP archive from a list of files
  *
  * @param array $files list of files, with for each file:
@@ -31,7 +56,7 @@ function mf_default_download_zip($files, $download_file) {
 	mkdir($temp_folder);
 	$zip_file = sprintf('%s/%s', $temp_folder, $download_file);
 
-	switch (wrap_setting('download_zip_mode')) {
+	switch (wrap_setting('default_download_zip_mode')) {
 		case 'php':
 			$success = mf_default_download_zip_php($zip_file, $files);
 			break;
