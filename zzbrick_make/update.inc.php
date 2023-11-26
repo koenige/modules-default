@@ -34,13 +34,21 @@ function mod_default_make_update($params) {
 	if (!$pkey)
 		wrap_quit(404, sprintf('Table %s not found', $params[0]));
 
+	$page['query_strings'][] = 'thumbs';
+	$page['query_strings'][] = 'field';
+	$page['query_strings'][] = 'limit';
+
+	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+		$data['no_post'] = true;
+		$page['text'] = wrap_template('update', $data);
+		return $page;
+	}
+
 	// thumbnail creation in background?
 	if (!empty($_GET['thumbs']) AND !empty($_GET['field'])) {
 		wrap_include_files('zzform.php', 'zzform');
 		$zz = zzform_include($script);
 		$ops = zzform($zz);
-		$page['query_strings'][] = 'thumbs';
-		$page['query_strings'][] = 'field';
 		if ($ops['result'] === 'thumbnail created') {
 			$page['text'] = sprintf('<p>Thumbnail %s for %s ID %s created.</p>'
 				, $_GET['field'], $params[0], $_GET['thumbs']
@@ -58,7 +66,6 @@ function mod_default_make_update($params) {
 		return $page;
 	}
 
-	$page['query_strings'][] = 'limit';
 	$limit = $_GET['limit'] ?? 0;
 
 	$sql = 'SELECT %s
