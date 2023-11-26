@@ -58,13 +58,18 @@ function mod_default_make_update($params) {
 		return $page;
 	}
 
+	$page['query_strings'][] = 'limit';
+	$limit = $_GET['limit'] ?? 0;
+
 	$sql = 'SELECT %s
 		FROM %s
-		ORDER BY %s';
+		ORDER BY %s
+		LIMIT %d, %d';
 	$sql = sprintf($sql
 		, $pkey['Column_name']
 		, wrap_db_escape($params[0])
 		, $pkey['Column_name']
+		, $limit, wrap_setting('default_update_limit_per_run')
 	);
 	$data = wrap_db_fetch($sql, $pkey['Column_name']);
 	if (!$data) {
@@ -78,6 +83,15 @@ function mod_default_make_update($params) {
 		$values['POST'][$pkey['Column_name']] = $line[$pkey['Column_name']];
 		$ops = zzform_multi($script, $values);
 	}
+
+	// call next page per background job
+	$url_path = parse_url(wrap_setting('request_uri'), PHP_URL_PATH);
+	$url_query = parse_url(wrap_setting('request_uri'), PHP_URL_QUERY);
+	parse_str($url_query, $url_query);
+	$url_query['limit'] = $limit + wrap_setting('default_update_limit_per_run');
+	$url = sprintf('%s?%s', $url_path, http_build_query($url_query));
+	wrap_job($url, ['trigger' => true]);
+
 	$page['text'] = sprintf('<p>Updated %s table.</p>', $params[0]);
 	return $page;
 }
