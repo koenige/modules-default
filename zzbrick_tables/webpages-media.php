@@ -52,6 +52,10 @@ $zz_sub['fields'][5]['path'] = [
 	'webstring1' => '?v=',
 	'webfield1' => 'version'
 ];
+$zz_sub['fields'][5]['path']['extension_missing'] = [
+	'string3' => wrap_setting('media_original_filename_extension'),
+	'extension' => 'extension'
+];
 
 $zz_sub['fields'][3]['title'] = 'Medium';
 $zz_sub['fields'][3]['field_name'] = 'medium_id';
@@ -74,7 +78,9 @@ $zz_sub['fields'][20]['field_name'] = 'last_update';
 $zz_sub['fields'][20]['type'] = 'timestamp';
 $zz_sub['fields'][20]['hide_in_list'] = true;
 
-$zz_sub['subselect']['sql'] = 'SELECT page_id, filename, t_mime.extension, version
+$zz_sub['subselect']['sql'] = 'SELECT page_id, filename, version
+		, t_mime.extension AS thumb_extension
+		, o_mime.extension
 	FROM /*_PREFIX_*/webpages_media
 	LEFT JOIN /*_PREFIX_*/media USING (medium_id)
 	LEFT JOIN /*_PREFIX_*/filetypes AS o_mime USING (filetype_id)
@@ -83,21 +89,18 @@ $zz_sub['subselect']['sql'] = 'SELECT page_id, filename, t_mime.extension, versi
 	WHERE o_mime.mime_content_type = "image"
 	AND /*_PREFIX_*/webpages_media.sequence = 1
 ';
-$zz_sub['subselect']['concat_fields'] = '';
-$zz_sub['subselect']['field_suffix'][0] = '.'.wrap_setting('media_preview_size').'.';
-$zz_sub['subselect']['field_suffix'][1] = '?v=';
-$zz_sub['subselect']['prefix'] = '<img src="'.wrap_setting('files_path').'/';
-$zz_sub['subselect']['suffix'] = '">';
-$zz_sub['subselect']['dont_mark_search_string'] = true;
+$zz_sub['subselect']['image'] = $zz_sub['fields'][5]['path'];
 
 $zz_sub['sql'] = 'SELECT /*_PREFIX_*/webpages_media.*
 	, /*_PREFIX_*/webpages.title AS webpage
 	, CONCAT("[", /*_PREFIX_*/media.medium_id, "] ", /*_PREFIX_*/media.title) AS image
 	, /*_PREFIX_*/media.filename, version
 	, t_mime.extension AS thumb_extension
+	, o_mime.extension AS extension
 	FROM /*_PREFIX_*/webpages_media
 	LEFT JOIN /*_PREFIX_*/webpages USING (page_id)
 	LEFT JOIN /*_PREFIX_*/media USING (medium_id)
+	LEFT JOIN /*_PREFIX_*/filetypes AS o_mime USING (filetype_id)
 	LEFT JOIN /*_PREFIX_*/filetypes AS t_mime 
 		ON /*_PREFIX_*/media.thumb_filetype_id = t_mime.filetype_id
 ';
