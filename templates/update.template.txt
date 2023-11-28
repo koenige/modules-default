@@ -22,4 +22,10 @@
 %%% loop end %%%
 </ul>
 
+%%% condition elseif thumbnail_failed %%%
+<p>Creation of thumbnail %%% item thumb_field %%% for %%% item table %%% ID %%% item record_id %%% failed.</p>
+%%% condition if error %%%
+<p class="error">%%% item error %%%</p>
+%%% condition endif %%%
+
 %%% condition endif %%%

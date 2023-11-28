@@ -49,22 +49,22 @@ function mod_default_make_update($params) {
 		wrap_include_files('zzform.php', 'zzform');
 		$zz = zzform_include($script);
 		$ops = zzform($zz);
+		$data = json_decode($ops['output'], true);
+		$data['thumb_field'] = implode('-', $ops['thumb_field']);
+		$data['table'] = $params[0];
 		if ($ops['result'] === 'thumbnail created') {
-			$data = json_decode($ops['output'], true);
 			$data['thumbnail_created'] = true;
-			$data['thumb_field'] = implode('-', $ops['thumb_field']);
-			$data['table'] = $params[0];
-			$page['text'] = wrap_template('update', $data);
 		} else {
-			$page['text'] = sprintf('<p>Creation of thumbnail %s for %s ID %s failed.</p>'
-				, $_GET['field'], $params[0], $_GET['thumbs']
-			);
+			$data['thumbnail_failed'] = true;
+			$data['record_id'] = $_GET['thumbs'];
+			$data['error'] = implode('<br>', $data['error']);
 			wrap_error(sprintf(
 				'Creation of thumbnail for medium ID %s failed. (Reason: %s)'
 				, $_GET['thumbs'], json_encode($ops['error'])
 			));
-			$page['status'] = 503;
+			$page['status'] = $ops['page']['status'] ?? 503;
 		}
+		$page['text'] = wrap_template('update', $data);
 		return $page;
 	}
 
