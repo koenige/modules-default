@@ -50,9 +50,11 @@ function mod_default_make_update($params) {
 		$zz = zzform_include($script);
 		$ops = zzform($zz);
 		if ($ops['result'] === 'thumbnail created') {
-			$page['text'] = sprintf('<p>Thumbnail %s for %s ID %s created.</p>'
-				, $_GET['field'], $params[0], $_GET['thumbs']
-			);
+			$data = json_decode($ops['output'], true);
+			$data['thumbnail_created'] = true;
+			$data['thumb_field'] = implode('-', $ops['thumb_field']);
+			$data['table'] = $params[0];
+			$page['text'] = wrap_template('update', $data);
 		} else {
 			$page['text'] = sprintf('<p>Creation of thumbnail %s for %s ID %s failed.</p>'
 				, $_GET['field'], $params[0], $_GET['thumbs']

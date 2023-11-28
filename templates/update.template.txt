@@ -13,4 +13,13 @@
 <input type="submit" value="%%% text Start update %%%">
 </form>
 
+%%% condition elseif thumbnail_created %%%
+<p>Thumbnail %%% item thumb_field %%% for %%% item table %%% ID %%% item record_id %%% created.</p>
+<p>Files:</p>
+<ul>
+%%% loop files %%%
+<li>%%% item filename %%% (%%% item action %%%)</li>
+%%% loop end %%%
+</ul>
+
 %%% condition endif %%%
