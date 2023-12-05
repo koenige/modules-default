@@ -143,7 +143,8 @@ function mod_default_make_jobmanager_add($data) {
 	$values['action'] = 'insert';
 	$values['ids'] = ['job_category_id', 'website_id'];
 	$values['POST']['job_url'] = $data['url'];
-	$values['POST']['job_category_id'] = $data['job_category_id'] ?? NULL;
+	if (!empty($data['job_category_id'])) // just set if there is a value, otherwise use default
+		$values['POST']['job_category_id'] = $data['job_category_id'];
 	$values['POST']['username'] = wrap_username();
 	$values['POST']['priority'] = $data['priority'] ?? 0;
 	$values['POST']['wait_until'] = $data['wait_until'] ?? NULL;
