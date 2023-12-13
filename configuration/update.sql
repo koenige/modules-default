@@ -510,3 +510,4 @@
 /* 2023-06-03-3 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'logins', 'login_id', 'login_category_id', 'no-delete');
 /* 2023-06-03-4 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Logins', NULL, NULL, 'logins', '&alias=logins', NULL, NOW());
 /* 2023-08-04-1 */	UPDATE _settings SET setting_key = 'default_sync_server_path' WHERE setting_key = 'sync_server_url';
+/* 2023-12-13-1 */	ALTER TABLE `_settings` CHANGE `setting_key` `setting_key` varchar(100) COLLATE 'latin1_general_ci' NOT NULL AFTER `setting_id`;
