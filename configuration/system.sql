@@ -62,7 +62,7 @@ FROM /*_PREFIX_*/webpages;
 
 -- page_menu --
 SELECT page_id
-	, SUBSTRING_INDEX(title, " – ", 1) AS title
+	, IF(/*_PREFIX_*/webpages.parameters LIKE "%&menu=%", SUBSTRING_INDEX(SUBSTRING_INDEX(parameters, '&menu=', -1), '&', 1), SUBSTRING_INDEX(title, " – ", 1)) AS title
 	, CONCAT(identifier, IF(STRCMP(ending, 'none'), ending, '')) AS url
 	, mother_page_id, menu
 FROM /*_PREFIX_*/webpages
