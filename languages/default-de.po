@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014-2018, 2020-2023 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014-2018, 2020-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: configuration/settings.cfg
 msgid "List of services used for geocoding"
@@ -700,6 +700,18 @@ msgstr "Die Log-Einträge %d stimmen nicht überein."
 #: templates/maintenance-sync-server.template.txt
 msgid "A synchronisation is impossible."
 msgstr "Eine Synchronisierung ist nicht möglich."
+
+#: templates/relations.template.txt
+msgid "Links to other data"
+msgstr "Verknüpfungen mit anderen Daten"
+
+#: templates/relations.template.txt
+msgid "ID"
+msgstr "ID"
+
+#: templates/relations.template.txt
+msgid "This entry is not linked to any other data."
+msgstr "Dieser Eintrag ist nicht mit anderen Daten verknüpft."
 
 #: zzbrick_make/serversync.inc.php
 msgid ""
