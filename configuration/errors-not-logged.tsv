@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/projects/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2012-2023 Gustaf Mossakowski
+# @copyright Copyright © 2012-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 # begin = check if begin of string is identical; end = check end; all: check full
@@ -57,18 +57,14 @@
 404	end	/undefinedsf_main.jsp?clientVersion=null&dlsource=null&CTID=null&userId=userIdFail&statsReporter=false
 404	end	/6_S3_
 
-# WordPress login and bugs
+# WordPress login, config and bugs
 404	end	/wp-login.php
 404	end	/xmlrpc.php
 503	end	/xmlrpc.php
-404	end	/wp-admin/admin-ajax.php?action=revslider_show_image&img=../wp-config.php
-503	end	/wp-admin/admin-ajax.php?action=revslider_show_image&img=../wp-config.php
 404	all	/wp-includes/wlwmanifest.xml
 404	all	/wp-includes/css/buttons.css
-404	end	/wp-admin/admin-ajax.php?action=showbiz_show_image&img=../wp-config.php
-404	end	/wp-admin/admin-ajax.php?action=revolution-slider_show_image&img=../wp-config.php
-404	end	/wp-config.php~
-503	end	/wp-config.php~
+404	request	*wp-config.*
+503	request	*wp-config.*
 404	end	/wp-content/uploads/2015/08/info.php
 404	end	/wordpr
 404	end	/wp-admin
@@ -87,7 +83,6 @@
 404	begin	/wp-admin/admin-post.php?swp_debug=load_options&swp_url=
 404	end	/wp-json/wp/v2/users
 404	end	/license.txt
-404	request	*/wp-config*
 404	request	*/wp-includes/*
 404	begin	/wp-content/plugins
 
