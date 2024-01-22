@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2015, 2018, 2020-2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2015, 2018, 2020-2021, 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -26,6 +26,7 @@ if (!empty($brick['data']['website_id'])) {
 $zz['fields'][3]['cfg'] = wrap_cfg_files('settings', ['scope' => 'website', 'translate' => true]);
 $zz['fields'][3]['dependencies'] = [6, 4]; // description
 $zz['fields'][3]['dependencies_function'] = 'zz_cfg_read';
+$zz['fields'][3]['list_dependency'] = 'setting_value';
 
 
 function zz_cfg_read($cfg) {
