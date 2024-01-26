@@ -57,10 +57,7 @@ function mod_default_proxy($params) {
 		if (isset($_SERVER['CONTENT_TYPE']))
 			$headers_to_send[] = sprintf('Content-Type: %s', $_SERVER['CONTENT_TYPE']);
 
-		if (in_array('Content-Type: application/json;charset=utf-8', $headers_to_send))
-			$postdata = file_get_contents('php://input');
-		else
-			$postdata = !empty($_POST) ? $_POST : [];
+		$postdata = !empty($_POST) ? $_POST : file_get_contents('php://input');
 		
 		list($status, $headers, $data) = wrap_syndication_retrieve_via_http($url, $headers_to_send, $_SERVER['REQUEST_METHOD'], $postdata);
 		if (in_array('content-encoding: gzip', $headers))
