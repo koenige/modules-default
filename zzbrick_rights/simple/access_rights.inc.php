@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015-2016, 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2015-2016, 2020-2022, 2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -26,6 +26,7 @@ function brick_access_rights($parameter = []) {
 	case 'localhost':
 		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') return true;
 		if ($_SERVER['REMOTE_ADDR'] === '::1') return true;
+		if (!empty($_SERVER['SERVER_ADDR']) AND $_SERVER['REMOTE_ADDR'] === $_SERVER['SERVER_ADDR']) return true;
 		if ($login_rights) return true; // a user is logged in
 		break;
 	case 'admin':
