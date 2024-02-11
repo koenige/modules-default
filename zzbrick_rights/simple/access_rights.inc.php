@@ -24,9 +24,7 @@ function brick_access_rights($parameter = []) {
 	$group = strtolower($group);
 	switch ($group) {
 	case 'localhost':
-		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') return true;
-		if ($_SERVER['REMOTE_ADDR'] === '::1') return true;
-		if (!empty($_SERVER['SERVER_ADDR']) AND $_SERVER['REMOTE_ADDR'] === $_SERVER['SERVER_ADDR']) return true;
+		if (wrap_localhost_ip()) return true;
 		if ($login_rights) return true; // a user is logged in
 		break;
 	case 'admin':
