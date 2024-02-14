@@ -106,7 +106,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 			$zz['fields'][$no]['fields'][$def['type_category_id']]['for_action_ignore'] = true;
 		}
 		$zz['fields'][$no]['if'][1]['list_suffix'] = '</del>';
-		if (!empty($zz['fields'][$no]['fields'][4]))
+		if (!empty($zz['fields'][$no]['fields'][4]) AND $zz['fields'][$no]['fields'][4]['field_name'] === 'sequence')
 			$zz['fields'][$no]['fields'][4]['type'] = 'sequence';
 	}
 
