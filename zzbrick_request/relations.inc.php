@@ -47,7 +47,7 @@ function mod_default_relations($params) {
 			$joined = NULL;
 
 		$sql = 'SELECT %s AS record_id
-			FROM %s.%s
+			FROM `%s`.%s
 			WHERE %s = %d';
 		$sql = sprintf($sql
 			, $joined['id_field'] ?? $relation['detail_id_field']
