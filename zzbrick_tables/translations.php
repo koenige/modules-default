@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2005-2010, 2014, 2019-2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2005-2010, 2014, 2019-2021, 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -34,7 +34,7 @@ $zz['fields'][3]['title'] = 'Table';
 $zz['fields'][3]['field_name'] = 'table_name';
 if (!empty($_POST['db_name'])) {
 	$zz['fields'][3]['type'] = 'select';	
-	$zz['fields'][3]['sql'] = sprintf('SHOW TABLES FROM %s', wrap_db_escape($_POST['db_name']));
+	$zz['fields'][3]['sql'] = sprintf('SHOW TABLES FROM `%s`', wrap_db_escape($_POST['db_name']));
 } else
 	$zz['fields'][3]['type'] = 'text';	
 $zz['fields'][3]['list_append_next'] = true;
@@ -44,7 +44,7 @@ $zz['fields'][4]['title'] = 'Field';
 $zz['fields'][4]['field_name'] = 'field_name';
 if (!empty($_POST['db_name']) AND !empty($_POST['table_name'])) {
 	$zz['fields'][4]['type'] = 'select';
-	$zz['fields'][4]['sql'] = sprintf('SHOW COLUMNS FROM %s.%s', wrap_db_escape($_POST['db_name']), wrap_db_escape($_POST['table_name']));
+	$zz['fields'][4]['sql'] = sprintf('SHOW COLUMNS FROM `%s`.%s', wrap_db_escape($_POST['db_name']), wrap_db_escape($_POST['table_name']));
 	$zz['fields'][4]['sql_index_only'] = true;
 } else
 	$zz['fields'][4]['type'] = 'text';
