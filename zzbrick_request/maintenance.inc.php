@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -138,7 +138,7 @@ function zz_maintenance_sqlquery($page) {
 
 	$result = [];
 	$sql = $_POST['sql'];
-	$statement = zz_db_statement($sql);
+	$statement = wrap_sql_statement($sql);
 
 	switch ($statement) {
 	case 'INSERT':
