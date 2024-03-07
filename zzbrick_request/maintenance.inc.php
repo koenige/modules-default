@@ -129,9 +129,7 @@ function zz_maintenance_keycheck() {
  * @return array
  */
 function zz_maintenance_sqlquery($page) {
-	// zz_htmltag_escape()
-	wrap_include_files('functions', 'zzform');
-	// zz_db_change()
+	// zz_log_sql()
 	wrap_include_files('database', 'zzform');
 	
 	wrap_setting('log_username_default', 'Maintenance robot 812');
@@ -169,7 +167,7 @@ function zz_maintenance_sqlquery($page) {
 	case 'SELECT':
 	default:
 		$result['not_supported'] = true;
-		$result['token'] = zz_htmltag_escape($statement);
+		$result['token'] = wrap_html_escape($statement);
 		break;
 	}
 		
@@ -350,9 +348,6 @@ function zz_maintenance_filetree($page) {
 	$page['breadcrumbs'][]['title'] = wrap_text('Filetree');
 	$page['query_strings'][] = 'filetree';
 
-	// zz_htmltag_escape()
-	wrap_include_files('functions', 'zzform');
-
 	$files = [];
 	$topdir = $_SERVER['DOCUMENT_ROOT'].'/../';
 	$base = false;
@@ -360,12 +355,12 @@ function zz_maintenance_filetree($page) {
 		$files['parts'] = [];
 		$parts = explode('/', $_GET['filetree']);
 		$text = array_pop($parts);
-		$files['parts'][] = ['title' => zz_htmltag_escape($text)];
+		$files['parts'][] = ['title' => wrap_html_escape($text)];
 		while ($parts) {
 			$folder = implode('/', $parts);
 			$part = array_pop($parts);
 			$files['parts'][] = [
-				'title' => zz_htmltag_escape($part),
+				'title' => wrap_html_escape($part),
 				'link' => $folder
 			];
 		}
@@ -568,7 +563,7 @@ function zz_maintenance_folders($page = []) {
 		if (substr($_GET['folder'], 0, strlen($folder['title'])) != $folder['title']) continue;
 		$data['folders'][$index]['hide_content'] = false;
 		if ($folder['title'] !== $_GET['folder']) {
-			$data['folders'][$index]['subtitle'] = zz_htmltag_escape($_GET['folder']);
+			$data['folders'][$index]['subtitle'] = wrap_html_escape($_GET['folder']);
 		}
 
 		$folder_handle = opendir($my_folder);
