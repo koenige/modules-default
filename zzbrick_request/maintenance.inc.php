@@ -138,37 +138,29 @@ function zz_maintenance_sqlquery($page) {
 	$sql = $_POST['sql'];
 	$statement = wrap_sql_statement($sql);
 
-	switch ($statement) {
-	case 'INSERT':
-	case 'UPDATE':
-	case 'DELETE':
-	case 'CREATE TABLE':
-	case 'ALTER TABLE':
-	case 'CREATE VIEW':
-	case 'ALTER VIEW':
-	case 'SET':
-		$result = zz_db_change($sql);
-		$result['change'] = true;
-		if (!$result['action']) {
-			if (empty($result['error']['db_msg']) AND !empty($result['error']['msg_dev'])) {
-				$result['error_db_msg'] = wrap_text($result['error']['msg_dev']
-					, ['values' => $result['error']['msg_dev_args']]
-				);
-			} else {
-				$result['error_db_msg'] = $result['error']['db_msg'];
-				$result['error_db_errno'] = $result['error']['db_errno'];
-			}
-		} elseif ($result['action'] === 'nothing') {
+	if (in_array($statement, [
+		'INSERT', 'UPDATE', 'DELETE', 'CREATE TABLE', 'ALTER TABLE', 'CREATE VIEW',
+		'ALTER VIEW', 'SET'
+	])) {
+		$success = wrap_db_query($sql, 0);
+		if ($success AND in_array($statement, ['INSERT', 'UPDATE', 'DELETE']) AND !$success['rows']) {
 			$result['action_nothing'] = true;
+		} elseif ($success) {
+			zz_log_sql($sql, '', $success['id'] ?? NULL);
+			$result['action'] = wrap_text(ucfirst(strtolower($statement)));
 		} else {
-			$result['action'] = wrap_text(ucfirst($result['action']));
+			$warnings = wrap_db_warnings('list');
+			if ($warnings) {
+				$result['error_db_msg'] = $warnings[0]['Message'];
+				$result['error_db_errno'] = $warnings[0]['Code'];
+			} else {
+				$result['error_db_msg'] = wrap_text('Unknown error.');
+			}
 		}
-		break;
-	case 'SELECT':
-	default:
+		$result['change'] = true;
+	} else {
 		$result['not_supported'] = true;
 		$result['token'] = wrap_html_escape($statement);
-		break;
 	}
 		
 	$result['sql'] = zz_maintenance_sql($sql);
