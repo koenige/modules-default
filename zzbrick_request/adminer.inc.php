@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2021, 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -21,13 +21,12 @@
  * @return array $page
  */
 function mod_default_adminer($params) {
-	global $zz_page;
 	if ($params) return false;
 	wrap_access_quit('default_adminer');
 	if (empty($_GET)) {
 		// auto-login if only one database is present
 		$url = sprintf('%s?username=&db=%s'
-			, $zz_page['url']['full']['path']
+			, parse_url(wrap_setting('request_uri'), PHP_URL_PATH)
 			, wrap_setting('db_name')
 		);
 		return wrap_redirect($url, 302, false);
