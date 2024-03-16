@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2017-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2017-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -511,3 +511,4 @@
 /* 2023-06-03-4 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Logins', NULL, NULL, 'logins', '&alias=logins', NULL, NOW());
 /* 2023-08-04-1 */	UPDATE _settings SET setting_key = 'default_sync_server_path' WHERE setting_key = 'sync_server_url';
 /* 2023-12-13-1 */	ALTER TABLE `_settings` CHANGE `setting_key` `setting_key` varchar(100) COLLATE 'latin1_general_ci' NOT NULL AFTER `setting_id`;
+/* 2024-03-16-1 */	ALTER TABLE `tokens` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
