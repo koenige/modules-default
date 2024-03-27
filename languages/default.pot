@@ -738,11 +738,11 @@ msgid "The function %s does not exist."
 msgstr ""
 
 #: zzbrick_request/thumbnails.inc.php
-msgid "Thumbnail for %s x %s x px was created."
+msgid "Thumbnail for %s × %s px was created."
 msgstr ""
 
 #: zzbrick_request/thumbnails.inc.php
-msgid "Thumbnail for %s x %s x px could not be created."
+msgid "Thumbnail for %s × %s px could not be created."
 msgstr ""
 
 #: zzbrick_request/thumbnails.inc.php

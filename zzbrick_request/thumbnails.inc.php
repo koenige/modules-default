@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2014-2016, 2019-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2014-2016, 2019-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -71,9 +71,11 @@ function mod_default_thumbnails($params) {
 	// get all records, create thumbnails
 	$records = wrap_db_fetch($zz['sql'], $id_field_name);
 	foreach ($records as $line) {
-		if (!empty($line['filetype_id']) AND !empty(wrap_filetype_id('folder'))) {
-			// == because type of $line['filetype_id'] is string
-			if ($line['filetype_id'] == wrap_filetype_id('folder')) continue;
+		// do we have a field called filetype_id?
+		if (!empty($line['filetype_id'])) {
+			$filetype = wrap_filetype_id($line['filetype_id'], 'read-id');
+			$filetype_conf = wrap_filetypes($filetype);
+			if (empty($filetype_conf['thumbnail'])) continue;
 		}
 		$title = $line[$id_field_name];
 		$source = mod_default_thumbnails_makelink($source_path, $line);
@@ -81,6 +83,10 @@ function mod_default_thumbnails($params) {
 			$output[] = $title.': <span class="error">'.wrap_text('The original file does not exist.').'</span>';
 			continue;
 		}
+		$source_display = $source;
+		if (str_starts_with($source_display, wrap_setting('cms_dir')))
+			$source_display = substr($source_display, strlen(wrap_setting('cms_dir')));
+		$title = sprintf('ID %d (%s): ', $title, $source_display);
 		$size = getimagesize($source);
 
 		foreach ($upload_field AS $id => $file) {
@@ -102,18 +108,18 @@ function mod_default_thumbnails($params) {
 			if (empty($file['action'])) continue;
 			$func = 'zz_image_'.$file['action'];
 			if (!function_exists($func)) {
-				$output[] = $title.': <span class="error">'.sprintf(
+				$output[] = $title.'<span class="error">'.sprintf(
 					wrap_text('The function %s does not exist.'), zz_htmltag_escape($func))
 					.'</span>';
 				continue;
 			}
 			$tn = $func($source, $destination, $dest_extension, $file);
 			if ($tn)
-				$output[] = $title.': '.wrap_text('Thumbnail for %s x %s x px was created.',
+				$output[] = $title.wrap_text('Thumbnail for %s × %s px was created.',
 					 ['values' => [$file['width'], $file['height']]]);
 			else
-				$output[] = $title.': <span class="error">'.sprintf(
-					wrap_text('Thumbnail for %s x %s x px could not be created.'), $file['width'], $file['height'])
+				$output[] = $title.'<span class="error">'.
+					wrap_text('Thumbnail for %s × %s px could not be created.', ['values' => [$file['width'], $file['height']]])
 				.'</span>';
 		}
 	}

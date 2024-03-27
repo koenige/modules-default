@@ -768,12 +768,12 @@ msgid "The function %s does not exist."
 msgstr "Die Funktion %s existiert nicht."
 
 #: zzbrick_request/thumbnails.inc.php
-msgid "Thumbnail for %s x %s x px was created."
-msgstr "Ja! Ein Vorschaubild für %sx%s px wurde erstellt."
+msgid "Thumbnail for %s × %s px was created."
+msgstr "Ja! Ein Vorschaubild für %s × %s px wurde erstellt."
 
 #: zzbrick_request/thumbnails.inc.php
-msgid "Thumbnail for %s x %s x px could not be created."
-msgstr "Nein. Ein Vorschaubild für %sx%s px konnte nicht erstellt werden."
+msgid "Thumbnail for %s × %s px could not be created."
+msgstr "Nein. Ein Vorschaubild für %s × %s px konnte nicht erstellt werden."
 
 #: zzbrick_request/thumbnails.inc.php
 msgid "No missing thumbnails were found."

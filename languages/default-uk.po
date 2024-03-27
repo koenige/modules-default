@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2022-2023 Gustaf Mossakowski
+# @copyright Copyright © 2022-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -659,11 +659,11 @@ msgid "The function %s does not exist."
 msgstr ""
 
 #: zzbrick_request/thumbnails.inc.php
-msgid "Thumbnail for %s x %s x px was created."
+msgid "Thumbnail for %s × %s px was created."
 msgstr ""
 
 #: zzbrick_request/thumbnails.inc.php
-msgid "Thumbnail for %s x %s x px could not be created."
+msgid "Thumbnail for %s × %s px could not be created."
 msgstr ""
 
 #: zzbrick_request/thumbnails.inc.php
