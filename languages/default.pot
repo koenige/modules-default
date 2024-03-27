@@ -749,6 +749,10 @@ msgstr ""
 msgid "No missing thumbnails were found."
 msgstr ""
 
+#: zzbrick_request/thumbnails.inc.php
+msgid "The original file does not contain any data."
+msgstr ""
+
 #: zzbrick_tables/relations.php
 msgid "Database Table Relations"
 msgstr ""

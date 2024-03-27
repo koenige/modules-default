@@ -87,6 +87,10 @@ function mod_default_thumbnails($params) {
 		if (str_starts_with($source_display, wrap_setting('cms_dir')))
 			$source_display = substr($source_display, strlen(wrap_setting('cms_dir')));
 		$title = sprintf('ID %d (%s): ', $title, $source_display);
+		if (!filesize($source)) {
+			$output[] = $title.'<span class="error">'.wrap_text('The original file does not contain any data.').'</span>';
+			continue;
+		}
 		$size = getimagesize($source);
 
 		foreach ($upload_field AS $id => $file) {
@@ -97,8 +101,8 @@ function mod_default_thumbnails($params) {
 			// don't write a new file if old one already exists
 			if ($dest AND $mode === 'existing') continue;
 
-			$file['upload']['height'] = $size[1];
-			$file['upload']['width'] = $size[0];
+			$file['upload']['height'] = $size[1] ?? $line['height_px'] ?? NULL;
+			$file['upload']['width'] = $size[0] ?? $line['width_px'] ?? NULL;
 
 			// get path without checking whether file exists
 			$destination = mod_default_thumbnails_makelink($file['path'], $line, 'inexistent');

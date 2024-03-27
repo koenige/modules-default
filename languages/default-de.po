@@ -779,6 +779,10 @@ msgstr "Nein. Ein Vorschaubild für %s × %s px konnte nicht erstellt werden."
 msgid "No missing thumbnails were found."
 msgstr "Es wurden keine fehlenden Vorschaubilder gefunden."
 
+#: zzbrick_request/thumbnails.inc.php
+msgid "The original file does not contain any data."
+msgstr "Die Originaldatei enthält keine Daten."
+
 #: zzbrick_tables/relations.php
 msgid "Database Table Relations"
 msgstr "Tabellenbeziehungen der Datenbank"
