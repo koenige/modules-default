@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -70,13 +70,8 @@ function mod_default_make_translationscheck($params) {
 			);
 			if ($to_delete) {
 				$deletable_ids = wrap_db_fetch($sql, '_dummy_', 'single value');
-				foreach ($deletable_ids as $id) {
-					$values = [];
-					$values['action'] = 'delete';
-					$values['POST']['translation_id'] = $id;
-					$ops = zzform_multi('translations-'.$field['field_type'], $values);
-				}
-				return wrap_redirect_change(sprintf('?deleted=%d', count($deletable_ids)));
+				$deleted = zzform_delete('translations-'.$field['field_type'], $deletable_ids);
+				return wrap_redirect_change(sprintf('?deleted=%d', count($deleted)));
 			} else {
 				$data[$database]['database'] = $database;
 				$data[$database]['tables'][$field['translationfield_id']] = $field;
