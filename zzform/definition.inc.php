@@ -81,6 +81,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 			$zz['fields'][$no]['min_records_required'] = $category['min_records_required'];
 		if (isset($category['max_records']))
 			$zz['fields'][$no]['max_records'] = $category['max_records'];
+		if (!empty($category['explanation']))
+			$zz['fields'][$no]['explanation'] = $category['explanation'];
 		if (!empty($def['property']) AND !empty($category['property_of_category'])) {
 			$zz['fields'][$no]['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.category_id = %d', $category['category_id']);
 			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.category_id = %d', $category['category_id']);
@@ -108,6 +110,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 		$zz['fields'][$no]['if'][1]['list_suffix'] = '</del>';
 		if (!empty($zz['fields'][$no]['fields'][4]) AND $zz['fields'][$no]['fields'][4]['field_name'] === 'sequence')
 			$zz['fields'][$no]['fields'][4]['type'] = 'sequence';
+		if (!empty($category['default']))
+			$zz['fields'][$no]['if']['insert']['fields'][$def['category_id']]['default'] = wrap_category_id($category['default']);
 	}
 
 	// do not set list_append_next for last visible element
@@ -118,12 +122,14 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 	foreach ($pc as $index => $category) {
 		$no = $last_no - $index;
 		if ($zz['fields'][$no]['hide_in_list']) {
-			$zz['fields'][$no]['separator'] = true;
+			if (empty($parameters['no_separator']))
+				$zz['fields'][$no]['separator'] = true;
 		} elseif (!$last_visible_found) {
 			$last_visible_found = true;
 		} else {
 			$zz['fields'][$no]['unless']['export_mode']['list_append_next'] = true;
-			$zz['fields'][$no]['separator'] = true;
+			if (empty($parameters['no_separator']))
+				$zz['fields'][$no]['separator'] = true;
 		}
 	}
 }
