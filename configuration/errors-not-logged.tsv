@@ -152,6 +152,7 @@
 404	ua	Mozilla/5.0 (compatible; heritrix/3.1.1 +http://www.mixdata.com)
 404	ua	arquivo-web-crawler (compatible; heritrix/3.4.0-20200304 +http://arquivo.pt)
 404	ua	Mozilla/5.0 (compatible; heritrix/3.4.0-SNAPSHOT-2021-01-14T20:13:18Z +https://www.fim.uni-passau.de/data-science/forschung/open-search)
+404	ua	Arquivo-web-crawler (compatible; heritrix/3.4.0-20200304 +https://arquivo.pt/faq-crawling)
 
 # Facebook is broken as well
 404	ua	facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)
