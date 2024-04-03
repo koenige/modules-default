@@ -99,10 +99,14 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 			$zz['fields'][$no]['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.main_category_id IN (%s)', implode(',', $main_category_ids));
 			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.main_category_id IN (%s)', implode(',', $main_category_ids));
 		}
-		if (!empty($def['property']) AND !empty($category['unit']))
+		if (!empty($def['property'])) {
+			if (!empty($category['unit']))
 				$zz['fields'][$no]['fields'][$def['property']]['unit'] = $category['unit'];
-		if (!empty($def['property']) AND empty($category['property']))
-			$zz['fields'][$no]['fields'][$def['property']]['hide_in_form'] = true;
+			if (empty($category['property']))
+				$zz['fields'][$no]['fields'][$def['property']]['hide_in_form'] = true;
+			if (!empty($category['property_size']))
+				$zz['fields'][$no]['fields'][$def['property']]['size'] = $category['property_size'];
+		}
 		$zz['fields'][$no]['sql'] .= ' '.$zz['fields'][$no]['sqlorder'];
 		$zz['fields'][$no]['fields'][2]['type'] = 'foreign_key';
 		if (!empty($def['type_category_id'])) {
