@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -96,7 +96,8 @@ function mod_default_make_update($params) {
 	// call next page per background job
 	$url_path = parse_url(wrap_setting('request_uri'), PHP_URL_PATH);
 	$url_query = parse_url(wrap_setting('request_uri'), PHP_URL_QUERY);
-	parse_str($url_query, $url_query);
+	if ($url_query) parse_str($url_query, $url_query);
+	else $url_query = [];
 	$url_query['limit'] = $limit + wrap_setting('default_update_limit_per_run');
 	$url = sprintf('%s?%s', $url_path, http_build_query($url_query));
 	wrap_job($url, ['trigger' => true]);
