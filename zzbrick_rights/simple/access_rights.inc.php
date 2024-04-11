@@ -13,38 +13,38 @@
  */
 
 
-function brick_access_rights($parameter = []) {
-	// allow parameter to be array or string
-	if (!$parameter) $group = false;
-	elseif (is_array($parameter)) $group = $parameter[0];
-	else $group = $parameter;
+function brick_access_rights($groups = []) {
+	// allow groups parameter to be array or string
+	if (!is_array($groups)) $groups = [$groups];
 
 	$login_rights = $_SESSION['login_rights'] ?? false;
 
-	$group = strtolower($group);
-	switch ($group) {
-	case 'cron':
-		if (!empty($_SERVER['REMOTE_ADDR']) AND $_SERVER['REMOTE_ADDR'] === wrap_setting('cron_ip'))
-		if (wrap_localhost_ip()) return true;
-		if ($login_rights === 'admin') return true;
-		break;
-	case 'localhost':
-		if (wrap_localhost_ip()) return true;
-		if ($login_rights) return true; // a user is logged in
-		break;
-	case 'admin':
-	default:
-		if ($login_rights === 'admin') return true;
-		break;
-	case 'read and write':
-		if ($login_rights === 'admin') return true;
-		if ($login_rights === 'read and write') return true;
-		break;
-	case 'read':
-		if ($login_rights === 'admin') return true;
-		if ($login_rights === 'read and write') return true;
-		if ($login_rights === 'read') return true;
-		break;
+	foreach ($groups as $group) {
+		$group = strtolower($group);
+		switch ($group) {
+		case 'cron':
+			if (!empty($_SERVER['REMOTE_ADDR']) AND $_SERVER['REMOTE_ADDR'] === wrap_setting('cron_ip'))
+			if (wrap_localhost_ip()) return true;
+			if ($login_rights === 'admin') return true;
+			break;
+		case 'localhost':
+			if (wrap_localhost_ip()) return true;
+			if ($login_rights) return true; // a user is logged in
+			break;
+		case 'admin':
+		default:
+			if ($login_rights === 'admin') return true;
+			break;
+		case 'read and write':
+			if ($login_rights === 'admin') return true;
+			if ($login_rights === 'read and write') return true;
+			break;
+		case 'read':
+			if ($login_rights === 'admin') return true;
+			if ($login_rights === 'read and write') return true;
+			if ($login_rights === 'read') return true;
+			break;
+		}
 	}
 	return false;
 }
