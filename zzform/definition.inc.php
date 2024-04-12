@@ -106,16 +106,22 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 				$zz['fields'][$no]['fields'][$def['property']]['hide_in_form'] = true;
 			if (!empty($category['property_size']))
 				$zz['fields'][$no]['fields'][$def['property']]['size'] = $category['property_size'];
+			if (!empty($category['placeholder']))
+				$zz['fields'][$no]['fields'][$def['property']]['placeholder'] = wrap_text($category['placeholder']);
 		}
 		$zz['fields'][$no]['sql'] .= ' '.$zz['fields'][$no]['sqlorder'];
 		$zz['fields'][$no]['fields'][2]['type'] = 'foreign_key';
 		if (!empty($def['type_category_id'])) {
-			$zz['fields'][$no]['fields'][$def['type_category_id']]['value'] = wrap_category_id($category['type_category'] ?? $path);
+			if (!empty($category['own_type_category']) AND empty($category['type_category']))
+				$category['type_category_id'] = $category['category_id'];
+			$zz['fields'][$no]['fields'][$def['type_category_id']]['value'] = $category['type_category_id'] ?? wrap_category_id($category['type_category'] ?? $path);
 			$zz['fields'][$no]['fields'][$def['type_category_id']]['for_action_ignore'] = true;
 		}
 		$zz['fields'][$no]['if'][1]['list_suffix'] = '</del>';
-		if (!empty($zz['fields'][$no]['fields'][4]) AND $zz['fields'][$no]['fields'][4]['field_name'] === 'sequence')
-			$zz['fields'][$no]['fields'][4]['type'] = 'sequence';
+		if (!empty($zz['fields'][$no]['fields'][$def['sequence']])) {
+			$zz['fields'][$no]['fields'][$def['sequence']]['type'] = 'sequence';
+			$zz['fields'][$no]['fields'][$def['sequence']]['auto_value'] = 'increment';
+		}
 		if (!empty($category['default']))
 			$zz['fields'][$no]['if']['insert']['fields'][$def['category_id']]['default'] = wrap_category_id($category['default']);
 	}
