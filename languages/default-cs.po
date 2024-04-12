@@ -573,7 +573,6 @@ msgstr ""
 msgid "%d log entry was added, ID was %d."
 msgid_plural "All %d log entries were added, last ID was %d."
 msgstr[] ""
-msgstr[] ""
 
 #: templates/maintenance-add-logging.template.txt
 msgid "These changes were applied to the remote server."
