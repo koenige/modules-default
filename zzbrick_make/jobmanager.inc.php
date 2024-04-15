@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/tournaments
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -139,22 +139,16 @@ function mod_default_make_jobmanager_add($data) {
 		return reset($job_ids);
 	}
 
-	$values = [];
-	$values['action'] = 'insert';
-	$values['ids'] = ['job_category_id', 'website_id'];
-	$values['POST']['job_url'] = $data['url'];
-	$values['POST']['job_category_id'] = $data['job_category_id'] ?? NULL;
-	$values['POST']['username'] = wrap_username();
-	$values['POST']['priority'] = $data['priority'] ?? 0;
-	$values['POST']['wait_until'] = $data['wait_until'] ?? NULL;
-	$values['POST']['website_id'] = wrap_setting('website_id') ?? 1;
-	$values['POST']['lock_hash'] = wrap_lock_hash();
-	$ops = zzform_multi('jobqueue', $values);
-	if (!empty($ops['id'])) return $ops['id'];
-	wrap_error(sprintf(
-		'Job Manager: unable to add job with URL %s (Error: %s)', $data['url'], json_encode($ops['error'])
-	), E_USER_NOTICE, ['log_post_data' => false]);
-	return 0;
+	$line = [
+		'job_url' => $data['url'],
+		'job_category_id' => $data['job_category_id'] ?? NULL,
+		'username' => wrap_username(),
+		'priority' => $data['priority'] ?? 0,
+		'wait_until' => $data['wait_until'] ?? NULL,
+		'website_id' => wrap_setting('website_id') ?? 1,
+		'lock_hash' => wrap_lock_hash()
+	];
+	return zzform_insert('jobqueue', $line, E_USER_NOTICE, ['msg' => 'Job Manager', 'log_post_data' => false]);
 }
 
 /**

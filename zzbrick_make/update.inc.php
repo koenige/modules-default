@@ -86,12 +86,8 @@ function mod_default_make_update($params) {
 		return $page;
 	}
 
-	foreach ($data as $line) {
-		$values = [];
-		$values['action'] = 'update';
-		$values['POST'][$pkey['Column_name']] = $line[$pkey['Column_name']];
-		$ops = zzform_multi($script, $values);
-	}
+	foreach ($data as $line)
+		zzform_update($script, [$pkey['Column_name'] => $line[$pkey['Column_name']]]);
 
 	// call next page per background job
 	$url_path = parse_url(wrap_setting('request_uri'), PHP_URL_PATH);
