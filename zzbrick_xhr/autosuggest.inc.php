@@ -50,7 +50,7 @@ function mod_default_xhr_autosuggest($request, $def) {
 	if (str_starts_with(trim($def['sql']), 'SHOW')) {
 		$def['sql'] .= sprintf(' LIKE "%%%s%%"', $text[0]);
 	} else {
-		$def['sql'] = wrap_edit_sql($def['sql'], 'WHERE', implode(' AND ', $conditions));
+		$def['sql'] = wrap_edit_sql($def['sql'], !empty($def['sql_having']) ? 'HAVING' : 'WHERE', implode(' AND ', $conditions));
 	}
 	if ($def['sql_fields']) {
 	 	$id_field_name = $def['sql_fields'][0];
@@ -104,6 +104,8 @@ function mod_default_xhr_autosuggest($request, $def) {
 		$text = [];
 		// remove ID
 		array_shift($record);
+		if (!empty($def['sql_ignore']))
+			foreach ($def['sql_ignore'] as $field) unset($record[$field]);
 		// search entry for zzform, concatenated and space at the end
 		$data['entries'][$i]['text'] = implode($concat, $record).' ';
 		$i++;
