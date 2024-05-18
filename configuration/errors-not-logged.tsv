@@ -69,6 +69,7 @@
 404	end	/wordpr
 404	end	/wp-admin
 404	end	/wp-admin/
+404	begin	/wp-admin/
 404	begin	/wp-content/plugins/Login-wall-etgFB/login_wall.php
 404	all	/wp-includes/pomo/index.php?php
 404	all	/wp-content/uploads/sites/rwb.php?php
