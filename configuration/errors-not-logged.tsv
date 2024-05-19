@@ -398,3 +398,10 @@ php	string_regex	exif_read_data\(.+corrupt EXIF header.+
 php	string_regex	exif_read_data\(.+Incorrect APP1 Exif Identifier Code.+
 php	string_regex	exif_read_data\(.+IFD data bad offset.+
 php	string_regex	exif_read_data\(\): Further exif parsing errors have been suppressed.+
+
+# lock files
+php	string_regex	file_get_contents\(.+\.lock\): Failed to open stream: No such file or directory in .+/zzwrap/syndication.inc.php:.+
+php	string_regex	unlink\(.+.lock\): No such file or directory in .+/zzwrap/syndication.inc.php:.+
+
+# mail queue already processed
+php	string_regex	unlink\(.+/mailqueue/.+\.log\): No such file or directory in .+/zzwrap/mail\.inc\.php:.+
