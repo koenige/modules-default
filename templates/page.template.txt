@@ -25,7 +25,9 @@
 <header>
 <div id="head">
 <p><strong>%%% link / "My Site" %%%</strong></p>
-%%% page logout "<p id='logout'><a href="/logout/">Logout</a></p>" %%%
+%%% condition if page logout %%%
+<p id="logout"><a href="/logout/">Logout</a></p>
+%%% condition endif %%%
 <nav>
 <ul id="menu">
 %%% page nav %%% 
