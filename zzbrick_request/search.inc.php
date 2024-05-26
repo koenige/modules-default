@@ -21,15 +21,16 @@ function mod_default_search() {
 		} else {
 			$q = [$q];
 		}
-		$files = wrap_include_files('search');
+		$files = wrap_include('search');
 		if (!$files) return false;
 		$data['search_results'] = false;
-		foreach (array_keys($files) as $module) {
-			if (!$module) $module = 'custom';
-			$function = sprintf('mf_%s_search', $module);
-			$results = $function($q);
-			if ($results[$module]) $data['search_results'] = true;
-			$data['modules'][$module]['results'] = wrap_template(sprintf('search-%s', $module), $results);
+		foreach ($files['functions'] as $function) {
+			if (empty($function['short'])) continue;
+			if ($function['short'] !== 'search') continue;
+			$results = $function['function']($q);
+			if ($results[$function['package']]) $data['search_results'] = true;
+			$data['modules'][$function['package']]['results']
+				= wrap_template(sprintf('search-%s', $function['package']), $results);
 		}
 		if ($search_order = wrap_setting('search_module_order')) {
 			$unsorted = $data['modules'];
