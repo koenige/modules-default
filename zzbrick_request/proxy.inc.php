@@ -35,7 +35,7 @@ function mod_default_proxy($params) {
 	if (!$found) wrap_quit(404);
 
 	// get remote content
-	wrap_include_files('syndication', 'zzwrap');
+	wrap_include('syndication', 'zzwrap');
 	wrap_setting('cache', true);
 	$url_parts = explode('/', $url);
 	$ext = end($url_parts) ? wrap_file_extension(end($url_parts)) : 'html';

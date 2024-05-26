@@ -35,11 +35,11 @@ function mod_default_thumbnails($params) {
 	$mode = empty($params[1]) ? 'existing' : $params[1];
 
 	$saved_conf = $zz_conf;
-	wrap_include_files('zzform.php', 'zzform');
+	wrap_include('zzform.php', 'zzform');
 	$zz_conf['int_modules'] = ['debug', 'validate', 'upload'];
 	zz_initialize();
 	if ($graphics_library = wrap_setting('zzform_graphics_library'))
-		wrap_include_files('image-'.$graphics_library, 'zzform');
+		wrap_include('image-'.$graphics_library, 'zzform');
 	
 	if (strstr($params[0], '..')) return false;
 

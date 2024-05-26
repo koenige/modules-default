@@ -32,8 +32,6 @@ function mod_default_maintenance($params) {
 	wrap_setting_add('extra_http_headers', 'X-Frame-Options: Deny');
 	wrap_setting_add('extra_http_headers', "Content-Security-Policy: frame-ancestors 'self'");
 
-	wrap_include_files('zzbrick_tables/_common', 'custom'); // e. g. heading_prefix
-
 	if (isset($brick['page'])) $page = $brick['page'];
 	$page['head'] = isset($page['head']) ? $page['head'] : '';
 	if (wrap_setting('zzform_no_packagecss'))
@@ -81,7 +79,7 @@ function mod_default_maintenance($params) {
 	$data = [];
 	$data = array_merge($data, zz_maintenance_tables());
 	$data['php_version'] = phpversion();
-	wrap_include_files('upload', 'zzform');
+	wrap_include('upload', 'zzform');
 	$functions = ['convert', 'gs', 'exiftool', 'file'];
 	// @todo check why 'pdfinfo' does not return anything
 	foreach ($functions as $function) {
@@ -130,7 +128,7 @@ function zz_maintenance_keycheck() {
  */
 function zz_maintenance_sqlquery($page) {
 	// zz_log_sql()
-	wrap_include_files('database', 'zzform');
+	wrap_include('database', 'zzform');
 	
 	wrap_setting('log_username_default', 'Maintenance robot 812');
 
@@ -728,13 +726,13 @@ function zz_maintenance_list_init() {
 	if ($init) return; // just once
 
 	// zz_edit_query_string(), zz_get_url_self()
-	wrap_include_files('functions', 'zzform');
+	wrap_include('functions', 'zzform');
 	// zz_init_limit()
-	wrap_include_files('output', 'zzform');
+	wrap_include('output', 'zzform');
 	// zz_mark_search_string(), zz_list_total_records(), zz_list_pages()
-	wrap_include_files('list', 'zzform');
+	wrap_include('list', 'zzform');
 	// zz_search_form()
-	wrap_include_files('searchform', 'zzform');
+	wrap_include('searchform', 'zzform');
 
 	wrap_setting('zzform_search', 'bottom');
 

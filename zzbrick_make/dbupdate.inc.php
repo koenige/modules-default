@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -157,7 +157,7 @@ function mod_default_make_dbupdate_check($line) {
  * @return void
  */
 function mod_default_make_dbupdate_update($line) {
-	wrap_include_files('database', 'zzform');
+	wrap_include('database', 'zzform');
 
 	$result = wrap_db_query($line['query']);
 	if ($result) {

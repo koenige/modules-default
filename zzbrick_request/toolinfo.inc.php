@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -32,7 +32,7 @@ function mod_default_toolinfo($params) {
 		'file' => 'Unix file'
 	];
 	if (!in_array($params[0], array_keys($allowed))) return false;
-	wrap_include_files('upload', 'zzform');
+	wrap_include('upload', 'zzform');
 	$page['text'] = '<pre>'.zz_upload_binary_version($params[0]).'</pre>';
 	$page['title'] = ' '.wrap_text($allowed[$params[0]]);
 	$page['breadcrumbs'][]['title'] = wrap_text($allowed[$params[0]]);

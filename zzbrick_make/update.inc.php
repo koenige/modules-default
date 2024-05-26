@@ -46,7 +46,7 @@ function mod_default_make_update($params) {
 
 	// thumbnail creation in background?
 	if (!empty($_GET['thumbs']) AND !empty($_GET['field'])) {
-		wrap_include_files('zzform.php', 'zzform');
+		wrap_include('zzform.php', 'zzform');
 		$zz = zzform_include($script);
 		$ops = zzform($zz);
 		$data = json_decode($ops['output'], true);
