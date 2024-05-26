@@ -406,3 +406,6 @@ php	string_regex	filemtime\(\): stat failed for.+.lock in .+/zzwrap/syndication.
 
 # mail queue already processed
 php	string_regex	unlink\(.+/mailqueue/.+\.log\): No such file or directory in .+/zzwrap/mail\.inc\.php:.+
+
+# possibly some Chrome browser extension?
+404	end	/highLightTitle.png
