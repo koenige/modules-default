@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -25,7 +25,7 @@ if (!empty($brick['local_settings']['title']))
 $zz['fields'][4]['show_hierarchy_subtree'] = $category_id;
 $zz['fields'][4]['show_hierarchy_use_top_value_instead_NULL'] = true;
 
-if ($brick['local_settings']['hide_identifier']) {
+if (!empty($brick['local_settings']['hide_identifier'])) {
 	$zz['fields'][5]['hide_in_list'] = true;
 	if (!empty($zz['fields'][7]))
 		$zz['fields'][7]['hide_in_list'] = true;
