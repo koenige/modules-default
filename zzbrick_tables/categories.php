@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2016-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2016-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -63,9 +63,9 @@ $zz['fields'][5]['identifier']['concat'] = '/';
 $zz['fields'][5]['identifier']['strip_tags'] = true;
 $zz['fields'][5]['identifier']['ignore_this_if']['category'] = 'category_short';
 $zz['fields'][5]['identifier']['max_length'] = 24; // because of hierarchies
+$zz['fields'][5]['list_suffix'] = '<br>';
 
 $zz['fields'][7]['field_name'] = 'parameters';
-$zz['fields'][7]['list_prefix'] = '<br>';
 $zz['fields'][7]['type'] = 'parameter';
 $zz['fields'][7]['explanation'] = 'Internal parameters. Change with care.';
 
@@ -81,7 +81,9 @@ $zz['fields'][6]['title_tab'] = 'Seq.';
 $zz['fields'][6]['type'] = 'number';
 $zz['fields'][6]['class'] = 'hidden480';
 
-$zz['fields'][20]['title'] = 'Updated';
+// extra enum field if needed
+$zz['fields'][8] = [];
+
 $zz['fields'][20]['field_name'] = 'last_update';
 $zz['fields'][20]['type'] = 'timestamp';
 $zz['fields'][20]['hide_in_list'] = true;
