@@ -1107,7 +1107,7 @@ INSERT INTO `languages` (`language_id`, `iso_639_2t`, `iso_639_2b`, `iso_639_1`,
 -- logins --
 CREATE TABLE `logins` (
   `login_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(63) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `username` varchar(100) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `login_rights` enum('admin','read and write','read') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'read',
   `password` varchar(60) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `password_change` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL DEFAULT 'no',
