@@ -21,6 +21,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7\n"
 
+#: configuration/access.cfg
+msgid "Adminer MySQL database administration"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "edit parameters of categories?"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Database logging"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "full rights to edit/insert/add logins"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Database maintenance, updates, access to logfiles"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "allow masquerade login"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "proxy URLs"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Database table relations"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "synchronize local development and production server"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "All tables for debugging"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Translations of Texts"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Database translation fields"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Access and edit webpages, except for restricted pages"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Website structure, internal webpages"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "List own website"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "List available websites"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Edit and add available websites"
+msgstr ""
+
 #: configuration/settings.cfg
 msgid "List of services used for geocoding"
 msgstr ""
