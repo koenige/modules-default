@@ -327,6 +327,8 @@ qs	string	msclkid
 
 # .well-known URLs are normally not linked from a webpage
 404	begin	/.well-known
+404	begin	/sitemap.xml
+404	begin	/security.txt
 
 # some guys from Tallin looking for unprotected environment variables
 404	end	/.env
@@ -379,6 +381,7 @@ qs	string	msclkid
 404	all	/admin/login
 404	all	/admin/login/
 404	all	/admin/login.php
+qs	string	s=Admin/login
 
 # adminer library
 php	string_regex	.*/library/adminer/adminer-.*.php:\d+
