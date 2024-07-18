@@ -25,7 +25,9 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 	static $definition = [];
 	// are there any categories to choose from?
 	$tree = wrap_id_tree('categories', $path);
-	if (count($tree) === 1) return;
+	if (count($tree) === 1) {
+		if (count(wrap_category_id($path, 'list')) < 2) return;
+	}
 
 	$sql = 'SELECT parameters FROM categories WHERE category_id = %d';
 	$sql = sprintf($sql, wrap_category_id($path));
