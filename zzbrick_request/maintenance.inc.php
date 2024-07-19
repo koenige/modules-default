@@ -1053,17 +1053,16 @@ function zz_maintenance_make_url($array) {
  * @return array $page
  */
 function zz_maintenance_sqldownload($page) {
+	wrap_include('logging', 'zzform');
 	$page['query_strings'][] = 'sqldownload';
 	$limit = false;
 
-	list($data, $limit) = mod_default_maintenance_read_logging($_GET['sqldownload']);
+	list($data, $limit) = zz_logging_read($_GET['sqldownload']);
 	if (!$data) {
-		$sql = 'SELECT MAX(log_id) FROM %s';
-		$sql = sprintf($sql, wrap_sql_table('zzform_logging'));
-		$max_logs = wrap_db_fetch($sql, '', 'single value');
+		$max_log_id = zz_logging_max();
 		$page['title'] .= ' '.wrap_text('Download SQL log');
 		$page['breadcrumbs'][]['title'] = wrap_text('Download SQL log');
-		$page['text'] = '<p>'.wrap_text('Logfile has only %d entries.', ['values' => $max_logs]).'</p>';
+		$page['text'] = '<p>'.wrap_text('Logfile has only %d entries.', ['values' => $max_log_id]).'</p>';
 		return mod_default_maintenance_return($page);
 	}
 
@@ -1075,29 +1074,6 @@ function zz_maintenance_sqldownload($page) {
 		$page['headers']['filename'] = sprintf('logging_%d.json', $_GET['sqldownload']);
 	}
 	return $page;
-}
-
-/*
- * read logging entries from logging table
- *
- * @param int $start
- * @return array
- */
-function mod_default_maintenance_read_logging($start) {
-	$limit = 0;
-
-	$sql = 'SELECT COUNT(*) FROM %s WHERE log_id >= %d ORDER BY log_id';
-	$sql = sprintf($sql, wrap_sql_table('zzform_logging'), $start);
-	$logcount = wrap_db_fetch($sql, '', 'single value');
-	if ($logcount > 10000) {
-		$limit = 10000;
-	}
-
-	$sql = 'SELECT * FROM %s WHERE log_id >= %d ORDER BY log_id';
-	$sql = sprintf($sql, wrap_sql_table('zzform_logging'), $start);
-	if ($limit) $sql .= sprintf(' LIMIT %d', 10000);
-	$data = wrap_db_fetch($sql, 'log_id');
-	return [$data, $limit];
 }
 
 /**
@@ -1113,8 +1089,9 @@ function zz_maintenance_sqlupload($page) {
 	elseif ($_FILES['sqlfile']['error'] !== 0) $out['file_error'] = true;
 	elseif ($_FILES['sqlfile']['size'] <= 3) $out['file_error'] = true;
 	else {
+		wrap_include('logging', 'zzform');
 		$json = file_get_contents($_FILES['sqlfile']['tmp_name']);
-		$out = mod_default_maintenance_add_logging($json);
+		$out = zz_logging_add($json);
 	}
 	$page['title'] .= ' '.wrap_text('Upload SQL log');
 	$page['breadcrumbs'][]['title'] = wrap_text('Upload SQL log');
@@ -1122,48 +1099,8 @@ function zz_maintenance_sqlupload($page) {
 	return $page;
 }
 
-/*
- * add logging entries to logging table
- *
- * @param string $json
- * @return array
- */
-function mod_default_maintenance_add_logging($json) {
-	$json = json_decode($json, true);
-	if (!$json) return ['no_json' => 1];
-
-	$first_id = key($json);
-	$sql = 'SELECT MAX(log_id) FROM %s';
-	$sql = sprintf($sql, wrap_sql_table('zzform_logging'));
-	$max_logs = wrap_db_fetch($sql, '', 'single value');
-	if ($max_logs + 1 !== $first_id) {
-		return ['max_logs' => $max_logs, 'first_id' => $first_id];
-	}
-	
-	// Everything ok, we can import
-	$log_template = 'INSERT INTO %s (query, record_id, user, last_update) VALUES (_binary "%s", %s, "%s", "%s")';
-	foreach ($json as $line) {
-		$success = wrap_db_query($line['query']);
-		if (empty($success['id']) AND empty($success['rows']) AND $success !== true) {
-			return ['log_id' => $line['log_id'], 'add_error' => 1];
-		}
-		$sql = sprintf($log_template,
-			wrap_sql_table('zzform_logging'), wrap_db_escape($line['query'])
-			, ($line['record_id'] ? $line['record_id'] : 'NULL')
-			, wrap_db_escape($line['user']), $line['last_update']
-		);
-		$log_id = wrap_db_query($sql);
-		if (empty($log_id['id'])) {
-			return ['log_id' => $line['log_id'], 'log_add_error' => 1];
-		}
-		if ($line['log_id'].'' !== $log_id['id'].'') {
-			return ['log_id' => $line['log_id'], 'local_log_id' => $log_id['id']];
-		}
-	}
-	return ['log_id' => $line['log_id'], 'total_count' => count($json)];
-}
-
 function zz_maintenance_serversync($page) {
+	wrap_include('logging', 'zzform');
 	$page['title'] .= ' '.wrap_text('Synchronize local and remote server');
 	wrap_setting('log_username_default', wrap_setting('sync_user'));
 	
@@ -1187,12 +1124,12 @@ function zz_maintenance_serversync($page) {
 		return $page;
 	}
 	$last_log = json_decode($content, true);
-	$last_log_local = mod_default_maintenance_last_log();
+	$last_log_local = zz_logging_last();
 	if ($last_log === $last_log_local) {
 		$out['identical'] = wrap_number($last_log['log_id']);
 	} elseif ($last_log['log_id'] < $last_log_local['log_id']) {
 		// push data from local server
-		list($log, $limit) = mod_default_maintenance_read_logging($last_log['log_id'] + 1);
+		list($log, $limit) = zz_logging_read($last_log['log_id'] + 1);
 		$data = [];
 		$data['add_log'] = json_encode($log, true);
 		list($status, $headers, $content) = wrap_get_protected_url($url, $headers_to_send, 'POST', $data);
@@ -1219,7 +1156,7 @@ function zz_maintenance_serversync($page) {
 			$page['text'] = wrap_template('maintenance-sync-server', $out);
 			return $page;
 		}
-		$out = mod_default_maintenance_add_logging($content);
+		$out = zz_logging_add($content);
 		$out['hide_upload_form'] = true;
 		$out['local_changes'] = true;
 		$page['text'] = wrap_template('maintenance-add-logging', $out);
@@ -1229,13 +1166,6 @@ function zz_maintenance_serversync($page) {
 	}
 	$page['text'] = wrap_template('maintenance-sync-server', $out);
 	return $page;
-}
-
-function mod_default_maintenance_last_log() {
-	$sql = 'SELECT * FROM %s ORDER BY log_id DESC LIMIT 1';
-	$sql = sprintf($sql, wrap_sql_table('zzform_logging'));
-	$data = wrap_db_fetch($sql);
-	return $data;
 }
 
 /**
