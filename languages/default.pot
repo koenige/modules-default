@@ -873,7 +873,7 @@ msgid "Download SQL log, starting with ID"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#sqlupload
-#: templates/maintenance-add-logging.template.txt
+#: templates/logging-add.template.txt
 msgid "Upload SQL log"
 msgstr ""
 
@@ -883,48 +883,6 @@ msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#sqlupload
 msgid "Synchronize local and remote server"
-msgstr ""
-
-#: templates/maintenance-add-logging.template.txt
-msgid "Please upload a file."
-msgstr ""
-
-#: templates/maintenance-add-logging.template.txt
-msgid "There was an error while uploading the file."
-msgstr ""
-
-#: templates/maintenance-add-logging.template.txt
-msgid "The content of the file was not readable (Format needs to be JSON)."
-msgstr ""
-
-#: templates/maintenance-add-logging.template.txt
-msgid "The highest existing log entry is %d, but import starts with %d."
-msgstr ""
-
-#: templates/maintenance-add-logging.template.txt
-msgid "Record ID %d was added with a different log ID %d."
-msgstr ""
-
-#: templates/maintenance-add-logging.template.txt
-msgid "There was an error adding record ID %d."
-msgstr ""
-
-#: templates/maintenance-add-logging.template.txt
-msgid "There was an error adding log for record ID %d."
-msgstr ""
-
-#: templates/maintenance-add-logging.template.txt
-msgid "%d log entry was added, ID was %d."
-msgid_plural "All %d log entries were added, last ID was %d."
-msgstr[] ""
-msgstr[] ""
-
-#: templates/maintenance-add-logging.template.txt
-msgid "These changes were applied to the remote server."
-msgstr ""
-
-#: templates/maintenance-add-logging.template.txt
-msgid "These changes were applied to the local server."
 msgstr ""
 
 #: templates/maintenance-sync-server.template.txt

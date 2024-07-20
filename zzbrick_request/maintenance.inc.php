@@ -46,8 +46,6 @@ function mod_default_maintenance($params) {
 
 	if (!empty($_POST['sql'])) {
 		return zz_maintenance_sqlquery($page);
-	} elseif (!empty($_POST['sqlupload'])) {
-		return zz_maintenance_sqlupload($page);
 	} elseif (isset($_GET['sqldownload'])) {
 		return zz_maintenance_sqldownload($page);
 	} elseif (isset($_POST['serversync'])) {
@@ -112,10 +110,13 @@ function zz_maintenance_keycheck() {
 		'translationscheck' => 'make',
 		'cachedircheck' => 'make',
 		'toolinfo' => 'request',
-		'log' => 'make'
+		'log' => 'make',
+		'loggingadd' => 'make'
+		
 	];
 	foreach ($keys as $key => $verb) {
 		if (isset($_GET[$key])) return ['key' => $key, 'verb' => $verb];
+		if (isset($_POST[$key])) return ['key' => $key, 'verb' => $verb];
 	}
 	return '';
 }
@@ -1076,29 +1077,6 @@ function zz_maintenance_sqldownload($page) {
 	return $page;
 }
 
-/**
- * export JSON file in _logging
- *
- * @param array $page
- * @return array $page
- */
-function zz_maintenance_sqlupload($page) {
-	$out = [];
-	if (empty($_FILES['sqlfile'])) $out['no_file'] = true;
-	elseif ($_FILES['sqlfile']['error'] === UPLOAD_ERR_NO_FILE) $out['no_file'] = true;
-	elseif ($_FILES['sqlfile']['error'] !== 0) $out['file_error'] = true;
-	elseif ($_FILES['sqlfile']['size'] <= 3) $out['file_error'] = true;
-	else {
-		wrap_include('logging', 'zzform');
-		$json = file_get_contents($_FILES['sqlfile']['tmp_name']);
-		$out = zz_logging_add($json);
-	}
-	$page['title'] .= ' '.wrap_text('Upload SQL log');
-	$page['breadcrumbs'][]['title'] = wrap_text('Upload SQL log');
-	$page['text'] = wrap_template('maintenance-add-logging', $out);
-	return $page;
-}
-
 function zz_maintenance_serversync($page) {
 	wrap_include('logging', 'zzform');
 	$page['title'] .= ' '.wrap_text('Synchronize local and remote server');
@@ -1143,7 +1121,7 @@ function zz_maintenance_serversync($page) {
 		$out = json_decode($content, true);
 		$out['hide_upload_form'] = true;
 		$out['remote_changes'] = true;
-		$page['text'] = wrap_template('maintenance-add-logging', $out);
+		$page['text'] = wrap_template('logging-add', $out);
 		return $page;
 	} elseif ($last_log['log_id'] > $last_log_local['log_id']) {
 		// get data from remote server
@@ -1159,7 +1137,7 @@ function zz_maintenance_serversync($page) {
 		$out = zz_logging_add($content);
 		$out['hide_upload_form'] = true;
 		$out['local_changes'] = true;
-		$page['text'] = wrap_template('maintenance-add-logging', $out);
+		$page['text'] = wrap_template('logging-add', $out);
 		return $page;
 	} else {
 		$out['mismatch'] = $last_log['log_id'];

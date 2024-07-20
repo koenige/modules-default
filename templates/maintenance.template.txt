@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016, 2018, 2020-2023 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2018, 2020-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -98,7 +98,7 @@
 </form></li>
 <li><form method="POST" action="" enctype="multipart/form-data">
 %%% text Upload SQL log %%%&nbsp; <input type="file" name="sqlfile">&nbsp; <input type="submit" value="%%% text Upload %%%">
-<input type="hidden" name="sqlupload" value="1">
+<input type="hidden" name="loggingadd" value="1">
 </form></li>
 %%% condition if setting local_access %%%
 %%% condition if path default_sync_server %%%
