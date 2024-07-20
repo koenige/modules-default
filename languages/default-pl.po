@@ -532,10 +532,6 @@ msgstr "Grupowe wpisy"
 msgid "Download"
 msgstr "Pobierz"
 
-#: zzbrick_request/maintenance.inc.php#sqldownload
-msgid "Logfile has only %d entries."
-msgstr "Log ma tylko %d wpisów."
-
 #: zzbrick_request/maintenance.inc.php#sqlupload
 msgid "SQL log"
 msgstr "SQL log"

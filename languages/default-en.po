@@ -478,10 +478,6 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sqldownload
-msgid "Logfile has only %d entries."
-msgstr ""
-
 #: zzbrick_request/maintenance.inc.php#sqlupload
 msgid "SQL log"
 msgstr ""

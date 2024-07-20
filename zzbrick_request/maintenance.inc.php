@@ -46,8 +46,6 @@ function mod_default_maintenance($params) {
 
 	if (!empty($_POST['sql'])) {
 		return zz_maintenance_sqlquery($page);
-	} elseif (isset($_GET['sqldownload'])) {
-		return zz_maintenance_sqldownload($page);
 	} elseif (isset($_POST['serversync'])) {
 		return zz_maintenance_serversync($page);
 	} elseif (isset($_GET['filetree'])) {
@@ -62,7 +60,9 @@ function mod_default_maintenance($params) {
 	} elseif (isset($_GET['integrity'])) {
 		return zz_maintenance_integrity($page);
 	} elseif ($type = zz_maintenance_keycheck()) {
-		$newpage = brick_format('%%% '.$type['verb'].' '.$type['key'].' %%%');
+		$brick = '%%% '.$type['verb'].' '.$type['key'].' '.($_GET[$type['key']] ?? '').' %%%';
+		$newpage = brick_format($brick);
+		if (isset($newpage['content_type']) AND $newpage['content_type'] !== 'html') return $newpage;
 		$page['title'] .= ' '.$newpage['title'];
 		$page['text'] = $newpage['text'];
 		$page['breadcrumbs'] = array_merge($page['breadcrumbs'], $newpage['breadcrumbs']);
@@ -111,8 +111,8 @@ function zz_maintenance_keycheck() {
 		'cachedircheck' => 'make',
 		'toolinfo' => 'request',
 		'log' => 'make',
-		'loggingadd' => 'make'
-		
+		'loggingadd' => 'make',
+		'loggingread' => 'request'
 	];
 	foreach ($keys as $key => $verb) {
 		if (isset($_GET[$key])) return ['key' => $key, 'verb' => $verb];
@@ -1044,37 +1044,6 @@ function zz_maintenance_make_url($array) {
 	$linktext = $array[0];
 	$link = '<a href="'.$href.'">'.$linktext.'</a>'; 
 	return $link;
-}
-
-/**
- * export SQL log as JSON file
- *
- * @param array $page
- * @global int $_GET['sqldownload']
- * @return array $page
- */
-function zz_maintenance_sqldownload($page) {
-	wrap_include('logging', 'zzform');
-	$page['query_strings'][] = 'sqldownload';
-	$limit = false;
-
-	list($data, $limit) = zz_logging_read($_GET['sqldownload']);
-	if (!$data) {
-		$max_log_id = zz_logging_max();
-		$page['title'] .= ' '.wrap_text('Download SQL log');
-		$page['breadcrumbs'][]['title'] = wrap_text('Download SQL log');
-		$page['text'] = '<p>'.wrap_text('Logfile has only %d entries.', ['values' => $max_log_id]).'</p>';
-		return mod_default_maintenance_return($page);
-	}
-
-	$page['text'] = json_encode($data);
-	$page['content_type'] = 'json';
-	if ($limit) {
-		$page['headers']['filename'] = sprintf('logging_%d-%d.json', $_GET['sqldownload'], $_GET['sqldownload'] + $limit - 1);
-	} else {
-		$page['headers']['filename'] = sprintf('logging_%d.json', $_GET['sqldownload']);
-	}
-	return $page;
 }
 
 function zz_maintenance_serversync($page) {

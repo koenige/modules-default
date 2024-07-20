@@ -609,10 +609,6 @@ msgstr "Einträge gruppieren"
 msgid "Download"
 msgstr "Herunterladen"
 
-#: zzbrick_request/maintenance.inc.php#sqldownload
-msgid "Logfile has only %d entries."
-msgstr "Log-Datei hat nur %d Einträge."
-
 #: zzbrick_request/maintenance.inc.php#sqlupload
 msgid "SQL log"
 msgstr "SQL-Protokoll"
