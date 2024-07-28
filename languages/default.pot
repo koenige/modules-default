@@ -896,12 +896,6 @@ msgstr ""
 msgid "This entry is not linked to any other data."
 msgstr ""
 
-#: zzbrick_make/serversync.inc.php
-msgid ""
-"This URL is for synchronising a production and a development server only. No "
-"direct access is possible."
-msgstr ""
-
 #: zzbrick_request/sso.inc.php
 msgid "Single sign on: too many URL parameters."
 msgstr ""
