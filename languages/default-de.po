@@ -609,30 +609,6 @@ msgstr "Einträge gruppieren"
 msgid "Download"
 msgstr "Herunterladen"
 
-#: templates/maintenance-sync-server.template.txt
-msgid "This only works from a local server!"
-msgstr "Dies funktioniert nur von einem lokalen Server!"
-
-#: templates/maintenance-sync-server.template.txt
-msgid "The server returned with an error (%d)."
-msgstr "Der Server gab einen Fehler zurück (%d)."
-
-#: templates/maintenance-sync-server.template.txt
-msgid "Both servers have %s log entries."
-msgstr "Beide Server haben %s Log-Einträge."
-
-#: templates/maintenance-sync-server.template.txt
-msgid "No synchronisation is necessary."
-msgstr "Es ist keine Synchronisierung notwendig."
-
-#: templates/maintenance-sync-server.template.txt
-msgid "The log entries %d do not match."
-msgstr "Die Log-Einträge %d stimmen nicht überein."
-
-#: templates/maintenance-sync-server.template.txt
-msgid "A synchronisation is impossible."
-msgstr "Eine Synchronisierung ist nicht möglich."
-
 #: templates/relations.template.txt
 msgid "Links to other data"
 msgstr "Verknüpfungen mit anderen Daten"

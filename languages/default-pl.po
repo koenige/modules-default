@@ -532,30 +532,6 @@ msgstr "Grupowe wpisy"
 msgid "Download"
 msgstr "Pobierz"
 
-#: templates/maintenance-sync-server.template.txt
-msgid "This only works from a local server!"
-msgstr "To działa tylko z lokalnego serwera!"
-
-#: templates/maintenance-sync-server.template.txt
-msgid "The server returned with an error (%d)."
-msgstr "Serwer powrócił z błędem (%d)."
-
-#: templates/maintenance-sync-server.template.txt
-msgid "Both servers have %s log entries."
-msgstr "Oba serwery mają wpisy w logu %s."
-
-#: templates/maintenance-sync-server.template.txt
-msgid "No synchronisation is necessary."
-msgstr "Synchronizacja nie jest konieczna."
-
-#: templates/maintenance-sync-server.template.txt
-msgid "The log entries %d do not match."
-msgstr "Wpisy w logu %d nie są zgodne."
-
-#: templates/maintenance-sync-server.template.txt
-msgid "A synchronisation is impossible."
-msgstr "Synchronizacja jest niemożliwa."
-
 #: zzbrick_request/sso.inc.php
 msgid "Single sign on: too many URL parameters."
 msgstr "Single sign on: zbyt wiele parametrów URL."

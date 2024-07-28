@@ -860,30 +860,6 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: templates/maintenance-sync-server.template.txt
-msgid "This only works from a local server!"
-msgstr ""
-
-#: templates/maintenance-sync-server.template.txt
-msgid "The server returned with an error (%d)."
-msgstr ""
-
-#: templates/maintenance-sync-server.template.txt
-msgid "Both servers have %s log entries."
-msgstr ""
-
-#: templates/maintenance-sync-server.template.txt
-msgid "No synchronisation is necessary."
-msgstr ""
-
-#: templates/maintenance-sync-server.template.txt
-msgid "The log entries %d do not match."
-msgstr ""
-
-#: templates/maintenance-sync-server.template.txt
-msgid "A synchronisation is impossible."
-msgstr ""
-
 #: templates/relations.template.txt
 msgid "Links to other data"
 msgstr ""
