@@ -609,27 +609,6 @@ msgstr "Einträge gruppieren"
 msgid "Download"
 msgstr "Herunterladen"
 
-#: zzbrick_request/maintenance.inc.php#sqlupload
-msgid "SQL log"
-msgstr "SQL-Protokoll"
-
-#: zzbrick_request/maintenance.inc.php#sqlupload
-msgid "Download SQL log, starting with ID"
-msgstr "Herunterladen des SQL-Protokolls, beginnend mit ID"
-
-#: zzbrick_request/maintenance.inc.php#sqlupload
-#: templates/logging-add.template.txt
-msgid "Upload SQL log"
-msgstr "SQL-Log hochladen"
-
-#: zzbrick_request/maintenance.inc.php#sqlupload
-msgid "Upload"
-msgstr "Hochladen"
-
-#: zzbrick_request/maintenance.inc.php#sqlupload
-msgid "Synchronize local and remote server"
-msgstr "Synchronisierung des lokalen und entfernten Servers"
-
 #: templates/maintenance-sync-server.template.txt
 msgid "This only works from a local server!"
 msgstr "Dies funktioniert nur von einem lokalen Server!"

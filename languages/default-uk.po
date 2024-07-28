@@ -521,27 +521,6 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sqlupload
-msgid "SQL log"
-msgstr ""
-
-#: zzbrick_request/maintenance.inc.php#sqlupload
-msgid "Download SQL log, starting with ID"
-msgstr ""
-
-#: zzbrick_request/maintenance.inc.php#sqlupload
-#: templates/logging-add.template.txt
-msgid "Upload SQL log"
-msgstr ""
-
-#: zzbrick_request/maintenance.inc.php#sqlupload
-msgid "Upload"
-msgstr ""
-
-#: zzbrick_request/maintenance.inc.php#sqlupload
-msgid "Synchronize local and remote server"
-msgstr ""
-
 #: templates/maintenance-sync-server.template.txt
 msgid "This only works from a local server!"
 msgstr ""
