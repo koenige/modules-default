@@ -176,23 +176,35 @@ function mod_default_make_cleanup_gzip_logs() {
 				if (substr($logfile, -4) !== '.log') continue;
 				if ($year == date('Y') AND $month == date('m')) continue;
 				$logfile_path = sprintf('%s/%s', $month_dir, $logfile);
-				$gzip_logfile_path = $logfile_path.'.gz';
-				if (!strstr(ini_get('disable_functions'), 'exec')) {
-					// gzip preserves timestamp
-					$command = sprintf('gzip -N -9 %s %s', $logfile_path, $gzip_logfile_path);
-					exec($command);
-				} else {
-					$time = filemtime($logfile_path);
-					copy($logfile_path, 'compress.zlib://'.$gzip_logfile_path);
-					if (!file_exists($gzip_logfile_path)) continue;
-					touch($gzip_logfile_path, $time);
-					unlink($logfile_path);
-				}
-				$counter++;
+				$success = wrap_gzip($logfile_path);
+				if ($success) $counter++;
 			}
 		}
 	}
 	return $counter;
+}
+
+/**
+ * gzip a file, remove existing file on success
+ *
+ * @param string $path
+ * @return bool
+ */
+function wrap_gzip($path) {
+	$gzip_path = $path.'.gz';
+	if (!strstr(ini_get('disable_functions'), 'exec')) {
+		// gzip preserves timestamp
+		$command = sprintf('gzip -N -9 %s %s', $path, $gzip_path);
+		exec($command);
+		return file_exists($gzip_path) ? true : false;
+	}
+
+	$time = filemtime($path);
+	copy($path, 'compress.zlib://'.$gzip_path);
+	if (!file_exists($gzip_path)) return false;
+	touch($gzip_path, $time);
+	unlink($path);
+	return true;
 }
 
 /**
