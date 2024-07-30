@@ -160,6 +160,7 @@ function mod_default_file_cleanup_recursive($folder, $invalid, $delete_folder = 
 function mod_default_make_cleanup_gzip_logs() {
 	$counter = 0;
 	if (!wrap_setting('http_log')) return $counter;
+	wrap_include('archive', 'zzwrap');
 
 	$dir = sprintf('%s/access', wrap_setting('log_dir'));
 	$years = scandir($dir);
@@ -182,29 +183,6 @@ function mod_default_make_cleanup_gzip_logs() {
 		}
 	}
 	return $counter;
-}
-
-/**
- * gzip a file, remove existing file on success
- *
- * @param string $path
- * @return bool
- */
-function wrap_gzip($path) {
-	$gzip_path = $path.'.gz';
-	if (!strstr(ini_get('disable_functions'), 'exec')) {
-		// gzip preserves timestamp
-		$command = sprintf('gzip -N -9 %s %s', $path, $gzip_path);
-		exec($command);
-		return file_exists($gzip_path) ? true : false;
-	}
-
-	$time = filemtime($path);
-	copy($path, 'compress.zlib://'.$gzip_path);
-	if (!file_exists($gzip_path)) return false;
-	touch($gzip_path, $time);
-	unlink($path);
-	return true;
 }
 
 /**
