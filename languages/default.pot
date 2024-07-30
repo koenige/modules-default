@@ -309,6 +309,30 @@ msgstr ""
 msgid "None of the files for the requested archive could be found on the server."
 msgstr ""
 
+#: templates/cleanup.template.txt
+msgid "Cleanup in progress, please wait until a new process can start."
+msgstr ""
+
+#: templates/cleanup.template.txt
+msgid "%d stale session cookie deleted."
+msgid_plural "%d stale session cookies deleted."
+msgstr[] ""
+
+#: templates/cleanup.template.txt
+msgid "%d file deleted in folder <code>%s</code> that was older than %s."
+msgid_plural "%d files deleted in folder <code>%s</code> that were older than %s."
+msgstr[] ""
+
+#: templates/cleanup.template.txt
+msgid "%d line deleted in logfile <code>%s</code> that was older than %s."
+msgid_plural "%d lines deleted in logfile <code>%s</code> that were older than %s."
+msgstr[] ""
+
+#: templates/cleanup.template.txt
+msgid "%d log file compressed."
+msgid_plural "%d log files compressed."
+msgstr[] ""
+
 #: templates/download-error.template.txt
 msgid "Sorry, but you might only download up to %s files at once."
 msgstr ""

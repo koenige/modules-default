@@ -20,7 +20,293 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#: configuration/access.cfg
+msgid "Adminer MySQL database administration"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "edit parameters of categories?"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Database logging"
+msgstr "Datenbank-Aufzeichnung"
+
+#: configuration/access.cfg
+msgid "full rights to edit/insert/add logins"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Database maintenance, updates, access to logfiles"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "allow masquerade login"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "proxy URLs"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Database table relations"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "synchronize local development and production server"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "All tables for debugging"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Translations of Texts"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Database translation fields"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Access and edit webpages, except for restricted pages"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Website structure, internal webpages"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "List own website"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "List available websites"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Edit and add available websites"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "delete old files in these folders: folder = max_age_seconds"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "delete stale lines in these logfiles: filename = max_age_seconds"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "IP address of server that executes cron jobs"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "throw 404 error if no search results were found"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "URL to categories form"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "list of files not to use from default module"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "maximum no. of files that can be downloaded at once"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "maximum filesize of download archive"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"ZIP creation is possible via `shell` or `php` – shell is faster but not "
+"always available"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "delete job entries from job queue after n hours"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "base value for the exponent for the delay of retries after minutes"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "maximum number of tries to complete a job if it fails"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "maximum runtime of one request in the job manager"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"maximum length of response or single response key that job manager will save"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "minutes after a running job that probably hung can be started again"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "sleep microseconds after a job was finished before calling the next one"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "show full language name instead of ISO code for language switcher"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to masquerade URL"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "list of allowed hostnames (or ends of it) for proxy"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "URL for proxy access of third websites"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"username of local user that is used for maintenance operations (should have "
+"admin rights)"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "show search form in search results at the bottom"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "show search form in search results at the top"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"if content is translated, default source language, ISO 639-1 code; for text "
+"table only"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "if content is translated, default destination language, ISO 639-1 code"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"allow to use table definition scripts from default module, bool: yes, or "
+"list of tables"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "URL where admin has access to all tables"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "if make script for update is run, limit each run to this no. of records"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "use webpages/media table from default module"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to internal tools for a single website"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "class for website template"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"datetime as start date from when on a caching of certain JS/CSS should be "
+"disabled (when you deploy updates)"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "fields in table languages.language_xx"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"title of language link, preferably language name in native language (or "
+"variants like “English Version“), iso=name"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"additional log files, same format as error logs (filled with wrap_log())"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "minimal length of a password"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "use field logins.login_rights"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "initial installation date of default module (for updates)"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "size of images in search results"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path for search"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "order of modules in search output"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "for menu_hierarchy, use only part of the path starting at this segment"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "class name for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "extra item: subpage description"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "extra item: query string to add as default for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "extra item: subpage title"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "hide this page from subpage list items"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "indentation level of subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "query string to add as default for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "URL to synchronize local development and production server"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "Name of the user to login with for server sync"
+msgstr ""
 
 #: configuration/settings.cfg
 msgid "List of services used for geocoding"
@@ -40,6 +326,39 @@ msgid ""
 msgstr ""
 "Keine der Dateien von dem angeforderten Archiv konnte auf dem Server "
 "gefunden werden."
+
+#: templates/cleanup.template.txt
+msgid "Cleanup in progress, please wait until a new process can start."
+msgstr ""
+"Aufräumarbeiten im Gange, bitte warten Sie, bis ein neuer Prozess starten "
+"kann."
+
+#: templates/cleanup.template.txt
+msgid "%d stale session cookie deleted."
+msgid_plural "%d stale session cookies deleted."
+msgstr[0] "%d abgelaufenes Sitzungscookie gelöscht."
+msgstr[1] "%d abgelaufene Sitzungscookies gelöscht."
+
+#: templates/cleanup.template.txt
+msgid "%d file deleted in folder <code>%s</code> that was older than %s."
+msgid_plural ""
+"%d files deleted in folder <code>%s</code> that were older than %s."
+msgstr[0] "%d Datei im Ordner <code>%s</code> gelöscht, die älter als %s war."
+msgstr[1] ""
+"%d Dateien im Ordner <code>%s</code> gelöscht, die älter als %s waren."
+
+#: templates/cleanup.template.txt
+msgid "%d line deleted in logfile <code>%s</code> that was older than %s."
+msgid_plural ""
+"%d lines deleted in logfile <code>%s</code> that were older than %s."
+msgstr[0] "%d Zeile im Logfile gelöscht <code>%s</code> die älter als %s war."
+msgstr[1] "%d Zeilen im Logfile gelöscht <code>%s</code> die älter als %s war."
+
+#: templates/cleanup.template.txt
+msgid "%d log file compressed."
+msgid_plural "%d log files compressed."
+msgstr[0] "%d Logdatei komprimiert."
+msgstr[1] "%d Logdateien komprimiert."
 
 #: templates/download-error.template.txt
 msgid "Sorry, but you might only download up to %s files at once."

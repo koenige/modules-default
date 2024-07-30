@@ -9,17 +9,17 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% condition if locked %%%
-<p>Cleanup in progress, please wait until a new process can start.</p>
+<p>%%% text Cleanup in progress, please wait until a new process can start. %%%</p>
 
 %%% condition else %%%
 <ul>
-<li>%%% item session_cleanup %%% stale session cookies deleted.</li>
+<li>%%% text "%d stale session cookies deleted." session_cleanup %%%</li>
 %%% loop folders %%%
-<li>%%% item deleted_files %%% file(s) deleted in folder <code>%%% item folder %%%</code> that were older than %%% item max_age_seconds wrap_duration %%%.</li>
+<li>%%% text "%d files deleted in folder <code>%s</code> that were older than %s." deleted_files folder max_age_seconds wrap_duration %%%</li>
 %%% loop end %%%
-<li>%%% item http_log_compression %%% log file(s) compressed.</li>
+<li>%%% text "%d log files compressed." http_log_compression %%%</li>
 %%% loop logfiles %%%
-<li>%%% item deleted_lines %%% lines(s) deleted in logfile <code>%%% item filename %%%</code> that were older than %%% item max_age_seconds wrap_duration %%%.</li>
+<li>%%% text "%d lines deleted in logfile <code>%s</code> that were older than %s." deleted_lines filename max_age_seconds wrap_duration %%%.</li>
 %%% loop end %%%
 </ul>
 
