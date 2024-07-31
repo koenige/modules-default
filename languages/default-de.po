@@ -351,8 +351,8 @@ msgstr[1] ""
 msgid "%d line deleted in logfile <code>%s</code> that was older than %s."
 msgid_plural ""
 "%d lines deleted in logfile <code>%s</code> that were older than %s."
-msgstr[0] "%d Zeile im Logfile gelöscht <code>%s</code> die älter als %s war."
-msgstr[1] "%d Zeilen im Logfile gelöscht <code>%s</code> die älter als %s war."
+msgstr[0] "%d Zeile im Logfile <code>%s</code> gelöscht, die älter als %s war."
+msgstr[1] "%d Zeilen im Logfile <code>%s</code> gelöscht, die älter als %s waren."
 
 #: templates/cleanup.template.txt
 msgid "%d log file compressed."
