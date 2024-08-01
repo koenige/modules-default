@@ -5,9 +5,9 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2022 Gustaf Mossakowski
+# @copyright Copyright © 2022, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% loop start %%%
-	<link rel="stylesheet" type="text/css" href="%%% setting layout_path %%%/%%% item filename %%%/%%% item filename %%%.css%%% page nocache %%%">
+	<link rel="stylesheet" type="text/css" href="%%% setting layout_path %%%/%%% item package %%%/%%% item filename %%%.css%%% page nocache %%%">
 %%% loop end %%%
