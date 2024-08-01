@@ -214,6 +214,7 @@ function mod_default_make_log($params) {
 	$searchform = zz_search_form([], '', $data['total_rows'], $data['total_rows']);
 	$data['searchform'] = $searchform['bottom'];
 
+	$page['extra']['css'][] = 'default/maintenance.css';
 	$page['text'] = wrap_template('maintenance-logs', $data);
 	$page['text'] .= wrap_template('zzform-foot');
 	return $page;

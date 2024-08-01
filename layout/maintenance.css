@@ -1,0 +1,36 @@
+/*
+ * Cascading Style Sheets (CSS)
+ * for maintenance scripts
+ *
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/default
+ *
+ * @author Gustaf Mossakowski <gustaf@koenige.org>
+ * @copyright Copyright © 2024 Gustaf Mossakowski
+ * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ */
+
+
+.maintenance h2
+					{ margin-top: 2em; }
+.maintenance h2:first-child
+					{ margin-top: 0; }
+
+
+/* dbupdate.template.txt */
+.maintenance .exists
+					{ text-decoration: line-through; }
+
+
+/* maintenance-logs.template.txt */
+.maintenance .blocklabel
+					{ display: block; height: 100%; width: 100%; }
+.maintenance .logentry
+					{ hyphens: auto; -ms-hyphens: auto; -webkit-hyphens: auto; }
+.maintenance .notice
+					{ background: yellow; }
+.maintenance .warning
+					{ background: orange; }
+.maintenance .error, .maintenance .parse-error, .maintenance .strict-error,
+.maintenance .fatal-error
+					{ background: red; color: white; }

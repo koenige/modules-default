@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016, 2018, 2020-2021, 2023 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2018, 2020-2021, 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -51,7 +51,7 @@
 <td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item no %%%]" value="%%% item keys %%%" id="line%%% item no %%%"></label></td>
 <td>%%% item date_begin %%%%%% item date_end <br>–%s %%%</td>
 <td>%%% item type %%%</td>
-<td>%%% item level_highlight "<p class='error'>" %%%%%% item level %%%%%% item level_highlight </p> %%%</td>
+<td%%% item level_class " class='%s'" %%%>%%% item level %%%</td>
 <td class="logentry">%%% item status <strong>%s</strong> %%% %%% item links %%%
 <div class="moretext">%%% item error %%%</div></td>
 <td>%%% item user wrap_html_escape %%%%%% item time "<br>%s" %%%</td>

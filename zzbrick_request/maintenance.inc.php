@@ -39,6 +39,7 @@ function mod_default_maintenance($params) {
 	else
 		wrap_package_activate('zzform'); // for CSS
 	$page['title'] = wrap_setting('zzform_heading_prefix') ? wrap_text(wrap_setting('zzform_heading_prefix')) : '';
+	$page['extra']['css'][] = 'default/maintenance.css';
 	if (!empty($_GET) OR !empty($_POST)) {
 		$page['title'] .= ' <a href="./">'.wrap_text('Maintenance').'</a>:';
 		$page['breadcrumbs'][] = '<a href="./">'.wrap_text('Maintenance').'</a>';
@@ -63,6 +64,7 @@ function mod_default_maintenance($params) {
 		if (isset($newpage['content_type']) AND $newpage['content_type'] !== 'html') return $newpage;
 		$page['title'] .= ' '.$newpage['title'];
 		$page['text'] = $newpage['text'];
+		$page['extra'] = array_merge_recursive($page['extra'], $newpage['extra'] ?? []);
 		$page['breadcrumbs'] = array_merge($page['breadcrumbs'], $newpage['breadcrumbs']);
 		if (!empty($newpage['query_strings']))
 			$page['query_strings'] = $newpage['query_strings'];
@@ -752,15 +754,14 @@ function zz_maintenance_list_init() {
 function zz_maintenance_logs_line($line, $types = []) {
 	zz_maintenance_list_init();
 	
-	$dont_highlight_levels = ['Notice', 'Deprecated', 'Warning', 'Upload'];
-
-	$out = [];
-	$out['type'] = '';
-	$out['user'] = '';
-	$out['date'] = '';
-	$out['level'] = '';
-	$out['time'] = '';
-	$out['status'] = false;
+	$out = [
+		'type' => '',
+		'user' => '',
+		'date' => '',
+		'level' => '',
+		'time' => '',
+		'status' => false
+	];
 
 	$line = trim($line);
 	if (!$line) return [];
@@ -788,6 +789,7 @@ function zz_maintenance_logs_line($line, $types = []) {
 		if (substr($out['level'], -1) === ':') $out['level'] = substr($out['level'], 0, -1);
 		else $out['level'] .= ' '.array_shift($tokens);
 		if (substr($out['level'], -1) === ':') $out['level'] = substr($out['level'], 0, -1);
+		$out['level_class'] = wrap_filename(strtolower($out['level']));
 	}
 
 	if (in_array($out['type'], ['zzform', 'zzwrap'])) {
@@ -830,9 +832,6 @@ function zz_maintenance_logs_line($line, $types = []) {
 		$out['link'] = false;
 	}
 	$out['error'] = implode(' ', $tokens);
-
-	if ($out['level'] AND !in_array($out['level'], $dont_highlight_levels))
-		$out['level_highlight'] = true;
 
 	$post = false;
 	if (substr($out['error'], 0, 11) === 'POST[json] ') {
