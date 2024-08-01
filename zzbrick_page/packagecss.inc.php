@@ -22,6 +22,7 @@ function page_packagecss($params, $page) {
 	$css = [];
 	$extra_css = $page['extra']['css'] ?? [];
 	if (!is_array($extra_css)) $extra_css = [$extra_css];
+	if ($extra_css) $extra_css = array_unique($extra_css);
 	foreach ($extra_css as $line) {
 		list($package, $filename) = explode('/', $line);
 		if (str_ends_with($filename, '.css'))
