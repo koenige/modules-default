@@ -412,3 +412,6 @@ php	string_regex	unlink\(.+/mailqueue/.+\.log\): No such file or directory in .+
 
 # possibly some Chrome browser extension?
 404	end	/highLightTitle.png
+
+# robots.txt does not link anywhere
+404	referer	*/robots.txt
