@@ -19,7 +19,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
 
 #: configuration/access.cfg
 msgid "Adminer MySQL database administration"
@@ -1176,6 +1175,11 @@ msgstr ""
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Identifier"
+msgstr ""
+
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Ending"
 msgstr ""
 
 #. Webpages: Possible ending of URL
