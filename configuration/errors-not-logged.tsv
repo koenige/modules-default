@@ -417,4 +417,4 @@ php	string_regex	unlink\(.+/mailqueue/.+\.log\): No such file or directory in .+
 404	referer	*/robots.txt
 
 # mysql, errors are logged with different levels separately (cache or no cache)
-php	string_regex	mysqli_connect(): .+
+php	string_regex	mysqli_connect\(\):.+
