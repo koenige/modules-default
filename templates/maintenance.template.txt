@@ -75,6 +75,7 @@
 <h2>%%% text PHP & Server %%%</h2>
 <ul>
 <li><a href="?phpinfo">PHP %%% item php_version %%%</a> – %%% text Show PHP info on server %%%</li>
+%%% condition if mysql %%%<li><a href="?toolinfo=mysql">MySQL %%% item mysql wrap_html_escape %%%</a></li>
 %%% condition if convert %%%<li><a href="?toolinfo=convert">%%% item convert wrap_html_escape %%%</a></li>
 %%% condition elseif setting zzform_upload_tools_identify %%%<li class="error">%%% text ImageMagick not found. %%%</li>%%% condition endif %%%
 %%% condition if gs %%%<li><a href="?toolinfo=gs">%%% item gs wrap_html_escape %%%</a></li>

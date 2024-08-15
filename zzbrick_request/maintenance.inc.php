@@ -61,6 +61,7 @@ function mod_default_maintenance($params) {
 	} elseif ($type = zz_maintenance_keycheck()) {
 		$brick = '%%% '.$type['verb'].' '.$type['key'].' '.($_GET[$type['key']] ?? '').' %%%';
 		$newpage = brick_format($brick);
+		if ($newpage['status'] === 404) return $newpage;
 		if (isset($newpage['content_type']) AND $newpage['content_type'] !== 'html') return $newpage;
 		$page['title'] .= ' '.$newpage['title'];
 		$page['text'] = $newpage['text'];
@@ -89,6 +90,7 @@ function mod_default_maintenance($params) {
 		}
 		$data[$function] = $data[$function][0];
 	}
+	$data['mysql'] = mysqli_get_server_info(wrap_db_connection());
 	$folders = zz_maintenance_folders();
 	$data['folders'] = $folders['text'];
 
