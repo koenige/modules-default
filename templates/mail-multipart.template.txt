@@ -31,7 +31,9 @@ Content-Transfer-Encoding: quoted-printable
 Content-Type: %%% item mime_content_type %%%/%%% item mime_subtype %%% 
 Content-Transfer-Encoding: base64
 Content-Disposition: %%% item disposition %%% 
+%%% condition if path %%%
 Content-Location: %%% setting host_base %%%%%% setting files_path %%%/%%% item path %%%?v=%%% item version %%% 
+%%% condition endif %%%
 Content-ID: <%%% item cid %%%>
 
 %%% item file_base64_encoded %%%
@@ -53,7 +55,9 @@ Content-Transfer-Encoding: quoted-printable
 Content-Type: %%% item mime_content_type %%%/%%% item mime_subtype %%% 
 Content-Transfer-Encoding: base64
 Content-Disposition: %%% item disposition %%%; filename=%%% item title %%%.%%% item extension %%% 
+%%% condition if path %%%
 Content-Location: %%% setting host_base %%%%%% setting files_path %%%/%%% item path %%%?v=%%% item version %%% 
+%%% condition endif %%%
 Content-ID: <%%% item cid %%%>
 
 %%% item file_base64_encoded %%%
