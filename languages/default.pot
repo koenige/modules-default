@@ -1555,3 +1555,11 @@ msgstr ""
 #: zzbrick_make/dbmodules.inc.php
 msgid "Install module"
 msgstr ""
+
+#: configuration/access.cfg
+msgid "read help texts"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Website settings"
+msgstr ""
