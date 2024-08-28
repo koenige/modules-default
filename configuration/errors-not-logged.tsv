@@ -418,3 +418,13 @@ php	string_regex	unlink\(.+/mailqueue/.+\.log\): No such file or directory in .+
 
 # mysql, errors are logged with different levels separately (cache or no cache)
 php	string_regex	mysqli_connect\(\):.+
+
+# POST and looking for security problems
+404	all	/index.php?s=captcha
+404	all	/OfficeManagement/RegisterManager/Upload.aspx
+404	all	/php-cgi/php-cgi.exe?%add+allow_url_include%3d1+%add+auto_prepend_file%3dphp://input
+404	all	/kluyjg.php
+404	all	/utility/convert/index.php?a=config&source=d7.2_x2.0
+404	all	/utility/convert/data/config.inc.php
+404	all	/tt.php
+404	begin	/index.php?s=index/\think\template\driver\file/write
