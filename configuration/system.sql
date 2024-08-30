@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -64,10 +64,14 @@ FROM /*_PREFIX_*/webpages;
 SELECT page_id
 	, IF(/*_PREFIX_*/webpages.parameters LIKE "%&menu=%", SUBSTRING_INDEX(SUBSTRING_INDEX(parameters, '&menu=', -1), '&', 1), SUBSTRING_INDEX(title, " – ", 1)) AS title
 	, CONCAT(identifier, IF(STRCMP(ending, 'none'), ending, '')) AS url
-	, mother_page_id, menu
+	, mother_page_id
+	, (SELECT GROUP_CONCAT(category_id) FROM /*_PREFIX_*/webpages_categories
+		WHERE /*_PREFIX_*/webpages_categories.page_id = /*_PREFIX_*/webpages.page_id
+		AND /*_PREFIX_*/webpages_categories.type_category_id = /*_ID categories menu _*/
+	) AS menu
 FROM /*_PREFIX_*/webpages
-WHERE NOT ISNULL(menu)
-AND live = 'yes'
+WHERE live = 'yes'
+HAVING NOT ISNULL(menu)
 ORDER BY sequence;
 
 -- page_menu_level2 --

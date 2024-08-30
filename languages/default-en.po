@@ -720,24 +720,6 @@ msgctxt "default"
 msgid "Menu"
 msgstr ""
 
-#. Webpages: Name of menu defined by position
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "top"
-msgstr ""
-
-#. Webpages: Name of menu defined by position
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "bottom"
-msgstr ""
-
-#. Webpages: Name of menu defined by position
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "internal"
-msgstr ""
-
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Last Update"

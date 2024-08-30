@@ -88,6 +88,14 @@ msgstr ""
 msgid "Edit and add available websites"
 msgstr ""
 
+#: configuration/access.cfg
+msgid "read help texts"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "Website settings"
+msgstr ""
+
 #: configuration/settings.cfg
 msgid "delete old files in these folders: folder = max_age_seconds"
 msgstr ""
@@ -951,6 +959,10 @@ msgstr ""
 msgid "The original file does not contain any data."
 msgstr ""
 
+#: zzbrick_tables/categories.template.php
+msgid "Property"
+msgstr ""
+
 #: zzbrick_tables/relations.php
 msgid "Database Table Relations"
 msgstr ""
@@ -1215,24 +1227,6 @@ msgctxt "default"
 msgid "Menu"
 msgstr ""
 
-#. Webpages: Name of menu defined by position
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "top"
-msgstr ""
-
-#. Webpages: Name of menu defined by position
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "bottom"
-msgstr ""
-
-#. Webpages: Name of menu defined by position
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "internal"
-msgstr ""
-
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Last Update"
@@ -1241,6 +1235,14 @@ msgstr ""
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Short text (max. 160 characters), only appears in search results."
+msgstr ""
+
+#: zzbrick_tables/webpages-categories.php
+msgid "Webpages/Categories"
+msgstr ""
+
+#: zzbrick_tables/webpages-categories.php
+msgid "Page"
 msgstr ""
 
 #: zzbrick_tables/webpages-media.php
@@ -1554,12 +1556,4 @@ msgstr ""
 
 #: zzbrick_make/dbmodules.inc.php
 msgid "Install module"
-msgstr ""
-
-#: configuration/access.cfg
-msgid "read help texts"
-msgstr ""
-
-#: configuration/access.cfg
-msgid "Website settings"
 msgstr ""

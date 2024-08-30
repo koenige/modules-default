@@ -99,13 +99,12 @@ $zz['fields'][9]['enum'] = ['yes', 'no'];
 $zz['fields'][9]['default'] = 'yes';
 $zz['fields'][9]['hide_in_list'] = true;
 
-$zz['fields'][10]['field_name'] = 'menu';
-$zz['fields'][10]['type'] = 'select';
-$zz['fields'][10]['show_values_as_list'] = true;
-$zz['fields'][10]['hide_novalue'] = false;
-$zz['fields'][10]['enum'] = ['top', 'bottom', 'internal'];
+mf_default_categories_subtable($zz, 'webpages', 'menu', 10);
+$zz['fields'][10]['title'] = 'Menu';
+$zz['fields'][10]['form_display'] = 'set';
 $zz['fields'][10]['class'] = 'hidden320';
 $zz['fields'][10]['hide_in_list_if_empty'] = true;
+unset($zz['fields'][10]['unless']['export_mode']['subselect']['prefix']);
 
 $zz['fields'][15]['field_name'] = 'parameters';
 $zz['fields'][15]['type'] = 'parameter';
