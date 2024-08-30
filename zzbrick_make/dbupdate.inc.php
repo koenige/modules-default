@@ -24,7 +24,7 @@
 function mod_default_make_dbupdate($params) {
 	// look for update.sql
 	$data = [];
-	$files = wrap_collect_files('configuration/update.sql', 'modules');
+	$files = wrap_collect_files('configuration/update.sql', 'modules/custom');
 	wrap_sql_ignores();
 	foreach ($files as $module => $file) {
 		$data = array_merge($data, mod_default_make_dbupdate_readfile($file, $module));
