@@ -104,6 +104,7 @@ $zz['fields'][10]['title'] = 'Menu';
 $zz['fields'][10]['form_display'] = 'set';
 $zz['fields'][10]['class'] = 'hidden320';
 $zz['fields'][10]['hide_in_list_if_empty'] = true;
+$zz['fields'][10]['min_records_required'] = 0;
 unset($zz['fields'][10]['unless']['export_mode']['subselect']['prefix']);
 
 $zz['fields'][15]['field_name'] = 'parameters';
