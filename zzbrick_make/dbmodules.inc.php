@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -35,9 +35,9 @@ function mod_default_make_dbmodules($params) {
 			'enabled' => 1
 		];
 	}
-	if (!empty($_GET['readme'])) {
-		if (array_key_exists($_GET['readme'], $data['modules']))
-			$data['readme'] = file_get_contents($data['modules'][$_GET['readme']]['readme']);
+	if (!empty($_GET['readme']) AND array_key_exists($_GET['readme'], $data['modules'])) {
+		$data['readme'] = file_get_contents($data['modules'][$_GET['readme']]['readme']);
+		$data['readme'] = preg_replace('/%%%(.*?)%%%/s', '%%% explain $1%%%', $data['readme']);
 	}
 	
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
