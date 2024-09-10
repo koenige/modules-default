@@ -29,5 +29,6 @@ function mod_default_helptext($params) {
 		$page['text'] = sprintf('<pre>%s</pre>', $data['text']);
 	}
 	// @todo add link to help overview page
+	$page['text'] = sprintf('<div class="helptext">%s</div>', $page['text']);
 	return $page;
 }
