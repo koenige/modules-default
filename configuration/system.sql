@@ -75,17 +75,20 @@ HAVING NOT ISNULL(menu)
 ORDER BY sequence;
 
 -- page_menu_level2 --
-SELECT page_id, title
-	, CONCAT(identifier, IF(STRCMP(ending, 'none'), ending, '')) AS url
-	, mother_page_id
+SELECT webpages.page_id, webpages.title
+	, CONCAT(webpages.identifier, IF(STRCMP(webpages.ending, 'none'), webpages.ending, '')) AS url
+	, webpages.mother_page_id
 	, (SELECT GROUP_CONCAT(category_id) FROM /*_PREFIX_*/webpages_categories
 		WHERE /*_PREFIX_*/webpages_categories.page_id = /*_PREFIX_*/webpages.mother_page_id
 		AND /*_PREFIX_*/webpages_categories.type_category_id = /*_ID categories menu _*/
 	) AS menu
-FROM /*_PREFIX_*/webpages
-WHERE live = 'yes'
+FROM /*_PREFIX_*/webpages webpages
+LEFT JOIN /*_PREFIX_*/webpages main_pages
+	ON webpages.mother_page_id = main_pages.page_id
+WHERE webpages.live = 'yes'
+AND NOT ISNULL(main_pages.mother_page_id)
 HAVING NOT ISNULL(menu)
-ORDER BY sequence;
+ORDER BY webpages.sequence;
 
 -- page_menu_level3 --
 
