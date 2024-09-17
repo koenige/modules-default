@@ -524,3 +524,4 @@
 /* 2024-08-30-9 */	INSERT INTO webpages_categories (`page_id`, `sequence`, `category_id`, `property`, `type_category_id`, `last_update`) SELECT page_id, 1, /*_ID categories menu/bottom _*/, NULL, /*_ID categories menu _*/, NOW() FROM webpages WHERE FIND_IN_SET('bottom', menu);
 /* 2024-08-30-10 */	INSERT INTO webpages_categories (`page_id`, `sequence`, `category_id`, `property`, `type_category_id`, `last_update`) SELECT page_id, 1, /*_ID categories menu/internal _*/, NULL, /*_ID categories menu _*/, NOW() FROM webpages WHERE FIND_IN_SET('internal', menu);
 /* 2024-08-30-30 */	ALTER TABLE `webpages` DROP `menu`;
+/* 2024-09-17-1 */	ALTER TABLE `_jobqueue` ADD `postdata` text COLLATE 'utf8mb4_unicode_ci' NULL AFTER `username`;

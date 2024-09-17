@@ -67,6 +67,11 @@ $zz['fields'][3]['link'] = [
 $zz['fields'][13]['field_name'] = 'username';
 $zz['fields'][13]['hide_in_list_if_empty'] = true;
 
+$zz['fields'][16]['title'] = 'POST data';
+$zz['fields'][16]['field_name'] = 'postdata';
+$zz['fields'][16]['hide_in_list'] = true;
+$zz['fields'][16]['type'] = 'parameter';
+
 $zz['fields'][4]['title_tab'] = 'P.';
 $zz['fields'][4]['field_name'] = 'priority';
 $zz['fields'][4]['type'] = 'number';

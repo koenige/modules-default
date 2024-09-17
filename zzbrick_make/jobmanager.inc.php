@@ -38,15 +38,20 @@ function mod_default_make_jobmanager() {
 
 		$started = mod_default_make_jobmanager_start($job);
 		if (!$started) break;
+		if ($job['postdata']) {
+			parse_str($job['postdata'], $job['postdata']);
+			unset($job['postdata']['trigger']);
+			unset($job['postdata']['url']);
+		}
 
 		if (!empty($_SERVER['HTTP_X_TIMEOUT_IGNORE']))
 			list($status, $headers, $response)
-				= wrap_trigger_protected_url($job['job_url'], $job['username']);
+				= wrap_trigger_protected_url($job['job_url'], $job['username'], 'POST', $job['postdata']);
 		else {
 			$headers_to_send = [];
 			$headers_to_send[] = sprintf('X-Lock-Hash: %s', wrap_lock_hash());
 			list($status, $headers, $response)
-				= wrap_get_protected_url($job['job_url'], $headers_to_send, 'POST', [], $job['username']);
+				= wrap_get_protected_url($job['job_url'], $headers_to_send, 'POST', $job['postdata'], $job['username']);
 		}
 		if (!in_array($status, [100, 200]))
 			wrap_error(sprintf(
@@ -138,6 +143,11 @@ function mod_default_make_jobmanager_add($data) {
 		}
 		return reset($job_ids);
 	}
+	
+	$postdata = $data;
+	$remove_keys = [
+		'wait_until', 'url', 'try_no_increase', 'job_category_id', 'priority', 'trigger'
+	];
 
 	$line = [
 		'job_url' => $data['url'],
@@ -146,7 +156,8 @@ function mod_default_make_jobmanager_add($data) {
 		'priority' => $data['priority'] ?? 0,
 		'wait_until' => $data['wait_until'] ?? NULL,
 		'website_id' => wrap_setting('website_id') ?? 1,
-		'lock_hash' => wrap_lock_hash()
+		'lock_hash' => wrap_lock_hash(),
+		'postdata' => $postdata ? http_build_query($postdata) : ''
 	];
 	return zzform_insert('jobqueue', $line, E_USER_NOTICE, ['msg' => 'Job Manager', 'log_post_data' => false]);
 }
@@ -164,6 +175,7 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 				AND job_status = "running"
 			) AS running_jobs
 			, SUBSTRING_INDEX(SUBSTRING_INDEX(parameters, "max_requests=", -1), "&", 1) AS max_request
+			, postdata
 		FROM _jobqueue
 		LEFT JOIN categories
 			ON _jobqueue.job_category_id = categories.category_id
