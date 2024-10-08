@@ -562,19 +562,7 @@ msgid "Check relational integrity"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php
-msgid "Relational Integrity"
-msgstr ""
-
-#: zzbrick_request/maintenance.inc.php
-msgid "Field %s contains only valid values."
-msgstr ""
-
-#: zzbrick_request/maintenance.inc.php
 msgid "Field %s contains invalid values:"
-msgstr ""
-
-#: zzbrick_request/maintenance.inc.php
-msgid "Nothing to check."
 msgstr ""
 
 #: zzbrick_request/filetree.inc.php

@@ -52,8 +52,6 @@ function mod_default_maintenance($params) {
 	} elseif (isset($_GET['phpinfo'])) {
 		phpinfo();
 		exit;
-	} elseif (isset($_GET['integrity'])) {
-		return zz_maintenance_integrity($page);
 	} elseif ($type = zz_maintenance_keycheck()) {
 		$brick = '%%% '.$type['verb'].' '.$type['key'].' '.($_GET[$type['key']] ?? '').' %%%';
 		$newpage = brick_format($brick);
@@ -103,17 +101,18 @@ function mod_default_maintenance($params) {
  */
 function zz_maintenance_keycheck() {
 	$keys = [
-		'dbupdate' => 'make',
-		'dbmodules' => 'make',
-		'translationscheck' => 'make',
 		'cachedircheck' => 'make',
-		'toolinfo' => 'request',
+		'dbmodules' => 'make',
+		'dbupdate' => 'make',
+		'filetree' => 'request',
+		'integritycheck' => 'request',
 		'log' => 'make',
 		'loggingadd' => 'make',
 		'loggingread' => 'request',
 		'serversync_development' => 'make',
 		'sqlquery' => 'make',
-		'filetree' => 'request'
+		'toolinfo' => 'request',
+		'translationscheck' => 'make'
 	];
 	foreach ($keys as $key => $verb) {
 		if (isset($_GET[$key])) return ['key' => $key, 'verb' => $verb];
@@ -213,70 +212,6 @@ function zz_maintenance_tables() {
 		}
 	}
 	return $data;
-}
-
-/**
- * checks all fields that have an entry in the relations_table if they
- * contain invalid values (e. g. values that do not have a corresponding value
- * in the master table
- *
- * @param array $page
- * @return string text output
- * @todo add translations with wrap_text()
- */
-function zz_maintenance_integrity($page) {
-	$page['title'] .= ' '.wrap_text('Relational Integrity');
-	$page['breadcrumbs'][]['title'] = wrap_text('Relational Integrity');
-	$page['query_strings'][] = 'integrity';
-
-	$sql = 'SELECT * FROM %s';
-	$sql = sprintf($sql, wrap_sql_table('zzform_relations'));
-	$relations = wrap_db_fetch($sql, 'rel_id');
-
-	$results = [];
-	foreach ($relations as $relation) {
-		$sql = 'SELECT DISTINCT detail_table.`%s`
-				, detail_table.`%s`
-			FROM `%s`.`%s` detail_table
-			LEFT JOIN `%s`.`%s` master_table
-				ON detail_table.`%s` = master_table.`%s`
-			WHERE ISNULL(master_table.`%s`)
-			AND NOT ISNULL(detail_table.`%s`)
-		';
-		$sql = sprintf($sql,
-			$relation['detail_id_field'], $relation['detail_field'],
-			$relation['detail_db'], $relation['detail_table'],
-			$relation['master_db'], $relation['master_table'],
-			$relation['detail_field'], $relation['master_field'],
-			$relation['master_field'], $relation['detail_field']
-		);
-		$ids = wrap_db_fetch($sql, '_dummy_', 'key/value', false, E_USER_NOTICE);
-		$detail_field = $relation['detail_db'].' . '.$relation['detail_table'].' . '.$relation['detail_field'];
-		if ($ids) {
-			$results[] = '<li class="error">'.wrap_text('Error').' – '
-				.wrap_text('Field %s contains invalid values:'
-					, ['values' => '<code>'.$detail_field.'</code>']
-				).' ('
-				.$relation['detail_id_field'].' => '.$relation['detail_field'].')<br>';
-			$line = '';
-			foreach ($ids as $id => $foreign_id) {
-				$line .= $id.' => '.$foreign_id.'; ';
-			}
-			$line .= '</li>';
-			$results[] = $line;
-		} else {
-			$results[] = '<li class="ok">'.wrap_text('OK').' – '
-				.wrap_text('Field %s contains only valid values.'
-					, ['values' => '<code>'.$detail_field.'</code>']
-				).'</li>';
-		}
-	}
-	if ($results) {
-		$page['text'] = "<ul>".implode("\n", $results)."</ul>\n";
-	} else {
-		$page['text'] = wrap_text('Nothing to check.');
-	}
-	return mod_default_maintenance_return($page);
 }
 
 /**
