@@ -63,7 +63,7 @@
 </form>
 %%% condition endif %%%
 %%% condition if setting zzform_check_referential_integrity %%%
-<p><a href="?integrity">%%% text Check relational integrity %%%</a></p>
+<p><a href="?integritycheck">%%% text Check relational integrity %%%</a></p>
 %%% condition endif %%%
 %%% condition if setting translate_fields %%%
 <p><a href="?translationscheck">%%% text Check Translations %%%</a></p>
