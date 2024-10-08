@@ -623,9 +623,13 @@ msgstr "Feld %s enthält ungültige Werte:"
 msgid "Nothing to check."
 msgstr "Nichts zum Prüfen da."
 
-#: zzbrick_request/maintenance.inc.php
+#: zzbrick_request/filetree.inc.php
 msgid "Filetree"
 msgstr "Dateibaum"
+
+#: template/filetree.template.txt
+msgid "TOP"
+msgstr "TOP"
 
 #: zzbrick_make/sqlquery.inc.php
 msgid "SQL query"
@@ -741,27 +745,23 @@ msgstr "Backupverzeichnis"
 msgid "Backup of uploaded files is not active."
 msgstr "Backup von hochgeladenen Dateien ist nicht aktiv."
 
-#: zzbrick_request/maintenance.inc.php#files
-msgid "Current %s dir is: %s"
-msgstr "Aktuelles %s-Verzeichnis: %s"
-
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maintenance-folders.template.txt
 msgid "– but this directory does not exist."
 msgstr "– aber dieses Verzeichnis existiert nicht."
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/filetree.template.txt templates/maintenance-folders.template.txt
 msgid "Filename"
 msgstr "Dateiname"
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maintenance-folders.template.txt
 msgid "Filetype"
 msgstr "Dateityp"
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maintenance-folders.template.txt
 msgid "Size"
 msgstr "Größe"
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maintenance-folders.template.txt
 msgid "Timestamp"
 msgstr "Zeitstempel"
 

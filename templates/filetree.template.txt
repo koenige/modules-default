@@ -1,16 +1,16 @@
 # default module
-# Template for maintenance script, filetree
+# Template for filetree
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016, 2018 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2018, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
 %%% condition if parts %%%
-<p><a href="?filetree">TOP</a> / 
+<p><a href="?filetree">%%% text TOP %%%</a> / 
 %%% loop parts %%%
 %%% item link "<a href='?filetree=%s'>" | "<strong>" %%%
 %%% item title %%%
@@ -20,7 +20,7 @@
 </p>
 
 %%% condition else %%%
-<p><strong>TOP</strong></p>
+<p><strong>%%% text TOP %%%</strong></p>
 
 %%% condition endif %%%
 

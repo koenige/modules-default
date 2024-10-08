@@ -577,8 +577,12 @@ msgstr ""
 msgid "Nothing to check."
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php
+#: zzbrick_request/filetree.inc.php
 msgid "Filetree"
+msgstr ""
+
+#: template/filetree.template.txt
+msgid "TOP"
 msgstr ""
 
 #: zzbrick_make/sqlquery.inc.php
@@ -694,27 +698,24 @@ msgstr ""
 msgid "Backup of uploaded files is not active."
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
-msgid "Current %s dir is: %s"
-msgstr ""
-
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maintenance-folders.template.txt
 msgid "– but this directory does not exist."
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/filetree.template.txt
+#: templates/maintenance-folders.template.txt
 msgid "Filename"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maintenance-folders.template.txt
 msgid "Filetype"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maintenance-folders.template.txt
 msgid "Size"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maintenance-folders.template.txt
 msgid "Timestamp"
 msgstr ""
 

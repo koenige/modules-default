@@ -208,7 +208,7 @@ msgstr ""
 msgid "Nothing to check."
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php
+#: zzbrick_request/filetree.inc.php
 msgid "Filetree"
 msgstr ""
 
@@ -311,10 +311,6 @@ msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#files
 msgid "Backup of uploaded files is not active."
-msgstr ""
-
-#: zzbrick_request/maintenance.inc.php#files
-msgid "Current %s dir is: %s"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#files

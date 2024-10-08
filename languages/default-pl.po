@@ -216,7 +216,7 @@ msgstr "Pole %s zawiera nieprawidłowe wartości:"
 msgid "Nothing to check."
 msgstr "Nic do sprawdzenia"
 
-#: zzbrick_request/maintenance.inc.php
+#: zzbrick_request/filetree.inc.php
 msgid "Filetree"
 msgstr "Hierarchia plików"
 
@@ -323,10 +323,6 @@ msgstr "folder kopii zapasowej"
 #: zzbrick_request/maintenance.inc.php#files
 msgid "Backup of uploaded files is not active."
 msgstr "Tworzenie kopii zapasowych wgranych plików nie jest aktywowane."
-
-#: zzbrick_request/maintenance.inc.php#files
-msgid "Current %s dir is: %s"
-msgstr "obecny %s dir to: %s"
 
 #: zzbrick_request/maintenance.inc.php#files
 msgid "– but this directory does not exist."

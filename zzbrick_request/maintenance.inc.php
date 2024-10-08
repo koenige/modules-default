@@ -45,9 +45,7 @@ function mod_default_maintenance($params) {
 		$page['breadcrumbs'][] = '<a href="./">'.wrap_text('Maintenance').'</a>';
 	}
 
-	if (isset($_GET['filetree'])) {
-		return zz_maintenance_filetree($page);
-	} elseif (!empty($_GET['folder'])) {
+	if (!empty($_GET['folder'])) {
 		return zz_maintenance_folders($page);
 	} elseif (isset($_GET['maillog'])) {
 		return zz_maintenance_maillogs($page);
@@ -114,7 +112,8 @@ function zz_maintenance_keycheck() {
 		'loggingadd' => 'make',
 		'loggingread' => 'request',
 		'serversync_development' => 'make',
-		'sqlquery' => 'make'
+		'sqlquery' => 'make',
+		'filetree' => 'request'
 	];
 	foreach ($keys as $key => $verb) {
 		if (isset($_GET[$key])) return ['key' => $key, 'verb' => $verb];
@@ -278,115 +277,6 @@ function zz_maintenance_integrity($page) {
 		$page['text'] = wrap_text('Nothing to check.');
 	}
 	return mod_default_maintenance_return($page);
-}
-
-/**
- * show filetree
- *
- * @param array $page
- * @return array
- */
-function zz_maintenance_filetree($page) {
-	$page['title'] .= ' '.wrap_text('Filetree');
-	$page['breadcrumbs'][]['title'] = wrap_text('Filetree');
-	$page['query_strings'][] = 'filetree';
-
-	$files = [];
-	$topdir = $_SERVER['DOCUMENT_ROOT'].'/../';
-	$base = false;
-	if (!empty($_GET['filetree'])) {
-		$files['parts'] = [];
-		$parts = explode('/', $_GET['filetree']);
-		$text = array_pop($parts);
-		$files['parts'][] = ['title' => wrap_html_escape($text)];
-		while ($parts) {
-			$folder = implode('/', $parts);
-			$part = array_pop($parts);
-			$files['parts'][] = [
-				'title' => wrap_html_escape($part),
-				'link' => $folder
-			];
-		}
-		$files['parts'] = array_reverse($files['parts']);
-		$base = $_GET['filetree'].'/';
-	}
-	$files += zz_maintenance_files($topdir.$base, $base);
-	$page['text'] = wrap_template('maintenance-filetree', $files);
-	return $page;
-}
-
-/**
- * show files in a directory, directory links to sub directories
- *
- * @param string $dir
- * @param string $base
- * @return string
- */
-function zz_maintenance_files($dir, $base) {
-	if (!is_dir($dir)) return [];
-
-	$i = 0;
-	$data = [];
-	$data['total'] = 0;
-	$data['totalfiles'] = 0;
-	$files = [];
-
-	$handle = opendir($dir);
-	while ($file = readdir($handle)) {
-		if ($file === '.' OR $file === '..') continue;
-		$files[] = $file;
-	}
-	closedir($handle);
-	sort($files);
-
-	foreach ($files as $file) {
-		$i++;
-		$files_in_folder = 0;
-		$path = $dir.'/'.$file;
-		if (is_dir($path)) {
-			list ($size, $files_in_folder) = zz_maintenance_dirsize($path);
-			$link = $base.$file;
-		} else {
-			$size = filesize($path);
-			$files_in_folder = 1;
-			$link = '';
-		}
-		$data['files'][] = [
-			'file' => $file,
-			'link' => $link,
-			'size' => $size,
-			'files_in_folder' => $files_in_folder
-		];
-		$data['total'] += $size;
-		$data['totalfiles'] += $files_in_folder;
-	}
-	return $data;
-}
-
-/**
- * get size of directory and files inside, recursively
- *
- * @param string $dir absolute path of directory
- * @return array
- */
-function zz_maintenance_dirsize($dir) {
-	$size = 0;
-	$files = 0;
-	$handle = opendir($dir);
-	if (!$handle) return [$size, $files];
-	while ($file = readdir($handle)) {
-		if ($file === '.' OR $file === '..') continue;
-		if (is_dir($dir.'/'.$file)) {
-			list ($mysize, $myfiles) = zz_maintenance_dirsize($dir.'/'.$file);
-			$size += $mysize;
-			$files += $myfiles;
-		} else {
-			$size += filesize($dir.'/'.$file);
-			$files++;
-		}
-	}
-	closedir($handle);
-	return [$size, $files];
 }
 
 /**
