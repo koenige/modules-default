@@ -190,44 +190,44 @@ msgstr ""
 msgid "Filetree"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
+#: zzbrick_make/sqlquery.inc.php
 msgid "SQL query"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
+#: templates/sqlquery.template.txt
 msgid "Result"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
-msgid "No changes were done to database."
+#: templates/sqlquery.template.txt
+msgid "No changes were made to the database."
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
+#: templates/sqlquery.template.txt
 msgid "%s was successful"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
+#: templates/sqlquery.template.txt
 msgid "Insert"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
+#: templates/sqlquery.template.txt
 msgid "Update"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
+#: templates/sqlquery.template.txt
 msgid "Delete"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
+#: templates/sqlquery.template.txt
 msgid "%d row affected"
 msgid_plural "%d rows affected"
 msgstr[] ""
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
+#: templates/sqlquery.template.txt
 msgid "Sorry, %s is not yet supported"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#sql-queries
+#: templates/sqlquery-form.template.txt
 msgid "Custom SQL query"
 msgstr ""
 

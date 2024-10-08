@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016-2018, 2023 Gustaf Mossakowski
+# @copyright Copyright © 2016-2018, 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -16,7 +16,7 @@
 
 <h2>%%% text Result %%%</h2>
 %%% condition if action_nothing %%%
-<p>%%% text No changes were done to database. %%%</p>
+<p>%%% text No changes were made to the database. %%%</p>
 
 %%% condition elseif action %%%
 <p>%%% text "%s was successful" action %%%%%% condition if rows %%%: 
@@ -24,17 +24,11 @@
 %%% item id_value " (ID: %s)" %%%%%% condition endif %%%</p>
 
 %%% condition else %%%
-<div class="error">Database says: 
-%%% item error_db_msg %%% %%% item error_db_errno "[Code %s]" %%%
+<div class="error">%%% text Database says: %%%
+%%% item error_db_msg %%% %%% text "[Code %s]" error_db_errno %%%
 </div>
 %%% condition endif %%%
 %%% condition endif %%%
 
-<h2>%%% text Custom SQL query %%%</h2>
-<form method="POST" action="">
-<textarea cols="60" rows="10" name="sql">
-%%% item form_sql %%%
-</textarea>
-<br><input type="submit">
-</form>
+%%% include sqlquery-form %%%
 </div>

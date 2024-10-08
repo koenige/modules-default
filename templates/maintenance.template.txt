@@ -97,11 +97,6 @@
 
 <h2><a href="?dbupdate#current">%%% text Database Updates %%%</a></h2>
 
-<h2>%%% text Custom SQL query %%%</h2>
-
-<form method="POST" action="">
-<textarea cols="60" rows="10" name="sql">
-</textarea>
-<br><input type="submit"></form>
+%%% include sqlquery-form %%%
 
 </div>
