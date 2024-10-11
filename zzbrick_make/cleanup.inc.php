@@ -193,8 +193,7 @@ function mod_default_make_cleanup_gzip_logs() {
  * @return int $counter number of deleted lines
  */
 function mod_default_make_cleanup_log($filename, $max_age_seconds) {
-	require_once wrap_setting('core').'/file.inc.php';
-	wrap_include('zzbrick_request/maintenance', 'default');
+	wrap_incude('file', 'zzwrap');
 
 	$invalid = time() - $max_age_seconds;
 
@@ -202,7 +201,7 @@ function mod_default_make_cleanup_log($filename, $max_age_seconds) {
 	$i = 0;
 	$file = new \SplFileObject($filename, 'r');
 	while (!$file->eof()) {
-		$line = zz_maintenance_logs_line($file->fgets());
+		$line = mf_default_log_line($file->fgets());
 		if ($line) {
 			if (strtotime($line['date']) < $invalid) {
 				$deletable[] = $i;

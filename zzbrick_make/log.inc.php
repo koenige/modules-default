@@ -198,7 +198,7 @@ function mod_default_make_log($params) {
 	if ($data['total_rows']) {
 		foreach ($found as $index) {
 			$file->seek($index);
-			$data['lines'][$index] = zz_maintenance_logs_line($file->current(), $filters['type']);
+			$data['lines'][$index] = mf_default_log_line($file->current(), $filters['type']);
 			$data['lines'][$index]['no'] = $index;
 			$data['lines'][$index]['keys'] = $index;
 		}
