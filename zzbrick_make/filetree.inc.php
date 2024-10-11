@@ -19,7 +19,7 @@
  * @param array $page
  * @return array
  */
-function mod_default_filetree($params) {
+function mod_default_make_filetree($params) {
 	$files = [];
 	$base = false;
 	if ($params) {

@@ -104,7 +104,7 @@ function zz_maintenance_keycheck() {
 		'cachedircheck' => 'make',
 		'dbmodules' => 'make',
 		'dbupdate' => 'make',
-		'filetree' => 'request',
+		'filetree' => 'make',
 		'integritycheck' => 'request',
 		'log' => 'make',
 		'loggingadd' => 'make',
