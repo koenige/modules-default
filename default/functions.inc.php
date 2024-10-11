@@ -59,28 +59,3 @@ function zz_maintenance_deleteall_form() {
 	$url = $zz_conf['int']['url']['full'].$qs;
 	return [$url, !empty($_GET['q']) ? wrap_html_escape($_GET['q']) : ''];
 }
-
-/**
- * initialize variables and include files to use zz_list() for maintenance
- *
- */
-function zz_maintenance_list_init() {
-	global $zz_conf;
-	static $init = false;
-	if ($init) return; // just once
-
-	// zz_edit_query_string(), zz_get_url_self()
-	wrap_include('functions', 'zzform');
-	// zz_init_limit()
-	wrap_include('output', 'zzform');
-	// zz_mark_search_string(), zz_list_total_records(), zz_list_pages()
-	wrap_include('list', 'zzform');
-	// zz_search_form()
-	wrap_include('searchform', 'zzform');
-
-	wrap_setting('zzform_search', 'bottom');
-
-	$zz_conf['int']['url'] = zz_get_url_self();
-	zz_init_limit();
-	$init = true;
-}

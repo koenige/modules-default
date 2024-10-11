@@ -263,7 +263,7 @@ function zz_maintenance_folders($page = []) {
 			'folder', 'file', 'q', 'scope', 'deleteall', 'limit'
 		];
 		$data['folder'] = true;
-		zz_maintenance_list_init();
+		zzform_list_init();
 	}
 
 	if ((!wrap_setting('zzform_backup') OR !wrap_setting('zzform_backup_dir'))
@@ -455,7 +455,7 @@ function zz_maintenance_folders_deleteall($my_folder, $file) {
  * @return array
  */
 function zz_maintenance_logs_line($line, $types = []) {
-	zz_maintenance_list_init();
+	zzform_list_init();
 	
 	$out = [
 		'type' => '',
@@ -571,9 +571,9 @@ function zz_maintenance_logs_line($line, $types = []) {
  */
 function zz_maintenance_maillogs($page) {
 	global $zz_conf;
-	require_once wrap_setting('core').'/file.inc.php';
+	wrap_include('file', 'zzwrap');
 
-	zz_maintenance_list_init();
+	zzform_list_init();
 
 	$page['title'] .= ' '.wrap_text('Mail Logs');
 	$page['breadcrumbs'][]['title'] = wrap_text('Mail Logs');

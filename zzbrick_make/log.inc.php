@@ -22,9 +22,9 @@
  */
 function mod_default_make_log($params) {
 	global $zz_conf;
-	require_once wrap_setting('core').'/file.inc.php';
+	wrap_include('file', 'zzwrap');
 
-	zz_maintenance_list_init();
+	zzform_list_init();
 
 	$page['title'] = wrap_text('Logs');
 	$page['breadcrumbs'][]['title'] = wrap_text('Logs');
