@@ -615,7 +615,7 @@ msgstr "Feld %s enthält ungültige Werte:"
 msgid "Filetree"
 msgstr "Dateibaum"
 
-#: template/filetree.template.txt
+#: template/filetree-simple.template.txt
 msgid "TOP"
 msgstr "TOP"
 
@@ -753,23 +753,23 @@ msgstr "Backupverzeichnis"
 msgid "Backup of uploaded files is not active."
 msgstr "Backup von hochgeladenen Dateien ist nicht aktiv."
 
-#: templates/maintenance-folders.template.txt
+#: templates/filetree.template
 msgid "– but this directory does not exist."
 msgstr "– aber dieses Verzeichnis existiert nicht."
 
-#: templates/filetree.template.txt templates/maintenance-folders.template.txt
+#: templates/filetree-simple.template.txt templates/filetree.template
 msgid "Filename"
 msgstr "Dateiname"
 
-#: templates/maintenance-folders.template.txt
+#: templates/filetree.template
 msgid "Filetype"
 msgstr "Dateityp"
 
-#: templates/maintenance-folders.template.txt
+#: templates/filetree.template
 msgid "Size"
 msgstr "Größe"
 
-#: templates/maintenance-folders.template.txt
+#: templates/filetree.template
 msgid "Timestamp"
 msgstr "Zeitstempel"
 

@@ -43,7 +43,7 @@ function mod_default_make_filetree($params) {
 
 	$page['title'] = wrap_text('Filetree');
 	$page['breadcrumbs'][]['title'] = wrap_text('Filetree');
-	$page['text'] = wrap_template('filetree', $files);
+	$page['text'] = wrap_template('filetree-simple', $files);
 	return $page;
 }
 

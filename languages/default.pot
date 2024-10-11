@@ -568,7 +568,7 @@ msgstr ""
 msgid "Filetree"
 msgstr ""
 
-#: template/filetree.template.txt
+#: template/filetree-simple.template.txt
 msgid "TOP"
 msgstr ""
 
@@ -705,24 +705,24 @@ msgstr ""
 msgid "Backup of uploaded files is not active."
 msgstr ""
 
-#: templates/maintenance-folders.template.txt
+#: templates/filetree.template
 msgid "– but this directory does not exist."
 msgstr ""
 
-#: templates/filetree.template.txt
-#: templates/maintenance-folders.template.txt
+#: templates/filetree-simple.template.txt
+#: templates/filetree.template
 msgid "Filename"
 msgstr ""
 
-#: templates/maintenance-folders.template.txt
+#: templates/filetree.template
 msgid "Filetype"
 msgstr ""
 
-#: templates/maintenance-folders.template.txt
+#: templates/filetree.template
 msgid "Size"
 msgstr ""
 
-#: templates/maintenance-folders.template.txt
+#: templates/filetree.template
 msgid "Timestamp"
 msgstr ""
 
