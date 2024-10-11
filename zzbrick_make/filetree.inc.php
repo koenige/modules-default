@@ -139,6 +139,8 @@ function mod_default_filetree_delete($my_folder) {
 	foreach ($_POST['files'] as $file => $bool) {
 		if ($bool != 'on') continue;
 		$filename = sprintf('%s/%s', $my_folder, $file);
+		$deletable = mod_default_filetree_deletable($filename);
+		if (!$deletable) continue;
 		if (file_exists($filename)) {
 			if (is_dir($filename)) {
 				rmdir($filename);
@@ -150,6 +152,19 @@ function mod_default_filetree_delete($my_folder) {
 		}
 	}
 	return $deleted;
+}
+
+/**
+ * check if a file is deletable
+ *
+ * @param string $filename
+ * @return bool
+ */
+function mod_default_filetree_deletable($filename) {
+	if (in_array(basename($filename), wrap_setting('default_filetree_undeletable_files'))) return false;
+	foreach (wrap_setting('default_filetree_undeletable_paths') as $path)
+		if (str_starts_with($filename, $path)) return false;
+	return true;
 }
 
 /**
@@ -197,6 +212,12 @@ function mod_default_filetree_special_folders() {
 	return $folders;
 }
 
+/**
+ * list all files and folders inside directory
+ *
+ * @param array $params
+ * @return array
+ */
 function mod_default_filetree_folders($params) {
 	global $zz_conf;
 
@@ -260,7 +281,7 @@ function mod_default_filetree_folders($params) {
 		} else {
 			$file['size'] = filesize($path);
 			$file['filecount'] = 1;
-			$file['deletable'] = true;
+			$file['deletable'] = mod_default_filetree_deletable($path);
 			if (!in_array(basename($file['file']), wrap_setting('default_filetree_unviewable_files')))
 				$file['link'] = urlencode(implode('/', $params)).'&amp;file='.urlencode($filename);
 		}
