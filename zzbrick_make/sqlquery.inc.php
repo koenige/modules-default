@@ -55,7 +55,7 @@ function mod_default_make_sqlquery($params) {
 			$result['token'] = wrap_html_escape($statement);
 		}
 			
-		$result['sql'] = zz_maintenance_sql($sql);
+		$result['sql'] = mod_default_make_sqlquery_sql($sql);
 		$result['form_sql'] = str_replace('%%%', '%&shy;%&shy;%', wrap_html_escape($sql));
 	}
 
@@ -63,4 +63,42 @@ function mod_default_make_sqlquery($params) {
 	$page['breadcrumbs'][]['title'] = wrap_text('SQL Query');
 	$page['text'] = wrap_template('sqlquery', $result);
 	return $page;
+}
+
+/**
+ * reformats SQL query for better readability
+ * 
+ * @param string $sql
+ * @return string $sql, formatted
+ */
+function mod_default_make_sqlquery_sql($sql) {
+	$sql = preg_replace("/\s+/", " ", $sql);
+	$tokens = explode(' ', $sql);
+	$sql = [];
+	$keywords = [
+		'INSERT', 'INTO', 'DELETE', 'FROM', 'UPDATE', 'SELECT', 'UNION',
+		'WHERE', 'GROUP', 'BY', 'ORDER', 'DISTINCT', 'LEFT', 'JOIN', 'RIGHT',
+		'INNER', 'NATURAL', 'USING', 'SET', 'CONCAT', 'SUBSTRING_INDEX',
+		'VALUES', 'CREATE', 'TABLE', 'KEY', 'CHARACTER', 'DEFAULT', 'NOT',
+		'NULL', 'AUTO_INCREMENT', 'COLLATE', 'PRIMARY', 'UNIQUE', 'CHANGE',
+		'RENAME'
+	];
+	$newline = [
+		'LEFT', 'FROM', 'GROUP', 'WHERE', 'SET', 'VALUES', 'SELECT', 'CHANGE',
+		'RENAME'
+	];
+	$newline_tab = ['ON', 'AND'];
+	foreach ($tokens as $token) {
+		$out = wrap_html_escape($token);
+		if (in_array($token, $keywords)) $out = '<strong>'.$out.'</strong>';
+		if (in_array($token, $newline)) $out = "\n".$out;
+		if (in_array($token, $newline_tab)) $out = "\n\t".$out;
+		$sql[] = $out;
+	}
+	$replace = ['%%%' => '%&shy;%%'];
+	foreach ($replace as $old => $new) {
+		$sql = str_replace($old, $new, $sql);
+	}
+	$sql = implode(' ', $sql);
+	return $sql;
 }
