@@ -85,7 +85,7 @@ function mod_default_make_log($params) {
 		$data['group'] = false;
 	}
 
-	list($data['deleteall_url'], $data['deleteall_filter']) = zz_maintenance_deleteall_form();
+	list($data['deleteall_url'], $data['deleteall_filter']) = mf_default_delete_all_form();
 	if ($data['deleteall_url']) {
 		$page['text'] = wrap_template('maintenance-logs', $data);
 		return $page;
@@ -114,7 +114,7 @@ function mod_default_make_log($params) {
 					elseif (preg_match('/^#\d+ [\/{]/', $line)) $found_search = true;
 					elseif (preg_match('/^thrown in \//', $line)) $found_search = true;
 				}
-				if (zz_maintenance_searched($line)) $found_search = true;
+				if (mf_default_searched($line)) $found_search = true;
 				if (!$found_search) continue;
 				$last_found_line_key = $line_key;
 			}

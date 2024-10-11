@@ -345,7 +345,7 @@ function zz_maintenance_folders($page = []) {
 				continue;
 			}
 			$files[] = $file;
-			if (zz_maintenance_searched($file)) {
+			if (mf_default_searched($file)) {
 				$total_files_q++;
 			}
 		}
@@ -354,7 +354,7 @@ function zz_maintenance_folders($page = []) {
 			$data['folders'][$index]['deleted'] = $deleted;
 		}
 
-		list($data['folders'][$index]['deleteall_url'], $data['folders'][$index]['deleteall_filter']) = zz_maintenance_deleteall_form();
+		list($data['folders'][$index]['deleteall_url'], $data['folders'][$index]['deleteall_filter']) = mf_default_delete_all_form();
 		if ($data['folders'][$index]['deleteall_url']) {
 			$page['text'] = wrap_template('maintenance-folders', $data);
 			return $page;
@@ -367,7 +367,7 @@ function zz_maintenance_folders($page = []) {
 			zz_list_limit_last(count($files));
 		}
 		foreach ($files as $filename) {
-			if (!empty($_GET['q']) AND !zz_maintenance_searched($filename)) {
+			if (!empty($_GET['q']) AND !mf_default_searched($filename)) {
 				continue;
 			}
 			if ($i < $zz_conf['int']['this_limit'] - wrap_setting('zzform_limit')) {
@@ -437,7 +437,7 @@ function zz_maintenance_folders($page = []) {
 
 function zz_maintenance_folders_deleteall($my_folder, $file) {
 	if (!empty($_GET['q'])) {
-		if (zz_maintenance_searched($file)) {
+		if (mf_default_searched($file)) {
 			$success = unlink($my_folder.'/'.$file);
 			return $success;
 		}

@@ -20,7 +20,7 @@
  * @return bool false: no search active or string not found; true: search is
  *		active and string was found
  */
-function zz_maintenance_searched($string) {
+function mf_default_searched($string) {
 	if (empty($_GET['q'])) return false;
 	if (stristr($string, $_GET['q'])) return true;
 	if (stristr(urldecode($string), $_GET['q'])) return true;
@@ -49,7 +49,7 @@ function zz_maintenance_searched($string) {
  * @global array $zz_conf
  * @return array
  */
-function zz_maintenance_deleteall_form() {
+function mf_default_delete_all_form() {
 	global $zz_conf;
 	if (!empty($_POST['deleteall'])) return ['', ''];
 	if (!isset($_GET['deleteall'])) return ['', ''];
