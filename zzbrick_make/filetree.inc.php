@@ -262,78 +262,78 @@ function mod_default_filetree_folders($params) {
 
 	$data['deleted'] = mod_default_filetree_delete($my_folder);
 
-		$folder_handle = opendir($my_folder);
+	$folder_handle = opendir($my_folder);
 
-		$files = [];
-		$total_files_q = 0;
-		while ($file = readdir($folder_handle)) {
-			if (substr($file, 0, 1) === '.') continue;
-			if (!empty($_POST['deleteall'])) {
-				$data['deleted'] += mod_default_filetree_folders_deleteall($my_folder, $file);
-				continue;
-			}
-			$files[] = $file;
-			if (mf_default_searched($file)) {
-				$total_files_q++;
-			}
+	$files = [];
+	$total_files_q = 0;
+	while ($file = readdir($folder_handle)) {
+		if (substr($file, 0, 1) === '.') continue;
+		if (!empty($_POST['deleteall'])) {
+			$data['deleted'] += mod_default_filetree_folders_deleteall($my_folder, $file);
+			continue;
 		}
-		if (!$data['deleted']) $data['deleted'] = NULL;
-		sort($files);
-	
-		list($data['deleteall_url'], $data['deleteall_filter']) = mf_default_delete_all_form();
-		if ($data['deleteall_url']) return $data;
-	
-		$i = 0;
-		$data['size_total'] = 0;
-		$data['files_total'] = 0;
-		if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
-			zz_list_limit_last(count($files));
+		$files[] = $file;
+		if (mf_default_searched($file)) {
+			$total_files_q++;
 		}
-		foreach ($files as $filename) {
-			if (!empty($_GET['q']) AND !mf_default_searched($filename)) {
-				continue;
-			}
-			if ($i < $zz_conf['int']['this_limit'] - wrap_setting('zzform_limit')) {
-				$i++;
-				continue;
-			}
-			$path = $my_folder.'/'.$filename;
-			$file = [];
-			$file['file'] = $filename;
-			$file['size'] = filesize($path);
-			$data['size_total'] += $file['size'];
-			$file['ext'] = is_dir($path) ? wrap_text('Folder') : mod_default_filetree_file_ext($filename);
-			$file['time'] = date('Y-m-d H:i:s', filemtime($path));
-			$file['files_in_dir'] = 0;
-			if (is_dir($path)) {
-				$file['dir'] = true;
-				$file['link'] = urlencode(implode('/', $params)).'/'.urlencode($filename);
-				$subfolder_handle = opendir($path);
-				while ($subdir = readdir($subfolder_handle)) {
-					if (substr($subdir, 0, 1) === '.') continue;
-					$file['files_in_dir']++;
-				}
-				closedir($subfolder_handle);
-			} else {
-				$file['link'] = urlencode(implode('/', $params)).'&amp;file='.urlencode($filename);
-			}
-			if (!$file['files_in_dir']) $file['files_in_dir'] = NULL;
-			$file['title'] = zz_mark_search_string(str_replace('%', '%&shy;', wrap_html_escape(urldecode($filename))));
-			$data['files'][] = $file;
+	}
+	if (!$data['deleted']) $data['deleted'] = NULL;
+	sort($files);
+
+	list($data['deleteall_url'], $data['deleteall_filter']) = mf_default_delete_all_form();
+	if ($data['deleteall_url']) return $data;
+
+	$i = 0;
+	$data['size_total'] = 0;
+	$data['files_total'] = 0;
+	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
+		zz_list_limit_last(count($files));
+	}
+	foreach ($files as $filename) {
+		if (!empty($_GET['q']) AND !mf_default_searched($filename)) {
+			continue;
+		}
+		if ($i < $zz_conf['int']['this_limit'] - wrap_setting('zzform_limit')) {
 			$i++;
-			$data['files_total']++;
-			if ($i == $zz_conf['int']['this_limit']) break;
+			continue;
 		}
-		closedir($folder_handle);
+		$path = $my_folder.'/'.$filename;
+		$file = [];
+		$file['file'] = $filename;
+		$file['size'] = filesize($path);
+		$data['size_total'] += $file['size'];
+		$file['ext'] = is_dir($path) ? wrap_text('Folder') : mod_default_filetree_file_ext($filename);
+		$file['time'] = date('Y-m-d H:i:s', filemtime($path));
+		$file['files_in_dir'] = 0;
+		if (is_dir($path)) {
+			$file['dir'] = true;
+			$file['link'] = urlencode(implode('/', $params)).'/'.urlencode($filename);
+			$subfolder_handle = opendir($path);
+			while ($subdir = readdir($subfolder_handle)) {
+				if (substr($subdir, 0, 1) === '.') continue;
+				$file['files_in_dir']++;
+			}
+			closedir($subfolder_handle);
+		} else {
+			$file['link'] = urlencode(implode('/', $params)).'&amp;file='.urlencode($filename);
+		}
+		if (!$file['files_in_dir']) $file['files_in_dir'] = NULL;
+		$file['title'] = zz_mark_search_string(str_replace('%', '%&shy;', wrap_html_escape(urldecode($filename))));
+		$data['files'][] = $file;
+		$i++;
+		$data['files_total']++;
+		if ($i == $zz_conf['int']['this_limit']) break;
+	}
+	closedir($folder_handle);
 
-		$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
-		$data['total_rows'] = count($files);
-		if (!empty($_GET['q'])) $data['total_rows'] = $total_files_q;
-		$data['total_records'] = zz_list_total_records($data['total_rows']);
-		$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);
-		wrap_setting('zzform_search_form_always', true);
-		$searchform = zz_search_form([], '', $data['total_rows'], $data['total_rows']);
-		$data['searchform'] = $searchform['bottom'];
+	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
+	$data['total_rows'] = count($files);
+	if (!empty($_GET['q'])) $data['total_rows'] = $total_files_q;
+	$data['total_records'] = zz_list_total_records($data['total_rows']);
+	$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);
+	wrap_setting('zzform_search_form_always', true);
+	$searchform = zz_search_form([], '', $data['total_rows'], $data['total_rows']);
+	$data['searchform'] = $searchform['bottom'];
 
 	return $data;
 }
