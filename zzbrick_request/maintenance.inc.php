@@ -45,10 +45,7 @@ function mod_default_maintenance($params) {
 		$page['breadcrumbs'][] = '<a href="./">'.wrap_text('Maintenance').'</a>';
 	}
 
-	if (!empty($_GET['folder'])) {
-		wrap_include('zzbrick_make/filetree', 'default');
-		return zz_maintenance_folders($page);
-	} elseif (isset($_GET['phpinfo'])) {
+	if (isset($_GET['phpinfo'])) {
 		phpinfo();
 		exit;
 	} elseif ($type = zz_maintenance_keycheck()) {
@@ -85,7 +82,7 @@ function mod_default_maintenance($params) {
 	}
 	$data['mysql'] = mysqli_get_server_info(wrap_db_connection());
 	wrap_include('zzbrick_make/filetree', 'default');
-	$folders = zz_maintenance_folders();
+	$folders = mod_default_filetree_list_special();
 	$data['folders'] = $folders['text'];
 
 	$page['text'] = wrap_template('maintenance', $data);

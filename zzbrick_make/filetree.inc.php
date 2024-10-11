@@ -20,30 +20,40 @@
  * @return array
  */
 function mod_default_make_filetree($params) {
-	$files = [];
+	$data = [];
 	$base = false;
 	if ($params) {
 		if (strstr($params[0], '/')) $params = explode('/', $params[0]);
-		$files['parts'] = [];
+		$data['parts'] = [];
 		$parts = $params;
 		$text = array_pop($parts);
-		$files['parts'][] = ['title' => wrap_html_escape($text)];
+		$data['parts'][] = ['title' => wrap_html_escape($text)];
 		while ($parts) {
 			$folder = implode('/', $parts);
 			$part = array_pop($parts);
-			$files['parts'][] = [
+			$data['parts'][] = [
 				'title' => wrap_html_escape($part),
 				'link' => $folder
 			];
 		}
-		$files['parts'] = array_reverse($files['parts']);
+		$data['parts'] = array_reverse($data['parts']);
 		$base = implode('/', $params).'/';
 	}
-	$files += mod_default_filetree_files(wrap_setting('cms_dir').'/'.$base, $base);
+	if ($params AND in_array(wrap_setting('cms_dir').'/'.$params[0], mod_default_filetree_special_folders())) {
+		$data = array_merge($data, mod_default_filetree_folders($params));
+		if (!empty($data['folder_inexistent']))
+			$page['status'] = 404;
+		$page['query_strings'] = [
+			'folder', 'file', 'q', 'scope', 'deleteall', 'limit'
+		];
+		$page['text'] = wrap_template('filetree', $data);
+	} else {
+		$data += mod_default_filetree_files(wrap_setting('cms_dir').'/'.$base, $base);
+		$page['text'] = wrap_template('filetree-simple', $data);
+	}
 
 	$page['title'] = wrap_text('Filetree');
 	$page['breadcrumbs'][]['title'] = wrap_text('Filetree');
-	$page['text'] = wrap_template('filetree-simple', $files);
 	return $page;
 }
 
@@ -190,65 +200,68 @@ function mod_default_filetree_delete($my_folder) {
 	return $deleted;
 }
 
-function zz_maintenance_folders($page = []) {
-	global $zz_conf;
-	
-	$data = [];
-	if ($page) {
-		$page['title'] .= ' '.wrap_text('Filetree');
-		$page['breadcrumbs'][]['title'] = wrap_text('Filetree');
-		$page['query_strings'] = [
-			'folder', 'file', 'q', 'scope', 'deleteall', 'limit'
-		];
-		$data['folder'] = true;
-		zzform_list_init();
-	}
-
+/**
+ * show special folders in maintenance overview
+ *
+ * @return array
+ */
+function mod_default_filetree_list_special() {
 	if ((!wrap_setting('zzform_backup') OR !wrap_setting('zzform_backup_dir'))
 		AND !wrap_setting('tmp_dir') AND !wrap_setting('cache_dir')) {
-		$page['text'] = '<div id="zzform" class="maintenance"><p>'.wrap_text('Backup of uploaded files is not active.').'</p></div'."\n";
+		$page['text'] = '<div id="zzform" class="maintenance"><p>'.wrap_text('Backup of uploaded files is not active.').'</p></div>'."\n";
 		return $page;
 	}
 
-	$dirs = [
-		'TEMP' => wrap_setting('tmp_dir'),
-		'BACKUP' => wrap_setting('zzform_backup_dir'),
-		'CACHE' => wrap_setting('cache_dir')
-	];
-	$data['folders'] = [];
-	$my_folder = NULL;
-	foreach ($dirs as $key => $dir) {
+	$folders = mod_default_filetree_special_folders();
+
+	foreach ($folders as $key => $dir) {
 		$exists = file_exists($dir) ? true : false;
+		$dir = realpath($dir);
 		$data['folders'][] = [
 			'title' => $key,
-			'hide_content' => true,
 			'not_exists' => !$exists AND $dir ? true: false,
-			'dir' => realpath($dir)
+			'dir' => realpath($dir),
+			'link' => str_starts_with($dir, wrap_setting('cms_dir')) ? substr($dir, strlen(wrap_setting('cms_dir')) + 1) : NULL
 		];
-		if (!$exists) continue;
-		if (substr($dir, -1) === '/') $dir = substr($dir, 0, -1);
-		if (!empty($_GET['folder']) AND substr($_GET['folder'], 0, strlen($key)) === $key) {
-			$my_folder = $dir.substr($_GET['folder'], strlen($key));
-		}
 	}
+	$page['text'] = wrap_template('filetree-folders', $data);
+	return $page;
+}
 
-	if (!empty($_GET['folder']) AND !empty($_GET['file']))
+/**
+ * list of folders that are treated specially
+ *
+ * @return array
+ */
+function mod_default_filetree_special_folders() {
+	static $folders = [];
+	if (!$folders) {
+		$folders = [
+			'TEMP' => wrap_setting('tmp_dir'),
+			'BACKUP' => wrap_setting('zzform_backup_dir'),
+			'CACHE' => wrap_setting('cache_dir')
+		];
+	}
+	return $folders;
+}
+
+function mod_default_filetree_folders($params) {
+	global $zz_conf;
+
+	$data = [];
+	if (!$params) return $data;
+	$my_folder = sprintf('%s/%s', wrap_setting('cms_dir'), implode('/', $params));
+	if (!is_dir($my_folder)) {
+		$data['folder_inexistent'] = true;
+		return $data;
+	}
+	zzform_list_init();
+
+	if (!empty($_GET['file']))
 		return mod_default_filetree_file([$my_folder, $_GET['file']]);
 
-	$deleted = mod_default_filetree_delete($my_folder);
+	$data['deleted'] = mod_default_filetree_delete($my_folder);
 
-	foreach ($data['folders'] as $index => $folder) {
-		if (empty($_GET['folder'])) continue;
-		if (substr($_GET['folder'], 0, strlen($folder['title'])) != $folder['title']) continue;
-		$data['folders'][$index]['hide_content'] = false;
-		if ($folder['title'] !== $_GET['folder']) {
-			$data['folders'][$index]['subtitle'] = wrap_html_escape($_GET['folder']);
-		}
-		if (!is_dir($my_folder)) {
-			$data['folder_inexistent'] = true;
-			$page['status'] = 404;
-			continue;
-		}
 		$folder_handle = opendir($my_folder);
 
 		$files = [];
@@ -256,7 +269,7 @@ function zz_maintenance_folders($page = []) {
 		while ($file = readdir($folder_handle)) {
 			if (substr($file, 0, 1) === '.') continue;
 			if (!empty($_POST['deleteall'])) {
-				$deleted += zz_maintenance_folders_deleteall($my_folder, $file);
+				$data['deleted'] += mod_default_filetree_folders_deleteall($my_folder, $file);
 				continue;
 			}
 			$files[] = $file;
@@ -264,20 +277,15 @@ function zz_maintenance_folders($page = []) {
 				$total_files_q++;
 			}
 		}
+		if (!$data['deleted']) $data['deleted'] = NULL;
 		sort($files);
-		if ($deleted) {
-			$data['folders'][$index]['deleted'] = $deleted;
-		}
-
-		list($data['folders'][$index]['deleteall_url'], $data['folders'][$index]['deleteall_filter']) = mf_default_delete_all_form();
-		if ($data['folders'][$index]['deleteall_url']) {
-			$page['text'] = wrap_template('filetree', $data);
-			return $page;
-		}
-
+	
+		list($data['deleteall_url'], $data['deleteall_filter']) = mf_default_delete_all_form();
+		if ($data['deleteall_url']) return $data;
+	
 		$i = 0;
-		$data['folders'][$index]['size_total'] = 0;
-		$data['folders'][$index]['files_total'] = 0;
+		$data['size_total'] = 0;
+		$data['files_total'] = 0;
 		if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
 			zz_list_limit_last(count($files));
 		}
@@ -293,13 +301,13 @@ function zz_maintenance_folders($page = []) {
 			$file = [];
 			$file['file'] = $filename;
 			$file['size'] = filesize($path);
-			$data['folders'][$index]['size_total'] += $file['size'];
+			$data['size_total'] += $file['size'];
 			$file['ext'] = is_dir($path) ? wrap_text('Folder') : mod_default_filetree_file_ext($filename);
 			$file['time'] = date('Y-m-d H:i:s', filemtime($path));
 			$file['files_in_dir'] = 0;
 			if (is_dir($path)) {
 				$file['dir'] = true;
-				$file['link'] = urlencode($_GET['folder']).'/'.urlencode($filename);
+				$file['link'] = urlencode(implode('/', $params)).'/'.urlencode($filename);
 				$subfolder_handle = opendir($path);
 				while ($subdir = readdir($subfolder_handle)) {
 					if (substr($subdir, 0, 1) === '.') continue;
@@ -307,34 +315,30 @@ function zz_maintenance_folders($page = []) {
 				}
 				closedir($subfolder_handle);
 			} else {
-				$file['link'] = urlencode($_GET['folder']).'&amp;file='.urlencode($filename);
+				$file['link'] = urlencode(implode('/', $params)).'&amp;file='.urlencode($filename);
 			}
 			if (!$file['files_in_dir']) $file['files_in_dir'] = NULL;
 			$file['title'] = zz_mark_search_string(str_replace('%', '%&shy;', wrap_html_escape(urldecode($filename))));
-			$data['folders'][$index]['files'][] = $file;
+			$data['files'][] = $file;
 			$i++;
-			$data['folders'][$index]['files_total']++;
+			$data['files_total']++;
 			if ($i == $zz_conf['int']['this_limit']) break;
 		}
 		closedir($folder_handle);
 
-		$data['folders'][$index]['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
-		$data['folders'][$index]['total_rows'] = count($files);
-		if (!empty($_GET['q'])) $data['folders'][$index]['total_rows'] = $total_files_q;
-		$data['folders'][$index]['total_records'] = zz_list_total_records($data['folders'][$index]['total_rows']);
-		$data['folders'][$index]['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['folders'][$index]['total_rows']);
+		$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
+		$data['total_rows'] = count($files);
+		if (!empty($_GET['q'])) $data['total_rows'] = $total_files_q;
+		$data['total_records'] = zz_list_total_records($data['total_rows']);
+		$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);
 		wrap_setting('zzform_search_form_always', true);
-		$searchform = zz_search_form([], '', $data['folders'][$index]['total_rows'], $data['folders'][$index]['total_rows']);
-		$data['folders'][$index]['searchform'] = $searchform['bottom'];
-	}
+		$searchform = zz_search_form([], '', $data['total_rows'], $data['total_rows']);
+		$data['searchform'] = $searchform['bottom'];
 
-	$page['text'] = wrap_template('filetree', $data);
-	if (!empty($_GET['folder']))
-		$page['text'] .= wrap_template('zzform-foot');
-	return $page;
+	return $data;
 }
 
-function zz_maintenance_folders_deleteall($my_folder, $file) {
+function mod_default_filetree_folders_deleteall($my_folder, $file) {
 	if (!empty($_GET['q'])) {
 		if (mf_default_searched($file)) {
 			$success = unlink($my_folder.'/'.$file);
