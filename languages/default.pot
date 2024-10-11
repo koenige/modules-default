@@ -568,7 +568,11 @@ msgstr ""
 msgid "Filetree"
 msgstr ""
 
-#: template/filetree-simple.template.txt
+#: zzbrick_request/filetree.inc.php
+msgid "You may not view or download this file"
+msgstr ""
+
+#: template/filetree-nav.template.txt
 msgid "TOP"
 msgstr ""
 

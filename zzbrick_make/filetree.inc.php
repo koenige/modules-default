@@ -63,6 +63,8 @@ function mod_default_make_filetree($params) {
  */
 function mod_default_filetree_file($params) {
 	$file['name'] = implode('/', $params);
+	if (in_array(basename($file['name']), wrap_setting('default_filetree_unviewable_files')))
+		wrap_quit(403, wrap_text('You may not view or download this file'));
 	$extension = wrap_file_extension(substr($file['name'], strrpos($file['name'], '%2F')));
 	if (strstr($extension, '%3F')) {
 		$extension = explode('%3F', $extension);
@@ -259,7 +261,8 @@ function mod_default_filetree_folders($params) {
 			$file['size'] = filesize($path);
 			$file['filecount'] = 1;
 			$file['deletable'] = true;
-			$file['link'] = urlencode(implode('/', $params)).'&amp;file='.urlencode($filename);
+			if (!in_array(basename($file['file']), wrap_setting('default_filetree_unviewable_files')))
+				$file['link'] = urlencode(implode('/', $params)).'&amp;file='.urlencode($filename);
 		}
 		$file['ext'] = is_dir($path) ? wrap_text('Folder') : mod_default_filetree_file_ext($filename);
 		$file['time'] = date('Y-m-d H:i:s', filemtime($path));

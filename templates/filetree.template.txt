@@ -45,7 +45,7 @@
 %%% condition if main__deletable_files %%%
 <td>%%% condition if deletable %%%<input type="checkbox" name="files[%%% item file %%%]">%%% condition endif %%%</td>
 %%% condition endif %%%
-<td class="block480a">%%% item dir <strong> %%%<a href="./?filetree=%%% item link %%%">%%% item title %%%</a>%%% item dir </strong> %%%</td>
+<td class="block480a">%%% item dir <strong> %%%%%% condition if link %%%<a href="./?filetree=%%% item link %%%">%%% condition endif %%%%%% item title %%%%%% condition if link %%%</a>%%% condition endif %%%%%% item dir </strong> %%%</td>
 <td class="block480">%%% item ext %%%</td>
 <td class="number"><abbr title="%%% item size %%% Bytes">%%% item size wrap_bytes %%%</abbr></td>
 <td class="number">%%% item filecount wrap_number %%%</td>
