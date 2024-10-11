@@ -75,6 +75,10 @@ function mod_default_filetree_file($params) {
 		case 'headers': $file['ext'] = 'txt'; break;
 		case '%2F': $file['ext'] = 'txt'; break; // display HTML sourcecode
 	}
+	if (in_array(basename($file['name']), wrap_setting('default_filetree_txt_files')))
+		$file['ext'] = 'txt';
+	$def = wrap_filetypes($extension);
+	if (!empty($def['filetree_filetype'])) $file['ext'] = $def['filetree_filetype'];
 	wrap_file_send($file);
 	exit;
 }
@@ -110,21 +114,24 @@ function mod_default_filetree_file_ext($filename) {
 function mod_default_filetree_dirsize($dir) {
 	$size = 0;
 	$files = 0;
+	$folders = 0;
 	$handle = opendir($dir);
 	if (!$handle) return [$size, $files];
 	while ($file = readdir($handle)) {
 		if ($file === '.' OR $file === '..') continue;
 		if (is_dir($dir.'/'.$file)) {
-			list ($mysize, $myfiles) = mod_default_filetree_dirsize($dir.'/'.$file);
+			list ($mysize, $myfiles, $myfolders) = mod_default_filetree_dirsize($dir.'/'.$file);
 			$size += $mysize;
 			$files += $myfiles;
+			$folders += $myfolders;
+			$folders++;
 		} else {
 			$size += filesize($dir.'/'.$file);
 			$files++;
 		}
 	}
 	closedir($handle);
-	return [$size, $files];
+	return [$size, $files, $folders];
 }
 
 /**
@@ -274,10 +281,10 @@ function mod_default_filetree_folders($params) {
 		$file = [];
 		$file['file'] = $filename;
 		if (is_dir($path)) {
-			list ($file['size'], $file['filecount']) = mod_default_filetree_dirsize($path);
+			list ($file['size'], $file['filecount'], $folders) = mod_default_filetree_dirsize($path);
 			$file['dir'] = true;
 			$file['link'] = ($params ? urlencode(implode('/', $params)).'/' : '').urlencode($filename);
-			$file['deletable'] = $file['filecount'] ? false : true;
+			$file['deletable'] = $folders ? false : ($file['filecount'] ? false : true);
 		} else {
 			$file['size'] = filesize($path);
 			$file['filecount'] = 1;
