@@ -651,61 +651,57 @@ msgstr ""
 msgid "Custom SQL query"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "Relation and Translation Tables"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "The referential integrity of the database is not checked automatically."
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "The fields in the database are not translated."
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "Current database"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "New database"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "Keep database"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "Change database"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "(Database is not on server, you have to select a new database.)"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "Translation"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txtp#database-tables
 msgctxt "default"
 msgid "Master"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgctxt "default"
 msgid "Detail"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maintenance.template.txt#files
 msgid "Temp and Backup Files"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
-msgid "Backup folder"
-msgstr ""
-
-#: zzbrick_request/maintenance.inc.php#files
+#: zzbrick_make/filetree.inc.php
 msgid "Backup of uploaded files is not active."
 msgstr ""
 
@@ -741,15 +737,15 @@ msgstr[] ""
 msgstr[] ""
 
 #: zzbrick_request/sso.inc.php
-#: zzbrick_request/maintenance.inc.php#files
+#: zzbrick_make/filetree.inc.php
 msgid "unknown"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/filetree.template.txt
 msgid "All Files"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/filetree.template.txt
 msgid "Folder is empty"
 msgstr ""
 
@@ -758,11 +754,11 @@ msgstr ""
 msgid "Delete all lines"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/filetree.template.txt
 msgid "Delete all files"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/filetree.template.txt
 msgid "Delete selected files"
 msgstr ""
 
@@ -854,19 +850,19 @@ msgstr ""
 msgid "Records"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/errorlogs.template.txt
 msgid "Error Logging"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: zzbrick_make/log.inc.php
 msgid "Logs"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "No logfile specified"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "This is not one of the used logfiles: %s"
 msgstr ""
 
@@ -875,27 +871,27 @@ msgstr ""
 msgid "Logfile does not exist: %s"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Date"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Last Date"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Level"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Message"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "User"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Frequency"
 msgstr ""
 
@@ -909,15 +905,15 @@ msgstr ""
 msgid "Delete selected lines"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Please choose one of the filters."
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Group"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Group entries"
 msgstr ""
 
