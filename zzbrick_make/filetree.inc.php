@@ -165,13 +165,38 @@ function mod_default_filetree_dirsize($dir) {
 	return [$size, $files];
 }
 
+/**
+ * delete files
+ *
+ * @return int no. of deleted files
+ */
+function mod_default_filetree_delete($my_folder) {
+	$deleted = 0;
+	if (!$my_folder) return $deleted;
+	if (empty($_POST['files'])) return $deleted;
+	foreach ($_POST['files'] as $file => $bool) {
+		if ($bool != 'on') continue;
+		$filename = sprintf('%s/%s', $my_folder, $file);
+		if (file_exists($filename)) {
+			if (is_dir($filename)) {
+				rmdir($filename);
+				$deleted++;
+			} else {
+				unlink($filename);
+				$deleted++;
+			}
+		}
+	}
+	return $deleted;
+}
+
 function zz_maintenance_folders($page = []) {
 	global $zz_conf;
 	
 	$data = [];
 	if ($page) {
-		$page['title'] .= ' '.wrap_text('Backup folder');
-		$page['breadcrumbs'][]['title'] = wrap_text('Backup folder');
+		$page['title'] .= ' '.wrap_text('Filetree');
+		$page['breadcrumbs'][]['title'] = wrap_text('Filetree');
 		$page['query_strings'] = [
 			'folder', 'file', 'q', 'scope', 'deleteall', 'limit'
 		];
@@ -191,6 +216,7 @@ function zz_maintenance_folders($page = []) {
 		'CACHE' => wrap_setting('cache_dir')
 	];
 	$data['folders'] = [];
+	$my_folder = NULL;
 	foreach ($dirs as $key => $dir) {
 		$exists = file_exists($dir) ? true : false;
 		$data['folders'][] = [
@@ -209,22 +235,7 @@ function zz_maintenance_folders($page = []) {
 	if (!empty($_GET['folder']) AND !empty($_GET['file']))
 		return mod_default_filetree_file([$my_folder, $_GET['file']]);
 
-	// delete
-	$deleted = 0;
-	if (!empty($_POST['files']) AND !empty($_GET['folder'])) {
-		foreach ($_POST['files'] as $file => $bool) {
-			if ($bool != 'on') continue;
-			if (file_exists($my_folder.'/'.$file)) {
-				if (is_dir($my_folder.'/'.$file)) {
-					rmdir($my_folder.'/'.$file);
-					$deleted++;
-				} else {
-					unlink($my_folder.'/'.$file);
-					$deleted++;
-				}
-			}
-		}
-	}
+	$deleted = mod_default_filetree_delete($my_folder);
 
 	foreach ($data['folders'] as $index => $folder) {
 		if (empty($_GET['folder'])) continue;
@@ -233,7 +244,11 @@ function zz_maintenance_folders($page = []) {
 		if ($folder['title'] !== $_GET['folder']) {
 			$data['folders'][$index]['subtitle'] = wrap_html_escape($_GET['folder']);
 		}
-
+		if (!is_dir($my_folder)) {
+			$data['folder_inexistent'] = true;
+			$page['status'] = 404;
+			continue;
+		}
 		$folder_handle = opendir($my_folder);
 
 		$files = [];
