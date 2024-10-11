@@ -25,6 +25,7 @@ function mod_default_make_maillog($params) {
 	$page['title'] = wrap_text('Mail Log');
 	$page['breadcrumbs'][]['title'] = wrap_text('Mail Log');
 	$page['query_strings'] = ['limit', 'mail_sent'];
+	$page['extra']['css'][] = 'default/maintenance.css';
 	$logfile = wrap_setting('log_dir').'/mail.log';
 	if (!file_exists($logfile)) {
 		$data = [
