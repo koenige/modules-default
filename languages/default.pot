@@ -726,9 +726,15 @@ msgstr ""
 msgid "Timestamp"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php#files
+#: zzbrick_make/filetree.inc.php
 msgid "Folder"
 msgstr ""
+
+#: zzbrick_make/filetree.inc.php
+msgid "%d file deleted"
+msgid_plural "%d files deleted"
+msgstr[] ""
+msgstr[] ""
 
 #: zzbrick_request/sso.inc.php
 #: zzbrick_request/maintenance.inc.php#files

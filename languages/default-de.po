@@ -773,9 +773,15 @@ msgstr "Größe"
 msgid "Timestamp"
 msgstr "Zeitstempel"
 
-#: zzbrick_request/maintenance.inc.php#files
+#: zzbrick_make/filetree.inc.php
 msgid "Folder"
 msgstr "Ordner"
+
+#: zzbrick_make/filetree.inc.php
+msgid "%d file deleted"
+msgid_plural "%d files deleted"
+msgstr[0] "%d Datei gelöscht"
+msgstr[1] "%d Dateien gelöscht"
 
 #: zzbrick_request/sso.inc.php zzbrick_request/maintenance.inc.php#files
 msgid "unknown"

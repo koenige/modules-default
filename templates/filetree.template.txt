@@ -12,7 +12,7 @@
 %%% include filetree-nav %%%
 
 %%% condition if deleted %%%
-<p class="error">%%% text "%s files deleted" deleted %%%</p>
+<p class="error">%%% text "%d files deleted" deleted %%%</p>
 %%% condition endif %%%
 %%% condition if deleteall_url %%%
 <form action="%%% item deleteall_url %%%" method="POST"><input type="submit" name="deleteall" value='Delete all files?%%% item deleteall_filter " Search: %s" %%%'></form>
@@ -24,20 +24,23 @@
 <th class="block480a">%%% text Filename %%%</th>
 <th class="block480">%%% text Filetype %%%</th>
 <th>%%% text Size %%%</th>
+<th>%%% text Files %%%</th>
 <th class="hidden480">%%% text Timestamp %%%</th>
 </thead>
 <tfoot><tr><td></td><td class="block480a">%%% text All Files %%%</td>
 <td class="hidden480">%%% item files_total %%%</td>
 <td class="number">%%% item size_total wrap_bytes %%%</td>
+<td class="number">%%% item filecount_total wrap_number %%%</td>
 <td></td></tr></tfoot>
 <tbody>
 %%% condition if files %%%
 %%% loop files %%%
 <tr class="%%% loopposition uneven un %%%even">
-<td>%%% condition unless files_in_dir %%%<input type="checkbox" name="files[%%% item file %%%]">%%% condition endif %%%</td>
+<td>%%% condition if deletable %%%<input type="checkbox" name="files[%%% item file %%%]">%%% condition endif %%%</td>
 <td class="block480a">%%% item dir <strong> %%%<a href="./?filetree=%%% item link %%%">%%% item title %%%</a>%%% item dir </strong> %%%</td>
 <td class="block480">%%% item ext %%%</td>
-<td class="number"><abbr title="%%% item size %%% Bytes">%%% item size wrap_bytes %%%</a></td>
+<td class="number"><abbr title="%%% item size %%% Bytes">%%% item size wrap_bytes %%%</abbr></td>
+<td class="number">%%% item filecount wrap_number %%%</td>
 <td class="hidden480">%%% item time %%%</td>
 </tr>
 %%% loop end %%%

@@ -21,7 +21,10 @@
  */
 function mod_default_make_filetree($params) {
 	$data = [];
-	$base = false;
+	if ($params AND str_starts_with($params[0], '/')) {
+		$params = [];
+		$page['status'] = 404;
+	}
 	if ($params) {
 		if (strstr($params[0], '/')) $params = explode('/', $params[0]);
 		$data['parts'] = [];
@@ -37,72 +40,18 @@ function mod_default_make_filetree($params) {
 			];
 		}
 		$data['parts'] = array_reverse($data['parts']);
-		$base = implode('/', $params).'/';
 	}
-	if ($params AND in_array(wrap_setting('cms_dir').'/'.$params[0], mod_default_filetree_special_folders())) {
-		$data = array_merge($data, mod_default_filetree_folders($params));
-		if (!empty($data['folder_inexistent']))
-			$page['status'] = 404;
-		$page['query_strings'] = [
-			'folder', 'file', 'q', 'scope', 'deleteall', 'limit'
-		];
-		$page['text'] = wrap_template('filetree', $data);
-	} else {
-		$data += mod_default_filetree_files(wrap_setting('cms_dir').'/'.$base, $base);
-		$page['text'] = wrap_template('filetree-simple', $data);
-	}
+	$data = array_merge($data, mod_default_filetree_folders($params));
+	if (!empty($data['folder_inexistent']))
+		$page['status'] = 404;
+	$page['text'] = wrap_template('filetree', $data);
 
+	$page['query_strings'] = [
+		'file', 'q', 'scope', 'deleteall', 'limit'
+	];
 	$page['title'] = wrap_text('Filetree');
 	$page['breadcrumbs'][]['title'] = wrap_text('Filetree');
 	return $page;
-}
-
-/**
- * show files in a directory, directory links to sub directories
- *
- * @param string $dir
- * @param string $base
- * @return string
- */
-function mod_default_filetree_files($dir, $base) {
-	if (!is_dir($dir)) return [];
-
-	$i = 0;
-	$data = [];
-	$data['total'] = 0;
-	$data['totalfiles'] = 0;
-	$files = [];
-
-	$handle = opendir($dir);
-	while ($file = readdir($handle)) {
-		if ($file === '.' OR $file === '..') continue;
-		$files[] = $file;
-	}
-	closedir($handle);
-	sort($files);
-
-	foreach ($files as $file) {
-		$i++;
-		$files_in_folder = 0;
-		$path = $dir.'/'.$file;
-		if (is_dir($path)) {
-			list ($size, $files_in_folder) = mod_default_filetree_dirsize($path);
-			$link = $base.$file;
-		} else {
-			$size = filesize($path);
-			$files_in_folder = 1;
-			$link = '';
-		}
-		$data['files'][] = [
-			'file' => $file,
-			'link' => $link,
-			'size' => $size,
-			'files_in_folder' => $files_in_folder
-		];
-		$data['total'] += $size;
-		$data['totalfiles'] += $files_in_folder;
-	}
-	return $data;
 }
 
 /**
@@ -249,7 +198,6 @@ function mod_default_filetree_folders($params) {
 	global $zz_conf;
 
 	$data = [];
-	if (!$params) return $data;
 	$my_folder = sprintf('%s/%s', wrap_setting('cms_dir'), implode('/', $params));
 	if (!is_dir($my_folder)) {
 		$data['folder_inexistent'] = true;
@@ -262,12 +210,11 @@ function mod_default_filetree_folders($params) {
 
 	$data['deleted'] = mod_default_filetree_delete($my_folder);
 
-	$folder_handle = opendir($my_folder);
-
 	$files = [];
 	$total_files_q = 0;
-	while ($file = readdir($folder_handle)) {
-		if (substr($file, 0, 1) === '.') continue;
+	$files_in_dir = scandir($my_folder);
+	foreach ($files_in_dir as $file) {
+		if (in_array($file, ['.', '..'])) continue;
 		if (!empty($_POST['deleteall'])) {
 			$data['deleted'] += mod_default_filetree_folders_deleteall($my_folder, $file);
 			continue;
@@ -286,6 +233,7 @@ function mod_default_filetree_folders($params) {
 	$i = 0;
 	$data['size_total'] = 0;
 	$data['files_total'] = 0;
+	$data['filecount_total'] = 0;
 	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
 		zz_list_limit_last(count($files));
 	}
@@ -300,31 +248,27 @@ function mod_default_filetree_folders($params) {
 		$path = $my_folder.'/'.$filename;
 		$file = [];
 		$file['file'] = $filename;
-		$file['size'] = filesize($path);
-		$data['size_total'] += $file['size'];
-		$file['ext'] = is_dir($path) ? wrap_text('Folder') : mod_default_filetree_file_ext($filename);
-		$file['time'] = date('Y-m-d H:i:s', filemtime($path));
-		$file['files_in_dir'] = 0;
 		if (is_dir($path)) {
+			list ($file['size'], $file['filecount']) = mod_default_filetree_dirsize($path);
 			$file['dir'] = true;
-			$file['link'] = urlencode(implode('/', $params)).'/'.urlencode($filename);
-			$subfolder_handle = opendir($path);
-			while ($subdir = readdir($subfolder_handle)) {
-				if (substr($subdir, 0, 1) === '.') continue;
-				$file['files_in_dir']++;
-			}
-			closedir($subfolder_handle);
+			$file['link'] = ($params ? urlencode(implode('/', $params)).'/' : '').urlencode($filename);
+			$file['deletable'] = $file['filecount'] ? false : true;
 		} else {
+			$file['size'] = filesize($path);
+			$file['filecount'] = 1;
+			$file['deletable'] = true;
 			$file['link'] = urlencode(implode('/', $params)).'&amp;file='.urlencode($filename);
 		}
-		if (!$file['files_in_dir']) $file['files_in_dir'] = NULL;
+		$file['ext'] = is_dir($path) ? wrap_text('Folder') : mod_default_filetree_file_ext($filename);
+		$file['time'] = date('Y-m-d H:i:s', filemtime($path));
 		$file['title'] = zz_mark_search_string(str_replace('%', '%&shy;', wrap_html_escape(urldecode($filename))));
 		$data['files'][] = $file;
 		$i++;
+		$data['size_total'] += $file['size'];
 		$data['files_total']++;
+		$data['filecount_total'] += $file['filecount'];
 		if ($i == $zz_conf['int']['this_limit']) break;
 	}
-	closedir($folder_handle);
 
 	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
 	$data['total_rows'] = count($files);
