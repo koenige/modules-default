@@ -34,3 +34,12 @@
 .maintenance .error, .maintenance .parse-error, .maintenance .strict-error,
 .maintenance .fatal-error
 					{ background: red; color: white; }
+
+/* maillog.template.txt */
+.mail-log .mail-body
+					{ overflow: auto; white-space: pre-wrap; margin: 0;
+					padding-top: .25em; overflow-wrap: break-word; max-width: 80ch; }
+.mail-log .mail-resend
+					{ text-align: right; }
+.mail-log .delete-all
+					{ float: right; }

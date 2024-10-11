@@ -1,16 +1,18 @@
 # default module
-# Template for maintenance script, logs
+# Template for mail log
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2019-2020 Gustaf Mossakowski
+# @copyright Copyright © 2019-2020, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
-<div id="zzform" class="maintenance">
-<h2>%%% text Mail log %%%</h2>
+<div id="zzform" class="maintenance mail-log">
+%%% condition if logfile_inexistent %%%
+<p>%%% text "Logfile does not exist: %s" logfile wrap_html_escape %%%</p>
 
+%%% condition else %%%
 %%% item message "<p class='error'>%s</p>" %%%
 
 <form action="" method="POST">
@@ -24,14 +26,14 @@
 <tr class="%%% loopposition uneven un %%%even">
 <td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item m_no %%%]" value="%%% item m_start %%%-%%% item m_end %%%" id="line%%% item m_no %%%"></label></td>
 <td>
-<pre style="overflow: auto; white-space: pre-wrap; margin: 0; padding-top: .25em; overflow-wrap: break-word; max-width: 80ch;">
+<pre class="mail-body">
 <strong>Date:</strong> %%% item Date wrap_html_escape %%% 
 <strong>To:</strong> %%% item To wrap_html_escape %%% 
 <strong>Subject:</strong> %%% item Subject wrap_html_escape %%% 
 <strong>From:</strong> %%% item From wrap_html_escape %%% 
 
 <div class="moretext">%%% item m_msg wrap_html_escape %%%</div></pre>
-<p style="text-align: right;"><input type="submit" value="%%% text Re-send mail %%%" name="resend[%%% item m_no %%%]"></p>
+<p class="mail-resend"><input type="submit" value="%%% text Resend mail %%%" name="resend[%%% item m_no %%%]"></p>
 </td>
 </tr>
 %%% loop end %%%
@@ -41,7 +43,7 @@
 </tbody></table>
 
 %%% condition if total_rows %%%
-<p style="float: right;"><a href="%%% item url_self %%%&amp;deleteall">%%% text Delete all lines %%%</a></p>
+<p class="delete-all"><a href="%%% item url_self %%%&amp;deleteall">%%% text Delete all lines %%%</a></p>
 <p><input type="submit" value="%%% text Delete selected lines %%%"> –
  <a onclick="zz_set_checkboxes(true); return false;" href="#">%%% text Select all %%%</a> |
  <a onclick="zz_set_checkboxes(false); return false;" href="#">%%% text Deselect all %%%</a></p>
@@ -50,4 +52,5 @@
 %%% item total_records %%%
 %%% item pages %%%
 %%% item searchform %%%
+%%% condition endif %%%
 </div>

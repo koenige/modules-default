@@ -24,7 +24,7 @@ msgstr ""
 
 #: configuration/access.cfg
 msgid "Adminer MySQL database administration"
-msgstr ""
+msgstr "Adminer MySQL-Datenbankverwaltung"
 
 #: configuration/access.cfg
 msgid "edit parameters of categories?"
@@ -623,6 +623,26 @@ msgstr "TOP"
 msgid "SQL query"
 msgstr "SQL-Abfrage"
 
+#: zzbrick_make/maillog.inc.php
+msgid "Mail Log"
+msgstr "E-Mail-Log"
+
+#: zzbrick_make/maillog.inc.php
+msgid "The mail was sent again."
+msgstr "Die E-Mail wurde erneut gesendet."
+
+#: zzbrick_make/maillog.inc.php
+msgid "Mail was not sent."
+msgstr "Die E-Mail wurde nicht gesendet."
+
+#: templates/maillog.template.txt
+msgid "Mail"
+msgstr "E-Mail"
+
+#: templates/maillog.template.txt
+msgid "Resend mail"
+msgstr "E-Mail erneut senden"
+
 #: templates/sqlquery.template.txt
 msgid "Result"
 msgstr "Ergebnis"
@@ -769,7 +789,7 @@ msgstr "Alle Dateien"
 msgid "Folder is empty"
 msgstr "Ordner ist leer"
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maillog.template.txt templates/maintenance-logs.template.txt
 msgid "Delete all lines"
 msgstr "Lösche alle Einträge"
 
@@ -885,9 +905,9 @@ msgstr "Keine Logdatei angegeben"
 msgid "This is not one of the used logfiles: %s"
 msgstr "Die Datei %s ist keine der benutzten Logdateien."
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maillog.template.txt templates/maintenance-logs.template.txt
 msgid "Logfile does not exist: %s"
-msgstr "Logdatei %s existiert nicht"
+msgstr "Logdatei %s existiert nicht."
 
 #: zzbrick_request/maintenance.inc.php#error-logfiles
 msgid "Date"
@@ -913,11 +933,11 @@ msgstr "Benutzer"
 msgid "Frequency"
 msgstr "Häufigkeit"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maillog.template.txt templates/maintenance-logs.template.txt
 msgid "No lines"
 msgstr "Keine Einträge"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maillog.template.txt templates/maintenance-logs.template.txt
 msgid "Delete selected lines"
 msgstr "Lösche ausgewählte Einträge"
 
