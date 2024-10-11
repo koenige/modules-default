@@ -225,7 +225,7 @@ function zz_maintenance_folders($page = []) {
 
 		list($data['folders'][$index]['deleteall_url'], $data['folders'][$index]['deleteall_filter']) = mf_default_delete_all_form();
 		if ($data['folders'][$index]['deleteall_url']) {
-			$page['text'] = wrap_template('maintenance-folders', $data);
+			$page['text'] = wrap_template('filetree', $data);
 			return $page;
 		}
 
@@ -298,7 +298,7 @@ function zz_maintenance_folders($page = []) {
 		$data['folders'][$index]['searchform'] = $searchform['bottom'];
 	}
 
-	$page['text'] = wrap_template('maintenance-folders', $data);
+	$page['text'] = wrap_template('filetree', $data);
 	if (!empty($_GET['folder']))
 		$page['text'] .= wrap_template('zzform-foot');
 	return $page;
