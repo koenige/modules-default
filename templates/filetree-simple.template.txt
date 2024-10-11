@@ -1,5 +1,5 @@
 # default module
-# Template for filetree
+# Template for filetree, simple view
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/default
@@ -9,20 +9,7 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
-%%% condition if parts %%%
-<p><a href="?filetree">%%% text TOP %%%</a> / 
-%%% loop parts %%%
-%%% item link "<a href='?filetree=%s'>" | "<strong>" %%%
-%%% item title %%%
-%%% item link "</a>" | "</strong>" %%%
-%%% loopposition first|middle " / " %%%
-%%% loop end %%%
-</p>
-
-%%% condition else %%%
-<p><strong>%%% text TOP %%%</strong></p>
-
-%%% condition endif %%%
+%%% include filetree-nav %%%
 
 <table class="data">
 <thead><tr>
