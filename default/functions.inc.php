@@ -147,7 +147,7 @@ function mf_default_log_line($line, $types = []) {
 	} else {
 		$out['link'] = false;
 	}
-	$out['error'] = implode(' ', $tokens);
+	$out['error'] = str_replace('<', '&lt;', implode(' ', $tokens));
 
 	$post = false;
 	if (substr($out['error'], 0, 11) === 'POST[json] ') {
