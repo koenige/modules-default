@@ -49,6 +49,7 @@ function mod_default_make_filetree($params) {
 	$page['query_strings'] = [
 		'file', 'q', 'scope', 'deleteall', 'limit'
 	];
+	$page['extra']['css'][] = 'default/maintenance.css';
 	$page['title'] = wrap_text('Filetree');
 	$page['breadcrumbs'][]['title'] = wrap_text('Filetree');
 	return $page;
@@ -234,6 +235,7 @@ function mod_default_filetree_folders($params) {
 	$data['size_total'] = 0;
 	$data['files_total'] = 0;
 	$data['filecount_total'] = 0;
+	$data['deletable_files'] = false;
 	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
 		zz_list_limit_last(count($files));
 	}
@@ -267,6 +269,7 @@ function mod_default_filetree_folders($params) {
 		$data['size_total'] += $file['size'];
 		$data['files_total']++;
 		$data['filecount_total'] += $file['filecount'];
+		if ($file['deletable']) $data['deletable_files'] = true;
 		if ($i == $zz_conf['int']['this_limit']) break;
 	}
 

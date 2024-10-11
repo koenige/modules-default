@@ -41,5 +41,8 @@
 					padding-top: .25em; overflow-wrap: break-word; max-width: 80ch; }
 .mail-log .mail-resend
 					{ text-align: right; }
-.mail-log .delete-all
+
+/* maillog.template.txt */
+/* filetree.template.txt */
+.maintenance .delete-all
 					{ float: right; }
