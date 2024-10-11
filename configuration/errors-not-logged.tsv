@@ -309,6 +309,7 @@ qs	string	msclkid
 404	end	/ads.txt
 404	end	/app-ads.txt
 404	end	/sellers.json
+404	end	/dsrdelete.json
 
 # authors behind website, @see http://humanstxt.org
 404	end	/humans.txt
