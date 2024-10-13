@@ -1,5 +1,5 @@
 # default module
-# Template for filetree, special folders
+# Template for special folders
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/default

@@ -81,9 +81,6 @@ function mod_default_maintenance($params) {
 		$data[$function] = $data[$function][0];
 	}
 	$data['mysql'] = mysqli_get_server_info(wrap_db_connection());
-	wrap_include('zzbrick_make/filetree', 'default');
-	$folders = mod_default_filetree_list_special();
-	$data['folders'] = $folders['text'];
 
 	$page['text'] = wrap_template('maintenance', $data);
 	$page['title'] .= ' '.wrap_text('Maintenance');

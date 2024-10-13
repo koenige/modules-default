@@ -87,7 +87,7 @@
 </ul>
 
 <h2>%%% text Temp and Backup Files %%%</h2>
-%%% item folders %%%
+%%% request specialfolders %%%
 
 <h2><a href="?filetree">%%% text Filetree %%%</a></h2>
 
