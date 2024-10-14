@@ -49,7 +49,7 @@ function mod_default_make_translationscheck($params) {
 		AND ISNULL(%s)';
 
 	$data = [];
-	$current_db = wrap_setting('local_access') ? wrap_setting('db_name_local') : wrap_setting('db_name');
+	$current_db = wrap_setting('db_name');
 	foreach ($fields as $database => $fields) {
 		if ($database !== $current_db) mysqli_select_db(wrap_db_connection(), $database);
 		$sql = 'SELECT DISTINCT TABLE_NAME, COLUMN_NAME
@@ -59,6 +59,10 @@ function mod_default_make_translationscheck($params) {
 		$sql = sprintf($sql, $database);
 		$primary_keys = wrap_db_fetch($sql, '_dummy_', 'key/value');
 		foreach ($fields as $field) {
+			if (!array_key_exists($field['table_name'], $primary_keys)) {
+				wrap_error(wrap_text('Checking translations: Table `%s` does not exist', ['values' => [$field['table_name']]]));
+				continue;
+			}
 			$sql = sprintf($sql_t
 				, $to_delete ? 'translation_id' : 'COUNT(*)'
 				, $field['field_type']
