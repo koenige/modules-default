@@ -697,63 +697,59 @@ msgstr "[Code %s]"
 msgid "Custom SQL query"
 msgstr "Eigene SQL-Abfrage"
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "Relation and Translation Tables"
 msgstr "Beziehungs- und Übersetzungstabellen"
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "The referential integrity of the database is not checked automatically."
 msgstr "Es wurde keine Tabelle für Datenbankbeziehungen angegeben."
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "The fields in the database are not translated."
 msgstr "Die Felder in der Datenbank werden nicht übersetzt."
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "Current database"
 msgstr "Aktuelle Datenbank"
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "New database"
 msgstr "Neue Datenbank"
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "Keep database"
 msgstr "Datenbank behalten"
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "Change database"
 msgstr "Datenbank wechseln"
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "(Database is not on server, you have to select a new database.)"
 msgstr ""
 "(Datenbank ist nicht auf dem Server, daher müssen Sie eine neue Datenbank "
 "auswählen)"
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgid "Translation"
 msgstr "Übersetzung"
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txtp#database-tables
 msgctxt "default"
 msgid "Master"
 msgstr "Haupt"
 
-#: zzbrick_request/maintenance.inc.php#database-tables
+#: templates/maintenance.template.txt#database-tables
 msgctxt "default"
 msgid "Detail"
 msgstr "Detail"
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/maintenance.template.txt#files
 msgid "Temp and Backup Files"
 msgstr "Temporäre und Backup-Dateien"
 
-#: zzbrick_request/maintenance.inc.php#files
-msgid "Backup folder"
-msgstr "Backupverzeichnis"
-
-#: zzbrick_request/maintenance.inc.php#files
+#: zzbrick_make/filetree.inc.php
 msgid "Backup of uploaded files is not active."
 msgstr "Backup von hochgeladenen Dateien ist nicht aktiv."
 
@@ -787,15 +783,15 @@ msgid_plural "%d files deleted"
 msgstr[0] "%d Datei gelöscht"
 msgstr[1] "%d Dateien gelöscht"
 
-#: zzbrick_request/sso.inc.php zzbrick_request/maintenance.inc.php#files
+#: zzbrick_request/sso.inc.php zzbrick_make/filetree.inc.php
 msgid "unknown"
 msgstr "unbekannt"
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/filetree.template.txt
 msgid "All Files"
 msgstr "Alle Dateien"
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/filetree.template.txt
 msgid "Folder is empty"
 msgstr "Ordner ist leer"
 
@@ -803,11 +799,11 @@ msgstr "Ordner ist leer"
 msgid "Delete all lines"
 msgstr "Lösche alle Einträge"
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/filetree.template.txt
 msgid "Delete all files"
 msgstr "Lösche alle Dateien"
 
-#: zzbrick_request/maintenance.inc.php#files
+#: templates/filetree.template.txt
 msgid "Delete selected files"
 msgstr "Lösche ausgewählte Dateien"
 
@@ -899,19 +895,19 @@ msgstr "Datenbank:"
 msgid "Records"
 msgstr "Einträge"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/errorlogs.template.txt
 msgid "Error Logging"
 msgstr "Fehlerlogs"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: zzbrick_make/log.inc.php
 msgid "Logs"
 msgstr "Logs"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "No logfile specified"
 msgstr "Keine Logdatei angegeben"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "This is not one of the used logfiles: %s"
 msgstr "Die Datei %s ist keine der benutzten Logdateien."
 
@@ -919,27 +915,27 @@ msgstr "Die Datei %s ist keine der benutzten Logdateien."
 msgid "Logfile does not exist: %s"
 msgstr "Logdatei %s existiert nicht."
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Date"
 msgstr "Datum"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Last Date"
 msgstr "Letztes Datum"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Level"
 msgstr "Ebene"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Message"
 msgstr "Meldung"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "User"
 msgstr "Benutzer"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Frequency"
 msgstr "Häufigkeit"
 
@@ -951,15 +947,15 @@ msgstr "Keine Einträge"
 msgid "Delete selected lines"
 msgstr "Lösche ausgewählte Einträge"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Please choose one of the filters."
 msgstr "Bitte wählen Sie aus den Filtern aus."
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Group"
 msgstr "Gruppierung"
 
-#: zzbrick_request/maintenance.inc.php#error-logfiles
+#: templates/maintenance-logs.template.txt
 msgid "Group entries"
 msgstr "Einträge gruppieren"
 
@@ -1606,6 +1602,10 @@ msgstr "Weiterer Text"
 #: zzbrick_make/dbupdate.inc.php
 msgid "Ignore"
 msgstr "Ignorieren"
+
+#: templates/dbupdate.template.txt
+msgid "Database Updates"
+msgstr "Datenbank-Aktualisierungen"
 
 #: zzbrick_make/jobmanager.inc.php
 msgid "The job should start later."

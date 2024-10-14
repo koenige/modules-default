@@ -1544,6 +1544,10 @@ msgstr ""
 msgid "Ignore"
 msgstr ""
 
+#: templates/dbupdate.template.txt
+msgid "Database Updates"
+msgstr ""
+
 #: zzbrick_make/jobmanager.inc.php
 msgid "The job should start later."
 msgstr ""
