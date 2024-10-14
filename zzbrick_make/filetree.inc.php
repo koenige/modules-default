@@ -169,7 +169,7 @@ function mod_default_filetree_delete($my_folder) {
  */
 function mod_default_filetree_deletable($filename) {
 	if (in_array(basename($filename), wrap_setting('default_filetree_undeletable_files'))) return false;
-	foreach (wrap_setting('default_filetree_undeletable_paths') as $path)
+	foreach (wrap_setting('default_filetree_undeletable_folders') as $path)
 		if (str_starts_with($filename, $path)) return false;
 	return true;
 }
@@ -184,7 +184,7 @@ function mod_default_filetree_folders($params) {
 	global $zz_conf;
 
 	$data = [];
-	$my_folder = sprintf('%s/%s', wrap_setting('cms_dir'), implode('/', $params));
+	$my_folder = sprintf('%s/%s', wrap_setting('default_filetree_dir'), implode('/', $params));
 	if (!is_dir($my_folder)) {
 		$data['folder_inexistent'] = true;
 		return $data;

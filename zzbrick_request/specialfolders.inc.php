@@ -38,7 +38,7 @@ function mod_default_specialfolders() {
 			'title' => $key,
 			'not_exists' => !$exists AND $dir ? true: false,
 			'dir' => realpath($dir),
-			'link' => str_starts_with($dir, wrap_setting('cms_dir')) ? substr($dir, strlen(wrap_setting('cms_dir')) + 1) : NULL
+			'link' => str_starts_with($dir, wrap_setting('default_filetree_dir')) ? substr($dir, strlen(wrap_setting('default_filetree_dir')) + 1) : NULL
 		];
 	}
 	$page['text'] = wrap_template('specialfolders', $data);
