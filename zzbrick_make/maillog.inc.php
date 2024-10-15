@@ -144,7 +144,6 @@ function mod_default_make_maillog($params) {
 		if (!$success) $data['message'] = wrap_text('Mail was not sent.');
 		return wrap_redirect_change(wrap_setting('request_uri').'&mail_sent=1');
 	}
-	$data['url_self'] = wrap_html_escape(wrap_setting('request_uri'));
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
 	$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);
 

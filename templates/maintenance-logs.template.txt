@@ -64,7 +64,7 @@
 </tbody></table>
 
 %%% condition if total_rows %%%
-<p style="float: right;"><a href="%%% item url_self %%%&amp;deleteall">%%% text Delete all lines %%%</a></p>
+<p style="float: right;"><a href="%%% setting request_uri %%%%%% page qsdelimiter %%%deleteall">%%% text Delete all lines %%%</a></p>
 <p><input type="submit" value="%%% text Delete selected lines %%%"> –
  <a onclick="zz_set_checkboxes(true); return false;" href="#">%%% text Select all %%%</a> |
  <a onclick="zz_set_checkboxes(false); return false;" href="#">%%% text Deselect all %%%</a></p>

@@ -259,7 +259,6 @@ function mod_default_filetree_folders($params) {
 		if ($i == $zz_conf['int']['this_limit']) break;
 	}
 
-	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
 	$data['total_rows'] = count($files);
 	if (!empty($_GET['q'])) $data['total_rows'] = $total_files_q;
 	$data['total_records'] = zz_list_total_records($data['total_rows']);

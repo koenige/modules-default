@@ -207,7 +207,6 @@ function mod_default_make_log($params) {
 	if ($data['group'])
 		$data['lines'] = mod_default_make_log_group($data['lines'], $group ?? []);
 
-	$data['url_self'] = wrap_html_escape($_SERVER['REQUEST_URI']);
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
 	$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);
 	wrap_setting('zzform_search_form_always', true);
