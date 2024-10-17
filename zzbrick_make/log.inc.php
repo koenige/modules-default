@@ -232,7 +232,7 @@ function mod_default_make_log_filter($filters) {
 	$filters_set = $my_query['filter'] ?? [];
 	$unwanted_keys = ['filter', 'limit'];
 	
-	$my_uri = zzform_url_remove($unwanted_keys, zzform_url('self+qs'));
+	$my_uri = zzform_url_remove($unwanted_keys, zzform_url('self+qs+qs_zzform'));
 
 	if (count($filters['type']) === 1) unset($filters['type']);
 	foreach ($filters as $index => $filter) {
