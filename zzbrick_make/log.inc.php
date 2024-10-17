@@ -164,11 +164,9 @@ function mod_default_make_log($params) {
 		unset($found);
 		$file->seek(PHP_INT_MAX);
 		$data['total_rows'] = $file->key();
-		// remove 'q' from query string
-		$zz_conf['int']['url']['qs_zzform'] = zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], ['q', 'scope']);
-		$request_uri = parse_url($_SERVER['REQUEST_URI']);
-		$request_uri['query'] = zz_edit_query_string($request_uri['query'], ['q', 'scope']);
-		$_SERVER['REQUEST_URI'] = http_build_query($request_uri);
+		// remove 'q' and 'scope' from query string
+		zzform_url_remove_qs(['q', 'scope']);
+		wrap_setting('request_uri', $zz_conf['int']['url']['full'].$zz_conf['int']['url']['qs_zzform']);
 	}
 
 	if ($zz_conf['int']['this_limit']) {
@@ -233,7 +231,7 @@ function mod_default_make_log_filter($filters) {
 	parse_str($zz_conf['int']['url']['qs_zzform'], $my_query);
 	$filters_set = (!empty($my_query['filter']) ? $my_query['filter'] : []);
 	$unwanted_keys = ['filter', 'limit'];
-	$my_uri = $zz_conf['int']['url']['self'].zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
+	$my_uri = $zz_conf['int']['url']['self'].zzform_url_remove_qs($unwanted_keys, 'qs_zzform', 'return');
 
 	if (count($filters['type']) === 1) unset($filters['type']);
 	foreach ($filters as $index => $filter) {

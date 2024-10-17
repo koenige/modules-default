@@ -54,8 +54,7 @@ function mf_default_delete_all_form() {
 	if (!empty($_POST['deleteall'])) return ['', ''];
 	if (!isset($_GET['deleteall'])) return ['', ''];
 
-	$unwanted_keys = ['deleteall'];
-	$qs = zz_edit_query_string($zz_conf['int']['url']['qs_zzform'], $unwanted_keys);
+	$qs = zzform_url_remove_qs(['deleteall'], 'qs_zzform', 'return');
 	$url = $zz_conf['int']['url']['full'].$qs;
 	return [$url, !empty($_GET['q']) ? wrap_html_escape($_GET['q']) : ''];
 }
