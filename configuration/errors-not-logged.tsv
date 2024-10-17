@@ -429,3 +429,6 @@ php	string_regex	mysqli_connect\(\):.+
 404	all	/utility/convert/data/config.inc.php
 404	all	/tt.php
 404	begin	/index.php?s=index/\think\template\driver\file/write
+
+# Looking for SeaCMS which had a vulnerability once, logo file
+404	end	/data/mark/mark.gif
