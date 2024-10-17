@@ -165,8 +165,8 @@ function mod_default_make_log($params) {
 		$file->seek(PHP_INT_MAX);
 		$data['total_rows'] = $file->key();
 		// remove 'q' and 'scope' from query string
-		zzform_url_remove_qs(['q', 'scope']);
-		wrap_setting('request_uri', $zz_conf['int']['url']['full'].$zz_conf['int']['url']['qs_zzform']);
+		zzform_url_remove(['q', 'scope']);
+		wrap_setting('request_uri', zzform_url('full+qs_zzform'));
 	}
 
 	if ($zz_conf['int']['this_limit']) {
@@ -225,27 +225,29 @@ function mod_default_make_log($params) {
  * @return string
  */
 function mod_default_make_log_filter($filters) {
-	global $zz_conf;
 	$f_output = [];
 
-	parse_str($zz_conf['int']['url']['qs_zzform'], $my_query);
-	$filters_set = (!empty($my_query['filter']) ? $my_query['filter'] : []);
+	$qs = parse_url(wrap_setting('request_uri'), PHP_URL_QUERY);
+	parse_str($qs, $my_query);
+	$filters_set = $my_query['filter'] ?? [];
 	$unwanted_keys = ['filter', 'limit'];
-	$my_uri = $zz_conf['int']['url']['self'].zzform_url_remove_qs($unwanted_keys, 'qs_zzform', 'return');
+	
+	$my_uri = zzform_url_remove($unwanted_keys, zzform_url('self+qs'));
 
 	if (count($filters['type']) === 1) unset($filters['type']);
 	foreach ($filters as $index => $filter) {
 		$f_output[$index]['title'] = wrap_text(ucfirst($index));
-		$my_link = $my_uri;
+		$filter_link = $my_uri;
 		if ($filters_set) {
 			foreach ($filters_set as $which => $filter_set) {
-				if ($which != $index) $my_link .= '&amp;filter['.$which.']='.urlencode($filter_set);
+				if ($which == $index) continue;
+				$filter_link = zzform_url_add(['filter' => [$which => $filter_set]], $filter_link);
 			}
 		}
 		foreach ($filter as $value) {
 			$is_selected = ((isset($_GET['filter'][$index]) 
 				AND $_GET['filter'][$index] == $value)) ? true : false;
-			$link = $my_link.'&amp;filter['.$index.']='.urlencode($value);
+			$link = zzform_url_add(['filter' => [$index => $value]], $filter_link);
 			$f_output[$index]['values'][] = [
 				'link' => !$is_selected ? $link : '',
 				'title' => wrap_text($value)
@@ -253,7 +255,7 @@ function mod_default_make_log_filter($filters) {
 		}
 		$f_output[$index]['values'][] = [
 			'all' => true,
-			'link' => isset($_GET['filter'][$index]) ? $my_link : ''
+			'link' => isset($_GET['filter'][$index]) ? $filter_link : ''
 		];
 	}
 	if (!$f_output) return '';

@@ -50,12 +50,11 @@ function mf_default_searched($string) {
  * @return array
  */
 function mf_default_delete_all_form() {
-	global $zz_conf;
 	if (!empty($_POST['deleteall'])) return ['', ''];
 	if (!isset($_GET['deleteall'])) return ['', ''];
 
-	$qs = zzform_url_remove_qs(['deleteall'], 'qs_zzform', 'return');
-	$url = $zz_conf['int']['url']['full'].$qs;
+	zzform_url_remove(['deleteall']);
+	$url = zzform_url('full+qs_zzform');
 	return [$url, !empty($_GET['q']) ? wrap_html_escape($_GET['q']) : ''];
 }
 
