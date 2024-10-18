@@ -42,7 +42,7 @@ function mod_default_maintenance($params) {
 	$page['extra']['css'][] = 'default/maintenance.css';
 	if (!empty($_GET) OR !empty($_POST)) {
 		$page['title'] .= ' <a href="./">'.wrap_text('Maintenance').'</a>:';
-		$page['breadcrumbs'][] = '<a href="./">'.wrap_text('Maintenance').'</a>';
+		$page['breadcrumbs'][] = ['title' => wrap_text('Maintenance'), 'url_path' => './'];
 	}
 
 	if (isset($_GET['phpinfo'])) {
