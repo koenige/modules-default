@@ -432,3 +432,12 @@ php	string_regex	mysqli_connect\(\):.+
 
 # Looking for SeaCMS which had a vulnerability once, logo file
 404	end	/data/mark/mark.gif
+
+# UEditor
+404	end	/public/plugins/Ueditor/dialogs/attachment/fileTypeImages/icon_psd.gif
+
+# emlog
+404	end	/content/plugins/tips/icon_tips.gif
+
+# UCMS
+404	end	/ucms/img/kindeditor/filemanager/images/go-up.gif	
