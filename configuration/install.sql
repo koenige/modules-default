@@ -1235,9 +1235,9 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'webpages', 'page_id', (SELECT DATABASE()), 'webpages_categories', 'page_category_id', 'page_id', 'delete');
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Menu', NULL, NULL, 'menu', '&alias=menu', NULL, NOW());
-INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Top Menu', 'Top', NULL, NULL, 'menu/top', '&alias=menu/top&main_menu=1', 1, NOW());
-INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Bottom Menu', 'Bottom', NULL, NULL, 'menu/bottom', '&alias=menu/bottom', 2, NOW());
-INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Internal Menu', 'Internal', NULL, NULL, 'menu/internal', '&alias=menu/internal&session_menu=1', 3, NOW());
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Top Menu', 'Top', NULL, /*_ID categories menu _*/, 'menu/top', '&alias=menu/top&main_menu=1', 1, NOW());
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Bottom Menu', 'Bottom', NULL, /*_ID categories menu _*/, 'menu/bottom', '&alias=menu/bottom', 2, NOW());
+INSERT INTO categories (`category`, `category_short`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Internal Menu', 'Internal', NULL, /*_ID categories menu _*/, 'menu/internal', '&alias=menu/internal&session_menu=1', 3, NOW());
 
 
 -- webpages_media --
