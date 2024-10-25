@@ -37,15 +37,14 @@
 </nav>
 </div>
 </header>
-<div id="text" role="main">
+<main>
 <p id="breadcrumbs">%%% text "You are here:" %%% %%% page breadcrumbs %%%</p>
 %%% page mainimage %%%
 %%% page text %%%
 
 %%% page gallery %%%
 %%% page docs %%%
-</div>
-
+</main>
 <footer>
 <div>
 <nav>
