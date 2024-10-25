@@ -23,13 +23,15 @@
 <body%%% page extra_body_attributes %%%>
 <div id="canvas">
 <header>
-<div id="head">
-<p><strong>%%% link / "My Site" %%%</strong></p>
+<div>
+<p><strong>%%% link start / %%%
+%%% setting project %%%
+%%% link end %%%</strong></p>
 %%% condition if page logout %%%
 <p id="logout"><a href="/logout/">Logout</a></p>
 %%% condition endif %%%
 <nav>
-<ul id="menu">
+<ul>
 %%% page nav %%% 
 </ul>
 </nav>
@@ -45,9 +47,9 @@
 </div>
 
 <footer>
-<div id="foot">
+<div>
 <nav>
-<ul id="menufoot">
+<ul>
 %%% page nav_bottom %%%
 </ul>
 </nav>
