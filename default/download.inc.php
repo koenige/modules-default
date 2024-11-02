@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -98,7 +98,7 @@ function mf_default_download_zip($files, $download_file) {
 	$file['name'] = $zip_file;
 	$file['cleanup'] = true; // delete file after downloading
 	$file['cleanup_dir'] = $temp_folder; // remove folder after downloading
-	return wrap_file_send($file);
+	return wrap_send_file($file);
 }
 
 /**

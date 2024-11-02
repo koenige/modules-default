@@ -81,7 +81,7 @@ function mod_default_proxy($params) {
 		$data = preg_replace_callback('~(https://|http://|//)([a-z-0-9.]+)~', 'mod_default_proxy_callback', $data);
 		wrap_send_text($data, $ext);
 	} elseif ($filename) {
-		wrap_file_send(['name' => $filename, 'ext' => $ext]);
+		wrap_send_file(['name' => $filename, 'ext' => $ext]);
 	} else {
 		wrap_send_ressource('memory', $data);
 	}

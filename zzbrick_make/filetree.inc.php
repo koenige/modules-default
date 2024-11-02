@@ -79,7 +79,7 @@ function mod_default_filetree_file($params) {
 		$file['ext'] = 'txt';
 	$def = wrap_filetypes($extension);
 	if (!empty($def['filetree_filetype'])) $file['ext'] = $def['filetree_filetype'];
-	wrap_file_send($file);
+	wrap_send_file($file);
 	exit;
 }
 
