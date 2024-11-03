@@ -18,8 +18,6 @@ function mod_default_make_jobmanager() {
 	// get count of jobs
 	$data = mod_default_make_jobmanager_count();
 
-	$data['jobqueue_path'] = wrap_path('default_tables', 'jobqueue');
-
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 		$page['text'] = wrap_template('jobmanager', $data);
 		return $page;
@@ -206,7 +204,7 @@ function mod_default_make_jobmanager_get($job_id = 0) {
  * @return bool
  */
 function mod_default_make_jobmanager_start($job) {
-	require_once wrap_setting('core').'/syndication.inc.php';
+	wrap_include('syndication', 'zzwrap');
 
 	// @todo jobs on different servers might collide here if they share the same URLs
 	// in that case, add hostname

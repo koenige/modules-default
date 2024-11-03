@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020, 2023 Gustaf Mossakowski
+# @copyright Copyright © 2020, 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div class="jobmanager" id="zzform">
@@ -44,8 +44,8 @@
 %%% condition endif %%%
 </ul>
 %%% condition endif %%%
-%%% condition if jobqueue_path %%%
-<h2><a href="%%% item jobqueue_path %%%">%%% text Background Job Queue %%%</a></h2>
+%%% condition if path default_tables %%%
+<h2><a href="%%% path default_tables jobqueue %%%">%%% text Background Job Queue %%%</a></h2>
 
 %%% condition endif %%%
 <h2>%%% text Start jobs manually %%%</h2>
