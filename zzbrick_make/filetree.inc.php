@@ -80,7 +80,6 @@ function mod_default_filetree_file($params) {
 	$def = wrap_filetypes($extension);
 	if (!empty($def['filetree_filetype'])) $file['ext'] = $def['filetree_filetype'];
 	wrap_send_file($file);
-	exit;
 }
 
 /**

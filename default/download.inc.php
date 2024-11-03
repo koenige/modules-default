@@ -98,7 +98,7 @@ function mf_default_download_zip($files, $download_file) {
 	$file['name'] = $zip_file;
 	$file['cleanup'] = true; // delete file after downloading
 	$file['cleanup_dir'] = $temp_folder; // remove folder after downloading
-	return wrap_send_file($file);
+	wrap_send_file($file);
 }
 
 /**

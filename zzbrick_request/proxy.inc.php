@@ -85,7 +85,6 @@ function mod_default_proxy($params) {
 	} else {
 		wrap_send_ressource('memory', $data);
 	}
-	exit;
 }
 
 /**

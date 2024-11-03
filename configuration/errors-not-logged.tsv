@@ -95,6 +95,7 @@
 404	all	/index.php/component/users/?view=registration
 404	all	/component/users/?view=registration
 404	end	/webconfig.txt.php
+404	end	/media/system/js/core.js
 
 # Magento
 404	end	/js/mage/cookies.js
@@ -102,6 +103,7 @@
 # DedeCMS
 404	all	/data/admin/ver.txt
 404	all	/templets/default/style/dedecms.css
+404	begin	/install/index.php.bak
 
 # ModX
 404	end	/connectors/system/phpthumb.php
