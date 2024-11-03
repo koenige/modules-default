@@ -64,6 +64,7 @@ function mod_default_make_jobmanager() {
 				$data[$result]++;
 			}
 		}
+		if (!empty($_POST['sequential'])) break;
 		usleep(wrap_setting('default_jobs_sleep_between_microseconds'));
 	}
 
@@ -408,6 +409,7 @@ function mod_default_make_jobmanager_check() {
 			, username, job_status, lock_hash, try_no, job_url
 			, CONCAT(SUBSTRING_INDEX(categories.path, "/", -1), "-", job_category_no) AS realm
 			, job_url AS job_url_raw
+			, postdata
 		FROM _jobqueue
 		LEFT JOIN categories
 			ON _jobqueue.job_category_id = categories.category_id
@@ -432,6 +434,10 @@ function mod_default_make_jobmanager_check() {
 	// wait for the job to start?	
 	foreach ($jobs as $job_id => $job) {
 		$jobs[$job_id]['job_url'] = wrap_job_url_base($job['job_url']);
+		if ($jobs[$job_id]['postdata'])
+			parse_str($jobs[$job_id]['postdata'], $jobs[$job_id]['postdata']);
+		else
+			$jobs[$job_id]['postdata'] = [];
 		if ($job['wait'] AND $job['job_status'] !== 'failed')
 			wrap_quit(403, wrap_text('The job should start later.'));
 	}
