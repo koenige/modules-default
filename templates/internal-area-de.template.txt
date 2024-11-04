@@ -1,0 +1,40 @@
+# default module
+# Template for internal area (German language)
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2024 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% section col1 %%%
+
+## Website
+
+* [Webseiten](%%% path default_tables webpages %%%) – Grundstruktur der Website
+* [Medien](%%% path media_internal %%%) – Alle Bilder, Dokumente und Videos
+
+## Hilfe
+
+* [Markdown](%%% path default_helptext markdown %%%) – zur Formatierung von Texten
+
+%%% section col2 %%%
+%%% rights admin %%%
+
+## Maschinenraum
+
+(Zugriff normalerweise nicht erforderlich)
+
+* [Umleitungen](%%% path default_tables redirects %%%) – falls sich die Adresse einer Webseite geändert hat.
+* [Kategorien](%%% path default_tables categories %%%)
+* [Wartung](%%% path default_maintenance %%%) – Verwaltung von Allem.
+* [Datenbank-Log](%%% path default_tables logging %%%)
+* [Tabellenbeziehungen](%%% path default_tables relations %%%)
+* [Logins](%%% path default_tables logins %%%) – Zugriff auf das Backend
+
+%%% rights - %%%
+
+## [Logout](%%% path default_logout %%%)
+
+%%% section - %%%

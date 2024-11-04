@@ -1202,11 +1202,11 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 
 INSERT INTO `webpages` (`page_id`, `title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `parameters`, `last_update`) VALUES
 (1,	'Website',	'Hello World',	'/',	'none',	1,	NULL,	'yes',	NULL,	NOW()),
-(2,	'Internal Area',	'## Website\r\n\r\n* [Web pages](/db/webpages)\r\n* [Media](/db/media)\r\n\r\n## Help\r\n\r\n* [Markdown (German)](/hilfe/markdown)\r\n\r\n## Machine Room\r\n\r\n(Access normally not necessary)\r\n\r\n* [Redirects](/db/redirects) – if a web address has changed.\r\n* [Maintenance](/db/maintenance) – administration of everything.\r\n* [Log of database changes](/db/logging)\r\n* [Table relations](/db/relations)\r\n* [Logins](/db/logins)\r\n\r\n## [Logout](/logout/)\r\n',	'/db',	'/',	2,	NULL,	'yes',	'&edit=admin',	NOW()),
+(2,	'Internal Area',	'%%% include internal-area %%%',	'/db',	'/',	2,	NULL,	'yes',	'&edit=admin',	NOW()),
 (3,	'Login',	'%%% request login %%%',	'/login',	'/',	0,	2,	'yes',	'&edit=admin',	NOW()),
 (4,	'Logout',	'%%% request logout %%%',	'/logout',	'/',	10,	2,	'yes',	'&edit=admin',	NOW()),
 (5,	'Tables',	'%%% tables * %%%',	'/db*',	'none',	1,	2,	'yes',	'&edit=admin',	NOW()),
-(6,	'Markdown-Hilfe',	'%%% request helptext markdown %%%',	'/hilfe/markdown',	'none',	9,	2,	'yes',	NULL,	NOW()),
+(6,	'Help',	'%%% request helptext * %%%',	'/help*',	'none',	9,	2,	'yes',	NULL,	NOW()),
 (7,	'Maintenance',	'%%% request maintenance %%%',	'/db/maintenance',	'/',	7,	2,	'yes',	'&edit=admin',	NOW()),
 (8,	'Adminer',	'%%% request adminer %%%',	'/db/adminer',	'/',	7,	2,	'yes',	'&edit=admin',	NOW()),
 (9,	'Website Settings',	'%%% forms settings-website %%%',	'/db/settings',	'none',	10,	2,	'yes',	'&edit=admin',	NOW()),
