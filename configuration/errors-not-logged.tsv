@@ -448,3 +448,6 @@ php	string_regex	mysqli_connect\(\):.+
 
 # Netsweepter
 404	end	/webadmin/auth/verification.php
+
+# Whatever
+404	end	/templates/default/images/loading.gif
