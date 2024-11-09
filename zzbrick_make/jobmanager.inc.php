@@ -223,8 +223,9 @@ function mod_default_make_jobmanager_start($job) {
 	// is an identical job already running?
 	$sql = 'SELECT COUNT(*) FROM _jobqueue
 	    WHERE job_url = "%s"
-	    AND job_status = "running"';
-	$sql = sprintf($sql, $job['job_url_raw']);
+	    AND job_status = "running"
+	    AND job_id != %d';
+	$sql = sprintf($sql, $job['job_url_raw'], $job['job_id']);
 	$running = wrap_db_fetch($sql, '', 'single value');
 	if ($running) {
 		wrap_unlock($lock_realm, 'delete');
