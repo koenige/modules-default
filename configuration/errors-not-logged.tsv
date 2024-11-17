@@ -83,6 +83,7 @@
 404	end	/uploadify/uploadify.php?folder=/
 404	begin	/wp-admin/admin-post.php?swp_debug=load_options&swp_url=
 404	end	/wp-json/wp/v2/users
+404	end	/wp-json/api/v2/user/register
 404	end	/license.txt
 404	request	*/wp-includes/*
 404	begin	/wp-content/plugins
@@ -451,3 +452,8 @@ php	string_regex	mysqli_connect\(\):.+
 
 # Whatever
 404	end	/templates/default/images/loading.gif
+404	end	/phpsso_server/statics/images/logo_1.gif
+404	end	/statics/images/admin_img/logo_1.gif
+
+# web.flow.opera.com
+404	end	/apple-touch-icon.png/apple-touch-icon.png
