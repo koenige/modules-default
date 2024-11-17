@@ -45,7 +45,7 @@
 </td>
 <td class="block480">
 %%% condition if keep %%%
-<input type="radio" checked="checked" name="db_set[%%% item category %%%][%%% item db %%%]" value="keep">
+<input type="radio" checked name="db_set[%%% item category %%%][%%% item db %%%]" value="keep">
  %%% text Keep database %%% / 
 <input type="radio" name="db_set[%%% item category %%%][%%% item db %%%]" value="change">
  %%% text Change database %%%
