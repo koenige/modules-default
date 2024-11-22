@@ -20,7 +20,7 @@
  * @return array $page
  */
 function mod_default_make_sqlquery($params) {
-	// zz_log_sql()
+	// zz_db_log()
 	wrap_include('database', 'zzform');
 	
 	wrap_setting('log_username_default', 'Maintenance robot 812');
@@ -38,7 +38,7 @@ function mod_default_make_sqlquery($params) {
 			if ($success AND in_array($statement, ['INSERT', 'UPDATE', 'DELETE']) AND !$success['rows']) {
 				$result['action_nothing'] = true;
 			} elseif ($success) {
-				zz_log_sql($sql, '', $success['id'] ?? NULL);
+				zz_db_log($sql, '', $success['id'] ?? NULL);
 				$result['action'] = wrap_text(ucfirst(strtolower($statement)));
 			} else {
 				$warnings = wrap_db_warnings('list');

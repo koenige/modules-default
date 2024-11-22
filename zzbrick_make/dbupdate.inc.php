@@ -166,7 +166,7 @@ function mod_default_make_dbupdate_update($line) {
 			// no changes were made, do not log
 			$log = false;
 		}
-		if ($log) zz_log_sql($line['query'], 'Maintenance robot 476');
+		if ($log) zz_db_log($line['query'], 'Maintenance robot 476');
 		mod_default_make_dbupdate_log($line, 'update');
 		wrap_redirect_change();
 	}
