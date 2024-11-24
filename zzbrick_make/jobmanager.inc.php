@@ -65,6 +65,7 @@ function mod_default_make_jobmanager() {
 			}
 		}
 		if (!empty($_POST['sequential'])) break;
+		if (!empty($_POST['single'])) break;
 		usleep(wrap_setting('default_jobs_sleep_between_microseconds'));
 	}
 
