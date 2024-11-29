@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2021, 2023 Gustaf Mossakowski
+# @copyright Copyright © 2021, 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <h2>%%% text Error Logging %%%</h2>
@@ -47,7 +47,7 @@
 	%%% loop logfiles %%%
 	<tr class="even">
 	<td class="level1 block480a">%%% text "Logfile for <strong>%s</strong>" title %%%</td>
-	<td class="block480"><strong>%%% condition if inside_log_dir %%%log folder%%% condition endif %%%<a href="?log=%%% item path rawurlencode %%%%%% condition if types %%%&amp;filter[type]=none%%% condition endif %%%">%%% condition if inside_log_dir %%%/%%% item log %%%%%% condition else %%%%%% item path %%%%%% condition endif %%%</a></strong> (%%% item filesize wrap_bytes %%%)</td>
+	<td class="block480"><strong>%%% condition if inside_log_dir %%%log folder%%% condition endif %%%<a href="?log=%%% item path rawurlencode %%%%%% condition if types %%%&amp;limit=last%%% condition endif %%%">%%% condition if inside_log_dir %%%/%%% item log %%%%%% condition else %%%%%% item path %%%%%% condition endif %%%</a></strong> (%%% item filesize wrap_bytes %%%)</td>
 	</tr>
 	%%% loop end %%%
 	<tr class="even">
