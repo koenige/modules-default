@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2010, 2014, 2017-2018, 2021-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2010, 2014, 2017-2018, 2021-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -17,7 +17,7 @@
 wrap_access_quit('default_logging');
 
 $zz['title'] = 'Logging';
-$zz['table'] = wrap_sql_table('zzform_logging');
+$zz['table'] = '/*_TABLE zzform_logging _*/';
 
 $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'log_id';
@@ -43,7 +43,7 @@ $zz['fields'][99]['type'] = 'display';
 $zz['fields'][99]['type_detail'] = 'timestamp';
 $zz['fields'][99]['class'] = 'block480';
 
-$zz['sql'] = 'SELECT * FROM '.wrap_sql_table('zzform_logging');
+$zz['sql'] = 'SELECT * FROM /*_TABLE zzform_logging _*/';
 $zz['sqlorder'] = ' ORDER BY log_id DESC';
 
 $zz['setting']['zzform_max_select'] = 200;

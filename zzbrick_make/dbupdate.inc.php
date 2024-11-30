@@ -139,8 +139,9 @@ function mod_default_make_dbupdate_check($line) {
 	}
 
 	// update already in logging table?
-	$sql = 'SELECT log_id FROM %s WHERE query = "%s" AND last_update > "%s"';
-	$sql = sprintf($sql, wrap_sql_table('zzform_logging'), wrap_db_escape($line['query']), $line['date']);
+	$sql = 'SELECT log_id FROM /*_TABLE zzform_logging _*/
+		WHERE query = "%s" AND last_update > "%s"';
+	$sql = sprintf($sql, wrap_db_escape($line['query']), $line['date']);
 	$record = wrap_db_fetch($sql);
 	if ($record) {
 		mod_default_make_dbupdate_log($line, 'exists');
