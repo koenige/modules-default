@@ -31,14 +31,16 @@ function mod_default_make_sqlquery($params) {
 		$statement = wrap_sql_statement($sql);
 
 		if (in_array($statement, [
-			'INSERT', 'UPDATE', 'DELETE', 'CREATE TABLE', 'ALTER TABLE', 'CREATE VIEW',
-			'ALTER VIEW', 'SET'
+			'INSERT INTO', 'UPDATE', 'DELETE FROM', 'CREATE TABLE', 'ALTER TABLE',
+			'CREATE VIEW', 'ALTER VIEW', 'SET'
 		])) {
 			$success = wrap_db_query($sql, 0);
-			if ($success AND in_array($statement, ['INSERT', 'UPDATE', 'DELETE']) AND !$success['rows']) {
+			if ($success AND in_array($statement, ['INSERT INTO', 'UPDATE', 'DELETE FROM']) AND !$success['rows']) {
 				$result['action_nothing'] = true;
 			} elseif ($success) {
 				zz_db_log($sql, '', $success['id'] ?? NULL);
+				if (in_array($statement, ['INSERT INTO', 'DELETE FROM']))
+					$statement = substr($statement, 0, strpos($statement, ' '));
 				$result['action'] = wrap_text(ucfirst(strtolower($statement)));
 			} else {
 				$warnings = wrap_db_warnings('list');
