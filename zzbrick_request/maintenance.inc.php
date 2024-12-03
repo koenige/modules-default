@@ -136,7 +136,7 @@ function zz_maintenance_tables() {
 					if (empty($_POST['db_set'][$area][$old])) continue;
 					if ($_POST['db_set'][$area][$old] != 'change') continue;
 					if ($area === 'translation') {
-						$table = wrap_sql_table('default_translationfields');
+						$table = '/*_TABLE default_translationfields _*/';
 						$field_name = 'db_name';
 					} else {
 						$table = wrap_sql_table('zzform_relations');
@@ -167,8 +167,7 @@ function zz_maintenance_tables() {
 
 	if (wrap_setting('translate_fields')) {
 	// Translations database	
-		$sql = 'SELECT DISTINCT db_name FROM %s';
-		$sql = sprintf($sql, wrap_sql_table('default_translationfields'));
+		$sql = 'SELECT DISTINCT db_name FROM /*_TABLE default_translationfields _*/';
 		$dbs['translation'] = wrap_db_fetch($sql, 'db_name', 'single value');
 	}
 	

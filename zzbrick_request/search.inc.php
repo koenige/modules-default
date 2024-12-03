@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -69,13 +69,12 @@ function mod_default_search_translations($q, $fields) {
 	foreach ($fields as $table => $definition) {
 		$sql = 'SELECT translationfield_id, table_name, field_name, field_type
 				, "%s" AS id_field_name
-			FROM %s
+			FROM /*_TABLE default_translationfields _*/
 			WHERE db_name = DATABASE()
 			AND table_name = "%s"
 			AND field_name IN ("%s")';
 		$sql = sprintf($sql
 			, $definition['id_field_name']
-			, wrap_sql_table('default_translationfields')
 			, $table
 			, implode('", "', $definition['fields'])
 		);

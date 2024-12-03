@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2013, 2018-2020, 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2013, 2018-2020, 2022-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -49,10 +49,10 @@ $zz_sub['fields'][2]['title'] = 'Translation field';
 $zz_sub['fields'][2]['field_name'] = 'translationfield_id';
 $zz_sub['fields'][2]['type'] = 'translation_key';
 $zz_sub['fields'][2]['type_detail'] = 'select';
-$zz_sub['fields'][2]['sql'] = sprintf('SELECT translationfield_id
+$zz_sub['fields'][2]['sql'] = 'SELECT translationfield_id
 		, CONCAT(db_name, " | ", table_name, " | ", field_name) AS translationfield
-	FROM %s
-	WHERE field_type = "varchar"', wrap_sql_table('default_translationfields'));
+	FROM /*_TABLE default_translationfields _*/
+	WHERE field_type = "varchar"';
 $zz_sub['fields'][2]['display_field'] = 'translationfield';
 $zz_sub['fields'][2]['exclude_from_search'] = true;
 $zz_sub['fields'][2]['if']['where']['hide_in_list'] = true;
@@ -97,7 +97,7 @@ $zz_sub['sql'] = 'SELECT /*_PREFIX_*/_translations_varchar.*
 		, CONCAT(iso_639_1, IFNULL(CONCAT("-", variation), "")) AS lang
 		, CONCAT(db_name, " | ", table_name, " | ", field_name) AS translationfield
 	FROM /*_PREFIX_*/_translations_varchar
-	LEFT JOIN '.wrap_sql_table('default_translationfields').'
+	LEFT JOIN /*_TABLE default_translationfields _*/
 		USING (translationfield_id)
 	LEFT JOIN /*_PREFIX_*/languages USING (language_id)
 	ORDER BY db_name, table_name, field_name, iso_639_1, variation
@@ -108,12 +108,9 @@ if (empty($_GET['order']) OR $_GET['order'] === 'translationfield')
 
 if (!empty($_GET['where']['translationfield_id'])) {
 	$sql = 'SELECT db_name, table_name, field_name, field_type
-		FROM %s
+		FROM /*_TABLE default_translationfields _*/
 		WHERE translationfield_id = %d';
-	$sql = sprintf($sql
-		, wrap_sql_table('default_translationfields')
-		, $_GET['where']['translationfield_id']
-	);
+	$sql = sprintf($sql, $_GET['where']['translationfield_id']);
 	$translation_field = wrap_db_fetch($sql);
 	if ($translation_field AND $translation_field['field_type'] === 'varchar') {
 		$sql = 'SELECT DISTINCT COLUMN_NAME

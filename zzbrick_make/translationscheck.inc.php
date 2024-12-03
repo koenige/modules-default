@@ -32,11 +32,10 @@ function mod_default_make_translationscheck($params) {
 	}
 	
 	$sql = 'SELECT translationfield_id, db_name, table_name, field_name, field_type
-		FROM %s
+		FROM /*_TABLE default_translationfields _*/
 		%s
 		ORDER BY translationfield_id';
 	$sql = sprintf($sql
-		, wrap_sql_table('default_translationfields')
 		, $to_delete ? sprintf('WHERE translationfield_id = %d', $to_delete) : ''
 	);
 	$fields = wrap_db_fetch($sql, ['db_name', 'translationfield_id']);

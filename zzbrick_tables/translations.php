@@ -17,7 +17,7 @@
 wrap_access_quit('default_translations');
 
 $zz['title'] = 'Translations';
-$zz['table'] = wrap_sql_table('default_translationfields');
+$zz['table'] = '/*_TABLE default_translationfields _*/';
 
 $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'translationfield_id';
@@ -55,10 +55,8 @@ $zz['fields'][9]['type'] = 'select';
 $zz['fields'][9]['enum_title'] = [wrap_text('text line'), wrap_text('memo')];
 $zz['fields'][9]['enum'] = ['varchar', 'text'];
 	
-$zz['sql'] = sprintf('SELECT * FROM %s
-	ORDER BY db_name, table_name, field_name'
-	, wrap_sql_table('default_translationfields')
-);
+$zz['sql'] = 'SELECT * FROM /*_TABLE default_translationfields _*/
+	ORDER BY db_name, table_name, field_name';
 
 $zz['setting']['zzform_max_select'] = 100;
 
