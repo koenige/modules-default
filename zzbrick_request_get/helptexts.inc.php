@@ -29,7 +29,7 @@ function mod_default_get_helptexts($params) {
 		if ($text['language'] !== wrap_setting('lang'))
 			$data[$index]['foreign_language'] = true;
 	}
-	if (!empty($params[0])) return $data[0];
+	if (!empty($params[0])) return $data[0] ?? [];
 	return $data;
 }
 
