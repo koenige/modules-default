@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020 Gustaf Mossakowski
+# @copyright Copyright © 2020, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% condition if module %%%
@@ -27,8 +27,8 @@
 <dt><label for="id_%%% item key %%%">%%% item key %%%<br><small>%%% item description %%%</small></label></dt>
 <dd>
 %%% condition if bool %%%
-<label for="id_%%% item key %%%-1"><input type="radio" value="true" name="%%% item id %%%" id="id_%%% item key %%%-1">&nbsp;true</label>
-<label for="id_%%% item key %%%-2"><input type="radio" value="false" name="%%% item id %%%" id="id_%%% item key %%%-2">&nbsp;false</label>
+%%% condition unless setting html_label_after_input %%%<label for="id_%%% item key %%%-1">%%% condition endif %%%<input type="radio" value="true" name="%%% item id %%%" id="id_%%% item key %%%-1">%%% condition if setting html_label_after_input %%%<label for="id_%%% item key %%%-1">%%% condition endif %%%&nbsp;true</label>
+%%% condition unless setting html_label_after_input %%%<label for="id_%%% item key %%%-2">%%% condition endif %%%<input type="radio" value="false" name="%%% item id %%%" id="id_%%% item key %%%-2">%%% condition if setting html_label_after_input %%%<label for="id_%%% item key %%%-2">%%% condition endif %%%&nbsp;false</label>
 %%% condition elseif mail %%%
 <input type="email" id="id_%%% item key %%%" value="%%% item default %%%" name="%%% item id %%%">
 %%% condition else %%%
