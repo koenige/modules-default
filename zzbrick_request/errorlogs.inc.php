@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -42,8 +42,8 @@ function mod_default_errorlogs() {
 			? filesize(wrap_setting('log_dir').'/mail.log') : 0;		
 	}
 	if (wrap_setting('zzform_upload_log')) {
-		$data['upload_log_filesize'] = file_exists(wrap_setting('log_dir').'/upload.log')
-			? filesize(wrap_setting('log_dir').'/upload.log') : 0;		
+		$data['upload_log_filesize'] = file_exists(wrap_setting('log_dir').'/zzform/upload.log')
+			? filesize(wrap_setting('log_dir').'/zzform/upload.log') : 0;		
 	}
 
 	$page['text'] = wrap_template('errorlogs', $data);
