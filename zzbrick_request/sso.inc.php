@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009-2010, 2017, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2009-2010, 2017, 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -95,11 +95,12 @@ function mod_default_sso($params) {
 		AND (strtolower($full_username) == strtolower($_SESSION['username']))) {
 		// User is already logged in
 		if (!$url) $url = '/';
-		return cms_login_redirect($url);
+		return wrap_auth_login_redirect($url);
 	}
 
 	// now we'll cross check username against user database
 	// if it's not in the user database, must be on one of the remote login servers
 	// user will be logged in (fill $_SESSION);
-	return cms_login(['Single Sign On', $via, $token, $username, $context]);
+	wrap_include('zzbrick_request/login', 'zzwrap');
+	return mod_zzwrap_login(['Single Sign On', $via, $token, $username, $context]);
 }
