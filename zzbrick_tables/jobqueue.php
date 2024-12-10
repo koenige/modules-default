@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015, 2019-2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2015, 2019-2021, 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -30,7 +30,6 @@ $zz['fields'][2]['display_field'] = 'category';
 $zz['fields'][2]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][2]['show_hierarchy_subtree'] = wrap_category_id('jobs');
 $zz['fields'][2]['default'] = wrap_category_id('jobs/background');
-$zz['fields'][2]['key_field_name'] = 'category_id';
 $zz['fields'][2]['list_append_next'] = true;
 
 $zz['fields'][14]['field_name'] = 'website_id';

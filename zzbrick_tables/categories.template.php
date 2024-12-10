@@ -31,7 +31,6 @@ $zz['fields'][3]['sql'] = 'SELECT category_id, category, main_category_id
 	FROM categories
 	ORDER BY sequence';
 $zz['fields'][3]['show_hierarchy'] = 'main_category_id';
-$zz['fields'][3]['id_field_name'] = 'category_id';
 $zz['fields'][3]['display_field'] = 'category';
 $zz['fields'][3]['hide_in_list'] = true;
 

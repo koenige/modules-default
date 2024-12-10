@@ -45,7 +45,6 @@ $zz['fields'][4]['field_name'] = 'main_category_id';
 $zz['fields'][4]['type'] = 'select';
 $zz['fields'][4]['sql'] = 'SELECT category_id, category, path, main_category_id 
 	FROM /*_PREFIX_*/categories ORDER BY sequence, category';
-$zz['fields'][4]['key_field_name'] = 'category_id';
 $zz['fields'][4]['display_field'] = 'main_category';
 $zz['fields'][4]['search'] = 'cat.category';
 $zz['fields'][4]['character_set'] = 'utf8';

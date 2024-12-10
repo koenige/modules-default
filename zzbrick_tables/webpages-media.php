@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2015, 2017-2020, 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2015, 2017-2020, 2022-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -68,7 +68,6 @@ $zz_sub['fields'][3]['sql'] = sprintf('SELECT /*_PREFIX_*/media.medium_id, folde
 	WHERE /*_PREFIX_*/media.filetype_id != %d
 	ORDER BY folders.title, /*_PREFIX_*/media.title', wrap_filetype_id('folder'));
 $zz_sub['fields'][3]['sql_character_set'] = ['utf8', 'utf8', 'utf8'];
-$zz_sub['fields'][3]['id_field_name'] = '/*_PREFIX_*/media.medium_id';
 $zz_sub['fields'][3]['display_field'] = 'image';
 $zz_sub['fields'][3]['group'] = 'folder';
 $zz_sub['fields'][3]['exclude_from_search'] = true;
