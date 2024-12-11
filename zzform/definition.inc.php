@@ -79,8 +79,6 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 		$zz['fields'][$no]['hide_in_list'] = $category['hide_in_list'] ?? false;
 		if (isset($category['min_records']))
 			$zz['fields'][$no]['min_records'] = intval($category['min_records']);
-		elseif ($zz['fields'][$no]['form_display'] === 'set')
-			$zz['fields'][$no]['min_records'] = 1;
 		if (isset($category['min_records_required']))
 			$zz['fields'][$no]['min_records_required'] = intval($category['min_records_required']);
 		if (isset($category['max_records']))
