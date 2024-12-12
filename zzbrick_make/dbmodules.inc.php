@@ -41,7 +41,7 @@ function mod_default_make_dbmodules($params) {
 	}
 	
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-		require_once wrap_setting('core').'/install.inc.php';
+		wrap_include('install', 'zzwrap');
 	 	if (!empty($_POST['install'])) {
 			$module = key($_POST['install']);
 			if (empty($data['modules'][$module]['install_date'])) {
