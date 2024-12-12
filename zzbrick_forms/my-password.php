@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015, 2018, 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2015, 2018, 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -52,7 +52,7 @@ $zz['access'] = 'edit_only';
 $zz['hooks']['after_update'] = 'mf_default_password_update';
 $zz['record']['no_timeframe'] = true;
 
-if (!empty($_GET['url']))
+if (!empty($_GET['url']) AND !is_array($_GET['url']))
 	$zz['record']['redirect']['successful_update'] = $_GET['url'];
 if (empty($_GET['referer']))
 	$zz['page']['referer'] = wrap_domain_path('login_entry');
