@@ -24,10 +24,12 @@ function mod_default_make_jobmanager() {
 	}
 	if (!empty($_POST['url']))
 		$job_id = mod_default_make_jobmanager_add($_POST);
+	wrap_job_debug('START JOBMANAGER job_id '.($job_id ?? ''), $_POST);
 
 	$time = time();
 	while ($time + wrap_setting('default_jobs_request_runtime_secs') > time()) {
 		$job = mod_default_make_jobmanager_get($job_id ?? 0);
+		wrap_job_debug('NEW JOB', $job);
 		$job_id = 0; // use job_id just for the first call
 		if (!$job) break;
 		
@@ -118,16 +120,17 @@ function mod_default_make_jobmanager_add($data) {
 		WHERE job_url = "%s"
 		AND website_id = %d
 		AND (ISNULL(wait_until) OR wait_until <= %s)
-		AND job_status IN ("not_started", "failed")';
+		AND job_status IN (%s"not_started", "failed")';
 	$sql = sprintf($sql
 		, $data['url']
 		, wrap_setting('website_id') ?? 1
 		, !empty($data['wait_until']) ? sprintf('"%s"', $data['wait_until']) : "NOW()"
+		, !empty($data['sequential']) ? '"running", ' : ''
 	);
 	$job_ids = wrap_db_fetch($sql, 'job_id', 'single value');
 	if ($job_ids) {
 		// prolong waiting period if new wait_until is given
-		if (!empty($data['wait_until']) AND count($job_ids) === 1) {
+		if (!empty($data['wait_until']) AND count($job_ids) === 1 AND empty($data['sequential'])) {
 			$sql = 'UPDATE _jobqueue
 				SET wait_until = "%s", try_no = try_no + %d
 				WHERE job_id = %d
@@ -139,7 +142,7 @@ function mod_default_make_jobmanager_add($data) {
 				, reset($job_ids)
 				, $data['wait_until']
 			);
-			$success = wrap_db_query($sql);
+			wrap_db_query($sql);
 		}
 		return reset($job_ids);
 	}
@@ -172,14 +175,14 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 	$sql = 'SELECT job_id, job_url, username, try_no
 			, (SELECT COUNT(*) FROM _jobqueue jq
 				WHERE jq.job_category_id = _jobqueue.job_category_id
-				AND job_status = "running"
+				AND job_status = "running" AND job_id != %d
 			) AS running_jobs
 			, SUBSTRING_INDEX(SUBSTRING_INDEX(parameters, "max_requests=", -1), "&", 1) AS max_request
 			, postdata
 		FROM _jobqueue
 		LEFT JOIN categories
 			ON _jobqueue.job_category_id = categories.category_id
-		WHERE job_status IN ("not_started", "failed")
+		WHERE job_status IN (%s"not_started", "failed")
 		AND (ISNULL(wait_until) OR wait_until <= NOW())
 		AND website_id = %d
 		%s
@@ -187,10 +190,14 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 		ORDER BY priority ASC, try_no ASC, created ASC
 		LIMIT 1';
 	$sql = sprintf($sql
+		, $job_id
+		, !empty($_POST['sequential']) ? '"running", ' : ''
 		, wrap_setting('website_id') ?? 1
 		, ($job_id ? sprintf('AND job_id = %d', $job_id) : '')
 	);
+	wrap_job_debug('JOB QUERY '.$sql);
 	$job = wrap_db_fetch($sql);
+	wrap_job_debug('JOB RESULT', $job);
 	if (!$job) return [];
 	$job['job_url_raw'] = $job['job_url'];
 	$job['job_url'] = wrap_job_url_base($job['job_url']);
@@ -207,6 +214,7 @@ function mod_default_make_jobmanager_get($job_id = 0) {
  */
 function mod_default_make_jobmanager_start($job) {
 	wrap_include('syndication', 'zzwrap');
+	wrap_job_debug('START NEW JOB', $job);
 
 	// @todo jobs on different servers might collide here if they share the same URLs
 	// in that case, add hostname
@@ -227,6 +235,7 @@ function mod_default_make_jobmanager_start($job) {
 	    AND job_status = "running"
 	    AND job_id != %d';
 	$sql = sprintf($sql, $job['job_url_raw'], $job['job_id']);
+	wrap_job_debug('CHECK NEW JOB '.$sql);
 	$running = wrap_db_fetch($sql, '', 'single value');
 	if ($running) {
 		wrap_unlock($lock_realm, 'delete');
@@ -245,6 +254,7 @@ function mod_default_make_jobmanager_start($job) {
 		, wrap_lock_hash()
 		, $job['job_id']
 	);
+	wrap_job_debug('STARTING NEW JOB '.$sql);
 	$success = wrap_db_query($sql, E_USER_NOTICE);
 	wrap_unlock($lock_realm, 'delete');
 	if ($success) return true;
