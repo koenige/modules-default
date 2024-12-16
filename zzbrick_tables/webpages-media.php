@@ -60,13 +60,13 @@ $zz_sub['fields'][5]['path']['extension_missing'] = [
 $zz_sub['fields'][3]['title'] = 'Medium';
 $zz_sub['fields'][3]['field_name'] = 'medium_id';
 $zz_sub['fields'][3]['type'] = 'select';
-$zz_sub['fields'][3]['sql'] = sprintf('SELECT /*_PREFIX_*/media.medium_id, folders.title AS folder
+$zz_sub['fields'][3]['sql'] = 'SELECT /*_PREFIX_*/media.medium_id, folders.title AS folder
 		, CONCAT("[", /*_PREFIX_*/media.medium_id, "] ", /*_PREFIX_*/media.title) AS image
 	FROM /*_PREFIX_*/media 
 	LEFT JOIN /*_PREFIX_*/media folders
 		ON /*_PREFIX_*/media.main_medium_id = folders.medium_id
-	WHERE /*_PREFIX_*/media.filetype_id != %d
-	ORDER BY folders.title, /*_PREFIX_*/media.title', wrap_filetype_id('folder'));
+	WHERE /*_PREFIX_*/media.filetype_id != /*_ID filetypes folder _*/
+	ORDER BY folders.title, /*_PREFIX_*/media.title';
 $zz_sub['fields'][3]['sql_character_set'] = ['utf8', 'utf8', 'utf8'];
 $zz_sub['fields'][3]['display_field'] = 'image';
 $zz_sub['fields'][3]['group'] = 'folder';
