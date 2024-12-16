@@ -52,6 +52,8 @@
 <td class="hidden480">%%% item time %%%</td>
 </tr>
 %%% loop end %%%
+%%% condition elseif no_access %%%
+<tr class="even"><td>&nbsp;</td><td colspan="4">– %%% text You have no access to this folder %%% –</td></tr>
 %%% condition else %%%
 <tr class="even"><td>&nbsp;</td><td colspan="4">– %%% text Folder is empty %%% –</td></tr>
 %%% condition endif %%%

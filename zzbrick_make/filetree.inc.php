@@ -44,6 +44,8 @@ function mod_default_make_filetree($params) {
 	$data = array_merge($data, mod_default_filetree_folders($params));
 	if (!empty($data['folder_inexistent']))
 		$page['status'] = 404;
+	elseif (!empty($data['no_access']))
+		$page['status'] = 403;
 	$page['text'] = wrap_template('filetree', $data);
 
 	$page['query_strings'] = [
@@ -115,7 +117,7 @@ function mod_default_filetree_dirsize($dir) {
 	$files = 0;
 	$folders = 0;
 	$handle = opendir($dir);
-	if (!$handle) return [$size, $files];
+	if (!$handle) return [NULL, NULL, NULL];
 	while ($file = readdir($handle)) {
 		if ($file === '.' OR $file === '..') continue;
 		if (is_dir($dir.'/'.$file)) {
@@ -188,6 +190,7 @@ function mod_default_filetree_folders($params) {
 		$data['folder_inexistent'] = true;
 		return $data;
 	}
+	$my_folder = rtrim($my_folder, '/');
 	zzform_list_init();
 
 	if (!empty($_GET['file']))
@@ -198,6 +201,11 @@ function mod_default_filetree_folders($params) {
 	$files = [];
 	$total_files_q = 0;
 	$files_in_dir = scandir($my_folder);
+	if ($files_in_dir === false) {
+		if (!$data['deleted']) $data['deleted'] = NULL;
+		$data['no_access'] = true;
+		return $data;
+	}
 	foreach ($files_in_dir as $file) {
 		if (in_array($file, ['.', '..'])) continue;
 		if (!empty($_POST['deleteall'])) {
@@ -237,8 +245,12 @@ function mod_default_filetree_folders($params) {
 		if (is_dir($path)) {
 			list ($file['size'], $file['filecount'], $folders) = mod_default_filetree_dirsize($path);
 			$file['dir'] = true;
-			$file['link'] = ($params ? urlencode(implode('/', $params)).'/' : '').urlencode($filename);
-			$file['deletable'] = $folders ? false : ($file['filecount'] ? false : true);
+			if (!is_null($file['size'])) {
+				$file['link'] = ($params ? urlencode(implode('/', $params)).'/' : '').urlencode($filename);
+				$file['deletable'] = $folders ? false : ($file['filecount'] ? false : true);
+			} else {
+				$file['deletable'] = false;
+			}
 		} else {
 			$file['size'] = filesize($path);
 			$file['filecount'] = 1;

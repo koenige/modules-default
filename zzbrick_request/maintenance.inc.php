@@ -55,6 +55,7 @@ function mod_default_maintenance($params) {
 		if (isset($newpage['content_type']) AND $newpage['content_type'] !== 'html') return $newpage;
 		$page['title'] .= ' '.$newpage['title'];
 		$page['text'] = $newpage['text'];
+		$page['status'] = $newpage['status'];
 		$page['extra'] = array_merge_recursive($page['extra'], $newpage['extra'] ?? []);
 		$page['breadcrumbs'] = array_merge($page['breadcrumbs'], $newpage['breadcrumbs']);
 		if (!empty($newpage['query_strings']))

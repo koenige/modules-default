@@ -572,6 +572,10 @@ msgstr ""
 msgid "You may not view or download this file"
 msgstr ""
 
+#: template/filetree.template.txt
+msgid "You have no access to this folder"
+msgstr ""
+
 #: template/filetree-nav.template.txt
 msgid "TOP"
 msgstr ""
