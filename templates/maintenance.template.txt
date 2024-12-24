@@ -13,77 +13,77 @@
 <h2><a href="?dbmodules">%%% text Modules %%%</a></h2>
 
 <h2>%%% text Relation and Translation Tables %%%</h2>
-%%% condition unless setting zzform_check_referential_integrity %%%
+%%% unless setting zzform_check_referential_integrity %%%
 <p>%%% text The referential integrity of the database is not checked automatically. %%%</p>
-%%% condition endif %%%
-%%% condition unless setting translate_fields %%%
+%%% endif %%%
+%%% unless setting translate_fields %%%
 <p>%%% text The fields in the database are not translated. %%%</p>
-%%% condition endif %%%
-%%% condition if setting zzform_check_referential_integrity | setting translate_fields %%%
-%%% condition if database_changeable %%%
+%%% endif %%%
+%%% if setting zzform_check_referential_integrity | setting translate_fields %%%
+%%% if database_changeable %%%
 <form action="" method="POST">
-%%% condition endif %%%
+%%% endif %%%
 <table class="data"><thead><tr>
 <th>%%% text Type %%%</th>
 <th class="block480a">%%% text Current database %%%</th>
-%%% condition if database_changeable %%%
+%%% if database_changeable %%%
 <th class="block480a">%%% text New database %%%</th>
 <th class="editbutton block480">%%% text Action %%%</th>
-%%% condition endif %%%
+%%% endif %%%
 </thead><tbody>
 %%% loop tables %%%
 <tr class="%%% loopposition uneven "un" %%%even">
 <td>%%% item title %%%</td>
 <td class="block480a">%%% item db %%%</td>
-%%% condition if databases %%%
+%%% if databases %%%
 <td class="block480a">
 <select name="db_value[%%% item category %%%][%%% item db %%%]">
 %%% loop databases %%%
-<option value="%%% item db %%%"%%% condition unless keep %%%%%% item prefered " selected" %%%%%% condition endif %%%>%%% item db %%%</option>
+<option value="%%% item db %%%"%%% unless keep %%%%%% item prefered " selected" %%%%%% endif %%%>%%% item db %%%</option>
 %%% loop end %%%
 </select>
 </td>
 <td class="block480">
-%%% condition if keep %%%
+%%% if keep %%%
 <input type="radio" checked name="db_set[%%% item category %%%][%%% item db %%%]" value="keep">
  %%% text Keep database %%% / 
 <input type="radio" name="db_set[%%% item category %%%][%%% item db %%%]" value="change">
  %%% text Change database %%%
-%%% condition else %%%
+%%% else %%%
 %%% text (Database is not on server, you have to select a new database.) %%%
 <input type="hidden" name="db_set[%%% item category %%%][%%% item db %%%]" value="change">
-%%% condition endif %%%
+%%% endif %%%
 </td>
-%%% condition endif %%%
+%%% endif %%%
 </tr>
 %%% loop end %%%
 </tbody></table>
-%%% condition if database_changeable %%%
+%%% if database_changeable %%%
 <input type="submit">
 </form>
-%%% condition endif %%%
-%%% condition if setting zzform_check_referential_integrity %%%
+%%% endif %%%
+%%% if setting zzform_check_referential_integrity %%%
 <p><a href="?integritycheck">%%% text Check relational integrity %%%</a></p>
-%%% condition endif %%%
-%%% condition if setting translate_fields %%%
+%%% endif %%%
+%%% if setting translate_fields %%%
 <p><a href="?translationscheck">%%% text Check Translations %%%</a></p>
-%%% condition endif %%%
-%%% condition endif %%%
+%%% endif %%%
+%%% endif %%%
 
 %%% request errorlogs %%%
 
 <h2>%%% text PHP & Server %%%</h2>
 <ul>
 <li><a href="?phpinfo">PHP %%% item php_version %%%</a> – %%% text Show PHP info on server %%%</li>
-%%% condition if mysql %%%<li><a href="?toolinfo=mysql">MySQL %%% item mysql wrap_html_escape %%%</a></li>
-%%% condition if convert %%%<li><a href="?toolinfo=convert">%%% item convert wrap_html_escape %%%</a></li>
-%%% condition elseif setting zzform_upload_tools_identify %%%<li class="error">%%% text ImageMagick not found. %%%</li>%%% condition endif %%%
-%%% condition if gs %%%<li><a href="?toolinfo=gs">%%% item gs wrap_html_escape %%%</a></li>
-%%% condition elseif setting zzform_upload_tools_gs %%%<li class="error">%%% text GhostScript not found. %%%</li>%%% condition endif %%%
-%%% condition if exiftool %%%<li><a href="?toolinfo=exiftool">%%% item exiftool wrap_html_escape %%%</a></li>
-%%% condition elseif zzform_upload_tools_exiftool %%%<li class="error">%%% text ExifTool not found. %%%</li>%%% condition endif %%%
-%%% condition if file %%%<li><a href="?toolinfo=file">%%% item file wrap_html_escape %%%</a></li>
-%%% condition elseif zzform_upload_tools_file %%%<li class="error">%%% text Unix file not found. %%%</li>%%% condition endif %%%
+%%% if mysql %%%<li><a href="?toolinfo=mysql">MySQL %%% item mysql wrap_html_escape %%%</a></li>
+%%% if convert %%%<li><a href="?toolinfo=convert">%%% item convert wrap_html_escape %%%</a></li>
+%%% elseif setting zzform_upload_tools_identify %%%<li class="error">%%% text ImageMagick not found. %%%</li>%%% endif %%%
+%%% if gs %%%<li><a href="?toolinfo=gs">%%% item gs wrap_html_escape %%%</a></li>
+%%% elseif setting zzform_upload_tools_gs %%%<li class="error">%%% text GhostScript not found. %%%</li>%%% endif %%%
+%%% if exiftool %%%<li><a href="?toolinfo=exiftool">%%% item exiftool wrap_html_escape %%%</a></li>
+%%% elseif zzform_upload_tools_exiftool %%%<li class="error">%%% text ExifTool not found. %%%</li>%%% endif %%%
+%%% if file %%%<li><a href="?toolinfo=file">%%% item file wrap_html_escape %%%</a></li>
+%%% elseif zzform_upload_tools_file %%%<li class="error">%%% text Unix file not found. %%%</li>%%% endif %%%
 </ul>
 
 <h2>%%% text Temp and Backup Files %%%</h2>
@@ -91,9 +91,9 @@
 
 <h2><a href="?filetree">%%% text Filetree %%%</a></h2>
 
-%%% condition if setting zzform_logging %%%
+%%% if setting zzform_logging %%%
 %%% include maintenance-logging %%%
-%%% condition endif %%%
+%%% endif %%%
 
 <h2><a href="?dbupdate#current">%%% text Database Updates %%%</a></h2>
 

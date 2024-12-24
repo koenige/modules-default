@@ -10,25 +10,25 @@
 #
 <div id="zzform" class="maintenance">
 <pre style="font-size: 1.1em; white-space: pre-wrap;"><code>%%% item sql %%%</code></pre>
-%%% condition if not_supported %%%
+%%% if not_supported %%%
 %%% text "Sorry, %s is not yet supported" token %%%
-%%% condition elseif change %%%
+%%% elseif change %%%
 
 <h2>%%% text Result %%%</h2>
-%%% condition if action_nothing %%%
+%%% if action_nothing %%%
 <p>%%% text No changes were made to the database. %%%</p>
 
-%%% condition elseif action %%%
-<p>%%% text "%s was successful" action %%%%%% condition if rows %%%: 
+%%% elseif action %%%
+<p>%%% text "%s was successful" action %%%%%% if rows %%%: 
 %%% text "%d rows affected" rows %%%
-%%% item id_value " (ID: %s)" %%%%%% condition endif %%%</p>
+%%% item id_value " (ID: %s)" %%%%%% endif %%%</p>
 
-%%% condition else %%%
+%%% else %%%
 <div class="error">%%% text Database says: %%%
 %%% item error_db_msg %%% %%% text "[Code %s]" error_db_errno %%%
 </div>
-%%% condition endif %%%
-%%% condition endif %%%
+%%% endif %%%
+%%% endif %%%
 
 %%% include sqlquery-form %%%
 </div>

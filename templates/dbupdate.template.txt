@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020 Gustaf Mossakowski
+# @copyright Copyright © 2020, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -19,17 +19,17 @@
 </thead>
 <tbody>
 %%% loop start %%%
-<tr %%% condition if current %%%id="current" %%% condition endif %%%class="%%% loopposition uneven un %%%even%%% condition if exists %%% exists%%% condition elseif current %%% current_record%%% condition endif %%%">
+<tr %%% if current %%%id="current" %%% endif %%%class="%%% loopposition uneven un %%%even%%% if exists %%% exists%%% elseif current %%% current_record%%% endif %%%">
 <td>%%% item date %%%</td>
 <td>%%% item module %%%</td>
 <td>%%% item query %%%
-%%% condition if current %%%
+%%% if current %%%
 <p>
 <input type="hidden" name="index" value="%%% item index %%%">
 <input type="submit" name="update" value="%%% text Update %%%">
 <input type="submit" name="ignore" value="%%% text Ignore %%%">
 </p>
-%%% condition endif %%%
+%%% endif %%%
 </td>
 </tr>
 %%% loop end %%%

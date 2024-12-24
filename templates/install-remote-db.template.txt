@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020-2021 Gustaf Mossakowski
+# @copyright Copyright © 2020-2021, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <h1>Installation of Zugzwang Project CMS</h1>
@@ -13,9 +13,9 @@
 <h2>Step 5 – Remote database connection data</h2>
 <p>Finally, we need the database connection data on the server.</p>
 <form method="POST" action="">
-%%% condition if error %%%
+%%% if error %%%
 <p class="error">%%% item error %%%</p>
-%%% condition endif %%%
+%%% endif %%%
 <p><label>Database name:
 <input type="text" name="db_name">
 </label></p>

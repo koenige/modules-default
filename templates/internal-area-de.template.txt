@@ -37,8 +37,8 @@
 
 ## [Logout](%%% path default_logout %%%)
 
-%%% condition if path change_password %%%
+%%% if path change_password %%%
 * [Passwort ändern](%%% path change_password %%%)
-%%% condition endif %%%
+%%% endif %%%
 
 %%% section - %%%

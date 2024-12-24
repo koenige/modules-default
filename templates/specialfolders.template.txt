@@ -9,9 +9,9 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% loop folders %%%
-<h3>%%% condition unless not_exists %%%%%% condition if link %%%<a href="?filetree=%%% item link %%%">%%% condition endif %%%%%% condition endif %%%%%% item title %%%/%%% condition unless not_exists %%%%%% condition if link %%%</a>%%% condition endif %%%%%% condition endif %%%
+<h3>%%% unless not_exists %%%%%% if link %%%<a href="?filetree=%%% item link %%%">%%% endif %%%%%% endif %%%%%% item title %%%/%%% unless not_exists %%%%%% if link %%%</a>%%% endif %%%%%% endif %%%
 <small style="font-weight: normal;"> = %%% item dir %%%
-%%% condition if not_exists %%%
+%%% if not_exists %%%
 <span class="error"> %%% text – but this directory does not exist. %%%</span>
-%%% condition endif %%%</small></h3>
+%%% endif %%%</small></h3>
 %%% loop end %%%

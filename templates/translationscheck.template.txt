@@ -5,16 +5,16 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2022 Gustaf Mossakowski
+# @copyright Copyright © 2022, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
 
 <h2>%%% text Translations without a corresponding record %%%</h2>
 
-%%% condition if deleted %%%
+%%% if deleted %%%
 <p><strong>%%% text "%s records were deleted." deleted %%%</strong></p>
-%%% condition endif %%%
+%%% endif %%%
 
 <form action="" method="POST">
 <table class="data">
@@ -35,10 +35,10 @@
 <tr class="%%% loopposition uneven un %%%even">
 	<td class="number">%%% item translationfield_id %%%</td>
 	<td>%%% item table_name %%%</td>
-	<td>%%% condition if path %%%<a href="%%% item path %%%?where[translationfield_id]=%%% item translationfield_id %%%&referer=%%% setting request_uri %%%">%%% condition endif %%%%%% item field_name %%%%%% condition if path %%%</a>%%% condition endif %%%</td>
+	<td>%%% if path %%%<a href="%%% item path %%%?where[translationfield_id]=%%% item translationfield_id %%%&referer=%%% setting request_uri %%%">%%% endif %%%%%% item field_name %%%%%% if path %%%</a>%%% endif %%%</td>
 	<td>%%% item field_type %%%</td>
-	<td class="number">%%% condition if records %%%%%% item records %%%%%% condition endif %%%</td>
-	<td class="number">%%% condition if records %%%<input type="submit" value="%%% text Delete %%%" name="field_id_%%% item translationfield_id %%%">%%% condition endif %%%</td>
+	<td class="number">%%% if records %%%%%% item records %%%%%% endif %%%</td>
+	<td class="number">%%% if records %%%<input type="submit" value="%%% text Delete %%%" name="field_id_%%% item translationfield_id %%%">%%% endif %%%</td>
 </tr>
 %%% loop end %%%
 </tbody>

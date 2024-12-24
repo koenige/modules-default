@@ -10,16 +10,16 @@
 #
 <h3>%%% text Links to other data %%%</h3>
 
-%%% condition if relations %%%
+%%% if relations %%%
 <ul>
 %%% loop relations %%%
 %%% loop records %%%
-<li>%%% condition if form %%%<a href="%%% item form %%%?edit=%%% item record_id %%%&amp;nolist&amp;referer=%%% setting request_uri %%%">%%% condition endif %%%%%% item title %%% (%%% text ID %%% %%% item record_id %%%)%%% condition if form %%%</a>%%% condition endif %%%</li>
+<li>%%% if form %%%<a href="%%% item form %%%?edit=%%% item record_id %%%&amp;nolist&amp;referer=%%% setting request_uri %%%">%%% endif %%%%%% item title %%% (%%% text ID %%% %%% item record_id %%%)%%% if form %%%</a>%%% endif %%%</li>
 %%% loop end %%%
 %%% loop end %%%
 </ul>
 
-%%% condition else %%%
+%%% else %%%
 <p>%%% text This entry is not linked to any other data. %%%</p>
 
-%%% condition endif %%%
+%%% endif %%%

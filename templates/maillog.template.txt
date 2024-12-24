@@ -9,10 +9,10 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance mail-log">
-%%% condition if logfile_inexistent %%%
+%%% if logfile_inexistent %%%
 <p>%%% text "Logfile does not exist: %s" logfile wrap_html_escape %%%</p>
 
-%%% condition else %%%
+%%% else %%%
 %%% item message "<p class='error'>%s</p>" %%%
 
 <form action="" method="POST">
@@ -21,7 +21,7 @@
 <th>%%% text Mail %%%</th>
 </thead>
 <tbody>
-%%% condition if mails %%%
+%%% if mails %%%
 %%% loop mails %%%
 <tr class="%%% loopposition uneven un %%%even">
 <td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item m_no %%%]" value="%%% item m_start %%%-%%% item m_end %%%" id="line%%% item m_no %%%"></label></td>
@@ -37,20 +37,20 @@
 </td>
 </tr>
 %%% loop end %%%
-%%% condition else %%%
+%%% else %%%
 <tr><td colspan="2">%%% text No lines %%%</td></tr>
-%%% condition endif %%%
+%%% endif %%%
 </tbody></table>
 
-%%% condition if total_rows %%%
+%%% if total_rows %%%
 <p class="delete-all"><a href="%%% setting request_uri %%%%%% page qsdelimiter %%%deleteall">%%% text Delete all lines %%%</a></p>
 <p><input type="submit" value="%%% text Delete selected lines %%%"> –
  <a onclick="zz_set_checkboxes(true); return false;" href="#">%%% text Select all %%%</a> |
  <a onclick="zz_set_checkboxes(false); return false;" href="#">%%% text Deselect all %%%</a></p>
-%%% condition endif %%%
+%%% endif %%%
 </form>
 %%% item total_records %%%
 %%% item pages %%%
 %%% item searchform %%%
-%%% condition endif %%%
+%%% endif %%%
 </div>

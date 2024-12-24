@@ -27,9 +27,9 @@
 <p><strong>%%% link start / %%%
 %%% setting project %%%
 %%% link end %%%</strong></p>
-%%% condition if page logout %%%
+%%% if page logout %%%
 <p id="logout"><a href="/logout/">Logout</a></p>
-%%% condition endif %%%
+%%% endif %%%
 <nav>
 <ul>
 %%% page nav %%% 

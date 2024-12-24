@@ -16,10 +16,10 @@
 </tr></thead><tbody>
 <tr class="even">
 <td class="block480">%%% text Error handling %%%</td>
-<td class="block480">%%% condition if error_handling_output %%%<strong>output</strong> (%%% text Errors will be shown on webpage %%%)
-%%% condition elseif error_handling_mail %%%<strong>mail</strong> (%%% text Errors will be sent via mail %%%)
-%%% condition else %%%%%% text Errors won’t be shown %%%
-%%% condition endif %%%</td>
+<td class="block480">%%% if error_handling_output %%%<strong>output</strong> (%%% text Errors will be shown on webpage %%%)
+%%% elseif error_handling_mail %%%<strong>mail</strong> (%%% text Errors will be sent via mail %%%)
+%%% else %%%%%% text Errors won’t be shown %%%
+%%% endif %%%</td>
 </tr>
 <tr class="uneven">
 <td class="block480">%%% text Send mail for these error levels %%%</td>
@@ -27,27 +27,27 @@
 </tr>
 <tr class="uneven">
 <td class="level1 block480a">%%% text Send mail (From:) %%%</td>
-<td class="block480">%%% condition if setting error_mail_from %%%<strong>%%% setting error_mail_from %%%</strong>
-%%% condition else %%%(%%% text not set %%%)
-%%% condition endif %%%</td>
+<td class="block480">%%% if setting error_mail_from %%%<strong>%%% setting error_mail_from %%%</strong>
+%%% else %%%(%%% text not set %%%)
+%%% endif %%%</td>
 </tr>
 <tr class="uneven">
 <td class="level1 block480a">%%% text Send mail (To:) %%%</td>
-<td class="block480">%%% condition if setting error_mail_to %%%<strong>%%% setting error_mail_to %%%</strong>
-%%% condition else %%%(%%% text not set %%%)
-%%% condition endif %%%</td>
+<td class="block480">%%% if setting error_mail_to %%%<strong>%%% setting error_mail_to %%%</strong>
+%%% else %%%(%%% text not set %%%)
+%%% endif %%%</td>
 </tr>
 <tr class="even">
 <td class="block480">%%% text Logging %%%</td>
-<td class="block480">%%% condition if setting log_errors %%%<strong>1</strong> (%%% text Errors will be logged %%%)
-%%% condition else %%%(%%% text Errors will not be logged %%%)
-%%% condition endif %%%</td>
+<td class="block480">%%% if setting log_errors %%%<strong>1</strong> (%%% text Errors will be logged %%%)
+%%% else %%%(%%% text Errors will not be logged %%%)
+%%% endif %%%</td>
 </tr>
-%%% condition if setting log_errors %%%
+%%% if setting log_errors %%%
 	%%% loop logfiles %%%
 	<tr class="even">
 	<td class="level1 block480a">%%% text "Logfile for <strong>%s</strong>" title %%%</td>
-	<td class="block480"><strong>%%% condition if inside_log_dir %%%log folder%%% condition endif %%%<a href="?log=%%% item path rawurlencode %%%%%% condition if types %%%&amp;limit=last%%% condition endif %%%">%%% condition if inside_log_dir %%%/%%% item log %%%%%% condition else %%%%%% item path %%%%%% condition endif %%%</a></strong> (%%% item filesize wrap_bytes %%%)</td>
+	<td class="block480"><strong>%%% if inside_log_dir %%%log folder%%% endif %%%<a href="?log=%%% item path rawurlencode %%%%%% if types %%%&amp;limit=last%%% endif %%%">%%% if inside_log_dir %%%/%%% item log %%%%%% else %%%%%% item path %%%%%% endif %%%</a></strong> (%%% item filesize wrap_bytes %%%)</td>
 	</tr>
 	%%% loop end %%%
 	<tr class="even">
@@ -56,11 +56,11 @@
 	</tr>
 	<tr class="even">
 	<td class="level1 block480a">%%% text Log POST variables when errors occur %%%</td>
-	<td class="block480">%%% condition if setting error_log_post %%%<strong>1</strong> (%%% text POST variables will be logged %%%)%%% condition else %%%(%%% text POST variables will not be logged %%%)%%% condition endif %%%</td>
+	<td class="block480">%%% if setting error_log_post %%%<strong>1</strong> (%%% text POST variables will be logged %%%)%%% else %%%(%%% text POST variables will not be logged %%%)%%% endif %%%</td>
 	</tr>
-%%% condition endif %%%
+%%% endif %%%
 <tr class="even">
 <td class="block480">%%% text Logging (Mail) %%%</td>
-<td class="block480">%%% condition if setting log_mail %%%<strong>log folder<a href="?maillog">/mail.log</a></strong> (%%% item mail_log_filesize wrap_bytes %%%)%%% condition else %%%%%% text disabled %%%%%% condition endif %%%</td>
+<td class="block480">%%% if setting log_mail %%%<strong>log folder<a href="?maillog">/mail.log</a></strong> (%%% item mail_log_filesize wrap_bytes %%%)%%% else %%%%%% text disabled %%%%%% endif %%%</td>
 </tr>
 </tbody></table>

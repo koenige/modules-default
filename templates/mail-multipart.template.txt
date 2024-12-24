@@ -8,7 +8,7 @@
 # @copyright Copyright © 2020, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
-%%% condition if html %%%
+%%% if html %%%
 Content-Type: multipart/alternative; boundary="2917A1235575030E7D2B74C1056F93F4"
 
 --2917A1235575030E7D2B74C1056F93F4
@@ -31,9 +31,9 @@ Content-Transfer-Encoding: quoted-printable
 Content-Type: %%% item mime_content_type %%%/%%% item mime_subtype %%% 
 Content-Transfer-Encoding: base64
 Content-Disposition: %%% item disposition %%% 
-%%% condition if path %%%
+%%% if path %%%
 Content-Location: %%% setting host_base %%%%%% setting files_path %%%/%%% item path %%%?v=%%% item version %%% 
-%%% condition endif %%%
+%%% endif %%%
 Content-ID: <%%% item cid %%%>
 
 %%% item file_base64_encoded %%%
@@ -41,7 +41,7 @@ Content-ID: <%%% item cid %%%>
 --0D9D3838231B7DFC99A667042CAAC05C--
 --2917A1235575030E7D2B74C1056F93F4--
 
-%%% condition else %%%
+%%% else %%%
 Content-Type: multipart/mixed; boundary="2917A1235575030E7D2B74C1056F93F4"
 
 --2917A1235575030E7D2B74C1056F93F4
@@ -55,12 +55,12 @@ Content-Transfer-Encoding: quoted-printable
 Content-Type: %%% item mime_content_type %%%/%%% item mime_subtype %%% 
 Content-Transfer-Encoding: base64
 Content-Disposition: %%% item disposition %%%; filename=%%% item title %%%.%%% item extension %%% 
-%%% condition if path %%%
+%%% if path %%%
 Content-Location: %%% setting host_base %%%%%% setting files_path %%%/%%% item path %%%?v=%%% item version %%% 
-%%% condition endif %%%
+%%% endif %%%
 Content-ID: <%%% item cid %%%>
 
 %%% item file_base64_encoded %%%
 %%% loop end %%%
 --2917A1235575030E7D2B74C1056F93F4--
-%%% condition endif %%%
+%%% endif %%%

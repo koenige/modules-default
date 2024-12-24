@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2011 Gustaf Mossakowski
+# @copyright Copyright © 2011, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 # fields:
@@ -34,22 +34,22 @@
 		<name>%%% item title %%%</name>
 		<description><![CDATA[
 		<div class="kmldesc">
-		%%% condition if filename %%%
+		%%% if filename %%%
 		<img src="%%% item host %%%%%% setting files_path %%%/%%% item filename %%%?v=%%% item version %%%">
-		%%% condition endif %%%
+		%%% endif %%%
 		%%% item description %%%
-		%%% condition if place %%%
+		%%% if place %%%
 		<p><a href="%%% item host %%%/deu/-/%%% item place %%%/">%%% item place %%%</a></p>
-		%%% condition endif %%%
+		%%% endif %%%
 		</div>
 		]]></description>
 		<styleUrl>#%%% item style %%%</styleUrl>
-%%% condition if longitude %%%
+%%% if longitude %%%
 		<Point>
 			<coordinates>%%% item longitude %%%,%%% item latitude %%%,%%% item altitude %%%</coordinates>
 		</Point>
-%%% condition endif %%%
-%%% condition if extended_data %%%
+%%% endif %%%
+%%% if extended_data %%%
 		<ExtendedData>
 %%% loop extended_data %%%
 		<Data name="%%% item field_name %%%">
@@ -58,7 +58,7 @@
 		</Data>
 %%% loop end %%%
 		</ExtendedData>
-%%% condition endif %%%
+%%% endif %%%
 	</Placemark>
 %%% loop end %%%
 	</Document>

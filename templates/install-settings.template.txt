@@ -8,34 +8,34 @@
 # @copyright Copyright © 2020, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
-%%% condition if module %%%
+%%% if module %%%
 <h2>Install Settings for Module <code>%%% item module %%%</code></h2>
-%%% condition else %%%
+%%% else %%%
 <h1>Installation of Zugzwang Project CMS</h1>
 
 <h2>Step 3 – Settings</h2>
-%%% condition endif %%%
+%%% endif %%%
 
 <p>Here, you can add some settings. It’s possible to add or change them later, too.</p>
 <form method="POST" action="">
-%%% condition if error %%%
+%%% if error %%%
 <p class="error">%%% item error %%%</p>
-%%% condition endif %%%
+%%% endif %%%
 <dl>
 %%% loop start %%%
-%%% condition if required | install %%%
+%%% if required | install %%%
 <dt><label for="id_%%% item key %%%">%%% item key %%%<br><small>%%% item description %%%</small></label></dt>
 <dd>
-%%% condition if bool %%%
-%%% condition unless setting html_label_after_input %%%<label for="id_%%% item key %%%-1">%%% condition endif %%%<input type="radio" value="true" name="%%% item id %%%" id="id_%%% item key %%%-1">%%% condition if setting html_label_after_input %%%<label for="id_%%% item key %%%-1">%%% condition endif %%%&nbsp;true</label>
-%%% condition unless setting html_label_after_input %%%<label for="id_%%% item key %%%-2">%%% condition endif %%%<input type="radio" value="false" name="%%% item id %%%" id="id_%%% item key %%%-2">%%% condition if setting html_label_after_input %%%<label for="id_%%% item key %%%-2">%%% condition endif %%%&nbsp;false</label>
-%%% condition elseif mail %%%
+%%% if bool %%%
+%%% unless setting html_label_after_input %%%<label for="id_%%% item key %%%-1">%%% endif %%%<input type="radio" value="true" name="%%% item id %%%" id="id_%%% item key %%%-1">%%% if setting html_label_after_input %%%<label for="id_%%% item key %%%-1">%%% endif %%%&nbsp;true</label>
+%%% unless setting html_label_after_input %%%<label for="id_%%% item key %%%-2">%%% endif %%%<input type="radio" value="false" name="%%% item id %%%" id="id_%%% item key %%%-2">%%% if setting html_label_after_input %%%<label for="id_%%% item key %%%-2">%%% endif %%%&nbsp;false</label>
+%%% elseif mail %%%
 <input type="email" id="id_%%% item key %%%" value="%%% item default %%%" name="%%% item id %%%">
-%%% condition else %%%
+%%% else %%%
 <input type="text" id="id_%%% item key %%%" value="%%% item default %%%" name="%%% item id %%%">
-%%% condition endif %%%
+%%% endif %%%
 </dd>
-%%% condition endif %%%
+%%% endif %%%
 %%% loop end %%%
 </dl>
 <input type="submit" value="Submit">

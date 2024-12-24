@@ -5,23 +5,23 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2014, 2019, 2022 Gustaf Mossakowski
+# @copyright Copyright © 2014, 2019, 2022, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% loop start %%%
-<li>%%% condition if link %%%
+<li>%%% if link %%%
 <a href="%%% setting base_path %%%%%% item iso "/%s" %%%%%% item link wrap_html_escape %%%" rel="alternate" hreflang="%%% item iso %%%">
-%%% condition else %%%
+%%% else %%%
 <strong>
-%%% condition endif %%%
-%%% condition if setting default_languagelink_full_language %%%
+%%% endif %%%
+%%% if setting default_languagelink_full_language %%%
 %%% item language %%%
-%%% condition else %%%
+%%% else %%%
 <abbr title="%%% item language %%%">%%% item iso %%%</abbr>
-%%% condition endif %%%
-%%% condition if link %%%
+%%% endif %%%
+%%% if link %%%
 </a>
-%%% condition else %%%
+%%% else %%%
 </strong>
-%%% condition endif %%%</li>
+%%% endif %%%</li>
 %%% loop end %%%

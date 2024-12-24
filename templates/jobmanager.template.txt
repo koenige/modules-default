@@ -31,23 +31,23 @@
 %%% loop end %%%
 </tbody>
 </table>
-%%% condition if results %%%
+%%% if results %%%
 <h2>%%% text Results %%%</h2>
 <ul>
-%%% condition if delete | abandon | fail | success %%%
-%%% condition if successful %%%<li>%%% text "%d jobs were successful." successful %%%</li>%%% condition endif %%%
-%%% condition if failed %%%<li>%%% text "%d jobs failed." failed %%%</li>%%% condition endif %%%
-%%% condition if abandoned %%%<li>%%% text "%d jobs were abanoned." abandoned %%%</li>%%% condition endif %%%
-%%% condition if deleted %%%<li>%%% text "%d successful jobs deleted." deleted %%%</li>%%% condition endif %%%
-%%% condition if released %%%<li>%%% text "%d running jobs released again." released %%%</li>%%% condition endif %%%
-%%% condition else %%%<li>%%% text No jobs. %%%</li>
-%%% condition endif %%%
+%%% if delete | abandon | fail | success %%%
+%%% if successful %%%<li>%%% text "%d jobs were successful." successful %%%</li>%%% endif %%%
+%%% if failed %%%<li>%%% text "%d jobs failed." failed %%%</li>%%% endif %%%
+%%% if abandoned %%%<li>%%% text "%d jobs were abanoned." abandoned %%%</li>%%% endif %%%
+%%% if deleted %%%<li>%%% text "%d successful jobs deleted." deleted %%%</li>%%% endif %%%
+%%% if released %%%<li>%%% text "%d running jobs released again." released %%%</li>%%% endif %%%
+%%% else %%%<li>%%% text No jobs. %%%</li>
+%%% endif %%%
 </ul>
-%%% condition endif %%%
-%%% condition if path default_tables %%%
+%%% endif %%%
+%%% if path default_tables %%%
 <h2><a href="%%% path default_tables jobqueue %%%">%%% text Background Job Queue %%%</a></h2>
 
-%%% condition endif %%%
+%%% endif %%%
 <h2>%%% text Start jobs manually %%%</h2>
 <p><form action="" method="POST">
 <input type="submit" value="%%% text Start jobs %%%"></p>

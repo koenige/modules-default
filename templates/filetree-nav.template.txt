@@ -8,7 +8,7 @@
 # @copyright Copyright © 2016, 2019-2020, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
-%%% condition if parts %%%
+%%% if parts %%%
 <p><a href="?filetree">%%% text TOP %%%</a> / 
 %%% loop parts %%%
 %%% item link "<a href='?filetree=%s'>" | "<strong>" %%%
@@ -18,7 +18,7 @@
 %%% loop end %%%
 </p>
 
-%%% condition else %%%
+%%% else %%%
 <p><strong>%%% text TOP %%%</strong></p>
 
-%%% condition endif %%%
+%%% endif %%%
