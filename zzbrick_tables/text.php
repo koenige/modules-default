@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009-2010, 2013-2016, 2021-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2009-2010, 2013-2016, 2021-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -19,7 +19,7 @@ wrap_access_quit('default_text');
 wrap_setting('default_source_language', wrap_setting('default_source_language_text_db'));
 
 $zz['title'] = 'Text';
-$zz['table'] = wrap_sql_table('default_text');
+$zz['table'] = '/*_TABLE default_text _*/';
 
 $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'text_id';
@@ -49,7 +49,7 @@ $zz['fields'][20]['field_name'] = 'last_update';
 $zz['fields'][20]['type'] = 'timestamp';
 $zz['fields'][20]['hide_in_list'] = true;
 
-$zz['sql'] = 'SELECT * FROM '.wrap_sql_table('default_text').'
+$zz['sql'] = 'SELECT * FROM /*_TABLE default_text _*/
 	ORDER BY area, text';
 
 $zz['filter'][1]['title'] = wrap_text('Area');
@@ -58,6 +58,6 @@ $zz['filter'][1]['type'] = 'list';
 $zz['filter'][1]['where'] = 'area';
 $zz['filter'][1]['field_name'] = 'area';
 $zz['filter'][1]['sql'] = 'SELECT DISTINCT area, area
-	FROM '.wrap_sql_table('default_text');
+	FROM /*_TABLE default_text _*/';
 	
 $zz['export'] = 'CSV Excel';

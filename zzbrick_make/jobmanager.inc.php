@@ -371,8 +371,7 @@ function mod_default_make_jobmanager_delete() {
 	$sql = 'SELECT job_id
 		FROM _jobqueue
 		WHERE job_status IN ("successful", "not_found")
-		AND DATE_ADD(finished, INTERVAL %d HOUR) < NOW()';
-	$sql = sprintf($sql, wrap_setting('default_jobs_delete_successful_hours'));
+		AND DATE_ADD(finished, INTERVAL /*_SETTING default_jobs_delete_successful_hours _*/ HOUR) < NOW()';
 	$job_ids = wrap_db_fetch($sql, 'job_id', 'single value');
 	if (!$job_ids) return false;
 	
@@ -396,8 +395,7 @@ function mod_default_make_jobmanager_release() {
 	$sql = 'SELECT job_id, job_url, try_no
 		FROM _jobqueue
 		WHERE job_status = "running"
-		AND DATE_ADD(started, INTERVAL %d MINUTE) < NOW()';
-	$sql = sprintf($sql, wrap_setting('default_jobs_resume_running_minutes'));
+		AND DATE_ADD(started, INTERVAL /*_SETTING default_jobs_resume_running_minutes _*/ MINUTE) < NOW()';
 	$jobs = wrap_db_fetch($sql, 'job_id');
 	if (!$jobs) return false;
 	
@@ -417,7 +415,7 @@ function mod_default_make_jobmanager_release() {
 function mod_default_make_jobmanager_check() {
 	$sql = 'SELECT job_id
 			, IF(ISNULL(wait_until), NULL, IF(wait_until <= NOW(), NULL, 1)) AS wait
-			, IF(job_status = "running", IF(DATE_ADD(started, INTERVAL %d MINUTE) > NOW(), 1, NULL), NULL) AS running
+			, IF(job_status = "running", IF(DATE_ADD(started, INTERVAL /*_SETTING default_jobs_resume_running_minutes _*/ MINUTE) > NOW(), 1, NULL), NULL) AS running
 			, username, job_status, lock_hash, try_no, job_url
 			, CONCAT(SUBSTRING_INDEX(categories.path, "/", -1), "-", job_category_no) AS realm
 			, job_url AS job_url_raw
@@ -435,7 +433,6 @@ function mod_default_make_jobmanager_check() {
 			, wait_until ASC
 	';
 	$sql = sprintf($sql
-		, wrap_setting('default_jobs_resume_running_minutes')
 		, wrap_db_escape(wrap_setting('request_uri'))
 		, wrap_setting('website_id') ?? 1
 	);

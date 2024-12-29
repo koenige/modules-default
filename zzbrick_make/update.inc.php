@@ -73,12 +73,12 @@ function mod_default_make_update($params) {
 	$sql = 'SELECT %s
 		FROM %s
 		ORDER BY %s
-		LIMIT %d, %d';
+		LIMIT %d, /*_SETTING default_update_limit_per_run _*/';
 	$sql = sprintf($sql
 		, $pkey['Column_name']
 		, wrap_db_escape($params[0])
 		, $pkey['Column_name']
-		, $limit, wrap_setting('default_update_limit_per_run')
+		, $limit
 	);
 	$data = wrap_db_fetch($sql, $pkey['Column_name']);
 	if (!$data) {

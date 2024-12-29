@@ -22,11 +22,9 @@ $zz_sub['show_title'] = false;
 $zz_sub['type'] = 'subtable';
 $zz_sub['hide_in_list'] = true;
 $zz_sub['min_records'] = 1;
-$zz_sub['max_records_sql'] = sprintf(
-	'SELECT COUNT(*) FROM /*_PREFIX_*/languages 
-	WHERE (iso_639_1 <> "%s" OR NOT ISNULL(variation))
-	AND website = "yes"', wrap_setting('default_source_language')
-);
+$zz_sub['max_records_sql'] = 'SELECT COUNT(*) FROM /*_PREFIX_*/languages 
+	WHERE (iso_639_1 <> "/*_SETTING default_source_language _*/" OR NOT ISNULL(variation))
+	AND website = "yes"';
 
 $zz_sub['table'] = '/*_PREFIX_*/_translations_text';
 $zz_sub['table_name'] = 'translations_text';
@@ -64,11 +62,10 @@ $zz_sub['fields'][5]['field_name'] = 'language_id';
 $zz_sub['fields'][5]['type'] = 'select';
 $zz_sub['fields'][5]['sql'] = sprintf('SELECT language_id, language_%s, variation
 	FROM /*_PREFIX_*/languages 
-	WHERE iso_639_1 <> "%s"
+	WHERE iso_639_1 <> "/*_SETTING default_source_language _*/"
 	AND website = "yes"
 	ORDER BY language_%s'
 	, in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : $standard_lang
-	, wrap_setting('default_source_language')
 	, in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : $standard_lang
 );
 $zz_sub['fields'][5]['prefix'] = wrap_text('Translation to').' ';

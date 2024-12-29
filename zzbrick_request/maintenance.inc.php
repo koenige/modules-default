@@ -140,7 +140,7 @@ function zz_maintenance_tables() {
 						$table = '/*_TABLE default_translationfields _*/';
 						$field_name = 'db_name';
 					} else {
-						$table = wrap_sql_table('zzform_relations');
+						$table = '/*_TABLE zzform_relations _*/';
 						$field_name = $area.'_db';
 					}
 					$sql = 'UPDATE %s SET %s = "%s" WHERE %s = "%s"';
@@ -156,13 +156,11 @@ function zz_maintenance_tables() {
 	}
 	if (wrap_setting('zzform_check_referential_integrity')) {
 	// Master database
-		$sql = 'SELECT DISTINCT master_db FROM %s';
-		$sql = sprintf($sql, wrap_sql_table('zzform_relations'));
+		$sql = 'SELECT DISTINCT master_db FROM /*_TABLE zzform_relations _*/';
 		$dbs['master'] = wrap_db_fetch($sql, 'master_db', 'single value');
 
 	// Detail database	
-		$sql = 'SELECT DISTINCT detail_db FROM %s';
-		$sql = sprintf($sql, wrap_sql_table('zzform_relations'));
+		$sql = 'SELECT DISTINCT detail_db FROM /*_TABLE zzform_relations _*/';
 		$dbs['detail'] = wrap_db_fetch($sql, 'detail_db', 'single value');
 	}
 

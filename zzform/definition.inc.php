@@ -29,8 +29,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 		if (count(wrap_category_id($path, 'list')) < 2) return;
 	}
 
-	$sql = 'SELECT parameters FROM categories WHERE category_id = %d';
-	$sql = sprintf($sql, wrap_category_id($path));
+	$sql = 'SELECT parameters FROM categories WHERE category_id = /*_ID categories %s _*/';
+	$sql = sprintf($sql, $path);
 	$parameters = wrap_db_fetch($sql, '', 'single value');
 	if ($parameters) parse_str($parameters, $parameters);
 	if (empty($parameters['use_subtree'])) {
@@ -45,9 +45,9 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 	} else {
 		$sql = 'SELECT category_id, category, parameters, path
 				, (SELECT COUNT(*) FROM categories sc WHERE sc.main_category_id = categories.category_id) AS category_count
-			FROM categories WHERE main_category_id = %d
+			FROM categories WHERE main_category_id = /*_ID categories %s _*/
 			ORDER BY sequence, path';
-		$sql = sprintf($sql, wrap_category_id($path));
+		$sql = sprintf($sql, $path);
 		$pc = wrap_db_fetch($sql, 'category_id', 'numeric');
 		$pc = wrap_translate($pc, 'categories', 'category_id');
 	}
@@ -181,13 +181,10 @@ function mf_default_categories_restrict(&$values, $type, $category_path = '') {
 	$sql = 'SELECT category_id, category, parameters
 			, SUBSTRING_INDEX(path, "/", -1) AS path
 		FROM categories
-		WHERE main_category_id = %d
+		WHERE main_category_id = /*_ID categories %s _*/
 		%s
 		ORDER BY sequence, path';
-	$sql = sprintf($sql
-		, wrap_category_id($category_path)
-		, $restrict_to
-	);
+	$sql = sprintf($sql, $category_path, $restrict_to);
 	$values[$type] = wrap_db_fetch($sql, 'category_id');
 	$last_category_id = array_keys($values[$type]);
 	$last_category_id = end($last_category_id);

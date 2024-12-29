@@ -17,7 +17,7 @@
 wrap_access_quit('default_relations');
 
 $zz['title'] = 'Database Table Relations';
-$zz['table'] = wrap_sql_table('zzform_relations');
+$zz['table'] = '/*_TABLE zzform_relations _*/';
 
 $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'rel_id';
@@ -37,7 +37,7 @@ $zz['fields'][3]['type'] = 'text';
 $zz['fields'][3]['list_append_next'] = true;
 $zz['fields'][3]['list_suffix'] = ' . ';
 $zz['fields'][3]['class'] = 'block480a';
-$zz['fields'][3]['sql'] = sprintf('SHOW TABLES FROM `%s`', wrap_setting('db_name'));
+$zz['fields'][3]['sql'] = 'SHOW TABLES FROM `/*_SETTING db_name _*/`';
 $zz['fields'][3]['dependencies'] = [4];
 
 $zz['fields'][4]['title'] = 'Primary Key of Master Table';
@@ -61,7 +61,7 @@ $zz['fields'][6]['type'] = 'text';
 $zz['fields'][6]['list_append_next'] = true;
 $zz['fields'][6]['list_suffix'] = ' . ';
 $zz['fields'][6]['class'] = 'block480a';
-$zz['fields'][6]['sql'] = sprintf('SHOW TABLES FROM `%s`', wrap_setting('db_name'));
+$zz['fields'][6]['sql'] = 'SHOW TABLES FROM `/*_SETTING db_name _*/`';
 $zz['fields'][6]['dependencies'] = [8];
 
 $zz['fields'][8]['title'] = 'Primary Key of Detail Table';
@@ -91,7 +91,7 @@ $zz['fields'][9]['type'] = 'text';
 $zz['fields'][9]['hide_in_list'] = true;
 */
 
-$zz['sql'] = 'SELECT * FROM '.wrap_sql_table('zzform_relations');
+$zz['sql'] = 'SELECT * FROM /*_TABLE zzform_relations _*/';
 $zz['sqlorder'] = ' ORDER BY detail_db, detail_table, detail_field';
 
 $zz['setting']['zzform_max_select'] = 200;
