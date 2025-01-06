@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2024-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -24,9 +24,12 @@ function mod_default_helptext($params) {
 	case 'md':
 		$page['text'] = markdown($data['text']);
 		$page['dont_show_h1'] = true;
+		preg_match('/# (.+)/', $data['text'], $matches);
+		$page['breadcrumbs'][]['title'] = $matches[1] ?? $data['title'];
 		break;
 	default:
 		$page['text'] = sprintf('<pre>%s</pre>', $data['text']);
+		$page['breadcrumbs'][]['title'] = $data['title'];
 	}
 	// @todo add link to help overview page
 	$page['text'] = sprintf('<div class="helptext">%s</div>', $page['text']);
