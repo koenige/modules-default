@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2024 Gustaf Mossakowski
+# @copyright Copyright © 2024-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% section col1 %%%
@@ -27,6 +27,7 @@
 (Zugriff normalerweise nicht erforderlich)
 
 * [Umleitungen](%%% path default_tables redirects %%%) – falls sich die Adresse einer Webseite geändert hat.
+* [Website-Einstellungen](%%% path default_settings %%%)
 * [Kategorien](%%% path default_tables categories %%%)
 * [Wartung](%%% path default_maintenance %%%) – Verwaltung von Allem.
 * [Datenbank-Log](%%% path default_tables logging %%%)
