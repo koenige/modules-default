@@ -90,20 +90,23 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 		}
 		$data['saved'][$table][$record_id] = $record;
 		wrap_file_log('default/dbexport', 'write', [time(), $table, $record_id, json_encode($record)]);
-		// get master relations
-		foreach ($relations['masters'] as $rel_id => $relation) {
-			$table_rel[$relation['detail_table']][] = [
-				'foreign_key_field' => $relation['detail_field'],
-				'id_field' => $relation['detail_id_field'],
-				'id_foreign' => $record_id
-			];
-		}
-		// get detail records relations
+
+		// get detail record relations
 		foreach ($relations['details'] as $rel_id => $relation) {
 			if (!$record[$relation['detail_field']]) continue;
 			$table_rel[$relation['master_table']][] = [
 				'id_field' => $relation['master_field'],
 				'id' => $record[$relation['detail_field']]
+			];
+		}
+
+		// get master record relations
+		if (in_array($table, wrap_setting('default_dbexport_no_masters'))) continue;
+		foreach ($relations['masters'] as $rel_id => $relation) {
+			$table_rel[$relation['detail_table']][] = [
+				'foreign_key_field' => $relation['detail_field'],
+				'id_field' => $relation['detail_id_field'],
+				'id_foreign' => $record_id
 			];
 		}
 	}
