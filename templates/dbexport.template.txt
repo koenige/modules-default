@@ -1,0 +1,21 @@
+# default module
+# Template for database export
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% condition if record_not_found %%%
+<p class="error">%%% No record could be found for this data. %%%</p>
+%%% condition endif %%%
+<form method="GET">
+<ul>
+<li><label><input type="text" name="table" value="%%% item table %%%"> %%% text Name of the table %%%</label></li>
+<li><label><input type="text" name="field" value="%%% item field %%%"> %%% text Name of the field %%%</label></li>
+<li><label><input type="text" name="record_id" value="%%% item record_id %%%"> %%% text ID of the record %%%</label></li>
+</ul>
+<input type="submit">
+</form>
