@@ -71,7 +71,8 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 			'conditions' => []
 		];
 	}
-	$records = mod_default_dbexport_record_read($table, $id_field, $conditions);
+	$sql = mod_default_dbexport_record_sql($table, $conditions);
+	$records = wrap_db_fetch($sql, $id_field);
 	$relations = mod_default_dbexport_relations($table);
 
 	$log = wrap_file_log('default/dbexport');
@@ -82,7 +83,7 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 		// check if in log
 		foreach ($log as $line) {
 			if ($line['table'] !== $table) continue;
-			if ($line['record_id'] !== $record_id) continue;
+			if ($line['record_id'].'' !== $record_id.'') continue;
 			continue 2;
 		}
 		$data['saved'][$table][$record_id] = $record;
@@ -91,7 +92,17 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 		// get detail record relations
 		foreach ($relations['details'] as $rel_id => $relation) {
 			if (!$record[$relation['detail_field']]) continue;
-			$table_rel[$relation['master_table']][] = [
+			$key = sprintf('%s', $record[$relation['detail_field']]);
+			$rel_key = sprintf('%s[%s]', $table, $relation['master_table']);
+			if (in_array($rel_key, wrap_setting('default_dbexport_no_details'))) continue;
+			foreach ($record as $field_key => $field_value) {
+				$rel_id_key = sprintf(
+					'%s[%s][%s]=%s', $table, $relation['master_table']
+					, $field_key, $field_value
+				);
+				if (in_array($rel_id_key, wrap_setting('default_dbexport_no_details_id'))) continue 2;
+			}
+			$table_rel[$relation['master_table']][$key] = [
 				'id_field' => $relation['master_field'],
 				'id' => $record[$relation['detail_field']]
 			];
@@ -100,7 +111,10 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 		// get master record relations
 		if (in_array($table, wrap_setting('default_dbexport_no_masters'))) continue;
 		foreach ($relations['masters'] as $rel_id => $relation) {
-			$table_rel[$relation['detail_table']][] = [
+			$key = sprintf('%s-%s', $relation['detail_field'], $record_id);
+			$rel_key = sprintf('%s[%s.%s]', $table, $relation['detail_table'], $relation['detail_field']);
+			if (in_array($rel_key, wrap_setting('default_dbexport_no_masters'))) continue;
+			$table_rel[$relation['detail_table']][$key] = [
 				'foreign_key_field' => $relation['detail_field'],
 				'id_field' => $relation['detail_id_field'],
 				'id_foreign' => $record_id
@@ -109,42 +123,55 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 	}
 	
 	// create WHERE conditions
-	foreach ($table_rel as $table => $lines) {
+	foreach ($table_rel as $table_name => $lines) {
 		$where = [];
 		foreach ($lines as $line) {
+			if (array_key_exists('id', $line)) {
+				foreach (wrap_setting('default_dbexport_debug_ids') as $debug) {
+					$debug = explode('=', $debug);
+					if ($table_name === $debug[0] AND $line['id'].'' === $debug[1].'') {
+						echo $sql;
+						echo wrap_print(wrap_setting('default_dbexport_no_details_id'));
+						echo wrap_print($table);
+						echo wrap_print($id_field);
+						echo wrap_print($conditions);
+						echo wrap_print($table_rel);
+						exit;
+					}
+				}
+			}
 			if (isset($line['foreign_key_field'])) {
-				if (!empty($data['conditions'][$table][$line['foreign_key_field']][$line['id_foreign']]))
+				if (!empty($data['conditions'][$table_name][$line['foreign_key_field']][$line['id_foreign']]))
 					continue;
 				$where[] = sprintf(
 					'`%s` = %d', $line['foreign_key_field'], $line['id_foreign']
 				);
-				$data['conditions'][$table][$line['foreign_key_field']][$line['id_foreign']] = true;
+				$data['conditions'][$table_name][$line['foreign_key_field']][$line['id_foreign']] = true;
 			} else {
-				if (!empty($data['conditions'][$table][$line['id_field']][$line['id']]))
+				if (!empty($data['conditions'][$table_name][$line['id_field']][$line['id']]))
 					continue;
 				$where[] = sprintf(
 					'`%s` = %d', $line['id_field'], $line['id']
 				);
-				$data['conditions'][$table][$line['id_field']][$line['id']] = true;
+				$data['conditions'][$table_name][$line['id_field']][$line['id']] = true;
 			}
 		}
 		if (!$where) continue;
 		$table_id_field = reset($lines);
 		$table_id_field = $line['id_field'];
-		$data = mod_default_dbexport_record($table, $table_id_field, $where, $data);
+		$data = mod_default_dbexport_record($table_name, $table_id_field, $where, $data);
 	}
 	return $data;
 }
 
 /**
- * read records from database, with all fields
+ * creates SQL query to read records from database, with all fields
  *
  * @param string $table
- * @param string $id_field
  * @param array $conditions
  * @return array
  */
-function mod_default_dbexport_record_read($table, $id_field, $conditions) {
+function mod_default_dbexport_record_sql($table, $conditions) {
 	static $fields = [];
 	if (!array_key_exists($table, $fields)) {
 		$sql = 'SHOW COLUMNS FROM `%s`';
@@ -158,8 +185,7 @@ function mod_default_dbexport_record_read($table, $id_field, $conditions) {
 		}
 	}
 	$sql = 'SELECT %s FROM `%s` WHERE %s';
-	$sql = sprintf($sql, implode(', ', $fields[$table]), $table, implode(' OR ', $conditions));
-	return wrap_db_fetch($sql, $id_field);
+	return sprintf($sql, implode(', ', $fields[$table]), $table, implode(' OR ', $conditions));
 }	
 
 /**
