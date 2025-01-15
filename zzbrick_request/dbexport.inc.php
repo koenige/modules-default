@@ -71,10 +71,7 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 			'conditions' => []
 		];
 	}
-	$sql = 'SELECT * FROM `%s` WHERE %s';
-	$sql = sprintf($sql, $table, implode(' OR ', $conditions));
-	$records = wrap_db_fetch($sql, $id_field);
-	
+	$records = mod_default_dbexport_record_read($table, $id_field, $conditions);
 	$relations = mod_default_dbexport_relations($table);
 
 	$log = wrap_file_log('default/dbexport');
@@ -138,6 +135,32 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 	}
 	return $data;
 }
+
+/**
+ * read records from database, with all fields
+ *
+ * @param string $table
+ * @param string $id_field
+ * @param array $conditions
+ * @return array
+ */
+function mod_default_dbexport_record_read($table, $id_field, $conditions) {
+	static $fields = [];
+	if (!array_key_exists($table, $fields)) {
+		$sql = 'SHOW COLUMNS FROM `%s`';
+		$sql = sprintf($sql, $table);
+		$table_def = wrap_db_fetch($sql, '_dummy_', 'numeric');
+		$fields[$table] = [];
+		foreach ($table_def as $field) {
+			if (str_starts_with($field['Type'], 'varbinary')) $tpl = 'HEX(`%s`)';
+			else $tpl = '`%s`';
+			$fields[$table][] = sprintf($tpl, $field['Field']);
+		}
+	}
+	$sql = 'SELECT %s FROM `%s` WHERE %s';
+	$sql = sprintf($sql, implode(', ', $fields[$table]), $table, implode(' OR ', $conditions));
+	return wrap_db_fetch($sql, $id_field);
+}	
 
 /**
  * get a list of database relations
