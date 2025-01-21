@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015, 2019-2021, 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2015, 2019-2021, 2023-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -175,3 +175,4 @@ $zz['filter'][3]['type'] = 'list';
 $zz['filter'][3]['selection'] = array_combine($zz['fields'][9]['enum'], $zz['fields'][9]['enum_title']);
 
 $zz['setting']['zzform_logging'] = false;
+$zz['list']['batch_delete'] = true;
