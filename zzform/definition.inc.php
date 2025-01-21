@@ -135,16 +135,13 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 
 	foreach ($pc as $index => $category) {
 		$no = $last_no - $index;
-		if ($zz['fields'][$no]['hide_in_list']) {
-			if (empty($parameters['no_separator']))
-				$zz['fields'][$no]['separator'] = true;
-		} elseif (!$last_visible_found) {
+		if (empty($parameters['no_separator']))
+			$zz['fields'][$no]['separator'] = true;
+		if ($zz['fields'][$no]['hide_in_list']) continue;
+		if (!$last_visible_found)
 			$last_visible_found = true;
-		} else {
+		else
 			$zz['fields'][$no]['unless']['export_mode']['list_append_next'] = true;
-			if (empty($parameters['no_separator']))
-				$zz['fields'][$no]['separator'] = true;
-		}
 	}
 }
 
