@@ -201,3 +201,32 @@ function mf_default_categories_restrict(&$values, $type, $category_path = '') {
 	}
 	return true;
 }
+
+/**
+ * for appended categories, add title_tab and remove first <br> if it exists
+ *
+ * @param array $fields = $zz['fields'], will change
+ * @param int $no_start
+ * @param int $no_end
+ * @return bool
+ */
+function mf_default_categories_details_tab(&$fields, $no_start, $no_end) {
+	static $marked = false;
+	if ($marked) return;
+
+	for ($no = $no_start; $no <= $no_end; $no++) {
+		if (empty($fields[$no])) continue;
+		if (!empty($fields[$no]['hide_in_list'])) continue;
+		$fields[$no]['title_tab'] = wrap_text('Details');
+		if (!empty($fields[$no]['unless']['export_mode']['subselect']['prefix']))
+			if (str_starts_with($fields[$no]['unless']['export_mode']['subselect']['prefix'], '<br>'))
+				$fields[$no]['unless']['export_mode']['subselect']['prefix']
+					= substr($fields[$no]['unless']['export_mode']['subselect']['prefix'], 4);
+		if (!empty($fields[$no]['subselect']['prefix']))
+			if (str_starts_with($fields[$no]['subselect']['prefix'], '<br>'))
+				$fields[$no]['subselect']['prefix']
+					= substr($fields[$no]['subselect']['prefix'], 4);
+		$marked = true;
+	}
+	return $marked;
+}
