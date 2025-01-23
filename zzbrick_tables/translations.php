@@ -45,7 +45,6 @@ $zz['fields'][4]['field_name'] = 'field_name';
 if (!empty($_POST['db_name']) AND !empty($_POST['table_name'])) {
 	$zz['fields'][4]['type'] = 'select';
 	$zz['fields'][4]['sql'] = sprintf('SHOW COLUMNS FROM `%s`.%s', wrap_db_escape(trim($_POST['db_name'])), wrap_db_escape($_POST['table_name']));
-	$zz['fields'][4]['sql_index_only'] = true;
 	$zz['fields'][4]['key_field_name'] = 'Field';
 } else
 	$zz['fields'][4]['type'] = 'text';
