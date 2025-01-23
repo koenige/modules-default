@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2024-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -50,11 +50,13 @@ function mf_default_helptexts_files() {
 		$lang = '';
 		if (strstr($basename, '-')) {
 			$basename = explode('-', $basename);
-			$lang = array_pop($basename);
+			if (strlen(end($basename)) === 2) {
+				$lang = array_pop($basename);
+			}
 			$basename = implode('-', $basename);
 		}
 		$title = $basename;
-		$basename = wrap_filename(strtolower($basename));
+		$basename = wrap_filename(strtolower(wrap_normalize($basename)));
 		$data[$basename][] = [
 			'title' => $title,
 			'language' => $lang,
