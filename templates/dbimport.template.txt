@@ -1,0 +1,34 @@
+# default module
+# Template for database import
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% if logfile_missing %%%
+<p>%%% text The logfile for import is missing or empty. %%%</p>
+<pre><code>%%% setting log_dir %%%/default/dbexport.log</code></pre>
+
+%%% elseif overview %%%
+<ul>
+%%% loop start %%%
+<li><a href="?table=%%% item table %%%">%%% item table %%%</a> (%%% item records %%%)</li>
+%%% loop end %%%
+</ul>
+
+%%% else %%%
+<h2>%%% item table %%% (%%% item records %%%)</h2>
+%%% if all_identical %%%
+%%% text The records are identical. %%%
+%%% elseif none_identical %%%
+%%% text None of the records to import already exist. %%%
+%%% else %%%
+%%% text Some records are different. %%%
+%%% endif %%%
+<p>%%% text "New records: %d" new %%%</p>
+<p>%%% text "Different records: %d" different %%%</p>
+
+%%% endif %%%
