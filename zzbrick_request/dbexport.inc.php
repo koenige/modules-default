@@ -54,8 +54,10 @@ function mod_default_dbexport_read($data) {
 	}
 	
 	wrap_include('file', 'zzwrap');
-	$conditions[] = sprintf('`%s` = %d', $data['field'], $data['record_id']);
-	$data += mod_default_dbexport_record($data['table'], $data['field'], $conditions);
+	$conditions[] = [$data['field'], $data['record_id']];
+	$data['saved'] = [];
+	$data['conditions'] = [];
+	$data += mod_default_dbexport_record($data['table'], $data['field'], $conditions, $data);
 	return $data;
 }
 
@@ -67,13 +69,7 @@ function mod_default_dbexport_read($data) {
  * @param array $conditions
  * @param array $data
  */
-function mod_default_dbexport_record($table, $id_field, $conditions, $data = []) {
-	if (!$data) {
-		$data = [
-			'saved' => [],
-			'conditions' => []
-		];
-	}
+function mod_default_dbexport_record($table, $id_field, $conditions) {
 	$sql = mod_default_dbexport_record_sql($table, $conditions);
 	$records = wrap_db_fetch($sql, $id_field);
 	$relations = mod_default_dbexport_relations($table);
@@ -127,7 +123,7 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 	
 	// create WHERE conditions
 	foreach ($table_rel as $table_name => $lines) {
-		$where = [];
+		$conditions = [];
 		foreach ($lines as $line) {
 			if (array_key_exists('id', $line)) {
 				foreach (wrap_setting('default_dbexport_debug_ids') as $debug) {
@@ -137,7 +133,6 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 						echo wrap_print(wrap_setting('default_dbexport_no_details_id'));
 						echo wrap_print($table);
 						echo wrap_print($id_field);
-						echo wrap_print($conditions);
 						echo wrap_print($table_rel);
 						exit;
 					}
@@ -146,23 +141,19 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data = [])
 			if (isset($line['foreign_key_field'])) {
 				if (!empty($data['conditions'][$table_name][$line['foreign_key_field']][$line['id_foreign']]))
 					continue;
-				$where[] = sprintf(
-					'`%s` = %d', $line['foreign_key_field'], $line['id_foreign']
-				);
+				$conditions[] = [$line['foreign_key_field'], $line['id_foreign']];
 				$data['conditions'][$table_name][$line['foreign_key_field']][$line['id_foreign']] = true;
 			} else {
 				if (!empty($data['conditions'][$table_name][$line['id_field']][$line['id']]))
 					continue;
-				$where[] = sprintf(
-					'`%s` = %d', $line['id_field'], $line['id']
-				);
+				$conditions[] = [$line['id_field'], $line['id']];
 				$data['conditions'][$table_name][$line['id_field']][$line['id']] = true;
 			}
 		}
-		if (!$where) continue;
+		if (!$conditions) continue;
 		$table_id_field = reset($lines);
 		$table_id_field = $line['id_field'];
-		$data = mod_default_dbexport_record($table_name, $table_id_field, $where, $data);
+		$data = mod_default_dbexport_record($table_name, $table_id_field, $conditions, $data);
 	}
 	return $data;
 }
@@ -187,8 +178,11 @@ function mod_default_dbexport_record_sql($table, $conditions) {
 			$fields[$table][] = sprintf($tpl, $field['Field']);
 		}
 	}
+	$where = [];
+	foreach ($conditions as $line)
+		$where[] = vsprintf('`%s` = %d', $line);
 	$sql = 'SELECT %s FROM `%s` WHERE %s';
-	return sprintf($sql, implode(', ', $fields[$table]), $table, implode(' OR ', $conditions));
+	return sprintf($sql, implode(', ', $fields[$table]), $table, implode(' OR ', $where));
 }	
 
 /**
