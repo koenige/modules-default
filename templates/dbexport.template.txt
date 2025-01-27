@@ -8,8 +8,13 @@
 # @copyright Copyright © 2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
+%%% if export_successful %%%
+<p>%%% text The database export was successful. %%%</p>
+
+%%% else %%%
 %%% if record_not_found %%%
 <p class="error">%%% No record could be found for this data. %%%</p>
+
 %%% endif %%%
 <form method="GET">
 <ul>
@@ -19,3 +24,4 @@
 </ul>
 <input type="submit">
 </form>
+%%% endif %%%

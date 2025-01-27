@@ -19,9 +19,12 @@
  * @return array
  */
 function mod_default_dbexport() {
+	ini_set('max_execution_time', 0);
 	$data = $_GET;
-	if (!empty($data['table']) AND !empty($data['field']) AND !empty($data['record_id']))
+	if (!empty($data['table']) AND !empty($data['field']) AND !empty($data['record_id'])) {
 		$data = mod_default_dbexport_read($data);
+		$data['export_successful'] = true;
+	}
 	
 	$page['query_strings'][] = 'table';
 	$page['query_strings'][] = 'field';
