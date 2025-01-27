@@ -69,24 +69,19 @@ function mod_default_dbexport_read($data) {
  * @param array $conditions
  * @param array $data
  */
-function mod_default_dbexport_record($table, $id_field, $conditions) {
+function mod_default_dbexport_record($table, $id_field, $conditions, $data) {
 	$sql = mod_default_dbexport_record_sql($table, $conditions);
-	$records = wrap_db_fetch($sql, $id_field);
-	$relations = mod_default_dbexport_relations($table);
+	$records = mod_default_dbexport_records($sql, $table, $id_field, $conditions);
 
-	$log = wrap_file_log('default/dbexport');
+	$relations = mod_default_dbexport_relations($table);
 	$table_rel = [];
 	// check all relations
 	foreach ($records as $record_id => $record) {
 		if (!empty($data['saved'][$table][$record_id])) continue; // only once!
-		// check if in log
-		foreach ($log as $line) {
-			if ($line['table'] !== $table) continue;
-			if ($line['record_id'].'' !== $record_id.'') continue;
-			continue 2;
-		}
+		if (empty($record['__from_log']))
+			wrap_file_log('default/dbexport', 'write', [time(), $table, $record_id, json_encode($record)]);
+		else unset($record['__from_log']);
 		$data['saved'][$table][$record_id] = $record;
-		wrap_file_log('default/dbexport', 'write', [time(), $table, $record_id, json_encode($record)]);
 
 		// get detail record relations
 		foreach ($relations['details'] as $rel_id => $relation) {
@@ -184,6 +179,51 @@ function mod_default_dbexport_record_sql($table, $conditions) {
 	$sql = 'SELECT %s FROM `%s` WHERE %s';
 	return sprintf($sql, implode(', ', $fields[$table]), $table, implode(' OR ', $where));
 }	
+
+/**
+ * @param string $sql
+ * @param string $table
+ * @param string $id_field
+ * @param array $conditions
+ * @return array
+ */
+function mod_default_dbexport_records($sql, $table, $id_field, $conditions) {
+	static $log = [];
+	if (!$log) $log = wrap_file_log('default/dbexport');
+
+	$ids = [];
+	$strings = [];
+	foreach ($conditions as $condition) {
+		$json = vsprintf('"%s":"%s"', $condition);
+		$strings[$json] = $json;
+	}
+
+	// all conditions in log?
+	// @todo this takes too long, faster to delete the file and start over again
+	$logged = [];
+	$last_index = 0;
+	foreach ($log as $index => $line) {
+		if ($line['table'] !== $table) continue;
+		$found = false;
+		foreach ($strings as $json) {
+			if (!strstr($line['record'], $json)) continue;
+			$found = true;
+		}
+		if (!$found) continue;
+		$logged[$line['record_id']] = json_decode($line['record'], true);
+		$logged[$line['record_id']]['__from_log'] = true;
+		$last_index = $index;
+	}
+
+	// @todo this is not 100 % correct
+	// will not find records missing for whatever reason in the middle
+	if ($logged AND $last_index !== count($log) - 1) return $logged;
+	
+	// read records from database
+	$records = wrap_db_fetch($sql, $id_field);
+	if (count($records) == count($logged)) return $logged; // do not write twice to log
+	return $records;
+}
 
 /**
  * get a list of database relations
