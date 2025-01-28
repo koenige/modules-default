@@ -111,23 +111,7 @@ function mod_default_dbimport_table($data, $log) {
 			mod_default_dbimport_log($data['table'], 'write', $record_id, $record_id);
 			$data['identical']++;
 		} else {
-			$not_logged = mod_default_dbimport_log($data['table'], 'check', $record_id);
-			if ($not_logged) $data['different']++;
-			else $data['different_logged']++;
-			// show what is different, old vs. new record, just one per time
-			if (empty($data['diff']) AND $not_logged) {
-				$data['diff'] = [];
-				$data['diff_record_id'] = $record_id;
-				foreach ($line as $field_name => $value) {
-					$data['diff'][] = [
-						'field' => $field_name,
-						'new_value' => $value,
-						'old_value' => $existing[$record_id][$field_name] ?? NULL,
-						'identical' => ($value.'' === $existing[$record_id][$field_name].'' ?? NULL) ? true : false
-					];
-				}
-			}
-			$data['records_different'][$record_id] = $line;
+			mod_default_dbimport_diff($data, $record_id, $line, $existing[$record_id]);
 		}
 	}
 	if ($data['identical'] AND $data['identical'] === $data['records']) {
@@ -174,6 +158,37 @@ function mod_default_dbimport_log($table, $action, $old_record_id = 0, $new_reco
 }
 
 /**
+ * check if a record is different, if it was already manually checked etc.
+ *
+ * @param array $data
+ * @param int $record_id
+ * @param array $record
+ * @param array $record_existing
+ */
+function mod_default_dbimport_diff(&$data, $record_id, $record, $record_existing) {
+	$not_logged = mod_default_dbimport_log($data['table'], 'check', $record_id);
+	if (!$not_logged) {
+		$data['different_logged']++;
+		return;
+	}
+	$data['different']++;
+	// show what is different, old vs. new record, just one per time
+	if (empty($data['diff']) AND $not_logged) {
+		$data['diff'] = [];
+		$data['diff_record_id'] = $record_id;
+		foreach ($record as $field_name => $value) {
+			$data['diff'][] = [
+				'field' => $field_name,
+				'new_value' => $value,
+				'old_value' => $record_existing[$field_name],
+				'identical' => ($value.'' === $record_existing[$field_name].'') ? true : false
+			];
+		}
+	}
+	$data['records_different'][$record_id] = $record;
+}
+
+/**
  * manually save ID matching in logfile
  *
  */
@@ -182,5 +197,5 @@ function mod_default_dbimport_table_save() {
 		mod_default_dbimport_log($_GET['table'], 'write', $_POST['record_id'], $_POST['record_id']);
 	else
 		mod_default_dbimport_log($_GET['table'], 'write', $_POST['record_id']);
-	wrap_redirect_change();
+	wrap_redirect_change('#diff');
 }

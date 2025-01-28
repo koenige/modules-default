@@ -55,7 +55,7 @@
 %%% endif %%%
 
 %%% if diff %%%
-<form method="POST" action="">
+<form method="POST" action="" id="diff">
 <input type="hidden" name="record_id" value="%%% item diff_record_id %%%">
 <table>
 %%% loop diff %%%
