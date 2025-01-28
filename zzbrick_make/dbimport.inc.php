@@ -98,7 +98,6 @@ function mod_default_dbimport_table($data, $log) {
 	$data['different'] = 0;
 	$data['different_logged'] = 0;
 	$data['identical'] = 0;
-	$data['records_different'] = [];
 	foreach ($tabledata as $record_id => $line) {
 		if (!array_key_exists($record_id, $existing)) {
 			mod_default_dbimport_log($data['table'], 'write', $record_id);
@@ -173,19 +172,17 @@ function mod_default_dbimport_diff(&$data, $record_id, $record, $record_existing
 	}
 	$data['different']++;
 	// show what is different, old vs. new record, just one per time
-	if (empty($data['diff']) AND $not_logged) {
-		$data['diff'] = [];
-		$data['diff_record_id'] = $record_id;
-		foreach ($record as $field_name => $value) {
-			$data['diff'][] = [
-				'field' => $field_name,
-				'new_value' => $value,
-				'old_value' => $record_existing[$field_name],
-				'identical' => ($value.'' === $record_existing[$field_name].'') ? true : false
-			];
-		}
+	if (!empty($data['diff'])) return;
+	$data['diff'] = [];
+	$data['diff_record_id'] = $record_id;
+	foreach ($record as $field_name => $value) {
+		$data['diff'][] = [
+			'field' => $field_name,
+			'new_value' => $value,
+			'old_value' => $record_existing[$field_name],
+			'identical' => ($value.'' === $record_existing[$field_name].'') ? true : false
+		];
 	}
-	$data['records_different'][$record_id] = $record;
 }
 
 /**
