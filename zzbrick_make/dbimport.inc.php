@@ -31,7 +31,11 @@ function mod_default_make_dbimport() {
 	
 	foreach ($log as $line) {
 		if (!array_key_exists($line['table'], $data))
-			$data[$line['table']] = ['table' => $line['table'], 'records' => 1];
+			$data[$line['table']] = [
+				'table' => $line['table'],
+				'records' => 1,
+				'logged' => mod_default_dbimport_log($line['table'], 'count')
+			];
 		else
 			$data[$line['table']]['records']++;
 	}
@@ -54,6 +58,8 @@ function mod_default_make_dbimport() {
 }
 
 function mod_default_dbimport_table($data, $log) {
+	ini_set('max_execution_time', 0);
+
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		mod_default_dbimport_table_save();
 	}
@@ -138,17 +144,19 @@ function mod_default_dbimport_table($data, $log) {
  * save ID matching in logfile
  *
  * @param string $table
- * @param string $action
+ * @param string $action 'write', 'check', 'count'
  * @param int $old_record_id
  * @param int $new_record_id (optional)
  * @return bool false: record ID exists, true: record ID does not exist
  */
-function mod_default_dbimport_log($table, $action, $old_record_id, $new_record_id = 0) {
+function mod_default_dbimport_log($table, $action, $old_record_id = 0, $new_record_id = 0) {
 	static $increment = 0;
 	if (!$increment) $increment = wrap_db_increment($table);
 
 	$logfile = sprintf('default/dbimport_ids[%s]', $table);
 	$log = wrap_file_log($logfile);
+	if ($action === 'count') return count($log);
+
 	if (!$new_record_id) {
 		// already in log?
 		foreach ($log as $line) {

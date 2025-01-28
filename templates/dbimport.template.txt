@@ -13,11 +13,15 @@
 <pre><code>%%% setting log_dir %%%/default/dbexport.log</code></pre>
 
 %%% elseif overview %%%
-<ul>
+<table>
 %%% loop start %%%
-<li><a href="?table=%%% item table %%%">%%% item table %%%</a> (%%% item records %%%)</li>
+<tr>
+<th><a href="?table=%%% item table %%%">%%% item table %%%</a></th>
+<td style="text-align: right;">%%% text "%d entries" records %%%</td>
+<td style="text-align: right;">%%% text "%d matched" logged %%%</td>
+</tr>
 %%% loop end %%%
-</ul>
+</table>
 
 %%% else %%%
 <h2>%%% item table %%% (%%% item records %%%)</h2>
