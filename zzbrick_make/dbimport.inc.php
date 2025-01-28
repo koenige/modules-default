@@ -41,6 +41,14 @@ function mod_default_make_dbimport() {
 	else $data = mod_default_dbimport_table($data, $log);
 
 	$page['query_strings'][] = 'table';
+	if (!empty($_GET['table'])) {
+		global $zz_page;
+		$page['breadcrumbs'][] = [
+			'url_path' => './',
+			'title' => $zz_page['db']['title']
+		];
+		$page['breadcrumbs'][]['title'] = $_GET['table'];
+	}
 	$page['text'] = wrap_template('dbimport', $data);
 	return $page;
 }
