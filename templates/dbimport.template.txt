@@ -65,8 +65,8 @@
 </tr>
 %%% loop end %%%
 </table>
-<input type="submit" name="identical" value="%%% text Records are identical %%%">
-<input type="submit" name="different" value="%%% text Records are different %%%">
+<input type="submit" name="identical" value="%%% text Record is identical %%%">
+<input type="submit" name="different" value="%%% text Record is different %%%">
 </form>
 %%% endif %%%
 
