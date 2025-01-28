@@ -21,14 +21,31 @@
 
 %%% else %%%
 <h2>%%% item table %%% (%%% item records %%%)</h2>
+
+<p>%%% text "Auto increment value: %d" auto_increment %%%</p>
+
+%%% if relations %%%
+<h3>%%% text Relations %%%</h3>
+
+<ul>
+%%% loop relations %%%
+<li><code>%%% item master_table %%%.%%% item master_field %%%</code> (<code>%%% item detail_field %%%</code>)</li>
+%%% loop end %%%
+</ul>
+%%% endif %%%
+
+<h3>%%% text Identical records %%%</h3>
+
 %%% if all_identical %%%
 %%% text The records are identical. %%%
 %%% elseif none_identical %%%
-%%% text None of the records to import already exist. %%%
+%%% text None of the records to import are identical. %%%
 %%% else %%%
-%%% text Some records are different. %%%
+%%% text Some records are identical. %%%
 %%% endif %%%
-<p>%%% text "New records: %d" new %%%</p>
-<p>%%% text "Different records: %d" different %%%</p>
+
+<h3>%%% text "Different records: %d" different %%%</h3>
+
+<h3>%%% text "New records: %d" new %%%</h3>
 
 %%% endif %%%

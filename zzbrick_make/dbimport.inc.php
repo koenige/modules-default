@@ -49,6 +49,7 @@ function mod_default_dbimport_table($data, $log) {
 	$tabledata = [];
 	$conditions = [];
 	$data['table'] = $_GET['table'];
+	$data['auto_increment'] = wrap_db_increment($data['table']);
 	foreach ($log as $line) {
 		if ($line['table'] !== $data['table']) continue;
 		$tabledata[$line['record_id']] = json_decode($line['record'], true);
@@ -59,6 +60,15 @@ function mod_default_dbimport_table($data, $log) {
 	
 	wrap_include('zzbrick_request/dbexport', 'default');
 	$sql = mod_default_dbexport_record_sql($data['table'], $conditions);
+	
+	$data['relations'] = [];
+	$relations = mod_default_dbexport_relations();
+	foreach ($relations as $rel) {
+		if ($rel['master_table'] === $data['table'])
+			$data['id_field'] = $rel['master_field'];
+		if ($rel['detail_table'] === $data['table'])
+			$data['relations'][] = $rel;
+	}
 	
 	$id_field = wrap_edit_sql($sql, 'SELECT');
 	$id_field = explode(' ', $sql);
@@ -73,14 +83,17 @@ function mod_default_dbimport_table($data, $log) {
 	$data['records_different'] = [];
 	foreach ($tabledata as $record_id => $line) {
 		if (!array_key_exists($record_id, $existing)) {
+			mod_default_dbimport_log($data['table'], $record_id);
 			$data['new']++;
 			$data['records_new'][$record_id] = $line;
 			continue;
 		}
 		unset($line['last_update']);
 		unset($existing[$record_id]['last_update']);
-		if ($line === $existing[$record_id]) $data['identical']++;
-		else {
+		if ($line === $existing[$record_id]) {
+			mod_default_dbimport_log($data['table'], $record_id, $record_id);
+			$data['identical']++;
+		} else {
 			$data['different']++;
 			// @todo show what is different, old vs. new record
 			$data['records_different'][$record_id] = $line;
@@ -95,4 +108,30 @@ function mod_default_dbimport_table($data, $log) {
 	}
 
 	return $data;
+}
+
+/**
+ * save ID matching in logfile
+ *
+ * @param string $table
+ * @param int $old_record_id
+ * @param int $new_record_id
+ */
+function mod_default_dbimport_log($table, $old_record_id, $new_record_id = 0) {
+	static $increment = 0;
+	if (!$increment) $increment = wrap_db_increment($table);
+
+	$logfile = sprintf('default/dbimport_ids[%s]', $table);
+	$log = wrap_file_log($logfile);
+	if (!$new_record_id) {
+		// already in log?
+		foreach ($log as $line) {
+			if ($line['old_record_id'].'' === $old_record_id.'') return;
+			if ($line['new_record_id'] >= $increment)
+				$increment = ++$line['new_record_id'];
+		}
+		$new_record_id = $increment++;
+	}
+	
+	wrap_file_log($logfile, 'write', [time(), $old_record_id, $new_record_id]);
 }
