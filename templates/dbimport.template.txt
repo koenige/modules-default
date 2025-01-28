@@ -46,6 +46,22 @@
 
 <h3>%%% text "Different records: %d" different %%%</h3>
 
+%%% if diff %%%
+<form method="POST" action="">
+<input type="hidden" name="record_id" value="%%% item diff_record_id %%%">
+<table>
+%%% loop diff %%%
+<tr>
+<th>%%% item field %%%</th>
+<td>%%% item old_value %%%%%% unless identical %%%<br><span style="background: #C00; color: white;">%%% item new_value %%%</span>%%% endif %%%</td>
+</tr>
+%%% loop end %%%
+</table>
+<input type="submit" name="identical" value="%%% text Records are identical %%%">
+<input type="submit" name="different" value="%%% text Records are different %%%">
+</form>
+%%% endif %%%
+
 <h3>%%% text "New records: %d" new %%%</h3>
 
 %%% endif %%%
