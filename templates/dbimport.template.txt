@@ -16,7 +16,7 @@
 <table>
 %%% loop start %%%
 <tr>
-<th><a href="?table=%%% item table %%%">%%% item table %%%</a></th>
+<th>%%% if complete %%%<del style="padding-left: 2rem;">%%% endif %%%<a href="?table=%%% item table %%%">%%% item table %%%</a>%%% if complete %%%<del>%%% endif %%%</th>
 <td style="text-align: right;">%%% text "%d entries" records %%%</td>
 <td style="text-align: right;">%%% text "%d matched" logged %%%</td>
 </tr>
@@ -61,7 +61,7 @@
 %%% loop diff %%%
 <tr>
 <th>%%% item field %%%</th>
-<td>%%% item old_value %%%%%% unless identical %%%<br><span style="background: #C00; color: white;">%%% item new_value %%%</span>%%% endif %%%</td>
+<td>%%% item old_value wrap_html_escape %%%%%% unless identical %%%<br><span style="background: #C00; color: white;">%%% item new_value wrap_html_escape %%%</span>%%% endif %%%</td>
 </tr>
 %%% loop end %%%
 </table>

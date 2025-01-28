@@ -39,6 +39,10 @@ function mod_default_make_dbimport() {
 		else
 			$data[$line['table']]['records']++;
 	}
+	// mark as complete where records = logged
+	foreach ($data as $index => $line)
+		if ($line['logged'] === $line['records'])
+			$data[$index]['complete'] = true;
 	ksort($data);
 	$data = array_values($data);
 	if (empty($_GET['table'])) $data['overview'] = true;
@@ -206,7 +210,8 @@ function mod_default_dbimport_diff(&$data, $record_id, $record, $record_existing
 	$record_2 = $record;
 	array_shift($record_2);
 	foreach ($record_2 as $field_name => $value) {
-		if ($record_existing[$field_name] === $value) {
+		// ignore fields with NULL values on both sides
+		if ($record_existing[$field_name] === $value AND $value) {
 			$completely_different = false;
 			break;
 		}
@@ -225,8 +230,8 @@ function mod_default_dbimport_diff(&$data, $record_id, $record, $record_existing
 	foreach ($record as $field_name => $value) {
 		$data['diff'][] = [
 			'field' => $field_name,
-			'new_value' => $value,
-			'old_value' => $record_existing[$field_name],
+			'new_value' => $value ?? wrap_text('– none –'),
+			'old_value' => $record_existing[$field_name] ?? wrap_text('– none –'),
 			'identical' => ($value.'' === $record_existing[$field_name].'') ? true : false
 		];
 	}
