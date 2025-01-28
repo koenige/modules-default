@@ -96,6 +96,7 @@ function mod_default_dbimport_table($data, $log) {
 	$diffs = [];
 	$data['new'] = 0;
 	$data['different'] = 0;
+	$data['different_logged'] = 0;
 	$data['identical'] = 0;
 	$data['records_new'] = [];
 	$data['records_different'] = [];
@@ -112,9 +113,11 @@ function mod_default_dbimport_table($data, $log) {
 			mod_default_dbimport_log($data['table'], 'write', $record_id, $record_id);
 			$data['identical']++;
 		} else {
-			$data['different']++;
+			$not_logged = mod_default_dbimport_log($data['table'], 'check', $record_id);
+			if ($not_logged) $data['different']++;
+			else $data['different_logged']++;
 			// show what is different, old vs. new record, just one per time
-			if (empty($data['diff']) AND mod_default_dbimport_log($data['table'], 'check', $record_id)) {
+			if (empty($data['diff']) AND $not_logged) {
 				$data['diff'] = [];
 				$data['diff_record_id'] = $record_id;
 				foreach ($line as $field_name => $value) {

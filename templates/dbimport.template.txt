@@ -50,6 +50,10 @@
 
 <h3>%%% text "Different records: %d" different %%%</h3>
 
+%%% if different_logged %%%
+%%% text "Different records logged: %d" different_logged %%%
+%%% endif %%%
+
 %%% if diff %%%
 <form method="POST" action="">
 <input type="hidden" name="record_id" value="%%% item diff_record_id %%%">
