@@ -98,13 +98,11 @@ function mod_default_dbimport_table($data, $log) {
 	$data['different'] = 0;
 	$data['different_logged'] = 0;
 	$data['identical'] = 0;
-	$data['records_new'] = [];
 	$data['records_different'] = [];
 	foreach ($tabledata as $record_id => $line) {
 		if (!array_key_exists($record_id, $existing)) {
 			mod_default_dbimport_log($data['table'], 'write', $record_id);
 			$data['new']++;
-			$data['records_new'][$record_id] = $line;
 			continue;
 		}
 		unset($line['last_update']);
@@ -154,15 +152,15 @@ function mod_default_dbimport_table($data, $log) {
  */
 function mod_default_dbimport_log($table, $action, $old_record_id = 0, $new_record_id = 0) {
 	static $increment = 0;
+	static $log = [];
 	if (!$increment) $increment = wrap_db_increment($table);
-
 	$logfile = sprintf('default/dbimport_ids[%s]', $table);
-	$log = wrap_file_log($logfile);
-	if ($action === 'count') return count($log);
+	if (!array_key_exists($table, $log)) $log[$table] = wrap_file_log($logfile);
+	if ($action === 'count') return count($log[$table]);
 
 	if (!$new_record_id) {
 		// already in log?
-		foreach ($log as $line) {
+		foreach ($log[$table] as $line) {
 			if ($line['old_record_id'].'' === $old_record_id.'') return false;
 			if ($line['new_record_id'] >= $increment)
 				$increment = ++$line['new_record_id'];
@@ -184,4 +182,5 @@ function mod_default_dbimport_table_save() {
 		mod_default_dbimport_log($_GET['table'], 'write', $_POST['record_id'], $_POST['record_id']);
 	else
 		mod_default_dbimport_log($_GET['table'], 'write', $_POST['record_id']);
+	wrap_redirect_change();
 }
