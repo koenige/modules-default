@@ -13,15 +13,19 @@
 <pre><code>%%% setting log_dir %%%/default/dbexport.log</code></pre>
 
 %%% elseif overview %%%
+<form method="POST" action="">
 <table>
 %%% loop start %%%
 <tr>
 <th>%%% if complete %%%<del style="padding-left: 2rem;">%%% endif %%%<a href="?table=%%% item table %%%">%%% item table %%%</a>%%% if complete %%%<del>%%% endif %%%</th>
 <td style="text-align: right;">%%% text "%d entries" records %%%</td>
 <td style="text-align: right;">%%% text "%d matched" logged %%%</td>
+<td>%%% if deletion_possible %%%<input type="submit" name="delete[%%% item table %%%]" value="%%% text "Delete log for %s" table %%%">%%% endif %%%</td>
+<td>%%% unless main__no_import %%%<input type="submit" name="import[%%% item table %%%]" value="%%% text "Import data for %s" table %%%">%%% endif %%%</td>
 </tr>
 %%% loop end %%%
 </table>
+</form>
 
 %%% else %%%
 <h2>%%% item table %%% (%%% item records %%%)</h2>

@@ -21,6 +21,17 @@
 function mod_default_make_dbimport() {
 	$data = [];
 
+	if ($_SERVER['REQUEST_METHOD'] === 'POST' AND empty($_GET['table'])) {
+		if (!empty($_POST['delete'])) {
+			$first = key($_POST['delete']);
+			$filename = sprintf('%s/default/dbimport_ids-%s.log', wrap_setting('log_dir'), key($_POST['delete']));
+			if (file_exists($filename)) unlink($filename);
+			wrap_redirect_change();
+		} elseif (!empty($_POST['import'])) {
+		
+		}
+	}
+
 	wrap_include('file', 'zzwrap');
 	$log = wrap_file_log('default/dbexport');
 	if (!$log) {
@@ -40,11 +51,18 @@ function mod_default_make_dbimport() {
 			$data[$line['table']]['records']++;
 	}
 	// mark as complete where records = logged
-	foreach ($data as $index => $line)
+	$no_import = NULL;
+	foreach ($data as $index => $line) {
 		if ($line['logged'] === $line['records'])
 			$data[$index]['complete'] = true;
+		else
+			$no_import = true;
+		if ($line['logged'])
+			$data[$index]['deletion_possible'] = true;
+	}
 	ksort($data);
 	$data = array_values($data);
+	if ($no_import) $data['no_import'] = true;
 	if (empty($_GET['table'])) $data['overview'] = true;
 	else $data = mod_default_dbimport_table($data, $log);
 
