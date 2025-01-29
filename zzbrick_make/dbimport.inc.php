@@ -128,7 +128,7 @@ function mod_default_dbimport_table($data, $log) {
  * @param string $action 'write', 'check', 'count'
  * @param int $old_record_id
  * @param int $new_record_id (optional)
- * @return bool false: record ID exists, true: record ID does not exist
+ * @return int ID of new record, or count of records
  */
 function mod_default_dbimport_log($table, $action, $old_record_id = 0, $new_record_id = 0) {
 	static $increment = [];
@@ -143,7 +143,7 @@ function mod_default_dbimport_log($table, $action, $old_record_id = 0, $new_reco
 	if (!$new_record_id) {
 		// already in log?
 		foreach ($log[$table] as $line) {
-			if ($line['old_record_id'].'' === $old_record_id.'') return false;
+			if ($line['old_record_id'].'' === $old_record_id.'') return (int)$line['new_record_id'];
 			if ($line['new_record_id'] >= $increment[$table])
 				$increment[$table] = ++$line['new_record_id'];
 		}
@@ -153,7 +153,7 @@ function mod_default_dbimport_log($table, $action, $old_record_id = 0, $new_reco
 
 	if ($action === 'write')
 		wrap_file_log($logfile, 'write', [time(), $old_record_id, $new_record_id]);
-	return true;
+	return $new_record_id;
 }
 
 /**
@@ -167,9 +167,12 @@ function mod_default_dbimport_log($table, $action, $old_record_id = 0, $new_reco
 function mod_default_dbimport_diff(&$data, $record_id, $record, $record_existing) {
 	static $unique_fields = [];
 	// check: already logged?
-	$not_logged = mod_default_dbimport_log($data['table'], 'check', $record_id);
-	if (!$not_logged) {
+	$new_record_id = mod_default_dbimport_log($data['table'], 'check', $record_id);
+	if ($new_record_id === $record_id) {
 		$data['different_logged']++;
+		return;
+	} elseif ($new_record_id > wrap_db_increment($data['table'])) {
+		$data['new']++;
 		return;
 	}
 	
@@ -179,6 +182,7 @@ function mod_default_dbimport_diff(&$data, $record_id, $record, $record_existing
 	if ($record === $record_existing) {
 		mod_default_dbimport_log($data['table'], 'write', $record_id, $record_id);
 		$data['identical']++;
+		return;
 	}
 	
 	// check: unique fields different? if yes, record is different
@@ -194,7 +198,7 @@ function mod_default_dbimport_diff(&$data, $record_id, $record, $record_existing
 		foreach ($unique_fields[$data['table']] as $field) {
 			if ($record[$field] !== $record_existing[$field]) {
 				mod_default_dbimport_log($data['table'], 'write', $record_id);
-				$data['different_logged']++;
+				$data['new']++;
 				return;	
 			}
 		}
@@ -203,7 +207,7 @@ function mod_default_dbimport_diff(&$data, $record_id, $record, $record_existing
 	// check: m:n-table, one value different = always completely different
 	if (in_array($data['table'], wrap_setting('default_dbimport_diff_mntables'))) {
 		mod_default_dbimport_log($data['table'], 'write', $record_id);
-		$data['different_logged']++;
+		$data['new']++;
 		return;	
 	}
 
@@ -220,7 +224,7 @@ function mod_default_dbimport_diff(&$data, $record_id, $record, $record_existing
 	}
 	if ($completely_different) {
 		mod_default_dbimport_log($data['table'], 'write', $record_id);
-		$data['different_logged']++;
+		$data['new']++;
 		return;	
 	}
 	
