@@ -131,22 +131,24 @@ function mod_default_dbimport_table($data, $log) {
  * @return bool false: record ID exists, true: record ID does not exist
  */
 function mod_default_dbimport_log($table, $action, $old_record_id = 0, $new_record_id = 0) {
-	static $increment = 0;
+	static $increment = [];
 	static $log = [];
-	if (!$increment) $increment = wrap_db_increment($table);
+	if (!array_key_exists($table, $increment))
+		$increment[$table] = wrap_db_increment($table);
 	$logfile = sprintf('default/dbimport_ids[%s]', $table);
-	if (!array_key_exists($table, $log)) $log[$table] = wrap_file_log($logfile);
+	if (!array_key_exists($table, $log))
+		$log[$table] = wrap_file_log($logfile);
 	if ($action === 'count') return count($log[$table]);
 
 	if (!$new_record_id) {
 		// already in log?
 		foreach ($log[$table] as $line) {
 			if ($line['old_record_id'].'' === $old_record_id.'') return false;
-			if ($line['new_record_id'] >= $increment)
-				$increment = ++$line['new_record_id'];
+			if ($line['new_record_id'] >= $increment[$table])
+				$increment[$table] = ++$line['new_record_id'];
 		}
 		if ($action === 'write')
-			$new_record_id = $increment++;
+			$new_record_id = $increment[$table]++;
 	}
 
 	if ($action === 'write')
