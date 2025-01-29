@@ -10,6 +10,9 @@
 #
 %%% if export_successful %%%
 <p>%%% text The database export was successful. %%%</p>
+%%% if export_translations_successful %%%
+<p>%%% text The database export of translations was successful, too. %%%</p>
+%%% endif %%%
 
 %%% else %%%
 %%% if record_not_found %%%

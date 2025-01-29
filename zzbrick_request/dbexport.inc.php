@@ -24,6 +24,7 @@ function mod_default_dbexport() {
 	if (!empty($data['table']) AND !empty($data['field']) AND !empty($data['record_id'])) {
 		$data = mod_default_dbexport_read($data);
 		$data['export_successful'] = true;
+		$data['export_translations_successful'] = mod_default_dbexport_translate();
 	}
 	
 	$page['query_strings'][] = 'table';
@@ -229,7 +230,7 @@ function mod_default_dbexport_records($sql, $table, $id_field, $conditions) {
  * get a list of database relations
  *
  * @param string $table_name (optional)
- * @param string $$field_name (optional)
+ * @param string $field_name (optional)
  * @return array
  */
 function mod_default_dbexport_relations($table_name = '', $field_name = '') {
@@ -254,4 +255,49 @@ function mod_default_dbexport_relations($table_name = '', $field_name = '') {
 			$data['details'][$rel_id] = $relation;
 	}
 	return $data;
+}
+
+/**
+ * get translations for records
+ * @todo we assume, both database have identical entries in 
+ * `default_translationfields` table
+ *
+ * @return bool
+ */
+function mod_default_dbexport_translate() {
+	$sql = 'SELECT translationfield_id, table_name, field_type
+		FROM /*_TABLE default_translationfields _*/
+		WHERE db_name = DATABASE()';
+	$fields = wrap_db_fetch($sql, 'translationfield_id');
+	$tables = [];
+	foreach ($fields as $field)
+		$tables[$field['table_name']] = $field['table_name'];
+	$tables = array_values($tables);
+
+	wrap_include('file', 'zzwrap');
+	$log = wrap_file_log('default/dbexport');
+	// get table names + IDs
+	$ids = [];
+	foreach ($log as $line) {
+		if (!in_array($line['table'], $tables)) continue;
+		$ids[$line['table']][$line['record_id']] = $line['record_id'];
+	}
+	
+	$sql_template = 'SELECT *
+		FROM %s
+		WHERE translationfield_id = %d
+		AND field_id IN (%s)';
+	foreach ($fields as $field) {
+		if (!array_key_exists($field['table_name'], $ids)) continue;
+		$table = sprintf('_translations_%s', $field['field_type']);
+		$sql = sprintf($sql_template
+			, $table
+			, $field['translationfield_id']
+			, implode(',', $ids[$field['table_name']])
+		);
+		$records = wrap_db_fetch($sql, 'translation_id');
+		foreach ($records as $record_id => $record)
+			wrap_file_log('default/dbexport', 'write', [time(), $table, $record_id, json_encode($record)]);
+	}
+	return true;
 }
