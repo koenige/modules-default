@@ -312,6 +312,17 @@ function mod_default_make_dbimport_go($table) {
 	$sql = 'SELECT %s FROM %s';
 	$sql = sprintf($sql, $id_field, $table);
 	$table_ids = wrap_db_fetch($sql, $id_field, 'single value');
+	
+	// check for identifiers?
+	$identifiers = [];
+	$identifier_field_name = NULL;
+	foreach (wrap_setting('default_dbimport_identifiers') as $identifier) {
+		if (!str_starts_with($identifier, $table.'.')) continue;
+		$sql = 'SELECT %s, %s FROM %s';
+		$sql = sprintf($sql, $id_field, $identifier, $table);
+		$identifiers = wrap_db_fetch($sql, $id_field, 'key/value');
+		$identifier_field_name = substr($identifier, strpos($identifier, '.') + 1);
+	}
 
 	$data['imported'] = 0;
 	$logfile = wrap_file_log('default/dbexport');
@@ -329,6 +340,11 @@ function mod_default_make_dbimport_go($table) {
 				$field_name = rtrim($field_name, '`)');
 			}
 			$field_names[] = sprintf('`%s`', $field_name);
+			if ($field_name === $identifier_field_name) {
+				// check if identifier already exists, add suffix in case it does
+				if (in_array($value, $identifiers))
+					$value = sprintf('%s%s', $value, wrap_setting('default_dbimport_identifiers_suffix'));
+			}
 			if ($value AND array_key_exists($field_name, $fields)) {
 				if (empty($ids[$fields[$field_name]][$value])) {
 					wrap_error(sprintf('DB Import failed. No replacement found for %s.%s %d. Record: %s'
