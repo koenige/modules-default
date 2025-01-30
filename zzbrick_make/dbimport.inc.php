@@ -326,6 +326,7 @@ function mod_default_make_dbimport_go($table) {
 
 	$data['imported'] = 0;
 	$logfile = wrap_file_log('default/dbexport');
+	wrap_include('database', 'zzform');
 	foreach ($logfile as $line) {
 		if ($line['table'] !== $table) continue;
 		$field_names = [];
@@ -374,8 +375,7 @@ function mod_default_make_dbimport_go($table) {
 				'DB Import returned with wrong increment. ID received: %d, ID expected: %d, query: %s'
 				, $success['id'], $id, $sql
 			), E_USER_ERROR);
-		wrap_include('database', 'zzform');
-		zz_db_log($sql);
+		zz_db_log($sql, wrap_setting('default_dbimport_log_username'), $id);
 		$data['imported']++;
 	}
 	$data['table'] = $table;
