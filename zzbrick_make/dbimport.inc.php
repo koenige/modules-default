@@ -307,7 +307,7 @@ function mod_default_make_dbimport_go($table) {
 		foreach ($t_fields as $field)
 			$t_tables[$field['translationfield_id']] = $field['table_name'];
 	}
-	$fields += array_unique($t_tables);
+	if (!empty($t_tables)) $fields += array_unique($t_tables);
 	
 	foreach ($fields as $related_table) {
 		if (!array_key_exists($related_table, $ids))
