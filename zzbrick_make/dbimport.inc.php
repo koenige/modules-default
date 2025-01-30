@@ -299,6 +299,15 @@ function mod_default_make_dbimport_go($table) {
 			$id_field = $relation['master_field'];
 		}
 	}
+
+	// check if translations
+	if (mod_default_make_dbimport_translationtable($table)) {
+		$t_fields = mf_default_dbtransfer_translationfields();
+		$t_tables = [];
+		foreach ($t_fields as $field)
+			$t_tables[$field['translationfield_id']] = $field['table_name'];
+	}
+	$fields += array_unique($t_tables);
 	
 	foreach ($fields as $related_table) {
 		if (!array_key_exists($related_table, $ids))
@@ -344,12 +353,20 @@ function mod_default_make_dbimport_go($table) {
 					$value = sprintf('%s%s', $value, wrap_setting('default_dbimport_identifiers_suffix'));
 			}
 			if ($value AND array_key_exists($field_name, $fields)) {
-				if (empty($ids[$fields[$field_name]][$value])) {
+				if (mod_default_make_dbimport_translationtable($table) AND $field_name === 'translationfield_id') {
+					// don’t do anything
+				} elseif (empty($ids[$fields[$field_name]][$value])) {
 					wrap_error(sprintf('DB Import failed. No replacement found for %s.%s %d. Record: %s'
 						, $fields[$field_name], $field_name, $value, json_encode($line['record'])
 					), E_USER_ERROR);
+				} else {
+					$value = $ids[$fields[$field_name]][$value];
 				}
-				$value = $ids[$fields[$field_name]][$value];
+			}
+			if (mod_default_make_dbimport_translationtable($table) AND $field_name === 'field_id') {
+				$new_value = $ids[$t_tables[$line['record']['translationfield_id']]][$value];
+				if ($new_value.'' === $value.'') continue 2; // already in database, ID has not changes
+				$value = $new_value;
 			}
 			if (!$id) $id = (int)$value; // first field
 			if (is_null($value)) $value = 'NULL';
@@ -394,4 +411,15 @@ function mod_default_make_dbimport_ids($table) {
 	foreach ($log as $line)
 		$data[$table][$line['old_record_id']] = $line['new_record_id'];
 	return $data[$table];
+}
+
+/**
+ * check if a table is a translation table
+ *
+ * @param string $table
+ * @return bool
+ */
+function mod_default_make_dbimport_translationtable($table) {
+	if (in_array($table, ['_translations_text', '_translations_varchar'])) return true;
+	return false;
 }
