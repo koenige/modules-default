@@ -19,6 +19,7 @@
  * @return array
  */
 function mod_default_make_dbimport() {
+	wrap_include('file', 'zzwrap');
 	$data = [];
 
 	if ($_SERVER['REQUEST_METHOD'] === 'POST' AND empty($_GET['table'])) {
@@ -28,11 +29,10 @@ function mod_default_make_dbimport() {
 			if (file_exists($filename)) unlink($filename);
 			wrap_redirect_change();
 		} elseif (!empty($_POST['import'])) {
-		
+			return mod_default_make_dbimport_go(key($_POST['import']));
 		}
 	}
 
-	wrap_include('file', 'zzwrap');
 	$log = wrap_file_log('default/dbexport');
 	if (!$log) {
 		$data['logfile_missing'] = true;
@@ -271,4 +271,81 @@ function mod_default_dbimport_table_save() {
 	else
 		mod_default_dbimport_log($_GET['table'], 'write', $_POST['record_id']);
 	wrap_redirect_change('#diff');
+}
+
+/**
+ * import files after preparation is complete
+ *
+ * @param string $table
+ * @return array
+ */
+function mod_default_make_dbimport_go($table) {
+	wrap_include('zzbrick_request/dbexport', 'default');
+	$relations = mod_default_dbexport_relations();
+	$fields = [];
+	$ids = [];
+	foreach ($relations as $index => $relation) {
+		if ($relation['detail_db'] !== wrap_setting('db_name')) continue;
+		if ($relation['detail_table'] !== $table) continue;
+		// replace own ID
+		$fields[$relation['detail_id_field']] = $relation['detail_table'];
+		// replace foreign ID
+		$fields[$relation['detail_field']] = $relation['master_table'];
+		if (!array_key_exists($relation['master_table'], $ids))
+			$ids[$relation['master_table']] = mod_default_make_dbimport_ids($relation['master_table']);
+			
+	}
+
+	$data['imported'] = 0;
+	$logfile = wrap_file_log('default/dbexport');
+	foreach ($logfile as $line) {
+		if ($line['table'] !== $table) continue;
+		$field_names = [];
+		$values = [];
+		$id = 0;
+		$line['record'] = json_decode($line['record'], true);
+		foreach ($line['record'] as $field_name => $value) {
+			$field_names[] = sprintf('`%s`', $field_name);
+			if ($value AND array_key_exists($field_name, $fields))
+				$value = $ids[$fields[$field_name]][$value];
+			if (!$id) $id = $value; // first field
+			if (!$value) $value = 'NULL';
+			elseif (!wrap_is_int($value)) $value = sprintf('"%s"', wrap_db_escape($value));
+			$values[] = $value;
+		}
+		$sql = sprintf(
+			'INSERT INTO %s (%s) VALUES (%s)'
+			, $table
+			, implode(', ', $field_names)
+			, implode(', ', $values)
+		);
+		$success = wrap_db_query($sql);
+		if (empty($success['id']))
+			wrap_error(sprintf('DB Import failed. Query: %s', $sql), E_USER_ERROR);
+		if ($success['id'] !== $id)
+			wrap_error(sprintf(
+				'DB Import returned with wrong increment. ID received: %d, ID expected: %d, query: %s'
+				, $success['id'], $id, $sql
+			), E_USER_ERROR);
+		$data['imported']++;
+	}
+	$page['text'] = wrap_template('dbimport', $data);
+	return $page;
+}
+
+/**
+ * get replacements for IDs per table
+ *
+ * @param string $table
+ * @return array
+ */
+function mod_default_make_dbimport_ids($table) {
+	static $data = [];
+	if (array_key_exists($table, $data)) return $data[$table];
+
+	$log =	wrap_file_log(sprintf('default/dbimport_ids[%s]', $table));
+	$data[$table] = [];
+	foreach ($log as $line)
+		$data[$table][$line['old_record_id']] = $line['new_record_id'];
+	return $data[$table];
 }
