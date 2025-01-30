@@ -19,7 +19,7 @@
  * @return array
  */
 function mod_default_make_dbimport() {
-	wrap_include('file', 'zzwrap');
+	wrap_include('dbtransfer', 'default');
 	$data = [];
 
 	if ($_SERVER['REQUEST_METHOD'] === 'POST' AND empty($_GET['table'])) {
@@ -96,13 +96,11 @@ function mod_default_dbimport_table($data, $log) {
 		$conditions[] = [key($tabledata[$line['record_id']]), $line['record_id']];
 	}
 	$data['records'] = count($tabledata);
-	
-	
-	wrap_include('zzbrick_request/dbexport', 'default');
-	$sql = mod_default_dbexport_record_sql($data['table'], $conditions);
+
+	$sql = mf_default_dbtransfer_record_sql($data['table'], $conditions);
 	
 	$data['relations'] = [];
-	$relations = mod_default_dbexport_relations();
+	$relations = mf_default_dbtransfer_relations();
 	foreach ($relations as $rel) {
 		if ($rel['master_table'] === $data['table'])
 			$data['id_field'] = $rel['master_field'];
@@ -280,8 +278,7 @@ function mod_default_dbimport_table_save() {
  * @return array
  */
 function mod_default_make_dbimport_go($table) {
-	wrap_include('zzbrick_request/dbexport', 'default');
-	$relations = mod_default_dbexport_relations();
+	$relations = mf_default_dbtransfer_relations();
 	$fields = [];
 	$ids = [];
 	$id_field = '';

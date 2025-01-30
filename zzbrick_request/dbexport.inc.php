@@ -20,6 +20,7 @@
  */
 function mod_default_dbexport() {
 	ini_set('max_execution_time', 0);
+	wrap_include('dbtransfer', 'default');
 	$data = $_GET;
 	if (!empty($data['table']) AND !empty($data['field']) AND !empty($data['record_id'])) {
 		$data = mod_default_dbexport_read($data);
@@ -54,7 +55,6 @@ function mod_default_dbexport_read($data) {
 		return $data;
 	}
 	
-	wrap_include('file', 'zzwrap');
 	$conditions[] = [$data['field'], $data['record_id']];
 	$data['saved'] = [];
 	$data['conditions'] = [];
@@ -72,10 +72,10 @@ function mod_default_dbexport_read($data) {
  * @param array $extra_condition
  */
 function mod_default_dbexport_record($table, $id_field, $conditions, $data, $extra_condition = '') {
-	$sql = mod_default_dbexport_record_sql($table, $conditions, $extra_condition);
+	$sql = mf_default_dbtransfer_record_sql($table, $conditions, $extra_condition);
 	$records = mod_default_dbexport_records($sql, $table, $id_field, $conditions);
 
-	$relations = mod_default_dbexport_relations($table);
+	$relations = mf_default_dbtransfer_relations($table);
 	$table_rel = [];
 	// check all relations
 	foreach ($records as $record_id => $record) {
@@ -163,35 +163,6 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data, $ext
 }
 
 /**
- * creates SQL query to read records from database, with all fields
- *
- * @param string $table
- * @param array $conditions
- * @param string $extra_condition
- * @return array
- */
-function mod_default_dbexport_record_sql($table, $conditions, $extra_condition = '') {
-	static $fields = [];
-	if (!array_key_exists($table, $fields)) {
-		$sql = 'SHOW COLUMNS FROM `%s`';
-		$sql = sprintf($sql, $table);
-		$table_def = wrap_db_fetch($sql, '_dummy_', 'numeric');
-		$fields[$table] = [];
-		foreach ($table_def as $field) {
-			if (str_starts_with($field['Type'], 'varbinary')) $tpl = 'HEX(`%s`)';
-			else $tpl = '`%s`';
-			$fields[$table][] = sprintf($tpl, $field['Field']);
-		}
-	}
-	$where = [];
-	foreach ($conditions as $line)
-		$where[] = vsprintf('`%s` = %d', $line);
-	if ($extra_condition) $extra_condition = sprintf(' AND %s', $extra_condition);
-	$sql = 'SELECT %s FROM `%s` WHERE (%s) %s';
-	return sprintf($sql, implode(', ', $fields[$table]), $table, implode(' OR ', $where), $extra_condition);
-}	
-
-/**
  * @param string $sql
  * @param string $table
  * @param string $id_field
@@ -237,37 +208,6 @@ function mod_default_dbexport_records($sql, $table, $id_field, $conditions) {
 }
 
 /**
- * get a list of database relations
- *
- * @param string $table_name (optional)
- * @param string $field_name (optional)
- * @return array
- */
-function mod_default_dbexport_relations($table_name = '', $field_name = '') {
-	static $relations;
-	if (!$relations) {
-		$sql = 'SELECT * FROM /*_TABLE zzform_relations _*/';
-		$relations = wrap_db_fetch($sql, 'rel_id');
-	}
-	if (!$table_name) return $relations;
-	
-	$data = [
-		'masters' => [],
-		'details' => []
-	];
-	foreach ($relations as $rel_id => $relation) {
-		// @todo add support later
-		if ($relation['master_db'] !== wrap_setting('db_name')) continue;
-		if ($relation['detail_db'] !== wrap_setting('db_name')) continue;
-		if ($relation['master_table'] === $table_name)
-			$data['masters'][$rel_id] = $relation;
-		if ($relation['detail_table'] === $table_name)
-			$data['details'][$rel_id] = $relation;
-	}
-	return $data;
-}
-
-/**
  * get translations for records
  * @todo we assume, both database have identical entries in 
  * `default_translationfields` table
@@ -275,16 +215,12 @@ function mod_default_dbexport_relations($table_name = '', $field_name = '') {
  * @return bool
  */
 function mod_default_dbexport_translate() {
-	$sql = 'SELECT translationfield_id, table_name, field_type
-		FROM /*_TABLE default_translationfields _*/
-		WHERE db_name = DATABASE()';
-	$fields = wrap_db_fetch($sql, 'translationfield_id');
+	$fields = mf_default_dbtransfer_translationfields();
 	$tables = [];
 	foreach ($fields as $field)
 		$tables[$field['table_name']] = $field['table_name'];
 	$tables = array_values($tables);
 
-	wrap_include('file', 'zzwrap');
 	$log = wrap_file_log('default/dbexport');
 	// get table names + IDs
 	$ids = [];
