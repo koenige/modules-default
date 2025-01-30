@@ -29,51 +29,51 @@ function mod_default_make_dbimport() {
 			if (file_exists($filename)) unlink($filename);
 			wrap_redirect_change();
 		} elseif (!empty($_POST['import'])) {
-			return mod_default_make_dbimport_go(key($_POST['import']));
+			$data = mod_default_make_dbimport_go(key($_POST['import']));
 		}
+	} else {
+		$log = wrap_file_log('default/dbexport');
+		if (!$log) {
+			$data['logfile_missing'] = true;
+			$page['text'] = wrap_template('dbimport', $data);
+			return $page;
+		}
+		
+		foreach ($log as $line) {
+			if (!array_key_exists($line['table'], $data))
+				$data[$line['table']] = [
+					'table' => $line['table'],
+					'records' => 1,
+					'logged' => mod_default_dbimport_log($line['table'], 'count')
+				];
+			else
+				$data[$line['table']]['records']++;
+		}
+		// mark as complete where records = logged
+		$no_import = NULL;
+		foreach ($data as $index => $line) {
+			if ($line['logged'] === $line['records'])
+				$data[$index]['complete'] = true;
+			else
+				$no_import = true;
+			if ($line['logged'])
+				$data[$index]['deletion_possible'] = true;
+		}
+		ksort($data);
+		$data = array_values($data);
+		if ($no_import) $data['no_import'] = true;
+		if (empty($_GET['table'])) $data['overview'] = true;
+		else $data = mod_default_dbimport_table($data, $log);
 	}
-
-	$log = wrap_file_log('default/dbexport');
-	if (!$log) {
-		$data['logfile_missing'] = true;
-		$page['text'] = wrap_template('dbimport', $data);
-		return $page;
-	}
-	
-	foreach ($log as $line) {
-		if (!array_key_exists($line['table'], $data))
-			$data[$line['table']] = [
-				'table' => $line['table'],
-				'records' => 1,
-				'logged' => mod_default_dbimport_log($line['table'], 'count')
-			];
-		else
-			$data[$line['table']]['records']++;
-	}
-	// mark as complete where records = logged
-	$no_import = NULL;
-	foreach ($data as $index => $line) {
-		if ($line['logged'] === $line['records'])
-			$data[$index]['complete'] = true;
-		else
-			$no_import = true;
-		if ($line['logged'])
-			$data[$index]['deletion_possible'] = true;
-	}
-	ksort($data);
-	$data = array_values($data);
-	if ($no_import) $data['no_import'] = true;
-	if (empty($_GET['table'])) $data['overview'] = true;
-	else $data = mod_default_dbimport_table($data, $log);
 
 	$page['query_strings'][] = 'table';
-	if (!empty($_GET['table'])) {
+	if (!empty($_GET['table']) OR !empty($_POST)) {
 		global $zz_page;
 		$page['breadcrumbs'][] = [
 			'url_path' => './',
 			'title' => $zz_page['db']['title']
 		];
-		$page['breadcrumbs'][]['title'] = $_GET['table'];
+		$page['breadcrumbs'][]['title'] = $_GET['table'] ?? key($_POST['import']);
 	}
 	$page['text'] = wrap_template('dbimport', $data);
 	return $page;
@@ -284,17 +284,34 @@ function mod_default_make_dbimport_go($table) {
 	$relations = mod_default_dbexport_relations();
 	$fields = [];
 	$ids = [];
+	$id_field = '';
 	foreach ($relations as $index => $relation) {
 		if ($relation['detail_db'] !== wrap_setting('db_name')) continue;
 		if ($relation['detail_table'] !== $table) continue;
 		// replace own ID
-		$fields[$relation['detail_id_field']] = $relation['detail_table'];
+		$id_field = $relation['detail_id_field'];
+		$fields[$id_field] = $relation['detail_table'];
 		// replace foreign ID
 		$fields[$relation['detail_field']] = $relation['master_table'];
-		if (!array_key_exists($relation['master_table'], $ids))
-			$ids[$relation['master_table']] = mod_default_make_dbimport_ids($relation['master_table']);
-			
 	}
+	if (!$id_field) {
+		// no detail relations, look for ID field in master relations
+		foreach ($relations as $index => $relation) {
+			if ($relation['detail_db'] !== wrap_setting('db_name')) continue;
+			if ($relation['master_table'] !== $table) continue;
+			$id_field = $relation['master_field'];
+		}
+	}
+	
+	foreach ($fields as $related_table) {
+		if (!array_key_exists($related_table, $ids))
+			$ids[$related_table] = mod_default_make_dbimport_ids($related_table);
+	}
+
+	// get existing IDs, won’t be imported
+	$sql = 'SELECT %s FROM %s';
+	$sql = sprintf($sql, $id_field, $table);
+	$table_ids = wrap_db_fetch($sql, $id_field, 'single value');
 
 	$data['imported'] = 0;
 	$logfile = wrap_file_log('default/dbexport');
@@ -305,14 +322,22 @@ function mod_default_make_dbimport_go($table) {
 		$id = 0;
 		$line['record'] = json_decode($line['record'], true);
 		foreach ($line['record'] as $field_name => $value) {
+			$function = '';
+			if (str_starts_with($field_name, 'HEX(`')) {
+				$function = 'UNHEX(%s)';
+				$field_name = ltrim($field_name, 'HEX(`');
+				$field_name = rtrim($field_name, '`)');
+			}
 			$field_names[] = sprintf('`%s`', $field_name);
 			if ($value AND array_key_exists($field_name, $fields))
 				$value = $ids[$fields[$field_name]][$value];
-			if (!$id) $id = $value; // first field
-			if (!$value) $value = 'NULL';
+			if (!$id) $id = (int)$value; // first field
+			if (is_null($value)) $value = 'NULL';
 			elseif (!wrap_is_int($value)) $value = sprintf('"%s"', wrap_db_escape($value));
-			$values[] = $value;
+			$values[] = $function ? sprintf($function, $value) : $value;
 		}
+		// already in database? ignore
+		if (in_array($id, $table_ids)) continue;
 		$sql = sprintf(
 			'INSERT INTO %s (%s) VALUES (%s)'
 			, $table
@@ -327,10 +352,12 @@ function mod_default_make_dbimport_go($table) {
 				'DB Import returned with wrong increment. ID received: %d, ID expected: %d, query: %s'
 				, $success['id'], $id, $sql
 			), E_USER_ERROR);
+		wrap_include('database', 'zzform');
+		zz_db_log($sql);
 		$data['imported']++;
 	}
-	$page['text'] = wrap_template('dbimport', $data);
-	return $page;
+	$data['table'] = $table;
+	return $data;
 }
 
 /**

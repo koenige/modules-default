@@ -9,6 +9,7 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% if imported %%%
+<h2>%%% item table %%%</h2>
 <p>%%% text "%d records imported." imported %%%</p>
 
 %%% elseif logfile_missing %%%
