@@ -69,9 +69,10 @@ function mod_default_dbexport_read($data) {
  * @param string $id_field
  * @param array $conditions
  * @param array $data
+ * @param array $extra_condition
  */
-function mod_default_dbexport_record($table, $id_field, $conditions, $data) {
-	$sql = mod_default_dbexport_record_sql($table, $conditions);
+function mod_default_dbexport_record($table, $id_field, $conditions, $data, $extra_condition = '') {
+	$sql = mod_default_dbexport_record_sql($table, $conditions, $extra_condition);
 	$records = mod_default_dbexport_records($sql, $table, $id_field, $conditions);
 
 	$relations = mod_default_dbexport_relations($table);
@@ -114,12 +115,19 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data) {
 				'id_field' => $relation['detail_id_field'],
 				'id_foreign' => $record_id
 			];
+			$rel_key_2 = sprintf('%s=>%s', $table, $relation['detail_table']);
+			foreach (wrap_setting('default_dbexport_conditions') as $cond) {
+				if (!str_starts_with($cond, $rel_key_2.':')) continue;
+				$table_rel[$relation['detail_table']]['extra_condition'] = substr($cond, strlen($rel_key_2) + 1);
+			}
 		}
 	}
 	
 	// create WHERE conditions
 	foreach ($table_rel as $table_name => $lines) {
 		$conditions = [];
+		$extra_condition = $lines['extra_condition'] ?? '';
+		if ($extra_condition) unset($lines['extra_condition']);
 		foreach ($lines as $line) {
 			if (array_key_exists('id', $line)) {
 				foreach (wrap_setting('default_dbexport_debug_ids') as $debug) {
@@ -149,7 +157,7 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data) {
 		if (!$conditions) continue;
 		$table_id_field = reset($lines);
 		$table_id_field = $line['id_field'];
-		$data = mod_default_dbexport_record($table_name, $table_id_field, $conditions, $data);
+		$data = mod_default_dbexport_record($table_name, $table_id_field, $conditions, $data, $extra_condition);
 	}
 	return $data;
 }
@@ -159,9 +167,10 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data) {
  *
  * @param string $table
  * @param array $conditions
+ * @param string $extra_condition
  * @return array
  */
-function mod_default_dbexport_record_sql($table, $conditions) {
+function mod_default_dbexport_record_sql($table, $conditions, $extra_condition = '') {
 	static $fields = [];
 	if (!array_key_exists($table, $fields)) {
 		$sql = 'SHOW COLUMNS FROM `%s`';
@@ -177,8 +186,9 @@ function mod_default_dbexport_record_sql($table, $conditions) {
 	$where = [];
 	foreach ($conditions as $line)
 		$where[] = vsprintf('`%s` = %d', $line);
-	$sql = 'SELECT %s FROM `%s` WHERE %s';
-	return sprintf($sql, implode(', ', $fields[$table]), $table, implode(' OR ', $where));
+	if ($extra_condition) $extra_condition = sprintf(' AND %s', $extra_condition);
+	$sql = 'SELECT %s FROM `%s` WHERE (%s) %s';
+	return sprintf($sql, implode(', ', $fields[$table]), $table, implode(' OR ', $where), $extra_condition);
 }	
 
 /**
