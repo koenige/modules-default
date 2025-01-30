@@ -88,11 +88,11 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data) {
 		foreach ($relations['details'] as $rel_id => $relation) {
 			if (!$record[$relation['detail_field']]) continue;
 			$key = sprintf('%s', $record[$relation['detail_field']]);
-			$rel_key = sprintf('%s[%s]', $table, $relation['master_table']);
+			$rel_key = sprintf('%s=>%s', $relation['master_table'], $table);
 			if (in_array($rel_key, wrap_setting('default_dbexport_no_details'))) continue;
 			foreach ($record as $field_key => $field_value) {
 				$rel_id_key = sprintf(
-					'%s[%s][%s]=%s', $table, $relation['master_table']
+					'%s=>%s.%s=%s', $relation['master_table'], $table 
 					, $field_key, $field_value
 				);
 				if (in_array($rel_id_key, wrap_setting('default_dbexport_no_details_id'))) continue 2;
@@ -107,7 +107,7 @@ function mod_default_dbexport_record($table, $id_field, $conditions, $data) {
 		if (in_array($table, wrap_setting('default_dbexport_no_masters'))) continue;
 		foreach ($relations['masters'] as $rel_id => $relation) {
 			$key = sprintf('%s-%s', $relation['detail_field'], $record_id);
-			$rel_key = sprintf('%s[%s.%s]', $table, $relation['detail_table'], $relation['detail_field']);
+			$rel_key = sprintf('%s.%s=>%s', $relation['detail_table'], $relation['detail_field'], $table);
 			if (in_array($rel_key, wrap_setting('default_dbexport_no_masters'))) continue;
 			$table_rel[$relation['detail_table']][$key] = [
 				'foreign_key_field' => $relation['detail_field'],
