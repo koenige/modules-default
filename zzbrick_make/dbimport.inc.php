@@ -187,7 +187,7 @@ function mod_default_dbimport_diff(&$data, $record_id, $record, $record_existing
 	if ($new_record_id === $record_id) {
 		$data['different_logged']++;
 		return;
-	} elseif ($new_record_id > wrap_db_increment($data['table'])) {
+	} elseif ($new_record_id >= wrap_db_increment($data['table'])) {
 		$data['new']++;
 		return;
 	}
