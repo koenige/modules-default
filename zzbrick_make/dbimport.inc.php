@@ -329,8 +329,14 @@ function mod_default_make_dbimport_go($table) {
 				$field_name = rtrim($field_name, '`)');
 			}
 			$field_names[] = sprintf('`%s`', $field_name);
-			if ($value AND array_key_exists($field_name, $fields))
+			if ($value AND array_key_exists($field_name, $fields)) {
+				if (empty($ids[$fields[$field_name]][$value])) {
+					wrap_error(sprintf('DB Import failed. No replacement found for %s.%s %d. Record: %s'
+						, $fields[$field_name], $field_name, $value, json_encode($line['record'])
+					), E_USER_ERROR);
+				}
 				$value = $ids[$fields[$field_name]][$value];
+			}
 			if (!$id) $id = (int)$value; // first field
 			if (is_null($value)) $value = 'NULL';
 			elseif (!wrap_is_int($value)) $value = sprintf('"%s"', wrap_db_escape($value));
