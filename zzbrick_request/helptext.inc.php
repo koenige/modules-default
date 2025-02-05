@@ -19,6 +19,7 @@ function mod_default_helptext($params) {
 	
 	$data['text'] = file_get_contents($data['filename']);
 	$data['text'] = preg_replace('/<!--[\s\S]*?-->/', '', $data['text']);
+	$data['text'] = preg_replace('/%%%(.*?)%%%/s', '%%% explain $1%%%', $data['text']);
 
 	switch ($data['type']) {
 	case 'md':
