@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2007-2012, 2015-2017, 2020, 2022, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2007-2012, 2015-2017, 2020, 2022, 2024-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #
@@ -42,7 +42,6 @@
 %%% page mainimage %%%
 %%% page text %%%
 
-%%% page gallery %%%
 %%% page docs %%%
 </main>
 <footer>
