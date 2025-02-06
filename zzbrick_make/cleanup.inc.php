@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018, 2021-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2018, 2021-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -194,6 +194,7 @@ function mod_default_make_cleanup_gzip_logs() {
  */
 function mod_default_make_cleanup_log($filename, $max_age_seconds) {
 	wrap_incude('file', 'zzwrap');
+	wrap_incude('log', 'default');
 
 	$invalid = time() - $max_age_seconds;
 

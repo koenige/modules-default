@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,6 +23,7 @@
 function mod_default_make_log($params) {
 	global $zz_conf;
 	wrap_include('file', 'zzwrap');
+	wrap_incude('log', 'default');
 
 	zzform_list_init();
 
@@ -47,7 +48,7 @@ function mod_default_make_log($params) {
 	}
 
 	$data['log'] = wrap_html_escape($logfile);
-	$logfiles = mf_default_logfiles();
+	$logfiles = mf_default_log_files();
 	$show_log = array_key_exists($logfile, $logfiles) ? true : false;
 	if (!$show_log) {
 		$data['logfile_not_in_use'] = wrap_html_escape($_GET['log']);
