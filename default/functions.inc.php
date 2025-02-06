@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -127,7 +127,7 @@ function mf_default_log_line($line, $types = []) {
 		}
 	}
 
-	if ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[0], -1) === ']') {
+	if (count($tokens) > 1 AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[0], -1) === ']') {
 		$out['link'] = array_shift($tokens);
 		$out['link'] = substr($out['link'], 1, -1);
 		if (intval($out['link'])."" === $out['link']) {
@@ -136,7 +136,7 @@ function mf_default_log_line($line, $types = []) {
 			$out['status'] = $out['link'];
 			$out['link'] = false;
 		}
-	} elseif ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[1], -1) === ']'
+	} elseif (count($tokens) > 1 AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[1], -1) === ']'
 		AND strlen($tokens[0]) === 4) {
 		$out['status'] = array_shift($tokens);
 		$out['status'] = substr($out['status'], 1);
