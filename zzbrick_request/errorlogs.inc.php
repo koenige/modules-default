@@ -19,7 +19,7 @@
  * @return array
  */
 function mod_default_errorlogs() {
-	wrap_incude('log', 'default');
+	wrap_include('log', 'default');
 
 	if (wrap_setting('error_handling')) {
 		$data['error_handling_'.wrap_setting('error_handling')] = true;

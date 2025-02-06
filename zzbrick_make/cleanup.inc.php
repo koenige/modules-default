@@ -193,8 +193,8 @@ function mod_default_make_cleanup_gzip_logs() {
  * @return int $counter number of deleted lines
  */
 function mod_default_make_cleanup_log($filename, $max_age_seconds) {
-	wrap_incude('file', 'zzwrap');
-	wrap_incude('log', 'default');
+	wrap_include('file', 'zzwrap');
+	wrap_include('log', 'default');
 
 	$invalid = time() - $max_age_seconds;
 

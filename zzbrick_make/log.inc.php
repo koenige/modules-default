@@ -23,7 +23,7 @@
 function mod_default_make_log($params) {
 	global $zz_conf;
 	wrap_include('file', 'zzwrap');
-	wrap_incude('log', 'default');
+	wrap_include('log', 'default');
 
 	zzform_list_init();
 
