@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -142,7 +142,7 @@ function mod_default_make_maillog($params) {
 		wrap_setting('mail_subject_prefix', '');
 		$success = wrap_mail($mail);
 		if (!$success) $data['message'] = wrap_text('Mail was not sent.');
-		return wrap_redirect_change(wrap_setting('request_uri').'&mail_sent=1');
+		wrap_redirect_change(wrap_setting('request_uri').'&mail_sent=1');
 	}
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
 	$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);

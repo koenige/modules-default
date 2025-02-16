@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -48,11 +48,11 @@ function mod_default_make_dbmodules($params) {
 				wrap_install_module($module);
 				$data['modules'][$module]['install_date'] = date('Y-m-d H:i:s');
 				$data['install_settings'] = wrap_install_settings_page($module);
-				if (!$data['install_settings']) return wrap_redirect_change();
+				if (!$data['install_settings']) wrap_redirect_change();
 			}
 		} else {
 			wrap_install_settings_write();
-			return wrap_redirect_change();
+			wrap_redirect_change();
 		}
 	}
 
