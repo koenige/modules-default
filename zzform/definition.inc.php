@@ -20,8 +20,9 @@
  * @param string $table name of table, prefix of _categories subtable
  * @param string $path path of main category used for categories
  * @param int $start_no no of field to start with
+ * @param string $restrict_to (optional)
  */
-function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
+function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restrict_to = '') {
 	static $definition = [];
 	// are there any categories to choose from?
 	$tree = wrap_id_tree('categories', $path);
@@ -59,7 +60,10 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no) {
 		// remove unselectable categories
 		if (!$pc[$index]['category_count'] AND empty($pc[$index]['property_of_category']))
 			unset($pc[$index]);
+		if ($restrict_to AND empty($pc[$index][$restrict_to]))
+			unset($pc[$index]);
 	}
+	if (!$pc) return;
 	$pc = array_values($pc); // re-write $index
 	foreach ($pc as $index => $category) {
 		$no = $start_no + $index;
