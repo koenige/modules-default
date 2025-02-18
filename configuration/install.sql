@@ -6,9 +6,25 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
+
+
+-- _cronjobs --
+CREATE TABLE `_cronjobs` (
+  `cronjob_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `cronjob` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `active` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
+  `job_minute` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `job_hour` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `job_day` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `job_month` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `job_weekday` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `sequence` smallint unsigned DEFAULT NULL,
+  PRIMARY KEY (`job_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 -- _logging --

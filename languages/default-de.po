@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014-2018, 2020-2024 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014-2018, 2020-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -979,6 +979,10 @@ msgstr "ID"
 msgid "This entry is not linked to any other data."
 msgstr "Dieser Eintrag ist nicht mit anderen Daten verknüpft."
 
+#: zzbrick_make/cronjobs.inc.php
+msgid "No active jobs found."
+msgstr "Keine aktiven Jobs gefunden."
+
 #: zzbrick_request/sso.inc.php
 msgid "Single sign on: too many URL parameters."
 msgstr "Einmalige Anmeldung (SSO): zu viele URL-Parameter."
@@ -1044,6 +1048,42 @@ msgstr "Die Originaldatei enthält keine Daten."
 #: zzbrick_tables/categories.template.php
 msgid "Property"
 msgstr "Eigenschaft"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Cron Jobs"
+msgstr "Cronjobs"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Cron Job"
+msgstr "Cronjob"
+
+#: zzbrick_tables/cronjobs.php
+msgid "URL"
+msgstr "URL"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Minute"
+msgstr "Minute"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Hour"
+msgstr "Stunde"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Day"
+msgstr "Tag"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Month"
+msgstr "Monat"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Weekday"
+msgstr "Wochentag"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Here, you can add cron jobs. Please note: the execution of the cron jobs depends on the real cron job which has to be triggered according to these dates. It is possible to enter one or more numeric values per field, separated by a comma."
+msgstr ""
 
 #: zzbrick_tables/relations.php
 msgid "Database Table Relations"

@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014-2018, 2020-2024 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014-2018, 2020-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -937,6 +937,10 @@ msgstr ""
 msgid "This entry is not linked to any other data."
 msgstr ""
 
+#: zzbrick_make/cronjobs.inc.php
+msgid "No active jobs found."
+msgstr ""
+
 #: zzbrick_request/sso.inc.php
 msgid "Single sign on: too many URL parameters."
 msgstr ""
@@ -995,6 +999,42 @@ msgstr ""
 
 #: zzbrick_tables/categories.template.php
 msgid "Property"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "Cron Jobs"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "Cron Job"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "URL"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "Minute"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "Hour"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "Day"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "Month"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "Weekday"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "Here, you can add cron jobs. Please note: the execution of the cron jobs depends on the real cron job which has to be triggered according to these dates. It is possible to enter one or more numeric values per field, separated by a comma."
 msgstr ""
 
 #: zzbrick_tables/relations.php
