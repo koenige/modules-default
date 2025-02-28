@@ -113,7 +113,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			if (!empty($category['property_size']))
 				$zz['fields'][$no]['fields'][$def['property']]['size'] = $category['property_size'];
 			if (!empty($category['placeholder']))
-				$zz['fields'][$no]['fields'][$def['property']]['placeholder'] = wrap_text($category['placeholder']);
+				$zz['fields'][$no]['fields'][$def['property']]['placeholder'] = $category['placeholder'];
 		}
 		$zz['fields'][$no]['sql'] .= ' '.$zz['fields'][$no]['sqlorder'];
 		$zz['fields'][$no]['fields'][2]['type'] = 'foreign_key';
