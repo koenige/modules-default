@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2021, 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2021, 2023-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -46,7 +46,7 @@ function mod_default_adminer($params) {
 
 function adminer_object() {
 
-    class AdminerSoftware extends Adminer {
+    class AdminerSoftware extends Adminer\Adminer {
         
         function name() {
             // custom name in title and heading
