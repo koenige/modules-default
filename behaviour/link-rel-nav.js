@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  * 
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013, 2018-2019 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013, 2018-2019, 2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -22,7 +22,7 @@ function defNavigate (myevent) {
 	if (myevent.altKey) return;
 	// only allow <- -> navigation if body has focus
 	if (document.activeElement.nodeName !== "BODY") return;
-	if ((Code == 37 || Code == 38 || Code == 39 || Code == 40)) {
+	if ((Code == 37 || Code == 38 || Code == 39)) {
 		defNavigatePrevNext(Code);
   	}
 }
@@ -38,9 +38,6 @@ function defNavigatePrevNext(Code) {
 			window.location.href = el.href;
 		}
 		if ("up" == el.rel && Code == 38) {
-			window.location.href = el.href;
-		}
-		if ("up" == el.rel && Code == 40) { // down
 			window.location.href = el.href;
 		}
 	}
