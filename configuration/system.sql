@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -43,6 +43,7 @@ SELECT page_id
 	, SUBSTRING_INDEX(title, " – ", 1) AS title
 	, identifier, IF(STRCMP(ending, 'none'), ending, '') AS ending
 	, mother_page_id
+	, parameters
 FROM /*_PREFIX_*/webpages;
 
 -- page_content__fields --
@@ -99,6 +100,16 @@ SELECT mother_page_id FROM /*_PREFIX_*/webpages WHERE page_id = %d;
 
 -- page_menu__table --
 /* webpages */
+
+-- page_sequential_nav --
+SELECT page_id
+	, title
+	, CONCAT(identifier, IF(STRCMP(ending, 'none'), ending, '')) AS url
+	, sequence
+FROM webpages
+WHERE (mother_page_id = %d OR page_id = %d)
+AND live = "yes"
+ORDER BY IF(page_id = %d, 0, 1), sequence, identifier;
 
 -- page_subpages --
 SELECT page_id
