@@ -94,8 +94,8 @@ function mod_default_make_log($params) {
 
 	$file = new \SplFileObject($logfile, 'r');
 	$last_found_line_key = NULL;
+	$found = [];
 	if (!empty($_GET['q']) OR !empty($_GET['filter'])) {
-		$found = [];
 		while (!$file->eof()) {
 			$line = $file->fgets();
 			$line_key = $file->key() - 1;
