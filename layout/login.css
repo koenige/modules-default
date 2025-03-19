@@ -1,0 +1,26 @@
+/*
+ * Cascading Style Sheets (CSS)
+ * for login form
+ *
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/default
+ *
+ * @author Gustaf Mossakowski <gustaf@koenige.org>
+ * @copyright Copyright © 2025 Gustaf Mossakowski
+ * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ */
+
+
+#login		{ max-width: 40rem; margin: 5rem auto; }
+#login fieldset
+			{ border: none; margin: 0; padding: .25rem 1.5rem;
+			background: %%% setting default_login_css_background_color %%% url(/_layout/%%% setting active_theme %%%/zugzwang-stripes.png) repeat-y 100% 0; }
+#login legend
+			{ background: %%% setting default_login_css_background_color %%%; padding: .25rem .75rem; }
+#login label
+			{ float: left; width: 10rem; }
+#login form	{ margin: 1rem 0 0; }
+#login form p
+			{ margin: .5rem 0; }
+#login form p.submit
+			{ margin-left: 10rem; }
