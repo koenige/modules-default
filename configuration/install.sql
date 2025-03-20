@@ -23,7 +23,7 @@ CREATE TABLE `_cronjobs` (
   `job_month` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `job_weekday` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `sequence` smallint unsigned DEFAULT NULL,
-  PRIMARY KEY (`job_id`)
+  PRIMARY KEY (`cronjob_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -337,7 +337,7 @@ CREATE TABLE `_jobqueue` (
   `job_category_no` tinyint unsigned NOT NULL DEFAULT '1',
   `lock_hash` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `website_id` int unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`cronjob_id`),
+  PRIMARY KEY (`job_id`),
   UNIQUE KEY `job_category_id_job_url_started` (`job_category_id`,`job_url`,`started`),
   KEY `priority` (`priority`),
   KEY `website_id` (`website_id`),
