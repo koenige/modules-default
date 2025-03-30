@@ -94,8 +94,8 @@ function mod_default_make_log($params) {
 
 	$file = new \SplFileObject($logfile, 'r');
 	$last_found_line_key = NULL;
-	$found = [];
 	if (!empty($_GET['q']) OR !empty($_GET['filter'])) {
+		$found = [];
 		while (!$file->eof()) {
 			$line = $file->fgets();
 			$line_key = $file->key() - 1;
@@ -183,13 +183,17 @@ function mod_default_make_log($params) {
 				sort($found);
 			}
 		} else {
-			$found = range(
-				$zz_conf['int']['this_limit'] - wrap_setting('zzform_limit'),
-				($data['total_rows'] < $zz_conf['int']['this_limit'] ? $data['total_rows'] : $zz_conf['int']['this_limit']) - 1
-			);
+			$start = $zz_conf['int']['this_limit'] - wrap_setting('zzform_limit');
+			$end = ($data['total_rows'] < $zz_conf['int']['this_limit'] ? $data['total_rows'] : $zz_conf['int']['this_limit']) - 1;
+			if ($end > $start)
+				$found = range($start, $end);
+			else
+				$found = [];
 		}
 	} else {
-		$found = range(0, $data['total_rows']);	
+		if (!isset($found)) {
+			$found = range(0, $data['total_rows'] - 1);
+		}	
 	}
 
 	// output lines
