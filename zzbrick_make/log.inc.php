@@ -185,7 +185,7 @@ function mod_default_make_log($params) {
 		} else {
 			$start = $zz_conf['int']['this_limit'] - wrap_setting('zzform_limit');
 			$end = ($data['total_rows'] < $zz_conf['int']['this_limit'] ? $data['total_rows'] : $zz_conf['int']['this_limit']) - 1;
-			if ($end > $start)
+			if ($end >= $start)
 				$found = range($start, $end);
 			else
 				$found = [];
