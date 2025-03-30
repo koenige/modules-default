@@ -169,6 +169,7 @@ function mf_default_log_line($line, $types = []) {
 	$out['error'] = zz_list_word_split($out['error']);
 	$out['error'] = zz_mark_search_string($out['error']);
 	$out['error'] = str_replace('%%%', '\%\%\%', $out['error']);
+	$out['hash'] = sha1($out['error']);
 
 	$out['date_begin'] = $out['date'];
 	if ($out['link']) {

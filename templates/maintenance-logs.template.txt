@@ -48,7 +48,8 @@
 %%% if lines %%%
 %%% loop lines %%%
 <tr class="%%% loopposition uneven un %%%even">
-<td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item no %%%]" value="%%% item keys %%%" id="line%%% item no %%%"></label></td>
+<td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item no %%%]" value="%%% item keys %%%" id="line%%% item no %%%"></label>
+<input type="hidden" name="hash[%%% item no %%%]" value="%%% item hash %%%"></td>
 <td>%%% item date_begin %%%%%% item date_end <br>–%s %%%</td>
 <td>%%% item type %%%</td>
 <td%%% item level_class " class='%s'" %%%>%%% item level %%%</td>

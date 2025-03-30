@@ -56,18 +56,27 @@ function mod_default_make_log($params) {
 		return $page;
 	}
 
-	// delete
-	$data['message'] = false;
-	if (!empty($_POST['line'])) {
-		$data['message'] = wrap_file_delete_line($logfile, $_POST['line']);
-	}
-
 	$filters['type'] = $logfiles[$logfile]['types'];
 	$filters['level'] = [
 		'Notice', 'Deprecated', 'Warning', 'Error', 'Parse error',
 		'Strict error', 'Fatal error', 'Upload'
 	];
 	$filters['group'] = ['Group entries'];
+
+	// delete
+	$data['message'] = false;
+	if (!empty($_POST['line'])) {
+		// check hash
+		$file = new \SplFileObject($logfile, 'r');
+		foreach ($_POST['line'] as $index) {
+			if (empty($_POST['hash'][$index])) continue;
+			$file->seek($index);
+			$line = mf_default_log_line($file->current(), $filters['type']);
+			if ($line AND $line['hash'] === $_POST['hash'][$index]) continue;
+			unset($_POST['line'][$index]);
+		}
+		$data['message'] = wrap_file_delete_line($logfile, $_POST['line']);
+	}
 
 	$data['filter'] = mod_default_make_log_filter($filters);
 
