@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -171,8 +171,14 @@ function mf_default_log_line($line, $types = []) {
 	$out['error'] = str_replace('%%%', '\%\%\%', $out['error']);
 
 	$out['date_begin'] = $out['date'];
-	$out['links'] = ($out['link'] ? '[<a href="'.str_replace('&', '&amp;', $out['link']).'">'
-			.mf_default_log_split($out['link'], true).'</a>]<br>' : '');
+	if ($out['link']) {
+		$out['links'] = sprintf('[<a href="%s">%s</a>]<br>'
+			, str_replace('&', '&amp;', wrap_html_escape($out['link']))
+			, mf_default_log_split($out['link'], true)
+		);
+	} else {
+		$out['links'] = '';
+	}
 	return $out;
 }
 
