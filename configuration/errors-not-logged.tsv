@@ -458,3 +458,7 @@ php	string_regex	mysqli_connect\(\):.+
 
 # web.flow.opera.com
 404	end	/apple-touch-icon.png/apple-touch-icon.png
+
+# SQL injections
+qs	string_regex	INFORMATION_SCHEMA.CHARACTER_SETS
+qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
