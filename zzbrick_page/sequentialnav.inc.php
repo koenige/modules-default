@@ -29,7 +29,7 @@ function page_sequentialnav(&$params = []) {
 		$data[] = [
 			'rel' => $rel,
 			'rel_title' => $zz_page[$rel]['rel_title'] ?? wrap_text(ucfirst($rel)),
-			'href' => $zz_page[$rel]['url'],
+			'href' => wrap_setting('base').$zz_page[$rel]['url'],
 			'title' => $zz_page[$rel]['title']
 		];
 	}
