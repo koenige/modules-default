@@ -19,7 +19,7 @@
  * @param array $params -
  * @return array $page
  */
-function mod_mediadb_make_cronjobs($params) {
+function mod_default_make_cronjobs($params) {
 	// @todo do not do anything if this is not called via POST
 	// then remove cache directive
 	wrap_setting('cache', false);
