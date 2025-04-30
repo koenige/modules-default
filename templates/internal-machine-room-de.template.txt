@@ -1,0 +1,19 @@
+# default module
+# Template for machine room, internal (German language)
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2024-2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+
+* [Umleitungen](%%% path default_tables redirects %%%) – falls sich die Adresse einer Webseite geändert hat.
+* [Website-Einstellungen](%%% path default_settings %%%) – allgemeine Konfiguration.
+* [Kategorien](%%% path default_tables categories %%%) – zur Strukturierung der Inhalte.
+* [Wartung](%%% path default_maintenance %%%) – Verwaltung von Allem.
+* [Datenbank-Log](%%% path default_tables logging %%%) – Protokollierung der Änderungen.
+* [Tabellenbeziehungen](%%% path default_tables relations %%%) – Schlüssel, um Daten zu verknüpfen.
+* [Logins](%%% path default_tables logins %%%) – Zugänge für das Backend.
+

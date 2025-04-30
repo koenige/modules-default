@@ -26,13 +26,7 @@
 
 (Zugriff normalerweise nicht erforderlich)
 
-* [Umleitungen](%%% path default_tables redirects %%%) – falls sich die Adresse einer Webseite geändert hat.
-* [Website-Einstellungen](%%% path default_settings %%%)
-* [Kategorien](%%% path default_tables categories %%%)
-* [Wartung](%%% path default_maintenance %%%) – Verwaltung von Allem.
-* [Datenbank-Log](%%% path default_tables logging %%%)
-* [Tabellenbeziehungen](%%% path default_tables relations %%%)
-* [Logins](%%% path default_tables logins %%%) – Zugriff auf das Backend
+%%% include internal-machine-room-de %%%
 
 %%% rights - %%%
 
