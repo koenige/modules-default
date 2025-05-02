@@ -167,6 +167,9 @@ function mf_default_categories_subtable_definition($zz) {
 /**
  * get a list of categories to include subtable depending on these categories
  *
+ * add '_reverse' for reverse relations if both foreign keys are the same
+ * e. g. contact_id, main_contact_id
+ *
  * @param array $values
  *		array $values[$type] or empty
  *		string $values[$type.'_restrict_to'] (optional)
@@ -174,11 +177,10 @@ function mf_default_categories_subtable_definition($zz) {
  * @param string $category_path (optional, set only if different from $type)
  * @return array
  */
-function mf_default_categories_restrict(&$values, $type, $category_path = '') {
-	if (!$category_path) $category_path = $type;
-	if (isset($values[$type])) return false;
+function mf_default_categories_restrict(&$values, $type, $category_path = NULL) {
+	if (isset($values[$type])) return false; // do not overwrite existing data
 	if (isset($values[$type.'_restrict_to']))
-		$restrict_to = 'AND parameters LIKE "%%&'.$values[$type.'_restrict_to'].'=1%%"';
+		$restrict_to = $values[$type.'_restrict_to'];
 	else
 		$restrict_to = '';
 	$sql = 'SELECT category_id, category, parameters
@@ -187,21 +189,40 @@ function mf_default_categories_restrict(&$values, $type, $category_path = '') {
 		WHERE main_category_id = /*_ID categories %s _*/
 		%s
 		ORDER BY sequence, path';
-	$sql = sprintf($sql, $category_path, $restrict_to);
+	$sql = sprintf($sql
+		, $category_path ?? $type
+		, $restrict_to ? sprintf('AND parameters LIKE "%%&%s=1%%"', $restrict_to) : ''
+	);
 	$values[$type] = wrap_db_fetch($sql, 'category_id');
 	$last_category_id = array_keys($values[$type]);
 	$last_category_id = end($last_category_id);
-	foreach ($values[$type] as $category_id => $line) {
+	foreach ($values[$type] as $category_id => &$line) {
 		if ($line['parameters'])
-			parse_str($line['parameters'], $values[$type][$category_id]['parameters']);
+			parse_str($line['parameters'], $line['parameters']);
 		else
-			$values[$type][$category_id]['parameters'] = [];
-		if (!empty($values[$type][$category_id]['parameters']['alias']))
-			$values[$type][$category_id]['path'] = $values[$type][$category_id]['parameters']['alias'];
-		if ($pos = strrpos($values[$type][$category_id]['path'], '/'))
-			$values[$type][$category_id]['path'] = substr($values[$type][$category_id]['path'], $pos + 1);
+			$line['parameters'] = [];
+		if (!empty($line['parameters']['alias']))
+			$line['path'] = $line['parameters']['alias'];
+		if ($pos = strrpos($line['path'], '/'))
+			$line['path'] = substr($line['path'], $pos + 1);
 		if ($category_id === $last_category_id)
-			$values[$type][$category_id]['last_category'] = true;
+			$line['last_category'] = true;
+		// check for reverse
+		if (!empty($line['parameters'][$restrict_to.'_reverse'])) {
+			$line['reverse'] = true;
+			foreach ($line['parameters'] as $key => $value) {
+				if (!str_ends_with($key, '_reverse')) continue;
+				$key = substr($key, 0, -strlen('_reverse'));
+				if (in_array($key, ['path']))
+					$line[$key] = $value;
+				else
+					$line['parameters'][$key] = $value;
+			}
+		}
+		if (!empty($line['parameters']['split_title']) AND strstr($line['category'], ' / ')) {
+			$title = explode(' / ', $line['category']);
+			$line['category'] = !empty($line['reverse']) ? $title[1] : $title[0];
+		}
 	}
 	return true;
 }
