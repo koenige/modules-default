@@ -33,12 +33,14 @@ $zz['fields'][4]['enum'] = ['yes', 'no'];
 $zz['fields'][4]['default'] = 'yes';
 
 $zz['fields'][5]['title'] = 'Minute';
+$zz['fields'][5]['title_tab'] = 'Min.';
 $zz['fields'][5]['field_name'] = 'job_minute';
 $zz['fields'][5]['type'] = 'text';
 $zz['fields'][5]['null'] = true;
 $zz['fields'][5]['display_field'] = 'display_minute';
 
 $zz['fields'][6]['title'] = 'Hour';
+$zz['fields'][6]['title_tab'] = 'Hr.';
 $zz['fields'][6]['field_name'] = 'job_hour';
 $zz['fields'][6]['type'] = 'text';
 $zz['fields'][6]['null'] = true;
@@ -50,16 +52,19 @@ $zz['fields'][7]['type'] = 'text';
 $zz['fields'][7]['display_field'] = 'display_day';
 
 $zz['fields'][8]['title'] = 'Month';
+$zz['fields'][8]['title_tab'] = 'Mth.';
 $zz['fields'][8]['field_name'] = 'job_month';
 $zz['fields'][8]['type'] = 'text';
 $zz['fields'][8]['display_field'] = 'display_month';
 
 $zz['fields'][9]['title'] = 'Weekday';
+$zz['fields'][9]['title_tab'] = 'Wd.';
 $zz['fields'][9]['field_name'] = 'job_weekday';
 $zz['fields'][9]['type'] = 'text';
 $zz['fields'][9]['display_field'] = 'display_weekday';
 $zz['fields'][9]['null'] = true;
 
+$zz['fields'][10]['title_tab'] = 'Seq.';
 $zz['fields'][10]['field_name'] = 'sequence';
 $zz['fields'][10]['type'] = 'number';
 

@@ -1018,7 +1018,15 @@ msgid "Minute"
 msgstr ""
 
 #: zzbrick_tables/cronjobs.php
+msgid "Min."
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
 msgid "Hour"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "Hr."
 msgstr ""
 
 #: zzbrick_tables/cronjobs.php
@@ -1030,7 +1038,15 @@ msgid "Month"
 msgstr ""
 
 #: zzbrick_tables/cronjobs.php
+msgid "Mth."
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
 msgid "Weekday"
+msgstr ""
+
+#: zzbrick_tables/cronjobs.php
+msgid "Wd."
 msgstr ""
 
 #: zzbrick_tables/cronjobs.php

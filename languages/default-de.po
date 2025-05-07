@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
 #: configuration/access.cfg
 msgid "Adminer MySQL database administration"
@@ -1066,8 +1066,16 @@ msgid "Minute"
 msgstr "Minute"
 
 #: zzbrick_tables/cronjobs.php
+msgid "Min."
+msgstr "Min."
+
+#: zzbrick_tables/cronjobs.php
 msgid "Hour"
 msgstr "Stunde"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Hr."
+msgstr "Std."
 
 #: zzbrick_tables/cronjobs.php
 msgid "Day"
@@ -1078,11 +1086,23 @@ msgid "Month"
 msgstr "Monat"
 
 #: zzbrick_tables/cronjobs.php
+msgid "Mth."
+msgstr "Mon."
+
+#: zzbrick_tables/cronjobs.php
 msgid "Weekday"
 msgstr "Wochentag"
 
 #: zzbrick_tables/cronjobs.php
-msgid "Here, you can add cron jobs. Please note: the execution of the cron jobs depends on the real cron job which has to be triggered according to these dates. It is possible to enter one or more numeric values per field, separated by a comma."
+msgid "Wd."
+msgstr "Wt."
+
+#: zzbrick_tables/cronjobs.php
+msgid ""
+"Here, you can add cron jobs. Please note: the execution of the cron jobs "
+"depends on the real cron job which has to be triggered according to these "
+"dates. It is possible to enter one or more numeric values per field, "
+"separated by a comma."
 msgstr ""
 
 #: zzbrick_tables/relations.php
@@ -1253,13 +1273,13 @@ msgid "Information about redirects"
 msgstr ""
 "<p>Hier können Webseiten auf andere Webseiten umgeleitet werden. Dabei gibt "
 "es mehrere Möglichkeiten:</p><ul><li>Vorübergehende Umleitung, z. B. einer "
-"kurzen Adresse auf eine lange, permanent existierende Adresse, wie example."
-"com/aktuell auf example.com/nachrichten/2010/04 mittels <code>307</code>-"
-"Code für temporäre Umleitungen</li><li>Dauerhafte Umleitung von einer alten "
-"Adresse auf eine neue Adresse mittels <code>301</code>-Code für permanente "
-"Umleitungen</li><li>Umleitung von mehreren alten Adressen auf eine neue "
-"Adresse, hier muß die alten Adresse auf <code>*</code> enden. Achtung: es "
-"darf kein <code>/</code> vor dem Sternchen stehen.</li></ul>"
+"kurzen Adresse auf eine lange, permanent existierende Adresse, wie "
+"example.com/aktuell auf example.com/nachrichten/2010/04 mittels <code>307</"
+"code>-Code für temporäre Umleitungen</li><li>Dauerhafte Umleitung von einer "
+"alten Adresse auf eine neue Adresse mittels <code>301</code>-Code für "
+"permanente Umleitungen</li><li>Umleitung von mehreren alten Adressen auf "
+"eine neue Adresse, hier muß die alten Adresse auf <code>*</code> enden. "
+"Achtung: es darf kein <code>/</code> vor dem Sternchen stehen.</li></ul>"
 
 #: zzbrick_tables/redirects.php
 msgid "Old URL"
