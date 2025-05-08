@@ -77,7 +77,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 		if (!empty($category['no_append_before']))
 			$zz['fields'][$no]['title_tab'] = 'Categories';
 		$zz['fields'][$no]['table_name'] = $table.'_categories_'.$category['category_id'];
-		$zz['fields'][$no]['unless']['export_mode']['subselect']['prefix'] = (empty($category['no_append_before']) ? '<br>' : '').'<em>'.wrap_text($category['category']).': ';
+		if (empty($category['no_append']))
+			$zz['fields'][$no]['unless']['export_mode']['subselect']['prefix'] = (empty($category['no_append_before']) ? '<br>' : '').'<em>'.wrap_text($category['category']).': ';
 		$zz['fields'][$no]['unless']['export_mode']['subselect']['suffix'] = '';
 		$zz['fields'][$no]['form_display'] = $category['form_display'] ?? 'lines';
 		$zz['fields'][$no]['hide_in_list'] = $category['hide_in_list'] ?? false;
@@ -144,7 +145,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 		if ($zz['fields'][$no]['hide_in_list']) continue;
 		if (!$last_visible_found)
 			$last_visible_found = true;
-		else
+		elseif (empty($category['no_append']))
 			$zz['fields'][$no]['unless']['export_mode']['list_append_next'] = true;
 	}
 }
