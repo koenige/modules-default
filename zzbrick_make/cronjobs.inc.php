@@ -45,9 +45,11 @@ function mod_default_make_cronjobs($params) {
 	} else {
 		foreach ($jobs as $job) {
 			$page = wrap_trigger_protected_url($job, wrap_setting('default_robot_username'));
-			sleep(30); // just wait a few seconds until last job started
+			// just wait a few seconds until last job started
+			sleep(wrap_setting('default_cronjobs_wait_seconds'));
 		}
 	}
+	wrap_setting_write('default_cronjobs_last_run', date('Y-m-d H:i:s'));
 	
     return $page;
 }
