@@ -58,3 +58,8 @@ as title, if viewed from `main_contact_id`, `Local Groups` will be used.
     add_details=/db/universities/ 
     add_details_reverse=/db/local-groups/
     path_reverse=local-group
+
+3. To associate records, use `association=1`. Here, two detail records
+are shown in combination: One with the main key and one with the normal
+key as foreign key. This is done via zzform’s `integrate_in_next`. A new
+record is always added with main key as foreign key.

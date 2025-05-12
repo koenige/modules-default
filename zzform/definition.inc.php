@@ -199,7 +199,9 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 	$values[$type] = wrap_db_fetch($sql, 'category_id');
 	$last_category_id = array_keys($values[$type]);
 	$last_category_id = end($last_category_id);
-	foreach ($values[$type] as $category_id => &$line) {
+	$new = [];
+	$values[$type] = array_values($values[$type]);
+	foreach ($values[$type] as $index => &$line) {
 		if ($line['parameters'])
 			parse_str($line['parameters'], $line['parameters']);
 		else
@@ -208,7 +210,7 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 			$line['path'] = $line['parameters']['alias'];
 		if ($pos = strrpos($line['path'], '/'))
 			$line['path'] = substr($line['path'], $pos + 1);
-		if ($category_id === $last_category_id)
+		if ($line['category_id'] === $last_category_id)
 			$line['last_category'] = true;
 		// check for reverse
 		if (!empty($line['parameters'][$restrict_to.'_reverse'])) {
@@ -226,7 +228,14 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 			$title = explode(' / ', $line['category']);
 			$line['category'] = !empty($line['reverse']) ? $title[1] : $title[0];
 		}
+		if (!empty($line['parameters']['association'])) {
+			$new[$index] = $line;
+			$new[$index]['parameters']['integrate_in_next'] = true;
+			$new[$index]['association'] = true;
+		}
 	}
+	foreach ($new as $pos => $association)
+		array_splice($values[$type], $pos - 2, 0, [$association]);
 	return true;
 }
 
