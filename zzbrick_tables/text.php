@@ -9,7 +9,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2009-2010, 2013-2016, 2021-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2009-2010, 2013-2016, 2021-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -44,7 +44,6 @@ if (!empty($_GET['filter']['area']))
 else
 	$zz['fields'][4]['group_in_list'] = true;
 
-$zz['fields'][20]['title'] = 'Last Update';
 $zz['fields'][20]['field_name'] = 'last_update';
 $zz['fields'][20]['type'] = 'timestamp';
 $zz['fields'][20]['hide_in_list'] = true;

@@ -1319,11 +1319,6 @@ msgstr ""
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
-msgid "Last Update"
-msgstr ""
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "Short text (max. 160 characters), only appears in search results."
 msgstr ""
 

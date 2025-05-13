@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2009, 2016, 2018-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2009, 2016, 2018-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -113,7 +113,6 @@ $zz['fields'][15]['hide_in_list'] = true;
 
 $zz['fields'][16] = []; // website
 
-$zz['fields'][99]['title'] = 'Last Update';
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;

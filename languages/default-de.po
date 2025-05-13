@@ -1380,11 +1380,6 @@ msgstr "Menü"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
-msgid "Last Update"
-msgstr "Stand"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "Short text (max. 160 characters), only appears in search results."
 msgstr "Kurztext (max. 160 Zeichen), taucht nur bei Suchergebnissen auf."
 
