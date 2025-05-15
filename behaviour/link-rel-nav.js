@@ -54,12 +54,20 @@ var xDown = null;
 var yDown = null;                                                        
 
 function defHandleTouchStart(evt) {                                         
+    // Check if touch originated within a table
+    if (evt.target.closest('table')) {
+        return;
+    }
     xDown = evt.touches[0].clientX;                                      
     yDown = evt.touches[0].clientY;                                      
 };                                                
 
 
 function defHandleTouchMove(evt) {
+    // Check if touch originated within a table
+    if (evt.target.closest('table')) {
+        return;
+    }
     if ( ! xDown || ! yDown ) {
         return;
     }
