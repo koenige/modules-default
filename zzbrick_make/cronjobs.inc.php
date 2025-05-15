@@ -49,7 +49,7 @@ function mod_default_make_cronjobs($params) {
 			sleep(wrap_setting('default_cronjobs_wait_seconds'));
 		}
 	}
-	wrap_setting_write('default_cronjobs_last_run', date('Y-m-d H:i:s'));
+	wrap_setting_write('default_cronjobs_last_run', date('Y-m-d H:i:s'), 0, ['no_logging' => true]);
 	
     return $page;
 }
