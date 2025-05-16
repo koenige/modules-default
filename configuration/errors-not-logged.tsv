@@ -462,3 +462,6 @@ php	string_regex	mysqli_connect\(\):.+
 # SQL injections
 qs	string_regex	INFORMATION_SCHEMA.CHARACTER_SETS
 qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
+
+# Trying to access JS sources, via .map files, but why?
+404	begin	/_behaviour/src/
