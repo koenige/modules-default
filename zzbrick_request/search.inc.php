@@ -96,8 +96,14 @@ function mod_default_search_translations($q, $fields) {
 			$this_sql = sprintf($sql, $translation_table, $string, implode(',', array_keys($tkeys)));
 			$result = wrap_db_fetch($this_sql, ['translationfield_id', 'field_id'], 'key/values');
 			if (!$result) continue 2;
-			if (!$found) $found = $result;
-			else $found = array_intersect($found, $result);
+			if (!$found) {
+				$found = $result;
+			} else {
+				foreach ($result as $t_field_id => $ids) {
+					if (!array_key_exists($t_field_id, $found)) continue;
+					$found[$t_field_id] = array_intersect($found[$t_field_id], $result[$t_field_id]);
+				}
+			}
 		}
 		foreach ($found as $t_field_id => $field_id) {
 			$where[] = sprintf('%s.%s IN (%s)'
