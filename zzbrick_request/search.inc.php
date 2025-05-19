@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -91,16 +91,20 @@ function mod_default_search_translations($q, $fields) {
 		foreach ($fields as $field) {
 			$tkeys[$field['translationfield_id']] = $field;
 		}
+		$found = [];
 		foreach ($q as $string) {
 			$this_sql = sprintf($sql, $translation_table, $string, implode(',', array_keys($tkeys)));
-			$result = wrap_db_fetch($this_sql, ['translationfield_id', 'field_id']);
-			foreach ($result as $t_field_id => $field_id) {
-				$where[] = sprintf('%s.%s IN (%s)'
-					, $tkeys[$t_field_id]['table_name']
-					, $tkeys[$t_field_id]['id_field_name']
-					, implode(',', array_keys($field_id))
-				);
-			}
+			$result = wrap_db_fetch($this_sql, ['translationfield_id', 'field_id'], 'key/values');
+			if (!$result) continue 2;
+			if (!$found) $found = $result;
+			else $found = array_intersect($found, $result);
+		}
+		foreach ($found as $t_field_id => $field_id) {
+			$where[] = sprintf('%s.%s IN (%s)'
+				, $tkeys[$t_field_id]['table_name']
+				, $tkeys[$t_field_id]['id_field_name']
+				, implode(',', $field_id)
+			);
 		}
 	}
 	$where = implode(' OR ', $where);
