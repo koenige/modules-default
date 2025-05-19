@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023, 2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -25,6 +25,9 @@
 function mod_default_sitemap($params, $settings) {
 	$sql = 'SELECT identifier FROM webpages WHERE parameters LIKE "%&search=0%"';
 	$excluded = wrap_db_fetch($sql, 'identifier', 'single value');
+	$excluded = array_values($excluded);
+	foreach ($excluded as $index => $identifier)
+		if (str_ends_with($identifier, '*')) $excluded[$index] = substr($identifier, 0, -1);
 	
 	$languages_allowed = wrap_setting('languages_allowed');
 
