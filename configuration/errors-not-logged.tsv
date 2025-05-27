@@ -465,3 +465,6 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 
 # Trying to access JS sources, via .map files, but why?
 404	begin	/_behaviour/src/
+
+# Someone looking for something with possibly base64 encoded strings
+404	regex	~^/[A-Za-z0-9\-_]{40}={2}$~
