@@ -30,5 +30,6 @@ function mod_default_helptext($params) {
 	$page['title'] = $data['title'];
 	// @todo add link to help overview page
 	$page['text'] = sprintf('<div class="helptext">%s</div>', $page['text']);
+	$page['extra']['css'][] = 'default/help.css';
 	return $page;
 }
