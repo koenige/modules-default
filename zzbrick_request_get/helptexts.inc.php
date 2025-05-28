@@ -23,6 +23,7 @@ function mod_default_get_helptexts($params) {
 				if (!mf_default_helptexts_better($variant, $data[$identifier])) continue;
 			$data[$identifier] = $variant;
 		}
+		$data[$identifier] = mf_default_helptexts_content($data[$identifier]);
 	}
 	$data = array_values($data);
 	foreach ($data as $index => $text) {
@@ -84,4 +85,22 @@ function mf_default_helptexts_better($new, $existing) {
 	// check package
 	if ($existing['package'] === 'default') return true;
 	return false;
+}
+
+/**
+ * get content of helptext file, set title
+ *
+ * @param array $file
+ * @return array
+ */
+function mf_default_helptexts_content($file) {
+	$file['text'] = file_get_contents($file['filename']);
+	$file['text'] = preg_replace('/<!--[\s\S]*?-->/', '', $file['text']);
+	$file['text'] = preg_replace('/%%%(.*?)%%%/s', '%%% explain $1%%%', $file['text']);
+
+	if ($file['type'] === 'md') {
+		preg_match('/# (.+)/', $file['text'], $matches);
+		if ($matches[1]) $file['title'] = $matches[1];
+	}
+	return $file;
 }
