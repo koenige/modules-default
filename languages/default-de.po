@@ -394,6 +394,10 @@ msgstr "Entschuldigung, aber Sie können nur ein Archiv bis %s herunterladen."
 msgid "The requested archive would include files of %s size."
 msgstr "Die Dateien in diesem Archiv wären %s groß."
 
+#: templates/helplink.template.txt
+msgid "Help:"
+msgstr "Hilfe:"
+
 #: templates/jobmanager.template.txt
 msgid "Results"
 msgstr "Ergebnisse"
@@ -619,11 +623,11 @@ msgstr "Dateibaum"
 msgid "You may not view or download this file"
 msgstr "Diese Datei darf weder angezeigt noch heruntergeladen werden"
 
-#: template/filetree.template.txt
+#: templates/filetree.template.txt
 msgid "You have no access to this folder"
 msgstr "Sie haben keinen Zugriff auf diesen Ordner"
 
-#: template/filetree-nav.template.txt
+#: templates/filetree-nav.template.txt
 msgid "TOP"
 msgstr "TOP"
 

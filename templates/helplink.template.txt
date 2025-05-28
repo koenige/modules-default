@@ -1,0 +1,11 @@
+# default module
+# HTML output: link to help text
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<p class="helptext-link">%%% text Help: %%% <a href="%%% path default_helptext identifier %%%" target="help">%%% item title %%%</a></p>
