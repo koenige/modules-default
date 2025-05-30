@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -99,6 +99,7 @@ function mod_default_filetree_file_ext($filename) {
 	$basename = basename($filename);
 	$ext = wrap_file_extension($basename);
 	if ($ext AND $pos = strpos($ext, '?')) $ext = substr($ext, 0, $pos);
+	elseif ($ext AND $pos = strpos($ext, '%3F')) $ext = substr($ext, 0, $pos);
 	if ($ext === 'headers') return 'TXT';
 	if (substr($basename, 0, 1) === '?') return 'HTML';
 	if (substr($filename, -1) === '/') return 'HTML';
