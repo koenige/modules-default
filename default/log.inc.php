@@ -138,8 +138,8 @@ function mf_default_log_line($line, $types = []) {
 			$out['status'] = $out['link'];
 			$out['link'] = false;
 		}
-	} elseif ($tokens AND substr($tokens[0], 0, 1) === '[' AND substr($tokens[1], -1) === ']'
-		AND strlen($tokens[0]) === 4) {
+	} elseif (count($tokens) > 1 AND substr($tokens[0], 0, 1) === '['
+		AND substr($tokens[1], -1) === ']' AND strlen($tokens[0]) === 4) {
 		$out['status'] = array_shift($tokens);
 		$out['status'] = substr($out['status'], 1);
 		$out['link'] = array_shift($tokens);
