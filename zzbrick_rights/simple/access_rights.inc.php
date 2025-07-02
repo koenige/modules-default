@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015-2016, 2020-2022, 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2015-2016, 2020-2022, 2024-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,7 +23,7 @@ function brick_access_rights($groups = []) {
 		$group = strtolower($group);
 		switch ($group) {
 		case 'cron':
-			if (!empty($_SERVER['REMOTE_ADDR']) AND $_SERVER['REMOTE_ADDR'] === wrap_setting('cron_ip'))
+			if (!empty($_SERVER['REMOTE_ADDR']) AND $_SERVER['REMOTE_ADDR'] === wrap_setting('cron_ip')) return true;
 			if (wrap_http_localhost_ip()) return true;
 			if ($login_rights === 'admin') return true;
 			break;
