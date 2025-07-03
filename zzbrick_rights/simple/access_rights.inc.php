@@ -23,7 +23,7 @@ function brick_access_rights($groups = []) {
 		$group = strtolower($group);
 		switch ($group) {
 		case 'cron':
-			if (!empty($_SERVER['REMOTE_ADDR']) AND $_SERVER['REMOTE_ADDR'] === wrap_setting('cron_ip')) return true;
+			if (!empty($_SERVER['REMOTE_ADDR']) AND in_array($_SERVER['REMOTE_ADDR'], wrap_setting('cron_ips'))) return true;
 			if (wrap_http_localhost_ip()) return true;
 			if ($login_rights === 'admin') return true;
 			break;
