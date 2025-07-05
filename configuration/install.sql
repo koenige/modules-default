@@ -1222,7 +1222,7 @@ INSERT INTO `webpages` (`page_id`, `title`, `content`, `identifier`, `ending`, `
 (3,	'Login',	'%%% request login %%%',	'/login',	'/',	0,	2,	'yes',	'&edit=admin',	NOW()),
 (4,	'Logout',	'%%% request logout %%%',	'/logout',	'/',	10,	2,	'yes',	'&edit=admin',	NOW()),
 (5,	'Tables',	'%%% tables * %%%',	'/db*',	'none',	1,	2,	'yes',	'&edit=admin',	NOW()),
-(6,	'Help',	'%%% request helptext * %%%',	'/help*',	'none',	9,	2,	'yes',	NULL,	NOW()),
+(6,	'Help',	'%%% request helptext * %%%',	'/help*',	'none',	9,	2,	'yes',	'&breadcrumbs_h1_prefix=1',	NOW()),
 (7,	'Maintenance',	'%%% request maintenance %%%',	'/db/maintenance',	'/',	7,	2,	'yes',	'&edit=admin',	NOW()),
 (8,	'Adminer',	'%%% request adminer %%%',	'/db/adminer',	'/',	7,	2,	'yes',	'&edit=admin',	NOW()),
 (9,	'Website Settings',	'%%% forms settings-website %%%',	'/db/settings',	'none',	10,	2,	'yes',	'&edit=admin',	NOW()),
