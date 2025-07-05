@@ -1,0 +1,20 @@
+# default module
+# Template for breadcrumbs
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% loop start %%%
+%%% if html %%%
+ %%% item html %%% %%% elseif url_path & title_attr %%%
+ <a href="%%% item url_path %%%" title="%%% item title_attr %%%">%%% item title %%%</a>%%% elseif url_path %%%
+ <a href="%%% item url_path %%%">%%% item title %%%</a>%%% elseif title_attr %%%
+ <strong title="%%% item title_attr %%%">%%% item title %%%</strong> %%% else %%%
+ <strong>%%% item title %%%</strong>
+%%% endif %%%
+%%% loopposition first|middle setting breadcrumbs_h1_separator %%%
+%%% loop end %%%:
