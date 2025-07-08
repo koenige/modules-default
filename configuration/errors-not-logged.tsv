@@ -468,3 +468,6 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 
 # Someone looking for something with possibly base64 encoded strings
 404	regex	~^/[A-Za-z0-9\-_]{40,86}={2}$~
+
+# Parsing ICS files incorrectly might lead to wrong URLs (there are line breaks)
+404	referer	*.ics
