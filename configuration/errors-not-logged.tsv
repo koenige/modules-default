@@ -318,6 +318,9 @@ qs	string	msclkid
 # authors behind website, @see http://humanstxt.org
 404	end	/humans.txt
 
+# LLM information, @see https://llmstxt.org/
+404	end	/llms.txt
+
 # Script kiddies
 404	post	*xbshell*
 
