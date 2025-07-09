@@ -16,5 +16,5 @@
  <strong title="%%% item title_attr %%%">%%% item title %%%</strong> %%% else %%%
  <strong>%%% item title %%%</strong>
 %%% endif %%%
-%%% loopposition first|middle setting breadcrumbs_h1_separator %%%
-%%% loop end %%%:
+%%% setting breadcrumbs_h1_separator %%%
+%%% loop end %%%
