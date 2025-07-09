@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -38,10 +38,11 @@ function mod_default_maintenance($params) {
 		$page['head'] .= wrap_template('zzform-head');
 	else
 		wrap_package_activate('zzform'); // for CSS
-	$page['title'] = wrap_setting('zzform_heading_prefix') ? wrap_text(wrap_setting('zzform_heading_prefix')) : '';
+	$page['title'] = '';
+	if (wrap_setting('breadcrumbs_h1_prefix') AND is_numeric(wrap_setting('breadcrumbs_h1_prefix')))
+		wrap_setting('breadcrumbs_h1_prefix', wrap_setting('breadcrumbs_h1_prefix') + 1);
 	$page['extra']['css'][] = 'default/maintenance.css';
 	if (!empty($_GET) OR !empty($_POST)) {
-		$page['title'] .= ' <a href="./">'.wrap_text('Maintenance').'</a>:';
 		$page['breadcrumbs'][] = ['title' => wrap_text('Maintenance'), 'url_path' => './'];
 	}
 
