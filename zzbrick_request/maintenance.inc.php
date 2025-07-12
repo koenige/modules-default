@@ -38,9 +38,6 @@ function mod_default_maintenance($params) {
 		$page['head'] .= wrap_template('zzform-head');
 	else
 		wrap_package_activate('zzform'); // for CSS
-	$page['title'] = '';
-	if (wrap_setting('breadcrumbs_h1_prefix') AND is_numeric(wrap_setting('breadcrumbs_h1_prefix')))
-		wrap_setting('breadcrumbs_h1_prefix', wrap_setting('breadcrumbs_h1_prefix') + 1);
 	$page['extra']['css'][] = 'default/maintenance.css';
 	if (!empty($_GET) OR !empty($_POST)) {
 		$page['breadcrumbs'][] = ['title' => wrap_text('Maintenance'), 'url_path' => './'];
@@ -54,7 +51,11 @@ function mod_default_maintenance($params) {
 		$newpage = brick_format($brick);
 		if ($newpage['status'] === 404) return $newpage;
 		if (isset($newpage['content_type']) AND $newpage['content_type'] !== 'html') return $newpage;
-		$page['title'] .= ' '.$newpage['title'];
+		$page['title'] = $newpage['title'];
+		if (wrap_setting('breadcrumbs_h1_prefix') AND is_numeric(wrap_setting('breadcrumbs_h1_prefix')))
+			wrap_setting('breadcrumbs_h1_prefix', wrap_setting('breadcrumbs_h1_prefix') + 1);
+		else
+			wrap_setting('breadcrumbs_h1_prefix', 1);
 		$page['text'] = $newpage['text'];
 		$page['status'] = $newpage['status'];
 		$page['extra'] = array_merge_recursive($page['extra'], $newpage['extra'] ?? []);
@@ -85,7 +86,7 @@ function mod_default_maintenance($params) {
 	$data['mysql'] = mysqli_get_server_info(wrap_db_connection());
 
 	$page['text'] = wrap_template('maintenance', $data);
-	$page['title'] .= ' '.wrap_text('Maintenance');
+	$page['title'] = wrap_text('Maintenance');
 	$page['breadcrumbs'][]['title'] = wrap_text('Maintenance');
 	return $page;
 }
