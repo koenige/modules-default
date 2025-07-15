@@ -220,7 +220,7 @@ function mod_default_make_log($params) {
 		$data['lines'] = mod_default_make_log_group($data['lines'], $group ?? []);
 
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
-	$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);
+	$data['pages'] = zz_list_pages($data['total_rows']);
 	wrap_setting('zzform_search_form_always', true);
 	$searchform = zz_search_form([], '', $data['total_rows'], $data['total_rows']);
 	$data['searchform'] = $searchform['bottom'];
@@ -235,7 +235,6 @@ function mod_default_make_log($params) {
  * output filters for log files
  *
  * @param array $filter
- * @global array $zz_conf
  * @return string
  */
 function mod_default_make_log_filter($filters) {

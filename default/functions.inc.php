@@ -46,7 +46,6 @@ function mf_default_searched($string) {
  * HTML output of form with button to delete all lines, files etc. in list
  * 'q'-search filter will be regarded
  *
- * @global array $zz_conf
  * @return array
  */
 function mf_default_delete_all_form() {

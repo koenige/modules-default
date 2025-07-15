@@ -274,7 +274,7 @@ function mod_default_filetree_folders($params) {
 	$data['total_rows'] = count($files);
 	if (!empty($_GET['q'])) $data['total_rows'] = $total_files_q;
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
-	$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);
+	$data['pages'] = zz_list_pages($data['total_rows']);
 	wrap_setting('zzform_search_form_always', true);
 	$searchform = zz_search_form([], '', $data['total_rows'], $data['total_rows']);
 	$data['searchform'] = $searchform['bottom'];

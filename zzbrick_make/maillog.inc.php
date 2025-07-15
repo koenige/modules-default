@@ -20,8 +20,6 @@
  * @return array $page
  */
 function mod_default_make_maillog($params) {
-	global $zz_conf;
-
 	$page['title'] = wrap_text('Mail Log');
 	$page['breadcrumbs'][]['title'] = wrap_text('Mail Log');
 	$page['query_strings'] = ['limit', 'mail_sent'];
@@ -145,7 +143,7 @@ function mod_default_make_maillog($params) {
 		wrap_redirect_change(wrap_setting('request_uri').'&mail_sent=1');
 	}
 	$data['total_records'] = zz_list_total_records($data['total_rows']);
-	$data['pages'] = zz_list_pages($zz_conf['int']['this_limit'], $data['total_rows']);
+	$data['pages'] = zz_list_pages($data['total_rows']);
 
 	$page['text'] = wrap_template('maillog', $data);
 	$page['text'] .= wrap_template('zzform-foot');
