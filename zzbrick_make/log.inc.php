@@ -17,11 +17,9 @@
  * output of logfile per line or grouped with the possibility to delete lines
  *
  * @param array $params
- * @global array $zz_conf
  * @return array $page
  */
 function mod_default_make_log($params) {
-	global $zz_conf;
 	wrap_include('file', 'zzwrap');
 	wrap_include('log', 'default');
 
@@ -165,7 +163,7 @@ function mod_default_make_log($params) {
 		$data['total_rows'] = $file->key();
 	}
 	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
-		zz_list_limit_last($data['total_rows']); // not + 1 since logs always end with a newline
+		wrap_page_limit('last', $data['total_rows']); // not + 1 since logs always end with a newline
 	}
 
 	if (!empty($_POST['deleteall'])) {
@@ -179,9 +177,9 @@ function mod_default_make_log($params) {
 		wrap_setting('request_uri', zzform_url('full+qs_zzform'));
 	}
 
-	if ($zz_conf['int']['this_limit']) {
+	if (wrap_page_limit()) {
 		if (isset($found)) {
-			$found = array_slice($found, ($zz_conf['int']['this_limit'] - wrap_setting('zzform_limit')), wrap_setting('zzform_limit'));
+			$found = array_slice($found, (wrap_page_limit('start')), wrap_setting('zzform_limit'));
 			if ($data['group'] AND empty($_POST['deleteall'])) {
 				$group = $found;
 				$found = [];
@@ -192,8 +190,8 @@ function mod_default_make_log($params) {
 				sort($found);
 			}
 		} else {
-			$start = $zz_conf['int']['this_limit'] - wrap_setting('zzform_limit');
-			$end = ($data['total_rows'] < $zz_conf['int']['this_limit'] ? $data['total_rows'] : $zz_conf['int']['this_limit']) - 1;
+			$start = wrap_page_limit('start');
+			$end = wrap_page_limit('end', $data['total_rows']);
 			if ($end >= $start)
 				$found = range($start, $end);
 			else

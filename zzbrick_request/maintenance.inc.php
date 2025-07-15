@@ -21,7 +21,6 @@
  * - delete files from backup-directory
  * - enter an sql query
  * @param array $params
- * @global array $zz_conf configuration variables
  * @return array $page
  *		'text' => page content, 'title', 'breadcrumbs', ...
  */

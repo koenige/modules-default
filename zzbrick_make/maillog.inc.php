@@ -156,11 +156,10 @@ function mod_default_make_maillog($params) {
  * @return array
  */
 function mod_default_make_maillog_limit($total_rows) {
-	global $zz_conf;
 	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
-		zz_list_limit_last($total_rows); // not + 1 since logs always end with a newline
+		wrap_page_limit('last', $total_rows); // not + 1 since logs always end with a newline
 	}
-	$first = $zz_conf['int']['this_limit'] - wrap_setting('zzform_limit');
-	$last = $zz_conf['int']['this_limit'] - 1;
+	$first = wrap_page_limit('start');
+	$last = wrap_page_limit('end');
 	return [$first, $last];
 }

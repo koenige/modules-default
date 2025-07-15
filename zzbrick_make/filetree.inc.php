@@ -183,8 +183,6 @@ function mod_default_filetree_deletable($filename) {
  * @return array
  */
 function mod_default_filetree_folders($params) {
-	global $zz_conf;
-
 	$data = [];
 	$my_folder = sprintf('%s/%s', wrap_setting('default_filetree_dir'), implode('/', $params));
 	if (!is_dir($my_folder)) {
@@ -230,13 +228,13 @@ function mod_default_filetree_folders($params) {
 	$data['filecount_total'] = 0;
 	$data['deletable_files'] = false;
 	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
-		zz_list_limit_last(count($files));
+		wrap_page_limit('last', count($files));
 	}
 	foreach ($files as $filename) {
 		if (!empty($_GET['q']) AND !mf_default_searched($filename)) {
 			continue;
 		}
-		if ($i < $zz_conf['int']['this_limit'] - wrap_setting('zzform_limit')) {
+		if ($i < wrap_page_limit('start')) {
 			$i++;
 			continue;
 		}
@@ -268,7 +266,7 @@ function mod_default_filetree_folders($params) {
 		$data['files_total']++;
 		$data['filecount_total'] += $file['filecount'];
 		if ($file['deletable']) $data['deletable_files'] = true;
-		if ($i == $zz_conf['int']['this_limit']) break;
+		if ($i === wrap_page_limit()) break;
 	}
 
 	$data['total_rows'] = count($files);
