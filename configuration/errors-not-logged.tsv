@@ -87,6 +87,7 @@
 404	end	/license.txt
 404	request	*/wp-includes/*
 404	begin	/wp-content/plugins
+404	referer	*/wp-login.php	
 
 # Joomla
 404	end	/administrator/index.php
@@ -474,3 +475,6 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 
 # Parsing ICS files incorrectly might lead to wrong URLs (there are line breaks)
 404	referer	*.ics
+
+# hansunCMS 1.4.3
+404	end	/js/ueditor/net/controller.ashx?action=catchimage
