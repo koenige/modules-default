@@ -108,7 +108,9 @@ function mod_default_make_maillog($params) {
 				$value = substr($line, strpos($line, ':') + 2);
 			} elseif (trim($line) !== $separator) {
 				$key = 'm_msg';
-				$value = $line;	
+				$value = $line;
+				if (strstr($value, '%%%'))
+					$value = str_replace('%%%', '%/%/%', $value);
 			}
 			if (array_key_exists($key, $data['mails'][$i])) {
 				$data['mails'][$i][$key] .= "\n".$value;
