@@ -150,10 +150,21 @@ function mf_default_log_line($line, $types = []) {
 	$out['error'] = str_replace('<', '&lt;', implode(' ', $tokens));
 
 	$post = false;
-	if (substr($out['error'], 0, 11) === 'POST[json] ') {
-		$post = @json_decode(substr($out['error'], 11));
+	if (str_starts_with($out['error'], 'POST[json] ')) {
+		$post = @json_decode(substr($out['error'], 11), true);
 		if ($post)
 			$out['error'] = 'POST '.wrap_print($post);
+	} elseif (preg_match('/^\[json\](\d*)\s/', $out['error'], $matches)) {
+		$post = @json_decode(trim(substr($out['error'], strlen($matches[0]))), true);
+		if ($post) {
+			$counter = $matches[1] ?? 0;
+			$text = [];
+			while ($counter > 0) {
+				$text[] = array_shift($post);
+				$counter--;
+			}
+			$out['error'] = implode(' – ', $text).' '.wrap_print($post);
+		}
 	}
 	if (!$post) {
 		$no_html = false;
