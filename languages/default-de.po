@@ -864,10 +864,6 @@ msgid "Logfile for <strong>%s</strong>"
 msgstr "Aufzeichnungen für <strong>%s</strong>"
 
 #: templates/errorlogs.template.txt
-msgid "Maximum length of single error log entry"
-msgstr "Maximale Länge eines einzelnen Eintrags"
-
-#: templates/errorlogs.template.txt
 msgid "Log POST variables when errors occur"
 msgstr "Bei Fehlern auch POST-Variablen aufzeichnen"
 

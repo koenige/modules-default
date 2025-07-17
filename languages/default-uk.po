@@ -398,10 +398,6 @@ msgid "Logfile for <strong>%s</strong>"
 msgstr ""
 
 #: templates/errorlogs.template.txt
-msgid "Maximum length of single error log entry"
-msgstr ""
-
-#: templates/errorlogs.template.txt
 msgid "Log POST variables when errors occur"
 msgstr ""
 
