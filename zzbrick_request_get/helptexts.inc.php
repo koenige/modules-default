@@ -83,7 +83,7 @@ function mf_default_helptexts_better($new, $existing) {
 	if ($new['language'] === wrap_setting('lang')) return true;
 	if ($new['language'] === '' AND $existing['language'] !== wrap_setting('lang')) return true;
 	// check package
-	if ($existing['package'] === 'default') return true;
+	if ($existing['package'] === 'default' AND $new['package'] !== 'default') return true;
 	return false;
 }
 
