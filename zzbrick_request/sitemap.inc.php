@@ -30,6 +30,7 @@ function mod_default_sitemap($params, $settings) {
 		if (str_ends_with($identifier, '*')) $excluded[$index] = substr($identifier, 0, -1);
 	
 	$languages_allowed = wrap_setting('languages_allowed');
+	$languages_hidden = wrap_setting('languages_hidden');
 
 	$dir = sprintf('%s/%s', wrap_setting('cache_dir'), wrap_setting('hostname'));
 	$files = scandir($dir);
@@ -58,6 +59,9 @@ function mod_default_sitemap($params, $settings) {
 				if (array_key_exists('lang', $query)) continue 2;
 			}
 		}
+		foreach ($languages_hidden as $language)
+			if (str_starts_with($file, sprintf('/%s/', $language))) continue 2;
+
 		$urls[$index]['url'] = wrap_setting('host_base').$file;
 		$urls[$index]['lastmod'] = date('Y-m-d', filemtime($dir.'/'.$files[$index]));
 	}

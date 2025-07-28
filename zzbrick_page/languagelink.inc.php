@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2015, 2018-2019, 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2015, 2018-2019, 2022-2023, 2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -33,11 +33,13 @@ function page_languagelink($params, $page) {
 		$link = $links_translated[wrap_setting('default_source_language')];
 	
 	foreach (wrap_setting('languages_allowed') as $lang) {
+		if (in_array($lang, wrap_setting('languages_hidden'))) continue;
 		$languages[] = [
 			'iso' => $lang,
 			'language' => wrap_setting('languages_names['.$lang.']') ?? $lang
 		];
 	}
+	if (!$languages) return '';
 
 	foreach ($languages as $index => $values) {
 		if ($values['iso'] === wrap_setting('lang')) continue;
