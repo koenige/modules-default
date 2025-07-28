@@ -336,7 +336,7 @@ qs	string	msclkid
 
 # .well-known URLs are normally not linked from a webpage
 404	begin	/.well-known
-404	begin	/sitemap.xml
+404	end	/sitemap.xml
 404	begin	/security.txt
 
 # some guys from Tallin looking for unprotected environment variables
