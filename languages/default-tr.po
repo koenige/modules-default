@@ -8,965 +8,1019 @@
 # @copyright Copyright © 2008-2009, 2014-2018, 2020-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
+"Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
 
 #: configuration/access.cfg
 msgid "Adminer MySQL database administration"
-msgstr ""
+msgstr "Adminer MySQL veritabanı yönetimi"
 
 #: configuration/access.cfg
 msgid "edit parameters of categories?"
-msgstr ""
+msgstr "kategorilerin parametrelerini düzenleyebilir miyim?"
 
 #: configuration/access.cfg
 msgid "Database logging"
-msgstr ""
+msgstr "Veritabanı günlüğü"
 
 #: configuration/access.cfg
 msgid "full rights to edit/insert/add logins"
-msgstr ""
+msgstr "girişleri düzenlemek/eklemek/eklemek için tam haklar"
 
 #: configuration/access.cfg
 msgid "Database maintenance, updates, access to logfiles"
-msgstr ""
+msgstr "Veritabanı bakımı, güncellemeler, günlük dosyalarına erişim"
 
 #: configuration/access.cfg
 msgid "allow masquerade login"
-msgstr ""
+msgstr "maskeli girişe izin ver"
 
 #: configuration/access.cfg
 msgid "proxy URLs"
-msgstr ""
+msgstr "proxy URL'leri"
 
 #: configuration/access.cfg
 msgid "Database table relations"
-msgstr ""
+msgstr "Veritabanı tablo ilişkileri"
 
 #: configuration/access.cfg
 msgid "synchronize local development and production server"
-msgstr ""
+msgstr "yerel geliştirme ve üretim sunucusunu senkronize etme"
 
 #: configuration/access.cfg
 msgid "All tables for debugging"
-msgstr ""
+msgstr "Hata ayıklama için tüm tablolar"
 
 #: configuration/access.cfg
 msgid "Translations of Texts"
-msgstr ""
+msgstr "Metin Çevirileri"
 
 #: configuration/access.cfg
 msgid "Database translation fields"
-msgstr ""
+msgstr "Veritabanı çeviri alanları"
 
 #: configuration/access.cfg
 msgid "Access and edit webpages, except for restricted pages"
-msgstr ""
+msgstr "Kısıtlanmış sayfalar hariç web sayfalarına erişme ve düzenleme"
 
 #: configuration/access.cfg
 msgid "Website structure, internal webpages"
-msgstr ""
+msgstr "Web sitesi yapısı, dahili web sayfaları"
 
 #: configuration/access.cfg
 msgid "List own website"
-msgstr ""
+msgstr "Kendi web sitenizi listeleyin"
 
 #: configuration/access.cfg
 msgid "List available websites"
-msgstr ""
+msgstr "Mevcut web sitelerini listeleyin"
 
 #: configuration/access.cfg
 msgid "Edit and add available websites"
-msgstr ""
+msgstr "Mevcut web sitelerini düzenleme ve ekleme"
 
 #: configuration/access.cfg
 msgid "read help texts"
-msgstr ""
+msgstr "yardım metinlerini okuyun"
 
-#: configuration/access.cfg
-#: zzbrick_tables/settings.php
+#: configuration/access.cfg zzbrick_tables/settings.php
 msgid "Website settings"
-msgstr ""
+msgstr "Web sitesi ayarları"
 
 #: configuration/settings.cfg
 msgid "delete old files in these folders: folder = max_age_seconds"
-msgstr ""
+msgstr "bu klasörlerdeki eski dosyaları sil: folder = max_age_seconds"
 
 #: configuration/settings.cfg
 msgid "delete stale lines in these logfiles: filename = max_age_seconds"
 msgstr ""
+"bu günlük dosyalarındaki eski satırları sil: filename = max_age_seconds"
 
 #: configuration/settings.cfg
 msgid "IP address of server that executes cron jobs"
-msgstr ""
+msgstr "Cron işlerini yürüten sunucunun IP adresi"
 
 #: configuration/settings.cfg
 msgid "throw 404 error if no search results were found"
-msgstr ""
+msgstr "arama sonucu bulunamazsa 404 hatası atar"
 
 #: configuration/settings.cfg
 msgid "URL to categories form"
-msgstr ""
+msgstr "Kategoriler formuna URL"
 
 #: configuration/settings.cfg
 msgid "list of files not to use from default module"
-msgstr ""
+msgstr "varsayılan modülden kullanılmayacak dosyaların listesi"
 
 #: configuration/settings.cfg
 msgid "maximum no. of files that can be downloaded at once"
-msgstr ""
+msgstr "tek seferde indirilebilecek maksimum dosya sayısı"
 
 #: configuration/settings.cfg
 msgid "maximum filesize of download archive"
-msgstr ""
+msgstr "indirme arşivinin maksimum dosya boyutu"
 
 #: configuration/settings.cfg
-msgid "ZIP creation is possible via `shell` or `php` – shell is faster but not always available"
+msgid ""
+"ZIP creation is possible via `shell` or `php` – shell is faster but not "
+"always available"
 msgstr ""
+"ZIP oluşturma `shell` veya `php` ile mümkündür - shell daha hızlıdır ancak "
+"her zaman mevcut değildir"
 
 #: configuration/settings.cfg
 msgid "delete job entries from job queue after n hours"
-msgstr ""
+msgstr "n saat sonra iş girdilerini iş kuyruğundan silme"
 
 #: configuration/settings.cfg
 msgid "base value for the exponent for the delay of retries after minutes"
-msgstr ""
+msgstr "dakikadan sonra yeniden denemelerin gecikmesi için üs için temel değer"
 
 #: configuration/settings.cfg
 msgid "maximum number of tries to complete a job if it fails"
-msgstr ""
+msgstr "başarısız olursa bir işi tamamlamak için maksimum deneme sayısı"
 
 #: configuration/settings.cfg
 msgid "maximum runtime of one request in the job manager"
-msgstr ""
+msgstr "iş yöneticisinde bir talebin maksimum çalışma süresi"
 
 #: configuration/settings.cfg
-msgid "maximum length of response or single response key that job manager will save"
+msgid ""
+"maximum length of response or single response key that job manager will save"
 msgstr ""
+"iş yöneticisinin kaydedeceği maksimum yanıt uzunluğu veya tek yanıt anahtarı"
 
 #: configuration/settings.cfg
 msgid "minutes after a running job that probably hung can be started again"
 msgstr ""
+"muhtemelen askıda kalan çalışan bir işin tekrar başlatılmasından dakikalar "
+"sonra"
 
 #: configuration/settings.cfg
 msgid "sleep microseconds after a job was finished before calling the next one"
 msgstr ""
+"bir iş bittikten sonra bir sonrakini çağırmadan önce mikrosaniye kadar uyu"
 
 #: configuration/settings.cfg
 msgid "show full language name instead of ISO code for language switcher"
-msgstr ""
+msgstr "dil değiştirici için ISO kodu yerine tam dil adını göster"
 
 #: configuration/settings.cfg
 msgid "path to masquerade URL"
-msgstr ""
+msgstr "maskeli URL'ye giden yol"
 
 #: configuration/settings.cfg
 msgid "list of allowed hostnames (or ends of it) for proxy"
 msgstr ""
+"proxy için izin verilen ana bilgisayar adlarının (veya uçlarının) listesi"
 
 #: configuration/settings.cfg
 msgid "URL for proxy access of third websites"
-msgstr ""
+msgstr "Üçüncü web sitelerine proxy erişimi için URL"
 
 #: configuration/settings.cfg
-msgid "username of local user that is used for maintenance operations (should have admin rights)"
+msgid ""
+"username of local user that is used for maintenance operations (should have "
+"admin rights)"
 msgstr ""
+"bakım işlemleri için kullanılan yerel kullanıcının kullanıcı adı (yönetici "
+"haklarına sahip olmalıdır)"
 
 #: configuration/settings.cfg
 msgid "show search form in search results at the bottom"
-msgstr ""
+msgstr "arama sonuçlarında en altta arama formunu göster"
 
 #: configuration/settings.cfg
 msgid "show search form in search results at the top"
-msgstr ""
+msgstr "arama sonuçlarında arama formunu en üstte gösterin"
 
 #: configuration/settings.cfg
-msgid "if content is translated, default source language, ISO 639-1 code; for text table only"
+msgid ""
+"if content is translated, default source language, ISO 639-1 code; for text "
+"table only"
 msgstr ""
+"içerik çevrilmişse, varsayılan kaynak dil, ISO 639-1 kodu; yalnızca metin "
+"tablosu için"
 
 #: configuration/settings.cfg
 msgid "if content is translated, default destination language, ISO 639-1 code"
-msgstr ""
+msgstr "içerik çevrilmişse, varsayılan hedef dil, ISO 639-1 kodu"
 
 #: configuration/settings.cfg
-msgid "allow to use table definition scripts from default module, bool: yes, or list of tables"
+msgid ""
+"allow to use table definition scripts from default module, bool: yes, or "
+"list of tables"
 msgstr ""
+"varsayılan modülden tablo tanımlama betiklerinin kullanılmasına izin ver, "
+"bool: evet veya tablo listesi"
 
 #: configuration/settings.cfg
 msgid "URL where admin has access to all tables"
-msgstr ""
+msgstr "Yöneticinin tüm tablolara erişebildiği URL"
 
 #: configuration/settings.cfg
 msgid "if make script for update is run, limit each run to this no. of records"
 msgstr ""
+"güncelleme için make script çalıştırılırsa, her çalıştırmayı bu kayıt "
+"sayısıyla sınırlandırın"
 
 #: configuration/settings.cfg
 msgid "use webpages/media table from default module"
-msgstr ""
+msgstr "varsayılan modülden web sayfaları/medya tablosunu kullan"
 
 #: configuration/settings.cfg
 msgid "path to internal tools for a single website"
-msgstr ""
+msgstr "tek bir web sitesi için dahili araçlara giden yol"
 
 #: configuration/settings.cfg
 msgid "class for website template"
-msgstr ""
+msgstr "web sitesi şablonu için sınıf"
 
 #: configuration/settings.cfg
-msgid "datetime as start date from when on a caching of certain JS/CSS should be disabled (when you deploy updates)"
+msgid ""
+"datetime as start date from when on a caching of certain JS/CSS should be "
+"disabled (when you deploy updates)"
 msgstr ""
+"belirli JS/CSS'lerin önbelleğe alınmasının ne zamandan itibaren devre dışı "
+"bırakılması gerektiğinin başlangıç tarihi olarak datetime (güncellemeleri "
+"dağıttığınızda)"
 
 #: configuration/settings.cfg
 msgid "fields in table languages.language_xx"
-msgstr ""
+msgstr "languages.language_xx tablosundaki alanlar"
 
 #: configuration/settings.cfg
-msgid "title of language link, preferably language name in native language (or variants like “English Version“), iso=name"
+msgid ""
+"title of language link, preferably language name in native language (or "
+"variants like “English Version“), iso=name"
 msgstr ""
+"dil bağlantısının başlığı, tercihen ana dilde dil adı (veya \"İngilizce "
+"Sürüm\" gibi varyantlar), iso=name"
 
 #: configuration/settings.cfg
-msgid "additional log files, same format as error logs (filled with wrap_log())"
+msgid ""
+"additional log files, same format as error logs (filled with wrap_log())"
 msgstr ""
+"ek günlük dosyaları, hata günlükleriyle aynı formatta (wrap_log() ile "
+"doldurulur)"
 
 #: configuration/settings.cfg
 msgid "minimal length of a password"
-msgstr ""
+msgstr "minimum parola uzunluğu"
 
 #: configuration/settings.cfg
 msgid "use field logins.login_rights"
-msgstr ""
+msgstr "logins.login_rights alanını kullan"
 
 #: configuration/settings.cfg
 msgid "initial installation date of default module (for updates)"
-msgstr ""
+msgstr "varsayılan modülün ilk kurulum tarihi (güncellemeler için)"
 
 #: configuration/settings.cfg
 msgid "size of images in search results"
-msgstr ""
+msgstr "arama sonuçlarındaki görsellerin boyutu"
 
 #: configuration/settings.cfg
 msgid "path for search"
-msgstr ""
+msgstr "arama için yol"
 
 #: configuration/settings.cfg
 msgid "order of modules in search output"
-msgstr ""
+msgstr "arama çıktısındaki modüllerin sırası"
 
 #: configuration/settings.cfg
 msgid "for menu_hierarchy, use only part of the path starting at this segment"
 msgstr ""
+"menu_hierarchy için, yolun yalnızca bu segmentten başlayan kısmını kullanın"
 
 #: configuration/settings.cfg
 msgid "class name for subpage list item"
-msgstr ""
+msgstr "alt sayfa liste öğesi için sınıf adı"
 
 #: configuration/settings.cfg
 msgid "extra item: subpage description"
-msgstr ""
+msgstr "ekstra öğe: alt sayfa açıklaması"
 
 #: configuration/settings.cfg
 msgid "extra item: query string to add as default for subpage list item"
 msgstr ""
+"extra item: alt sayfa liste öğesi için varsayılan olarak eklenecek sorgu "
+"dizesi"
 
 #: configuration/settings.cfg
 msgid "extra item: subpage title"
-msgstr ""
+msgstr "ekstra öğe: alt sayfa başlığı"
 
 #: configuration/settings.cfg
 msgid "hide this page from subpage list items"
-msgstr ""
+msgstr "bu sayfayı alt sayfa liste öğelerinden gizle"
 
 #: configuration/settings.cfg
 msgid "indentation level of subpage list item"
-msgstr ""
+msgstr "alt sayfa liste öğesinin girinti düzeyi"
 
 #: configuration/settings.cfg
 msgid "query string to add as default for subpage list item"
-msgstr ""
+msgstr "alt sayfa liste öğesi için varsayılan olarak eklenecek sorgu dizesi"
 
 #: configuration/settings.cfg
 msgid "URL to synchronize local development and production server"
-msgstr ""
+msgstr "Yerel geliştirme ve üretim sunucusunu senkronize etmek için URL"
 
 #: configuration/settings.cfg
 msgid "Name of the user to login with for server sync"
-msgstr ""
+msgstr "Sunucu senkronizasyonu için giriş yapılacak kullanıcının adı"
 
 #: configuration/settings.cfg
 msgid "List of services used for geocoding"
-msgstr ""
+msgstr "Coğrafi kodlama için kullanılan hizmetlerin listesi"
 
 #: default/download.inc.php
 msgid "Creation of ZIP file “%s” failed."
-msgstr ""
+msgstr "\"%s\" ZIP dosyasının oluşturulması başarısız oldu."
 
 #: default/download.inc.php
 msgid "Download: Archive Too Big"
-msgstr ""
+msgstr "İndirin: Arşiv Çok Büyük"
 
 #: default/download.inc.php
-msgid "None of the files for the requested archive could be found on the server."
-msgstr ""
+msgid ""
+"None of the files for the requested archive could be found on the server."
+msgstr "İstenen arşive ait dosyaların hiçbiri sunucuda bulunamadı."
 
 #: templates/cleanup.template.txt
 msgid "Cleanup in progress, please wait until a new process can start."
 msgstr ""
+"Temizleme işlemi devam ediyor, lütfen yeni bir işlem başlayana kadar "
+"bekleyin."
 
 #: templates/cleanup.template.txt
 msgid "%d stale session cookie deleted."
 msgid_plural "%d stale session cookies deleted."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d eski oturum çerezi silindi."
+msgstr[1] "%d eski oturum çerezleri silindi."
 
 #: templates/cleanup.template.txt
 msgid "%d file deleted in folder <code>%s</code> that was older than %s."
-msgid_plural "%d files deleted in folder <code>%s</code> that were older than %s."
+msgid_plural ""
+"%d files deleted in folder <code>%s</code> that were older than %s."
 msgstr[0] ""
+"%d klasörde silinen dosya <code>%s</code>%s adresinden daha eskiydi."
 msgstr[1] ""
+"%d klasörde silinen dosyalar <code>%s</code>%s adresinden daha eskiydi."
 
 #: templates/cleanup.template.txt
 msgid "%d line deleted in logfile <code>%s</code> that was older than %s."
-msgid_plural "%d lines deleted in logfile <code>%s</code> that were older than %s."
+msgid_plural ""
+"%d lines deleted in logfile <code>%s</code> that were older than %s."
 msgstr[0] ""
+"%d günlük dosyasında satır silindi <code>%s</code>%s adresinden daha eskiydi."
 msgstr[1] ""
+"%d günlük dosyasında silinen satırlar <code>%s</code>%s adresinden daha "
+"eskiydi."
 
 #: templates/cleanup.template.txt
 msgid "%d log file compressed."
 msgid_plural "%d log files compressed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d günlük dosyası sıkıştırıldı."
+msgstr[1] "%d günlük dosyaları sıkıştırıldı."
 
 #: templates/download-error.template.txt
 msgid "Sorry, but you might only download up to %s files at once."
-msgstr ""
+msgstr "Üzgünüz, ancak bir kerede yalnızca %s dosyaya kadar indirebilirsiniz."
 
 #: templates/download-error.template.txt
 msgid "This archive would contain %s files."
-msgstr ""
+msgstr "Bu arşiv %s dosya içerecektir."
 
 #: templates/download-error.template.txt
-msgid "We recommend that you download every single subfolder instead of this main folder."
-msgstr ""
+msgid ""
+"We recommend that you download every single subfolder instead of this main "
+"folder."
+msgstr "Bu ana klasör yerine her bir alt klasörü indirmenizi öneririz."
 
 #: templates/download-error.template.txt
 msgid "Sorry, but you might only download an archive up to %s."
-msgstr ""
+msgstr "Üzgünüz, ancak yalnızca %s'a kadar olan bir arşivi indirebilirsiniz."
 
 #: templates/download-error.template.txt
 msgid "The requested archive would include files of %s size."
-msgstr ""
+msgstr "İstenen arşiv %s boyutunda dosyalar içerecektir."
 
 #: templates/helplink.template.txt
 msgid "Help:"
-msgstr ""
+msgstr "Yardım edin:"
 
 #: templates/jobmanager.template.txt
 msgid "Results"
-msgstr ""
+msgstr "Sonuçlar"
 
 #: templates/jobmanager.template.txt
 msgid "%d jobs were successful."
-msgstr ""
+msgstr "%d işler başarılı oldu."
 
 #: templates/jobmanager.template.txt
 msgid "%d jobs failed."
-msgstr ""
+msgstr "%d işler başarısız oldu."
 
 #: templates/jobmanager.template.txt
 msgid "%d jobs were abanoned."
-msgstr ""
+msgstr "%d işler iptal edildi."
 
 #: templates/jobmanager.template.txt
 msgid "%d successful jobs deleted."
-msgstr ""
+msgstr "%d başarılı işler silindi."
 
 #: templates/jobmanager.template.txt
 msgid "%d running jobs released again."
-msgstr ""
+msgstr "%d çalışan işler tekrar serbest bırakıldı."
 
 #: templates/jobmanager.template.txt
 msgid "No jobs."
-msgstr ""
+msgstr "İş yok."
 
 #: templates/jobmanager.template.txt
 msgid "Start jobs manually"
-msgstr ""
+msgstr "İşleri manuel olarak başlatma"
 
 #: templates/jobmanager.template.txt
 msgid "Start jobs"
-msgstr ""
+msgstr "İşe başlayın"
 
 #: templates/login.template.txt
 msgid "You have been logged out."
-msgstr ""
+msgstr "Çıkış yaptınız."
 
 #: templates/login.template.txt
 msgid "Please allow us to set a cookie!"
-msgstr ""
+msgstr "Lütfen bir çerez ayarlamamıza izin verin!"
 
 #: templates/login.template.txt
 msgid "Sign in"
-msgstr ""
+msgstr "Giriş Yap"
 
-#: templates/login.template.txt
-#: zzbrick_tables/settings.php
+#: templates/login.template.txt zzbrick_tables/settings.php
 msgid "Login"
-msgstr ""
+msgstr "Giriş"
 
 #: templates/login.template.txt
 msgid "Username:"
-msgstr ""
+msgstr "Kullanıcı Adı:"
 
 #: templates/login.template.txt
 msgid "Password:"
-msgstr ""
+msgstr "Şifre:"
 
 #: templates/login.template.txt
 msgid ""
 "To access the internal area, a registration is required. Please enter below "
 "your username and password."
 msgstr ""
+"Dahili alana erişmek için bir kayıt gereklidir. Lütfen kullanıcı adınızı ve "
+"şifrenizi aşağıya girin."
 
 #: templates/login.template.txt
 msgid ""
 "Please allow cookies after sending your login credentials. For security "
 "reasons, after %d minutes of inactivity you will be logged out automatically."
 msgstr ""
+"Lütfen giriş bilgilerinizi gönderdikten sonra çerezlere izin verin. Güvenlik "
+"nedeniyle, %d dakika işlem yapılmadığında otomatik olarak oturumunuz "
+"kapatılacaktır."
 
 #: templates/login.template.txt
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Parolanızı mı unuttunuz?"
 
 #: templates/login-password.template.txt
 msgid "Send me a password"
-msgstr ""
+msgstr "Bana bir şifre gönder"
 
 #: templates/login-password.template.txt
 msgid "Request a new password"
-msgstr ""
+msgstr "Yeni bir şifre talep edin"
 
 #: templates/login-password.template.txt
 msgid "Please enter your e-mail address."
-msgstr ""
+msgstr "Lütfen e-posta adresinizi giriniz."
 
 #: templates/login-password.template.txt
 msgid "Please enter a valid e-mail address."
-msgstr ""
+msgstr "Lütfen Geçerli Bir Eposta Girin"
 
 #: templates/login-password.template.txt
 msgid ""
 "If you have an existing login, we have sent you an e-mail with a login link."
 msgstr ""
+"Mevcut bir girişiniz varsa, size bir giriş bağlantısı içeren bir e-posta "
+"gönderdik."
 
 #: templates/login-password.template.txt
 msgid "Please check your mail."
-msgstr ""
+msgstr "Lütfen postanızı kontrol edin."
 
 #: templates/login-password.template.txt
 msgid "The link is valid for %s minutes."
-msgstr ""
+msgstr "Bağlantı %s dakika için geçerlidir."
 
 #: templates/login-password.template.txt
 msgid "Back to login"
-msgstr ""
+msgstr "Girişe geri dön"
 
 #: templates/search.template.txt
 msgid "Search results for “%s”"
-msgstr ""
+msgstr "\"%s\" için arama sonuçları"
 
 #: templates/search.template.txt
 msgid "We found nothing matching “%s”."
-msgstr ""
+msgstr "\"%s\" ile eşleşen bir şey bulamadık."
 
 #: templates/search.template.txt
 msgid "Please enter a search term."
-msgstr ""
+msgstr "Lütfen bir arama terimi girin."
 
 #: templates/search.template.txt
 msgid "Search"
-msgstr ""
+msgstr "Arama"
 
 #: templates/search-default.template.txt
 msgid "No webpages were found matching your search."
-msgstr ""
+msgstr "Aramanızla eşleşen web sayfası bulunamadı."
 
 #: templates/website.template.txt
 msgid "Tools"
-msgstr ""
+msgstr "Araçlar"
 
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Username"
-msgstr ""
+msgstr "Kullanıcı Adı"
 
 # Record form: Change password
 #: zzbrick_forms/my-password.php
+#, fuzzy
 msgid "Password"
-msgstr ""
+msgstr "Şifre"
 
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Change Password"
-msgstr ""
+msgstr "Şifre Değiştir"
 
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Change My Password"
-msgstr ""
+msgstr "Şifremi Değiştir"
 
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Hints for secure passwords"
-msgstr ""
+msgstr "Güvenli parolalar için ipuçları"
 
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "password-rules"
-msgstr ""
+msgstr "parola kuralları"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
-msgstr ""
+msgstr "Bakım"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Maintenance scripts"
-msgstr ""
+msgstr "Bakım komut dosyaları"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Action"
-msgstr ""
+msgstr "Eylem"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "GET should be empty, please test that:"
-msgstr ""
+msgstr "GET boş olmalıdır, lütfen bunu test edin:"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Setting"
-msgstr ""
+msgstr "Ayarlar"
 
-#: zzbrick_request/maintenance.inc.php
-#: zzbrick_tables/settings.php
+#: zzbrick_request/maintenance.inc.php zzbrick_tables/settings.php
 msgid "Value"
-msgstr ""
+msgstr "Değer"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Show PHP info on server"
-msgstr ""
+msgstr "Sunucuda PHP bilgilerini göster"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Check relational integrity"
-msgstr ""
+msgstr "İlişkisel bütünlüğü kontrol edin"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Field %s contains invalid values:"
-msgstr ""
+msgstr "Alan %s geçersiz değerler içeriyor:"
 
 #: zzbrick_request/filetree.inc.php
 msgid "Filetree"
-msgstr ""
+msgstr "Filetree"
 
 #: zzbrick_request/filetree.inc.php
 msgid "You may not view or download this file"
-msgstr ""
+msgstr "Bu dosyayı görüntüleyemez veya indiremezsiniz"
 
 #: templates/filetree.template.txt
 msgid "You have no access to this folder"
-msgstr ""
+msgstr "Bu klasöre erişiminiz yok"
 
 #: templates/filetree-nav.template.txt
 msgid "TOP"
-msgstr ""
+msgstr "ÜST"
 
 #: zzbrick_make/sqlquery.inc.php
 msgid "SQL query"
-msgstr ""
+msgstr "SQL sorgusu"
 
 #: zzbrick_make/maillog.inc.php
 msgid "Mail Log"
-msgstr ""
+msgstr "E-Posta Kayıtları"
 
 #: zzbrick_make/maillog.inc.php
 msgid "The mail was sent again."
-msgstr ""
+msgstr "Posta tekrar gönderildi."
 
 #: zzbrick_make/maillog.inc.php
 msgid "Mail was not sent."
-msgstr ""
+msgstr "Posta gönderilmedi."
 
 #: templates/maillog.template.txt
 msgid "Mail"
-msgstr ""
+msgstr "Mail"
 
 #: templates/maillog.template.txt
 msgid "Resend mail"
-msgstr ""
+msgstr "Postayı yeniden gönder"
 
 #: templates/sqlquery.template.txt
 msgid "Result"
-msgstr ""
+msgstr "Sonuç"
 
 #: templates/sqlquery.template.txt
 msgid "No changes were made to the database."
-msgstr ""
+msgstr "Veri tabanında herhangi bir değişiklik yapılmamıştır."
 
 #: templates/sqlquery.template.txt
 msgid "%s was successful"
-msgstr ""
+msgstr "%s başarılı oldu"
 
 #: templates/sqlquery.template.txt
 msgid "Insert"
-msgstr ""
+msgstr "Ekle"
 
-#: templates/sqlquery.template.txt
-#: zzbrick_tables/logging.php
+#: templates/sqlquery.template.txt zzbrick_tables/logging.php
 msgid "Update"
-msgstr ""
+msgstr "Güncelle"
 
-#: templates/sqlquery.template.txt
-#: zzbrick_tables/logging.php
+#: templates/sqlquery.template.txt zzbrick_tables/logging.php
 msgid "Delete"
-msgstr ""
+msgstr "Sil"
 
 #: templates/sqlquery.template.txt
 msgid "%d row affected"
 msgid_plural "%d rows affected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d satır etkilendi"
+msgstr[1] "%d satır etkilendi"
 
 #: templates/sqlquery.template.txt
 msgid "Sorry, %s is not yet supported"
-msgstr ""
+msgstr "Üzgünüz, %s henüz desteklenmiyor"
 
 #: templates/sqlquery.template.txt
 msgid " (ID: %s)"
-msgstr ""
+msgstr " (ID: %s)"
 
 #: templates/sqlquery.template.txt
 msgid "Database says:"
-msgstr ""
+msgstr "Veritabanı diyor ki:"
 
 #: templates/sqlquery.template.txt
 msgid "[Code %s]"
-msgstr ""
+msgstr "[Kod %s]"
 
 #: templates/sqlquery-form.template.txt
 msgid "Custom SQL query"
-msgstr ""
+msgstr "Özel SQL sorgusu"
 
 #: templates/maintenance.template.txt#database-tables
 msgid "Relation and Translation Tables"
-msgstr ""
+msgstr "İlişki ve Çeviri Tabloları"
 
 #: templates/maintenance.template.txt#database-tables
 msgid "The referential integrity of the database is not checked automatically."
-msgstr ""
+msgstr "Veritabanının referans bütünlüğü otomatik olarak kontrol edilmez."
 
 #: templates/maintenance.template.txt#database-tables
 msgid "The fields in the database are not translated."
-msgstr ""
+msgstr "Veritabanındaki alanlar çevrilmemiştir."
 
 #: templates/maintenance.template.txt#database-tables
 msgid "Current database"
-msgstr ""
+msgstr "Güncel veritabanı"
 
 #: templates/maintenance.template.txt#database-tables
 msgid "New database"
-msgstr ""
+msgstr "Yeni veritabanı"
 
 #: templates/maintenance.template.txt#database-tables
 msgid "Keep database"
-msgstr ""
+msgstr "Veritabanını saklayın"
 
 #: templates/maintenance.template.txt#database-tables
 msgid "Change database"
-msgstr ""
+msgstr "Veritabanını değiştir"
 
 #: templates/maintenance.template.txt#database-tables
 msgid "(Database is not on server, you have to select a new database.)"
-msgstr ""
+msgstr "(Veritabanı sunucuda değil, yeni bir veritabanı seçmeniz gerekiyor)"
 
 #: templates/maintenance.template.txt#database-tables
 msgid "Translation"
-msgstr ""
+msgstr "Çeviri"
 
 #: templates/maintenance.template.txtp#database-tables
 msgctxt "default"
 msgid "Master"
-msgstr ""
+msgstr "Master"
 
 #: templates/maintenance.template.txt#database-tables
 msgctxt "default"
 msgid "Detail"
-msgstr ""
+msgstr "Detay"
 
 #: templates/maintenance.template.txt#files
 msgid "Temp and Backup Files"
-msgstr ""
+msgstr "Geçici ve Yedek Dosyalar"
 
 #: zzbrick_make/filetree.inc.php
 msgid "Backup of uploaded files is not active."
-msgstr ""
+msgstr "Yüklenen dosyaların yedeklenmesi etkin değil."
 
 #: templates/filetree.template
 msgid "– but this directory does not exist."
-msgstr ""
+msgstr "- ancak bu dizin mevcut değildir."
 
-#: templates/filetree-simple.template.txt
-#: templates/filetree.template
+#: templates/filetree-simple.template.txt templates/filetree.template
 msgid "Filename"
-msgstr ""
+msgstr "Dosya Adı"
 
 #: templates/filetree.template
 msgid "Filetype"
-msgstr ""
+msgstr "Dosya Tipi"
 
 #: templates/filetree.template
 msgid "Size"
-msgstr ""
+msgstr "Boyut"
 
 #: templates/filetree.template
 msgid "Timestamp"
-msgstr ""
+msgstr "Zaman Damgası"
 
 #: zzbrick_make/filetree.inc.php
 msgid "Folder"
-msgstr ""
+msgstr "Klasör"
 
 #: zzbrick_make/filetree.inc.php
 msgid "%d file deleted"
 msgid_plural "%d files deleted"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dosya silindi"
+msgstr[1] "%d dosyalar silindi"
 
-#: zzbrick_request/sso.inc.php
-#: zzbrick_make/filetree.inc.php
+#: zzbrick_request/sso.inc.php zzbrick_make/filetree.inc.php
 msgid "unknown"
-msgstr ""
+msgstr "bilinmeyen"
 
 #: templates/filetree.template.txt
 msgid "All Files"
-msgstr ""
+msgstr "Tüm Dosyalar"
 
 #: templates/filetree.template.txt
 msgid "Folder is empty"
-msgstr ""
+msgstr "Klasör Boş"
 
-#: templates/maillog.template.txt
-#: templates/maintenance-logs.template.txt
+#: templates/maillog.template.txt templates/maintenance-logs.template.txt
 msgid "Delete all lines"
-msgstr ""
+msgstr "Tüm satırları sil"
 
 #: templates/filetree.template.txt
 msgid "Delete all files"
-msgstr ""
+msgstr "Tüm dosyaları sil"
 
 #: templates/filetree.template.txt
 msgid "Delete selected files"
-msgstr ""
+msgstr "Seçili dosyaları sil"
 
 #: templates/errorlogs.template.txt
 msgid "Error handling"
-msgstr ""
+msgstr "Hata işleme"
 
 #: templates/errorlogs.template.txt
 msgid "Errors will be shown on webpage"
-msgstr ""
+msgstr "Hatalar web sayfasında gösterilecektir"
 
 #: templates/errorlogs.template.txt
 msgid "Errors will be sent via mail"
-msgstr ""
+msgstr "Hatalar posta yoluyla gönderilecektir"
 
 #: templates/errorlogs.template.txt
 msgid "Errors won’t be shown"
-msgstr ""
+msgstr "Hatalar gösterilmeyecek"
 
 #: templates/errorlogs.template.txt
 msgid "Send mail for these error levels"
-msgstr ""
+msgstr "Bu hata seviyeleri için posta gönderin"
 
 #: templates/errorlogs.template.txt
 msgid "Send mail (From:)"
-msgstr ""
+msgstr "Posta gönder (Kimden:)"
 
 #: templates/errorlogs.template.txt
 msgid "not set"
-msgstr ""
+msgstr "ayarlanmadı"
 
 #: templates/errorlogs.template.txt
 msgid "Send mail (To:)"
-msgstr ""
+msgstr "Posta gönder (Kime:)"
 
 #: templates/errorlogs.template.txt
 msgid "Logging"
-msgstr ""
+msgstr "Günlükleme"
 
 #: templates/errorlogs.template.txt
 msgid "Errors will be logged"
-msgstr ""
+msgstr "Hatalar günlüğe kaydedilecektir"
 
 #: templates/errorlogs.template.txt
 msgid "Errors will not be logged"
-msgstr ""
+msgstr "Hatalar günlüğe kaydedilmeyecek"
 
 #: templates/errorlogs.template.txt
 msgid "Logfile for <strong>%s</strong>"
-msgstr ""
+msgstr "Günlük dosyası için <strong>%s</strong>"
 
 #: templates/errorlogs.template.txt
 msgid "Log POST variables when errors occur"
-msgstr ""
+msgstr "Hata oluştuğunda POST değişkenlerini günlüğe kaydetme"
 
 #: templates/errorlogs.template.txt
 msgid "POST variables will be logged"
-msgstr ""
+msgstr "POST değişkenleri günlüğe kaydedilecektir"
 
 #: templates/errorlogs.template.txt
 msgid "POST variables will not be logged"
-msgstr ""
+msgstr "POST değişkenleri günlüğe kaydedilmeyecek"
 
 #: templates/errorlogs.template.txt
 msgid "disabled"
-msgstr ""
+msgstr "devre dışı"
 
 #: templates/translationscheck.template.txt
 msgid "Translations without a corresponding record"
-msgstr ""
+msgstr "Karşılık gelen bir kaydı olmayan çeviriler"
 
 #: templates/translationscheck.template.txt
 msgid "%s records were deleted."
-msgstr ""
+msgstr "%s kayıt silindi."
 
 #: templates/translationscheck.template.txt
 msgid "Check Translations"
-msgstr ""
+msgstr "Çevirileri Kontrol Edin"
 
 #: templates/translationscheck.template.txt
 msgid "Database:"
-msgstr ""
+msgstr "Veritabanı:"
 
 #: templates/translationscheck.template.txt
 msgid "Records"
-msgstr ""
+msgstr "Kayıtlar"
 
 #: templates/errorlogs.template.txt
 msgid "Error Logging"
-msgstr ""
+msgstr "Hata Günlüğü"
 
 #: zzbrick_make/log.inc.php
 msgid "Logs"
-msgstr ""
+msgstr "Kayıtlar"
 
 #: templates/maintenance-logs.template.txt
 msgid "No logfile specified"
-msgstr ""
+msgstr "Belirtilmiş günlük dosyası yok"
 
 #: templates/maintenance-logs.template.txt
 msgid "This is not one of the used logfiles: %s"
-msgstr ""
+msgstr "Bu, kullanılan günlük dosyalarından biri değildir: %s"
 
-#: templates/maillog.template.txt
-#: templates/maintenance-logs.template.txt
+#: templates/maillog.template.txt templates/maintenance-logs.template.txt
 msgid "Logfile does not exist: %s"
-msgstr ""
+msgstr "Günlük dosyası mevcut değil: %s"
 
 #: templates/maintenance-logs.template.txt
 msgid "Date"
-msgstr ""
+msgstr "Tarih"
 
 #: templates/maintenance-logs.template.txt
 msgid "Last Date"
-msgstr ""
+msgstr "Son tarih"
 
 #: templates/maintenance-logs.template.txt
 msgid "Level"
-msgstr ""
+msgstr "Seviye"
 
 #: templates/maintenance-logs.template.txt
 msgid "Message"
-msgstr ""
+msgstr "Mesaj"
 
 #: templates/maintenance-logs.template.txt
 msgid "User"
-msgstr ""
+msgstr "Kullanıcı"
 
 #: templates/maintenance-logs.template.txt
 msgid "Frequency"
-msgstr ""
+msgstr "Sıklık"
 
-#: templates/maillog.template.txt
-#: templates/maintenance-logs.template.txt
+#: templates/maillog.template.txt templates/maintenance-logs.template.txt
 msgid "No lines"
-msgstr ""
+msgstr "Hat yok"
 
-#: templates/maillog.template.txt
-#: templates/maintenance-logs.template.txt
+#: templates/maillog.template.txt templates/maintenance-logs.template.txt
 msgid "Delete selected lines"
-msgstr ""
+msgstr "Seçili satırları silme"
 
 #: templates/maintenance-logs.template.txt
 msgid "Please choose one of the filters."
-msgstr ""
+msgstr "Lütfen filtrelerden birini seçin."
 
 #: templates/maintenance-logs.template.txt
 msgid "Group"
-msgstr ""
+msgstr "Grup"
 
 #: templates/maintenance-logs.template.txt
 msgid "Group entries"
-msgstr ""
+msgstr "Grup girişleri"
 
 #: templates/maintenance.template.txt
 msgid "Download"
-msgstr ""
+msgstr "İndir"
 
 #: templates/relations.template.txt
 msgid "Links to other data"
-msgstr ""
+msgstr "Diğer verilere bağlantılar"
 
 #: templates/relations.template.txt
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: templates/relations.template.txt
 msgid "This entry is not linked to any other data."
-msgstr ""
+msgstr "Bu girdi başka herhangi bir veriyle bağlantılı değildir."
 
 #: zzbrick_make/cronjobs.inc.php
 msgid "No active jobs found."
-msgstr ""
+msgstr "Aktif iş bulunamadı."
 
 #: zzbrick_request/sso.inc.php
 msgid "Single sign on: too many URL parameters."
-msgstr ""
+msgstr "Çoklu oturum açma: çok fazla URL parametresi."
 
 #: zzbrick_request/sso.inc.php
 msgid "Single sign on: incorrect login credentials."
-msgstr ""
+msgstr "Çoklu oturum açma: hatalı oturum açma kimlik bilgileri."
 
 #: zzbrick_request/sso.inc.php
 msgid ""
 "Sorry, the possible login period has expired. Please get a new login link."
 msgstr ""
+"Üzgünüz, olası giriş süresi sona erdi. Lütfen yeni bir giriş bağlantısı alın."
 
 #: zzbrick_request/sso.inc.php
 msgid "Single sign on: possible login period expired."
-msgstr ""
+msgstr "Tek oturum açma: olası oturum açma süresi sona erdi."
 
 #: zzbrick_request/thumbnails.inc.php
 msgid "Thumbnail creation"
-msgstr ""
+msgstr "Küçük resim oluşturma"
 
 #: zzbrick_request/thumbnails.inc.php
 msgid ""
@@ -974,323 +1028,334 @@ msgid ""
 "upload. Or you can create completely new thumbnails if you changed the pixel "
 "size."
 msgstr ""
+"Burada, yükleme sırasında oluşturulmamışlarsa eksik küçük resimler "
+"oluşturabilirsiniz. Veya piksel boyutunu değiştirdiyseniz tamamen yeni küçük "
+"resimler oluşturabilirsiniz."
 
 #: zzbrick_request/thumbnails.inc.php
 msgid "Sorry, but the table script %s could not be found."
-msgstr ""
+msgstr "Üzgünüz, ancak tablo komut dosyası %s bulunamadı."
 
 #: zzbrick_request/thumbnails.inc.php
 msgid "The original file does not exist."
-msgstr ""
+msgstr "Orijinal dosya mevcut değil."
 
 #: zzbrick_request/thumbnails.inc.php
 msgid "The function %s does not exist."
-msgstr ""
+msgstr "0] işlevi mevcut değildir."
 
 #: zzbrick_request/thumbnails.inc.php
 msgid "Thumbnail for %s × %s px was created."
-msgstr ""
+msgstr "0] × %s piksel için küçük resim oluşturuldu."
 
 #: zzbrick_request/thumbnails.inc.php
 msgid "Thumbnail for %s × %s px could not be created."
-msgstr ""
+msgstr "0] × %s piksel için küçük resim oluşturulamadı."
 
 #: zzbrick_request/thumbnails.inc.php
 msgid "No missing thumbnails were found."
-msgstr ""
+msgstr "Eksik küçük resim bulunamadı."
 
 #: zzbrick_request/thumbnails.inc.php
 msgid "The original file does not contain any data."
-msgstr ""
+msgstr "Orijinal dosya herhangi bir veri içermez."
 
 #: zzbrick_tables/categories.template.php
 msgid "Property"
-msgstr ""
+msgstr "Emlak"
 
 #: zzbrick_tables/cronjobs.php
 msgid "Cron Jobs"
-msgstr ""
+msgstr "Cron işleri"
 
 #: zzbrick_tables/cronjobs.php
 msgid "Cron Job"
-msgstr ""
+msgstr "Cron Job"
 
 #: zzbrick_tables/cronjobs.php
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: zzbrick_tables/cronjobs.php
 msgid "Minute"
-msgstr ""
+msgstr "Dakika"
 
 #: zzbrick_tables/cronjobs.php
 msgid "Min."
-msgstr ""
+msgstr "Dk."
 
 #: zzbrick_tables/cronjobs.php
 msgid "Hour"
-msgstr ""
+msgstr "Saat"
 
 #: zzbrick_tables/cronjobs.php
 msgid "Hr."
-msgstr ""
+msgstr "Saat."
 
 #: zzbrick_tables/cronjobs.php
 msgid "Day"
-msgstr ""
+msgstr "Gün"
 
 #: zzbrick_tables/cronjobs.php
 msgid "Month"
-msgstr ""
+msgstr "Ay"
 
 #: zzbrick_tables/cronjobs.php
 msgid "Mth."
-msgstr ""
+msgstr "Mth."
 
 #: zzbrick_tables/cronjobs.php
 msgid "Weekday"
-msgstr ""
+msgstr "Hafta içi"
 
 #: zzbrick_tables/cronjobs.php
 msgid "Wd."
-msgstr ""
+msgstr "Wd."
 
 #: zzbrick_tables/cronjobs.php
-msgid "Here, you can add cron jobs. Please note: the execution of the cron jobs depends on the real cron job which has to be triggered according to these dates. It is possible to enter one or more numeric values per field, separated by a comma."
+msgid ""
+"Here, you can add cron jobs. Please note: the execution of the cron jobs "
+"depends on the real cron job which has to be triggered according to these "
+"dates. It is possible to enter one or more numeric values per field, "
+"separated by a comma."
 msgstr ""
+"Burada, cron işleri ekleyebilirsiniz. Lütfen dikkat: cron işlerinin "
+"yürütülmesi, bu tarihlere göre tetiklenmesi gereken gerçek cron işine "
+"bağlıdır. Alan başına virgülle ayrılmış bir veya daha fazla sayısal değer "
+"girmek mümkündür."
 
 #: zzbrick_tables/relations.php
 msgid "Database Table Relations"
-msgstr ""
+msgstr "Veritabanı Tablo İlişkileri"
 
 #: zzbrick_tables/relations.php
 msgid "Master Table"
-msgstr ""
+msgstr "Ana Masa"
 
 #: zzbrick_tables/relations.php
 msgid "Detail Table"
-msgstr ""
+msgstr "Detay Tablosu"
 
 #: zzbrick_tables/relations.php
 msgid "Foreign Key"
-msgstr ""
+msgstr "Yabancı Anahtar"
 
 #: zzbrick_tables/relations.php
 msgid "Database of Master Table"
-msgstr ""
+msgstr "Ana Tablo Veritabanı"
 
 #: zzbrick_tables/relations.php
 msgid "Name of Master Table"
-msgstr ""
+msgstr "Ana Tablonun Adı"
 
 #: zzbrick_tables/relations.php
 msgid "Primary Key of Master Table"
-msgstr ""
+msgstr "Ana Tablonun Birincil Anahtarı"
 
 #: zzbrick_tables/relations.php
 msgid "Database of Detail Table"
-msgstr ""
+msgstr "Detay Tablosu Veritabanı"
 
 #: zzbrick_tables/relations.php
 msgid "Name of Detail Table"
-msgstr ""
+msgstr "Detay Tablosunun Adı"
 
 #: zzbrick_tables/relations.php
 msgid "Primary Key of Detail Table"
-msgstr ""
+msgstr "Detay Tablosunun Birincil Anahtarı"
 
 #: zzbrick_tables/relations.php
 msgid "Foreign Key of Detail Table"
-msgstr ""
+msgstr "Detay Tablosunun Yabancı Anahtarı"
 
 #: zzbrick_tables/relations.php
 msgid "If main record will be deleted, what should happen with detail record?"
-msgstr ""
+msgstr "Ana kayıt silinecekse detay kayda ne olacak?"
 
 #: zzbrick_tables/logging.php
 msgid "Query"
-msgstr ""
+msgstr "Sorgu"
 
 #: zzbrick_tables/logging.php
 msgid "Record"
-msgstr ""
+msgstr "Kayıt"
 
 #: zzbrick_tables/logging.php
 msgid "Last update"
-msgstr ""
+msgstr "Son Güncelleme"
 
 #: zzbrick_tables/logging.php
 msgid "Don’t delete"
-msgstr ""
+msgstr "Silme"
 
 #: zzbrick_tables/translations.php
 msgid "Translations"
-msgstr ""
+msgstr "Çeviriler"
 
 #: zzbrick_tables/translations.php
 msgid "Database"
-msgstr ""
+msgstr "Veritabanı"
 
 #: zzbrick_tables/translations.php
 msgid "Table"
-msgstr ""
+msgstr "Tablo"
 
 #: zzbrick_tables/translations.php
 msgid "Field"
-msgstr ""
+msgstr "Alan"
 
 #: zzbrick_tables/translations.php
 msgid "Data type"
-msgstr ""
+msgstr "Veri tipi"
 
 #: zzbrick_tables/translations.php
 msgid "Data Type"
-msgstr ""
+msgstr "Veri tipi"
 
 #: zzbrick_tables/translations.php
 msgid "text line"
-msgstr ""
+msgstr "metin satırı"
 
 #: zzbrick_tables/translations.php
 msgid "memo"
-msgstr ""
+msgstr "memo"
 
 #: zzbrick_tables/jobqueue.php
 msgid "Background Job Queue"
-msgstr ""
+msgstr "Arka Plan İş Kuyruğu"
 
 #: zzbrick_tables/jobqueue.php
 msgid "Job URL"
-msgstr ""
+msgstr "İş URL'si"
 
 #: zzbrick_tables/jobqueue.php
 msgid "Started"
-msgstr ""
+msgstr "Başlangıç"
 
 #: zzbrick_tables/jobqueue.php
 msgid "Finished"
-msgstr ""
+msgstr "Bitmiş"
 
 #: zzbrick_tables/jobqueue.php
 msgid "Wait until"
-msgstr ""
+msgstr "Kadar bekleyin"
 
 #: zzbrick_tables/jobqueue.php
 msgid "Job Status"
-msgstr ""
+msgstr "İş Durumu"
 
 #: zzbrick_tables/jobqueue.php
 msgid "not started"
-msgstr ""
+msgstr "başlatılmadı"
 
 #: zzbrick_tables/jobqueue.php
 msgid "running"
-msgstr ""
+msgstr "çalışıyor"
 
 #: zzbrick_tables/jobqueue.php
 msgid "successful"
-msgstr ""
+msgstr "başarılı"
 
 #: zzbrick_tables/jobqueue.php
 msgid "failed"
-msgstr ""
+msgstr "başarısız"
 
 #: zzbrick_tables/jobqueue.php
 msgid "abandoned"
-msgstr ""
+msgstr "gelinmemiş"
 
 #: zzbrick_tables/jobqueue.php
 msgid "not found"
-msgstr ""
+msgstr "bulunamadı"
 
 #: zzbrick_tables/jobqueue.php
 msgid "Try No."
-msgstr ""
+msgstr "Hayır'ı dene."
 
 #: zzbrick_tables/jobqueue.php
 msgid "Error Message"
-msgstr ""
+msgstr "Hata Mesajı"
 
 #: zzbrick_tables/jobqueue.php
 msgid "Category No."
-msgstr ""
+msgstr "Kategori No."
 
 #. Abbreviation for priority, head of table
 #: zzbrick_tables/jobqueue.php
 msgid "P."
-msgstr ""
+msgstr "P."
 
 #. Here, a boilerplate text for redirects is needed
 #: zzbrick_tables/redirects.php
 msgid "Information about redirects"
-msgstr ""
+msgstr "Yönlendirmeler hakkında bilgi"
 
 #: zzbrick_tables/redirects.php
 msgid "Old URL"
-msgstr ""
+msgstr "Eski adres:"
 
 #: zzbrick_tables/redirects.php
 msgid "New URL"
-msgstr ""
+msgstr "Yeni adres"
 
 #: zzbrick_tables/redirects.php
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: zzbrick_tables/redirects.php
 msgid "Area"
-msgstr ""
+msgstr "Alan"
 
 #: zzbrick_tables/redirects.php
 msgid "Redirects"
-msgstr ""
+msgstr "Yönlendirmeler"
 
 #: zzbrick_tables/settings.php
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: zzbrick_tables/settings.php
 msgid "Key"
-msgstr ""
+msgstr "Anahtar"
 
 #: zzbrick_tables/settings.php
 msgid "Explanation"
-msgstr ""
+msgstr "Açıklama"
 
 #: zzbrick_tables/settings.php
 msgid "User settings"
-msgstr ""
+msgstr "Kullanıcı ayarları"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Webpages"
-msgstr ""
+msgstr "Web Sayfaları"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Title"
-msgstr ""
+msgstr "Başlık"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Content"
-msgstr ""
+msgstr "İçerik"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Identifier"
-msgstr ""
+msgstr "Tanımlayıcı"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Ending"
-msgstr ""
+msgstr "Bitiş"
 
 #. Webpages: Possible ending of URL
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "none"
-msgstr ""
+msgstr "hiçbiri"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
@@ -1298,210 +1363,215 @@ msgid ""
 "Address of page, should show hierarchy, no / at the end!<br>The identifier "
 "should contain only letters a-z, numbers 0-9 and the - sign."
 msgstr ""
+"Sayfanın adresi, hiyerarşiyi göstermelidir, sonunda / işareti olmamalıdır!"
+"<br>Tanımlayıcı sadece a-z harflerini, 0-9 rakamlarını ve - işaretini "
+"içermelidir."
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Sequence"
-msgstr ""
+msgstr "Sekans"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Subpage&nbsp;of"
-msgstr ""
+msgstr "Alt sayfası"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Published?"
-msgstr ""
+msgstr "Yayınlandı mı?"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Menu"
-msgstr ""
+msgstr "Menü"
 
 #: zzbrick_tables/webpages.php
 msgctxt "default"
 msgid "Short text (max. 160 characters), only appears in search results."
-msgstr ""
+msgstr "Kısa metin (maks. 160 karakter), yalnızca arama sonuçlarında görünür."
 
 #: zzbrick_tables/webpages-categories.php
 msgid "Webpages/Categories"
-msgstr ""
+msgstr "Web Sayfaları/Kategoriler"
 
 #: zzbrick_tables/webpages-categories.php
 msgid "Page"
-msgstr ""
+msgstr "Sayfa"
 
 #: zzbrick_tables/webpages-media.php
 msgid "Media"
-msgstr ""
+msgstr "Medya"
 
 #: zzbrick_tables/webpages-media.php
 msgid "Preview"
-msgstr ""
+msgstr "Önizleme"
 
 #: zzbrick_tables/webpages-media.php
 msgid "No."
-msgstr ""
+msgstr "Hayır."
 
 #: zzbrick_tables/webpages-media.php
 msgid "Medium"
-msgstr ""
+msgstr "Orta"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Countries"
-msgstr ""
+msgstr "Ülkeler"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Country"
-msgstr ""
+msgstr "Ülke"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Country Code"
-msgstr ""
+msgstr "Ülke kodu"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Country code according to ISO 3166"
-msgstr ""
+msgstr "ISO 3166'ya göre ülke kodu"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Website"
-msgstr ""
+msgstr "Website"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Will country be used on website?"
-msgstr ""
+msgstr "Ülke web sitesinde kullanılacak mı?"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Country Code 3"
-msgstr ""
+msgstr "Ülke Kodu 3"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Three letter country code according to ISO 3166"
-msgstr ""
+msgstr "ISO 3166'ya göre üç harfli ülke kodu"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "IOC Code"
-msgstr ""
+msgstr "IOC Kodu"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "IOC"
-msgstr ""
+msgstr "IOC"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
-msgid "Three letter country code according to the International Olympic Committee (IOC)"
-msgstr ""
+msgid ""
+"Three letter country code according to the International Olympic Committee "
+"(IOC)"
+msgstr "Uluslararası Olimpiyat Komitesi'ne (IOC) göre üç harfli ülke kodu"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Languages"
-msgstr ""
+msgstr "Diller"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Language code ISO 639-1"
-msgstr ""
+msgstr "Dil kodu ISO 639-1"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Language code ISO 639-2, Bibliographic"
-msgstr ""
+msgstr "Dil kodu ISO 639-2, Bibliyografik"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Language code ISO 639-2, Terminology"
-msgstr ""
+msgstr "Dil kodu ISO 639-2, Terminoloji"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Language name, english"
-msgstr ""
+msgstr "Dil adı, İngilizce"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Language name, french"
-msgstr ""
+msgstr "Dil adı, Fransızca"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Language name, german"
-msgstr ""
+msgstr "Dil adı, Almanca"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Will language be used on website?"
-msgstr ""
+msgstr "Web sitesinde dil kullanılacak mı?"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Variation"
-msgstr ""
+msgstr "Varyasyon"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
 msgid "Variation of language, e. g. informal"
-msgstr ""
+msgstr "Dil çeşitliliği, örneğin gayri resmi"
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Categories"
-msgstr ""
+msgstr "Kategoriler"
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Main Category"
-msgstr ""
+msgstr "Ana Kategori"
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Description"
-msgstr ""
+msgstr "Açıklama"
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Identifier / Parameters"
-msgstr ""
+msgstr "Tanımlayıcı / Parametreler"
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Parameters"
-msgstr ""
+msgstr "Parametreler"
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Internal parameters. Change with care."
-msgstr ""
+msgstr "İç parametreler. Dikkatle değiştirin."
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Abbreviation"
-msgstr ""
+msgstr "Kısaltma"
 
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Abbr."
-msgstr ""
+msgstr "Abbr."
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Logins"
-msgstr ""
+msgstr "Oturumlar"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
@@ -1509,142 +1579,141 @@ msgid ""
 "“Yes” means that the user has to change the password next time he or she "
 "logs in."
 msgstr ""
+"\"Evet\", kullanıcının bir sonraki oturum açışında parolayı değiştirmesi "
+"gerektiği anlamına gelir."
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "<abbr title=\"Is user online\">Online?</abbr>"
-msgstr ""
+msgstr "<abbr title=\"Is user online\">Çevrimiçi mi?</abbr>"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Is user logged in or did not log out last time?"
-msgstr ""
+msgstr "Kullanıcı oturum açtı mı veya son kez oturumu kapatmadı mı?"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Active"
-msgstr ""
+msgstr "Aktif"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Change Pwd?"
-msgstr ""
+msgstr "Pwd Değiştir?"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Click"
-msgstr ""
+msgstr "Tıkla"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Last activity online"
-msgstr ""
+msgstr "Çevrimiçi son etkinlik"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Logged in"
-msgstr ""
+msgstr "Giriş yapıldı"
 
 #: zzbrick_tables/logins.php
+#, fuzzy
 msgctxt "default"
 msgid "Password"
-msgstr ""
+msgstr "Şifre"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "To deactivate a login"
-msgstr ""
+msgstr "Bir oturum açma işlemini devre dışı bırakmak için"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Rights"
-msgstr ""
+msgstr "Haklar"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "Login rights"
-msgstr ""
+msgstr "Giriş hakları"
 
 #: zzbrick_tables/logins.php
 msgid "Service"
-msgstr ""
+msgstr "Hizmet"
 
 #: zzbrick_tables/logins.php
 msgid "Active"
-msgstr ""
+msgstr "Aktif"
 
-#: zzbrick_tables/languages.php
-#: zzbrick_tables/countries.php
+#: zzbrick_tables/languages.php zzbrick_tables/countries.php
 msgid "yes"
-msgstr ""
+msgstr "evet"
 
-#: zzbrick_tables/languages.php
-#: zzbrick_tables/countries.php
+#: zzbrick_tables/languages.php zzbrick_tables/countries.php
 msgid "no"
-msgstr ""
+msgstr "hayır"
 
-#: zzbrick_tables/translations-text.php
-#: zzbrick_tables/translations-varchar.php
+#: zzbrick_tables/translations-text.php zzbrick_tables/translations-varchar.php
 msgid "Translation to"
-msgstr ""
+msgstr "Çeviri için"
 
-#: zzbrick_tables/translations-text.php
-#: zzbrick_tables/translations-varchar.php
+#: zzbrick_tables/translations-text.php zzbrick_tables/translations-varchar.php
 msgid "Translation field"
-msgstr ""
+msgstr "Çeviri alanı"
 
 #: zzbrick_tables/text.php
 msgid "More Text"
-msgstr ""
+msgstr "Daha fazla metin"
 
 #: zzbrick_make/dbupdate.inc.php
 msgid "Ignore"
-msgstr ""
+msgstr "Yok Say"
 
 #: templates/dbupdate.template.txt
 msgid "Database Updates"
-msgstr ""
+msgstr "Veritabanı Güncellemeleri"
 
 #: zzbrick_make/jobmanager.inc.php
 msgid "The job should start later."
-msgstr ""
+msgstr "İş daha sonra başlamalı."
 
 #: zzbrick_make/jobmanager.inc.php
 msgid "Another job is running."
-msgstr ""
+msgstr "Başka bir iş devam ediyor."
 
 #: zzbrick_make/jobmanager.inc.php
 msgid "Unable to start job."
-msgstr ""
+msgstr "İş başlatılamıyor."
 
 #: zzbrick_tables/websites.php
 msgid "Websites"
-msgstr ""
+msgstr "Web Siteler"
 
 #: zzbrick_tables/websites.php
 msgid "Domain name without subdomain www"
-msgstr ""
+msgstr "Alt alan adı olmayan alan adı www"
 
 #: zzbrick_make/dbmodules.inc.php
 msgid "Modules"
-msgstr ""
+msgstr "Modüller"
 
 #: zzbrick_make/dbmodules.inc.php
 msgid "List of Modules"
-msgstr ""
+msgstr "Modüllerin Listesi"
 
 #: zzbrick_make/dbmodules.inc.php
 msgid "Installation"
-msgstr ""
+msgstr "Kurulum"
 
 #: zzbrick_make/dbmodules.inc.php
 msgid "enabled?"
-msgstr ""
+msgstr "etkin mi?"
 
 #: zzbrick_make/dbmodules.inc.php
 msgid "ReadMe"
-msgstr ""
+msgstr "Benioku"
 
 #: zzbrick_make/dbmodules.inc.php
 msgid "Install module"
-msgstr ""
+msgstr "Modül yükleme"
