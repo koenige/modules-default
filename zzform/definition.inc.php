@@ -210,7 +210,7 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 			$line['path'] = $line['parameters']['alias'];
 		if ($pos = strrpos($line['path'], '/'))
 			$line['path'] = substr($line['path'], $pos + 1);
-		if ($line['category_id'] === $last_category_id)
+		if ($line['category_id'].'' === $last_category_id.'')
 			$line['last_category'] = true;
 		// check for reverse
 		if (!empty($line['parameters'][$restrict_to.'_reverse'])) {
