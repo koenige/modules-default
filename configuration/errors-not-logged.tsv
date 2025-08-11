@@ -478,3 +478,6 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 
 # hansunCMS 1.4.3
 404	end	/js/ueditor/net/controller.ashx?action=catchimage
+
+# old FCKeditor
+404	begin	/FCKeditor/editor/filemanager/connectors/asp/connector.asp
