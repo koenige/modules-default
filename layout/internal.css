@@ -11,7 +11,7 @@
  */
 
 
-.unpublished::before
+.%%% setting page_preview_class %%%::before
 		{ content: " %%% text PREVIEW %%% "; background: #C00; color: white; 
 		transform: rotate(-45deg); font-weight: bold; z-index: 1000; 
 		opacity: .8; position: fixed; left: -4em; top: 2em; 
