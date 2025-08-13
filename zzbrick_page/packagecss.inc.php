@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -19,9 +19,15 @@
  * @return string
  */
 function page_packagecss($params, $page) {
+	global $zz_page;
+
 	$css = [];
 	$extra_css = $page['extra']['css'] ?? [];
 	if (!is_array($extra_css)) $extra_css = [$extra_css];
+	if (!empty($zz_page['db']['live']) AND $zz_page['db']['live'] === 'no')
+		$extra_css[] = 'default/internal';
+	elseif (!empty($zz_page['user_authenticated']))
+		$extra_css[] = 'default/internal';
 	if ($extra_css) $extra_css = array_unique($extra_css);
 	foreach ($extra_css as $line) {
 		list($package, $filename) = explode('/', $line);

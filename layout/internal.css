@@ -1,0 +1,18 @@
+/*
+ * Cascading Style Sheets (CSS)
+ * internal area
+ *
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/default
+ *
+ * @author Gustaf Mossakowski <gustaf@koenige.org>
+ * @copyright Copyright © 2025 Gustaf Mossakowski
+ * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ */
+
+
+.unpublished::before
+		{ content: " %%% text PREVIEW %%% "; background: #C00; color: white; 
+		transform: rotate(-45deg); font-weight: bold; z-index: 1000; 
+		opacity: .8; position: fixed; left: -4em; top: 2em; 
+		padding: .75em 6em .65em 5em;  font-size: 1.4em; }

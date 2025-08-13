@@ -316,6 +316,10 @@ msgstr ""
 msgid "None of the files for the requested archive could be found on the server."
 msgstr ""
 
+#: layout/internal.css
+msgid "PREVIEW"
+msgstr ""
+
 #: templates/cleanup.template.txt
 msgid "Cleanup in progress, please wait until a new process can start."
 msgstr ""
