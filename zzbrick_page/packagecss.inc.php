@@ -24,10 +24,15 @@ function page_packagecss($params, $page) {
 	$css = [];
 	$extra_css = $page['extra']['css'] ?? [];
 	if (!is_array($extra_css)) $extra_css = [$extra_css];
-	if (!empty($zz_page['db']['live']) AND $zz_page['db']['live'] === 'no')
+	if (!empty($zz_page['db']['live']) AND $zz_page['db']['live'] === 'no') {
 		$extra_css[] = 'default/internal';
-	elseif (!empty($zz_page['user_authenticated']))
-		$extra_css[] = 'default/internal';
+	} else {
+		wrap_session_start();
+		$logged_in = $_SESSION['logged_in'] ?? false;
+		session_write_close();
+		if ($logged_in)
+			$extra_css[] = 'default/internal';
+	}
 	if ($extra_css) $extra_css = array_unique($extra_css);
 	foreach ($extra_css as $line) {
 		list($package, $filename) = explode('/', $line);

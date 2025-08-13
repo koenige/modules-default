@@ -17,7 +17,9 @@ function brick_access_rights($groups = []) {
 	// allow groups parameter to be array or string
 	if (!is_array($groups)) $groups = [$groups];
 
+	wrap_session_start();
 	$login_rights = $_SESSION['login_rights'] ?? false;
+	session_write_close();
 
 	foreach ($groups as $group) {
 		$group = strtolower($group);
