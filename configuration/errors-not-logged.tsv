@@ -88,6 +88,8 @@
 404	request	*/wp-includes/*
 404	begin	/wp-content/plugins
 404	referer	*/wp-login.php	
+404	begin	/wp-json/
+404	begin	/wp-content/themes/
 
 # Joomla
 404	end	/administrator/index.php
