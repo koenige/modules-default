@@ -13,7 +13,7 @@
 <h2>%%% text "Search results for “%s”" q wrap_html_escape %%%</h2>
 %%% endif %%%
 %%% if setting default_searchform_top %%%
-%%% template searchform %%%
+%%% include searchform %%%
 %%% endif %%%
 
 %%% if search_results %%%
@@ -27,12 +27,15 @@
 <p>%%% text "We found nothing matching “%s”." q wrap_html_escape %%%</p>
 %%% endif %%%
 
-
+%%% if form_text %%%
+<p>%%% item form_text %%%</p>
+%%% else %%%
 <p>%%% text Please enter a search term. %%%</p>
+%%% endif %%%
 
 %%% endif %%%
 
 %%% if setting default_searchform_bottom %%%
-%%% template searchform %%%
+%%% include searchform %%%
 %%% endif %%%
 </div>

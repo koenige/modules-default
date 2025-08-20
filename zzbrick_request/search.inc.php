@@ -13,7 +13,7 @@
  */
 
 
-function mod_default_search() {
+function mod_default_search($params, $settings) {
 	if (!empty($_GET['q'])) {
 		$q = wrap_db_escape($_GET['q']);
 		if (strstr($q, ' ')) {
@@ -21,7 +21,8 @@ function mod_default_search() {
 		} else {
 			$q = [$q];
 		}
-		$files = wrap_include('search');
+		$modules = $settings['modules'] ?? [];
+		$files = wrap_include('search', $modules);
 		if (!$files) return false;
 		$data['search_results'] = false;
 		foreach ($files['functions'] as $function) {
@@ -48,10 +49,14 @@ function mod_default_search() {
 		if (!$data['search_results'] AND wrap_setting('default_404_no_search_results'))
 			$page['status'] = 404;
 	}
+	
+	$data['form_text'] = $settings['form_text'] ?? NULL;
+	$data['title'] = $settings['title'] ?? wrap_text('Search');
+	$data['q'] = $_GET['q'] ?? '';
+	$data['search_url'] = parse_url(wrap_setting('request_uri'), PHP_URL_PATH);
 
 	$page['query_strings'] = ['q'];
-	$data['q'] = $_GET['q'] ?? '';
-	$page['title'] = wrap_text('Search').(!empty($_GET['q']) ? sprintf(': %s', wrap_html_escape($_GET['q'])) : '');
+	$page['title'] = $data['title'].(!empty($_GET['q']) ? sprintf(': %s', wrap_html_escape($_GET['q'])) : '');
 	$page['text'] = wrap_template('search', $data);
 	return $page;
 }
