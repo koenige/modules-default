@@ -27,9 +27,7 @@
 <p>%%% text "We found nothing matching “%s”." q wrap_html_escape %%%</p>
 %%% endif %%%
 
-%%% if form_text %%%
-<p>%%% item form_text %%%</p>
-%%% else %%%
+%%% unless form_text %%%
 <p>%%% text Please enter a search term. %%%</p>
 %%% endif %%%
 
