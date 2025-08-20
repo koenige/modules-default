@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023, 2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -60,7 +60,7 @@ function mf_default_search($q) {
 function mf_default_webpages_media($data) {
 	static $opengraph_img = [];
 	if (!$data) return [];
-	$media = wrap_get_media(array_keys($data), 'webpages', 'page');
+	$media = function_exists('wrap_get_media') ? wrap_get_media(array_keys($data), 'webpages', 'page') : [];
 	foreach ($media as $id => $files)
 		$data[$id] += $files;
 	foreach ($data as $id => $line) {
