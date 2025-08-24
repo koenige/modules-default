@@ -21,8 +21,9 @@ function mod_default_search($params, $settings) {
 		} else {
 			$q = [$q];
 		}
-		$modules = $settings['modules'] ?? [];
-		$files = wrap_include('search', $modules);
+		$files = !empty($settings['modules'])
+			? wrap_include('search', $settings['modules'])
+			: wrap_include('search');
 		if (!$files) return false;
 		$data['search_results'] = false;
 		foreach ($files['functions'] as $function) {
