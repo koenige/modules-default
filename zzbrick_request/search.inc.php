@@ -57,7 +57,7 @@ function mod_default_search($params, $settings) {
 	$data['search_hints'] = $settings['search_hints'] ?? true;
 	if (!$data['search_hints']) $data['search_hints'] = NULL;
 	$data['q'] = $_GET['q'] ?? '';
-	$data['search_url'] = parse_url(wrap_setting('request_uri'), PHP_URL_PATH);
+	$data['search_url'] = $settings['search_url'] ?? parse_url(wrap_setting('request_uri'), PHP_URL_PATH);
 
 	$page['query_strings'] = ['q'];
 	$page['title'] = $data['title'].(!empty($_GET['q']) ? sprintf(': %s', wrap_html_escape($_GET['q'])) : '');
