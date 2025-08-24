@@ -40,8 +40,7 @@ function mod_default_get_helptexts($params) {
  * @return array
  */
 function mf_default_helptexts_files() {
-	$files = wrap_collect_files('help/*.txt');
-	$files += wrap_collect_files('help/*.md');
+	$files = wrap_collect_files('help/*.{txt,md}');
 
 	foreach ($files as $package => $file) {
 		$basename = basename($file);
