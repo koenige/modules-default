@@ -14,6 +14,7 @@
 
 
 function mod_default_search($params, $settings) {
+	wrap_setting('active_module', 'default'); // if included from somehwere else
 	if (!empty($_GET['q'])) {
 		$q = wrap_db_escape($_GET['q']);
 		if (strstr($q, ' ')) {
