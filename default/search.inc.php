@@ -38,10 +38,12 @@ function mf_default_search($q) {
 		AND live = "yes"
 		AND identifier NOT LIKE "%%*"
 		AND (ISNULL(parameters) OR parameters NOT LIKE "%%&search=0%%")
+		AND website_id = %d
 		ORDER BY identifier';
 	$sql = sprintf($sql
 		, implode(' AND ', $where)
 		, $t_where ? ' OR '.$t_where : ''
+		, wrap_setting('website_id') ?? 1
 	);
 	$data['default'][0]['webpages'] = wrap_db_fetch($sql, 'page_id');
 	if (!$data['default'][0]['webpages'])
