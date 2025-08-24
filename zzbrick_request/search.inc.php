@@ -31,7 +31,7 @@ function mod_default_search($params, $settings) {
 			if (empty($function['short'])) continue;
 			if ($function['short'] !== 'search') continue;
 			$results = $function['function']($q);
-			if ($results[$function['package']]) $data['search_results'] = true;
+			if (!empty($results[$function['package']])) $data['search_results'] = true;
 			$data['modules'][$function['package']]['results']
 				= wrap_template(sprintf('search-%s', $function['package']), $results);
 		}
