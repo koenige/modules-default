@@ -37,3 +37,7 @@
 %%% include searchform %%%
 %%% endif %%%
 </div>
+
+%%% if search_hints %%%
+%%% helptext Search Hints %%%
+%%% endif %%%
