@@ -36,7 +36,7 @@ function mf_default_search($q) {
 		WHERE (%s
 		%s)
 		AND live = "yes"
-		AND identifier NOT LIKE "%%*"
+		AND identifier NOT LIKE "%%*%%"
 		AND (ISNULL(parameters) OR parameters NOT LIKE "%%&search=0%%")
 		AND website_id = %d
 		ORDER BY identifier';
