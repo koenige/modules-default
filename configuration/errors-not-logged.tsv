@@ -491,3 +491,7 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	all	/votinginformationcenter/?entry_point=c2l0ZQ%3D%3D
 404	all	/reg/
 404	all	/lite/
+
+# Shopify maybe
+404	all	/index.json
+404	all	/collections.json
