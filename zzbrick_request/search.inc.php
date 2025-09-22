@@ -115,6 +115,7 @@ function mod_default_search_translations($q, $fields) {
 			}
 		}
 		foreach ($found as $t_field_id => $field_id) {
+			if (!$field_id) continue;
 			$where[] = sprintf('%s.%s IN (%s)'
 				, $tkeys[$t_field_id]['table_name']
 				, $tkeys[$t_field_id]['id_field_name']
