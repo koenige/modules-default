@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2011, 2015-2016, 2018-2019, 2021, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2008-2011, 2015-2016, 2018-2019, 2021, 2024-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #
@@ -20,21 +20,20 @@
 <p>%%% setting logout_inactive_after "%{'Please allow cookies after sending your login credentials. For security reasons, after %d minutes of inactivity you will be logged out automatically.'}%" %%%</p>
 </div>
 <form action="%%% item action_url %%%%%% item params %%%" method="POST" class="login">
-<fieldset><legend>%%% text "Login" %%%</legend>
+<fieldset>
+<legend>%%% text "Login" %%%</legend>
 %%% loop fields %%%
-<p><label for="%%% item fieldname %%%"><strong>%%% item title %%%</strong></label>
+<label for="%%% item fieldname %%%"><strong>%%% item title %%%</strong></label>
 %%% if output %%%
 %%% item output %%%
 %%% else %%%
 <input type="text" name="%%% item fieldname %%%" id="%%% item fieldname %%%"  value="%%% item value %%%" autocorrect="off" autocapitalize="off" spellcheck="false">
 %%% endif %%%
-</p>
 %%% loop end %%%
-<p><label for="password"><strong>%%% text "Password:" %%%</strong></label> 
+<label for="password"><strong>%%% text "Password:" %%%</strong></label> 
 <input type="password" name="password" id="password" required>
-%%% if password_link %%%<br><span class="submit"><small><a href="%%% item password_link %%%">(%%% text Forgot your password? %%%)</a></small></span>%%% endif %%%
-</p>
-<p class="submit"><input type="submit" value="%%% text "Sign in" %%%"></p>
+%%% if password_link %%%<p class="password-link"><small><a href="%%% item password_link %%%">(%%% text Forgot your password? %%%)</a></small></p>%%% endif %%%
+<input type="submit" value="%%% text "Sign in" %%%">
 %%% if msg %%%
 <p class="error submit">%%% item msg %%%</p>
 %%% endif %%%
