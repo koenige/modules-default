@@ -14,7 +14,7 @@
 #login		{ max-width: 40rem; margin: 5rem auto; }
 #login fieldset
 			{ position: relative; border: none; margin: 2.5rem 0 1rem;
-			display: grid; grid-template-columns: 7rem 12.5rem; gap: .5rem;
+			display: grid; grid-template-columns: 9rem 12.5rem; gap: .5rem;
 			background: %%% setting default_login_css_background_color %%% url(%%% setting layout_path %%%/%%% setting active_theme %%%/zugzwang-stripes.png) repeat-y 100% 0;
 			background-size: 75%; padding: 1.5rem 1rem 1rem; border-radius: 3px; }
 #login legend
@@ -23,7 +23,7 @@
 #login form	{ margin: 1rem 0 0; }
 #login fieldset p	{ margin: 0; }
 #login input[type=submit]
-			{ grid-column: 2 / 3; }
+			{ grid-column: 2 / 3; height: 1.6rem; }
 @media screen and (max-width: 30rem) {
 	#login fieldset
 				{ background-size: 75%; }
