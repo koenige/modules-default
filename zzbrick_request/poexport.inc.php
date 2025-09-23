@@ -107,8 +107,8 @@ function mod_default_poexport($params) {
 			$content[] = [
 				'field_id' => $record_id,
 				'field_name' => $field_name,
-				'text' => $value,
-				'translation' => $data['translations'][$record_id][$field_name] ?? NULL,
+				'text' => mod_default_poexport_escape($value),
+				'translation' => mod_default_poexport_escape($data['translations'][$record_id][$field_name] ?? NULL),
 				'identifier' => $unique_key,
 			];
 		}
@@ -117,4 +117,17 @@ function mod_default_poexport($params) {
 	$page['content_type'] = 'po';
 	$page['headers']['filename'] = $params[0];
 	return $page;	
+}
+
+/**
+ * escape some characters for export
+ *
+ * @param string $string
+ * @return string
+ */
+function mod_default_poexport_escape($string) {
+	if (!$string) return $string;
+	$string = str_replace('"', '\"', $string);
+	$string = str_replace("\n", '\n', $string);
+	return $string;
 }
