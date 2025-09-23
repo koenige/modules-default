@@ -1,0 +1,32 @@
+# default module
+# Template for overview of languages
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<table>
+<thead>
+<tr>
+<th>%%% text Table %%%</th>
+<th>%%% text Template %%%</th>
+%%% loop languages %%%
+<th>%%% item lang %%%</th>
+%%% loop end %%%
+</tr>
+</thead>
+<tbody>
+%%% loop start %%%
+<tr>
+<td>%%% item table_name %%%</td>
+<td><a href="%%% item table_name %%%.pot">template</a></td>
+%%% loop languages %%%
+<td><a href="%%% item table_name %%%-%%% item lang %%%.po">%%% item lang %%%</a></td>
+%%% loop end %%%
+</tr>
+%%% loop end %%%
+</tbody>
+</table>
