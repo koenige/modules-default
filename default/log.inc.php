@@ -206,14 +206,55 @@ function mf_default_log_split($string, $no_html) {
 	if ($no_html) {
 		$string = str_replace('<', '&lt;', $string);
 	}
-	$string = str_replace(';', ';<wbr>', $string);
-	$string = str_replace('&', '<wbr>&amp;', $string);
-	$string = str_replace('&amp;#8203;', '<wbr>', $string);
-	$string = str_replace('/', '/<wbr>', $string);
-	$string = str_replace('=', '=<wbr>', $string);
-	$string = str_replace('%', '<wbr>%', $string);
-	$string = str_replace('-at-', '<wbr>-at-', $string);
-	return $string;
+	
+	// Process character by character, skipping HTML tags
+	$result = '';
+	$in_html_tag = false;
+	$i = 0;
+	$len = strlen($string);
+	
+	while ($i < $len) {
+		$char = $string[$i];
+		
+		if ($char === '<' && !$in_html_tag) {
+			$in_html_tag = true;
+			$result .= $char;
+		} elseif ($char === '>' && $in_html_tag) {
+			$in_html_tag = false;
+			$result .= $char;
+		} elseif ($in_html_tag) {
+			// Inside HTML tag, don't replace anything
+			$result .= $char;
+		} else {
+			// Outside HTML tag, apply replacements
+			switch ($char) {
+				case ';':
+					$result .= ';<wbr>';
+					break;
+				case '&':
+					$result .= '<wbr>&amp;';
+					break;
+				case '/':
+					$result .= '/<wbr>';
+					break;
+				case '=':
+					$result .= '=<wbr>';
+					break;
+				case '%':
+					$result .= '<wbr>%';
+					break;
+				default:
+					$result .= $char;
+			}
+		}
+		$i++;
+	}
+	
+	// Handle special cases that need to be processed after the main loop
+	$result = str_replace('&amp;#8203;', '<wbr>', $result);
+	$result = str_replace('-at-', '<wbr>-at-', $result);
+	
+	return $result;
 }
 
 /**
