@@ -24,6 +24,8 @@
 #login fieldset p	{ margin: 0; }
 #login input[type=submit]
 			{ grid-column: 2 / 3; height: 1.6rem; }
+#login .error
+			{ grid-column: 1 / 3; text-wrap: balance; }
 @media screen and (max-width: 30rem) {
 	#login fieldset
 				{ background-size: 75%; }
@@ -37,4 +39,6 @@
 				{ grid-column: 1 / 2; }
 	#login fieldset label
 				{ margin-bottom: -.25rem; }
+	#login .error
+				{ grid-column: 1 / 2; }
 }
