@@ -341,12 +341,48 @@ qs	string	msclkid
 404	end	/sitemap.xml
 404	begin	/security.txt
 
-# some guys from Tallin looking for unprotected environment variables
+# looking for unprotected environment and configuration variables
+404	end	/.database.env
 404	end	/.env
-# possibly the same?
-404	end	/.production
+404	end	/.env_old
+404	end	/.env_sample
+404	end	/.env.angular
+404	end	/.env.backup
+404	end	/.env.bak
+404	end	/.env.bkp
+404	end	/.env.debug
+404	end	/.env.dev
+404	end	/.env.docker
+404	end	/.env.elastic
+404	end	/.env.example
+404	end	/.env.example.1
+404	end	/.env.live
+404	end	/.env.local
+404	end	/.env.old
+404	end	/.env.orig
+404	end	/.env.postgres
+404	end	/.env.prod
+404	end	/.env.production
+404	end	/.env.project
+404	end	/.env.save
+404	end	/.env.sqlite
+404	end	/.env.staging
+404	end	/.env.swp
+404	end	/.env.template
+404	end	/.env.test
+404	end	/.env.test.local
+404	end	/.env.testing
+404	end	/.env.www
+404	end	/.env.zip
+404	end	/.env~
+404	end	/.environment
+404	end	/.ftpconfig
+404	end	/.gitignore
 404	end	/.local
+404	end	/.production
 404	end	/.remote
+404	end	/.remote.env
+404	end	/.vscode/sftp.json
 
 # Sypex Dumper
 404	end	/sxd.js
