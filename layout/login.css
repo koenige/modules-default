@@ -11,11 +11,12 @@
  */
 
 
-#login		{ max-width: 40rem; margin: 5rem auto; }
+#login		{ max-width: 40rem; margin: 5rem auto; 
+			--default_login_css_background_color: %%% setting default_login_css_background_color %%%; }
 #login fieldset
 			{ position: relative; border: none; margin: 2.5rem 0 1rem;
 			display: grid; grid-template-columns: 9rem 12.5rem; gap: .5rem;
-			background: %%% setting default_login_css_background_color %%% url(%%% setting layout_path %%%/%%% setting active_theme %%%/zugzwang-stripes.png) repeat-y 100% 0;
+			background: var(--default_login_css_background_color) url(%%% setting layout_path %%%/%%% setting active_theme %%%/zugzwang-stripes.png) repeat-y 100% 0;
 			background-size: 75%; padding: 1.5rem 1rem 1rem; border-radius: 3px; }
 #login legend
 			{ position: absolute; padding: .75rem 1rem; transform: translateY(-50%);
