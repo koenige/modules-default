@@ -352,6 +352,7 @@ qs	string	msclkid
 404	end	/.env.bkp
 404	end	/.env.debug
 404	end	/.env.dev
+404	end	/.env.development
 404	end	/.env.docker
 404	end	/.env.elastic
 404	end	/.env.example
