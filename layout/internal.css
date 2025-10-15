@@ -11,8 +11,20 @@
  */
 
 
-.%%% setting page_preview_class %%%::before
+.%%% setting page_preview_class %%%::before,
+tr.%%% setting page_preview_class %%% th:first-child::before
 		{ content: " %%% text PREVIEW %%% "; background: #C00; color: white; 
 		transform: rotate(-45deg); font-weight: bold; z-index: 1000; 
-		opacity: .8; position: fixed; left: -4em; top: 2em; 
-		padding: .75em 6em .65em 5em;  font-size: 1.4em; }
+		opacity: .8; position: absolute; left: -4em; top: 2em; 
+		padding: .75em 6em .65em 5em; }
+
+/* fix body.preview, others need to be positioned absolutely */
+body.%%% setting page_preview_class %%%::before
+		{ font-size: 1.4em; position: fixed; }
+
+/* tr needs to be treated different */
+tr.%%% setting page_preview_class %%%::before
+		{ display: none; }
+tr.%%% setting page_preview_class %%% th,
+li.%%% setting page_preview_class %%%
+		{ position: relative; overflow: hidden; }
