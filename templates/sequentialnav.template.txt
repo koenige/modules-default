@@ -15,4 +15,4 @@
 %%% loop end %%%
 </ul>
 </nav>
-<script src="%%% setting behaviour_path %%%/default/link-rel-nav.js"></script>
+%%% script default/link-rel-nav.js %%%
