@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023, 2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -19,21 +19,15 @@
  * @param array $params -
  * @return array $page
  */
-function page_subpages(&$params = []) {
+function page_subpages(&$params = [], $page, $settings) {
 	global $zz_page;
 
 	$sql = wrap_sql_query('page_subpages');
 	$sql = sprintf($sql, $zz_page['db'][wrap_sql_fields('page_id')]);
 	$data = wrap_db_fetch($sql, wrap_sql_fields('page_id'));
 	$data = wrap_translate($data, 'webpages');
-	
-	foreach ($params as $param) {
-		if (strstr($param, '=')) {
-			$param = explode('=', $param);
-			$data[$param[0]] = $param[1];
-		}
-	}
-	$params = [];
+
+	$data += $settings;
 	
 	$last_level = 1;
 	foreach ($data as $id => $line) {
