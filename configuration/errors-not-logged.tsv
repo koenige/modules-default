@@ -353,6 +353,7 @@ qs	string	msclkid
 404	end	/.env.debug
 404	end	/.env.dev
 404	end	/.env.development
+404	end	/.env.dist
 404	end	/.env.docker
 404	end	/.env.elastic
 404	end	/.env.example
@@ -365,6 +366,7 @@ qs	string	msclkid
 404	end	/.env.prod
 404	end	/.env.production
 404	end	/.env.project
+404	end	/.env.sample
 404	end	/.env.save
 404	end	/.env.sqlite
 404	end	/.env.staging
@@ -373,6 +375,7 @@ qs	string	msclkid
 404	end	/.env.test
 404	end	/.env.test.local
 404	end	/.env.testing
+404	end	/.env.tmp
 404	end	/.env.www
 404	end	/.env.zip
 404	end	/.env~
