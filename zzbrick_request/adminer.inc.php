@@ -37,9 +37,27 @@ function mod_default_adminer($params) {
 		wrap_error('Library Adminer does not exist', E_USER_ERROR);
 		exit;
 	}
-	session_start();
-	// set a password to disable password request (from 4.7.2 on)
-	$_SESSION['pwds']['server'][''][''] = 'random';
+	// Close framework session and start Adminer's session
+	if (session_status() === PHP_SESSION_ACTIVE) {
+		session_write_close();
+	}
+	
+	// Start Adminer's session with its own name and cookie params
+	@ini_set('session.use_trans_sid', '0');
+	session_cache_limiter('');
+	session_name('adminer_sid');
+	$request_path = preg_replace('~\?.*~', '', $_SERVER['REQUEST_URI']);
+	$is_https = (!empty($_SERVER['HTTPS']) && strcasecmp($_SERVER['HTTPS'], 'off') !== 0) 
+		|| ini_get('session.cookie_secure');
+	session_set_cookie_params(0, $request_path, '', $is_https, true);
+	
+	if (session_status() === PHP_SESSION_NONE) {
+		ini_set('session.use_only_cookies', '1');
+		session_start();
+		// Set password to skip login prompt (Adminer 4.7.2+)
+		$_SESSION['pwds']['server'][''][''] = 'random';
+	}
+	
 	require $path;
 	exit;
 }
