@@ -387,6 +387,17 @@ qs	string	msclkid
 404	end	/.remote
 404	end	/.remote.env
 404	end	/.vscode/sftp.json
+404	end	/i.php
+404	end	/info.php
+404	end	/info1.php
+404	end	/info2.php
+404	end	/php_info.php
+404	end	/php.php
+404	end	/phpinfo
+404	end	/phpinfo.php
+404	end	/phpversion.php
+404	end	/pi.php
+404	end	/test.php
 
 # Sypex Dumper
 404	end	/sxd.js
