@@ -32,7 +32,7 @@ msgstr ""
 %%% endif %%%
 %%% loop start %%%
 
-#. value for %%% item identifier %%%, field %%% item field_name %%% 
+#. value for %%% if identifier %%%%%% item identifier %%%%%% else %%%ID %%% item field_id %%%%%% endif %%%, field %%% item field_name %%% 
 #: database/%%% item main__table_name %%%/%%% item field_name %%%:%%% item field_id %%% 
 msgid "%%% item text %%%"
 msgstr "%%% item translation %%%"
