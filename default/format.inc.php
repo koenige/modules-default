@@ -23,9 +23,15 @@ function mf_default_setting_format($value) {
 	$value = trim($value);
 	if (str_starts_with($value, '[') AND str_ends_with($value, ']')) {
 		$value = substr($value, 1, -1);
-		$value = explode(',', $value);
-		$value = implode('</li><li>', $value);
+		$values = explode(',', $value);
+		foreach (array_keys($values) as $index) {
+			$values[$index] = trim($values[$index]);
+			$values[$index] = zz_list_word_split($values[$index]);
+		}
+		$value = implode('</li><li>', $values);
 		$value = sprintf('<ul class="default-settings"><li>%s</li></ul>', $value);
+	} else {
+		$value = zz_list_word_split($value);
 	}
 	return $value;
 }
