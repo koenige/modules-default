@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2008-2014, 2020, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2008-2014, 2020, 2023, 2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -38,6 +38,7 @@ $zz['fields'][4]['null'] = true;
 $zz['fields'][4]['null_string'] = true;
 $zz['fields'][4]['list_append_next'] = true;
 $zz['fields'][4]['class'] = 'block480 hyphenate';
+$zz['fields'][4]['list_format'] = 'mf_default_setting_format';
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/_settings.*
 	FROM /*_PREFIX_*/_settings
@@ -61,8 +62,8 @@ if (wrap_setting('multiple_websites')) {
 		$zz['fields'][5]['hide_in_list'] = true;
 	} else {
 		$zz['fields'][4]['list_append_next'];
-		$zz['fields'][5]['list_prefix'] = '<br><em>';
-		$zz['fields'][5]['list_suffix'] = '</em>';
+		$zz['fields'][5]['list_prefix'] = '<p><em>';
+		$zz['fields'][5]['list_suffix'] = '</em></p>';
 	}
 
 	$zz['sql'] = 'SELECT /*_PREFIX_*/_settings.*

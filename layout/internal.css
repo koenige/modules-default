@@ -11,6 +11,7 @@
  */
 
 
+/* preview */
 .%%% setting page_preview_class %%%::before,
 tr.%%% setting page_preview_class %%% th:first-child::before
 		{ content: " %%% text PREVIEW %%% "; background: #C00; color: white; 
@@ -28,3 +29,10 @@ tr.%%% setting page_preview_class %%%::before
 tr.%%% setting page_preview_class %%% th,
 li.%%% setting page_preview_class %%%
 		{ position: relative; overflow: hidden; }
+
+
+/* settings */
+ul.default-settings
+		{ margin: 0; padding: 0 0 0 .5rem; }
+ul.default-settings li
+		{ margin: 0 0 0 .5rem; list-style-type: "– "; }
