@@ -17,10 +17,16 @@
  * format a setting
  *
  * @param string $value
+ * @param array $record
  * @return string
  */
-function mf_default_setting_format($value) {
+function mf_default_setting_format($value, $record = []) {
 	$value = trim($value);
+	if (_mf_default_setting_private($value, $record))
+		return sprintf('<abbr title="%s">******</abbr>',
+			wrap_text('The value is only visible during editing.')
+		);
+
 	if (str_starts_with($value, '[') AND str_ends_with($value, ']')) {
 		$value = substr($value, 1, -1);
 		$values = explode(',', $value);
@@ -29,9 +35,27 @@ function mf_default_setting_format($value) {
 			$values[$index] = zz_list_word_split($values[$index]);
 		}
 		$value = implode('</li><li>', $values);
-		$value = sprintf('<ul class="default-settings"><li>%s</li></ul>', $value);
-	} else {
-		$value = zz_list_word_split($value);
+		return sprintf('<ul class="default-settings"><li>%s</li></ul>', $value);
 	}
-	return $value;
+
+	return zz_list_word_split($value);
+}
+
+/**
+ * check if a setting is private
+ *
+ * @param string $value
+ * @param array $record
+ * @return bool
+ */
+function _mf_default_setting_private($value, $record) {
+	static $cfg = [];
+	if (!$cfg) $cfg = wrap_cfg_files('settings', ['scope' => 'website']);
+
+	if (!$record) return false;
+	if (!array_key_exists('setting_key', $record)) return false;
+	if (!array_key_exists($record['setting_key'], $cfg)) return false;
+	if (!empty($cfg[$record['setting_key']]['private'])) return true;
+	
+	return false;
 }

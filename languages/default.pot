@@ -316,6 +316,10 @@ msgstr ""
 msgid "None of the files for the requested archive could be found on the server."
 msgstr ""
 
+#: default/format.inc.php
+msgid "The value is only visible during editing."
+msgstr ""
+
 #: layout/internal.css
 msgid "PREVIEW"
 msgstr ""
