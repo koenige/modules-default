@@ -38,7 +38,6 @@ $zz['fields'][4]['null'] = true;
 $zz['fields'][4]['null_string'] = true;
 $zz['fields'][4]['list_append_next'] = true;
 $zz['fields'][4]['class'] = 'block480 hyphenate';
-$zz['fields'][4]['list_format'] = 'mf_default_setting_format';
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/_settings.*
 	FROM /*_PREFIX_*/_settings
