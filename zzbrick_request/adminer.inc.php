@@ -41,6 +41,10 @@ function mod_default_adminer($params) {
 	if (session_status() === PHP_SESSION_ACTIVE) {
 		session_write_close();
 	}
+		
+	// Set a no-op error handler to completely bypass error handling
+	// speeds up downloads
+	set_error_handler(function() { return true; }, E_ALL);
 	
 	// Start Adminer's session with its own name and cookie params
 	@ini_set('session.use_trans_sid', '0');
