@@ -549,6 +549,7 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	all	/collections.json
 
 # Script from 2025 looking for entry points, referer = search engine
+404	end	.php7
 404	end	/.__info.php
 404	end	/.bod/.ll/ss.php
 404	end	/0.php
@@ -562,11 +563,13 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/abcd.php
 404	end	/about.php
 404	end	/admin-ajax.php
-404	end	/admin/admin.php
-404	end	/adminfuns.php
+404	end	/admin-post.php
 404	end	/admin.php
 404	end	/admin.php?p=
+404	end	/admin/admin.php
+404	end	/adminfuns.php
 404	end	/ae.php
+404	end	/ajax-actions.php
 404	end	/akc.php
 404	end	/akc.php?p=
 404	end	/akcc.php
@@ -583,12 +586,14 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/ava.php
 404	end	/axx.php
 404	end	/bak.php
+404	end	/bala.php
 404	end	/berax.php
 404	end	/blog.php
 404	end	/bolt.php
 404	end	/build.php
 404	end	/buy.php
 404	end	/bypass.php
+404	end	/cache-compat.php
 404	end	/cgi-bin/
 404	end	/checkbox.php
 404	end	/chosen.php
@@ -647,7 +652,9 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/post.php
 404	end	/pow.php
 404	end	/radio.php
+404	end	/repeater.php
 404	end	/shell.php
+404	end	/shell20211028.php
 404	end	/simple.php
 404	end	/sts.php
 404	end	/test1.php
@@ -664,12 +671,13 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/wp-blog-header.php
 404	end	/wp-comments-post.php
 404	end	/wp-conflg.php
+404	end	/wp-consar.php
 404	end	/wp-content/index.php
 404	end	/wp-content/plugins/wpsearch/login.php
 404	end	/wp-content/upgrade/index.php
 404	end	/wp-content/uploads/admin.php
-404	end	/wp-content/uploads/index.php
 404	end	/wp-content/uploads/class.api.php
+404	end	/wp-content/uploads/index.php
 404	end	/wp-cron.php
 404	end	/wp-good.php
 404	end	/wp-links-opml.php
@@ -682,8 +690,10 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/ws.php
 404	end	/wso.php
 404	end	/wso112233.php
+404	end	/wsoyanz.php
 404	end	/xleet.php
 404	end	/xmrlpc.php
+404	end	/yanz.php
 404	end	/zuk.php
 
 # trying to check all kinds of icons
