@@ -685,3 +685,9 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/xleet.php
 404	end	/xmrlpc.php
 404	end	/zuk.php
+
+# trying to check all kinds of icons
+404	referer	https://example.org/
+
+# script trying to set a real referer but this does not exist
+404	referer	https://www.google.com/search?q=*
