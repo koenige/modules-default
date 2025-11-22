@@ -564,6 +564,7 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/admin-ajax.php
 404	end	/admin/admin.php
 404	end	/adminfuns.php
+404	end	/admin.php
 404	end	/admin.php?p=
 404	end	/ae.php
 404	end	/akc.php
@@ -657,10 +658,14 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/wp-2019.php
 404	end	/wp-activate.php
 404	end	/wp-admin.php
+404	end	/wp-admin/css/colors/blue/index.php
+404	end	/wp-admin/includes/
+404	end	/wp-admin/network/index.php
 404	end	/wp-blog-header.php
 404	end	/wp-comments-post.php
 404	end	/wp-conflg.php
 404	end	/wp-content/index.php
+404	end	/wp-content/plugins/wpsearch/login.php
 404	end	/wp-content/upgrade/index.php
 404	end	/wp-content/uploads/admin.php
 404	end	/wp-content/uploads/index.php
@@ -680,4 +685,3 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/xleet.php
 404	end	/xmrlpc.php
 404	end	/zuk.php
-
