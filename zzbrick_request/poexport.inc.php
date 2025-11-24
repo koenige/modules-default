@@ -103,6 +103,7 @@ function mod_default_poexport($params) {
 		}
 		$unique_key = implode('-', $unique_key);
 		foreach ($line as $field_name => $value) {
+			if (is_string($value)) $value = trim($value);
 			if (!$value) continue;
 			$content[] = [
 				'field_id' => $record_id,
