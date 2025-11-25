@@ -17,7 +17,7 @@
 <p><strong class="error">%%% text "Please allow us to set a cookie!" %%%</strong></p>
 %%% endif %%%
 <p>%%% text "To access the internal area, a registration is required. Please enter below your username and password." %%%</p>
-<p>%%% setting logout_inactive_after "%{'Please allow cookies after sending your login credentials. For security reasons, after %d minutes of inactivity you will be logged out automatically.'}%" %%%</p>
+<p>%%% text "Please allow cookies after sending your login credentials. For security reasons, after %d minutes of inactivity you will be logged out automatically." setting logout_inactive_after %%%</p>
 </div>
 <form action="%%% item action_url %%%%%% item params %%%" method="POST" class="login">
 <fieldset>
