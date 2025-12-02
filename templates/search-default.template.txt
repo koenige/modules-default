@@ -13,7 +13,7 @@
 %%% if setting default_search_heading_for_results %%%
 <h3>%%% text Webpages %%%</h3>
 %%% else %%%
-<h2>%%% text Webpages %%%</h3>
+<h2>%%% text Webpages %%%</h2>
 %%% endif %%%
 
 <ul class="search-items">
