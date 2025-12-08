@@ -17,9 +17,9 @@
  * menu of pages below current page
  *
  * @param array $params -
- * @return array $page
+ * @return array
  */
-function page_subpages(&$params = [], $page, $settings) {
+function page_subpages($params = [], $page = [], $settings = []) {
 	global $zz_page;
 
 	$sql = wrap_sql_query('page_subpages');
