@@ -775,3 +775,7 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 
 # script trying to set a real referer but this does not exist
 404	referer	https://www.google.com/search?q=*
+
+# Malformed requests
+php	string_regex	.+File Upload Mime headers garbled in Unknown:0
+php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:0
