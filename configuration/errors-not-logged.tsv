@@ -779,3 +779,14 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 # Malformed requests
 php	string_regex	.+File Upload Mime headers garbled in Unknown:0
 php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:0
+
+# looking for configuration files accessible inside document root
+404	begin	/.git/
+404	end	/.npmrc
+404	end	/aws-config.js
+404	end	/aws.config.js
+404	end	/config.js
+404	end	/config.json
+
+# idiots parsing HTML attributes and not removing ""
+404	request	/%22*%22
