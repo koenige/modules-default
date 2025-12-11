@@ -842,21 +842,6 @@ msgstr ""
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
-msgid "Language name, english"
-msgstr ""
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Language name, french"
-msgstr ""
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Language name, german"
-msgstr ""
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
 msgid "Will language be used on website?"
 msgstr ""
 

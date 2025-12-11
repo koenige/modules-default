@@ -258,10 +258,6 @@ msgstr ""
 "dağıttığınızda)"
 
 #: configuration/settings.cfg
-msgid "fields in table languages.language_xx"
-msgstr "languages.language_xx tablosundaki alanlar"
-
-#: configuration/settings.cfg
 msgid ""
 "title of language link, preferably language name in native language (or "
 "variants like “English Version“), iso=name"
@@ -1492,21 +1488,6 @@ msgstr "Dil kodu ISO 639-2, Bibliyografik"
 msgctxt "default"
 msgid "Language code ISO 639-2, Terminology"
 msgstr "Dil kodu ISO 639-2, Terminoloji"
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Language name, english"
-msgstr "Dil adı, İngilizce"
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Language name, french"
-msgstr "Dil adı, Fransızca"
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Language name, german"
-msgstr "Dil adı, Almanca"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"

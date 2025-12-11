@@ -238,10 +238,6 @@ msgid ""
 msgstr ""
 
 #: configuration/settings.cfg
-msgid "fields in table languages.language_xx"
-msgstr ""
-
-#: configuration/settings.cfg
 msgid ""
 "title of language link, preferably language name in native language (or "
 "variants like “English Version“), iso=name"
@@ -1493,21 +1489,6 @@ msgstr "Sprachcode ISO 639-2, bibliographisch"
 msgctxt "default"
 msgid "Language code ISO 639-2, Terminology"
 msgstr "Sprachcode ISO 639-2, Terminologie"
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Language name, english"
-msgstr "Sprachname, englisch"
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Language name, french"
-msgstr "Sprachname, französisch"
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Language name, german"
-msgstr "Sprachname, deutsch"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"

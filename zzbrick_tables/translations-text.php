@@ -9,13 +9,10 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2013, 2018-2020, 2022-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2013, 2018-2020, 2022-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
-
-$language_translations = wrap_setting('language_translations');
-$standard_lang = reset($language_translations);
 
 $zz_sub['title'] = 'Translation';
 $zz_sub['show_title'] = false;
@@ -60,14 +57,12 @@ $zz_sub['fields'][3]['type'] = 'foreign_key';
 
 $zz_sub['fields'][5]['field_name'] = 'language_id';
 $zz_sub['fields'][5]['type'] = 'select';
-$zz_sub['fields'][5]['sql'] = sprintf('SELECT language_id, language_%s, variation
+$zz_sub['fields'][5]['sql'] = 'SELECT language_id, language, variation
 	FROM /*_PREFIX_*/languages 
 	WHERE iso_639_1 <> "/*_SETTING default_source_language _*/"
 	AND website = "yes"
-	ORDER BY language_%s'
-	, in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : $standard_lang
-	, in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : $standard_lang
-);
+	ORDER BY language';
+$zz_sub['fields'][5]['sql_translate'] = ['language_id' => 'languages'];
 $zz_sub['fields'][5]['prefix'] = wrap_text('Translation to').' ';
 $zz_sub['fields'][5]['suffix'] = ': ';
 $zz_sub['fields'][5]['default'] = wrap_language_id(wrap_setting('default_translation_language'));

@@ -870,21 +870,6 @@ msgstr "lista kodów języków ISO 639-1, terminologia"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
-msgid "Language name, english"
-msgstr "Nazwa języka, angielski"
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Language name, french"
-msgstr "Nazwa języka, francuski"
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Language name, german"
-msgstr "Nazwa języka, niemiecki"
-
-#: zzbrick_tables/languages.php
-msgctxt "default"
 msgid "Will language be used on website?"
 msgstr "Czy na stronie będzie używany język?"
 
