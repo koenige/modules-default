@@ -1,0 +1,2445 @@
+# default module
+# Translations for languages table
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Zugzwang Project -- default module\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. value for aar, field language
+#: database/languages/language:1
+msgid "Afar"
+msgstr ""
+
+#. value for abk, field language
+#: database/languages/language:2
+msgid "Abkhazian"
+msgstr ""
+
+#. value for ace, field language
+#: database/languages/language:3
+msgid "Achinese"
+msgstr ""
+
+#. value for ach, field language
+#: database/languages/language:4
+msgid "Acoli"
+msgstr ""
+
+#. value for ada, field language
+#: database/languages/language:5
+msgid "Adangme"
+msgstr ""
+
+#. value for ady, field language
+#: database/languages/language:6
+msgid "Adyghe; Adygei"
+msgstr ""
+
+#. value for afa, field language
+#: database/languages/language:7
+msgid "Afro-Asiatic (Other)"
+msgstr ""
+
+#. value for afh, field language
+#: database/languages/language:8
+msgid "Afrihili"
+msgstr ""
+
+#. value for afr, field language
+#: database/languages/language:9
+msgid "Afrikaans"
+msgstr ""
+
+#. value for ain, field language
+#: database/languages/language:10
+msgid "Ainu"
+msgstr ""
+
+#. value for aka, field language
+#: database/languages/language:11
+msgid "Akan"
+msgstr ""
+
+#. value for akk, field language
+#: database/languages/language:12
+msgid "Akkadian"
+msgstr ""
+
+#. value for ale, field language
+#: database/languages/language:13
+msgid "Aleut"
+msgstr ""
+
+#. value for alg, field language
+#: database/languages/language:14
+msgid "Algonquian languages"
+msgstr ""
+
+#. value for alt, field language
+#: database/languages/language:15
+msgid "Southern Altai"
+msgstr ""
+
+#. value for amh, field language
+#: database/languages/language:16
+msgid "Amharic"
+msgstr ""
+
+#. value for ang, field language
+#: database/languages/language:17
+msgid "English, Old (ca.450-1100)"
+msgstr ""
+
+#. value for anp, field language
+#: database/languages/language:18
+msgid "Angika"
+msgstr ""
+
+#. value for apa, field language
+#: database/languages/language:19
+msgid "Apache languages"
+msgstr ""
+
+#. value for ara, field language
+#: database/languages/language:20
+msgid "Arabic"
+msgstr ""
+
+#. value for arc, field language
+#: database/languages/language:21
+msgid "Official Aramaic (700-300 BCE); Imperial Aramaic (700-300 BCE)"
+msgstr ""
+
+#. value for arg, field language
+#: database/languages/language:22
+msgid "Aragonese"
+msgstr ""
+
+#. value for arn, field language
+#: database/languages/language:23
+msgid "Mapudungun; Mapuche"
+msgstr ""
+
+#. value for arp, field language
+#: database/languages/language:24
+msgid "Arapaho"
+msgstr ""
+
+#. value for art, field language
+#: database/languages/language:25
+msgid "Artificial (Other)"
+msgstr ""
+
+#. value for arw, field language
+#: database/languages/language:26
+msgid "Arawak"
+msgstr ""
+
+#. value for asm, field language
+#: database/languages/language:27
+msgid "Assamese"
+msgstr ""
+
+#. value for ast, field language
+#: database/languages/language:28
+msgid "Asturian; Bable; Leonese; Asturleonese"
+msgstr ""
+
+#. value for ath, field language
+#: database/languages/language:29
+msgid "Athapascan languages"
+msgstr ""
+
+#. value for aus, field language
+#: database/languages/language:30
+msgid "Australian languages"
+msgstr ""
+
+#. value for ava, field language
+#: database/languages/language:31
+msgid "Avaric"
+msgstr ""
+
+#. value for ave, field language
+#: database/languages/language:32
+msgid "Avestan"
+msgstr ""
+
+#. value for awa, field language
+#: database/languages/language:33
+msgid "Awadhi"
+msgstr ""
+
+#. value for aym, field language
+#: database/languages/language:34
+msgid "Aymara"
+msgstr ""
+
+#. value for aze, field language
+#: database/languages/language:35
+msgid "Azerbaijani"
+msgstr ""
+
+#. value for bad, field language
+#: database/languages/language:36
+msgid "Banda languages"
+msgstr ""
+
+#. value for bai, field language
+#: database/languages/language:37
+msgid "Bamileke languages"
+msgstr ""
+
+#. value for bak, field language
+#: database/languages/language:38
+msgid "Bashkir"
+msgstr ""
+
+#. value for bal, field language
+#: database/languages/language:39
+msgid "Baluchi"
+msgstr ""
+
+#. value for bam, field language
+#: database/languages/language:40
+msgid "Bambara"
+msgstr ""
+
+#. value for ban, field language
+#: database/languages/language:41
+msgid "Balinese"
+msgstr ""
+
+#. value for bas, field language
+#: database/languages/language:42
+msgid "Basa"
+msgstr ""
+
+#. value for bat, field language
+#: database/languages/language:43
+msgid "Baltic (Other)"
+msgstr ""
+
+#. value for bej, field language
+#: database/languages/language:44
+msgid "Beja; Bedawiyet"
+msgstr ""
+
+#. value for bel, field language
+#: database/languages/language:45
+msgid "Belarusian"
+msgstr ""
+
+#. value for bem, field language
+#: database/languages/language:46
+msgid "Bemba"
+msgstr ""
+
+#. value for ben, field language
+#: database/languages/language:47
+msgid "Bengali"
+msgstr ""
+
+#. value for ber, field language
+#: database/languages/language:48
+msgid "Berber (Other)"
+msgstr ""
+
+#. value for bho, field language
+#: database/languages/language:49
+msgid "Bhojpuri"
+msgstr ""
+
+#. value for bih, field language
+#: database/languages/language:50
+msgid "Bihari"
+msgstr ""
+
+#. value for bik, field language
+#: database/languages/language:51
+msgid "Bikol"
+msgstr ""
+
+#. value for bin, field language
+#: database/languages/language:52
+msgid "Bini; Edo"
+msgstr ""
+
+#. value for bis, field language
+#: database/languages/language:53
+msgid "Bislama"
+msgstr ""
+
+#. value for bla, field language
+#: database/languages/language:54
+msgid "Siksika"
+msgstr ""
+
+#. value for bnt, field language
+#: database/languages/language:55
+msgid "Bantu (Other)"
+msgstr ""
+
+#. value for bod, field language
+#: database/languages/language:56
+msgid "Tibetan"
+msgstr ""
+
+#. value for bos, field language
+#: database/languages/language:57
+msgid "Bosnian"
+msgstr ""
+
+#. value for bra, field language
+#: database/languages/language:58
+msgid "Braj"
+msgstr ""
+
+#. value for bre, field language
+#: database/languages/language:59
+msgid "Breton"
+msgstr ""
+
+#. value for btk, field language
+#: database/languages/language:60
+msgid "Batak languages"
+msgstr ""
+
+#. value for bua, field language
+#: database/languages/language:61
+msgid "Buriat"
+msgstr ""
+
+#. value for bug, field language
+#: database/languages/language:62
+msgid "Buginese"
+msgstr ""
+
+#. value for bul, field language
+#: database/languages/language:63
+msgid "Bulgarian"
+msgstr ""
+
+#. value for byn, field language
+#: database/languages/language:64
+msgid "Blin; Bilin"
+msgstr ""
+
+#. value for cad, field language
+#: database/languages/language:65
+msgid "Caddo"
+msgstr ""
+
+#. value for cai, field language
+#: database/languages/language:66
+msgid "Central American Indian (Other)"
+msgstr ""
+
+#. value for car, field language
+#: database/languages/language:67
+msgid "Galibi Carib"
+msgstr ""
+
+#. value for cat, field language
+#: database/languages/language:68
+msgid "Catalan; Valencian"
+msgstr ""
+
+#. value for cau, field language
+#: database/languages/language:69
+msgid "Caucasian (Other)"
+msgstr ""
+
+#. value for ceb, field language
+#: database/languages/language:70
+msgid "Cebuano"
+msgstr ""
+
+#. value for cel, field language
+#: database/languages/language:71
+msgid "Celtic (Other)"
+msgstr ""
+
+#. value for ces, field language
+#: database/languages/language:72
+msgid "Czech"
+msgstr ""
+
+#. value for cha, field language
+#: database/languages/language:73
+msgid "Chamorro"
+msgstr ""
+
+#. value for chb, field language
+#: database/languages/language:74
+msgid "Chibcha"
+msgstr ""
+
+#. value for che, field language
+#: database/languages/language:75
+msgid "Chechen"
+msgstr ""
+
+#. value for chg, field language
+#: database/languages/language:76
+msgid "Chagatai"
+msgstr ""
+
+#. value for chk, field language
+#: database/languages/language:77
+msgid "Chuukese"
+msgstr ""
+
+#. value for chm, field language
+#: database/languages/language:78
+msgid "Mari"
+msgstr ""
+
+#. value for chn, field language
+#: database/languages/language:79
+msgid "Chinook jargon"
+msgstr ""
+
+#. value for cho, field language
+#: database/languages/language:80
+msgid "Choctaw"
+msgstr ""
+
+#. value for chp, field language
+#: database/languages/language:81
+msgid "Chipewyan; Dene Suline"
+msgstr ""
+
+#. value for chr, field language
+#: database/languages/language:82
+msgid "Cherokee"
+msgstr ""
+
+#. value for chu, field language
+#: database/languages/language:83
+msgid "Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic"
+msgstr ""
+
+#. value for chv, field language
+#: database/languages/language:84
+msgid "Chuvash"
+msgstr ""
+
+#. value for chy, field language
+#: database/languages/language:85
+msgid "Cheyenne"
+msgstr ""
+
+#. value for cmc, field language
+#: database/languages/language:86
+msgid "Chamic languages"
+msgstr ""
+
+#. value for cop, field language
+#: database/languages/language:87
+msgid "Coptic"
+msgstr ""
+
+#. value for cor, field language
+#: database/languages/language:88
+msgid "Cornish"
+msgstr ""
+
+#. value for cos, field language
+#: database/languages/language:89
+msgid "Corsican"
+msgstr ""
+
+#. value for cpe, field language
+#: database/languages/language:90
+msgid "Creoles and pidgins, English based (Other)"
+msgstr ""
+
+#. value for cpf, field language
+#: database/languages/language:91
+msgid "Creoles and pidgins, French-based (Other)"
+msgstr ""
+
+#. value for cpp, field language
+#: database/languages/language:92
+msgid "Creoles and pidgins, Portuguese-based (Other)"
+msgstr ""
+
+#. value for cre, field language
+#: database/languages/language:93
+msgid "Cree"
+msgstr ""
+
+#. value for crh, field language
+#: database/languages/language:94
+msgid "Crimean Tatar; Crimean Turkish"
+msgstr ""
+
+#. value for crp, field language
+#: database/languages/language:95
+msgid "Creoles and pidgins (Other)"
+msgstr ""
+
+#. value for csb, field language
+#: database/languages/language:96
+msgid "Kashubian"
+msgstr ""
+
+#. value for cus, field language
+#: database/languages/language:97
+msgid "Cushitic (Other)"
+msgstr ""
+
+#. value for cym, field language
+#: database/languages/language:98
+msgid "Welsh"
+msgstr ""
+
+#. value for dak, field language
+#: database/languages/language:99
+msgid "Dakota"
+msgstr ""
+
+#. value for dan, field language
+#: database/languages/language:100
+msgid "Danish"
+msgstr ""
+
+#. value for dar, field language
+#: database/languages/language:101
+msgid "Dargwa"
+msgstr ""
+
+#. value for day, field language
+#: database/languages/language:102
+msgid "Land Dayak languages"
+msgstr ""
+
+#. value for del, field language
+#: database/languages/language:103
+msgid "Delaware"
+msgstr ""
+
+#. value for den, field language
+#: database/languages/language:104
+msgid "Slave (Athapascan)"
+msgstr ""
+
+#. value for deu, field language
+#: database/languages/language:105
+msgid "German"
+msgstr ""
+
+#. value for dgr, field language
+#: database/languages/language:106
+msgid "Dogrib"
+msgstr ""
+
+#. value for din, field language
+#: database/languages/language:107
+msgid "Dinka"
+msgstr ""
+
+#. value for div, field language
+#: database/languages/language:108
+msgid "Divehi; Dhivehi; Maldivian"
+msgstr ""
+
+#. value for doi, field language
+#: database/languages/language:109
+msgid "Dogri"
+msgstr ""
+
+#. value for dra, field language
+#: database/languages/language:110
+msgid "Dravidian (Other)"
+msgstr ""
+
+#. value for dsb, field language
+#: database/languages/language:111
+msgid "Lower Sorbian"
+msgstr ""
+
+#. value for dua, field language
+#: database/languages/language:112
+msgid "Duala"
+msgstr ""
+
+#. value for dum, field language
+#: database/languages/language:113
+msgid "Dutch, Middle (ca.1050-1350)"
+msgstr ""
+
+#. value for dyu, field language
+#: database/languages/language:114
+msgid "Dyula"
+msgstr ""
+
+#. value for dzo, field language
+#: database/languages/language:115
+msgid "Dzongkha"
+msgstr ""
+
+#. value for efi, field language
+#: database/languages/language:116
+msgid "Efik"
+msgstr ""
+
+#. value for egy, field language
+#: database/languages/language:117
+msgid "Egyptian (Ancient)"
+msgstr ""
+
+#. value for eka, field language
+#: database/languages/language:118
+msgid "Ekajuk"
+msgstr ""
+
+#. value for ell, field language
+#: database/languages/language:119
+msgid "Greek, Modern (1453-)"
+msgstr ""
+
+#. value for elx, field language
+#: database/languages/language:120
+msgid "Elamite"
+msgstr ""
+
+#. value for eng, field language
+#: database/languages/language:121
+msgid "English"
+msgstr ""
+
+#. value for enm, field language
+#: database/languages/language:122
+msgid "English, Middle (1100-1500)"
+msgstr ""
+
+#. value for epo, field language
+#: database/languages/language:123
+msgid "Esperanto"
+msgstr ""
+
+#. value for est, field language
+#: database/languages/language:124
+msgid "Estonian"
+msgstr ""
+
+#. value for eus, field language
+#: database/languages/language:125
+msgid "Basque"
+msgstr ""
+
+#. value for ewe, field language
+#: database/languages/language:126
+msgid "Ewe"
+msgstr ""
+
+#. value for ewo, field language
+#: database/languages/language:127
+msgid "Ewondo"
+msgstr ""
+
+#. value for fan, field language
+#: database/languages/language:128
+msgid "Fang"
+msgstr ""
+
+#. value for fao, field language
+#: database/languages/language:129
+msgid "Faroese"
+msgstr ""
+
+#. value for fas, field language
+#: database/languages/language:130
+msgid "Persian"
+msgstr ""
+
+#. value for fat, field language
+#: database/languages/language:131
+msgid "Fanti"
+msgstr ""
+
+#. value for fij, field language
+#: database/languages/language:132
+msgid "Fijian"
+msgstr ""
+
+#. value for fil, field language
+#: database/languages/language:133
+msgid "Filipino; Pilipino"
+msgstr ""
+
+#. value for fin, field language
+#: database/languages/language:134
+msgid "Finnish"
+msgstr ""
+
+#. value for fiu, field language
+#: database/languages/language:135
+msgid "Finno-Ugrian (Other)"
+msgstr ""
+
+#. value for fon, field language
+#: database/languages/language:136
+msgid "Fon"
+msgstr ""
+
+#. value for fra, field language
+#: database/languages/language:137
+msgid "French"
+msgstr ""
+
+#. value for frm, field language
+#: database/languages/language:138
+msgid "French, Middle (ca.1400-1600)"
+msgstr ""
+
+#. value for fro, field language
+#: database/languages/language:139
+msgid "French, Old (842-ca.1400)"
+msgstr ""
+
+#. value for frr, field language
+#: database/languages/language:140
+msgid "Northern Frisian"
+msgstr ""
+
+#. value for frs, field language
+#: database/languages/language:141
+msgid "Eastern Frisian"
+msgstr ""
+
+#. value for fry, field language
+#: database/languages/language:142
+msgid "Western Frisian"
+msgstr ""
+
+#. value for ful, field language
+#: database/languages/language:143
+msgid "Fulah"
+msgstr ""
+
+#. value for fur, field language
+#: database/languages/language:144
+msgid "Friulian"
+msgstr ""
+
+#. value for gaa, field language
+#: database/languages/language:145
+msgid "Ga"
+msgstr ""
+
+#. value for gay, field language
+#: database/languages/language:146
+msgid "Gayo"
+msgstr ""
+
+#. value for gba, field language
+#: database/languages/language:147
+msgid "Gbaya"
+msgstr ""
+
+#. value for gem, field language
+#: database/languages/language:148
+msgid "Germanic (Other)"
+msgstr ""
+
+#. value for gez, field language
+#: database/languages/language:149
+msgid "Geez"
+msgstr ""
+
+#. value for gil, field language
+#: database/languages/language:150
+msgid "Gilbertese"
+msgstr ""
+
+#. value for gla, field language
+#: database/languages/language:151
+msgid "Gaelic; Scottish Gaelic"
+msgstr ""
+
+#. value for gle, field language
+#: database/languages/language:152
+msgid "Irish"
+msgstr ""
+
+#. value for glg, field language
+#: database/languages/language:153
+msgid "Galician"
+msgstr ""
+
+#. value for glv, field language
+#: database/languages/language:154
+msgid "Manx"
+msgstr ""
+
+#. value for gmh, field language
+#: database/languages/language:155
+msgid "German, Middle High (ca.1050-1500)"
+msgstr ""
+
+#. value for goh, field language
+#: database/languages/language:156
+msgid "German, Old High (ca.750-1050)"
+msgstr ""
+
+#. value for gon, field language
+#: database/languages/language:157
+msgid "Gondi"
+msgstr ""
+
+#. value for gor, field language
+#: database/languages/language:158
+msgid "Gorontalo"
+msgstr ""
+
+#. value for got, field language
+#: database/languages/language:159
+msgid "Gothic"
+msgstr ""
+
+#. value for grb, field language
+#: database/languages/language:160
+msgid "Grebo"
+msgstr ""
+
+#. value for grc, field language
+#: database/languages/language:161
+msgid "Greek, Ancient (to 1453)"
+msgstr ""
+
+#. value for grn, field language
+#: database/languages/language:162
+msgid "Guarani"
+msgstr ""
+
+#. value for gsw, field language
+#: database/languages/language:163
+msgid "Swiss German; Alemannic; Alsatian"
+msgstr ""
+
+#. value for guj, field language
+#: database/languages/language:164
+msgid "Gujarati"
+msgstr ""
+
+#. value for gwi, field language
+#: database/languages/language:165
+msgid "Gwich'in"
+msgstr ""
+
+#. value for hai, field language
+#: database/languages/language:166
+msgid "Haida"
+msgstr ""
+
+#. value for hat, field language
+#: database/languages/language:167
+msgid "Haitian; Haitian Creole"
+msgstr ""
+
+#. value for hau, field language
+#: database/languages/language:168
+msgid "Hausa"
+msgstr ""
+
+#. value for haw, field language
+#: database/languages/language:169
+msgid "Hawaiian"
+msgstr ""
+
+#. value for heb, field language
+#: database/languages/language:170
+msgid "Hebrew"
+msgstr ""
+
+#. value for her, field language
+#: database/languages/language:171
+msgid "Herero"
+msgstr ""
+
+#. value for hil, field language
+#: database/languages/language:172
+msgid "Hiligaynon"
+msgstr ""
+
+#. value for him, field language
+#: database/languages/language:173
+msgid "Himachali"
+msgstr ""
+
+#. value for hin, field language
+#: database/languages/language:174
+msgid "Hindi"
+msgstr ""
+
+#. value for hit, field language
+#: database/languages/language:175
+msgid "Hittite"
+msgstr ""
+
+#. value for hmn, field language
+#: database/languages/language:176
+msgid "Hmong"
+msgstr ""
+
+#. value for hmo, field language
+#: database/languages/language:177
+msgid "Hiri Motu"
+msgstr ""
+
+#. value for hrv, field language
+#: database/languages/language:178
+msgid "Croatian"
+msgstr ""
+
+#. value for hsb, field language
+#: database/languages/language:179
+msgid "Upper Sorbian"
+msgstr ""
+
+#. value for hun, field language
+#: database/languages/language:180
+msgid "Hungarian"
+msgstr ""
+
+#. value for hup, field language
+#: database/languages/language:181
+msgid "Hupa"
+msgstr ""
+
+#. value for hye, field language
+#: database/languages/language:182
+msgid "Armenian"
+msgstr ""
+
+#. value for iba, field language
+#: database/languages/language:183
+msgid "Iban"
+msgstr ""
+
+#. value for ibo, field language
+#: database/languages/language:184
+msgid "Igbo"
+msgstr ""
+
+#. value for ido, field language
+#: database/languages/language:185
+msgid "Ido"
+msgstr ""
+
+#. value for iii, field language
+#: database/languages/language:186
+msgid "Sichuan Yi; Nuosu"
+msgstr ""
+
+#. value for ijo, field language
+#: database/languages/language:187
+msgid "Ijo languages"
+msgstr ""
+
+#. value for iku, field language
+#: database/languages/language:188
+msgid "Inuktitut"
+msgstr ""
+
+#. value for ile, field language
+#: database/languages/language:189
+msgid "Interlingue; Occidental"
+msgstr ""
+
+#. value for ilo, field language
+#: database/languages/language:190
+msgid "Iloko"
+msgstr ""
+
+#. value for ina, field language
+#: database/languages/language:191
+msgid "Interlingua (International Auxiliary Language Association)"
+msgstr ""
+
+#. value for inc, field language
+#: database/languages/language:192
+msgid "Indic (Other)"
+msgstr ""
+
+#. value for ind, field language
+#: database/languages/language:193
+msgid "Indonesian"
+msgstr ""
+
+#. value for ine, field language
+#: database/languages/language:194
+msgid "Indo-European (Other)"
+msgstr ""
+
+#. value for inh, field language
+#: database/languages/language:195
+msgid "Ingush"
+msgstr ""
+
+#. value for ipk, field language
+#: database/languages/language:196
+msgid "Inupiaq"
+msgstr ""
+
+#. value for ira, field language
+#: database/languages/language:197
+msgid "Iranian (Other)"
+msgstr ""
+
+#. value for iro, field language
+#: database/languages/language:198
+msgid "Iroquoian languages"
+msgstr ""
+
+#. value for isl, field language
+#: database/languages/language:199
+msgid "Icelandic"
+msgstr ""
+
+#. value for ita, field language
+#: database/languages/language:200
+msgid "Italian"
+msgstr ""
+
+#. value for jav, field language
+#: database/languages/language:201
+msgid "Javanese"
+msgstr ""
+
+#. value for jbo, field language
+#: database/languages/language:202
+msgid "Lojban"
+msgstr ""
+
+#. value for jpn, field language
+#: database/languages/language:203
+msgid "Japanese"
+msgstr ""
+
+#. value for jpr, field language
+#: database/languages/language:204
+msgid "Judeo-Persian"
+msgstr ""
+
+#. value for jrb, field language
+#: database/languages/language:205
+msgid "Judeo-Arabic"
+msgstr ""
+
+#. value for kaa, field language
+#: database/languages/language:206
+msgid "Kara-Kalpak"
+msgstr ""
+
+#. value for kab, field language
+#: database/languages/language:207
+msgid "Kabyle"
+msgstr ""
+
+#. value for kac, field language
+#: database/languages/language:208
+msgid "Kachin; Jingpho"
+msgstr ""
+
+#. value for kal, field language
+#: database/languages/language:209
+msgid "Kalaallisut; Greenlandic"
+msgstr ""
+
+#. value for kam, field language
+#: database/languages/language:210
+msgid "Kamba"
+msgstr ""
+
+#. value for kan, field language
+#: database/languages/language:211
+msgid "Kannada"
+msgstr ""
+
+#. value for kar, field language
+#: database/languages/language:212
+msgid "Karen languages"
+msgstr ""
+
+#. value for kas, field language
+#: database/languages/language:213
+msgid "Kashmiri"
+msgstr ""
+
+#. value for kat, field language
+#: database/languages/language:214
+msgid "Georgian"
+msgstr ""
+
+#. value for kau, field language
+#: database/languages/language:215
+msgid "Kanuri"
+msgstr ""
+
+#. value for kaw, field language
+#: database/languages/language:216
+msgid "Kawi"
+msgstr ""
+
+#. value for kaz, field language
+#: database/languages/language:217
+msgid "Kazakh"
+msgstr ""
+
+#. value for kbd, field language
+#: database/languages/language:218
+msgid "Kabardian"
+msgstr ""
+
+#. value for kha, field language
+#: database/languages/language:219
+msgid "Khasi"
+msgstr ""
+
+#. value for khi, field language
+#: database/languages/language:220
+msgid "Khoisan (Other)"
+msgstr ""
+
+#. value for khm, field language
+#: database/languages/language:221
+msgid "Central Khmer"
+msgstr ""
+
+#. value for kho, field language
+#: database/languages/language:222
+msgid "Khotanese"
+msgstr ""
+
+#. value for kik, field language
+#: database/languages/language:223
+msgid "Kikuyu; Gikuyu"
+msgstr ""
+
+#. value for kin, field language
+#: database/languages/language:224
+msgid "Kinyarwanda"
+msgstr ""
+
+#. value for kir, field language
+#: database/languages/language:225
+msgid "Kirghiz; Kyrgyz"
+msgstr ""
+
+#. value for kmb, field language
+#: database/languages/language:226
+msgid "Kimbundu"
+msgstr ""
+
+#. value for kok, field language
+#: database/languages/language:227
+msgid "Konkani"
+msgstr ""
+
+#. value for kom, field language
+#: database/languages/language:228
+msgid "Komi"
+msgstr ""
+
+#. value for kon, field language
+#: database/languages/language:229
+msgid "Kongo"
+msgstr ""
+
+#. value for kor, field language
+#: database/languages/language:230
+msgid "Korean"
+msgstr ""
+
+#. value for kos, field language
+#: database/languages/language:231
+msgid "Kosraean"
+msgstr ""
+
+#. value for kpe, field language
+#: database/languages/language:232
+msgid "Kpelle"
+msgstr ""
+
+#. value for krc, field language
+#: database/languages/language:233
+msgid "Karachay-Balkar"
+msgstr ""
+
+#. value for krl, field language
+#: database/languages/language:234
+msgid "Karelian"
+msgstr ""
+
+#. value for kro, field language
+#: database/languages/language:235
+msgid "Kru languages"
+msgstr ""
+
+#. value for kru, field language
+#: database/languages/language:236
+msgid "Kurukh"
+msgstr ""
+
+#. value for kua, field language
+#: database/languages/language:237
+msgid "Kuanyama; Kwanyama"
+msgstr ""
+
+#. value for kum, field language
+#: database/languages/language:238
+msgid "Kumyk"
+msgstr ""
+
+#. value for kur, field language
+#: database/languages/language:239
+msgid "Kurdish"
+msgstr ""
+
+#. value for kut, field language
+#: database/languages/language:240
+msgid "Kutenai"
+msgstr ""
+
+#. value for lad, field language
+#: database/languages/language:241
+msgid "Ladino"
+msgstr ""
+
+#. value for lah, field language
+#: database/languages/language:242
+msgid "Lahnda"
+msgstr ""
+
+#. value for lam, field language
+#: database/languages/language:243
+msgid "Lamba"
+msgstr ""
+
+#. value for lao, field language
+#: database/languages/language:244
+msgid "Lao"
+msgstr ""
+
+#. value for lat, field language
+#: database/languages/language:245
+msgid "Latin"
+msgstr ""
+
+#. value for lav, field language
+#: database/languages/language:246
+msgid "Latvian"
+msgstr ""
+
+#. value for lez, field language
+#: database/languages/language:247
+msgid "Lezghian"
+msgstr ""
+
+#. value for lim, field language
+#: database/languages/language:248
+msgid "Limburgan; Limburger; Limburgish"
+msgstr ""
+
+#. value for lin, field language
+#: database/languages/language:249
+msgid "Lingala"
+msgstr ""
+
+#. value for lit, field language
+#: database/languages/language:250
+msgid "Lithuanian"
+msgstr ""
+
+#. value for lol, field language
+#: database/languages/language:251
+msgid "Mongo"
+msgstr ""
+
+#. value for loz, field language
+#: database/languages/language:252
+msgid "Lozi"
+msgstr ""
+
+#. value for ltz, field language
+#: database/languages/language:253
+msgid "Luxembourgish; Letzeburgesch"
+msgstr ""
+
+#. value for lua, field language
+#: database/languages/language:254
+msgid "Luba-Lulua"
+msgstr ""
+
+#. value for lub, field language
+#: database/languages/language:255
+msgid "Luba-Katanga"
+msgstr ""
+
+#. value for lug, field language
+#: database/languages/language:256
+msgid "Ganda"
+msgstr ""
+
+#. value for lui, field language
+#: database/languages/language:257
+msgid "Luiseno"
+msgstr ""
+
+#. value for lun, field language
+#: database/languages/language:258
+msgid "Lunda"
+msgstr ""
+
+#. value for luo, field language
+#: database/languages/language:259
+msgid "Luo (Kenya and Tanzania)"
+msgstr ""
+
+#. value for lus, field language
+#: database/languages/language:260
+msgid "Lushai"
+msgstr ""
+
+#. value for mad, field language
+#: database/languages/language:261
+msgid "Madurese"
+msgstr ""
+
+#. value for mag, field language
+#: database/languages/language:262
+msgid "Magahi"
+msgstr ""
+
+#. value for mah, field language
+#: database/languages/language:263
+msgid "Marshallese"
+msgstr ""
+
+#. value for mai, field language
+#: database/languages/language:264
+msgid "Maithili"
+msgstr ""
+
+#. value for mak, field language
+#: database/languages/language:265
+msgid "Makasar"
+msgstr ""
+
+#. value for mal, field language
+#: database/languages/language:266
+msgid "Malayalam"
+msgstr ""
+
+#. value for man, field language
+#: database/languages/language:267
+msgid "Mandingo"
+msgstr ""
+
+#. value for map, field language
+#: database/languages/language:268
+msgid "Austronesian (Other)"
+msgstr ""
+
+#. value for mar, field language
+#: database/languages/language:269
+msgid "Marathi"
+msgstr ""
+
+#. value for mas, field language
+#: database/languages/language:270
+msgid "Masai"
+msgstr ""
+
+#. value for mdf, field language
+#: database/languages/language:271
+msgid "Moksha"
+msgstr ""
+
+#. value for mdr, field language
+#: database/languages/language:272
+msgid "Mandar"
+msgstr ""
+
+#. value for men, field language
+#: database/languages/language:273
+msgid "Mende"
+msgstr ""
+
+#. value for mga, field language
+#: database/languages/language:274
+msgid "Irish, Middle (900-1200)"
+msgstr ""
+
+#. value for mic, field language
+#: database/languages/language:275
+msgid "Mi'kmaq; Micmac"
+msgstr ""
+
+#. value for min, field language
+#: database/languages/language:276
+msgid "Minangkabau"
+msgstr ""
+
+#. value for mis, field language
+#: database/languages/language:277
+msgid "Uncoded languages"
+msgstr ""
+
+#. value for mkd, field language
+#: database/languages/language:278
+msgid "Macedonian"
+msgstr ""
+
+#. value for mkh, field language
+#: database/languages/language:279
+msgid "Mon-Khmer (Other)"
+msgstr ""
+
+#. value for mlg, field language
+#: database/languages/language:280
+msgid "Malagasy"
+msgstr ""
+
+#. value for mlt, field language
+#: database/languages/language:281
+msgid "Maltese"
+msgstr ""
+
+#. value for mnc, field language
+#: database/languages/language:282
+msgid "Manchu"
+msgstr ""
+
+#. value for mni, field language
+#: database/languages/language:283
+msgid "Manipuri"
+msgstr ""
+
+#. value for mno, field language
+#: database/languages/language:284
+msgid "Manobo languages"
+msgstr ""
+
+#. value for moh, field language
+#: database/languages/language:285
+msgid "Mohawk"
+msgstr ""
+
+#. value for mol, field language
+#: database/languages/language:286
+msgid "Moldavian"
+msgstr ""
+
+#. value for mon, field language
+#: database/languages/language:287
+msgid "Mongolian"
+msgstr ""
+
+#. value for mos, field language
+#: database/languages/language:288
+msgid "Mossi"
+msgstr ""
+
+#. value for mri, field language
+#: database/languages/language:289
+msgid "Maori"
+msgstr ""
+
+#. value for msa, field language
+#: database/languages/language:290
+msgid "Malay"
+msgstr ""
+
+#. value for mul, field language
+#: database/languages/language:291
+msgid "Multiple languages"
+msgstr ""
+
+#. value for mun, field language
+#: database/languages/language:292
+msgid "Munda languages"
+msgstr ""
+
+#. value for mus, field language
+#: database/languages/language:293
+msgid "Creek"
+msgstr ""
+
+#. value for mwl, field language
+#: database/languages/language:294
+msgid "Mirandese"
+msgstr ""
+
+#. value for mwr, field language
+#: database/languages/language:295
+msgid "Marwari"
+msgstr ""
+
+#. value for mya, field language
+#: database/languages/language:296
+msgid "Burmese"
+msgstr ""
+
+#. value for myn, field language
+#: database/languages/language:297
+msgid "Mayan languages"
+msgstr ""
+
+#. value for myv, field language
+#: database/languages/language:298
+msgid "Erzya"
+msgstr ""
+
+#. value for nah, field language
+#: database/languages/language:299
+msgid "Nahuatl languages"
+msgstr ""
+
+#. value for nai, field language
+#: database/languages/language:300
+msgid "North American Indian"
+msgstr ""
+
+#. value for nap, field language
+#: database/languages/language:301
+msgid "Neapolitan"
+msgstr ""
+
+#. value for nau, field language
+#: database/languages/language:302
+msgid "Nauru"
+msgstr ""
+
+#. value for nav, field language
+#: database/languages/language:303
+msgid "Navajo; Navaho"
+msgstr ""
+
+#. value for nbl, field language
+#: database/languages/language:304
+msgid "Ndebele, South; South Ndebele"
+msgstr ""
+
+#. value for nde, field language
+#: database/languages/language:305
+msgid "Ndebele, North; North Ndebele"
+msgstr ""
+
+#. value for ndo, field language
+#: database/languages/language:306
+msgid "Ndonga"
+msgstr ""
+
+#. value for nds, field language
+#: database/languages/language:307
+msgid "Low German; Low Saxon; German, Low; Saxon, Low"
+msgstr ""
+
+#. value for nep, field language
+#: database/languages/language:308
+msgid "Nepali"
+msgstr ""
+
+#. value for new, field language
+#: database/languages/language:309
+msgid "Nepal Bhasa; Newari"
+msgstr ""
+
+#. value for nia, field language
+#: database/languages/language:310
+msgid "Nias"
+msgstr ""
+
+#. value for nic, field language
+#: database/languages/language:311
+msgid "Niger-Kordofanian (Other)"
+msgstr ""
+
+#. value for niu, field language
+#: database/languages/language:312
+msgid "Niuean"
+msgstr ""
+
+#. value for nld, field language
+#: database/languages/language:313
+msgid "Dutch; Flemish"
+msgstr ""
+
+#. value for nno, field language
+#: database/languages/language:314
+msgid "Norwegian Nynorsk; Nynorsk, Norwegian"
+msgstr ""
+
+#. value for nob, field language
+#: database/languages/language:315
+msgid "Bokmal, Norwegian; Norwegian Bokmal"
+msgstr ""
+
+#. value for nog, field language
+#: database/languages/language:316
+msgid "Nogai"
+msgstr ""
+
+#. value for non, field language
+#: database/languages/language:317
+msgid "Norse, Old"
+msgstr ""
+
+#. value for nor, field language
+#: database/languages/language:318
+msgid "Norwegian"
+msgstr ""
+
+#. value for nqo, field language
+#: database/languages/language:319
+msgid "N'Ko"
+msgstr ""
+
+#. value for nso, field language
+#: database/languages/language:320
+msgid "Pedi; Sepedi; Northern Sotho"
+msgstr ""
+
+#. value for nub, field language
+#: database/languages/language:321
+msgid "Nubian languages"
+msgstr ""
+
+#. value for nwc, field language
+#: database/languages/language:322
+msgid "Classical Newari; Old Newari; Classical Nepal Bhasa"
+msgstr ""
+
+#. value for nya, field language
+#: database/languages/language:323
+msgid "Chichewa; Chewa; Nyanja"
+msgstr ""
+
+#. value for nym, field language
+#: database/languages/language:324
+msgid "Nyamwezi"
+msgstr ""
+
+#. value for nyn, field language
+#: database/languages/language:325
+msgid "Nyankole"
+msgstr ""
+
+#. value for nyo, field language
+#: database/languages/language:326
+msgid "Nyoro"
+msgstr ""
+
+#. value for nzi, field language
+#: database/languages/language:327
+msgid "Nzima"
+msgstr ""
+
+#. value for oci, field language
+#: database/languages/language:328
+msgid "Occitan (post 1500); Provençal"
+msgstr ""
+
+#. value for oji, field language
+#: database/languages/language:329
+msgid "Ojibwa"
+msgstr ""
+
+#. value for ori, field language
+#: database/languages/language:330
+msgid "Oriya"
+msgstr ""
+
+#. value for orm, field language
+#: database/languages/language:331
+msgid "Oromo"
+msgstr ""
+
+#. value for osa, field language
+#: database/languages/language:332
+msgid "Osage"
+msgstr ""
+
+#. value for oss, field language
+#: database/languages/language:333
+msgid "Ossetian; Ossetic"
+msgstr ""
+
+#. value for ota, field language
+#: database/languages/language:334
+msgid "Turkish, Ottoman (1500-1928)"
+msgstr ""
+
+#. value for oto, field language
+#: database/languages/language:335
+msgid "Otomian languages"
+msgstr ""
+
+#. value for paa, field language
+#: database/languages/language:336
+msgid "Papuan (Other)"
+msgstr ""
+
+#. value for pag, field language
+#: database/languages/language:337
+msgid "Pangasinan"
+msgstr ""
+
+#. value for pal, field language
+#: database/languages/language:338
+msgid "Pahlavi"
+msgstr ""
+
+#. value for pam, field language
+#: database/languages/language:339
+msgid "Pampanga; Kapampangan"
+msgstr ""
+
+#. value for pan, field language
+#: database/languages/language:340
+msgid "Panjabi; Punjabi"
+msgstr ""
+
+#. value for pap, field language
+#: database/languages/language:341
+msgid "Papiamento"
+msgstr ""
+
+#. value for pau, field language
+#: database/languages/language:342
+msgid "Palauan"
+msgstr ""
+
+#. value for peo, field language
+#: database/languages/language:343
+msgid "Persian, Old (ca.600-400 B.C.)"
+msgstr ""
+
+#. value for phi, field language
+#: database/languages/language:344
+msgid "Philippine (Other)"
+msgstr ""
+
+#. value for phn, field language
+#: database/languages/language:345
+msgid "Phoenician"
+msgstr ""
+
+#. value for pli, field language
+#: database/languages/language:346
+msgid "Pali"
+msgstr ""
+
+#. value for pol, field language
+#: database/languages/language:347
+msgid "Polish"
+msgstr ""
+
+#. value for pon, field language
+#: database/languages/language:348
+msgid "Pohnpeian"
+msgstr ""
+
+#. value for por, field language
+#: database/languages/language:349
+msgid "Portuguese"
+msgstr ""
+
+#. value for pra, field language
+#: database/languages/language:350
+msgid "Prakrit languages"
+msgstr ""
+
+#. value for pro, field language
+#: database/languages/language:351
+msgid "Provençal, Old (to 1500)"
+msgstr ""
+
+#. value for pus, field language
+#: database/languages/language:352
+msgid "Pushto; Pashto"
+msgstr ""
+
+#. value for que, field language
+#: database/languages/language:353
+msgid "Quechua"
+msgstr ""
+
+#. value for raj, field language
+#: database/languages/language:354
+msgid "Rajasthani"
+msgstr ""
+
+#. value for rap, field language
+#: database/languages/language:355
+msgid "Rapanui"
+msgstr ""
+
+#. value for rar, field language
+#: database/languages/language:356
+msgid "Rarotongan; Cook Islands Maori"
+msgstr ""
+
+#. value for roa, field language
+#: database/languages/language:357
+msgid "Romance (Other)"
+msgstr ""
+
+#. value for roh, field language
+#: database/languages/language:358
+msgid "Romansh"
+msgstr ""
+
+#. value for rom, field language
+#: database/languages/language:359
+msgid "Romany"
+msgstr ""
+
+#. value for ron, field language
+#: database/languages/language:360
+msgid "Romanian"
+msgstr ""
+
+#. value for run, field language
+#: database/languages/language:361
+msgid "Rundi"
+msgstr ""
+
+#. value for rup, field language
+#: database/languages/language:362
+msgid "Aromanian; Arumanian; Macedo-Romanian"
+msgstr ""
+
+#. value for rus, field language
+#: database/languages/language:363
+msgid "Russian"
+msgstr ""
+
+#. value for sad, field language
+#: database/languages/language:364
+msgid "Sandawe"
+msgstr ""
+
+#. value for sag, field language
+#: database/languages/language:365
+msgid "Sango"
+msgstr ""
+
+#. value for sah, field language
+#: database/languages/language:366
+msgid "Yakut"
+msgstr ""
+
+#. value for sai, field language
+#: database/languages/language:367
+msgid "South American Indian (Other)"
+msgstr ""
+
+#. value for sal, field language
+#: database/languages/language:368
+msgid "Salishan languages"
+msgstr ""
+
+#. value for sam, field language
+#: database/languages/language:369
+msgid "Samaritan Aramaic"
+msgstr ""
+
+#. value for san, field language
+#: database/languages/language:370
+msgid "Sanskrit"
+msgstr ""
+
+#. value for sas, field language
+#: database/languages/language:371
+msgid "Sasak"
+msgstr ""
+
+#. value for sat, field language
+#: database/languages/language:372
+msgid "Santali"
+msgstr ""
+
+#. value for scn, field language
+#: database/languages/language:373
+msgid "Sicilian"
+msgstr ""
+
+#. value for sco, field language
+#: database/languages/language:374
+msgid "Scots"
+msgstr ""
+
+#. value for sel, field language
+#: database/languages/language:375
+msgid "Selkup"
+msgstr ""
+
+#. value for sem, field language
+#: database/languages/language:376
+msgid "Semitic (Other)"
+msgstr ""
+
+#. value for sga, field language
+#: database/languages/language:377
+msgid "Irish, Old (to 900)"
+msgstr ""
+
+#. value for sgn, field language
+#: database/languages/language:378
+msgid "Sign Languages"
+msgstr ""
+
+#. value for shn, field language
+#: database/languages/language:379
+msgid "Shan"
+msgstr ""
+
+#. value for sid, field language
+#: database/languages/language:380
+msgid "Sidamo"
+msgstr ""
+
+#. value for sin, field language
+#: database/languages/language:381
+msgid "Sinhala; Sinhalese"
+msgstr ""
+
+#. value for sio, field language
+#: database/languages/language:382
+msgid "Siouan languages"
+msgstr ""
+
+#. value for sit, field language
+#: database/languages/language:383
+msgid "Sino-Tibetan (Other)"
+msgstr ""
+
+#. value for sla, field language
+#: database/languages/language:384
+msgid "Slavic (Other)"
+msgstr ""
+
+#. value for slk, field language
+#: database/languages/language:385
+msgid "Slovak"
+msgstr ""
+
+#. value for slv, field language
+#: database/languages/language:386
+msgid "Slovenian"
+msgstr ""
+
+#. value for sma, field language
+#: database/languages/language:387
+msgid "Southern Sami"
+msgstr ""
+
+#. value for sme, field language
+#: database/languages/language:388
+msgid "Northern Sami"
+msgstr ""
+
+#. value for smi, field language
+#: database/languages/language:389
+msgid "Sami languages (Other)"
+msgstr ""
+
+#. value for smj, field language
+#: database/languages/language:390
+msgid "Lule Sami"
+msgstr ""
+
+#. value for smn, field language
+#: database/languages/language:391
+msgid "Inari Sami"
+msgstr ""
+
+#. value for smo, field language
+#: database/languages/language:392
+msgid "Samoan"
+msgstr ""
+
+#. value for sms, field language
+#: database/languages/language:393
+msgid "Skolt Sami"
+msgstr ""
+
+#. value for sna, field language
+#: database/languages/language:394
+msgid "Shona"
+msgstr ""
+
+#. value for snd, field language
+#: database/languages/language:395
+msgid "Sindhi"
+msgstr ""
+
+#. value for snk, field language
+#: database/languages/language:396
+msgid "Soninke"
+msgstr ""
+
+#. value for sog, field language
+#: database/languages/language:397
+msgid "Sogdian"
+msgstr ""
+
+#. value for som, field language
+#: database/languages/language:398
+msgid "Somali"
+msgstr ""
+
+#. value for son, field language
+#: database/languages/language:399
+msgid "Songhai languages"
+msgstr ""
+
+#. value for sot, field language
+#: database/languages/language:400
+msgid "Sotho, Southern"
+msgstr ""
+
+#. value for spa, field language
+#: database/languages/language:401
+msgid "Spanish; Castilian"
+msgstr ""
+
+#. value for sqi, field language
+#: database/languages/language:402
+msgid "Albanian"
+msgstr ""
+
+#. value for srd, field language
+#: database/languages/language:403
+msgid "Sardinian"
+msgstr ""
+
+#. value for srn, field language
+#: database/languages/language:404
+msgid "Sranan Tongo"
+msgstr ""
+
+#. value for srp, field language
+#: database/languages/language:405
+msgid "Serbian"
+msgstr ""
+
+#. value for srr, field language
+#: database/languages/language:406
+msgid "Serer"
+msgstr ""
+
+#. value for ssa, field language
+#: database/languages/language:407
+msgid "Nilo-Saharan (Other)"
+msgstr ""
+
+#. value for ssw, field language
+#: database/languages/language:408
+msgid "Swati"
+msgstr ""
+
+#. value for suk, field language
+#: database/languages/language:409
+msgid "Sukuma"
+msgstr ""
+
+#. value for sun, field language
+#: database/languages/language:410
+msgid "Sundanese"
+msgstr ""
+
+#. value for sus, field language
+#: database/languages/language:411
+msgid "Susu"
+msgstr ""
+
+#. value for sux, field language
+#: database/languages/language:412
+msgid "Sumerian"
+msgstr ""
+
+#. value for swa, field language
+#: database/languages/language:413
+msgid "Swahili"
+msgstr ""
+
+#. value for swe, field language
+#: database/languages/language:414
+msgid "Swedish"
+msgstr ""
+
+#. value for syc, field language
+#: database/languages/language:415
+msgid "Classical Syriac"
+msgstr ""
+
+#. value for syr, field language
+#: database/languages/language:416
+msgid "Syriac"
+msgstr ""
+
+#. value for tah, field language
+#: database/languages/language:417
+msgid "Tahitian"
+msgstr ""
+
+#. value for tai, field language
+#: database/languages/language:418
+msgid "Tai (Other)"
+msgstr ""
+
+#. value for tam, field language
+#: database/languages/language:419
+msgid "Tamil"
+msgstr ""
+
+#. value for tat, field language
+#: database/languages/language:420
+msgid "Tatar"
+msgstr ""
+
+#. value for tel, field language
+#: database/languages/language:421
+msgid "Telugu"
+msgstr ""
+
+#. value for tem, field language
+#: database/languages/language:422
+msgid "Timne"
+msgstr ""
+
+#. value for ter, field language
+#: database/languages/language:423
+msgid "Tereno"
+msgstr ""
+
+#. value for tet, field language
+#: database/languages/language:424
+msgid "Tetum"
+msgstr ""
+
+#. value for tgk, field language
+#: database/languages/language:425
+msgid "Tajik"
+msgstr ""
+
+#. value for tgl, field language
+#: database/languages/language:426
+msgid "Tagalog"
+msgstr ""
+
+#. value for tha, field language
+#: database/languages/language:427
+msgid "Thai"
+msgstr ""
+
+#. value for tig, field language
+#: database/languages/language:428
+msgid "Tigre"
+msgstr ""
+
+#. value for tir, field language
+#: database/languages/language:429
+msgid "Tigrinya"
+msgstr ""
+
+#. value for tiv, field language
+#: database/languages/language:430
+msgid "Tiv"
+msgstr ""
+
+#. value for tkl, field language
+#: database/languages/language:431
+msgid "Tokelau"
+msgstr ""
+
+#. value for tlh, field language
+#: database/languages/language:432
+msgid "Klingon; tlhIngan-Hol"
+msgstr ""
+
+#. value for tli, field language
+#: database/languages/language:433
+msgid "Tlingit"
+msgstr ""
+
+#. value for tmh, field language
+#: database/languages/language:434
+msgid "Tamashek"
+msgstr ""
+
+#. value for tog, field language
+#: database/languages/language:435
+msgid "Tonga (Nyasa)"
+msgstr ""
+
+#. value for ton, field language
+#: database/languages/language:436
+msgid "Tonga (Tonga Islands)"
+msgstr ""
+
+#. value for tpi, field language
+#: database/languages/language:437
+msgid "Tok Pisin"
+msgstr ""
+
+#. value for tsi, field language
+#: database/languages/language:438
+msgid "Tsimshian"
+msgstr ""
+
+#. value for tsn, field language
+#: database/languages/language:439
+msgid "Tswana"
+msgstr ""
+
+#. value for tso, field language
+#: database/languages/language:440
+msgid "Tsonga"
+msgstr ""
+
+#. value for tuk, field language
+#: database/languages/language:441
+msgid "Turkmen"
+msgstr ""
+
+#. value for tum, field language
+#: database/languages/language:442
+msgid "Tumbuka"
+msgstr ""
+
+#. value for tup, field language
+#: database/languages/language:443
+msgid "Tupi languages"
+msgstr ""
+
+#. value for tur, field language
+#: database/languages/language:444
+msgid "Turkish"
+msgstr ""
+
+#. value for tut, field language
+#: database/languages/language:445
+msgid "Altaic (Other)"
+msgstr ""
+
+#. value for tvl, field language
+#: database/languages/language:446
+msgid "Tuvalu"
+msgstr ""
+
+#. value for twi, field language
+#: database/languages/language:447
+msgid "Twi"
+msgstr ""
+
+#. value for tyv, field language
+#: database/languages/language:448
+msgid "Tuvinian"
+msgstr ""
+
+#. value for udm, field language
+#: database/languages/language:449
+msgid "Udmurt"
+msgstr ""
+
+#. value for uga, field language
+#: database/languages/language:450
+msgid "Ugaritic"
+msgstr ""
+
+#. value for uig, field language
+#: database/languages/language:451
+msgid "Uighur; Uyghur"
+msgstr ""
+
+#. value for ukr, field language
+#: database/languages/language:452
+msgid "Ukrainian"
+msgstr ""
+
+#. value for umb, field language
+#: database/languages/language:453
+msgid "Umbundu"
+msgstr ""
+
+#. value for und, field language
+#: database/languages/language:454
+msgid "Undetermined"
+msgstr ""
+
+#. value for urd, field language
+#: database/languages/language:455
+msgid "Urdu"
+msgstr ""
+
+#. value for uzb, field language
+#: database/languages/language:456
+msgid "Uzbek"
+msgstr ""
+
+#. value for vai, field language
+#: database/languages/language:457
+msgid "Vai"
+msgstr ""
+
+#. value for ven, field language
+#: database/languages/language:458
+msgid "Venda"
+msgstr ""
+
+#. value for vie, field language
+#: database/languages/language:459
+msgid "Vietnamese"
+msgstr ""
+
+#. value for vol, field language
+#: database/languages/language:460
+msgid "Volapük"
+msgstr ""
+
+#. value for vot, field language
+#: database/languages/language:461
+msgid "Votic"
+msgstr ""
+
+#. value for wak, field language
+#: database/languages/language:462
+msgid "Wakashan languages"
+msgstr ""
+
+#. value for wal, field language
+#: database/languages/language:463
+msgid "Walamo"
+msgstr ""
+
+#. value for war, field language
+#: database/languages/language:464
+msgid "Waray"
+msgstr ""
+
+#. value for was, field language
+#: database/languages/language:465
+msgid "Washo"
+msgstr ""
+
+#. value for wen, field language
+#: database/languages/language:466
+msgid "Sorbian languages"
+msgstr ""
+
+#. value for wln, field language
+#: database/languages/language:467
+msgid "Walloon"
+msgstr ""
+
+#. value for wol, field language
+#: database/languages/language:468
+msgid "Wolof"
+msgstr ""
+
+#. value for xal, field language
+#: database/languages/language:469
+msgid "Kalmyk; Oirat"
+msgstr ""
+
+#. value for xho, field language
+#: database/languages/language:470
+msgid "Xhosa"
+msgstr ""
+
+#. value for yao, field language
+#: database/languages/language:471
+msgid "Yao"
+msgstr ""
+
+#. value for yap, field language
+#: database/languages/language:472
+msgid "Yapese"
+msgstr ""
+
+#. value for yid, field language
+#: database/languages/language:473
+msgid "Yiddish"
+msgstr ""
+
+#. value for yor, field language
+#: database/languages/language:474
+msgid "Yoruba"
+msgstr ""
+
+#. value for ypk, field language
+#: database/languages/language:475
+msgid "Yupik languages"
+msgstr ""
+
+#. value for zap, field language
+#: database/languages/language:476
+msgid "Zapotec"
+msgstr ""
+
+#. value for zbl, field language
+#: database/languages/language:477
+msgid "Blissymbols; Blissymbolics; Bliss"
+msgstr ""
+
+#. value for zen, field language
+#: database/languages/language:478
+msgid "Zenaga"
+msgstr ""
+
+#. value for zha, field language
+#: database/languages/language:479
+msgid "Zhuang; Chuang"
+msgstr ""
+
+#. value for zho, field language
+#: database/languages/language:480
+msgid "Chinese"
+msgstr ""
+
+#. value for znd, field language
+#: database/languages/language:481
+msgid "Zande languages"
+msgstr ""
+
+#. value for zul, field language
+#: database/languages/language:482
+msgid "Zulu"
+msgstr ""
+
+#. value for zun, field language
+#: database/languages/language:483
+msgid "Zuni"
+msgstr ""
+
+#. value for zxx, field language
+#: database/languages/language:484
+msgid "No linguistic content; Not applicable"
+msgstr ""
+
+#. value for zza, field language
+#: database/languages/language:485
+msgid "Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki"
+msgstr ""
