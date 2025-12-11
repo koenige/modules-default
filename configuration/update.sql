@@ -530,7 +530,7 @@
 /* 2025-07-05-1 */	UPDATE webpages SET parameters = CONCAT(IFNULL(parameters, ''), '&breadcrumbs_h1_prefix=1') WHERE content LIKE '%%\%\% request helptext * %\%\%%';
 /* 2025-07-17-1 */	DELETE FROM _settings WHERE setting_key = 'log_errors_max_len';
 /* 2025-12-11-1 */	ALTER TABLE `languages` CHANGE `language_en` `language` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
-/* 2025-12-11-2 */	INSERT INTO _translationfields (`db_name`, `table_name`, `field_name`, `field_type`) VALUES (SELECT DATABASE(), 'languages', 'language', 'varchar')
+/* 2025-12-11-2 */	INSERT INTO _translationfields (`db_name`, `table_name`, `field_name`, `field_type`) VALUES ((SELECT DATABASE()), 'languages', 'language', 'varchar');
 /* 2025-12-11-3 */	DELETE FROM _settings WHERE setting_key = 'language_translations';
 /* 2025-12-11-4 */	ALTER TABLE `languages` DROP `language_de`;
 /* 2025-12-11-5 */	ALTER TABLE `languages` DROP `language_fr`;
