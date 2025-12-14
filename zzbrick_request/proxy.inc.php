@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2024-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -47,19 +47,21 @@ function mod_default_proxy($params) {
 	} else {
 		wrap_setting('cache', false);
 
-		$headers_to_send = [];
+		$settings = [
+			'method' => $_SERVER['REQUEST_METHOD'],
+			'data' => $_POST ?: file_get_contents('php://input'),
+			'headers' => []
+		];
 		foreach (apache_request_headers() as $key => $header) {
 			if (in_array($key, ['Cookie', 'Host'])) continue;
-			$headers_to_send[] = sprintf('%s: %s', ucfirst($key), $header);
+			$settings['headers'][] = sprintf('%s: %s', ucfirst($key), $header);
 		}
 		if (isset($_SERVER['CONTENT_LENGTH']))
-			$headers_to_send[] = sprintf('Content-Length: %s', $_SERVER['CONTENT_LENGTH']);
+			$settings['headers'][] = sprintf('Content-Length: %s', $_SERVER['CONTENT_LENGTH']);
 		if (isset($_SERVER['CONTENT_TYPE']))
-			$headers_to_send[] = sprintf('Content-Type: %s', $_SERVER['CONTENT_TYPE']);
+			$settings['headers'][] = sprintf('Content-Type: %s', $_SERVER['CONTENT_TYPE']);
 
-		$postdata = !empty($_POST) ? $_POST : file_get_contents('php://input');
-		
-		list($status, $headers, $data) = wrap_syndication_retrieve_via_http($url, $headers_to_send, $_SERVER['REQUEST_METHOD'], $postdata);
+		list($status, $headers, $data) = wrap_syndication_http_request($url, $settings);
 		if (in_array('content-encoding: gzip', $headers))
 			$data = gzdecode($data);
 		if (in_array('content-type: application/json', $headers)) {
@@ -67,8 +69,7 @@ function mod_default_proxy($params) {
 			wrap_cache_header('content-type: application/json');
 		}
 		if ($status !== 200) {
-			echo wrap_print($postdata);
-			echo wrap_print($headers_to_send);
+			echo wrap_print($settings);
 			echo wrap_print($status);
 			echo wrap_print($headers);
 			echo wrap_print($data);
