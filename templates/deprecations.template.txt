@@ -1,0 +1,63 @@
+# default module
+# Template for deprecation check script
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div id="zzform" class="maintenance">
+
+%%% if not_found %%%
+<p class="success">%%% text No deprecated code patterns found. Your codebase is up to date! %%%</p>
+
+%%% else %%%
+<p>%%% text The following deprecated code patterns were found in your codebase. Please update your code and mark each item as resolved when completed. %%%</p>
+
+<form action="" method="POST">
+<table class="data">
+<thead>
+<tr>
+<th>%%% text Package %%%</th>
+<th>%%% text Identifier %%%</th>
+<th>%%% text Pattern %%% / %%% text Message %%%</th>
+<th>%%% text Found in Files %%%</th>
+<th>%%% text Resolved %%%</th>
+</tr>
+</thead>
+<tbody>
+%%% loop start %%%
+<tr class="%%% loopposition uneven un %%%even">
+<td>%%% item package %%%</td>
+<td>%%% item identifier %%%</td>
+<td>
+<p><code>%%% item search_text wrap_html_escape %%%</code></p>
+<p>%%% item message %%%</p>
+%%% if exclude_pattern %%%
+<p class="block480a"><small>%%% text Excluding %%%: <code>%%% item exclude_pattern wrap_html_escape %%%</code></small></p>
+%%% endif %%%
+</td>
+<td>
+%%% if found %%%
+<ul>
+%%% loop found %%%
+<li><code>%%% item file wrap_html_escape %%%</code></li>
+%%% loop end %%%
+</ul>
+%%% endif %%%
+</td>
+<td class="editbutton">
+<input type="checkbox" name="resolved_%%% item index %%%" value="1">
+</td>
+</tr>
+%%% loop end %%%
+</tbody>
+</table>
+<p><input type="submit" value="%%% text Save %%%"></p>
+</form>
+%%% endif %%%
+
+</div>
+

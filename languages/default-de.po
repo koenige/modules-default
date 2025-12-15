@@ -1698,3 +1698,42 @@ msgstr "LiesMich"
 #: zzbrick_make/dbmodules.inc.php
 msgid "Install module"
 msgstr "Modul installieren"
+
+#: zzbrick_make/deprecations.inc.php
+#: templates/deprecations.template.txt
+msgid "Deprecated Code Patterns"
+msgstr "Veraltete Code-Muster"
+
+#: templates/deprecations.template.txt
+msgid ""
+"The following deprecated code patterns were found in your codebase. Please "
+"update your code and mark each item as resolved when completed."
+msgstr ""
+"Die folgenden veralteten Code-Muster wurden in Ihrer Codebasis gefunden. "
+"Bitte aktualisieren Sie Ihren Code und markieren Sie jeden Eintrag als "
+"erledigt, wenn Sie fertig sind."
+
+#: templates/deprecations.template.txt
+msgid "No deprecated code patterns found. Your codebase is up to date!"
+msgstr ""
+"Es wurden keine veralteten Code-Muster gefunden. Ihre Codebasis ist aktuell!"
+
+#: templates/deprecations.template.txt
+msgid "Pattern"
+msgstr "Muster"
+
+#: templates/deprecations.template.txt
+msgid "Found in Files"
+msgstr "Gefunden in Dateien"
+
+#: templates/deprecations.template.txt
+msgid "Resolved"
+msgstr "Erledigt"
+
+#: templates/deprecations.template.txt
+msgid "Save"
+msgstr "Speichern"
+
+#: templates/deprecations.template.txt
+msgid "Excluding"
+msgstr "Ausgenommen"

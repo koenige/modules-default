@@ -1637,3 +1637,36 @@ msgstr ""
 #: zzbrick_make/dbmodules.inc.php
 msgid "Install module"
 msgstr ""
+
+#: zzbrick_make/deprecations.inc.php
+#: templates/deprecations.template.txt
+msgid "Deprecated Code Patterns"
+msgstr ""
+
+#: templates/deprecations.template.txt
+msgid "The following deprecated code patterns were found in your codebase. Please update your code and mark each item as resolved when completed."
+msgstr ""
+
+#: templates/deprecations.template.txt
+msgid "No deprecated code patterns found. Your codebase is up to date!"
+msgstr ""
+
+#: templates/deprecations.template.txt
+msgid "Pattern"
+msgstr ""
+
+#: templates/deprecations.template.txt
+msgid "Found in Files"
+msgstr ""
+
+#: templates/deprecations.template.txt
+msgid "Resolved"
+msgstr ""
+
+#: templates/deprecations.template.txt
+msgid "Save"
+msgstr ""
+
+#: templates/deprecations.template.txt
+msgid "Excluding"
+msgstr ""

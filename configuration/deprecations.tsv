@@ -1,0 +1,21 @@
+# default module
+# Deprecated code patterns
+#
+# This file lists deprecated code patterns that should be replaced
+# with newer alternatives. The deprecation checker will scan the
+# codebase and notify developers about occurrences that need updating.
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+#: Identifier	Search Text	Message	Exclude Pattern
+# exclude_pattern: files matching this pattern will be excluded from results (multiple patterns separated by semicolon)
+#
+2025-12-11-1	language_en	use `language` and translation functions	
+2025-12-11-2	language_de	use `language` and translation functions	zzwrap/language.inc.php
+2025-12-11-3	language_fr	use `language` and translation functions	
+2025-12-11-4	language_%s	use `language` and translation functions	

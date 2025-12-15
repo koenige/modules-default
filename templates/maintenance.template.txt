@@ -97,6 +97,8 @@
 
 <h2><a href="?dbupdate#current">%%% text Database Updates %%%</a></h2>
 
+<h2><a href="?deprecations">%%% text Deprecated Code Patterns %%%</a></h2>
+
 %%% include sqlquery-form %%%
 
 </div>

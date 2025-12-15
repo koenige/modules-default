@@ -109,7 +109,8 @@ function zz_maintenance_keycheck() {
 		'serversync_development' => 'make',
 		'sqlquery' => 'make',
 		'toolinfo' => 'request',
-		'translationscheck' => 'make'
+		'translationscheck' => 'make',
+		'deprecations' => 'make'
 	];
 	foreach ($keys as $key => $verb) {
 		if (isset($_GET[$key])) return ['key' => $key, 'verb' => $verb];
