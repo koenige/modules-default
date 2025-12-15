@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015, 2018, 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2015, 2018, 2020-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -16,6 +16,11 @@
 $zz = zzform_include('logins');
 
 // just allow access for login table to own login ID
+if (empty($_SESSION['login_id'])) {
+	$login_url = wrap_domain_path('login_entry');
+	$redirect_after_login = wrap_setting('request_uri');
+	wrap_redirect($login_url.'?url='.urlencode($redirect_after_login), 307);
+}
 $zz['where']['login_id'] = $_SESSION['login_id'];
 
 // 2 = username
