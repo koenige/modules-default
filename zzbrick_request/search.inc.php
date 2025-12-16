@@ -28,11 +28,16 @@ function mod_default_search($params, $settings) {
 			: wrap_include('search');
 		if (!$files) return false;
 		$data['search_results'] = false;
+		$search_results_raw = [];
 		foreach ($files['functions'] as $function) {
 			if (empty($function['short'])) continue;
 			if ($function['short'] !== 'search') continue;
 			$results = $function['function']($q);
-			if (!empty($results[$function['package']])) $data['search_results'] = true;
+			if (!empty($results[$function['package']])) {
+				$data['search_results'] = true;
+				// store raw results for logging
+				$search_results_raw[$function['package']] = $results[$function['package']];
+			}
 			$data['modules'][$function['package']]['results']
 				= wrap_template(sprintf('search-%s', $function['package']), $results);
 		}
@@ -51,6 +56,13 @@ function mod_default_search($params, $settings) {
 		];
 		if (!$data['search_results'] AND wrap_setting('default_404_no_search_results'))
 			$page['status'] = 404;
+		
+		// Log search if analytics module is available
+		if (wrap_package('analytics')) {
+			wrap_include('searchlog', 'analytics');
+			$log_results = mf_analytics_search_results_extract($search_results_raw);
+			mf_analytics_search_log($_GET['q'], $log_results);
+		}
 	}
 	
 	$data['form_text'] = $settings['form_text'] ?? NULL;
