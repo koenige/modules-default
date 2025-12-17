@@ -50,6 +50,7 @@ $zz['fields'][10]['explanation'] = 'Will language be used on website?';
 $zz['sql'] = 'SELECT /*_PREFIX_*/languages.*
 	FROM /*_PREFIX_*/languages';
 $zz['sqlorder'] = ' ORDER BY iso_639_2t';
+$zz['sql_translate'] = ['language_id' => 'languages'];
 
 $zz['filter'][1]['title'] = wrap_text('Web');
 $zz['filter'][1]['identifier'] = 'web';
