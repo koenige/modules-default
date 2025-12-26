@@ -119,8 +119,24 @@ function mod_default_make_deprecations_scan($line) {
 	$found = [];
 	
 	// use grep to search for the pattern
+	$extensions = [
+		'.php', '.txt', '.tsv', '.cfg', '.sql', '.json', '.md', '.js', '.po', '.pot'
+	];
+	$exclude_files = [
+		'deprecations.tsv', 'update.sql'
+	];
+	$include_params = [];
+	foreach ($extensions as $ext) {
+		$include_params[] = sprintf('--include="*%s"', $ext);
+	}
+	$exclude_params = [];
+	foreach ($exclude_files as $file) {
+		$exclude_params[] = sprintf('--exclude="%s"', $file);
+	}
 	$cmd = sprintf(
-		'grep -r -l --include="*.php" --include="*.inc.php" %s %s 2>/dev/null',
+		'grep -r -l %s %s %s %s 2>/dev/null',
+		implode(' ', $include_params),
+		implode(' ', $exclude_params),
 		escapeshellarg($search_text),
 		escapeshellarg($cms_dir)
 	);
