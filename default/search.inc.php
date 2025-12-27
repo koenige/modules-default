@@ -62,7 +62,7 @@ function mf_default_search($q) {
 function mf_default_webpages_media($data) {
 	static $opengraph_img = [];
 	if (!$data) return [];
-	$media = function_exists('wrap_get_media') ? wrap_get_media(array_keys($data), 'webpages', 'page') : [];
+	$media = wrap_media(array_keys($data), 'webpages');
 	foreach ($media as $id => $files)
 		$data[$id] += $files;
 	foreach ($data as $id => $line) {
