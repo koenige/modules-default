@@ -123,63 +123,20 @@ function mod_default_make_deprecations_scan($line) {
 		case 'filename':
 			return mod_default_make_deprecations_scan_filename($line);
 		case 'code_regex':
-			return mod_default_make_deprecations_scan_regex($line);
+			return mod_default_make_deprecations_scan_code($line, false);
 		default:
-			return mod_default_make_deprecations_scan_code($line);
+			return mod_default_make_deprecations_scan_code($line, true);
 	}
-}
-
-/**
- * get list of files to scan, filtered by extensions and exclusions
- *
- * @param string $exclude_pattern
- * @param bool $check_extensions whether to filter by file extension
- * @return array list of relative file paths
- */
-function mod_default_make_deprecations_get_files($exclude_pattern = '', $check_extensions = true) {
-	$cms_dir = wrap_setting('cms_dir');
-	$files = [];
-	
-	$extensions = wrap_setting('default_deprecations_extensions');
-	$exclude_files = wrap_setting('default_deprecations_exclude_files');
-	$exclude_patterns = $exclude_pattern ? array_map('trim', explode(';', $exclude_pattern)) : [];
-	
-	$iterator = new RecursiveIteratorIterator(
-		new RecursiveDirectoryIterator($cms_dir, RecursiveDirectoryIterator::SKIP_DOTS),
-		RecursiveIteratorIterator::SELF_FIRST
-	);
-	
-	foreach ($iterator as $file) {
-		if (!$file->isFile()) continue;
-		
-		$filename = $file->getFilename();
-		if (in_array($filename, $exclude_files)) continue;
-		
-		if ($check_extensions) {
-			$ext = pathinfo($filename, PATHINFO_EXTENSION);
-			if (!in_array($ext, $extensions)) continue;
-		}
-		
-		$relative_path = str_replace($cms_dir.'/', '', $file->getPathname());
-		
-		// skip files matching any exclusion pattern
-		foreach ($exclude_patterns as $pattern) {
-			if ($pattern && strpos($relative_path, $pattern) !== false) continue 2;
-		}
-		
-		$files[] = ['path' => $file->getPathname(), 'relative' => $relative_path];
-	}
-	
-	return $files;
 }
 
 /**
  * scan codebase for deprecated code patterns using grep
  *
  * @param array $line
+ * @param bool $fixed_string if true, use -F flag for literal matching; if false, use -E for extended regex
  * @return array list of files where pattern was found
  */
-function mod_default_make_deprecations_scan_code($line) {
+function mod_default_make_deprecations_scan_code($line, $fixed_string = true) {
 	$cms_dir = wrap_setting('cms_dir');
 	$search_text = $line['search_text'];
 	$exclude_pattern = $line['exclude_pattern'] ?? '';
@@ -191,8 +148,12 @@ function mod_default_make_deprecations_scan_code($line) {
 	$include_params = array_map(fn($ext) => sprintf('--include="*%s"', $ext), $extensions);
 	$exclude_params = array_map(fn($file) => sprintf('--exclude="%s"', $file), $exclude_files);
 	
+	// use -F for fixed strings (literal), -E for extended regex
+	$regex_flag = $fixed_string ? '-F' : '-E';
+	
 	$cmd = sprintf(
-		'grep -r -l %s %s %s %s 2>/dev/null',
+		'grep -r -l %s %s %s %s %s 2>/dev/null',
+		$regex_flag,
 		implode(' ', $include_params),
 		implode(' ', $exclude_params),
 		escapeshellarg($search_text),
@@ -220,56 +181,51 @@ function mod_default_make_deprecations_scan_code($line) {
 }
 
 /**
- * scan codebase for deprecated code patterns using regex
- *
- * @param array $line
- * @return array list of files where pattern was found
- */
-function mod_default_make_deprecations_scan_regex($line) {
-	$regex_pattern = $line['search_text'];
-	
-	// validate regex pattern
-	$valid = @preg_match($regex_pattern, '');
-	if ($valid === false) {
-		$message = sprintf(
-			'Invalid regex pattern in %s. Regex patterns must have delimiters (e.g., /pattern/).',
-			$line['identifier']
-		);
-		wrap_error($message);
-		return [];
-	}
-	
-	$files = mod_default_make_deprecations_get_files($line['exclude_pattern'] ?? '');
-	$found = [];
-	
-	foreach ($files as $file) {
-		$content = @file_get_contents($file['path']);
-		if ($content === false) continue;
-		
-		if (preg_match($regex_pattern, $content)) {
-			$found[]['file'] = $file['relative'];
-		}
-	}
-	
-	return $found;
-}
-
-/**
  * scan codebase for files matching a filename pattern
  *
  * @param array $line
  * @return array list of files where pattern was found
  */
 function mod_default_make_deprecations_scan_filename($line) {
+	$cms_dir = wrap_setting('cms_dir');
 	$pattern = $line['search_text'];
-	$files = mod_default_make_deprecations_get_files($line['exclude_pattern'] ?? '', false);
+	$exclude_pattern = $line['exclude_pattern'] ?? '';
 	$found = [];
 	
-	foreach ($files as $file) {
-		$filename = basename($file['path']);
-		if (fnmatch($pattern, $filename)) {
-			$found[]['file'] = $file['relative'];
+	$exclude_files = wrap_setting('default_deprecations_exclude_files');
+	if (!$exclude_files) $exclude_files = ['deprecations.tsv', 'update.sql'];
+	$exclude_patterns = $exclude_pattern ? array_map('trim', explode(';', $exclude_pattern)) : [];
+	
+	$iterator = new RecursiveIteratorIterator(
+		new RecursiveDirectoryIterator($cms_dir, RecursiveDirectoryIterator::SKIP_DOTS),
+		RecursiveIteratorIterator::SELF_FIRST
+	);
+	
+	foreach ($iterator as $file) {
+		if (!$file->isFile()) continue;
+		
+		$filename = $file->getFilename();
+		
+		// skip excluded files
+		if (in_array($filename, $exclude_files)) continue;
+		
+		// make path relative to cms_dir for matching
+		$relative_path = str_replace($cms_dir.'/', '', $file->getPathname());
+		
+		// check if path matches pattern (supports both filename and path patterns)
+		$matched = fnmatch($pattern, $relative_path) || fnmatch($pattern, $filename);
+		// also check if pattern with wildcards matches any part of the path
+		if (!$matched && strpos($pattern, '/') !== false) {
+			$matched = fnmatch('*/'.$pattern, $relative_path);
 		}
+		if (!$matched) continue;
+		
+		// skip files matching any exclusion pattern
+		foreach ($exclude_patterns as $exclude) {
+			if ($exclude && strpos($relative_path, $exclude) !== false) continue 2;
+		}
+		
+		$found[]['file'] = $relative_path;
 	}
 	
 	return $found;
