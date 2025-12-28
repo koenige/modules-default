@@ -15,6 +15,7 @@
 #: Identifier	Type	Search Text	Message	Exclude Pattern
 # exclude_pattern: files matching this pattern will be excluded from results (multiple patterns separated by semicolon)
 #
+2024-10-25-1	code	role="main"	consider using <main> element instead
 2025-12-11-1	code	language_en	use `language` and translation functions	
 2025-12-11-2	code	language_de	use `language` and translation functions	zzwrap/language.inc.php;zzwrap/configuration/settings.cfg
 2025-12-11-3	code	language_fr	use `language` and translation functions	
