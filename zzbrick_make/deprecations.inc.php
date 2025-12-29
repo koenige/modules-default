@@ -145,17 +145,20 @@ function mod_default_make_deprecations_scan_code($line, $fixed_string = true) {
 	// add dot prefix for grep
 	$extensions = array_map(fn($ext) => '.'.$ext, $extensions);
 	$exclude_files = wrap_setting('default_deprecations_exclude_files');
+	$exclude_dirs = wrap_setting('default_deprecations_exclude_dirs');
 	$include_params = array_map(fn($ext) => sprintf('--include="*%s"', $ext), $extensions);
 	$exclude_params = array_map(fn($file) => sprintf('--exclude="%s"', $file), $exclude_files);
+	$exclude_dir_params = array_map(fn($dir) => sprintf('--exclude-dir="%s"', $dir), $exclude_dirs);
 	
 	// use -F for fixed strings (literal), -E for extended regex
 	$regex_flag = $fixed_string ? '-F' : '-E';
 	
 	$cmd = sprintf(
-		'grep -r -l %s %s %s %s %s 2>/dev/null',
+		'grep -r -l %s %s %s %s %s %s 2>/dev/null',
 		$regex_flag,
 		implode(' ', $include_params),
 		implode(' ', $exclude_params),
+		implode(' ', $exclude_dir_params),
 		escapeshellarg($search_text),
 		escapeshellarg($cms_dir)
 	);
@@ -193,7 +196,6 @@ function mod_default_make_deprecations_scan_filename($line) {
 	$found = [];
 	
 	$exclude_files = wrap_setting('default_deprecations_exclude_files');
-	if (!$exclude_files) $exclude_files = ['deprecations.tsv', 'update.sql'];
 	$exclude_patterns = $exclude_pattern ? array_map('trim', explode(';', $exclude_pattern)) : [];
 	
 	$iterator = new RecursiveIteratorIterator(
