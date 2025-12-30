@@ -1119,6 +1119,31 @@ INSERT INTO `languages` (`language_id`, `iso_639_2t`, `iso_639_2b`, `iso_639_1`,
 (485,	'zza',	NULL,	NULL,	'Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki',	NULL,	'no');
 
 
+-- languages_categories --
+CREATE TABLE `languages_categories` (
+  `language_category_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `language_id` int unsigned NOT NULL,
+  `category_id` int unsigned NOT NULL,
+  `label` varchar(50) DEFAULT NULL,
+  `type_category_id` int unsigned NOT NULL,
+  `sequence` tinyint unsigned DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`language_category_id`),
+  UNIQUE KEY `language_type_category` (`language_id`,`type_category_id`,`category_id`),
+  KEY `language_id` (`language_id`),
+  KEY `category_id` (`category_id`),
+  KEY `type_category_id` (`type_category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `_relations` (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES (DATABASE(), 'languages', 'language_id', DATABASE(), 'languages_categories', 'language_category_id', 'language_id', 'delete');
+INSERT INTO `_relations` (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES (DATABASE(), 'categories', 'category_id', DATABASE(), 'languages_categories', 'language_category_id', 'category_id', 'no-delete');
+INSERT INTO `_relations` (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`)  VALUES (DATABASE(), 'categories', 'category_id', DATABASE(), 'languages_categories', 'language_category_id', 'type_category_id', 'no-delete');
+
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Register', NULL, NULL, 'register', '&alias=register', NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Formal', NULL, /*_ID categories register _*/, 'register/formal', '&alias=register/formal&default_language_register=1', 1, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Informal', NULL, /*_ID categories register _*/, 'register/informal', '&alias=register/informal', 2, NOW());
+
+
 -- logins --
 CREATE TABLE `logins` (
   `login_id` int unsigned NOT NULL AUTO_INCREMENT,

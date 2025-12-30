@@ -1505,6 +1505,16 @@ msgctxt "default"
 msgid "Variation of language, e. g. informal"
 msgstr "Variante der Sprache, z. B. informell"
 
+#: zzbrick_tables/languages-categories.php
+msgctxt "default"
+msgid "Language Categories"
+msgstr "Sprachkategorien"
+
+#: zzbrick_tables/languages-categories.php
+msgctxt "default"
+msgid "Short label in target language (e.g. “Du”, “Sie”, “tu”, “vous”)"
+msgstr "Kurze Bezeichnung in der Zielsprache (z. B. „Du“, „Sie“, „tu“, „vous“)"
+
 #: zzbrick_tables/categories.php
 msgctxt "default"
 msgid "Categories"
@@ -1699,8 +1709,7 @@ msgstr "LiesMich"
 msgid "Install module"
 msgstr "Modul installieren"
 
-#: zzbrick_make/deprecations.inc.php
-#: templates/deprecations.template.txt
+#: zzbrick_make/deprecations.inc.php templates/deprecations.template.txt
 msgid "Deprecated Code Patterns"
 msgstr "Veraltete Code-Muster"
 
