@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -32,7 +32,7 @@ function mod_default_relations($params) {
 		FROM _relations';
 	$relations = wrap_db_fetch($sql, 'rel_id');
 
-	// get only media relations
+	// get only relations for given table
 	$table_prefixed = wrap_db_prefix(sprintf('/*_PREFIX_*/%s', $table));
 	$data = [];
 	foreach ($relations as $rel_id => $relation) {
@@ -41,7 +41,11 @@ function mod_default_relations($params) {
 		
 		if (str_ends_with($relation['detail_table'], '_'.$table)) {
 			$joined_table = substr($relation['detail_table'], 0, - strlen($table) - 1);
-			// check for joins to this master table
+			// check for joins to this main table
+			$joined = mod_default_relations_join($relations, $joined_table, $relation['detail_table']);
+		} elseif (str_starts_with($relation['detail_table'], $table.'_')) {
+			$joined_table = substr($relation['detail_table'], strlen($table) + 1);
+			// check for joins to this main table
 			$joined = mod_default_relations_join($relations, $joined_table, $relation['detail_table']);
 		} else
 			$joined = NULL;
