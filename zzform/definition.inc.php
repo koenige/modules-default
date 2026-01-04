@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -104,7 +104,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			$zz['fields'][$no]['fields'][$def['category_id']]['sql_ignore'] = 'main_category';
 			$main_category_ids = wrap_id_tree('categories', $category['path']);
 			$zz['fields'][$no]['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.main_category_id IN (%s)', implode(',', $main_category_ids));
-			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.main_category_id IN (%s)', implode(',', $main_category_ids));
+			if (!empty($zz['fields'][$no]['subselect']['sql']))
+				$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.main_category_id IN (%s)', implode(',', $main_category_ids));
 		} else {
 			$zz['fields'][$no]['fields'][$def['category_id']]['show_hierarchy_subtree'] = wrap_category_id($path);
 		}
@@ -127,7 +128,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			$zz['fields'][$no]['fields'][$def['type_category_id']]['for_action_ignore'] = true;
 		}
 		$zz['fields'][$no]['if'][1]['list_suffix'] = '</del>';
-		if (!empty($zz['fields'][$no]['fields'][$def['sequence']])) {
+		if (array_key_exists('sequence', $def) AND !empty($zz['fields'][$no]['fields'][$def['sequence']])) {
 			$zz['fields'][$no]['fields'][$def['sequence']]['type'] = 'sequence';
 			$zz['fields'][$no]['fields'][$def['sequence']]['auto_value'] = 'increment';
 		}
