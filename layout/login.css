@@ -6,17 +6,18 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
-#login		{ max-width: 40rem; margin: 5rem auto; 
-			--default_login_css_background_color: %%% setting default_login_css_background_color %%%; }
+#login		{ max-width: 40rem; margin: 5rem auto;
+			--default_login_css_background_color: %%% setting default_login_css_background_color %%%;
+			--background-color-login: var(--default_login_css_background_color, #FFF); }
 #login fieldset
 			{ position: relative; border: none; margin: 2.5rem 0 1rem;
 			display: grid; grid-template-columns: 9rem 12.5rem; gap: .5rem;
-			background: var(--default_login_css_background_color) url(%%% setting layout_path %%%/%%% setting active_theme %%%/zugzwang-stripes.png) repeat-y 100% 0;
+			background: var(--background-color-login) url(%%% setting layout_path %%%/%%% setting active_theme %%%/zugzwang-stripes.png) repeat-y 100% 0;
 			background-size: 75%; padding: 1.5rem 1rem 1rem; border-radius: 3px; }
 #login legend
 			{ position: absolute; padding: .75rem 1rem; transform: translateY(-50%);
