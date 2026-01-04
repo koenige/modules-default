@@ -1123,26 +1123,32 @@ INSERT INTO `languages` (`language_id`, `iso_639_2t`, `iso_639_2b`, `iso_639_1`,
 CREATE TABLE `languages_categories` (
   `language_category_id` int unsigned NOT NULL AUTO_INCREMENT,
   `language_id` int unsigned NOT NULL,
+  `country_id` int unsigned DEFAULT NULL,
   `category_id` int unsigned NOT NULL,
-  `label` varchar(50) DEFAULT NULL,
+  `language_tag` varchar(25) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `label` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type_category_id` int unsigned NOT NULL,
   `sequence` tinyint unsigned DEFAULT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`language_category_id`),
-  UNIQUE KEY `language_type_category` (`language_id`,`type_category_id`,`category_id`),
+  UNIQUE KEY `language_tag` (`language_tag`),
+  UNIQUE KEY `language_country_type_category` (`language_id`,`type_category_id`,`category_id`,`country_id`),
   KEY `language_id` (`language_id`),
   KEY `category_id` (`category_id`),
-  KEY `type_category_id` (`type_category_id`)
+  KEY `type_category_id` (`type_category_id`),
+  KEY `country_id` (`country_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `_relations` (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES (DATABASE(), 'languages', 'language_id', DATABASE(), 'languages_categories', 'language_category_id', 'language_id', 'delete');
 INSERT INTO `_relations` (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES (DATABASE(), 'categories', 'category_id', DATABASE(), 'languages_categories', 'language_category_id', 'category_id', 'no-delete');
 INSERT INTO `_relations` (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`)  VALUES (DATABASE(), 'categories', 'category_id', DATABASE(), 'languages_categories', 'language_category_id', 'type_category_id', 'no-delete');
+INSERT INTO `_relations` (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES (DATABASE(), 'countries', 'country_id', DATABASE(), 'languages_categories', 'language_category_id', 'country_id', 'no-delete');
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Language', NULL, NULL, 'language', '&alias=language&use_subtree=1', NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Register', NULL, /*_ID categories language _*/, 'language/register', '&alias=language/register&no_append=1&own_type_category=1', NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Formal', NULL, /*_ID categories language/register _*/, 'language/register/formal', '&alias=language/register/formal&default_language_register=1', 1, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Informal', NULL, /*_ID categories language'register _*/, 'language/register/informal', '&alias=language/register/informal', 2, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Neutral', NULL, /*_ID categories language/register _*/, 'language/register/neutral', '&alias=language/register/neutral', 1, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Formal', NULL, /*_ID categories language/register _*/, 'language/register/formal', '&alias=language/register/formal&default_language_register=1', 2, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Informal', NULL, /*_ID categories language/register _*/, 'language/register/informal', '&alias=language/register/informal', 3, NOW());
 
 
 -- logins --
