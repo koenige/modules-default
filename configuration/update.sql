@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2017-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2017-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -541,3 +541,7 @@
 /* 2025-12-30-5 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Register', NULL, NULL, 'register', '&alias=register', NULL, NOW());
 /* 2025-12-30-6 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Formal', NULL, /*_ID categories register _*/, 'register/formal', '&alias=register/formal&default_language_register=1', 1, NOW());
 /* 2025-12-30-7 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Informal', NULL, /*_ID categories register _*/, 'register/informal', '&alias=register/informal', 2, NOW());
+/* 2026-01-04-1 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Language', NULL, NULL, NULL, 'language', '&alias=language', NULL, NOW());
+/* 2026-01-04-2 */	UPDATE categories SET `main_category_id` = /*_ID categories language _*/, `path` = "language/register", `parameters` = "&alias=language/register&use_subtree=1", `last_update` = NOW() WHERE category_id = /*_ID categories register _*/;
+/* 2026-01-04-3 */	UPDATE categories SET `path` = 'language/register/formal', `parameters` = "&alias=language/register/formal&default_language_register=1&no_append=1&own_type_category=1", `last_update` = NOW() WHERE category_id = /*_ID categories register/formal _*/;
+/* 2026-01-04-4 */	UPDATE categories SET `path` = 'language/register/informal', `parameters` = "&alias=language/register/informal", `last_update` = NOW() WHERE category_id = /*_ID categories register/informal _*/;

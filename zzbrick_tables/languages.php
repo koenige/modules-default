@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012, 2018-2019, 2021-2022, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2018-2019, 2021-2022, 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -40,6 +40,8 @@ $zz['fields'][5]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][11]['field_name'] = 'variation';
 $zz['fields'][11]['explanation'] = 'Variation of language, e. g. informal';
+
+mf_default_categories_subtable($zz, 'languages', 'language', 12);
 
 $zz['fields'][10]['field_name'] = 'website';
 $zz['fields'][10]['type'] = 'select';

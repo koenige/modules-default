@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -1139,9 +1139,10 @@ INSERT INTO `_relations` (`master_db`, `master_table`, `master_field`, `detail_d
 INSERT INTO `_relations` (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES (DATABASE(), 'categories', 'category_id', DATABASE(), 'languages_categories', 'language_category_id', 'category_id', 'no-delete');
 INSERT INTO `_relations` (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`)  VALUES (DATABASE(), 'categories', 'category_id', DATABASE(), 'languages_categories', 'language_category_id', 'type_category_id', 'no-delete');
 
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Register', NULL, NULL, 'register', '&alias=register', NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Formal', NULL, /*_ID categories register _*/, 'register/formal', '&alias=register/formal&default_language_register=1', 1, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Informal', NULL, /*_ID categories register _*/, 'register/informal', '&alias=register/informal', 2, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Language', NULL, NULL, 'language', '&alias=language&use_subtree=1', NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Register', NULL, /*_ID categories language _*/, 'language/register', '&alias=language/register&no_append=1&own_type_category=1', NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Formal', NULL, /*_ID categories language/register _*/, 'language/register/formal', '&alias=language/register/formal&default_language_register=1', 1, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Informal', NULL, /*_ID categories language'register _*/, 'language/register/informal', '&alias=language/register/informal', 2, NOW());
 
 
 -- logins --
