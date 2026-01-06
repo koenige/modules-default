@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -18,6 +18,10 @@ tr.%%% setting page_preview_class %%% th:first-child::before
 		transform: rotate(-45deg); font-weight: bold; z-index: 1000; 
 		opacity: .8; position: absolute; left: -4em; top: 2em; 
 		padding: .75em 6em .65em 5em; }
+
+#zzform ul.data li p.%%% setting page_preview_class %%%::before
+		{ content: ""; background: inherit; }
+
 
 /* fix body.preview, others need to be positioned absolutely */
 body.%%% setting page_preview_class %%%::before
