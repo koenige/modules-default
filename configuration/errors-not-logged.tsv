@@ -549,7 +549,9 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	all	/collections.json
 
 # Script from Nov 2025 looking for entry points, referer = search engine
+404	end	-phpinfo.php
 404	end	.php7
+404	end	/_environment
 404	end	/.__info.php
 404	end	/.bod/.ll/ss.php
 404	end	/.well-known/index.php
@@ -691,6 +693,7 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/index3.php
 404	end	/index4.php
 404	end	/info.php
+404	end	/infophp.php
 404	end	/infos.php
 404	end	/ini.php
 404	end	/inputs.php
@@ -718,12 +721,15 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/new.php
 404	end	/new4.php
 404	end	/NewFile.php
+404	end	/old_phpinfo.php
 404	end	/options-general.php
 404	end	/options-reading.php
 404	end	/options-writing.php
 404	end	/pages.php
 404	end	/past.php
+404	end	/php-info.php
 404	end	/php/
+404	end	/pinfo.php
 404	end	/plugins.php
 404	end	/plugins/
 404	end	/post.php
@@ -741,9 +747,11 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/sites/default/files/
 404	end	/sts.php
 404	end	/system_log.php
+404	end	/temp.php
 404	end	/test1.php
 404	end	/themes.php
 404	end	/thoms.php
+404	end	/time.php
 404	end	/tinyfilemanager.php
 404	end	/ty.php
 404	end	/updates.php
@@ -790,3 +798,12 @@ php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:
 
 # idiots parsing HTML attributes and not removing ""
 404	request	/%22*%22
+
+# still more with faked referer pointing to own website
+404	end	/index.php?m=api&c=Ajax&a=get_info
+404	end	/data/conf/version.txt
+404	end	/config.yml
+404	end	/config.yaml
+404	end	/config.php
+404	end	/configuration.php
+404	end	/config.inc.php
