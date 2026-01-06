@@ -1,0 +1,65 @@
+# default module
+# HTML output: MySQL dump
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2014, 2021, 2024-2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div id="zzform">
+%%% if no_websites_found %%%
+<p>%%% text No websites were found %%%</p>
+
+%%% elseif overview %%%
+<h2>Websites</h2>
+<table class="data info">
+<thead>
+<tr><th>%%% text Key %%%</th><th>%%% text Project %%%</th><th>%%% text Local folder %%%</th><th>%%% text Database %%%</th></tr>
+</thead>
+<tbody>
+%%% loop start %%%
+<tr>
+<th>%%% item event_abbr %%%</th>
+<td><a href="%%% path events_project identifier %%%">%%% item event %%%</a></td>
+<td>%%% item local_folder %%%</a></td>
+<td><a href="?db=%%% item database_name %%%">%%% item database_name %%%</a></td>
+</tr>
+%%% loop end %%%
+</tbody>
+</table>
+%%% elseif website %%%
+%%% loop start %%%
+<h2><strong>%%% item event_abbr %%%</strong> <a href="%%% path events_project identifier %%%">%%% item event %%%</a</h2>
+
+<form method="POST" action="">
+<input type="submit" value="Create database dump of database %%% item database_name %%%">
+</form>
+%%% loop end %%%
+
+%%% elseif dump %%%
+<dl>
+%%% loop start %%%
+<dt><a href="%%% path events_project identifier %%%">%%% item event %%%</a></dt>
+%%% if dump_structure %%%
+	<dd>Dump of database structure successful.</dd>
+%%% if increments_successful %%%
+	<dd>Replacement of auto increments successful.</dd>
+%%% else %%%
+	<dd>Replacement of auto increments not successful.</dd>
+%%% endif %%%
+%%% else %%%
+	<dd>Dump of database structure not successful, Reason: %%% item dump_structure_return %%%
+	<br>%%% item dump_structure_command %%%</dd>
+%%% endif %%%
+%%% if dump_data %%%
+	<dd>Dump of database data successful.</dd>
+%%% else %%%
+	<dd>Dump of database data not successful, Reason: %%% item dump_data_return %%%
+	<br>%%% item dump_data_command %%%</dd>
+%%% endif %%%
+%%% loop end %%%
+</dl>
+%%% endif %%%
+</div>
