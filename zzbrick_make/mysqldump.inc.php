@@ -75,9 +75,16 @@ function mod_default_make_mysqldump() {
 		'/opt/homebrew/bin/mysqldump -u%s -p%s --routines --no-data --skip-dump-date --databases %%s > %s/%%s/docs/sql/%%s-structure.sql'
 		, $credentials['db_user'], $credentials['db_pwd'], $base_folder
 	);
+	// Build sed command with multiple -e options for each pattern
+	$sed_patterns = wrap_setting('default_mysqldump_structure_sed_patterns');
+	$sed_commands = [];
+	foreach ($sed_patterns as $pattern) {
+		$sed_commands[] = "-e '" . addslashes($pattern) . "'";
+	}
 	$mysqldump_structure_sed = sprintf(
-		"sed -i '' 's/ AUTO_INCREMENT=[0-9]*//g' %s/%%s/docs/sql/%%s-structure.sql"
-		, $base_folder
+		"sed -i '' %s %s/%%s/docs/sql/%%s-structure.sql",
+		implode(' ', $sed_commands),
+		$base_folder
 	);
 	$mysqldump_data = sprintf(
 		'/opt/homebrew/bin/mysqldump -u%s -p%s --skip-dump-date --databases %%s > %s'
