@@ -5,9 +5,10 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2022-2023, 2025 Gustaf Mossakowski
+# @copyright Copyright © 2022-2023, 2025-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
+%%% if search_url | setting search_path %%%
 <div class="searchform noprint">
 <form method="GET" action="%%% if search_url %%%%%% item search_url %%%%%% else %%%%%% setting base %%%%%% setting search_path %%%%%% endif %%%">
 %%% if form_text %%%
@@ -16,3 +17,6 @@
 <label for="site_search">%%% text Search %%%</label> <input type="search" name="q" value="%%% page searchword %%%" id="site_search"> <input type="submit" value="%%% text Search %%%">
 </form>
 </div>
+%%% else %%%
+&nbsp;
+%%% endif %%%
