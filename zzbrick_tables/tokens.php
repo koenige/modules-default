@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023, 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -74,7 +74,7 @@ $zz['fields'][8]['field_name'] = 'created';
 $zz['fields'][8]['type'] = 'write_once';
 $zz['fields'][8]['if']['add']['type'] = 'hidden';
 $zz['fields'][8]['type_detail'] = 'datetime';
-$zz['fields'][8]['default'] = date('Y-m-d H:i:s');
+$zz['fields'][8]['default'] = 'current_date';
 
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
