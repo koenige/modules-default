@@ -807,3 +807,7 @@ php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:
 404	end	/config.php
 404	end	/configuration.php
 404	end	/config.inc.php
+
+# looking for JS, faking referers
+404	referer	*/livewire.min.js
+404	referer	*/livewire.js
