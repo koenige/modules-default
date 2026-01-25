@@ -71,7 +71,7 @@ function mod_default_make_deprecations($params) {
  * @return array
  */
 function mod_default_make_deprecations_readfiles() {
-	$lines = wrap_tsv_parse('deprecations', 'modules/custom');
+	$lines = wrap_tsv_parse('deprecations', 'modules/custom', ['key_with_package' => true]);
 	if (!$lines) return [];
 	
 	$data = [];
