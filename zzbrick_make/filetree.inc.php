@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -68,7 +68,7 @@ function mod_default_filetree_file($params) {
 	if (in_array(basename($file['name']), wrap_setting('default_filetree_unviewable_files')))
 		wrap_quit(403, wrap_text('You may not view or download this file'));
 	$extension = wrap_file_extension(substr($file['name'], strrpos($file['name'], '%2F')));
-	if (strstr($extension, '%3F')) {
+	if ($extension AND strstr($extension, '%3F')) {
 		$extension = explode('%3F', $extension);
 		$extension = $extension[0];
 		$file['ext'] = $extension;
@@ -98,6 +98,8 @@ function mod_default_filetree_file_ext($filename) {
 	if (strstr($filename, '%2F')) $filename = urldecode($filename);
 	$basename = basename($filename);
 	$ext = wrap_file_extension($basename);
+	if (!$ext and str_starts_with($basename, '.'))
+		$ext = wrap_file_extension('example'.$basename);
 	if ($ext AND $pos = strpos($ext, '?')) $ext = substr($ext, 0, $pos);
 	elseif ($ext AND $pos = strpos($ext, '%3F')) $ext = substr($ext, 0, $pos);
 	if ($ext === 'headers') return 'TXT';
