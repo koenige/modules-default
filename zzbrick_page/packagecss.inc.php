@@ -26,7 +26,7 @@ function page_packagecss($params, $page) {
 	if (!is_array($extra_css)) $extra_css = [$extra_css];
 	if (!empty($zz_page['db']['live']) AND $zz_page['db']['live'] === 'no') {
 		$extra_css[] = 'default/internal';
-	} elseif (wrap_session_value('logged_in'))
+	} elseif (wrap_session_value('logged_in')) {
 		$extra_css[] = 'default/internal';
 	}
 	if ($extra_css) $extra_css = array_unique($extra_css);
