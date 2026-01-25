@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -75,9 +75,9 @@ function mod_default_make_deprecations_readfiles() {
 	if (!$lines) return [];
 	
 	$data = [];
-	foreach ($lines as $identifier => $line) {
+	foreach ($lines as $key => $line) {
 		$package = $line['_package'];
-		$key = $identifier.'-'.$package;
+		$identifier = substr($key, 0, -strlen($package) - 1);
 		$data[$key] = [
 			'identifier' => $identifier,
 			'type' => $line['Type'] ?? 'code',
