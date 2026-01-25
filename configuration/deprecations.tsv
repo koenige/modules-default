@@ -17,7 +17,7 @@
 #
 2024-10-25-1	code	role="main"	consider using <main> element instead
 2025-12-11-1	code	language_en	use `language` and translation functions	
-2025-12-11-2	code	language_de	use `language` and translation functions	zzwrap/language.inc.php;zzwrap/configuration/settings.cfg
+2025-12-11-2	code	language_de	use `language` and translation functions	zzwrap/language.inc.php;zzwrap/configuration/settings.cfg;mediadb/mediadb/folder.inc.php;mediadb/zzbrick_forms/comment.php;mediadb/zzbrick_forms/comments.php;mediadb/zzform_subs/objects-text-descriptions.php;mediadb/zzform_subs/objects-text-titles.php
 2025-12-11-3	code	language_fr	use `language` and translation functions	
 2025-12-11-4	code	language_%s	use `language` and translation functions	
 2026-01-04-1	code	default_login_css_background_color	use `#login { --background-color-login: color }`	default/layout/login.css;default/configuration/settings.cfg
