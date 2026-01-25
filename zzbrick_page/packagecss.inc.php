@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -26,12 +26,8 @@ function page_packagecss($params, $page) {
 	if (!is_array($extra_css)) $extra_css = [$extra_css];
 	if (!empty($zz_page['db']['live']) AND $zz_page['db']['live'] === 'no') {
 		$extra_css[] = 'default/internal';
-	} else {
-		wrap_session_start();
-		$logged_in = $_SESSION['logged_in'] ?? false;
-		session_write_close();
-		if ($logged_in)
-			$extra_css[] = 'default/internal';
+	} elseif (wrap_session_value('logged_in'))
+		$extra_css[] = 'default/internal';
 	}
 	if ($extra_css) $extra_css = array_unique($extra_css);
 	foreach ($extra_css as $line) {

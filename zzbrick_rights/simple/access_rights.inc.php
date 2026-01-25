@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015-2016, 2020-2022, 2024-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2015-2016, 2020-2022, 2024-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -17,9 +17,7 @@ function brick_access_rights($groups = []) {
 	// allow groups parameter to be array or string
 	if (!is_array($groups)) $groups = [$groups];
 
-	wrap_session_start();
-	$login_rights = $_SESSION['login_rights'] ?? false;
-	session_write_close();
+	$login_rights = wrap_session_value('login_rights');
 
 	foreach ($groups as $group) {
 		$group = strtolower($group);
