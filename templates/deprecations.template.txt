@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2025 Gustaf Mossakowski
+# @copyright Copyright © 2025-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -34,7 +34,7 @@
 <td>%%% item identifier %%%</td>
 <td>
 <p><code>%%% item search_text wrap_html_escape %%%</code></p>
-<p>%%% item message %%%</p>
+<p>%%% item message wrap_html_escape %%%</p>
 %%% if exclude_pattern %%%
 <p class="block480a"><small>%%% text Excluding %%%: <code>%%% item exclude_pattern wrap_html_escape %%%</code></small></p>
 %%% endif %%%
