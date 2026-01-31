@@ -5,12 +5,12 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2011, 2014, 2025 Gustaf Mossakowski
+# @copyright Copyright © 2011, 2014, 2025-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #
 <div class="errorpage">
-<h1>%%% page h1 %%%</h1>
+<h1>%%% if page h1 %%%%%% page h1 %%%%%% else %%%%%% item error_title %%%%%% endif %%%</h1>
 <div id="text">
 <p>%%% page error_description %%%</p>
 %%% if page error_explanation %%%
