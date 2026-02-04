@@ -93,6 +93,23 @@ HAVING NOT ISNULL(menu)
 ORDER BY webpages.sequence;
 
 -- page_menu_level3 --
+SELECT webpages.page_id, webpages.title
+	, CONCAT(webpages.identifier, IF(STRCMP(webpages.ending, 'none'), webpages.ending, '')) AS url
+	, webpages.mother_page_id
+	, (SELECT GROUP_CONCAT(category_id) FROM /*_PREFIX_*/webpages_categories
+		WHERE /*_PREFIX_*/webpages_categories.page_id = main_pages.mother_page_id
+		AND /*_PREFIX_*/webpages_categories.type_category_id = /*_ID categories menu _*/
+	) AS menu
+	, CONCAT(main_pages.mother_page_id, "-", webpages.mother_page_id) AS top_ids
+FROM /*_PREFIX_*/webpages webpages
+LEFT JOIN /*_PREFIX_*/webpages main_pages
+	ON webpages.mother_page_id = main_pages.page_id
+LEFT JOIN /*_PREFIX_*/webpages top_pages
+	ON main_pages.mother_page_id = top_pages.page_id
+WHERE webpages.live = 'yes'
+AND NOT ISNULL(main_pages.mother_page_id)
+HAVING NOT ISNULL(menu)
+ORDER BY webpages.sequence;
 
 -- page_menu_level4 --
 
