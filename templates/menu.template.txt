@@ -5,12 +5,8 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2017, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2017, 2024, 2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
-#
-# List of fields:
-# { page_id, title, url, menu, mother_page_id, top_ids, nav_id, id_title,
-# pagetitle, current_page, id, subtitle, below, submenu, submenu_rows }
 #
 %%% loop start %%%
 <li%%% item id " id='%s'" %%%%%% item class " class='%s'" %%%>%%% if current_page %%%<strong>%%% elseif url %%%<a href="%%% item url %%%"%%% item below " class='below'" %%%%%% item long_title " title='%s'" %%%>%%% endif %%%%%% item title ucfirst %%%%%% item subtitle %%%%%% if current_page %%%</strong>%%% elseif url %%%</a>%%% endif %%%

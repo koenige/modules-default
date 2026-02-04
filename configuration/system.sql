@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -70,6 +70,7 @@ SELECT page_id
 		WHERE /*_PREFIX_*/webpages_categories.page_id = /*_PREFIX_*/webpages.page_id
 		AND /*_PREFIX_*/webpages_categories.type_category_id = /*_ID categories menu _*/
 	) AS menu
+	, REPLACE(identifier, "/", "") AS menu_key
 FROM /*_PREFIX_*/webpages
 WHERE live = 'yes'
 HAVING NOT ISNULL(menu)
