@@ -10,7 +10,7 @@
 #
 <div class="searchresults">
 %%% if q & setting default_search_heading_for_results %%%
-<h2>%%% text "Search results for “%s”" q format=html_escape %%%</h2>
+<h2>%%% text "Search results for “%s”" q wrap_html_escape %%%</h2>
 %%% endif %%%
 %%% if setting default_searchform_top %%%
 %%% include searchform %%%
@@ -24,7 +24,7 @@
 %%% else %%%
 
 %%% if q %%%
-<p>%%% text "We found nothing matching “%s”." q format=html_escape %%%</p>
+<p>%%% text "We found nothing matching “%s”." q wrap_html_escape %%%</p>
 %%% endif %%%
 
 %%% unless form_text %%%

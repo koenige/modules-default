@@ -10,7 +10,7 @@
 #
 <div id="zzform" class="maintenance mail-log">
 %%% if logfile_inexistent %%%
-<p>%%% text "Logfile does not exist: %s" logfile format=html_escape %%%</p>
+<p>%%% text "Logfile does not exist: %s" logfile wrap_html_escape %%%</p>
 
 %%% else %%%
 %%% item message "<p class='error'>%s</p>" %%%
