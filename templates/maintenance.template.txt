@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016, 2018, 2020-2024 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2018, 2020-2024, 2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -75,14 +75,14 @@
 <h2>%%% text PHP & Server %%%</h2>
 <ul>
 <li><a href="?phpinfo">PHP %%% item php_version %%%</a> – %%% text Show PHP info on server %%%</li>
-%%% if mysql %%%<li><a href="?toolinfo=mysql">MySQL %%% item mysql wrap_html_escape %%%</a></li>
-%%% if convert %%%<li><a href="?toolinfo=convert">%%% item convert wrap_html_escape %%%</a></li>
+%%% if mysql %%%<li><a href="?toolinfo=mysql">MySQL %%% item mysql format=html_escape %%%</a></li>
+%%% if convert %%%<li><a href="?toolinfo=convert">%%% item convert format=html_escape %%%</a></li>
 %%% elseif setting zzform_upload_tools_identify %%%<li class="error">%%% text ImageMagick not found. %%%</li>%%% endif %%%
-%%% if gs %%%<li><a href="?toolinfo=gs">%%% item gs wrap_html_escape %%%</a></li>
+%%% if gs %%%<li><a href="?toolinfo=gs">%%% item gs format=html_escape %%%</a></li>
 %%% elseif setting zzform_upload_tools_gs %%%<li class="error">%%% text GhostScript not found. %%%</li>%%% endif %%%
-%%% if exiftool %%%<li><a href="?toolinfo=exiftool">%%% item exiftool wrap_html_escape %%%</a></li>
+%%% if exiftool %%%<li><a href="?toolinfo=exiftool">%%% item exiftool format=html_escape %%%</a></li>
 %%% elseif zzform_upload_tools_exiftool %%%<li class="error">%%% text ExifTool not found. %%%</li>%%% endif %%%
-%%% if file %%%<li><a href="?toolinfo=file">%%% item file wrap_html_escape %%%</a></li>
+%%% if file %%%<li><a href="?toolinfo=file">%%% item file format=html_escape %%%</a></li>
 %%% elseif zzform_upload_tools_file %%%<li class="error">%%% text Unix file not found. %%%</li>%%% endif %%%
 </ul>
 

@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2022, 2024-2025 Gustaf Mossakowski
+# @copyright Copyright © 2022, 2024-2026 Gustaf Mossakowski
 #
 %%% loop default %%%
 
@@ -18,7 +18,7 @@
 
 <ul class="search-items">
 %%% loop webpages %%%
-<li>%%% if images %%%<a href="%%% setting base %%%%%% item identifier %%%"><img src="%%% loop images 1 %%%%%% unless no_image_size %%%%%% setting files_path %%%%%% endif %%%/%%% item filename %%%%%% unless no_image_size %%%.%%% setting search_image_size %%%%%% endif %%%.%%% item thumb_extension %%%%%% item version "?v=%s" %%%%%% loop end %%%"></a>%%% else %%%<span class="no-img"></span>%%% endif %%% <a href="%%% setting base %%%%%% item identifier %%%" class="searchresult_title">%%% item title %%%</a>%%% item description markdown %%%</li>
+<li>%%% if images %%%<a href="%%% setting base %%%%%% item identifier %%%"><img src="%%% loop images 1 %%%%%% unless no_image_size %%%%%% setting files_path %%%%%% endif %%%/%%% item filename %%%%%% unless no_image_size %%%.%%% setting search_image_size %%%%%% endif %%%.%%% item thumb_extension %%%%%% item version "?v=%s" %%%%%% loop end %%%"></a>%%% else %%%<span class="no-img"></span>%%% endif %%% <a href="%%% setting base %%%%%% item identifier %%%" class="searchresult_title">%%% item title %%%</a>%%% item description format=markdown %%%</li>
 %%% loop end %%%
 </ul>
 %%% else %%%

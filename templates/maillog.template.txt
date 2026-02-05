@@ -5,12 +5,12 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2019-2020, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2019-2020, 2024, 2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance mail-log">
 %%% if logfile_inexistent %%%
-<p>%%% text "Logfile does not exist: %s" logfile wrap_html_escape %%%</p>
+<p>%%% text "Logfile does not exist: %s" logfile format=html_escape %%%</p>
 
 %%% else %%%
 %%% item message "<p class='error'>%s</p>" %%%
@@ -27,12 +27,12 @@
 <td><label for="line%%% item no %%%" class="blocklabel"><input type="checkbox" name="line[%%% item m_no %%%]" value="%%% item m_start %%%-%%% item m_end %%%" id="line%%% item m_no %%%"></label></td>
 <td>
 <pre class="mail-body">
-<strong>Date:</strong> %%% item Date wrap_html_escape %%% 
-<strong>To:</strong> %%% item To wrap_html_escape %%% 
-<strong>Subject:</strong> %%% item Subject wrap_html_escape %%% 
-<strong>From:</strong> %%% item From wrap_html_escape %%% 
+<strong>Date:</strong> %%% item Date format=html_escape %%% 
+<strong>To:</strong> %%% item To format=html_escape %%% 
+<strong>Subject:</strong> %%% item Subject format=html_escape %%% 
+<strong>From:</strong> %%% item From format=html_escape %%% 
 
-<div class="moretext">%%% item m_msg wrap_html_escape %%%</div></pre>
+<div class="moretext">%%% item m_msg format=html_escape %%%</div></pre>
 <p class="mail-resend"><input type="submit" value="%%% text Resend mail %%%" name="resend[%%% item m_no %%%]"></p>
 </td>
 </tr>

@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016, 2018, 2020-2021, 2023-2025 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2018, 2020-2021, 2023-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -55,7 +55,7 @@
 <td%%% item level_class " class='%s'" %%%>%%% item level %%%</td>
 <td class="logentry">%%% item status <strong>%s</strong> %%% %%% item links %%%
 <div class="moretext">%%% item error %%%</div></td>
-<td>%%% item user wrap_html_escape %%%%%% item time "<br>%s" %%%</td>
+<td>%%% item user format=html_escape %%%%%% item time "<br>%s" %%%</td>
 %%% item count "<td>%s</td>" %%%
 </tr>
 %%% loop end %%%

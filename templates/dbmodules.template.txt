@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2020, 2024, 2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -21,7 +21,7 @@
 %%% loop modules %%%
 <tr class="%%% loopposition uneven un %%%even">
 <td><strong>%%% item module %%%</strong></td>
-<td>%%% if install_date %%%%%% item install_date wrap_date %%%
+<td>%%% if install_date %%%%%% item install_date format=date %%%
 %%% elseif install_sql | settings_cfg %%%
 <input type="submit" name="install[%%% item module %%%]" value="%%% text Install module %%%">
 %%% else %%%–
@@ -43,7 +43,7 @@
 
 %%% if readme %%%
 <hr>
-%%% item readme markdown %%%
+%%% item readme format=markdown %%%
 %%% endif %%%
 
 </form>

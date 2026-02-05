@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016, 2019-2020, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2016, 2019-2020, 2024, 2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
@@ -35,8 +35,8 @@
 %%% endif %%%
 <td class="block480a">%%% text All Files %%%</td>
 <td class="hidden480">%%% item files_total %%%</td>
-<td class="number">%%% item size_total wrap_bytes %%%</td>
-<td class="number">%%% item filecount_total wrap_number %%%</td>
+<td class="number">%%% item size_total format=bytes %%%</td>
+<td class="number">%%% item filecount_total format=number %%%</td>
 <td></td></tr></tfoot>
 <tbody>
 %%% if files %%%
@@ -47,8 +47,8 @@
 %%% endif %%%
 <td class="block480a">%%% item dir <strong> %%%%%% if link %%%<a href="./?filetree=%%% item link %%%">%%% endif %%%%%% item title %%%%%% if link %%%</a>%%% endif %%%%%% item dir </strong> %%%</td>
 <td class="block480">%%% item ext %%%</td>
-<td class="number"><abbr title="%%% item size %%% Bytes">%%% item size wrap_bytes %%%</abbr></td>
-<td class="number">%%% item filecount wrap_number %%%</td>
+<td class="number"><abbr title="%%% item size %%% Bytes">%%% item size format=bytes %%%</abbr></td>
+<td class="number">%%% item filecount format=number %%%</td>
 <td class="hidden480">%%% item time %%%</td>
 </tr>
 %%% loop end %%%

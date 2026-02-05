@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2021, 2023-2025 Gustaf Mossakowski
+# @copyright Copyright © 2021, 2023-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <h2>%%% text Error Logging %%%</h2>
@@ -47,7 +47,7 @@
 	%%% loop logfiles %%%
 	<tr class="even">
 	<td class="level1 block480a">%%% text "Logfile for <strong>%s</strong>" title %%%</td>
-	<td class="block480"><strong>%%% if inside_log_dir %%%log folder%%% endif %%%<a href="?log=%%% item path rawurlencode %%%%%% if types %%%&amp;limit=last%%% endif %%%">%%% if inside_log_dir %%%/%%% item log %%%%%% else %%%%%% item path %%%%%% endif %%%</a></strong> (%%% item filesize wrap_bytes %%%)</td>
+	<td class="block480"><strong>%%% if inside_log_dir %%%log folder%%% endif %%%<a href="?log=%%% item path format=rawurlencode %%%%%% if types %%%&amp;limit=last%%% endif %%%">%%% if inside_log_dir %%%/%%% item log %%%%%% else %%%%%% item path %%%%%% endif %%%</a></strong> (%%% item filesize format=bytes %%%)</td>
 	</tr>
 	%%% loop end %%%
 	<tr class="even">
@@ -57,6 +57,6 @@
 %%% endif %%%
 <tr class="even">
 <td class="block480">%%% text Logging (Mail) %%%</td>
-<td class="block480">%%% if setting log_mail %%%<strong>log folder<a href="?maillog">/mail.log</a></strong> (%%% item mail_log_filesize wrap_bytes %%%)%%% else %%%%%% text disabled %%%%%% endif %%%</td>
+<td class="block480">%%% if setting log_mail %%%<strong>log folder<a href="?maillog">/mail.log</a></strong> (%%% item mail_log_filesize format=bytes %%%)%%% else %%%%%% text disabled %%%%%% endif %%%</td>
 </tr>
 </tbody></table>
