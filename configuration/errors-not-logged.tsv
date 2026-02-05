@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2012-2025 Gustaf Mossakowski
+# @copyright Copyright © 2012-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 # begin = check if begin of string is identical; end = check end; all: check full
@@ -811,3 +811,6 @@ php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:
 # looking for JS, faking referers
 404	referer	*/livewire.min.js
 404	referer	*/livewire.js
+
+# script kiddies parsing srcset attributes and not knowing what they do
+404	request	*%201x,%20*
