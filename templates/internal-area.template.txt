@@ -17,7 +17,7 @@
 
 ## Help
 
-* [Markdown](%%% path default_helptext format=markdown %%%) – for formatting texts
+* [Markdown](%%% path default_helptext markdown %%%) – for formatting texts
 
 %%% section col2 %%%
 %%% rights admin %%%
