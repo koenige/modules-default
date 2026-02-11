@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -83,6 +83,7 @@ function mod_default_maintenance($params) {
 		$data[$function] = $data[$function][0];
 	}
 	$data['mysql'] = mysqli_get_server_info(wrap_db_connection());
+	$data['curl'] = mod_default_maintenance_curl();
 
 	$page['text'] = wrap_template('maintenance', $data);
 	$page['title'] = wrap_text('Maintenance');
@@ -207,4 +208,24 @@ function zz_maintenance_tables() {
 		}
 	}
 	return $data;
+}
+
+/**
+ * get cURL version
+ *
+ * @return string
+ */
+function mod_default_maintenance_curl() {
+	if (!function_exists('curl_version')) return wrap_text('not installed');
+	$version = curl_version();
+	$details = [];
+	foreach ($version as $key => $value) {
+		if (!str_ends_with($key, '_version')) continue;
+		$detail = substr($key, 0, -8);
+		if (false === stripos($value, $detail)) $value = $detail.'/'.$value;
+		$details[] = $value;
+	}
+	$text = implode(' ', $details);
+	$text = sprintf('%s (%s)', $version['version'], $text);
+	return $text;
 }

@@ -84,6 +84,7 @@
 %%% elseif zzform_upload_tools_exiftool %%%<li class="error">%%% text ExifTool not found. %%%</li>%%% endif %%%
 %%% if file %%%<li><a href="?toolinfo=file">%%% item file format=html_escape %%%</a></li>
 %%% elseif zzform_upload_tools_file %%%<li class="error">%%% text Unix file not found. %%%</li>%%% endif %%%
+%%% if curl %%%<li>cURL %%% item curl %%%</li>
 </ul>
 
 <h2>%%% text Temp and Backup Files %%%</h2>
