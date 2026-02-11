@@ -6,19 +6,23 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
+.helptext	{ --background-color-helptext: #EEE;
+			--border-color-helptext: black; }
+
 .helptext table
 			{ border-collapse: collapse; }
 .helptext thead th
-			{ border-bottom: 1px solid black; } 
+			{ border-bottom: 1px solid var(--border-color-helptext); } 
 .helptext th, .helptext td
 			{ padding: .25rem .75rem .25rem 0; }
 .helptext tr td:first-child
 			{ min-width: 10rem; }
 
 .helptext code
-			{ background: #EEE; padding: .2rem; display: inline-block; }
+			{ background: var(--background-color-helptext); padding: .2rem;
+			display: inline-block; }

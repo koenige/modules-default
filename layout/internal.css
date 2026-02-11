@@ -12,9 +12,13 @@
 
 
 /* preview */
+.%%% setting page_preview_class %%%
+		{ --background-color-preview: #C00;
+		--color-preview: white; }
 .%%% setting page_preview_class %%%::before,
 tr.%%% setting page_preview_class %%% th:first-child::before
-		{ content: " %%% text PREVIEW %%% "; background: #C00; color: white; 
+		{ content: " %%% text PREVIEW %%% "; background: var(--background-color-preview);
+		color: var(--color-preview); 
 		transform: rotate(-45deg); font-weight: bold; z-index: 1000; 
 		opacity: .8; position: absolute; left: -4em; top: 2em; 
 		padding: .75em 6em .65em 5em; }

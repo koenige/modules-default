@@ -6,11 +6,17 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2024-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2024-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
+.maintenance		{ --color-error: white; 
+					--background-color-error: #C00;
+					--color-warning: black;
+					--background-color-warning: orange;
+					--color-notice: black;
+					--background-color-notice: yellow; }
 .maintenance h2
 					{ margin-top: 2em; }
 .maintenance h2:first-child
@@ -28,12 +34,15 @@
 .maintenance .logentry
 					{ hyphens: auto; -ms-hyphens: auto; -webkit-hyphens: auto; }
 .maintenance .notice
-					{ background: yellow; }
+					{ background: var(--background-color-notice);
+					color: var(--color-notice); }
 .maintenance .warning
-					{ background: orange; }
+					{ background: var(--background-color-warning);
+					color: var(--color-warning); }
 .maintenance .error, .maintenance .parse-error, .maintenance .strict-error,
 .maintenance .fatal-error
-					{ background: #C00; color: white; }
+					{ background: var(--background-color-error);
+					color: var(--color-error); }
 
 /* maillog.template.txt */
 .mail-log .mail-body
