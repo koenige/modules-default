@@ -32,8 +32,8 @@ function mod_default_make_deprecations($params) {
 	foreach ($data as $index => $line) {
 		$data[$index]['index'] = $index;
 		// escape %%% for template output
-		$data[$index]['search_text'] = str_replace('%%%', '%%% explain', $data[$index]['search_text']);
-		$data[$index]['message'] = str_replace('%%%', '%%% explain', $data[$index]['message']);
+		$data[$index]['search_text'] = str_replace('%%%', "%%\u{200B}%", $data[$index]['search_text']);
+		$data[$index]['message'] = str_replace('%%%', "%%\u{200B}%", $data[$index]['message']);
 		$data[$index]['resolved'] = mod_default_make_deprecations_check($line);
 		if ($data[$index]['resolved']) {
 			unset($data[$index]);
