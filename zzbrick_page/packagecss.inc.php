@@ -43,8 +43,10 @@ function page_packagecss($params, $page) {
 	// include CSS from all active modules
 	$activated = wrap_setting('activated_modules');
 	// … but only main theme (at the end!)
-	if (wrap_setting('activated_themes'))
-		$activated[] = reset(wrap_setting('activated_themes'));
+	if (wrap_setting('activated_themes')) {
+		$themes = wrap_setting('activated_themes');
+		$activated[] = reset($themes);
+	}
 	
 	foreach ($activated as $package) {
 		// do not include CSS from default module
