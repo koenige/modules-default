@@ -40,25 +40,21 @@ function page_packagecss($params, $page) {
 		];
 	}
 
-	$activated = wrap_setting('activated');
-	ksort($activated); // first modules, then themes
-
-	// include CSS from all active modules, but only main theme
-	if (!empty($activated['themes']) AND count($activated['themes']) > 1)
-		$activated['themes'] = [$activated['themes'][0]];
-
-	foreach ($activated as $type => $packages) {
-		if (!$packages) continue; // 400 bad request etc.
-		foreach ($packages as $package) {
-			// do not include CSS from default module
-			if ($package === 'default') continue;
-			$file = wrap_collect_files('layout/'.$package.'.css', $package);
-			if (!$file) continue;
-			$css[] = [
-				'package' => $package,
-				'filename' => $package
-			];
-		}
+	// include CSS from all active modules
+	$activated = wrap_setting('activated_modules');
+	// … but only main theme (at the end!)
+	if (wrap_setting('activated_themes'))
+		$activated[] = reset(wrap_setting('activated_themes'));
+	
+	foreach ($activated as $package) {
+		// do not include CSS from default module
+		if ($package === 'default') continue;
+		$file = wrap_collect_files('layout/'.$package.'.css', $package);
+		if (!$file) continue;
+		$css[] = [
+			'package' => $package,
+			'filename' => $package
+		];
 	}
 	return wrap_template('packagecss', $css);
 }
