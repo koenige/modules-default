@@ -21,3 +21,4 @@
 2025-12-11-3	code	language_fr	use `language` and translation functions	
 2025-12-11-4	code	language_%s	use `language` and translation functions	
 2026-01-04-1	code	default_login_css_background_color	use `#login { --background-color-login: color }`	default/layout/login.css;default/configuration/settings.cfg
+2026-02-16-1	code	default_sync_server_path	use zzform_sync_server_path instead
