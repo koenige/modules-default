@@ -80,8 +80,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			$zz['fields'][$no]['title_tab'] = 'Categories';
 		$zz['fields'][$no]['table_name'] = $table.'_categories_'.$category['category_id'];
 		if (empty($category['no_append']))
-			$zz['fields'][$no]['unless']['export_mode']['subselect']['prefix'] = (empty($category['no_append_before']) ? '<br>' : '').'<em>'.wrap_text($category['category']).': ';
-		$zz['fields'][$no]['unless']['export_mode']['subselect']['suffix'] = '';
+			$zz['fields'][$no]['unless']['export_mode']['subselect']['prefix'] = '<p><em>'.wrap_text($category['category']).'</em>: ';
+		$zz['fields'][$no]['unless']['export_mode']['subselect']['suffix'] = empty($category['no_append']) ? '</p>' : '';
 		$zz['fields'][$no]['form_display'] = $category['form_display'] ?? 'lines';
 		$zz['fields'][$no]['hide_in_list'] = $category['hide_in_list'] ?? false;
 		if (isset($category['min_records']))
@@ -241,7 +241,7 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 }
 
 /**
- * for appended categories, add title_tab and remove first <br> if it exists
+ * for appended categories, add title_tab
  *
  * @param array $fields = $zz['fields'], will change
  * @param int $no_start
@@ -256,14 +256,6 @@ function mf_default_categories_details_tab(&$fields, $no_start, $no_end) {
 		if (empty($fields[$no])) continue;
 		if (!empty($fields[$no]['hide_in_list'])) continue;
 		$fields[$no]['title_tab'] = wrap_text('Details');
-		if (!empty($fields[$no]['unless']['export_mode']['subselect']['prefix']))
-			if (str_starts_with($fields[$no]['unless']['export_mode']['subselect']['prefix'], '<br>'))
-				$fields[$no]['unless']['export_mode']['subselect']['prefix']
-					= substr($fields[$no]['unless']['export_mode']['subselect']['prefix'], 4);
-		if (!empty($fields[$no]['subselect']['prefix']))
-			if (str_starts_with($fields[$no]['subselect']['prefix'], '<br>'))
-				$fields[$no]['subselect']['prefix']
-					= substr($fields[$no]['subselect']['prefix'], 4);
 		$marked = true;
 	}
 	return $marked;
