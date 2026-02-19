@@ -17,7 +17,10 @@
 #login fieldset
 			{ position: relative; border: none; margin: 2.5rem 0 1rem;
 			display: grid; grid-template-columns: 9rem 12.5rem; gap: .5rem;
-			background: var(--background-color-login) url(%%% setting layout_path %%%/%%% setting active_theme %%%/zugzwang-stripes.png) repeat-y 100% 0;
+			background: var(--background-color-login) repeat-y 100% 0;
+%%% if setting active_theme %%%
+			background-url(%%% setting layout_path %%%/%%% setting active_theme %%%/zugzwang-stripes.png);
+%%% endif %%%
 			background-size: 75%; padding: 1.5rem 1rem 1rem; border-radius: 3px; }
 #login legend
 			{ position: absolute; padding: .75rem 1rem; transform: translateY(-50%);
