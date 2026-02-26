@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/tournaments
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -118,12 +118,11 @@ function mod_default_make_jobmanager_add($data) {
 	$sql = 'SELECT job_id
 		FROM _jobqueue
 		WHERE job_url = "%s"
-		AND website_id = %d
+		AND website_id = /*_SETTING website_id _*/
 		AND (ISNULL(wait_until) OR wait_until <= %s)
 		AND job_status IN (%s"not_started", "failed")';
 	$sql = sprintf($sql
 		, $data['url']
-		, wrap_setting('website_id') ?? 1
 		, !empty($data['wait_until']) ? sprintf('"%s"', $data['wait_until']) : "NOW()"
 		, !empty($data['sequential']) ? '"running", ' : ''
 	);
@@ -158,7 +157,7 @@ function mod_default_make_jobmanager_add($data) {
 		'username' => wrap_username(),
 		'priority' => $data['priority'] ?? 0,
 		'wait_until' => $data['wait_until'] ?? NULL,
-		'website_id' => wrap_setting('website_id') ?? 1,
+		'website_id' => wrap_setting('website_id'),
 		'lock_hash' => wrap_lock_hash(),
 		'postdata' => $postdata ? http_build_query($postdata) : ''
 	];
@@ -184,7 +183,7 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 			ON _jobqueue.job_category_id = categories.category_id
 		WHERE job_status IN (%s"not_started", "failed")
 		AND (ISNULL(wait_until) OR wait_until <= NOW())
-		AND website_id = %d
+		AND website_id = /*_SETTING website_id _*/
 		%s
 		HAVING (running_jobs < max_request OR max_request = "")
 		ORDER BY priority ASC, try_no ASC, created ASC
@@ -192,7 +191,6 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 	$sql = sprintf($sql
 		, $job_id
 		, !empty($_POST['sequential']) ? '"running", ' : ''
-		, wrap_setting('website_id') ?? 1
 		, ($job_id ? sprintf('AND job_id = %d', $job_id) : '')
 	);
 	wrap_job_debug('JOB QUERY '.$sql);
@@ -424,7 +422,7 @@ function mod_default_make_jobmanager_check() {
 		LEFT JOIN categories
 			ON _jobqueue.job_category_id = categories.category_id
 		WHERE job_url = "%s"
-		AND website_id = %d
+		AND website_id = /*_SETTING website_id _*/
 		AND job_status IN ("not_started", "running", "failed")
 		ORDER BY IF(job_status = "not_started", 1, NULL)
 			, IF(job_status = "running", 1, NULL)
@@ -434,7 +432,6 @@ function mod_default_make_jobmanager_check() {
 	';
 	$sql = sprintf($sql
 		, wrap_db_escape(wrap_setting('request_uri'))
-		, wrap_setting('website_id') ?? 1
 	);
 	$jobs = wrap_db_fetch($sql, 'job_id');
 	

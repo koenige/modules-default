@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023, 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -38,12 +38,11 @@ function mf_default_search($q) {
 		AND live = "yes"
 		AND identifier NOT LIKE "%%*%%"
 		AND (ISNULL(parameters) OR parameters NOT LIKE "%%&search=0%%")
-		AND website_id = %d
+		AND website_id = /*_SETTING website_id _*/
 		ORDER BY identifier';
 	$sql = sprintf($sql
 		, implode(' AND ', $where)
 		, $t_where ? ' OR '.$t_where : ''
-		, wrap_setting('website_id') ?? 1
 	);
 	$data['default'][0]['webpages'] = wrap_db_fetch($sql, 'page_id');
 	if (!$data['default'][0]['webpages'])
