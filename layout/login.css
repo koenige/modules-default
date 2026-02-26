@@ -19,7 +19,7 @@
 			display: grid; grid-template-columns: 9rem 12.5rem; gap: .5rem;
 			background: var(--background-color-login) repeat-y 100% 0;
 %%% if setting active_theme %%%
-			background-url(%%% setting layout_path %%%/%%% setting active_theme %%%/zugzwang-stripes.png);
+			background-image: url(%%% setting layout_path %%%/%%% setting active_theme %%%/zugzwang-stripes.png);
 %%% endif %%%
 			background-size: 75%; padding: 1.5rem 1rem 1rem; border-radius: 3px; }
 #login legend
