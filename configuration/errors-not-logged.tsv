@@ -815,3 +815,7 @@ php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:
 
 # script kiddies parsing srcset attributes and not knowing what they do
 404	request	*%201x,%20*
+
+# M4 PDF Extension of some shop
+404	begin	/modules/m4pdf/tpl
+404	begin	/module/m4pdf/pdf?ajax=1
