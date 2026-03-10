@@ -551,3 +551,12 @@
 /* 2026-01-04-8 */	ALTER TABLE `languages_categories` ADD `language_tag` varchar(25) COLLATE 'latin1_general_ci' NOT NULL AFTER `category_id`;
 /* 2026-01-04-9 */	ALTER TABLE `languages_categories` ADD UNIQUE `language_tag` (`language_tag`);
 /* 2026-01-04-10 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Neutral', NULL, /*_ID categories language/register _*/, 'language/register/neutral', '&alias=language/register/neutral', 1, NOW());
+/* 2026-03-10-1 */	DELETE FROM _settings WHERE setting_key = 'default_helptext_path';
+/* 2026-03-10-2 */	DELETE FROM _settings WHERE setting_key = 'default_logout_path';
+/* 2026-03-10-3 */	DELETE FROM _settings WHERE setting_key = 'default_maintenance_path';
+/* 2026-03-10-4 */	DELETE FROM _settings WHERE setting_key = 'default_masquerade_path';
+/* 2026-03-10-5 */	DELETE FROM _settings WHERE setting_key = 'default_proxy_path';
+/* 2026-03-10-6 */	DELETE FROM _settings WHERE setting_key = 'default_settings_path';
+/* 2026-03-10-7 */	DELETE FROM _settings WHERE setting_key = 'default_tables_path';
+/* 2026-03-10-8 */	DELETE FROM _settings WHERE setting_key = 'default_website_path';
+/* 2026-03-10-9 */	DELETE FROM _settings WHERE setting_key = 'search_path';
