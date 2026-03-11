@@ -1014,48 +1014,6 @@ msgstr ""
 msgid "Single sign on: possible login period expired."
 msgstr "Tek oturum açma: olası oturum açma süresi sona erdi."
 
-#: zzbrick_request/thumbnails.inc.php
-msgid "Thumbnail creation"
-msgstr "Küçük resim oluşturma"
-
-#: zzbrick_request/thumbnails.inc.php
-msgid ""
-"Here, you can create either missing thumbnails, if they were not created on "
-"upload. Or you can create completely new thumbnails if you changed the pixel "
-"size."
-msgstr ""
-"Burada, yükleme sırasında oluşturulmamışlarsa eksik küçük resimler "
-"oluşturabilirsiniz. Veya piksel boyutunu değiştirdiyseniz tamamen yeni küçük "
-"resimler oluşturabilirsiniz."
-
-#: zzbrick_request/thumbnails.inc.php
-msgid "Sorry, but the table script %s could not be found."
-msgstr "Üzgünüz, ancak tablo komut dosyası %s bulunamadı."
-
-#: zzbrick_request/thumbnails.inc.php
-msgid "The original file does not exist."
-msgstr "Orijinal dosya mevcut değil."
-
-#: zzbrick_request/thumbnails.inc.php
-msgid "The function %s does not exist."
-msgstr "0] işlevi mevcut değildir."
-
-#: zzbrick_request/thumbnails.inc.php
-msgid "Thumbnail for %s × %s px was created."
-msgstr "0] × %s piksel için küçük resim oluşturuldu."
-
-#: zzbrick_request/thumbnails.inc.php
-msgid "Thumbnail for %s × %s px could not be created."
-msgstr "0] × %s piksel için küçük resim oluşturulamadı."
-
-#: zzbrick_request/thumbnails.inc.php
-msgid "No missing thumbnails were found."
-msgstr "Eksik küçük resim bulunamadı."
-
-#: zzbrick_request/thumbnails.inc.php
-msgid "The original file does not contain any data."
-msgstr "Orijinal dosya herhangi bir veri içermez."
-
 #: zzbrick_tables/categories.template.php
 msgid "Property"
 msgstr "Emlak"
