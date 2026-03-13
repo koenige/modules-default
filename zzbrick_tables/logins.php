@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012, 2016, 2018-2019, 2021-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2016, 2018-2019, 2021-2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -125,7 +125,7 @@ if ($logins = wrap_category_id('logins', 'list') AND count($logins) > 1) {
 	$zz['fields'][20]['display_field'] = 'login_category';
 	$zz['fields'][20]['search'] = 'login_categories.category';
 	$zz['fields'][20]['character_set'] = 'utf8';
-	$zz['fields'][20]['add_details'] = sprintf('categories?filter[maincategory]=%d', wrap_category_id('logins'));
+	$zz['fields'][20]['add_details'] = wrap_path('default_categorytree', 'logins');
 	$zz['fields'][20]['show_hierarchy'] = 'main_category_id';
 	$zz['fields'][20]['show_hierarchy_subtree'] = wrap_category_id('logins');
 	$zz['fields'][20]['hide_in_list_if_empty'] = true;
