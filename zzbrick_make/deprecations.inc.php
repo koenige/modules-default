@@ -45,6 +45,8 @@ function mod_default_make_deprecations($params) {
 			// pattern not found in code, mark as resolved automatically
 			mod_default_make_deprecations_log($line, 'not_found');
 			unset($data[$index]);
+		} elseif ($data[$index]['found'] === -1) {
+			unset($data[$index]['found']);
 		}
 	}
 	
@@ -120,6 +122,9 @@ function mod_default_make_deprecations_scan($line) {
 	$type = $line['type'] ?? 'code';
 	
 	switch ($type) {
+		case 'breaking':
+			// no scan, show as informational only
+			return -1;
 		case 'filename':
 			return mod_default_make_deprecations_scan_filename($line);
 		case 'code_regex':
