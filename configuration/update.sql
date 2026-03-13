@@ -560,3 +560,4 @@
 /* 2026-03-10-7 */	DELETE FROM _settings WHERE setting_key = 'default_tables_path';
 /* 2026-03-10-8 */	DELETE FROM _settings WHERE setting_key = 'default_website_path';
 /* 2026-03-10-9 */	DELETE FROM _settings WHERE setting_key = 'search_path';
+/* 2026-03-14-1 */	DELETE FROM _settings WHERE setting_key = 'default_categories_form_path';
