@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2012, 2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2012, 2021, 2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -27,5 +27,5 @@ function mod_default_masquerade($params) {
 
 	wrap_session_start();
 	wrap_register($params[0]);
-	wrap_redirect_change(wrap_domain_path('login_entry'));
+	wrap_redirect_change(wrap_path('login_entry'));
 }

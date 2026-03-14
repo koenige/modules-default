@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2015, 2018, 2020-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2015, 2018, 2020-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -17,7 +17,7 @@ $zz = zzform_include('logins');
 
 // just allow access for login table to own login ID
 if (empty($_SESSION['login_id'])) {
-	$login_url = wrap_domain_path('login_entry');
+	$login_url = wrap_path('login_entry');
 	$redirect_after_login = wrap_setting('request_uri');
 	wrap_redirect($login_url.'?url='.urlencode($redirect_after_login), 307);
 }
@@ -60,7 +60,7 @@ $zz['record']['no_timeframe'] = true;
 if (!empty($_GET['url']) AND !is_array($_GET['url']))
 	$zz['record']['redirect']['successful_update'] = $_GET['url'];
 if (empty($_GET['referer']))
-	$zz['page']['referer'] = wrap_domain_path('login_entry');
+	$zz['page']['referer'] = wrap_path('login_entry');
 
 wrap_text_set('Edit a record', 'Change My Password');
 
