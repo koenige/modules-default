@@ -1707,3 +1707,7 @@ msgstr "Ausgenommen"
 #: templates/deprecations.template.txt
 msgid "Breaking change, manual check needed"
 msgstr "Inkompatible Änderung, manuelle Überprüfung erforderlich"
+
+#: templates/deprecations.template.txt
+msgid "Package"
+msgstr "Paket"
