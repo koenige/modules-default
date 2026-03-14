@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -21,6 +21,14 @@ if (!$category_id = wrap_category_id($brick['vars'][0]))
 $zz = zzform_include('categories');
 if (!empty($brick['local_settings']['title']))
 	$zz['title'] = $brick['local_settings']['title'];
+else {
+	$sql = sprintf('SELECT category_id, category
+		FROM categories
+		WHERE category_id = %d', $category_id);
+	$category = wrap_db_fetch($sql);
+	$category = wrap_translate($category, 'categories');
+	$zz['subtitle']['text'] = $category['category'];
+}
 
 $zz['fields'][4]['show_hierarchy_subtree'] = $category_id;
 $zz['fields'][4]['show_hierarchy_use_top_value_instead_NULL'] = true;
