@@ -30,12 +30,15 @@ if (wrap_setting('login_with_contact_id')) {
 	$zz['fields'][11]['sql_character_set'][1] = 'utf8'; 
 	$zz['fields'][11]['display_field'] = 'contact';
 	$zz['fields'][11]['link'] = [
-		'function' => 'mf_contacts_profile_path',
-		'fields' => ['identifier', 'contact_parameters']
+		'area' => 'contacts_profile[%s]',
+		'area_fields' => ['contact_scope'],
+		'fields' => ['identifier']
 	];
 	$zz['fields'][11]['unique'] = true;
 	$zz['fields'][11]['class'] = 'block480a';
 	$zz['fields'][11]['character_set'] = 'utf8';
+	$zz['fields'][11]['list_format'] = 'nl2br';
+	$zz['fields'][11]['add_details'] = wrap_path('contacts_general');
 }
 
 if (wrap_access('default_masquerade')) {
@@ -152,6 +155,10 @@ if (wrap_setting('login_with_contact_id')) {
 			, /*_PREFIX_*/contacts.identifier AS username
 			, IF(ISNULL(last_click), last_click, FROM_UNIXTIME(last_click, "%Y-%m-%d %H:%i")) AS last_click
 			, contact_categories.parameters AS contact_parameters
+			, (CASE WHEN LOCATE("&type=", contact_categories.parameters) > 0 THEN
+				SUBSTRING_INDEX(SUBSTRING_INDEX(contact_categories.parameters, "&type=", -1), "&", 1)
+				ELSE "*" END
+			) AS contact_scope
 			, login_categories.category AS login_category
 		FROM /*_PREFIX_*/logins
 		LEFT JOIN /*_PREFIX_*/persons USING (contact_id)
