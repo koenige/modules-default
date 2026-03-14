@@ -8,9 +8,9 @@
 # @copyright Copyright © 2022-2023, 2025-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
-%%% if search_url | setting search_path %%%
+%%% if search_url | path search %%%
 <div class="searchform noprint">
-<form method="GET" action="%%% if search_url %%%%%% item search_url %%%%%% else %%%%%% setting base %%%%%% setting search_path %%%%%% endif %%%">
+<form method="GET" action="%%% if search_url %%%%%% item search_url %%%%%% else %%%%%% path search %%%%%% endif %%%">
 %%% if form_text %%%
 <p>%%% item form_text %%%</p>
 %%% endif %%%
