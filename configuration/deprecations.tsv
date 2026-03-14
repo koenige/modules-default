@@ -1,9 +1,9 @@
 # default module
-# Deprecated code patterns
+# Deprecated code patterns and breaking changes
 #
-# This file lists deprecated code patterns that should be replaced
-# with newer alternatives. The deprecation checker will scan the
-# codebase and notify developers about occurrences that need updating.
+# This file lists deprecated code patterns (replace with newer alternatives)
+# and breaking changes (migration notes). The checker scans the codebase
+# for deprecations; breaking changes are shown as informational only.
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/default
@@ -23,3 +23,13 @@
 2026-01-04-1	code	default_login_css_background_color	use `#login { --background-color-login: color }`	default/layout/login.css;default/configuration/settings.cfg
 2026-02-16-1	code	default_sync_server_path	use zzform_sync_server_path instead
 2026-03-14-1	code	?filter[maincategory]=%	use path `default_categorytree` instead	default/configuration/routes.cfg;zzwrap/zzwrap/settings.inc.php
+2026-03-14-2	code	default_helptext_path	removed, paths from routes; use wrap_path()
+2026-03-14-3	code	default_logout_path	removed, paths from routes; use wrap_path()
+2026-03-14-4	code	default_maintenance_path	removed, paths from routes; use wrap_path()
+2026-03-14-5	code	default_masquerade_path	removed, paths from routes; use wrap_path()
+2026-03-14-6	code	default_proxy_path	removed, paths from routes; use wrap_path()
+2026-03-14-7	code	default_settings_path	removed, paths from routes; use wrap_path()
+2026-03-14-8	code	default_tables_path	removed, paths from routes; use wrap_path()
+2026-03-14-9	code	default_website_path	removed, paths from routes; use wrap_path()
+2026-03-14-10	code	search_path	removed, paths from routes; use wrap_path()
+2026-03-14-11	code	default_categories_form_path	removed, paths from routes; use wrap_path()
