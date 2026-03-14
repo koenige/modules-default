@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: configuration/access.cfg
 msgid "Adminer MySQL database administration"
@@ -1703,3 +1703,7 @@ msgstr "Speichern"
 #: templates/deprecations.template.txt
 msgid "Excluding"
 msgstr "Ausgenommen"
+
+#: templates/deprecations.template.txt
+msgid "Breaking change, manual check needed"
+msgstr "Inkompatible Änderung, manuelle Überprüfung erforderlich"

@@ -33,7 +33,12 @@
 <td>%%% item package %%%</td>
 <td>%%% item identifier %%%</td>
 <td>
+%%% switch type %%%
+%%% case breaking %%%
+<p><em>%%% text Breaking change, manual check needed %%%</em></p>
+%%% default %%%
 <p><code>%%% item search_text format=html_escape %%%</code></p>
+%%% switch - %%%
 <p>%%% item message format[]=html_escape format[]=markdown_inline %%%</p>
 %%% if exclude_pattern %%%
 <p class="block480a"><small>%%% text Excluding %%%: <code>%%% item exclude_pattern format=html_escape %%%</code></small></p>

@@ -1641,3 +1641,7 @@ msgstr ""
 #: templates/deprecations.template.txt
 msgid "Excluding"
 msgstr ""
+
+#: templates/deprecations.template.txt
+msgid "Breaking change, manual check needed"
+msgstr ""
