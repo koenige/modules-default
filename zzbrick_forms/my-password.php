@@ -56,6 +56,7 @@ $zz['explanation'] = markdown(
 $zz['access'] = 'edit_only';
 $zz['hooks']['after_update'] = 'mf_default_password_update';
 $zz['record']['no_timeframe'] = true;
+$zz['page']['query_strings'] = ['url'];
 
 if (!empty($_GET['url']) AND !is_array($_GET['url']))
 	$zz['record']['redirect']['successful_update'] = $_GET['url'];
