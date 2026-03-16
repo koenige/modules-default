@@ -102,5 +102,7 @@ function mod_default_sso($params) {
 	// if it's not in the user database, must be on one of the remote login servers
 	// user will be logged in (fill $_SESSION);
 	wrap_include('zzbrick_request/login', 'zzwrap');
-	return mod_zzwrap_login(['Single Sign On', $via, $token, $username, $context]);
+	$page = mod_zzwrap_login(['Single Sign On', $via, $token, $username, $context]);
+	$page['query_strings'] = array_merge($page['query_strings'] ?? [], ['username', 'context', 'url', 'token', 'start', 'end', 'hash']);
+	return $page;
 }
