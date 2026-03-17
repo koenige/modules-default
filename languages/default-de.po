@@ -1622,6 +1622,22 @@ msgstr "Ignorieren"
 msgid "Database Updates"
 msgstr "Datenbank-Aktualisierungen"
 
+#: templates/dbupdate.template.txt
+msgid "Show full history"
+msgstr "Gesamte Chronik anzeigen"
+
+#: templates/dbupdate.template.txt
+msgid "Back to Database Updates"
+msgstr "Zurück zu Datenbank-Aktualisierungen"
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "History"
+msgstr "Chronik"
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "Database Updates History"
+msgstr "Chronik der Datenbank-Aktualisierungen"
+
 #: zzbrick_make/jobmanager.inc.php
 msgid "The job should start later."
 msgstr "Der Job soll erst später starten."

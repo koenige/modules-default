@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -44,6 +44,16 @@ function mod_default_make_dbupdate($params) {
 			unset($data[$index]);
 		}
 	}
+
+	// after unsetting entries, normalize indices and current position
+	$data = array_values($data);
+	unset($current);
+	foreach ($data as $i => $line) {
+		if (!empty($line['current'])) {
+			$current = $i;
+			break;
+		}
+	}
 	
 	if ($_SERVER['REQUEST_METHOD'] === 'POST'
 		AND isset($current) AND array_key_exists($current, $data)
@@ -54,10 +64,25 @@ function mod_default_make_dbupdate($params) {
 			mod_default_make_dbupdate_ignore($data[$current]);
 	}
 
+	$history = !empty($params[0]) && $params[0] === 'history';
+	if ($history) {
+		$page['title'] = wrap_text('Database Updates History');
+		$page['breadcrumbs'][] = ['title' => wrap_text('Database Updates'), 'url_path' => '?dbupdate'];
+		$page['breadcrumbs'][]['title'] = wrap_text('History');
+	} else {
+		$past_limit = wrap_setting('default_dbupdate_past_limit');
+		if (isset($current))
+			$data = array_slice($data, max(0, $current - $past_limit));
+		else
+			$data = array_slice($data, -$past_limit);
+		$data = array_values($data);
+		$page['title'] = wrap_text('Database Updates');
+		$page['breadcrumbs'][]['title'] = wrap_text('Database Updates');
+	}
+
+	$data['history'] = $history;
 	$page['text'] = wrap_template('dbupdate', $data);
 	$page['text'] = str_replace('%%%', '%%&#8239;%', $page['text']);
-	$page['title'] = wrap_text('Database Updates');
-	$page['breadcrumbs'][]['title'] = wrap_text('Database Updates');
 	return $page;
 }
 
@@ -169,7 +194,7 @@ function mod_default_make_dbupdate_update($line) {
 		}
 		if ($log) zz_db_log($line['query'], 'Maintenance robot 476');
 		mod_default_make_dbupdate_log($line, 'update');
-		wrap_redirect_change();
+		wrap_redirect_change('#current');
 	}
 	wrap_error('Could not update database', E_USER_ERROR);
 }
@@ -182,7 +207,7 @@ function mod_default_make_dbupdate_update($line) {
  */
 function mod_default_make_dbupdate_ignore($line) {
 	mod_default_make_dbupdate_log($line, 'ignore');
-	wrap_redirect_change();
+	wrap_redirect_change('#current');
 }
 
 /**

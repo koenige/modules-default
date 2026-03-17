@@ -1565,6 +1565,14 @@ msgstr ""
 msgid "Database Updates"
 msgstr ""
 
+#: zzbrick_make/dbupdate.inc.php
+msgid "History"
+msgstr ""
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "Database Updates History"
+msgstr ""
+
 #: zzbrick_make/jobmanager.inc.php
 msgid "The job should start later."
 msgstr ""
