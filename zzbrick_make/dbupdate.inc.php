@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -44,20 +44,87 @@ function mod_default_make_dbupdate($params) {
 			unset($data[$index]);
 		}
 	}
-	
+
+	// after unsetting entries, normalize indices and current position
+	$data = array_values($data);
+	foreach ($data as $i => $line) $data[$i]['index'] = $i;
+	unset($current);
+	foreach ($data as $i => $line) {
+		if (!empty($line['current'])) {
+			$current = $i;
+			break;
+		}
+	}
+
+	// POST update/ignore: same handler for form submit and XHR
 	if ($_SERVER['REQUEST_METHOD'] === 'POST'
 		AND isset($current) AND array_key_exists($current, $data)
 		AND isset($_POST['index']) AND strval($current) === strval($_POST['index'])) {
-		if (array_key_exists('update', $_POST))
-			mod_default_make_dbupdate_update($data[$current]);
-		elseif (array_key_exists('ignore', $_POST))
-			mod_default_make_dbupdate_ignore($data[$current]);
+		$is_xhr = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+		if (array_key_exists('update', $_POST)) {
+			$ok = mod_default_make_dbupdate_update($data[$current], $is_xhr);
+			if ($is_xhr) return mod_default_make_dbupdate_json_response($data, $current, $ok);
+		} elseif (array_key_exists('ignore', $_POST)) {
+			mod_default_make_dbupdate_ignore($data[$current], $is_xhr);
+			if ($is_xhr) return mod_default_make_dbupdate_json_response($data, $current, true);
+		}
 	}
 
+	$history = !empty($params[0]) && $params[0] === 'history';
+	if ($history) {
+		$page['title'] = wrap_text('Database Updates History');
+		$page['breadcrumbs'][] = ['title' => wrap_text('Database Updates'), 'url_path' => '?dbupdate'];
+		$page['breadcrumbs'][]['title'] = wrap_text('History');
+	} else {
+		$past_limit = wrap_setting('default_dbupdate_past_limit');
+		if (isset($current))
+			$data = array_slice($data, max(0, $current - $past_limit));
+		else
+			$data = array_slice($data, -$past_limit);
+		$data = array_values($data);
+		$page['title'] = wrap_text('Database Updates');
+		$page['breadcrumbs'][]['title'] = wrap_text('Database Updates');
+	}
+
+	$data['history'] = $history;
+	$data['no_pending'] = !$history && !isset($current);
 	$page['text'] = wrap_template('dbupdate', $data);
 	$page['text'] = str_replace('%%%', '%%&#8239;%', $page['text']);
-	$page['title'] = wrap_text('Database Updates');
-	$page['breadcrumbs'][]['title'] = wrap_text('Database Updates');
+	return $page;
+}
+
+/**
+ * return JSON for XHR after update/ignore
+ *
+ * @param array $data
+ * @param int $current
+ * @param bool $ok
+ * @return array $page
+ */
+function mod_default_make_dbupdate_json_response($data, $current, $ok) {
+	$page = [];
+	$page['content_type'] = 'json';
+	if (isset($_GET['dbupdate'])) $page['query_strings'][] = 'dbupdate';
+	if (!$ok) {
+		$page['status'] = 500;
+		$page['text'] = json_encode(['ok' => false, 'error' => wrap_text('Could not update database.')]);
+		return $page;
+	}
+	$next_index = null;
+	for ($i = $current + 1; $i < count($data); $i++) {
+		if (mod_default_make_dbupdate_check($data[$i]) === false) {
+			$next_index = $i;
+			break;
+		}
+	}
+	$done = $next_index === null;
+	$out = ['ok' => true, 'done' => $done, 'next_index' => $next_index];
+	if ($done) {
+		$count = isset($_POST['count']) && is_numeric($_POST['count']) ? (int) $_POST['count'] : 1;
+		$out['message'] = wrap_text('%d queries were executed.', ['values' => [$count]])
+			. ' ' . wrap_text('No pending SQL updates.');
+	}
+	$page['text'] = json_encode($out);
 	return $page;
 }
 
@@ -152,12 +219,13 @@ function mod_default_make_dbupdate_check($line) {
 }
 
 /**
- * do update
+ * do update (same logic for form submit and XHR; $ajax true = return bool, false = redirect or error)
  *
  * @param array $line
- * @return void
+ * @param bool $ajax
+ * @return bool
  */
-function mod_default_make_dbupdate_update($line) {
+function mod_default_make_dbupdate_update($line, $ajax = false) {
 	wrap_include('database', 'zzform');
 
 	$result = wrap_db_query($line['query']);
@@ -169,8 +237,10 @@ function mod_default_make_dbupdate_update($line) {
 		}
 		if ($log) zz_db_log($line['query'], 'Maintenance robot 476');
 		mod_default_make_dbupdate_log($line, 'update');
-		wrap_redirect_change();
+		if ($ajax) return true;
+		wrap_redirect_change('#current');
 	}
+	if ($ajax) return false;
 	wrap_error('Could not update database', E_USER_ERROR);
 }
 
@@ -178,11 +248,12 @@ function mod_default_make_dbupdate_update($line) {
  * ignore update
  *
  * @param array $line
+ * @param bool $ajax
  * @return void
  */
-function mod_default_make_dbupdate_ignore($line) {
+function mod_default_make_dbupdate_ignore($line, $ajax = false) {
 	mod_default_make_dbupdate_log($line, 'ignore');
-	wrap_redirect_change();
+	if (!$ajax) wrap_redirect_change('#current');
 }
 
 /**

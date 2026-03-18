@@ -1565,6 +1565,32 @@ msgstr ""
 msgid "Database Updates"
 msgstr ""
 
+#: zzbrick_make/dbupdate.inc.php
+msgid "History"
+msgstr ""
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "Database Updates History"
+msgstr ""
+
+#: templates/dbupdate.template.txt
+msgid "Run all pending"
+msgstr ""
+
+#: templates/dbupdate.template.txt zzbrick_make/dbupdate.inc.php
+msgid "No pending SQL updates."
+msgstr ""
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "1 query was executed."
+msgid_plural "%d queries were executed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "Could not update database."
+msgstr ""
+
 #: zzbrick_make/jobmanager.inc.php
 msgid "The job should start later."
 msgstr ""

@@ -1622,6 +1622,40 @@ msgstr "Ignorieren"
 msgid "Database Updates"
 msgstr "Datenbank-Aktualisierungen"
 
+#: templates/dbupdate.template.txt
+msgid "Show full history"
+msgstr "Gesamte Chronik anzeigen"
+
+#: templates/dbupdate.template.txt
+msgid "Back to Database Updates"
+msgstr "Zurück zu Datenbank-Aktualisierungen"
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "History"
+msgstr "Chronik"
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "Database Updates History"
+msgstr "Chronik der Datenbank-Aktualisierungen"
+
+#: templates/dbupdate.template.txt
+msgid "Run all pending"
+msgstr "Alle offenen ausführen"
+
+#: templates/dbupdate.template.txt zzbrick_make/dbupdate.inc.php
+msgid "No pending SQL updates."
+msgstr "Keine offenen SQL-Updates."
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "1 query was executed."
+msgid_plural "%d queries were executed."
+msgstr[0] "1 Abfrage wurde ausgeführt."
+msgstr[1] "%d Abfragen wurden ausgeführt."
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "Could not update database."
+msgstr "Datenbank konnte nicht aktualisiert werden."
+
 #: zzbrick_make/jobmanager.inc.php
 msgid "The job should start later."
 msgstr "Der Job soll erst später starten."

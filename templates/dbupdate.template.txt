@@ -5,12 +5,16 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2020, 2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="zzform" class="maintenance">
 
-<h2>%%% text Database Updates %%%</h2>
+%%% if history %%%
+<p><a href="?dbupdate">%%% text Back to Database Updates %%%</a></p>
+%%% else %%%
+<p><a href="?dbupdate=history">%%% text Show full history %%%</a></p>
+%%% endif %%%
 
 <form action="" method="POST">
 <table class="data">
@@ -19,7 +23,7 @@
 </thead>
 <tbody>
 %%% loop start %%%
-<tr %%% if current %%%id="current" %%% endif %%%class="%%% loopposition uneven un %%%even%%% if exists %%% exists%%% elseif current %%% current_record%%% endif %%%">
+<tr data-index="%%% item index %%%" %%% if current %%%id="current" %%% endif %%%class="%%% loopposition uneven un %%%even%%% if exists %%% exists%%% elseif current %%% current_record%%% endif %%%">
 <td>%%% item date %%%</td>
 <td>%%% item module %%%</td>
 <td>%%% item query %%%
@@ -28,6 +32,7 @@
 <input type="hidden" name="index" value="%%% item index %%%">
 <input type="submit" name="update" value="%%% text Update %%%">
 <input type="submit" name="ignore" value="%%% text Ignore %%%">
+<button type="button" id="dbupdate-run-all">%%% text Run all pending %%%</button>
 </p>
 %%% endif %%%
 </td>
@@ -36,5 +41,17 @@
 </tbody>
 </table>
 </form>
+
+%%% unless history %%%
+%%% if no_pending %%%
+<p id="dbupdate-message" class="error">%%% text No pending SQL updates. %%%</p>
+%%% else %%%
+<p id="dbupdate-message" class="error" style="display:none"></p>
+%%% endif %%%
+%%% endif %%%
+
+%%% unless history %%%
+%%% script default/dbupdate.js %%%
+%%% endif %%%
 
 </div>
