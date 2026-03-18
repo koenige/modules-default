@@ -57,39 +57,20 @@
 404	end	/undefinedsf_main.jsp?clientVersion=null&dlsource=null&CTID=null&userId=userIdFail&statsReporter=false
 404	end	/6_S3_
 
-# WordPress login, config and bugs
-404	end	/wp-login.php
+# WordPress (probes: */wp-* below); xmlrpc etc. without wp- path
 404	end	/xmlrpc.php
 503	end	/xmlrpc.php
-404	all	/wp-includes/wlwmanifest.xml
-404	all	/wp-includes/css/buttons.css
-404	request	*wp-config.*
 503	request	*wp-config.*
-404	end	/wp-content/uploads/2015/08/info.php
 404	end	/wordpr
-404	end	/wp-admin
-404	end	/wp-admin/
-404	begin	/wp-admin/
-404	begin	/wp-content/plugins/Login-wall-etgFB/login_wall.php
-404	all	/wp-includes/pomo/index.php?php
-404	all	/wp-content/uploads/sites/rwb.php?php
-404	all	/wp-admin/includes/images.php?php
-404	all	/wp-content/uploads/woo.php
-404	end	/wp-foot.php
-404	all	/wp-content/
-404	end	/wp-content/plugins/logo_img.php
 404	end	/license.php
-404	end	/wp-admin/admin-ajax.php
 404	end	/uploadify/uploadify.php?folder=/
-404	begin	/wp-admin/admin-post.php?swp_debug=load_options&swp_url=
-404	end	/wp-json/wp/v2/users
-404	end	/wp-json/api/v2/user/register
 404	end	/license.txt
-404	request	*/wp-includes/*
-404	begin	/wp-content/plugins
 404	referer	*/wp-login.php
-404	begin	/wp-json/
-404	begin	/wp-content/themes/
+404	request	*/wp-*.php
+404	request	*/wp-admin*
+404	request	*/wp-content*
+404	request	*/wp-includes*
+404	request	*/wp-json*
 
 # Joomla
 404	end	/administrator/index.php
@@ -774,9 +755,6 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 404	end	/yanz.php
 404	end	/zuk.php
 404	end	/zwso.php
-404	request	*/wp-*.php
-404	request	*/wp-admin/*
-404	request	*/wp-content/*
 
 # trying to check all kinds of icons
 404	referer	https://example.org/
