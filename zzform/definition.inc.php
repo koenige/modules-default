@@ -83,6 +83,12 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			$zz['fields'][$no]['unless']['export_mode']['subselect']['prefix'] = '<p><em>'.wrap_text($category['category']).'</em>: ';
 		$zz['fields'][$no]['unless']['export_mode']['subselect']['suffix'] = empty($category['no_append']) ? '</p>' : '';
 		$zz['fields'][$no]['form_display'] = $category['form_display'] ?? 'lines';
+		if ($zz['fields'][$no]['form_display'] === 'key_value') {
+			if (empty($def['property'])) wrap_error('You need a property field if using `key_value` subtables.');
+			$zz['fields'][$no]['fields'][$def['category_id']]['subtable_key'] = true;
+			$zz['fields'][$no]['fields'][$def['property']]['subtable_value'] = true;
+			$zz['fields'][$no]['fields'][$def['property']]['size'] = 32;
+		}
 		$zz['fields'][$no]['hide_in_list'] = $category['hide_in_list'] ?? false;
 		if (isset($category['min_records']))
 			$zz['fields'][$no]['min_records'] = intval($category['min_records']);
