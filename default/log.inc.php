@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -150,10 +150,13 @@ function mf_default_log_line($line, $types = []) {
 	$out['error'] = str_replace('<', '&lt;', implode(' ', $tokens));
 
 	$post = false;
+	$error_from_wrap_print = false;
 	if (str_starts_with($out['error'], 'POST[json] ')) {
 		$post = @json_decode(substr($out['error'], 11), true);
-		if ($post)
+		if ($post) {
 			$out['error'] = 'POST '.wrap_print($post);
+			$error_from_wrap_print = true;
+		}
 	} elseif (preg_match('/^\[json\](\d*)\s/', $out['error'], $matches)) {
 		$post = @json_decode(trim(substr($out['error'], strlen($matches[0]))), true);
 		if ($post) {
@@ -164,6 +167,7 @@ function mf_default_log_line($line, $types = []) {
 				$counter--;
 			}
 			$out['error'] = implode(' – ', $text).' '.wrap_print($post);
+			$error_from_wrap_print = true;
 		}
 	}
 	if (!$post) {
@@ -176,9 +180,11 @@ function mf_default_log_line($line, $types = []) {
 	if (stristr($out['error'], 'http:/<wbr>/<wbr>') OR stristr($out['error'], 'https:/<wbr>/<wbr>')) {
 		$out['error'] = preg_replace_callback('~(\S+):/<wbr>/<wbr>(\S+)~', 'mf_default_log_url', $out['error']);
 	}
-	$out['error'] = str_replace(',', ', ', $out['error']);
-	$out['error'] = zz_list_word_split($out['error']);
-	$out['error'] = zz_mark_search_string($out['error']);
+	if (!$error_from_wrap_print) {
+		$out['error'] = str_replace(',', ', ', $out['error']);
+		$out['error'] = zz_list_word_split($out['error']);
+		$out['error'] = zz_mark_search_string($out['error']);
+	}
 	$out['error'] = str_replace('%%%', '\%\%\%', $out['error']);
 	$out['hash'] = sha1($out['error']);
 
