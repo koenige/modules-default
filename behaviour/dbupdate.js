@@ -55,14 +55,13 @@
 				data = await res.json();
 				if (!data || !data.ok) {
 					if (msgEl && data && data.error) { msgEl.textContent = data.error; msgEl.style.display = ''; }
-					if (row) {
+					if (row && buttonsP) {
 						var td = row.querySelector('td:last-child');
-						if (td && !td.querySelector('input[name="update"]')) {
-							var p = document.createElement('p');
-							p.innerHTML = '<input type="hidden" name="index" value="' + indexToSend + '">'
-								+ '<input type="submit" name="update" value="Update">'
-								+ '<input type="submit" name="ignore" value="Ignore">';
-							td.appendChild(p);
+						if (td) {
+							var hi = buttonsP.querySelector('input[name="index"]');
+							if (hi) hi.value = indexToSend;
+							td.appendChild(buttonsP);
+							buttonsP.style.display = '';
 						}
 					}
 					break;
