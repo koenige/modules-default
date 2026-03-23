@@ -1,6 +1,6 @@
 /*
  * default module
- * dbupdate helpers (run all pending via XHR)
+ * dbupdate helpers (run all pending via fetch)
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/default
@@ -23,6 +23,9 @@
 		var executed = 0;
 		var msgEl = document.getElementById('dbupdate-message');
 		if (msgEl) { msgEl.style.display = 'none'; msgEl.textContent = ''; }
+		document.querySelectorAll('.dbupdate-error').forEach(function (el) {
+			el.remove();
+		});
 		try {
 			var cur = document.getElementById('current');
 			if (!cur) return;
@@ -47,14 +50,14 @@
 				var res = await fetch(location.pathname + location.search, {
 					method: 'POST',
 					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-						'X-Requested-With': 'XMLHttpRequest'
+						'Accept': 'application/json',
+						'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 					},
 					body: 'update=1&index=' + encodeURIComponent(indexToSend) + '&count=' + (executed + 1)
 				});
 				data = await res.json();
-				if (!data || !data.ok) {
-					if (msgEl && data && data.error) { msgEl.textContent = data.error; msgEl.style.display = ''; }
+				// wrap_errorpage JSON has error_description; success (wrap_page_json + data) has ok === true
+				if (!data || data.error_description || data.ok !== true) {
 					if (row && buttonsP) {
 						var td = row.querySelector('td:last-child');
 						if (td) {
@@ -62,6 +65,13 @@
 							if (hi) hi.value = indexToSend;
 							td.appendChild(buttonsP);
 							buttonsP.style.display = '';
+							var expl = (data && (data.error_explanation || data.error_description)) || '';
+							if (expl) {
+								var errP = document.createElement('div');
+								errP.className = 'error dbupdate-error';
+								errP.innerHTML = expl;
+								td.insertBefore(errP, buttonsP);
+							}
 						}
 					}
 					break;

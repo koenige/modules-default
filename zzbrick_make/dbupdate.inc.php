@@ -56,17 +56,18 @@ function mod_default_make_dbupdate($params) {
 		}
 	}
 
-	// POST update/ignore: same handler for form submit and XHR
+	// POST update/ignore: same handler for form submit and JSON (send_as_json)
 	if ($_SERVER['REQUEST_METHOD'] === 'POST'
 		AND isset($current) AND array_key_exists($current, $data)
 		AND isset($_POST['index']) AND strval($current) === strval($_POST['index'])) {
-		$is_xhr = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 		if (array_key_exists('update', $_POST)) {
-			$ok = mod_default_make_dbupdate_update($data[$current], $is_xhr);
-			if ($is_xhr) return mod_default_make_dbupdate_json_response($data, $current, $ok);
+			mod_default_make_dbupdate_update($data[$current]);
+			if (wrap_setting('send_as_json'))
+				return mod_default_make_dbupdate_json_response($data, $current);
 		} elseif (array_key_exists('ignore', $_POST)) {
-			mod_default_make_dbupdate_ignore($data[$current], $is_xhr);
-			if ($is_xhr) return mod_default_make_dbupdate_json_response($data, $current, true);
+			mod_default_make_dbupdate_ignore($data[$current]);
+			if (wrap_setting('send_as_json'))
+				return mod_default_make_dbupdate_json_response($data, $current);
 		}
 	}
 
@@ -94,22 +95,13 @@ function mod_default_make_dbupdate($params) {
 }
 
 /**
- * return JSON for XHR after update/ignore
+ * JSON response for successful POST when wrap_setting('send_as_json') (failed updates: wrap_db_query → wrap_error)
  *
  * @param array $data
  * @param int $current
- * @param bool $ok
  * @return array $page
  */
-function mod_default_make_dbupdate_json_response($data, $current, $ok) {
-	$page = [];
-	$page['content_type'] = 'json';
-	if (isset($_GET['dbupdate'])) $page['query_strings'][] = 'dbupdate';
-	if (!$ok) {
-		$page['status'] = 500;
-		$page['text'] = json_encode(['ok' => false, 'error' => wrap_text('Could not update database.')]);
-		return $page;
-	}
+function mod_default_make_dbupdate_json_response($data, $current) {
 	$next_index = null;
 	for ($i = $current + 1; $i < count($data); $i++) {
 		if (mod_default_make_dbupdate_check($data[$i]) === false) {
@@ -118,13 +110,19 @@ function mod_default_make_dbupdate_json_response($data, $current, $ok) {
 		}
 	}
 	$done = $next_index === null;
-	$out = ['ok' => true, 'done' => $done, 'next_index' => $next_index];
+	$page = [];
+	$page['data'] = ['ok' => true, 'done' => $done, 'next_index' => $next_index];
 	if ($done) {
 		$count = isset($_POST['count']) && is_numeric($_POST['count']) ? (int) $_POST['count'] : 1;
-		$out['message'] = wrap_text('%d queries were executed.', ['values' => [$count]])
+		$page['data']['message'] = wrap_text('%d queries were executed.', ['values' => [$count]])
 			. ' ' . wrap_text('No pending SQL updates.');
 	}
-	$page['text'] = json_encode($out);
+
+	$page['content_type'] = 'json';
+	$page['title'] = wrap_text('Database Updates');
+	if (isset($_GET['dbupdate'])) $page['query_strings'][] = 'dbupdate';
+	$page['text'] = '';
+	$page['status'] = 200;
 	return $page;
 }
 
@@ -219,13 +217,12 @@ function mod_default_make_dbupdate_check($line) {
 }
 
 /**
- * do update (same logic for form submit and XHR; $ajax true = return bool, false = redirect or error)
+ * do update (same logic for form submit and JSON; on failure wrap_db_query → wrap_error)
  *
  * @param array $line
- * @param bool $ajax
- * @return bool
+ * @return void
  */
-function mod_default_make_dbupdate_update($line, $ajax = false) {
+function mod_default_make_dbupdate_update($line) {
 	wrap_include('database', 'zzform');
 
 	$result = wrap_db_query($line['query']);
@@ -237,10 +234,9 @@ function mod_default_make_dbupdate_update($line, $ajax = false) {
 		}
 		if ($log) zz_db_log($line['query'], 'Maintenance robot 476');
 		mod_default_make_dbupdate_log($line, 'update');
-		if ($ajax) return true;
+		if (wrap_setting('send_as_json')) return;
 		wrap_redirect_change('#current');
 	}
-	if ($ajax) return false;
 	wrap_error('Could not update database', E_USER_ERROR);
 }
 
@@ -248,12 +244,12 @@ function mod_default_make_dbupdate_update($line, $ajax = false) {
  * ignore update
  *
  * @param array $line
- * @param bool $ajax
  * @return void
  */
-function mod_default_make_dbupdate_ignore($line, $ajax = false) {
+function mod_default_make_dbupdate_ignore($line) {
 	mod_default_make_dbupdate_log($line, 'ignore');
-	if (!$ajax) wrap_redirect_change('#current');
+	if (wrap_setting('send_as_json')) return;
+	wrap_redirect_change('#current');
 }
 
 /**
