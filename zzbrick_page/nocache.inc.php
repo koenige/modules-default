@@ -20,15 +20,32 @@
  * @return string
  */
 function page_nocache($params) {
-	if (!wrap_setting('js_css_nocache')) return '';
-
-	// readable timestamp?
-	$timestamp = strtotime(wrap_setting('js_css_nocache'));
-	if (!$timestamp) return '';
-
-	$now = time();
-	if ($timestamp + wrap_setting('cache_control_text') > $now)
+	if (mf_default_nocache())
 		return '?nocache';
 
 	return '';
+}
+
+/**
+ * check if caching should be disabled
+ *
+ * @param string $ext (optional, add check in filetypes.cfg)
+ * @return bool
+ */
+function mf_default_nocache($ext = false) {
+	if (!wrap_setting('js_css_nocache')) return false;
+
+	// readable timestamp?
+	$timestamp = strtotime(wrap_setting('js_css_nocache'));
+	if (!$timestamp) return false;
+	
+	if ($ext) {
+		$filetype_cfg = wrap_filetypes($ext);
+		$max_age = $filetype_cfg['max-age'] ?? NULL;
+	}
+	if (!isset($max_age))
+		$max_age = wrap_setting('cache_control_text');
+
+	if ($timestamp + $max_age > time()) return true;
+	return false;
 }
