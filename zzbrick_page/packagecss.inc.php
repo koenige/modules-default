@@ -34,9 +34,12 @@ function page_packagecss($params, $page) {
 		list($package, $filename) = explode('/', $line);
 		if (str_ends_with($filename, '.css'))
 			$filename = substr($filename, 0, -4);
+		$file = wrap_collect_files('layout/'.$filename.'.css', $package);
+		if (!$file) continue;
 		$css[] = [
 			'package' => $package,
-			'filename' => $filename
+			'filename' => $filename,
+			'nocache' => mf_default_nocache('css', mf_default_filemtime($file))
 		];
 	}
 
@@ -55,7 +58,8 @@ function page_packagecss($params, $page) {
 		if (!$file) continue;
 		$css[] = [
 			'package' => $package,
-			'filename' => $package
+			'filename' => $package,
+			'nocache' => mf_default_nocache('css', mf_default_filemtime($file))
 		];
 	}
 	return wrap_template('packagecss', $css);
