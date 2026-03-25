@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -29,9 +29,7 @@ function mod_default_search($params, $settings) {
 		if (!$files) return false;
 		$data['search_results'] = false;
 		$search_results_raw = [];
-		foreach ($files['functions'] as $function) {
-			if (empty($function['short'])) continue;
-			if ($function['short'] !== 'search') continue;
+		foreach (wrap_functions($files, 'search') as $function) {
 			$results = $function['function']($q);
 			if (!empty($results[$function['package']])) {
 				$data['search_results'] = true;
