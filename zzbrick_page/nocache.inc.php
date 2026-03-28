@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2021, 2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -20,6 +20,7 @@
  * @return string
  */
 function page_nocache($params) {
+	wrap_include('functions', 'default');
 	if (mf_default_nocache())
 		return '?nocache';
 
