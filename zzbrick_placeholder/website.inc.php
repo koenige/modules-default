@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -28,6 +28,8 @@ function mod_default_placeholder_website($brick) {
 	wrap_setting('backend_website_id', $website['website_id']);
 	wrap_setting('backend_path', $brick['placeholder']);
 	wrap_setting_backend();
+	// make paths of website available for this backend
+	wrap_setting('path_website_id', $website['website_id']);
 
 	$zz_page['access'][] = sprintf('website_id:%d', $website['website_id']);
 	wrap_access_page($zz_page['db']['parameters'] ?? '', $zz_page['access']);
