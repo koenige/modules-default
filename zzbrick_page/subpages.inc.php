@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2023, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023, 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,18 +23,19 @@ function page_subpages($params = [], $page = [], $settings = []) {
 	global $zz_page;
 
 	$sql = wrap_sql_query('page_subpages');
-	$sql = sprintf($sql, $zz_page['db'][wrap_sql_fields('page_id')]);
+	$sql = sprintf($sql, wrap_page_field('page_id'));
 	$data = wrap_db_fetch($sql, wrap_sql_fields('page_id'));
 	$data = wrap_translate($data, 'webpages');
 
 	$data += $settings;
 	
 	$last_level = 1;
+	$current_identifier = wrap_page_field('identifier').'/';
 	foreach ($data as $id => $line) {
 		if (!is_numeric($id)) continue;
-		if (strstr($line['identifier'], $zz_page['db']['identifier'].'/')) {
+		if (strstr($line['identifier'], $current_identifier)) {
 			$data[$id]['identifier'] = str_replace(
-				$zz_page['db']['identifier'].'/', $zz_page['url']['full']['path'], $line['identifier']
+				$current_identifier, $zz_page['url']['full']['path'], $line['identifier']
 			);
 		}
 		$access = wrap_access_page($line['parameters'] ?? '', $zz_page['access'] ?? [], false);

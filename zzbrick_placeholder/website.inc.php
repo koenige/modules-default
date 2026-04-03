@@ -32,7 +32,7 @@ function mod_default_placeholder_website($brick) {
 	wrap_setting('path_website_id', $website['website_id']);
 
 	$zz_page['access'][] = sprintf('website_id:%d', $website['website_id']);
-	wrap_access_page($zz_page['db']['parameters'] ?? '', $zz_page['access']);
+	wrap_access_page(wrap_page_field('parameters'), $zz_page['access']);
 
 	// breadcrumbs
 	$zz_page['breadcrumb_placeholder'][] = [

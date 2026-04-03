@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2020, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2020, 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -28,7 +28,7 @@ function mod_default_sabredav() {
 	global $zz_page;
 
 	$webdav_path = wrap_setting('cms_dir').'/webdav/';
-	$base_uri = $zz_page['db']['identifier'];
+	$base_uri = wrap_page_field('identifier');
 	$base_uri = rtrim($base_uri, '*');
 
 	// Now we're creating a whole bunch of objects
