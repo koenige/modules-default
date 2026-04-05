@@ -35,7 +35,7 @@ function page_subpages($params = [], $page = [], $settings = []) {
 		if (!is_numeric($id)) continue;
 		if (strstr($line['identifier'], $current_identifier)) {
 			$data[$id]['identifier'] = str_replace(
-				$current_identifier, $zz_page['url']['full']['path'], $line['identifier']
+				$current_identifier, wrap_url('path'), $line['identifier']
 			);
 		}
 		$access = wrap_access_page($line['parameters'] ?? '', $zz_page['access'] ?? [], false);
