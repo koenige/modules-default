@@ -25,8 +25,6 @@ wrap_lib('sabredav');
  * @return void
  */
 function mod_default_sabredav() {
-	global $zz_page;
-
 	$webdav_path = wrap_setting('cms_dir').'/webdav/';
 	$base_uri = wrap_page_field('identifier');
 	$base_uri = rtrim($base_uri, '*');

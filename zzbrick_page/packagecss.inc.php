@@ -19,8 +19,6 @@
  * @return string
  */
 function page_packagecss($params, $page) {
-	global $zz_page;
-
 	$css = [];
 	$extra_css = $page['extra']['css'] ?? [];
 	if (!is_array($extra_css)) $extra_css = [$extra_css];
