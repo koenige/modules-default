@@ -20,8 +20,6 @@
  * @return array
  */
 function page_subpages($params = [], $page = [], $settings = []) {
-	global $zz_page;
-
 	$sql = wrap_sql_query('page_subpages');
 	$sql = sprintf($sql, wrap_page_field('page_id'));
 	$data = wrap_db_fetch($sql, wrap_sql_fields('page_id'));
@@ -38,7 +36,7 @@ function page_subpages($params = [], $page = [], $settings = []) {
 				$current_identifier, wrap_url('path'), $line['identifier']
 			);
 		}
-		$access = wrap_access_page($line['parameters'] ?? '', $zz_page['access'] ?? [], false);
+		$access = wrap_access_page($line['parameters'] ?? '', false);
 		if (!$access) {
 			unset($data[$id]);
 			continue;
