@@ -14,7 +14,6 @@
 
 
 function mod_default_placeholder_website($brick) {
-	global $zz_page;
 	if (empty($brick['placeholder'])) return $brick;
 	
 	$sql = 'SELECT website_id, website, domain
@@ -31,14 +30,14 @@ function mod_default_placeholder_website($brick) {
 	// make paths of website available for this backend
 	wrap_setting('path_website_id', $website['website_id']);
 
-	$zz_page['access'][] = sprintf('website_id:%d', $website['website_id']);
-	wrap_access_page(wrap_page_field('parameters'), $zz_page['access']);
+	wrap_page_meta('access', sprintf('website_id:%d', $website['website_id']));
+	wrap_access_page();
 
 	// breadcrumbs
-	$zz_page['breadcrumb_placeholder'][] = [
+	wrap_page_meta('breadcrumb_placeholder', [
 		'title' => $website['domain'],
 		'url_path' => $website['domain']
-	];
+	]);
 	
 	$brick['data'] = $website;
 	return $brick;
