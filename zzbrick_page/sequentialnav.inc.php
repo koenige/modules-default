@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -20,17 +20,16 @@
  * @return array $page
  */
 function page_sequentialnav(&$params = []) {
-	global $zz_page;
-
 	$data = [];
 	$link_relations = ['prev', 'next', 'up'];
 	foreach ($link_relations as $rel) {
-		if (empty($zz_page[$rel])) continue;
+		$meta = wrap_page_meta($rel);
+		if (empty($meta)) continue;
 		$data[] = [
 			'rel' => $rel,
-			'rel_title' => $zz_page[$rel]['rel_title'] ?? wrap_text(ucfirst($rel)),
-			'href' => $zz_page[$rel]['url'],
-			'title' => $zz_page[$rel]['title']
+			'rel_title' => $meta['rel_title'] ?? wrap_text(ucfirst($rel)),
+			'href' => $meta['url'],
+			'title' => $meta['title']
 		];
 	}
 	if (!$data) return '';
