@@ -60,6 +60,7 @@
 # WordPress (probes: */wp-* below); xmlrpc etc. without wp- path
 404	end	/xmlrpc.php
 503	end	/xmlrpc.php
+404	request	*wp-config*
 503	request	*wp-config.*
 404	end	/wordpr
 404	end	/license.php
@@ -765,6 +766,11 @@ qs	string_regex	DBMS_PIPE.RECEIVE_MESSAGE
 # Malformed requests
 php	string_regex	.+File Upload Mime headers garbled in Unknown:0
 php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:0
+
+# looking for development tool / CI configuration files
+404	begin	/.github
+404	begin	/.gitlab-ci
+404	begin	/.vscode
 
 # looking for configuration files accessible inside document root
 404	begin	/.git/
