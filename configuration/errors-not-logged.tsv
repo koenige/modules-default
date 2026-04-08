@@ -431,8 +431,9 @@ qs	string	s=Admin/login
 # adminer library
 php	string_regex	.*/library/adminer/adminer-.*.php:\d+
 
-# broken spider that uses data-title attributes as links
+# broken bots using data-title or similar attributes as links
 404	ua	*Bytespider; spider-feedback@bytedance.com*
+404	regex	~/[^/]{100,}$~
 
 # Search Defender Prime browser extension, not good
 404	end	/css/blockedPage.css
