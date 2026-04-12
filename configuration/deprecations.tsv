@@ -33,3 +33,4 @@
 2026-03-14-9	code	default_website_path	removed, paths from routes; use wrap_path()
 2026-03-14-10	code	search_path	removed, paths from routes; use wrap_path()
 2026-03-14-11	code	default_categories_form_path	removed, paths from routes; use wrap_path()
+2026-04-11-1	code	default_logout	route `logout` in zzwrap; use wrap_path('logout') or %%% path logout %%%

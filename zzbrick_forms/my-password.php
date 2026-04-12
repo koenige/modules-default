@@ -17,9 +17,8 @@ $zz = zzform_include('logins');
 
 // just allow access for login table to own login ID
 if (empty($_SESSION['login_id'])) {
-	$login_url = wrap_path('login_entry');
 	$redirect_after_login = wrap_setting('request_uri');
-	wrap_redirect($login_url.'?url='.urlencode($redirect_after_login), 307);
+	wrap_redirect(wrap_path('login_entry').'?url='.urlencode($redirect_after_login), 307);
 }
 $zz['where']['login_id'] = $_SESSION['login_id'];
 

@@ -30,7 +30,7 @@
 
 %%% rights - %%%
 
-## [Logout](%%% path default_logout %%%)
+## [Logout](%%% path logout %%%)
 
 %%% if path change_password %%%
 * [Change Password](%%% path change_password %%%)
