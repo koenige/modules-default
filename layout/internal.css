@@ -45,37 +45,48 @@ ul.default-settings
 ul.default-settings li
 		{ margin: 0 0 0 .5rem; list-style-type: "– "; }
 
+
 /* table.data: alternate rows (uneven = darker, even = lighter than page background) */
-body table.data tbody tr.uneven > td,
-body table.data tbody tr.uneven > th
+table.data tbody tr.uneven > td,
+table.data tbody tr.uneven > th
 		{ background-color: color-mix(in srgb, Canvas 95%, CanvasText 5%); }
-body table.data tbody tr.even > td,
-body table.data tbody tr.even > th
+table.data tbody tr.even > td,
+table.data tbody tr.even > th
 		{ background-color: color-mix(in srgb, Canvas 100%, white 24%); }
 @supports not (background-color: color-mix(in srgb, red, blue)) {
-	body table.data tbody tr.uneven > td,
-	body table.data tbody tr.uneven > th
+	table.data tbody tr.uneven > td,
+	table.data tbody tr.uneven > th
 			{ background-color: rgba(0, 0, 0, 0.028); }
-	body table.data tbody tr.even > td,
-	body table.data tbody tr.even > th
+	table.data tbody tr.even > td,
+	table.data tbody tr.even > th
 			{ background-color: #fff; }
 }
 
+
 /* module overview & settings */
-table.module-settings-table
+.modulesettings table
 		{ table-layout: auto; width: 100%; }
-table.module-settings-table th.setting-name,
-table.module-settings-table td.setting-name
-		{ max-width: 20rem; box-sizing: border-box; vertical-align: top; }
-table.module-settings-table td.value code,
-table.module-settings-table td .setting-key
+.modulesettings table th.setting-name,
+.modulesettings table td.setting-name
+		{ max-width: 30rem; box-sizing: border-box; vertical-align: top; }
+.modulesettings table td.value code,
+.modulesettings table td .setting-key
 		{ word-break: break-word; white-space: pre-wrap; }
-table.module-settings-table td.setting-name p.setting-desc
+.modulesettings table td.setting-name p.setting-desc
 		{ margin: 0.35em 0 0; font-size: 0.95em; opacity: 0.92; font-weight: normal; }
-table.module-settings-table p.setting-default-diff
+.modulesettings table p.setting-default-diff
 		{ margin: 0.35em 0 0; font-size: 0.95em; }
-table.module-settings-table .setting-default-prefix + code
+.modulesettings table .setting-default-prefix + code
 		{ opacity: 0.95; }
+
+.modulesettings tbody tr:first-child > td
+		{ background-color: transparent;
+		border-bottom: 1px solid color-mix(in srgb, CanvasText 22%, Canvas 78%);
+		vertical-align: bottom; padding-top: 1.1em; }
+.modulesettings tbody tr:first-child > td
+		{ padding-top: 0.35em; }
+.modulesettings table h2
+		{ margin: 1rem 0 .5rem; }
 
 
 %%% include zzform/layout/internal.css %%%

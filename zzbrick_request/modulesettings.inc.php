@@ -37,14 +37,10 @@ function mod_default_modulesettings($params) {
 		$page['text'] = wrap_template('modulesettings', $data);
 	} else {
 		$full_cfg = wrap_cfg_files('settings');
-		$data['settings'] = [];
+		$rows = [];
 		foreach ($definitions as $key => $meta) {
 			if (!is_array($meta)) continue;
 			unset($meta['package']);
-			$scope = '';
-			if (!empty($meta['scope'])) {
-				$scope = is_array($meta['scope']) ? implode(', ', $meta['scope']) : $meta['scope'];
-			}
 			$description = isset($meta['description']) ? (string) $meta['description'] : '';
 			if (is_array($description)) {
 				$description = implode(' ', $description);
@@ -54,24 +50,25 @@ function mod_default_modulesettings($params) {
 			$cfg_line = $full_cfg[$key] ?? $meta;
 			$private = !empty($cfg_line['private']);
 			$type = isset($cfg_line['type']) ? (string) $cfg_line['type'] : '';
+			$scopes = mod_default_modulesettings_scope_list($cfg_line);
 			$default_raw = isset($full_cfg[$key])
 				? wrap_get_setting_default($key, $full_cfg[$key])
 				: wrap_get_setting_default($key, $meta);
 			$current_raw = wrap_setting($key);
 			$default_for_view = mod_default_modulesettings_coerce_list_empty($default_raw, $cfg_line);
 			$current_for_view = mod_default_modulesettings_coerce_list_empty($current_raw, $cfg_line);
-			$data['settings'][] = [
+			$rows[] = [
+				'scopes' => $scopes,
 				'key' => $key_text,
 				'description' => $description,
 				'type' => $type,
-				'scope' => $scope,
 				'current_display' => mod_default_modulesettings_value_display($current_for_view, $private, $type),
 				'default_display' => mod_default_modulesettings_is_overridden($default_for_view, $current_for_view)
 					? mod_default_modulesettings_value_display($default_for_view, $private, $type)
 					: '',
 			];
 		}
-		usort($data['settings'], 'mod_default_modulesettings_compare_rows');
+		$data['sections'] = mod_default_modulesettings_sections_from_rows($rows);
 
 		$page['text'] = wrap_template('modulesettings', $data);
 	}
@@ -94,6 +91,73 @@ function mod_default_modulesettings($params) {
  */
 function mod_default_modulesettings_compare_rows($a, $b) {
 	return strcmp((string) $a['key'], (string) $b['key']);
+}
+
+/**
+ * Normalized list of scope identifiers from a setting definition line
+ *
+ * @param array $cfg_line merged settings.cfg line
+ * @return array list of non-empty strings (may be empty = applies everywhere → Website-only block)
+ */
+function mod_default_modulesettings_scope_list(array $cfg_line): array {
+	if (empty($cfg_line['scope'])) {
+		return [];
+	}
+	$list = $cfg_line['scope'];
+	$list = is_array($list) ? $list : [$list];
+	$list = array_map('trim', $list);
+	$list = array_filter($list, static function ($s) {
+		return $s !== '';
+	});
+	return array_values(array_unique($list));
+}
+
+/**
+ * Rows with `scopes` → sections: Website (no scope or includes website), then one section per other scope (duplicates kept)
+ *
+ * @param array<int, array<string, mixed>> $rows
+ * @return array<int, array{title: string, rows: array<int, mixed>}>
+ */
+function mod_default_modulesettings_sections_from_rows(array $rows): array {
+	$website_rows = [];
+	$scope_buckets = [];
+
+	foreach ($rows as $row) {
+		$scope_ids = isset($row['scopes']) ? $row['scopes'] : [];
+		unset($row['scopes']);
+
+		if ($scope_ids === [] || in_array('website', $scope_ids, true)) {
+			$website_rows[] = $row;
+		}
+		foreach ($scope_ids as $sid) {
+			if ($sid === 'website') {
+				continue;
+			}
+			if (!isset($scope_buckets[$sid])) {
+				$scope_buckets[$sid] = [];
+			}
+			$scope_buckets[$sid][] = $row;
+		}
+	}
+
+	$sections = [];
+	if ($website_rows) {
+		usort($website_rows, 'mod_default_modulesettings_compare_rows');
+		$sections[] = [
+			'title' => wrap_text('Website'),
+			'rows' => $website_rows,
+		];
+	}
+	ksort($scope_buckets, SORT_STRING);
+	foreach ($scope_buckets as $scope_id => $bucket_rows) {
+		usort($bucket_rows, 'mod_default_modulesettings_compare_rows');
+		$sections[] = [
+			'title' => $scope_id,
+			'rows' => $bucket_rows,
+		];
+	}
+
+	return $sections;
 }
 
 /**
