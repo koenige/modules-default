@@ -5,7 +5,7 @@
  * manage background jobs
  *
  * Part of »Zugzwang Project«
- * https://www.zugzwang.org/modules/tournaments
+ * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2023-2024, 2026 Gustaf Mossakowski
