@@ -1631,6 +1631,34 @@ msgstr ""
 msgid "Tagline"
 msgstr ""
 
+#: zzbrick_request/modulesettings.inc.php templates/modulesettings.template.txt
+msgid "Module settings for %s"
+msgstr ""
+
+#: templates/modulesettings.template.txt
+msgid "No settings are defined for this package in configuration/settings.cfg."
+msgstr ""
+
+#: templates/modulesettings.template.txt zzbrick_request/modulesettings.inc.php
+msgid "Scope"
+msgstr ""
+
+#: templates/modulesettings.template.txt
+msgid "Default value:"
+msgstr ""
+
+#: templates/modulesettings.template.txt
+msgid "Current value"
+msgstr ""
+
+#: zzbrick_request/modulesettings.inc.php
+msgid "Module settings"
+msgstr ""
+
+#: zzbrick_request/modulesettings.inc.php
+msgid "local overlay"
+msgstr ""
+
 #: zzbrick_make/dbmodules.inc.php
 msgid "Installation"
 msgstr ""

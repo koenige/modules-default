@@ -11,3 +11,4 @@
 %%% if tagline %%%
 <p class="module-tagline">%%% item tagline format=html_escape %%%</p>
 %%% endif %%%
+%%% page subpages %%%

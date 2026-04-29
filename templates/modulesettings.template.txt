@@ -1,0 +1,41 @@
+# default module
+# per-module settings overview (defaults vs runtime)
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% if settings_empty %%%
+<p><em>%%% text No settings are defined for this package in configuration/settings.cfg. %%%</em></p>
+%%% else %%%
+<table class="data module-settings-table">
+<thead>
+<tr>
+<th class="setting-name">%%% text Setting %%%</th>
+<th>%%% text Current value %%%</th>
+<th>%%% text Type %%%</th>
+<th>%%% text Scope %%%</th>
+</tr>
+</thead><tbody>
+%%% loop settings %%%
+<tr class="%%% loopposition uneven un %%%even">
+<td class="setting-name"><code class="setting-key">%%% item key format=html_escape %%%</code>
+%%% if description %%%
+<p class="setting-desc">%%% item description format=html_escape %%%</p>
+%%% endif %%%
+</td>
+<td class="value">
+<code>%%% item current_display format=html_escape %%%</code>
+%%% if default_display %%%
+<p class="setting-default-diff"><span class="setting-default-prefix">%%% text Default value: %%%</span> <em><code>%%% item default_display format=html_escape %%%</code></em></p>
+%%% endif %%%
+</td>
+<td>%%% item type format=html_escape %%%</td>
+<td>%%% item scope format=html_escape %%%</td>
+</tr>%%% loop end %%%
+</tbody>
+</table>
+%%% endif %%%
