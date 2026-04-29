@@ -1,0 +1,13 @@
+# default module
+# single module (package) detail
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% if tagline %%%
+<p class="module-tagline">%%% item tagline format=html_escape %%%</p>
+%%% endif %%%
