@@ -1,0 +1,26 @@
+# default module
+# overview of installed modules
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<table class="data">
+<thead>
+<tr>
+<th>%%% text Module %%%</th>
+<th>%%% text Tagline %%%</th>
+</tr>
+</thead>
+<tbody>
+%%% loop modules %%%
+<tr class="%%% loopposition uneven un %%%even">
+<td><strong>%%% item module %%%</strong></td>
+<td>%%% if tagline %%%%%% item tagline %%%%%% else %%%–%%% endif %%%</td>
+</tr>
+%%% loop end %%%
+</tbody>
+</table>

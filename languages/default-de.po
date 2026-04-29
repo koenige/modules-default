@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2008-2009, 2014-2018, 2020-2025 Gustaf Mossakowski
+# @copyright Copyright © 2008-2009, 2014-2018, 2020-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -1683,6 +1683,18 @@ msgstr "Module"
 #: zzbrick_make/dbmodules.inc.php
 msgid "List of Modules"
 msgstr "Liste der Module"
+
+#: templates/modules.template.txt
+msgid "Module"
+msgstr "Modul"
+
+#: zzbrick_request/modules.inc.php templates/modules.template.txt
+msgid "Installed modules"
+msgstr "Installierte Module"
+
+#: templates/modules.template.txt
+msgid "Tagline"
+msgstr "Kurzbeschreibung"
 
 #: zzbrick_make/dbmodules.inc.php
 msgid "Installation"
