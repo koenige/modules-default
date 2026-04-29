@@ -73,11 +73,23 @@ table.data tbody tr.even > th
 .modulesettings table td .setting-key
 		{ word-break: break-word; white-space: pre-wrap; }
 .modulesettings table td.setting-name p.setting-desc
-		{ margin: 0.35em 0 0; font-size: 0.95em; opacity: 0.92; font-weight: normal; }
+		{ margin: 0.35em 0 0; opacity: 0.92; }
 .modulesettings table p.setting-default-diff
-		{ margin: 0.35em 0 0; font-size: 0.95em; }
+		{ margin: 0.35em 0 0; }
 .modulesettings table .setting-default-prefix + code
 		{ opacity: 0.95; }
+.modulesettings table p.setting-examples
+		{ margin: 0.35em 0 0; }
+.modulesettings table .setting-examples-label
+		{ display: block; margin-bottom: 0.25em; }
+.modulesettings table .setting-examples-values
+		{ display: flex; flex-direction: column; align-items: flex-start; gap: 0.3em; }
+.modulesettings table .setting-examples-values code
+		{ display: block; }
+.modulesettings table .setting-deprecated
+		{ background-color: yellow; }
+.modulesettings table tr.setting-deprecated td .setting-key
+		{ opacity: 0.92; }
 
 .modulesettings tbody tr:first-child > td
 		{ background-color: transparent;

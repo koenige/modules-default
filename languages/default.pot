@@ -1651,6 +1651,10 @@ msgstr ""
 msgid "Current value"
 msgstr ""
 
+#: templates/modulesettings.template.txt
+msgid "Examples:"
+msgstr ""
+
 #: zzbrick_request/modulesettings.inc.php
 msgid "Module settings"
 msgstr ""

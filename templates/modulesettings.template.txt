@@ -24,8 +24,8 @@
 <tbody>
 <tr><td colspan="3"><h2>%%% item title format=html_escape %%%</h2></td></tr>
 %%% loop rows %%%
-<tr class="%%% loopposition uneven un %%%even">
-<td class="setting-name"><code class="setting-key">%%% item key format=html_escape %%%</code>
+<tr class="%%% loopposition uneven un %%%even%%% if deprecated %%% setting-deprecated%%% endif %%%">
+<td class="setting-name"><code class="setting-key">%%% item key format=html_escape %%%</code>%%% if deprecated %%% <span class="setting-deprecated">@deprecated</span>%%% endif %%%
 %%% if description %%%
 <p class="setting-desc">%%% item description format=html_escape %%%</p>
 %%% endif %%%
@@ -34,6 +34,13 @@
 <code>%%% item current_display format=html_escape %%%</code>
 %%% if default_display %%%
 <p class="setting-default-diff"><span class="setting-default-prefix">%%% text Default value: %%%</span> <em><code>%%% item default_display format=html_escape %%%</code></em></p>
+%%% endif %%%
+%%% if examples %%%
+<p class="setting-examples"><span class="setting-examples-label">%%% text Examples: %%%</span><span class="setting-examples-values">
+%%% loop examples %%%
+<code>%%% item text format=html_escape %%%</code>
+%%% loop end %%%
+</span></p>
 %%% endif %%%
 </td>
 <td>%%% item type format=html_escape %%%</td>

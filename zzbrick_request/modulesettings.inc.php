@@ -57,16 +57,22 @@ function mod_default_modulesettings($params) {
 			$current_raw = wrap_setting($key);
 			$default_for_view = mod_default_modulesettings_coerce_list_empty($default_raw, $cfg_line);
 			$current_for_view = mod_default_modulesettings_coerce_list_empty($current_raw, $cfg_line);
-			$rows[] = [
+			$row = [
 				'scopes' => $scopes,
 				'key' => $key_text,
 				'description' => $description,
 				'type' => $type,
+				'deprecated' => !empty($cfg_line['deprecated']),
 				'current_display' => mod_default_modulesettings_value_display($current_for_view, $private, $type),
 				'default_display' => mod_default_modulesettings_is_overridden($default_for_view, $current_for_view)
 					? mod_default_modulesettings_value_display($default_for_view, $private, $type)
 					: '',
 			];
+			$example_lines = mod_default_modulesettings_examples_lines($cfg_line);
+			if ($example_lines) {
+				$row['examples'] = $example_lines;
+			}
+			$rows[] = $row;
 		}
 		$data['sections'] = mod_default_modulesettings_sections_from_rows($rows);
 
@@ -80,6 +86,30 @@ function mod_default_modulesettings($params) {
 	$page['breadcrumbs'][]['title'] = wrap_text('Module settings');
 
 	return $page;
+}
+
+/**
+ * Non-empty example line(s) from settings.cfg (`example`, `example[]`) as loop rows
+ *
+ * @param array $cfg_line merged settings line
+ * @return array<int, array{text: string}>
+ */
+function mod_default_modulesettings_examples_lines(array $cfg_line): array {
+	if (empty($cfg_line['example'])) {
+		return [];
+	}
+	$example = $cfg_line['example'];
+	$list = is_array($example) ? $example : [$example];
+	$lines = [];
+	foreach ($list as $line) {
+		$line = trim((string) $line);
+		if ($line === '') {
+			continue;
+		}
+		$lines[] = ['text' => mod_default_modulesettings_escape_pct_for_template($line)];
+	}
+
+	return $lines;
 }
 
 /**
