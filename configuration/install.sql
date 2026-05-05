@@ -1316,3 +1316,61 @@ INSERT INTO `websites` (`website_id`, `website`, `domain`) VALUES
 (1,	'All Websites',	'*');
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'webpages', 'page_id', 'website_id', 'no-delete');
+
+
+-- blocks --
+CREATE TABLE `blocks` (
+  `block_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `identifier` varchar(127) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `block` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` int unsigned DEFAULT NULL,
+  `block_category_id` int unsigned NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`block_id`),
+  UNIQUE KEY `identifier` (`identifier`),
+  KEY `category_id` (`category_id`),
+  KEY `block_category_id` (`block_category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'blocks', 'block_id', 'category_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'blocks', 'block_id', 'block_category_id', 'no-delete');
+
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Blocks', NULL, NULL, 'blocks', '&alias=blocks', NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('General', NULL, /*_ID categories blocks _*/, 'blocks/general', '&alias=blocks/general', 0, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Layout', NULL, NULL, 'layout', '&alias=layout', NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Standard', NULL, /*_ID categories layout _*/, 'layout/standard', '&alias=layout/standard', 0, NOW());
+
+
+-- blocks_media --
+CREATE TABLE `blocks_media` (
+  `block_medium_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `block_id` int unsigned NOT NULL,
+  `medium_id` int unsigned NOT NULL,
+  `sequence` tinyint NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`block_medium_id`),
+  UNIQUE KEY `block_id` (`block_id`,`sequence`),
+  UNIQUE KEY `medium_id` (`medium_id`,`block_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'media', 'medium_id', (SELECT DATABASE()), 'blocks_media', 'block_medium_id', 'medium_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'blocks', 'block_id', (SELECT DATABASE()), 'blocks_media', 'block_medium_id', 'block_id', 'delete');
+
+-- webpages_blocks --
+CREATE TABLE `webpages_blocks` (
+  `webpage_block_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `page_id` int unsigned NOT NULL,
+  `block_id` int unsigned NOT NULL,
+  `layout_category_id` int unsigned NOT NULL,
+  `sequence` tinyint NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`webpage_block_id`),
+  UNIQUE KEY `page_id` (`page_id`,`sequence`),
+  UNIQUE KEY `block_id` (`block_id`,`page_id`),
+  KEY `layout_category_id` (`layout_category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'webpages', 'page_id', (SELECT DATABASE()), 'webpages_blocks', 'webpage_block_id', 'page_id', 'delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'blocks', 'block_id', (SELECT DATABASE()), 'webpages_blocks', 'webpage_block_id', 'block_id', 'delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'webpages_blocks', 'webpage_block_id', 'layout_category_id', 'no-delete');

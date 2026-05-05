@@ -1368,6 +1368,30 @@ msgstr "Nr."
 msgid "Medium"
 msgstr "Medium"
 
+#: zzbrick_tables/blocks.php
+msgid "Blocks"
+msgstr "Bausteine"
+
+#: zzbrick_tables/blocks.php
+msgid "Block Type"
+msgstr "Bausteintyp"
+
+#: zzbrick_tables/blocks.php zzbrick_tables/blocks-media.php zzbrick_tables/webpages-blocks.php
+msgid "Block"
+msgstr "Baustein"
+
+#: zzbrick_tables/blocks-media.php
+msgid "Media for Blocks"
+msgstr "Medien für Bausteine"
+
+#: zzbrick_tables/webpages-blocks.php
+msgid "Blocks on Webpages"
+msgstr "Bausteine auf Webseiten"
+
+#: zzbrick_tables/blocks-media.php zzbrick_tables/webpages-blocks.php
+msgid "Updated"
+msgstr "Stand"
+
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Countries"

@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2007-2009, 2016, 2018-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2007-2009, 2016, 2018-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -35,6 +35,19 @@ $zz['fields'][3]['rows'] = 20;
 $zz['fields'][3]['format'] = 'markdown';
 $zz['fields'][3]['hide_in_list'] = true;
 $zz['fields'][3]['typo_cleanup'] = true;
+
+if (wrap_setting('default_webpages_blocks')) {
+	$zz['fields'][12] = zzform_include('webpages-blocks');
+	$zz['fields'][12]['title'] = 'Blocks';
+	$zz['fields'][12]['type'] = 'subtable';
+	$zz['fields'][12]['min_records'] = 0;
+	$zz['fields'][12]['max_records'] = 50;
+	$zz['fields'][12]['form_display'] = 'lines';
+	$zz['fields'][12]['sql'] .= ' ORDER BY sequence';
+	$zz['fields'][12]['fields'][2]['type'] = 'foreign_key';
+	$zz['fields'][12]['fields'][5]['type'] = 'sequence';
+	$zz['fields'][12]['class'] = 'hidden480';
+}
 
 $zz['fields'][11]['field_name'] = 'description';
 $zz['fields'][11]['type'] = 'memo';

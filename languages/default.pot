@@ -1313,6 +1313,30 @@ msgstr ""
 msgid "Medium"
 msgstr ""
 
+#: zzbrick_tables/blocks.php
+msgid "Blocks"
+msgstr ""
+
+#: zzbrick_tables/blocks.php
+msgid "Block Type"
+msgstr ""
+
+#: zzbrick_tables/blocks.php zzbrick_tables/blocks-media.php zzbrick_tables/webpages-blocks.php
+msgid "Block"
+msgstr ""
+
+#: zzbrick_tables/blocks-media.php
+msgid "Media for Blocks"
+msgstr ""
+
+#: zzbrick_tables/webpages-blocks.php
+msgid "Blocks on Webpages"
+msgstr ""
+
+#: zzbrick_tables/blocks-media.php zzbrick_tables/webpages-blocks.php
+msgid "Updated"
+msgstr ""
+
 #: zzbrick_tables/countries.php
 msgctxt "default"
 msgid "Countries"
