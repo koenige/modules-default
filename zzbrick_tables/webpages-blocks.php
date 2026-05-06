@@ -52,7 +52,8 @@ $zz['fields'][4]['title'] = 'Layout';
 $zz['fields'][4]['field_name'] = 'layout_category_id';
 $zz['fields'][4]['type'] = 'select';
 $zz['fields'][4]['sql'] = 'SELECT category_id, category, main_category_id
-	FROM /*_PREFIX_*/categories';
+	FROM /*_PREFIX_*/categories
+	ORDER BY sequence, path';
 $zz['fields'][4]['display_field'] = 'layout_category';
 $zz['fields'][4]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][4]['show_hierarchy_subtree'] = wrap_category_id('layout');
