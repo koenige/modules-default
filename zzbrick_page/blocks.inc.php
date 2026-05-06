@@ -28,6 +28,7 @@ function page_blocks($params, &$page, $local_settings = []) {
 			, block_categories.category AS block_category
 			, layout_categories.category AS layout_category
 			, SUBSTRING_INDEX(layout_categories.path, "/", -1) AS layout_class
+			, layout_categories.parameters AS layout_parameters
 		FROM /*_PREFIX_*/blocks
 		LEFT JOIN /*_PREFIX_*/webpages_blocks USING (block_id)
 		LEFT JOIN /*_PREFIX_*/categories block_categories
@@ -48,11 +49,19 @@ function page_blocks($params, &$page, $local_settings = []) {
 		?? wrap_setting('default_media_size')
 		?: 'medium';
 
-	foreach ($data as $block_id => $line) {
+	foreach ($data as $block_id => &$line) {
+		if ($line['layout_parameters']) {
+			parse_str($line['layout_parameters'], $line['layout_parameters']);
+			if (!empty($line['layout_parameters']['default_blocks_class']))
+				$data[$block_id]['layout_class'] = $line['layout_parameters']['default_blocks_class'];
+			elseif (!empty($line['layout_parameters']['alias']))
+				$data[$block_id]['layout_class'] = substr($line['layout_parameters']['alias'], strrpos($line['layout_parameters']['alias'], '/') + 1);
+		}
 		$block_media = $media[$block_id] ?? [];
 		if (!$block_media) continue;
 		$data[$block_id]['image'] = brick_request_link($block_media, ['image', 1, $size], 'sequence');
 	}
+	unset($line);
 
 	$my_page['text'] = wrap_template('blocks', $data);
 	$my_page = wrap_page_replace($my_page);
