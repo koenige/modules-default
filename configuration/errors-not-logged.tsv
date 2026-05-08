@@ -309,6 +309,10 @@ qs	string	msclkid
 # Script kiddies
 404	post	*xbshell*
 
+# Next.js / React Server Components (Flight) deserialization scanners; harmless on non-Next stacks but flood 404 logs with crafted POST bodies
+404	post	*$1:__proto__:then*
+404	post	*eval(Buffer.from*
+
 # Bot with severe problems parsing URLs
 404	ua	Mozilla/5.0 (compatible; Adsbot/3.1)
 404	ua	Mozilla/5.0 (compatible; Adsbot/3.1; +https://seostar.co/robot/)
