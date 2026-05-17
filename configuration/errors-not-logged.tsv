@@ -438,6 +438,7 @@ php	string_regex	.*/library/adminer/adminer-.*.php:\d+
 # broken bots using data-title or similar attributes as links
 404	ua	*Bytespider; spider-feedback@bytedance.com*
 404	regex	~/[^/]{100,}$~
+404	regex	~\([^)]+\)$~
 
 # Search Defender Prime browser extension, not good
 404	end	/css/blockedPage.css
