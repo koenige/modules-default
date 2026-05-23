@@ -49,7 +49,15 @@ function mod_default_make_jobmanager() {
 				= wrap_trigger_protected_url($job['job_url'], $job['username'], 'POST', $job['postdata']);
 		else {
 			$headers_to_send = [];
-			$headers_to_send[] = sprintf('X-Lock-Hash: %s', wrap_lock_hash());
+			$lock_hash = wrap_lock_hash();
+			$headers_to_send[] = sprintf('X-Lock-Hash: %s', $lock_hash);
+			if (wrap_setting('debug_access')) {
+				wrap_error(sprintf(
+					'Access debug: X-Lock-Hash sent to %s: %s',
+					$job['job_url'],
+					$lock_hash
+				), E_USER_NOTICE);
+			}
 			list($status, $headers, $response)
 				= wrap_get_protected_url($job['job_url'], $headers_to_send, 'POST', $job['postdata'], $job['username']);
 		}
