@@ -219,7 +219,9 @@ function mod_default_make_jobmanager_start($job) {
 	$lock_realm = parse_url($job['job_url_raw'], PHP_URL_PATH);
 	$lock_realm = 'jobqueue-'.str_replace('/', '-', trim($lock_realm, '/'));
 
-	$locked = wrap_lock($lock_realm, 'wait'); // to avoid race conditions
+	// sequential mutex: start-claim is exclusive; wrap_unlock() below
+	// releases on success and on the "already running" early-exit.
+	$locked = wrap_lock($lock_realm, 'sequential', 30);
 	if ($locked) {
 		wrap_error(sprintf(
 			'Job Manager: unable to start job ID %d, jobqueue is locked', $job['job_id']
