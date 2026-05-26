@@ -809,3 +809,6 @@ php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:
 # M4 PDF Extension of some shop
 404	begin	/modules/m4pdf/tpl
 404	begin	/module/m4pdf/pdf?ajax=1
+
+# referer m.baidu.com, trying to access incomplete URLs, just noise
+404	ua	pc
