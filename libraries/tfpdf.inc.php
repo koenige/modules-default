@@ -24,9 +24,5 @@ else
 define('FPDF_FONTPATH', wrap_setting('custom').'/tfpdf');
 ini_set('error_reporting', E_ALL & ~E_DEPRECATED);
 
-class zzTFPDF extends tFPDF {
-	function Error($msg) {
-		// Fatal error
-		wrap_error(sprintf('FPDF error: %s', $msg), E_USER_ERROR);
-	}
-}
+require_once wrap_setting('lib').'/tfpdf/zztfpdf.php';
+require_once wrap_setting('lib').'/tfpdf/zztfpdf_unicode.php';
