@@ -46,13 +46,15 @@ $zz['fields'][4]['show_hierarchy_subtree'] = wrap_category_id('blocks');
 $zz['fields'][4]['default'] = wrap_category_id('blocks/general');
 $zz['fields'][4]['dependent_fields'][5]['if_selected'] = 'show_blocks_detail_category';
 $zz['fields'][4]['list_append_next'] = true;
+$zz['fields'][4]['character_set'] = 'utf8';
 
 $zz['fields'][5]['field_name'] = 'category_id';
 $zz['fields'][5]['type'] = 'select';
 $zz['fields'][5]['sql'] = 'SELECT category_id, category, main_category_id
 	FROM /*_PREFIX_*/categories';
 $zz['fields'][5]['display_field'] = 'subject_category';
-$zz['fields'][4]['search'] = 'subject_categories.category';
+$zz['fields'][5]['character_set'] = 'utf8';
+$zz['fields'][5]['search'] = 'subject_categories.category';
 $zz['fields'][5]['show_hierarchy'] = 'main_category_id';
 
 $zz['fields'][6]['title'] = 'Block';
