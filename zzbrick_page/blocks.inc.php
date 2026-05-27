@@ -59,7 +59,8 @@ function page_blocks($params, &$page, $local_settings = []) {
 		}
 		$block_media = $media[$block_id] ?? [];
 		if (!$block_media) continue;
-		$data[$block_id]['image'] = brick_request_link($block_media, ['image', 1, $size], 'sequence');
+		brick_request_links($line['block'], $block_media, 'sequence');
+		$line['image'] = brick_request_link($block_media, ['image', 1, $size], 'sequence');
 	}
 	unset($line);
 
