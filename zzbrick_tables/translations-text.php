@@ -65,7 +65,7 @@ $zz['fields'][5]['sql'] = 'SELECT language_id, language, variation
 $zz['fields'][5]['sql_translate'] = ['language_id' => 'languages'];
 $zz['fields'][5]['prefix'] = wrap_text('Translation to').' ';
 $zz['fields'][5]['suffix'] = ': ';
-$zz['fields'][5]['default'] = wrap_language_id(wrap_setting('default_translation_language'));
+$zz['fields'][5]['default'] = wrap_language_id(wrap_setting('default_translation_language') ?? '');
 $zz['fields'][5]['def_val_ignore'] = true;
 $zz['fields'][5]['show_title'] = false;
 $zz['fields'][5]['display_field'] = 'lang';
