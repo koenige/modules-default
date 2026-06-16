@@ -12,7 +12,7 @@
 <section class="block %%% item layout_class %%%">
 <div>
 
-<h2>%%% item title %%%</h2>
+<h2%%% if identifier %%% id="%%% item identifier %%%"%%% endif %%%>%%% item title %%%</h2>
 
 %%% item image %%%
 

@@ -24,7 +24,7 @@
 function page_blocks($params, &$page, $local_settings = []) {
 	if (!wrap_page_field('page_id')) return '';
 	
-	$sql = 'SELECT /*_PREFIX_*/blocks.block_id, /*_PREFIX_*/blocks.title, /*_PREFIX_*/blocks.block
+	$sql = 'SELECT /*_PREFIX_*/blocks.block_id, /*_PREFIX_*/blocks.title, /*_PREFIX_*/blocks.identifier, /*_PREFIX_*/blocks.block
 			, block_categories.category AS block_category
 			, layout_categories.category AS layout_category
 			, SUBSTRING_INDEX(layout_categories.path, "/", -1) AS layout_class
