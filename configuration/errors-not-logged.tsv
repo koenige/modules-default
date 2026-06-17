@@ -234,6 +234,11 @@ qs	string	utm_medium
 qs	string	utm_campaign
 qs	string	utm_content
 
+# HTML href uses &amp; (correct); some clients request that literally (view-source
+# copy-paste, bots scraping href without entity decode) → parse_str splits on the
+# & inside &amp; and yields a param named amp;…
+qs	string_regex	^amp;
+
 # Buggy virus on client side ? Troj/Agent-AJRU
 404	regex	~://pixel.yabidos.com/fltiu.js~
 
