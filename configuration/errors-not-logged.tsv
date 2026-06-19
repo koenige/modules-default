@@ -327,9 +327,14 @@ qs	string	msclkid
 404	end	/.git/INDEX
 404	end	/.git/config
 
-# .well-known URLs are normally not linked from a webpage
+# .well-known URLs and sitemaps are normally not linked from a webpage
 404	begin	/.well-known
 404	end	/sitemap.xml
+404	end	-sitemap.xml
+404	end	/sitemap.xml.gz
+404	end	/sitemap_index.xml
+404	end	/sitemap-index.xml
+404	end	/sitemap1.xml
 404	begin	/security.txt
 
 # looking for unprotected environment and configuration variables
