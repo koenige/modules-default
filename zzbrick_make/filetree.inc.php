@@ -73,6 +73,7 @@ function mod_default_filetree_file($params) {
 		$extension = $extension[0];
 		$file['ext'] = $extension;
 	}
+	if ($extension AND strlen($extension) > wrap_setting('default_filetree_max_extension_length')) $extension = NULL;
 	switch ($extension) {
 		case 'headers': $file['ext'] = 'txt'; break;
 		case '%2F': $file['ext'] = 'txt'; break; // display HTML sourcecode
@@ -88,8 +89,7 @@ function mod_default_filetree_file($params) {
  * get file extension per file for filetree
  *
  * treat part behind last dot as file extension
- * normally, file extensions won't be longer than 10 characters
- * not 100% correct of course
+ * @see wrap_setting('default_filetree_max_extension_length')
  * @param string $filename
  * @return string
  */
@@ -102,6 +102,7 @@ function mod_default_filetree_file_ext($filename) {
 		$ext = wrap_file_extension('example'.$basename);
 	if ($ext AND $pos = strpos($ext, '?')) $ext = substr($ext, 0, $pos);
 	elseif ($ext AND $pos = strpos($ext, '%3F')) $ext = substr($ext, 0, $pos);
+	if ($ext AND strlen($ext) > wrap_setting('default_filetree_max_extension_length')) $ext = NULL;
 	if ($ext === 'headers') return 'TXT';
 	if (substr($basename, 0, 1) === '?') return 'HTML';
 	if (substr($filename, -1) === '/') return 'HTML';
