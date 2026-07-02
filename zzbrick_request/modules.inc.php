@@ -26,7 +26,7 @@ function mod_default_modules($params, $local_settings = [], $data = []) {
 
 	$data = [];
 	foreach (wrap_setting('modules') as $module) {
-		$pkg = wrap_cfg_files('package', ['package' => $module]);
+		$pkg = wrap_cfg_files('package', ['package' => $module, 'translate' => true]);
 		$tagline = '';
 		if (!empty($pkg['about']['tagline'])) {
 			$tagline = trim((string) $pkg['about']['tagline']);

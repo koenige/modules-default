@@ -26,7 +26,7 @@ function mod_default_module($params) {
 	$module = $params[0];
 	if (!in_array($module, wrap_setting('modules'))) return false;
 
-	$pkg = wrap_cfg_files('package', ['package' => $module]);
+	$pkg = wrap_cfg_files('package', ['package' => $module, 'translate' => true]);
 
 	$data = [];
 	$data['title'] = $pkg['about']['name'] ?? $module;

@@ -26,17 +26,17 @@ function mod_default_modulesettings($params) {
 	$module = $params[0];
 	if (!in_array($module, wrap_setting('modules'))) return false;
 
-	$pkg = wrap_cfg_files('package', ['package' => $module]);
+	$pkg = wrap_cfg_files('package', ['package' => $module, 'translate' => true]);
 	$module_name = $pkg['about']['name'] ?? $module;
 
-	$definitions = wrap_cfg_files('settings', ['package' => $module]);
+	$definitions = wrap_cfg_files('settings', ['package' => $module, 'translate' => true]);
 	$page = [];
 	$data = [];
 	if (!$definitions) {
 		$data['settings_empty'] = true;
 		$page['text'] = wrap_template('modulesettings', $data);
 	} else {
-		$full_cfg = wrap_cfg_files('settings');
+		$full_cfg = wrap_cfg_files('settings', ['translate' => true]);
 		$rows = [];
 		foreach ($definitions as $key => $meta) {
 			if (!is_array($meta)) continue;
