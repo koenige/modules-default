@@ -13,18 +13,25 @@
 <h2>%%% text Update Text Files %%%: %%% item package format=html_escape %%%</h2>
 
 %%% if write_message %%%
-<p class="error">%%% item write_message %%%</p>
+<p class="%%% if write_done %%%notice%%% else %%%error%%% endif %%%">%%% item write_message format=html_escape %%%</p>
 %%% endif %%%
 
 %%% if empty %%%
 <p>%%% text No translatable strings were found for this package. %%%</p>
 
 %%% else %%%
-<p>%%% text Translatable strings found in source files, sorted by reference. %%%</p>
+<p>%%% text Comparison of scanned source strings with existing .pot files. %%%</p>
 
 %%% loop pots %%%
 <h3>%%% item filename format=html_escape %%% (%%% item count %%%)</h3>
-<pre style="font-size: 1.1em; white-space: pre-wrap;"><code>%%% item content format=html_escape %%%</code></pre>
+%%% if added | deleted | updated %%%
+<p class="pot-diff-summary">
+%%% if added %%%<span class="diff-add">+%%% item added %%%</span> %%% endif %%%
+%%% if deleted %%%<span class="diff-del">-%%% item deleted %%%</span> %%% endif %%%
+%%% if updated %%%<span class="diff-upd">~%%% item updated %%%</span> %%% endif %%%
+</p>
+%%% endif %%%
+<div class="pot-diff">%%% item diff_html %%%</div>
 %%% loop end %%%
 
 <form action="" method="POST">

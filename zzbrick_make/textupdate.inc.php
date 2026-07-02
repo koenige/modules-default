@@ -32,8 +32,18 @@ function mod_default_make_textupdate($params) {
 	$data['write'] = $_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['write']);
 
 	if ($data['write']) {
-		$data['write_done'] = false;
-		$data['write_message'] = wrap_text('Writing .pot files is not implemented yet.');
+		if (empty($_POST['package']) OR $_POST['package'] !== $package) {
+			$data['write_done'] = false;
+			$data['write_message'] = wrap_text('Invalid package.');
+		} else {
+			$result = wrap_text_pot_write($package);
+			$data = mod_default_make_textupdate_data($package) + [
+				'package' => $package,
+				'write' => true,
+				'write_done' => $result['ok'],
+				'write_message' => $result['message'],
+			];
+		}
 	}
 
 	$page = [];
@@ -44,18 +54,24 @@ function mod_default_make_textupdate($params) {
 	return $page;
 }
 
+/**
+ * Data for textupdate template: scanned .pot diffs per file
+ *
+ * @param string $package
+ * @return array
+ */
 function mod_default_make_textupdate_data($package) {
 	$data = ['pots' => [], 'empty' => true];
-	$sources_by_pot = wrap_text_sources_by_pot($package);
 
-	foreach ($sources_by_pot as $pot_suffix => $entries) {
-		if (!$entries) continue;
-
-		$pot_file = wrap_text_log_pot_file($package, $pot_suffix);
+	foreach (wrap_text_pot_items($package) as $pot) {
+		$stats = wrap_text_pot_diff_stats($pot['old'], $pot['entries']);
 		$data['pots'][] = [
-			'filename' => basename($pot_file),
-			'content' => wrap_text_pot_build($package, $pot_suffix, $entries),
-			'count' => count($entries),
+			'filename' => $pot['filename'],
+			'diff_html' => wrap_text_pot_diff_html($pot['old'], $pot['new']),
+			'count' => count($pot['entries']),
+			'added' => $stats['added'] ?: '',
+			'deleted' => $stats['deleted'] ?: '',
+			'updated' => $stats['updated'] ?: '',
 		];
 		$data['empty'] = false;
 	}

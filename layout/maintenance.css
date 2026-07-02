@@ -51,7 +51,20 @@
 .mail-log .mail-resend
 					{ text-align: right; }
 
-/* maillog.template.txt */
-/* filetree.template.txt */
+/* textupdate.template.txt */
+.maintenance .pot-diff
+					{ font-size: 1.1em; margin: 0 0 1.5em; font-family: monospace; }
+.maintenance .pot-diff-line
+					{ display: block; white-space: pre-wrap; }
+.maintenance .pot-diff-summary
+					{ margin: 0 0 .5em; }
+.maintenance .pot-diff-line.diff-add,
+.maintenance .pot-diff-summary .diff-add
+					{ background-color: #cfc; }
+.maintenance .pot-diff-line.diff-del,
+.maintenance .pot-diff-summary .diff-del
+					{ background-color: #fcc; }
+.maintenance .pot-diff-summary .diff-upd
+					{ background-color: #ffc; }
 .maintenance .delete-all
 					{ float: right; margin: .5rem 0 1rem; }
