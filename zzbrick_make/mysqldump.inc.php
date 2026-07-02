@@ -14,7 +14,7 @@
 
 
 /**
- * Dumps mySQL data and structure
+ * Dumps MySQL data and structure
  *
  * @return array $page
  */

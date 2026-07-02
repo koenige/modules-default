@@ -94,7 +94,7 @@ function mod_default_filetree_file($params) {
  * @return string
  */
 function mod_default_filetree_file_ext($filename) {
-	// cache folder: filename is escaped, still get extension of cached ressource
+	// cache folder: filename is escaped, still get extension of cached resource
 	if (strstr($filename, '%2F')) $filename = urldecode($filename);
 	$basename = basename($filename);
 	$ext = wrap_file_extension($basename);

@@ -40,8 +40,8 @@ function mod_default_proxy($params) {
 	$url_parts = explode('/', $url);
 	$ext = end($url_parts) ? wrap_file_extension(end($url_parts)) : 'html';
 	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-		$ressource = wrap_syndication($url, ['type' => $ext]);
-		if (!$ressource) wrap_quit(404);
+		$resource = wrap_syndication($url, ['type' => $ext]);
+		if (!$resource) wrap_quit(404);
 		$filename = wrap_cache_filename('url', $url);
 		$data = file_get_contents($filename);
 	} else {
@@ -84,7 +84,7 @@ function mod_default_proxy($params) {
 	} elseif ($filename) {
 		wrap_send_file(['name' => $filename, 'ext' => $ext]);
 	} else {
-		wrap_send_ressource('memory', $data);
+		wrap_send_resource('memory', $data);
 	}
 }
 
