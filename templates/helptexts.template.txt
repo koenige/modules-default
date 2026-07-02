@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2024 Gustaf Mossakowski
+# @copyright Copyright © 2024, 2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 #
@@ -13,7 +13,7 @@
 %%% if texts %%%
 <ul>
 %%% loop texts %%%
-<li><a href="%%% path default_helptext identifier %%%">%%% item title %%%</a> %%% if foreign_language %%% %%% text "(not translated, language = %s)" language %%%%%% endif %%%</li>
+<li><a href="%%% path default_helptext identifier %%%">%%% item title %%%</a> %%% if foreign_language %%% %%% text "(not translated, language = %s)" language strtoupper %%%%%% endif %%%</li>
 %%% loop end %%%
 </ul>
 %%% endif %%%

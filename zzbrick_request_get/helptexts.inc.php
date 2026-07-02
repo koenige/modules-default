@@ -47,7 +47,7 @@ function mf_default_helptexts_files() {
 		$extension = wrap_file_extension($file);
 		if ($extension)
 			$basename = substr($basename, 0, -strlen($extension) -1);
-		$lang = '';
+		$lang = NULL;
 		if (strstr($basename, '-')) {
 			$basename = explode('-', $basename);
 			if (strlen(end($basename)) === 2) {
@@ -59,7 +59,7 @@ function mf_default_helptexts_files() {
 		$basename = mf_default_helptexts_identifier($basename);
 		$data[$basename][] = [
 			'title' => $title,
-			'language' => $lang,
+			'language' => $lang ?? 'en',
 			'package' => substr($package, 0, strrpos($package, '/')),
 			'filename' => $file,
 			'identifier' => $basename,
