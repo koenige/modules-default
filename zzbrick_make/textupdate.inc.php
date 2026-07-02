@@ -54,7 +54,7 @@ function mod_default_make_textupdate_data($package) {
 		$pot_file = wrap_text_log_pot_file($package, $pot_suffix);
 		$data['pots'][] = [
 			'filename' => basename($pot_file),
-			'content' => wrap_text_format_pot_chunks($entries),
+			'content' => wrap_text_pot_build($package, $pot_suffix, $entries),
 			'count' => count($entries),
 		];
 		$data['empty'] = false;
