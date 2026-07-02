@@ -176,6 +176,7 @@ function mod_default_maintenance_tables() {
 	// All available databases
 	$sql = 'SHOW DATABASES';
 	$databases = wrap_db_fetch($sql, 'Databases', 'single value');
+	$db_list = [];
 	foreach ($databases as $db) {
 		// no system databases
 		if (in_array($db, ['information_schema'])) continue;
@@ -184,17 +185,8 @@ function mod_default_maintenance_tables() {
 			'prefered' => $db === wrap_setting('db_name') ? true : false
 		];
 	}
-	$data['database_changeable'] = false;
-	if (count($db_list) > 1) {
-		$data['database_changeable'] = true;
-	} else {
-		foreach ($dbs as $db) {
-			if (reset($db) === wrap_setting('db_name')) continue;
-			$data['database_changeable'] = true;
-			break;
-		}
-	}
-		
+	$data['database_changeable'] = mod_default_maintenance_database_changeable($dbs, $db_list);
+
 	$i = 0;
 	foreach ($dbs as $category => $db_names) {
 		foreach ($db_names as $db) {
@@ -208,6 +200,26 @@ function mod_default_maintenance_tables() {
 		}
 	}
 	return $data;
+}
+
+/**
+ * should relation/translation database names be editable?
+ *
+ * @param array $dbs master, detail, and/or translation database names from tables
+ * @param array $db_list databases available on the server (for dropdown)
+ * @return bool
+ */
+function mod_default_maintenance_database_changeable(array $dbs, array $db_list) {
+	if (count($db_list) > 1) return true;
+
+	$server_databases = array_column($db_list, 'db');
+	if (!in_array(wrap_setting('db_name'), $server_databases, true)) return true;
+	foreach ($dbs as $category_databases) {
+		foreach ($category_databases as $db) {
+			if (!in_array($db, $server_databases, true)) return true;
+		}
+	}
+	return false;
 }
 
 /**
