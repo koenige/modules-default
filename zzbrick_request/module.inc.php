@@ -29,8 +29,10 @@ function mod_default_module($params) {
 	$pkg = wrap_cfg_files('package', ['package' => $module, 'translate' => true]);
 
 	$data = [];
+	$data['module'] = $module;
 	$data['title'] = $pkg['about']['name'] ?? $module;
 	$data['tagline'] = $pkg['about']['tagline'] ?? '';
+	$data['textupdate_url'] = wrap_path('default_maintenance').'?textupdate='.$module;
 
 	$page = [];
 	$page['title'] = $data['title'];

@@ -111,7 +111,8 @@ function mod_default_maintenance_keycheck() {
 		'sqlquery' => 'make',
 		'toolinfo' => 'request',
 		'translationscheck' => 'make',
-		'deprecations' => 'make'
+		'deprecations' => 'make',
+		'textupdate' => 'make'
 	];
 	foreach ($keys as $key => $verb) {
 		if (isset($_GET[$key])) return ['key' => $key, 'verb' => $verb];

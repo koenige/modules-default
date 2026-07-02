@@ -1,0 +1,36 @@
+# default module
+# preview gettext .pot entries from source scan
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div id="zzform" class="maintenance">
+
+<h2>%%% text Update Text Files %%%: %%% item package format=html_escape %%%</h2>
+
+%%% if write_message %%%
+<p class="error">%%% item write_message %%%</p>
+%%% endif %%%
+
+%%% if empty %%%
+<p>%%% text No translatable strings were found for this package. %%%</p>
+
+%%% else %%%
+<p>%%% text Translatable strings found in source files, sorted by reference. %%%</p>
+
+%%% loop pots %%%
+<h3>%%% item filename format=html_escape %%% (%%% item count %%%)</h3>
+<pre style="font-size: 1.1em; white-space: pre-wrap;"><code>%%% item content format=html_escape %%%</code></pre>
+%%% loop end %%%
+
+<form action="" method="POST">
+<input type="hidden" name="package" value="%%% item package format=html_escape %%%">
+<input type="submit" name="write" value="%%% text Write to .pot files %%%">
+</form>
+%%% endif %%%
+
+</div>
