@@ -45,7 +45,7 @@ function mod_default_maintenance($params) {
 	if (isset($_GET['phpinfo'])) {
 		phpinfo();
 		exit;
-	} elseif ($type = zz_maintenance_keycheck()) {
+	} elseif ($type = mod_default_maintenance_keycheck()) {
 		$brick = '%%% '.$type['verb'].' '.$type['key'].' '.($_GET[$type['key']] ?? '').' %%%';
 		$newpage = brick_format($brick);
 		if ($newpage['status'] === 404) return $newpage;
@@ -68,7 +68,7 @@ function mod_default_maintenance($params) {
 	}
 
 	$data = [];
-	$data = array_merge($data, zz_maintenance_tables());
+	$data = array_merge($data, mod_default_maintenance_tables());
 	$data['php_version'] = phpversion();
 	wrap_include('upload', 'zzform');
 	$functions = ['convert', 'gs', 'exiftool', 'file'];
@@ -96,7 +96,7 @@ function mod_default_maintenance($params) {
  *
  * @return string
  */
-function zz_maintenance_keycheck() {
+function mod_default_maintenance_keycheck() {
 	$keys = [
 		'cachedircheck' => 'make',
 		'dbmodules' => 'make',
@@ -125,7 +125,7 @@ function zz_maintenance_keycheck() {
  *
  * @return array
  */
-function zz_maintenance_tables() {
+function mod_default_maintenance_tables() {
 	$data = [];
 
 	if (!wrap_setting('zzform_check_referential_integrity') AND !wrap_setting('translate_fields'))
