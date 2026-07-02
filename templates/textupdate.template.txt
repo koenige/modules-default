@@ -34,10 +34,14 @@
 <div class="pot-diff">%%% item diff_html %%%</div>
 %%% loop end %%%
 
+%%% if writeable %%%
 <form action="" method="POST">
 <input type="hidden" name="package" value="%%% item package format=html_escape %%%">
 <input type="submit" name="write" value="%%% text Write to .pot files %%%">
 </form>
+%%% else %%%
+<p class="notice">%%% text No changes needed. %%%</p>
+%%% endif %%%
 %%% endif %%%
 
 </div>

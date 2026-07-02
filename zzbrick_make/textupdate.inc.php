@@ -61,10 +61,12 @@ function mod_default_make_textupdate($params) {
  * @return array
  */
 function mod_default_make_textupdate_data($package) {
-	$data = ['pots' => [], 'empty' => true];
+	$data = ['pots' => [], 'empty' => true, 'writeable' => false];
 
 	foreach (wrap_text_pot_items($package) as $pot) {
 		$stats = wrap_text_pot_diff_stats($pot['old'], $pot['entries']);
+		if (wrap_text_pot_normalize($pot['old']) !== $pot['new'])
+			$data['writeable'] = true;
 		$data['pots'][] = [
 			'filename' => $pot['filename'],
 			'diff_html' => wrap_text_pot_diff_html($pot['old'], $pot['new']),
