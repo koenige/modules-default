@@ -1,0 +1,472 @@
+# default module
+# Translations, admin
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Zugzwang Project -- default module\n"
+"POT-Creation-Date: 2026-07-04 07:21+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.9\n"
+
+#: configuration/access.cfg:20
+msgid "Adminer MySQL database administration"
+msgstr "Adminer MySQL-Datenbankverwaltung"
+
+#: configuration/access.cfg:24
+msgid "edit parameters of categories?"
+msgstr ""
+
+#: configuration/access.cfg:28
+msgid "Database logging"
+msgstr "Datenbank-Aufzeichnung"
+
+#: configuration/access.cfg:32
+msgid "full rights to edit/insert/add logins"
+msgstr ""
+
+#: configuration/access.cfg:36
+msgid "Database table relations"
+msgstr ""
+
+#: configuration/access.cfg:40
+msgid "Translations of Texts"
+msgstr ""
+
+#: configuration/access.cfg:44
+msgid "Database translation fields"
+msgstr ""
+
+#: configuration/access.cfg:48
+msgid "Access and edit webpages, except for restricted pages"
+msgstr ""
+
+#: configuration/access.cfg:52
+msgid "Website structure, internal webpages"
+msgstr ""
+
+#: configuration/access.cfg:56
+msgid "List available websites"
+msgstr ""
+
+#: configuration/access.cfg:61
+msgid "Edit and add available websites"
+msgstr ""
+
+#: configuration/filetypes.cfg:113
+msgid "Microsoft Windows Bitmap v2 (Microsoft Windows 2.x)"
+msgstr ""
+
+#: configuration/filetypes.cfg:120
+msgid "Microsoft Windows Bitmap v3 (Microsoft Windows 3.x, NT)"
+msgstr ""
+
+#: configuration/filetypes.cfg:127
+msgid "ChessBase Archive"
+msgstr ""
+
+#: configuration/filetypes.cfg:135
+msgid "INI file"
+msgstr ""
+
+#: configuration/filetypes.cfg:328
+msgid "PostScript document text (EPS)"
+msgstr ""
+
+#: configuration/filetypes.cfg:338
+msgid "Encapsulated PostScript Interchange format with TIFF preview"
+msgstr ""
+
+#: configuration/filetypes.cfg:820
+msgid "Maker Interchange Format (Adobe FrameMaker)"
+msgstr ""
+
+#: configuration/filetypes.cfg:1111
+msgid "PostScript document text (PS)"
+msgstr ""
+
+#: configuration/filetypes.cfg:1234
+msgid "Structured Query Language (SQL) file"
+msgstr ""
+
+#: configuration/filetypes.cfg:1278
+msgid "True Crypt (Virtual Encrypted Disk (Container))"
+msgstr ""
+
+#: configuration/package.cfg:15
+msgid "Site-wide administration, maintenance, and utilities"
+msgstr "Website-weite Verwaltung, Wartung und Hilfsfunktionen"
+
+#: configuration/routes.cfg:12
+msgid "Subtree of categories"
+msgstr ""
+
+#: configuration/routes.cfg:21
+msgid "Individual help text pages"
+msgstr ""
+
+#: configuration/routes.cfg:26
+msgid "Database maintenance, updates, access to logfiles"
+msgstr ""
+
+#: configuration/routes.cfg:31
+msgid "Overview of installed modules"
+msgstr ""
+
+#: configuration/routes.cfg:36
+msgid "Single installed module (package overview)"
+msgstr ""
+
+#: configuration/routes.cfg:41
+msgid "Installed module settings (from configuration/settings.cfg vs runtime)"
+msgstr ""
+
+#: configuration/routes.cfg:46
+msgid "Masquerade login"
+msgstr ""
+
+#: configuration/routes.cfg:51
+msgid "Proxy access of third-party websites"
+msgstr ""
+
+#: configuration/routes.cfg:56
+msgid "Website settings"
+msgstr "Website-Einstellungen"
+
+#: configuration/routes.cfg:61
+msgid "Admin access to all tables"
+msgstr ""
+
+#: configuration/routes.cfg:66
+msgid "Internal tools for a single website"
+msgstr ""
+
+#: configuration/routes.cfg:73
+msgid "Search"
+msgstr ""
+
+#: configuration/settings.cfg:20 configuration/settings.cfg:24
+msgid "Link to a form where a detail record can be added"
+msgstr ""
+
+#: configuration/settings.cfg:28
+msgid "Alias for a category path, use preferably"
+msgstr ""
+
+#: configuration/settings.cfg:33
+msgid "Delete old files in these folders: folder = max_age_seconds"
+msgstr ""
+
+#: configuration/settings.cfg:38
+msgid "Delete stale lines in these logfiles: filename = max_age_seconds"
+msgstr ""
+
+#: configuration/settings.cfg:43
+msgid "IP addresses of server/s (IPv4, IPV6) that executes cron jobs"
+msgstr ""
+
+#: configuration/settings.cfg:48
+msgid "Throw 404 error if no search results were found"
+msgstr ""
+
+#: configuration/settings.cfg:53
+msgid "Class for block, set directly (instead of path or alias)"
+msgstr ""
+
+#: configuration/settings.cfg:57
+msgid "Allow to set a detail category per block"
+msgstr ""
+
+#: configuration/settings.cfg:62
+msgid "Date of the last execution of the cron job"
+msgstr ""
+
+#: configuration/settings.cfg:66
+msgid ""
+"Seconds to wait between the start of cron jobs that should start at the same "
+"time"
+msgstr ""
+
+#: configuration/settings.cfg:71
+msgid ""
+"Number of already executed (past) database update queries to show on the "
+"standard dbupdate page"
+msgstr ""
+
+#: configuration/settings.cfg:76
+msgid "Directories to exclude from deprecation scans"
+msgstr ""
+
+#: configuration/settings.cfg:85
+msgid "Files to exclude from deprecation scans"
+msgstr ""
+
+#: configuration/settings.cfg:91
+msgid "File extensions to scan for deprecated code patterns (without dot)"
+msgstr ""
+
+#: configuration/settings.cfg:106
+msgid "List of files not to use from default module"
+msgstr ""
+
+#: configuration/settings.cfg:110
+msgid "Maximum no. of files that can be downloaded at once"
+msgstr ""
+
+#: configuration/settings.cfg:115
+msgid "Maximum filesize of download archive"
+msgstr ""
+
+#: configuration/settings.cfg:120
+msgid ""
+"ZIP creation is possible via `shell` or `php` – shell is faster but not "
+"always available"
+msgstr ""
+
+#: configuration/settings.cfg:127
+msgid "Top folder for filetree"
+msgstr ""
+
+#: configuration/settings.cfg:133
+msgid "Filenames that are treated as text files when viewed in filetree"
+msgstr ""
+
+#: configuration/settings.cfg:144
+msgid "Filenames (basename, without folder) that cannot be deleted"
+msgstr ""
+
+#: configuration/settings.cfg:164
+msgid ""
+"Maximum length of a filename extension shown in filetree (longer suffixes "
+"are treated as unknown)"
+msgstr ""
+
+#: configuration/settings.cfg:169
+msgid "Delete job entries from job queue after n hours"
+msgstr ""
+
+#: configuration/settings.cfg:174
+msgid "Base value for the exponent for the delay of retries after minutes"
+msgstr ""
+
+#: configuration/settings.cfg:179
+msgid "Maximum number of tries to complete a job if it fails"
+msgstr ""
+
+#: configuration/settings.cfg:184
+msgid "Maximum runtime of one request in the job manager"
+msgstr ""
+
+#: configuration/settings.cfg:189
+msgid ""
+"Maximum length of response or single response key that job manager will save"
+msgstr ""
+
+#: configuration/settings.cfg:194
+msgid "Minutes after a running job that probably hung can be started again"
+msgstr ""
+
+#: configuration/settings.cfg:199
+msgid "Sleep microseconds after a job was finished before calling the next one"
+msgstr ""
+
+#: configuration/settings.cfg:204
+msgid ""
+"Default language register per language, i. e. is not added to language tag"
+msgstr ""
+
+#: configuration/settings.cfg:209
+msgid "Show full language name instead of ISO code for language switcher"
+msgstr ""
+
+#: configuration/settings.cfg:213
+msgid "Use logfile for database export"
+msgstr ""
+
+#: configuration/settings.cfg:218
+msgid "List of fields for database export log"
+msgstr ""
+
+#: configuration/settings.cfg:226
+msgid "Validity of entries in database export log"
+msgstr ""
+
+#: configuration/settings.cfg:231
+msgid "Set to true if last token might contain spaces"
+msgstr ""
+
+#: configuration/settings.cfg:236
+msgid "Use logfile for database import, old and new IDs"
+msgstr ""
+
+#: configuration/settings.cfg:241
+msgid "List of fields for database import log, IDs"
+msgstr ""
+
+#: configuration/settings.cfg:248
+msgid "Validity of entries in database import ID log"
+msgstr ""
+
+#: configuration/settings.cfg:253
+msgid "Background colour of login form"
+msgstr ""
+
+#: configuration/settings.cfg:258
+msgid "sed patterns to clean up MySQL structure dumps"
+msgstr ""
+
+#: configuration/settings.cfg:264
+msgid "List of allowed hostnames (or ends of it) for proxy"
+msgstr ""
+
+#: configuration/settings.cfg:269
+msgid ""
+"Username of local user that is used for maintenance operations (should have "
+"admin rights)"
+msgstr ""
+
+#: configuration/settings.cfg:272
+msgid "Show a h2 with Search results: above search results"
+msgstr ""
+
+#: configuration/settings.cfg:277
+msgid "Show search form in search results at the bottom"
+msgstr ""
+
+#: configuration/settings.cfg:282
+msgid "Show search form in search results at the top"
+msgstr ""
+
+#: configuration/settings.cfg:287
+msgid ""
+"If content is translated, default source language, ISO 639-1 code; for text "
+"table only"
+msgstr ""
+
+#: configuration/settings.cfg:293
+msgid "If content is translated, default destination language, ISO 639-1 code"
+msgstr ""
+
+#: configuration/settings.cfg:298
+msgid ""
+"Allow to use table definition scripts from default module, bool: yes, or "
+"list of tables"
+msgstr ""
+
+#: configuration/settings.cfg:302
+msgid "If make script for update is run, limit each run to this no. of records"
+msgstr ""
+
+#: configuration/settings.cfg:307
+msgid "Use webpages/media table from default module"
+msgstr ""
+
+#: configuration/settings.cfg:312
+msgid "Use webpages/blocks table: assign blocks to webpages in webpage form"
+msgstr ""
+
+#: configuration/settings.cfg:316
+msgid "Class for website template"
+msgstr ""
+
+#: configuration/settings.cfg:320
+msgid ""
+"Datetime as start date from when on a caching of certain JS/CSS should be "
+"disabled (when you deploy updates)"
+msgstr ""
+
+#: configuration/settings.cfg:324
+msgid ""
+"Title of language link, preferably language name in native language (or "
+"variants like “English Version“), iso=name"
+msgstr ""
+
+#: configuration/settings.cfg:329
+msgid ""
+"Additional log files, same format as error logs (filled with wrap_log())"
+msgstr ""
+
+#: configuration/settings.cfg:333
+msgid "Minimal length of a password"
+msgstr ""
+
+#: configuration/settings.cfg:338
+msgid "Use field logins.login_rights"
+msgstr ""
+
+#: configuration/settings.cfg:343
+msgid "Max no. of requests per job category which might run parallel"
+msgstr ""
+
+#: configuration/settings.cfg:348
+msgid "Initial installation date of default module (for updates)"
+msgstr ""
+
+#: configuration/settings.cfg:352
+msgid ""
+"Path used to restrict detail records to this path fragment, for reverse "
+"relations"
+msgstr ""
+
+#: configuration/settings.cfg:356
+msgid "Size of images in search results"
+msgstr ""
+
+#: configuration/settings.cfg:360
+msgid "Order of modules in search output"
+msgstr ""
+
+#: configuration/settings.cfg:364
+msgid "Read menu hierarchy from categories"
+msgstr ""
+
+#: configuration/settings.cfg:369
+msgid "For menu_hierarchy, use only part of the path starting at this segment"
+msgstr ""
+
+#: configuration/settings.cfg:374
+msgid ""
+"Split title at ' / ' if a link between records can be seen from both sides "
+"and different titles are needed"
+msgstr ""
+
+#: configuration/settings.cfg:379
+msgid "Class name for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:383
+msgid "Extra item: subpage description"
+msgstr ""
+
+#: configuration/settings.cfg:388
+msgid "Extra item: query string to add as default for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:393
+msgid "Extra item: subpage title"
+msgstr ""
+
+#: configuration/settings.cfg:398
+msgid "Hide this page from subpage list items"
+msgstr ""
+
+#: configuration/settings.cfg:403
+msgid "Indentation level of subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:408
+msgid "Query string to add as default for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:412
+msgid "Name of the user to login with for server sync"
+msgstr ""

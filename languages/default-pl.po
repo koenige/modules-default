@@ -23,10 +23,6 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.7.1\n"
 
-#: configuration/settings.cfg
-msgid "List of services used for geocoding"
-msgstr "Lista usług wykorzystywanych do geokodowania"
-
 #: templates/login.template.txt
 msgid "You have been logged out."
 msgstr "Wylogowałeś/wylogowałaś się."
