@@ -169,7 +169,7 @@ function mod_default_make_jobmanager_add($data) {
 		'lock_hash' => wrap_lock_hash(),
 		'postdata' => $postdata ? http_build_query($postdata) : ''
 	];
-	return zzform_insert('jobqueue', $line, E_USER_NOTICE, ['msg' => 'Job Manager', 'log_post_data' => false]);
+	return zzform_insert('jobqueue', $line, E_USER_NOTICE, ['_msg' => 'Job Manager', 'log_post_data' => false]);
 }
 
 /**
