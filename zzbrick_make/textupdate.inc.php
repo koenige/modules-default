@@ -65,7 +65,7 @@ function mod_default_make_textupdate_data($package) {
 
 	foreach (wrap_text_pot_items($package) as $pot) {
 		$stats = wrap_text_pot_diff_stats($pot['old'], $pot['entries']);
-		if (wrap_text_pot_normalize($pot['old']) !== $pot['new'])
+		if (wrap_text_pot_normalize_for_diff($pot['old']) !== wrap_text_pot_normalize_for_diff($pot['new']))
 			$data['writeable'] = true;
 		$data['pots'][] = [
 			'filename' => $pot['filename'],
