@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-04 07:21+0000\n"
+"POT-Creation-Date: 2026-07-04 07:32+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -21,7 +21,7 @@ msgid "Adminer MySQL database administration"
 msgstr ""
 
 #: configuration/access.cfg:24
-msgid "edit parameters of categories?"
+msgid "Edit parameters of categories?"
 msgstr ""
 
 #: configuration/access.cfg:28
@@ -29,7 +29,7 @@ msgid "Database logging"
 msgstr ""
 
 #: configuration/access.cfg:32
-msgid "full rights to edit/insert/add logins"
+msgid "Full rights to edit/insert/add logins"
 msgstr ""
 
 #: configuration/access.cfg:36

@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2026-07-04 07:32+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -22,42 +22,58 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
 
-#: default/download.inc.php
-msgid "Creation of ZIP file “%s” failed."
-msgstr "Die Erstellung der ZIP-Datei „%s“ ist fehlgeschlagen."
-
-#: default/download.inc.php
-msgid "Download: Archive Too Big"
-msgstr "Download: Archiv zu groß"
-
-#: default/download.inc.php
+#: default/download.inc.php:27
 msgid ""
 "None of the files for the requested archive could be found on the server."
 msgstr ""
 "Keine der Dateien von dem angeforderten Archiv konnte auf dem Server "
 "gefunden werden."
 
-#: default/format.inc.php
-msgid "The value is only visible during editing."
-msgstr "Der Wert ist nur bei der Bearbeitung sichtbar."
+#: default/download.inc.php:39
+msgid "Download: Archive Too Big"
+msgstr "Download: Archiv zu groß"
 
-#: layout/internal.css
+#: default/download.inc.php:93
+msgid "Creation of ZIP file “%s” failed."
+msgstr "Die Erstellung der ZIP-Datei „%s“ ist fehlgeschlagen."
+
+#: layout/internal.css:20
 msgid "PREVIEW"
 msgstr "VORSCHAU"
 
-#: templates/cleanup.template.txt
+#: templates/cachedircheck.template.txt:13
+msgid "Check Cache Directory"
+msgstr ""
+
+#: templates/cachedircheck.template.txt:16
+msgid "Active folder"
+msgstr ""
+
+#: templates/cachedircheck.template.txt:17
+msgid "Inactive folder"
+msgstr ""
+
+#: templates/cachedircheck.template.txt:19
+msgid "Move cached files from inactive folder to active folder"
+msgstr ""
+
+#: templates/cachedircheck.template.txt:25
+msgid "Moved files:"
+msgstr ""
+
+#: templates/cleanup.template.txt:12
 msgid "Cleanup in progress, please wait until a new process can start."
 msgstr ""
 "Aufräumarbeiten im Gange, bitte warten Sie, bis ein neuer Prozess starten "
 "kann."
 
-#: templates/cleanup.template.txt
+#: templates/cleanup.template.txt:16
 msgid "%d stale session cookie deleted."
 msgid_plural "%d stale session cookies deleted."
 msgstr[0] "%d abgelaufenes Sitzungscookie gelöscht."
 msgstr[1] "%d abgelaufene Sitzungscookies gelöscht."
 
-#: templates/cleanup.template.txt
+#: templates/cleanup.template.txt:18
 msgid "%d file deleted in folder <code>%s</code> that was older than %s."
 msgid_plural ""
 "%d files deleted in folder <code>%s</code> that were older than %s."
@@ -65,7 +81,13 @@ msgstr[0] "%d Datei im Ordner <code>%s</code> gelöscht, die älter als %s war."
 msgstr[1] ""
 "%d Dateien im Ordner <code>%s</code> gelöscht, die älter als %s waren."
 
-#: templates/cleanup.template.txt
+#: templates/cleanup.template.txt:20
+msgid "%d log file compressed."
+msgid_plural "%d log files compressed."
+msgstr[0] "%d Logdatei komprimiert."
+msgstr[1] "%d Logdateien komprimiert."
+
+#: templates/cleanup.template.txt:22
 msgid "%d line deleted in logfile <code>%s</code> that was older than %s."
 msgid_plural ""
 "%d lines deleted in logfile <code>%s</code> that were older than %s."
@@ -73,22 +95,157 @@ msgstr[0] "%d Zeile im Logfile <code>%s</code> gelöscht, die älter als %s war.
 msgstr[1] ""
 "%d Zeilen im Logfile <code>%s</code> gelöscht, die älter als %s waren."
 
-#: templates/cleanup.template.txt
-msgid "%d log file compressed."
-msgid_plural "%d log files compressed."
-msgstr[0] "%d Logdatei komprimiert."
-msgstr[1] "%d Logdateien komprimiert."
+#: templates/dbmodules.template.txt:17
+msgid "List of Modules"
+msgstr "Liste der Module"
 
-#: templates/download-error.template.txt
+#: templates/dbmodules.template.txt:26
+msgid "Install module"
+msgstr "Modul installieren"
+
+#: templates/dbmodules.template.txt:29
+#: zzbrick_request/modulesettings.inc.php:291 zzbrick_tables/countries.php:56
+#: zzbrick_tables/languages.php:62 zzbrick_tables/logins.php:182
+msgid "no"
+msgstr "nein"
+
+#: templates/dbmodules.template.txt:29
+#: zzbrick_request/modulesettings.inc.php:291 zzbrick_tables/countries.php:55
+#: zzbrick_tables/languages.php:61 zzbrick_tables/logins.php:181
+msgid "yes"
+msgstr "ja"
+
+#: templates/dbmodules.template.txt:36 templates/dbupdate.template.txt:22
+#: templates/modules.template.txt:14
+msgid "Module"
+msgstr "Modul"
+
+#: templates/dbmodules.template.txt:37
+msgid "Installation"
+msgstr "Installation"
+
+#: templates/dbmodules.template.txt:38
+msgid "enabled?"
+msgstr "Aktiviert?"
+
+#: templates/dbmodules.template.txt:39
+msgid "ReadMe"
+msgstr "LiesMich"
+
+#: templates/maintenance.template.txt:99 zzbrick_make/dbupdate.inc.php:77
+#: zzbrick_make/dbupdate.inc.php:86 zzbrick_make/dbupdate.inc.php:87
+#: zzbrick_make/dbupdate.inc.php:122
+msgid "Database Updates"
+msgstr "Datenbank-Aktualisierungen"
+
+#: templates/dbupdate.template.txt:14
+msgid "Back to Database Updates"
+msgstr "Zurück zu Datenbank-Aktualisierungen"
+
+#: templates/dbupdate.template.txt:16
+msgid "Show full history"
+msgstr "Gesamte Chronik anzeigen"
+
+#: templates/dbupdate.template.txt:22
+#: templates/maintenance-logs.template.txt:39
+msgid "Date"
+msgstr "Datum"
+
+#: templates/dbupdate.template.txt:22 zzbrick_tables/logging.php
+msgid "Query"
+msgstr "Abfrage"
+
+#: templates/dbupdate.template.txt:33 templates/sqlquery.template.txt
+#: zzbrick_tables/logging.php zzbrick_tables/relations.php:82
+msgid "Update"
+msgstr "Aktualisierung"
+
+#: templates/dbupdate.template.txt:34 zzbrick_make/dbupdate.inc.php
+msgid "Ignore"
+msgstr "Ignorieren"
+
+#: templates/dbupdate.template.txt:35
+msgid "Run all pending"
+msgstr "Alle offenen ausführen"
+
+#: templates/dbupdate.template.txt:47 zzbrick_make/dbupdate.inc.php:118
+msgid "No pending SQL updates."
+msgstr "Keine offenen SQL-Updates."
+
+#: templates/maintenance.template.txt:101 zzbrick_make/deprecations.inc.php:67
+#: zzbrick_make/deprecations.inc.php:68
+msgid "Deprecated Code Patterns"
+msgstr "Veraltete Code-Muster"
+
+#: templates/deprecations.template.txt:14
+msgid "No deprecated code patterns found. Your codebase is up to date!"
+msgstr ""
+"Es wurden keine veralteten Code-Muster gefunden. Ihre Codebasis ist aktuell!"
+
+#: templates/deprecations.template.txt:17
+msgid ""
+"The following deprecated code patterns were found in your codebase. Please "
+"update your code and mark each item as resolved when completed."
+msgstr ""
+"Die folgenden veralteten Code-Muster wurden in Ihrer Codebasis gefunden. "
+"Bitte aktualisieren Sie Ihren Code und markieren Sie jeden Eintrag als "
+"erledigt, wenn Sie fertig sind."
+
+#: templates/deprecations.template.txt:23
+msgid "Package"
+msgstr "Paket"
+
+#: templates/deprecations.template.txt:24
+msgid "Identifier"
+msgstr ""
+
+#: templates/deprecations.template.txt:25
+#: templates/maintenance-logs.template.txt:43
+msgid "Message"
+msgstr "Meldung"
+
+#: templates/deprecations.template.txt:25
+msgid "Pattern"
+msgstr "Muster"
+
+#: templates/deprecations.template.txt:26
+msgid "Found in Files"
+msgstr "Gefunden in Dateien"
+
+#: templates/deprecations.template.txt:27
+msgid "Resolved"
+msgstr "Erledigt"
+
+#: templates/deprecations.template.txt:38
+msgid "Breaking change, manual check needed"
+msgstr "Inkompatible Änderung, manuelle Überprüfung erforderlich"
+
+#: templates/deprecations.template.txt:44
+msgid "Excluding"
+msgstr "Ausgenommen"
+
+#: templates/deprecations.template.txt:63
+msgid "Save"
+msgstr "Speichern"
+
+#: templates/download-error.template.txt:12
 msgid "Sorry, but you might only download up to %s files at once."
 msgstr ""
 "Entschuldigung, aber Sie können nur %s Dateien auf einmal herunterladen."
 
-#: templates/download-error.template.txt
+#: templates/download-error.template.txt:13
 msgid "This archive would contain %s files."
 msgstr "Dieses Archiv würde aus %s Dateien bestehen."
 
-#: templates/download-error.template.txt
+#: templates/download-error.template.txt:16
+msgid "Sorry, but you might only download an archive up to %s."
+msgstr "Entschuldigung, aber Sie können nur ein Archiv bis %s herunterladen."
+
+#: templates/download-error.template.txt:17
+msgid "The requested archive would include files of %s size."
+msgstr "Die Dateien in diesem Archiv wären %s groß."
+
+#: templates/download-error.template.txt:19
 msgid ""
 "We recommend that you download every single subfolder instead of this main "
 "folder."
@@ -96,79 +253,228 @@ msgstr ""
 "Wir empfehlen, dass Sie jeden einzelnen Unterordner einzeln statt dieses "
 "Ordners komplett herunterladen."
 
-#: templates/download-error.template.txt
-msgid "Sorry, but you might only download an archive up to %s."
-msgstr "Entschuldigung, aber Sie können nur ein Archiv bis %s herunterladen."
+#: templates/errorlogs.template.txt:11
+msgid "Error Logging"
+msgstr "Fehlerlogs"
 
-#: templates/download-error.template.txt
-msgid "The requested archive would include files of %s size."
-msgstr "Die Dateien in diesem Archiv wären %s groß."
+#: templates/errorlogs.template.txt:14 templates/modulesettings.template.txt:18
+msgid "Setting"
+msgstr "Einstellung"
 
-#: templates/helplink.template.txt
+#: templates/errorlogs.template.txt:15 zzbrick_tables/settings.php
+msgid "Value"
+msgstr "Wert"
+
+#: templates/errorlogs.template.txt:18
+msgid "Error handling"
+msgstr "Fehlerbehandlung"
+
+#: templates/errorlogs.template.txt:19
+msgid "Errors will be shown on webpage"
+msgstr "Fehler werden auf der Webseite angezeigt"
+
+#: templates/errorlogs.template.txt:20
+msgid "Errors will be sent via mail"
+msgstr "Fehler werden per Mail versendet"
+
+#: templates/errorlogs.template.txt:21
+msgid "Errors won’t be shown"
+msgstr "Fehler werden nicht angezeigt"
+
+#: templates/errorlogs.template.txt:25
+msgid "Send mail for these error levels"
+msgstr "Fehler dieser Ebenen werden versendet"
+
+#: templates/errorlogs.template.txt:29
+msgid "Send mail (From:)"
+msgstr "Absender der E-Mail"
+
+#: templates/errorlogs.template.txt:31 templates/errorlogs.template.txt:37
+msgid "not set"
+msgstr "keine Angabe"
+
+#: templates/errorlogs.template.txt:35
+msgid "Send mail (To:)"
+msgstr "Empfänger der E-Mail"
+
+#: templates/errorlogs.template.txt:41
+msgid "Logging"
+msgstr "Aufzeichnung"
+
+#: templates/errorlogs.template.txt:42
+msgid "Errors will be logged"
+msgstr "Fehler werden aufgezeichnet"
+
+#: templates/errorlogs.template.txt:43
+msgid "Errors will not be logged"
+msgstr "Fehler werden nicht aufgezeichnet"
+
+#: templates/errorlogs.template.txt:49
+msgid "Logfile for <strong>%s</strong>"
+msgstr "Aufzeichnungen für <strong>%s</strong>"
+
+#: templates/errorlogs.template.txt:54
+msgid "Log POST variables when errors occur"
+msgstr "Bei Fehlern auch POST-Variablen aufzeichnen"
+
+#: templates/errorlogs.template.txt:55
+msgid "POST variables will be logged"
+msgstr "POST-Variablen werden aufgezeichnet"
+
+#: templates/errorlogs.template.txt:55
+msgid "POST variables will not be logged"
+msgstr "POST-Variablen werden nicht aufgezeichnet"
+
+#: templates/errorlogs.template.txt:59
+msgid "Logging (Mail)"
+msgstr ""
+
+#: templates/errorlogs.template.txt:60
+msgid "disabled"
+msgstr "deaktiviert"
+
+#: templates/filetree.template.txt:26
+msgid "Filename"
+msgstr "Dateiname"
+
+#: templates/filetree.template.txt:27
+msgid "Filetype"
+msgstr "Dateityp"
+
+#: templates/filetree.template.txt:28
+msgid "Size"
+msgstr "Größe"
+
+#: templates/filetree.template.txt:30
+msgid "Timestamp"
+msgstr "Zeitstempel"
+
+#: templates/specialfolders.template.txt:15
+msgid "– but this directory does not exist."
+msgstr "– aber dieses Verzeichnis existiert nicht."
+
+#: templates/filetree.template.txt:15
+msgid "%d file deleted"
+msgid_plural "%d files deleted"
+msgstr[0] "%d Datei gelöscht"
+msgstr[1] "%d Dateien gelöscht"
+
+#: templates/filetree.template.txt:29
+msgid "Files"
+msgstr ""
+
+#: templates/filetree.template.txt:36
+msgid "All Files"
+msgstr "Alle Dateien"
+
+#: templates/filetree.template.txt:56
+msgid "You have no access to this folder"
+msgstr "Sie haben keinen Zugriff auf diesen Ordner"
+
+#: templates/filetree.template.txt:58
+msgid "Folder is empty"
+msgstr "Ordner ist leer"
+
+#: templates/filetree.template.txt:63
+msgid "Delete all files"
+msgstr "Lösche alle Dateien"
+
+#: templates/filetree.template.txt:64
+msgid "Delete selected files"
+msgstr "Lösche ausgewählte Dateien"
+
+#: templates/filetree.template.txt:64 templates/maillog.template.txt:48
+#: templates/maintenance-logs.template.txt:70
+msgid "Select all"
+msgstr ""
+
+#: templates/filetree.template.txt:65 templates/maillog.template.txt:49
+#: templates/maintenance-logs.template.txt:71
+msgid "Deselect all"
+msgstr ""
+
+#: templates/filetree-nav.template.txt:12
+#: templates/filetree-nav.template.txt:22
+msgid "TOP"
+msgstr "TOP"
+
+#: templates/helplink.template.txt:11
 msgid "Help:"
 msgstr "Hilfe:"
 
-#: templates/jobmanager.template.txt
+#: templates/helptexts.template.txt:16
+msgid "(not translated, language = %s)"
+msgstr ""
+
+#: templates/jobmanager.template.txt:15 zzbrick_tables/jobqueue.php:162
+msgid "Category"
+msgstr ""
+
+#: templates/jobmanager.template.txt:16 zzbrick_tables/jobqueue.php:104
+msgid "not started"
+msgstr "nicht gestartet"
+
+#: templates/jobmanager.template.txt:17 zzbrick_tables/jobqueue.php:104
+msgid "running"
+msgstr "laufend"
+
+#: templates/jobmanager.template.txt:18 zzbrick_tables/jobqueue.php:105
+msgid "failed"
+msgstr "fehlgeschlagen"
+
+#: templates/jobmanager.template.txt:19 zzbrick_tables/jobqueue.php:105
+msgid "abandoned"
+msgstr "abgebrochen"
+
+#: templates/jobmanager.template.txt:35
 msgid "Results"
 msgstr "Ergebnisse"
 
-#: templates/jobmanager.template.txt
+#: templates/jobmanager.template.txt:38
 msgid "%d jobs were successful."
 msgstr "%d Aufträge waren erfolgreich."
 
-#: templates/jobmanager.template.txt
+#: templates/jobmanager.template.txt:39
 msgid "%d jobs failed."
 msgstr "%d Aufträge fehlgeschlagen."
 
-#: templates/jobmanager.template.txt
+#: templates/jobmanager.template.txt:40
 msgid "%d jobs were abanoned."
 msgstr "%d Aufträge wurden abgebrochen."
 
-#: templates/jobmanager.template.txt
+#: templates/jobmanager.template.txt:41
 msgid "%d successful jobs deleted."
 msgstr "%d erfolgreiche Aufträge gelöscht."
 
-#: templates/jobmanager.template.txt
+#: templates/jobmanager.template.txt:42
 msgid "%d running jobs released again."
 msgstr "%d laufende Aufträge wieder freigegeben."
 
-#: templates/jobmanager.template.txt
+#: templates/jobmanager.template.txt:43
 msgid "No jobs."
 msgstr "Keine Aufträge."
 
-#: templates/jobmanager.template.txt
+#: templates/jobmanager.template.txt:48 zzbrick_tables/jobqueue.php
+msgid "Background Job Queue"
+msgstr "Warteschlange der Hintergrundaufträge"
+
+#: templates/jobmanager.template.txt:51
 msgid "Start jobs manually"
 msgstr "Aufträge manuell starten"
 
-#: templates/jobmanager.template.txt
+#: templates/jobmanager.template.txt:53
 msgid "Start jobs"
 msgstr "Aufträge starten"
 
-#: templates/login.template.txt
+#: templates/login.template.txt:14
 msgid "You have been logged out."
 msgstr "Sie haben sich abgemeldet."
 
-#: templates/login.template.txt
+#: templates/login.template.txt:17
 msgid "Please allow us to set a cookie!"
 msgstr "Bitte erlauben Sie uns, einen Cookie zu setzen!"
 
-#: templates/login.template.txt
-msgid "Sign in"
-msgstr "Anmelden"
-
-#: templates/login.template.txt zzbrick_tables/settings.php
-msgid "Login"
-msgstr "Login"
-
-#: templates/login.template.txt
-msgid "Username:"
-msgstr "Benutzer:"
-
-#: templates/login.template.txt
-msgid "Password:"
-msgstr "Passwort:"
-
-#: templates/login.template.txt
+#: templates/login.template.txt:19
 msgid ""
 "To access the internal area, a registration is required. Please enter below "
 "your username and password."
@@ -176,7 +482,7 @@ msgstr ""
 "Für den Zugang zum internen Bereich ist eine Anmeldung erforderlich. Bitte "
 "geben Sie unten den von uns erhaltenen Benutzernamen mit Passwort ein."
 
-#: templates/login.template.txt
+#: templates/login.template.txt:20
 msgid ""
 "Please allow cookies after sending your login credentials. For security "
 "reasons, after %d minutes of inactivity you will be logged out automatically."
@@ -185,83 +491,431 @@ msgstr ""
 "einen Cookie akzeptieren. Nach %d Minuten Inaktivität werden Sie aus "
 "Sicherheitsgründen automatisch wieder abgemeldet!"
 
-#: templates/login.template.txt
+#: templates/login.template.txt:24 zzbrick_tables/settings.php
+msgid "Login"
+msgstr "Login"
+
+#: templates/login.template.txt:33
+msgid "Password:"
+msgstr "Passwort:"
+
+#: templates/login.template.txt:35
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: templates/login-password.template.txt
-msgid "Send me a password"
-msgstr "Passwort zusenden"
+#: templates/login.template.txt:36
+msgid "Sign in"
+msgstr "Anmelden"
 
-#: templates/login-password.template.txt
-msgid "Request a new password"
-msgstr "Neues Passwort anfordern"
-
-#: templates/login-password.template.txt
-msgid "Please enter your e-mail address."
-msgstr "Bitte geben Sie Ihre E-Mail-Adresse ein."
-
-#: templates/login-password.template.txt
-msgid "Please enter a valid e-mail address."
-msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein."
-
-#: templates/login-password.template.txt
+#: templates/login-password.template.txt:15
 msgid ""
 "If you have an existing login, we have sent you an e-mail with a login link."
 msgstr ""
 "Wenn Sie ein bestehendes Login haben, konnten wir Ihnen eine E-Mail mit "
 "einem Login-Link senden."
 
-#: templates/login-password.template.txt
+#: templates/login-password.template.txt:16
 msgid "Please check your mail."
 msgstr "Bitte prüfen Sie Ihre Mails."
 
-#: templates/login-password.template.txt
+#: templates/login-password.template.txt:17
 msgid "The link is valid for %s minutes."
 msgstr "Der Link ist für %s Minuten gültig."
 
-#: templates/login-password.template.txt
+#: templates/login-password.template.txt:18
 msgid "Back to login"
 msgstr "Zurück zum Login"
 
-#: templates/search.template.txt
-msgid "Search results for “%s”"
-msgstr "Suchergebnisse für „%s“"
+#: templates/login-password.template.txt:22
+msgid "Request a new password"
+msgstr "Neues Passwort anfordern"
 
-#: templates/search.template.txt
-msgid "We found nothing matching “%s”."
-msgstr "Wir haben keinen Treffer für „%s“ gefunden."
+#: templates/login-password.template.txt:23
+msgid "Name:"
+msgstr ""
 
-#: templates/search.template.txt
-msgid "Please enter a search term."
-msgstr "Geben Sie bitte einen Suchbegriff ein."
+#: templates/login-password.template.txt:25
+msgid "E-Mail:"
+msgstr ""
 
-#: templates/search.template.txt
+#: templates/login-password.template.txt:28
+msgid "Send me a password"
+msgstr "Passwort zusenden"
+
+#: templates/login-password.template.txt:30
+msgid "Please enter your e-mail address."
+msgstr "Bitte geben Sie Ihre E-Mail-Adresse ein."
+
+#: templates/login-password.template.txt:32
+msgid "Please enter a valid e-mail address."
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+
+#: templates/maillog.template.txt:13 templates/maintenance-logs.template.txt:16
+msgid "Logfile does not exist: %s"
+msgstr "Logdatei %s existiert nicht."
+
+#: templates/maillog.template.txt:21
+msgid "Mail"
+msgstr "E-Mail"
+
+#: templates/maillog.template.txt:36
+msgid "Resend mail"
+msgstr "E-Mail erneut senden"
+
+#: templates/maillog.template.txt:41 templates/maintenance-logs.template.txt:63
+msgid "No lines"
+msgstr "Keine Einträge"
+
+#: templates/maillog.template.txt:46 templates/maintenance-logs.template.txt:31
+#: templates/maintenance-logs.template.txt:68
+msgid "Delete all lines"
+msgstr "Lösche alle Einträge"
+
+#: templates/maillog.template.txt:47 templates/maintenance-logs.template.txt:69
+msgid "Delete selected lines"
+msgstr "Lösche ausgewählte Einträge"
+
+#: templates/maintenance.template.txt:13 zzbrick_make/dbmodules.inc.php:63
+#: zzbrick_make/dbmodules.inc.php:64 zzbrick_make/dbmodules.inc.php:68
+#: zzbrick_make/dbmodules.inc.php:69
+msgid "Modules"
+msgstr "Module"
+
+#: templates/maintenance.template.txt:15
+msgid "Relation and Translation Tables"
+msgstr "Beziehungs- und Übersetzungstabellen"
+
+#: templates/maintenance.template.txt:17
+msgid "The referential integrity of the database is not checked automatically."
+msgstr "Es wurde keine Tabelle für Datenbankbeziehungen angegeben."
+
+#: templates/maintenance.template.txt:20
+msgid "The fields in the database are not translated."
+msgstr "Die Felder in der Datenbank werden nicht übersetzt."
+
+#: templates/maintenance.template.txt:27
+#: templates/maintenance-logs.template.txt:41
+#: templates/modulesettings.template.txt:20
+#: templates/translationscheck.template.txt:26
+msgid "Type"
+msgstr "Typ"
+
+#: templates/maintenance.template.txt:28
+msgid "Current database"
+msgstr "Aktuelle Datenbank"
+
+#: templates/maintenance.template.txt:30
+msgid "New database"
+msgstr "Neue Datenbank"
+
+#: templates/maintenance.template.txt:31 zzbrick_request/maintenance.inc.php
+msgid "Action"
+msgstr "Aktion"
+
+#: templates/maintenance.template.txt:49
+msgid "Keep database"
+msgstr "Datenbank behalten"
+
+#: templates/maintenance.template.txt:51
+msgid "Change database"
+msgstr "Datenbank wechseln"
+
+#: templates/maintenance.template.txt:53
+msgid "(Database is not on server, you have to select a new database.)"
+msgstr ""
+"(Datenbank ist nicht auf dem Server, daher müssen Sie eine neue Datenbank "
+"auswählen)"
+
+#: templates/maintenance.template.txt:66 zzbrick_request/maintenance.inc.php
+msgid "Check relational integrity"
+msgstr "Prüfe relationale Integrität"
+
+#: templates/maintenance.template.txt:69
+#: zzbrick_make/translationscheck.inc.php:91
+#: zzbrick_make/translationscheck.inc.php:92
+msgid "Check Translations"
+msgstr "Übersetzungen prüfen"
+
+#: templates/maintenance.template.txt:75
+msgid "PHP & Server"
+msgstr ""
+
+#: templates/maintenance.template.txt:77
+msgid "Show PHP info on server"
+msgstr "Zeige Informationen zu PHP auf dem Server"
+
+#: templates/maintenance.template.txt:80
+msgid "ImageMagick not found."
+msgstr ""
+
+#: templates/maintenance.template.txt:82
+msgid "GhostScript not found."
+msgstr ""
+
+#: templates/maintenance.template.txt:84
+msgid "ExifTool not found."
+msgstr ""
+
+#: templates/maintenance.template.txt:86
+msgid "Unix file not found."
+msgstr ""
+
+#: templates/maintenance.template.txt:90
+msgid "Temp and Backup Files"
+msgstr "Temporäre und Backup-Dateien"
+
+#: templates/maintenance.template.txt:93 zzbrick_make/filetree.inc.php:55
+#: zzbrick_make/filetree.inc.php:56
+msgid "Filetree"
+msgstr "Dateibaum"
+
+#: templates/maintenance.template.txt#database-tables
+msgid "Translation"
+msgstr "Übersetzung"
+
+#: templates/maintenance.template.txt#database-tables
+msgctxt "default"
+msgid "Detail"
+msgstr "Detail"
+
+#: templates/maintenance.template.txtp#database-tables
+msgctxt "default"
+msgid "Master"
+msgstr "Haupt"
+
+#: templates/maintenance-logs.template.txt
+msgid "Group"
+msgstr "Gruppierung"
+
+#: templates/maintenance-logs.template.txt
+msgid "Group entries"
+msgstr "Einträge gruppieren"
+
+#: templates/maintenance-logs.template.txt:13
+msgid "No logfile specified"
+msgstr "Keine Logdatei angegeben"
+
+#: templates/maintenance-logs.template.txt:19
+msgid "This is not one of the used logfiles: %s"
+msgstr "Die Datei %s ist keine der benutzten Logdateien."
+
+#: templates/maintenance-logs.template.txt:28
+msgid "Please choose one of the filters."
+msgstr "Bitte wählen Sie aus den Filtern aus."
+
+#: templates/maintenance-logs.template.txt:40
+msgid "Last Date"
+msgstr "Letztes Datum"
+
+#: templates/maintenance-logs.template.txt:42
+msgid "Level"
+msgstr "Ebene"
+
+#: templates/maintenance-logs.template.txt:44
+msgid "User"
+msgstr "Benutzer"
+
+#: templates/maintenance-logs.template.txt:45
+msgid "Frequency"
+msgstr "Häufigkeit"
+
+#: templates/module.template.txt:14
+msgid "Update .pot files"
+msgstr ""
+
+#: templates/modules.template.txt:15
+msgid "Tagline"
+msgstr "Kurzbeschreibung"
+
+#: templates/modulesettings.template.txt:13
+msgid "No settings are defined for this package in configuration/settings.cfg."
+msgstr ""
+"Für dieses Paket sind in configuration/settings.cfg keine Einstellungen "
+"definiert."
+
+#: templates/modulesettings.template.txt:19
+msgid "Current value"
+msgstr "Aktueller Wert"
+
+#: templates/modulesettings.template.txt:36
+msgid "Default value:"
+msgstr "Standardwert:"
+
+#: templates/modulesettings.template.txt:39
+msgid "Examples:"
+msgstr "Beispiele:"
+
+#: templates/modulesettings.template.txt zzbrick_request/modulesettings.inc.php
+msgid "Scope"
+msgstr "Geltungsbereich"
+
+#: templates/mysqldump.template.txt:13
+msgid "No websites were found"
+msgstr ""
+
+#: templates/mysqldump.template.txt:19 zzbrick_tables/translations.php
+msgid "Database"
+msgstr "Datenbank"
+
+#: templates/mysqldump.template.txt:19 zzbrick_tables/settings.php
+msgid "Key"
+msgstr "Schlüssel"
+
+#: templates/mysqldump.template.txt:19
+msgid "Local folder"
+msgstr ""
+
+#: templates/mysqldump.template.txt:19
+msgid "Project"
+msgstr ""
+
+#: templates/page.template.txt:41
+msgid "You are here:"
+msgstr ""
+
+#: templates/polanguages.template.txt:14
+#: templates/translationscheck.template.txt:24 zzbrick_tables/translations.php
+msgid "Table"
+msgstr "Tabelle"
+
+#: templates/polanguages.template.txt:15
+msgid "Template"
+msgstr ""
+
+#: templates/relations.template.txt:11
+msgid "Links to other data"
+msgstr "Verknüpfungen mit anderen Daten"
+
+#: templates/relations.template.txt:17
+#: templates/translationscheck.template.txt:23
+msgid "ID"
+msgstr "ID"
+
+#: templates/relations.template.txt:23
+msgid "This entry is not linked to any other data."
+msgstr "Dieser Eintrag ist nicht mit anderen Daten verknüpft."
+
+#: templates/search.template.txt templates/searchform.template.txt:17
+#: zzbrick_request/search.inc.php:67
 msgid "Search"
 msgstr "Suchen"
 
-#: templates/search-default.template.txt
+#: templates/search.template.txt:13
+msgid "Search results for “%s”"
+msgstr "Suchergebnisse für „%s“"
+
+#: templates/search.template.txt:27
+msgid "We found nothing matching “%s”."
+msgstr "Wir haben keinen Treffer für „%s“ gefunden."
+
+#: templates/search.template.txt:31
+msgid "Please enter a search term."
+msgstr "Geben Sie bitte einen Suchbegriff ein."
+
+#: templates/search-default.template.txt:14
+#: templates/search-default.template.txt:16
+msgid "Webpages"
+msgstr ""
+
+#: templates/search-default.template.txt:25
 msgid "No webpages were found matching your search."
 msgstr "Es wurden keine zu Ihrer Suche passenden Webseiten gefunden."
 
-#: templates/website.template.txt
+#: templates/sqlquery.template.txt
+msgid " (ID: %s)"
+msgstr " (ID: %s)"
+
+#: templates/sqlquery.template.txt templates/translationscheck.template.txt:28
+#: templates/translationscheck.template.txt:41 zzbrick_tables/logging.php
+#: zzbrick_tables/relations.php:82
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/sqlquery.template.txt
+msgid "Insert"
+msgstr "Einfügen"
+
+#: templates/sqlquery.template.txt:14
+msgid "Sorry, %s is not yet supported"
+msgstr "Entschuldigung, aber %s wird (noch) nicht unterstützt"
+
+#: templates/sqlquery.template.txt:17
+msgid "Result"
+msgstr "Ergebnis"
+
+#: templates/sqlquery.template.txt:19
+msgid "No changes were made to the database."
+msgstr "Es wurden keine Änderungen an der Datenbank vorgenommen."
+
+#: templates/sqlquery.template.txt:22
+msgid "%s was successful"
+msgstr "%s war erfolgreich"
+
+#: templates/sqlquery.template.txt:23
+msgid "%d row affected"
+msgid_plural "%d rows affected"
+msgstr[0] "%d Eintrag bearbeitet"
+msgstr[1] "%d Einträge bearbeitet"
+
+#: templates/sqlquery.template.txt:27
+msgid "Database says:"
+msgstr "Datenbank sagt:"
+
+#: templates/sqlquery.template.txt:28
+msgid "[Code %s]"
+msgstr "[Code %s]"
+
+#: templates/sqlquery-form.template.txt:11
+msgid "Custom SQL query"
+msgstr "Eigene SQL-Abfrage"
+
+#: templates/textupdate.template.txt:13 zzbrick_make/textupdate.inc.php:52
+msgid "Update Text Files"
+msgstr ""
+
+#: templates/textupdate.template.txt:20
+msgid "No translatable strings were found for this package."
+msgstr ""
+
+#: templates/textupdate.template.txt:23
+msgid "Comparison of scanned source strings with existing .pot files."
+msgstr ""
+
+#: templates/textupdate.template.txt:40
+msgid "Write to .pot files"
+msgstr ""
+
+#: templates/textupdate.template.txt:43
+msgid "No changes needed."
+msgstr ""
+
+#: templates/translationscheck.template.txt:13
+msgid "Translations without a corresponding record"
+msgstr "Übersetzungen ohne entsprechenden Datensatz"
+
+#: templates/translationscheck.template.txt:16
+msgid "%s records were deleted."
+msgstr "%s Einträge wurden gelöscht."
+
+#: templates/translationscheck.template.txt:25 zzbrick_tables/translations.php
+msgid "Field"
+msgstr "Feld"
+
+#: templates/translationscheck.template.txt:27
+msgid "Records"
+msgstr "Einträge"
+
+#: templates/translationscheck.template.txt:33
+msgid "Database:"
+msgstr "Datenbank:"
+
+#: templates/update.template.txt:13
+msgid "Start update"
+msgstr ""
+
+#: templates/website.template.txt:12
 msgid "Tools"
 msgstr "Werkzeuge"
-
-# Record form: Change password
-#: zzbrick_forms/my-password.php
-msgid "Username"
-msgstr "Benutzername"
-
-# Record form: Change password
-#: zzbrick_forms/my-password.php
-msgid "Password"
-msgstr "Passwort"
-
-# Record form: Change password
-#: zzbrick_forms/my-password.php
-msgid "Change Password"
-msgstr "Passwort ändern"
 
 # Record form: Change password
 #: zzbrick_forms/my-password.php
@@ -270,11 +924,26 @@ msgstr "Ändern meines Passworts"
 
 # Record form: Change password
 #: zzbrick_forms/my-password.php
+msgid "Change Password"
+msgstr "Passwort ändern"
+
+# Record form: Change password
+#: zzbrick_forms/my-password.php
+msgid "Password"
+msgstr "Passwort"
+
+# Record form: Change password
+#: zzbrick_forms/my-password.php
+msgid "Username"
+msgstr "Benutzername"
+
+# Record form: Change password
+#: zzbrick_forms/my-password.php:52
 msgid "Hints for secure passwords"
 msgstr "Tipps für sichere Passwörter"
 
 # Record form: Change password
-#: zzbrick_forms/my-password.php
+#: zzbrick_forms/my-password.php:53
 msgid "password-rules"
 msgstr ""
 "* Statt eines einzelnen Wortes können auch mehrere Wörter oder komplette "
@@ -285,804 +954,177 @@ msgstr ""
 "Kleinbuchstaben, Ziffern und Sonderzeichen (? = + ; etc.) bestehen.\n"
 "* Dasselbe Passwort sollte nicht auf anderen Websites genutzt werden."
 
-#: zzbrick_request/maintenance.inc.php
-msgid "Maintenance"
-msgstr "Wartung"
+#: zzbrick_make/cachedircheck.inc.php:58 zzbrick_make/cachedircheck.inc.php:59
+msgid "Check Cache Directories"
+msgstr ""
+
+#: zzbrick_make/cronjobs.inc.php:44
+msgid "No active jobs found."
+msgstr "Keine aktiven Jobs gefunden."
+
+#: zzbrick_make/dbmodules.inc.php:63 zzbrick_make/dbmodules.inc.php:65
+msgid "Install Settings"
+msgstr ""
+
+#: zzbrick_make/dbupdate.inc.php
+msgid "Could not update database."
+msgstr "Datenbank konnte nicht aktualisiert werden."
+
+#: zzbrick_make/dbupdate.inc.php:76
+msgid "Database Updates History"
+msgstr "Chronik der Datenbank-Aktualisierungen"
+
+#: zzbrick_make/dbupdate.inc.php:78
+msgid "History"
+msgstr "Chronik"
+
+#: zzbrick_make/dbupdate.inc.php:117
+msgid "1 query was executed."
+msgid_plural "%d queries were executed."
+msgstr[0] "1 Abfrage wurde ausgeführt."
+msgstr[1] "%d Abfragen wurden ausgeführt."
+
+#: zzbrick_make/filetree.inc.php zzbrick_request/specialfolders.inc.php:24
+msgid "Backup of uploaded files is not active."
+msgstr "Backup von hochgeladenen Dateien ist nicht aktiv."
+
+#: zzbrick_make/filetree.inc.php:69 zzbrick_request/filetree.inc.php
+msgid "You may not view or download this file"
+msgstr "Diese Datei darf weder angezeigt noch heruntergeladen werden"
+
+#: zzbrick_make/filetree.inc.php:110 zzbrick_request/sso.inc.php
+msgid "unknown"
+msgstr "unbekannt"
+
+#: zzbrick_make/filetree.inc.php:263
+msgid "Folder"
+msgstr "Ordner"
+
+#: zzbrick_make/jobmanager.inc.php:172
+msgid "Job Manager"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:458
+msgid "The job should start later."
+msgstr "Der Job soll erst später starten."
+
+#: zzbrick_make/jobmanager.inc.php:465
+msgid "Another job is running."
+msgstr "Ein anderer Job läuft."
+
+#: zzbrick_make/jobmanager.inc.php:473
+msgid "Unable to start job."
+msgstr "Der Job kann nicht gestartet werden."
+
+#: zzbrick_make/log.inc.php:28 zzbrick_make/log.inc.php:29
+msgid "Logs"
+msgstr "Logs"
+
+#: zzbrick_make/maillog.inc.php:23 zzbrick_make/maillog.inc.php:24
+msgid "Mail Log"
+msgstr "E-Mail-Log"
+
+#: zzbrick_make/maillog.inc.php:48
+msgid "The mail was sent again."
+msgstr "Die E-Mail wurde erneut gesendet."
+
+#: zzbrick_make/maillog.inc.php:144
+msgid "Mail was not sent."
+msgstr "Die E-Mail wurde nicht gesendet."
+
+#: zzbrick_make/sqlquery.inc.php
+msgid "SQL query"
+msgstr "SQL-Abfrage"
+
+#: zzbrick_make/sqlquery.inc.php:51
+msgid "Unknown error."
+msgstr ""
+
+#: zzbrick_make/sqlquery.inc.php:64 zzbrick_make/sqlquery.inc.php:65
+msgid "SQL Query"
+msgstr ""
+
+#: zzbrick_make/textupdate.inc.php:37
+msgid "Invalid package."
+msgstr ""
+
+#: zzbrick_make/translationscheck.inc.php:61
+msgid "Checking translations: Table `%s` does not exist"
+msgstr ""
 
 #: zzbrick_request/maintenance.inc.php
-msgid "Maintenance scripts"
-msgstr "Wartungsskripte"
-
-#: zzbrick_request/maintenance.inc.php
-msgid "Type"
-msgstr "Typ"
-
-#: zzbrick_request/maintenance.inc.php
-msgid "Action"
-msgstr "Aktion"
+msgid "Field %s contains invalid values:"
+msgstr "Feld %s enthält ungültige Werte:"
 
 #: zzbrick_request/maintenance.inc.php
 msgid "GET should be empty, please test that:"
 msgstr "GET sollte leer sein, bitte überprüfen Sie das:"
 
 #: zzbrick_request/maintenance.inc.php
-msgid "Setting"
-msgstr "Einstellung"
+msgid "Maintenance scripts"
+msgstr "Wartungsskripte"
 
-#: zzbrick_request/maintenance.inc.php zzbrick_tables/settings.php
-msgid "Value"
-msgstr "Wert"
+#: zzbrick_request/maintenance.inc.php:42
+#: zzbrick_request/maintenance.inc.php:89
+#: zzbrick_request/maintenance.inc.php:90
+msgid "Maintenance"
+msgstr "Wartung"
 
-#: zzbrick_request/maintenance.inc.php
-msgid "Show PHP info on server"
-msgstr "Zeige Informationen zu PHP auf dem Server"
-
-#: zzbrick_request/maintenance.inc.php
-msgid "Check relational integrity"
-msgstr "Prüfe relationale Integrität"
-
-#: zzbrick_request/maintenance.inc.php
-msgid "Field %s contains invalid values:"
-msgstr "Feld %s enthält ungültige Werte:"
-
-#: zzbrick_request/filetree.inc.php
-msgid "Filetree"
-msgstr "Dateibaum"
-
-#: zzbrick_request/filetree.inc.php
-msgid "You may not view or download this file"
-msgstr "Diese Datei darf weder angezeigt noch heruntergeladen werden"
-
-#: templates/filetree.template.txt
-msgid "You have no access to this folder"
-msgstr "Sie haben keinen Zugriff auf diesen Ordner"
-
-#: templates/filetree-nav.template.txt
-msgid "TOP"
-msgstr "TOP"
-
-#: zzbrick_make/sqlquery.inc.php
-msgid "SQL query"
-msgstr "SQL-Abfrage"
-
-#: zzbrick_make/maillog.inc.php
-msgid "Mail Log"
-msgstr "E-Mail-Log"
-
-#: zzbrick_make/maillog.inc.php
-msgid "The mail was sent again."
-msgstr "Die E-Mail wurde erneut gesendet."
-
-#: zzbrick_make/maillog.inc.php
-msgid "Mail was not sent."
-msgstr "Die E-Mail wurde nicht gesendet."
-
-#: templates/maillog.template.txt
-msgid "Mail"
-msgstr "E-Mail"
-
-#: templates/maillog.template.txt
-msgid "Resend mail"
-msgstr "E-Mail erneut senden"
-
-#: templates/sqlquery.template.txt
-msgid "Result"
-msgstr "Ergebnis"
-
-#: templates/sqlquery.template.txt
-msgid "No changes were made to the database."
-msgstr "Es wurden keine Änderungen an der Datenbank vorgenommen."
-
-#: templates/sqlquery.template.txt
-msgid "%s was successful"
-msgstr "%s war erfolgreich"
-
-#: templates/sqlquery.template.txt
-msgid "Insert"
-msgstr "Einfügen"
-
-#: templates/sqlquery.template.txt zzbrick_tables/logging.php
-msgid "Update"
-msgstr "Aktualisierung"
-
-#: templates/sqlquery.template.txt zzbrick_tables/logging.php
-msgid "Delete"
-msgstr "Löschen"
-
-#: templates/sqlquery.template.txt
-msgid "%d row affected"
-msgid_plural "%d rows affected"
-msgstr[0] "%d Eintrag bearbeitet"
-msgstr[1] "%d Einträge bearbeitet"
-
-#: templates/sqlquery.template.txt
-msgid "Sorry, %s is not yet supported"
-msgstr "Entschuldigung, aber %s wird (noch) nicht unterstützt"
-
-#: templates/sqlquery.template.txt
-msgid " (ID: %s)"
-msgstr " (ID: %s)"
-
-#: templates/sqlquery.template.txt
-msgid "Database says:"
-msgstr "Datenbank sagt:"
-
-#: templates/sqlquery.template.txt
-msgid "[Code %s]"
-msgstr "[Code %s]"
-
-#: templates/sqlquery-form.template.txt
-msgid "Custom SQL query"
-msgstr "Eigene SQL-Abfrage"
-
-#: templates/maintenance.template.txt#database-tables
-msgid "Relation and Translation Tables"
-msgstr "Beziehungs- und Übersetzungstabellen"
-
-#: templates/maintenance.template.txt#database-tables
-msgid "The referential integrity of the database is not checked automatically."
-msgstr "Es wurde keine Tabelle für Datenbankbeziehungen angegeben."
-
-#: templates/maintenance.template.txt#database-tables
-msgid "The fields in the database are not translated."
-msgstr "Die Felder in der Datenbank werden nicht übersetzt."
-
-#: templates/maintenance.template.txt#database-tables
-msgid "Current database"
-msgstr "Aktuelle Datenbank"
-
-#: templates/maintenance.template.txt#database-tables
-msgid "New database"
-msgstr "Neue Datenbank"
-
-#: templates/maintenance.template.txt#database-tables
-msgid "Keep database"
-msgstr "Datenbank behalten"
-
-#: templates/maintenance.template.txt#database-tables
-msgid "Change database"
-msgstr "Datenbank wechseln"
-
-#: templates/maintenance.template.txt#database-tables
-msgid "(Database is not on server, you have to select a new database.)"
+#: zzbrick_request/maintenance.inc.php:232
+msgid "not installed"
 msgstr ""
-"(Datenbank ist nicht auf dem Server, daher müssen Sie eine neue Datenbank "
-"auswählen)"
 
-#: templates/maintenance.template.txt#database-tables
-msgid "Translation"
-msgstr "Übersetzung"
+#: zzbrick_request/modules.inc.php:42 zzbrick_request/modules.inc.php:43
+#: zzbrick_request/modules.inc.php templates/modules.template.txt
+msgid "Installed modules"
+msgstr "Installierte Module"
 
-#: templates/maintenance.template.txtp#database-tables
-msgctxt "default"
-msgid "Master"
-msgstr "Haupt"
+#: zzbrick_request/modulesettings.inc.php:82
+#: zzbrick_request/modulesettings.inc.php templates/modulesettings.template.txt
+msgid "Module settings for %s"
+msgstr "Moduleinstellungen für %s"
 
-#: templates/maintenance.template.txt#database-tables
-msgctxt "default"
-msgid "Detail"
-msgstr "Detail"
+#: zzbrick_request/modulesettings.inc.php:86
+msgid "Module settings"
+msgstr "Moduleinstellungen"
 
-#: templates/maintenance.template.txt#files
-msgid "Temp and Backup Files"
-msgstr "Temporäre und Backup-Dateien"
+#: zzbrick_request/modulesettings.inc.php:177
+msgid "Website"
+msgstr ""
 
-#: zzbrick_make/filetree.inc.php
-msgid "Backup of uploaded files is not active."
-msgstr "Backup von hochgeladenen Dateien ist nicht aktiv."
+#: zzbrick_request/modulesettings.inc.php:206
+msgid "local overlay"
+msgstr "lokale Überlagerung"
 
-#: templates/filetree.template
-msgid "– but this directory does not exist."
-msgstr "– aber dieses Verzeichnis existiert nicht."
-
-#: templates/filetree-simple.template.txt templates/filetree.template
-msgid "Filename"
-msgstr "Dateiname"
-
-#: templates/filetree.template
-msgid "Filetype"
-msgstr "Dateityp"
-
-#: templates/filetree.template
-msgid "Size"
-msgstr "Größe"
-
-#: templates/filetree.template
-msgid "Timestamp"
-msgstr "Zeitstempel"
-
-#: zzbrick_make/filetree.inc.php
-msgid "Folder"
-msgstr "Ordner"
-
-#: zzbrick_make/filetree.inc.php
-msgid "%d file deleted"
-msgid_plural "%d files deleted"
-msgstr[0] "%d Datei gelöscht"
-msgstr[1] "%d Dateien gelöscht"
-
-#: zzbrick_request/sso.inc.php zzbrick_make/filetree.inc.php
-msgid "unknown"
-msgstr "unbekannt"
-
-#: templates/filetree.template.txt
-msgid "All Files"
-msgstr "Alle Dateien"
-
-#: templates/filetree.template.txt
-msgid "Folder is empty"
-msgstr "Ordner ist leer"
-
-#: templates/maillog.template.txt templates/maintenance-logs.template.txt
-msgid "Delete all lines"
-msgstr "Lösche alle Einträge"
-
-#: templates/filetree.template.txt
-msgid "Delete all files"
-msgstr "Lösche alle Dateien"
-
-#: templates/filetree.template.txt
-msgid "Delete selected files"
-msgstr "Lösche ausgewählte Dateien"
-
-#: templates/errorlogs.template.txt
-msgid "Error handling"
-msgstr "Fehlerbehandlung"
-
-#: templates/errorlogs.template.txt
-msgid "Errors will be shown on webpage"
-msgstr "Fehler werden auf der Webseite angezeigt"
-
-#: templates/errorlogs.template.txt
-msgid "Errors will be sent via mail"
-msgstr "Fehler werden per Mail versendet"
-
-#: templates/errorlogs.template.txt
-msgid "Errors won’t be shown"
-msgstr "Fehler werden nicht angezeigt"
-
-#: templates/errorlogs.template.txt
-msgid "Send mail for these error levels"
-msgstr "Fehler dieser Ebenen werden versendet"
-
-#: templates/errorlogs.template.txt
-msgid "Send mail (From:)"
-msgstr "Absender der E-Mail"
-
-#: templates/errorlogs.template.txt
-msgid "not set"
-msgstr "keine Angabe"
-
-#: templates/errorlogs.template.txt
-msgid "Send mail (To:)"
-msgstr "Empfänger der E-Mail"
-
-#: templates/errorlogs.template.txt
-msgid "Logging"
-msgstr "Aufzeichnung"
-
-#: templates/errorlogs.template.txt
-msgid "Errors will be logged"
-msgstr "Fehler werden aufgezeichnet"
-
-#: templates/errorlogs.template.txt
-msgid "Errors will not be logged"
-msgstr "Fehler werden nicht aufgezeichnet"
-
-#: templates/errorlogs.template.txt
-msgid "Logfile for <strong>%s</strong>"
-msgstr "Aufzeichnungen für <strong>%s</strong>"
-
-#: templates/errorlogs.template.txt
-msgid "Log POST variables when errors occur"
-msgstr "Bei Fehlern auch POST-Variablen aufzeichnen"
-
-#: templates/errorlogs.template.txt
-msgid "POST variables will be logged"
-msgstr "POST-Variablen werden aufgezeichnet"
-
-#: templates/errorlogs.template.txt
-msgid "POST variables will not be logged"
-msgstr "POST-Variablen werden nicht aufgezeichnet"
-
-#: templates/errorlogs.template.txt
-msgid "disabled"
-msgstr "deaktiviert"
-
-#: templates/translationscheck.template.txt
-msgid "Translations without a corresponding record"
-msgstr "Übersetzungen ohne entsprechenden Datensatz"
-
-#: templates/translationscheck.template.txt
-msgid "%s records were deleted."
-msgstr "%s Einträge wurden gelöscht."
-
-#: templates/translationscheck.template.txt
-msgid "Check Translations"
-msgstr "Übersetzungen prüfen"
-
-#: templates/translationscheck.template.txt
-msgid "Database:"
-msgstr "Datenbank:"
-
-#: templates/translationscheck.template.txt
-msgid "Records"
-msgstr "Einträge"
-
-#: templates/errorlogs.template.txt
-msgid "Error Logging"
-msgstr "Fehlerlogs"
-
-#: zzbrick_make/log.inc.php
-msgid "Logs"
-msgstr "Logs"
-
-#: templates/maintenance-logs.template.txt
-msgid "No logfile specified"
-msgstr "Keine Logdatei angegeben"
-
-#: templates/maintenance-logs.template.txt
-msgid "This is not one of the used logfiles: %s"
-msgstr "Die Datei %s ist keine der benutzten Logdateien."
-
-#: templates/maillog.template.txt templates/maintenance-logs.template.txt
-msgid "Logfile does not exist: %s"
-msgstr "Logdatei %s existiert nicht."
-
-#: templates/maintenance-logs.template.txt
-msgid "Date"
-msgstr "Datum"
-
-#: templates/maintenance-logs.template.txt
-msgid "Last Date"
-msgstr "Letztes Datum"
-
-#: templates/maintenance-logs.template.txt
-msgid "Level"
-msgstr "Ebene"
-
-#: templates/maintenance-logs.template.txt
-msgid "Message"
-msgstr "Meldung"
-
-#: templates/maintenance-logs.template.txt
-msgid "User"
-msgstr "Benutzer"
-
-#: templates/maintenance-logs.template.txt
-msgid "Frequency"
-msgstr "Häufigkeit"
-
-#: templates/maillog.template.txt templates/maintenance-logs.template.txt
-msgid "No lines"
-msgstr "Keine Einträge"
-
-#: templates/maillog.template.txt templates/maintenance-logs.template.txt
-msgid "Delete selected lines"
-msgstr "Lösche ausgewählte Einträge"
-
-#: templates/maintenance-logs.template.txt
-msgid "Please choose one of the filters."
-msgstr "Bitte wählen Sie aus den Filtern aus."
-
-#: templates/maintenance-logs.template.txt
-msgid "Group"
-msgstr "Gruppierung"
-
-#: templates/maintenance-logs.template.txt
-msgid "Group entries"
-msgstr "Einträge gruppieren"
-
-#: templates/maintenance.template.txt
-msgid "Download"
-msgstr "Herunterladen"
-
-#: templates/relations.template.txt
-msgid "Links to other data"
-msgstr "Verknüpfungen mit anderen Daten"
-
-#: templates/relations.template.txt
-msgid "ID"
-msgstr "ID"
-
-#: templates/relations.template.txt
-msgid "This entry is not linked to any other data."
-msgstr "Dieser Eintrag ist nicht mit anderen Daten verknüpft."
-
-#: zzbrick_make/cronjobs.inc.php
-msgid "No active jobs found."
-msgstr "Keine aktiven Jobs gefunden."
-
-#: zzbrick_request/sso.inc.php
+#: zzbrick_request/sso.inc.php:65
 msgid "Single sign on: too many URL parameters."
 msgstr "Einmalige Anmeldung (SSO): zu viele URL-Parameter."
 
-#: zzbrick_request/sso.inc.php
+#: zzbrick_request/sso.inc.php:79
 msgid "Single sign on: incorrect login credentials."
 msgstr "Einmalige Anmeldung (SSO): falsche Anmeldeinformationen."
 
-#: zzbrick_request/sso.inc.php
+#: zzbrick_request/sso.inc.php:88
+msgid "Single sign on: possible login period expired."
+msgstr "Einmalige Anmeldung (SSO): der Anmeldezeitraum ist vorbei."
+
+#: zzbrick_request/sso.inc.php:90
 msgid ""
 "Sorry, the possible login period has expired. Please get a new login link."
 msgstr ""
 "Entschuldigung, der für einen Login mögliche Zeitraum ist vorbei. Bitte "
 "besorgen Sie sich einen neuen Login-Link."
 
-#: zzbrick_request/sso.inc.php
-msgid "Single sign on: possible login period expired."
-msgstr "Einmalige Anmeldung (SSO): der Anmeldezeitraum ist vorbei."
-
-#: zzbrick_tables/categories.template.php
-msgid "Property"
-msgstr "Eigenschaft"
-
-#: zzbrick_tables/cronjobs.php
-msgid "Cron Jobs"
-msgstr "Cronjobs"
-
-#: zzbrick_tables/cronjobs.php
-msgid "Cron Job"
-msgstr "Cronjob"
-
-#: zzbrick_tables/cronjobs.php
-msgid "URL"
-msgstr "URL"
-
-#: zzbrick_tables/cronjobs.php
-msgid "Minute"
-msgstr "Minute"
-
-#: zzbrick_tables/cronjobs.php
-msgid "Min."
-msgstr "Min."
-
-#: zzbrick_tables/cronjobs.php
-msgid "Hour"
-msgstr "Stunde"
-
-#: zzbrick_tables/cronjobs.php
-msgid "Hr."
-msgstr "Std."
-
-#: zzbrick_tables/cronjobs.php
-msgid "Day"
-msgstr "Tag"
-
-#: zzbrick_tables/cronjobs.php
-msgid "Month"
-msgstr "Monat"
-
-#: zzbrick_tables/cronjobs.php
-msgid "Mth."
-msgstr "Mon."
-
-#: zzbrick_tables/cronjobs.php
-msgid "Weekday"
-msgstr "Wochentag"
-
-#: zzbrick_tables/cronjobs.php
-msgid "Wd."
-msgstr "Wt."
-
-#: zzbrick_tables/cronjobs.php
-msgid ""
-"Here, you can add cron jobs. Please note: the execution of the cron jobs "
-"depends on the real cron job which has to be triggered according to these "
-"dates. It is possible to enter one or more numeric values per field, "
-"separated by a comma."
-msgstr ""
-
-#: zzbrick_tables/relations.php
-msgid "Database Table Relations"
-msgstr "Tabellenbeziehungen der Datenbank"
-
-#: zzbrick_tables/relations.php
-msgid "Master Table"
-msgstr "Haupttabelle"
-
-#: zzbrick_tables/relations.php
-msgid "Detail Table"
-msgstr "Detailtabelle"
-
-#: zzbrick_tables/relations.php
-msgid "Foreign Key"
-msgstr "Fremdschlüssel"
-
-#: zzbrick_tables/relations.php
-msgid "Database of Master Table"
-msgstr "Datenbank der Haupttabelle"
-
-#: zzbrick_tables/relations.php
-msgid "Name of Master Table"
-msgstr "Name der Haupttabelle"
-
-#: zzbrick_tables/relations.php
-msgid "Primary Key of Master Table"
-msgstr "Primärschlüssel der Haupttabelle"
-
-#: zzbrick_tables/relations.php
-msgid "Database of Detail Table"
-msgstr "Datenbank der Detailtabelle"
-
-#: zzbrick_tables/relations.php
-msgid "Name of Detail Table"
-msgstr "Name der Detailtabelle"
-
-#: zzbrick_tables/relations.php
-msgid "Primary Key of Detail Table"
-msgstr "Primärschlüssel der Detailtabelle"
-
-#: zzbrick_tables/relations.php
-msgid "Foreign Key of Detail Table"
-msgstr "Fremdschlüssel der Detailtabelle"
-
-#: zzbrick_tables/relations.php
-msgid "If main record will be deleted, what should happen with detail record?"
-msgstr ""
-"Falls Haupteintrag gelöscht wird, was soll mit Detaileintrag geschehen?"
-
-#: zzbrick_tables/logging.php
-msgid "Query"
-msgstr "Abfrage"
-
-#: zzbrick_tables/logging.php
-msgid "Record"
-msgstr "Eintrag"
-
-#: zzbrick_tables/logging.php
-msgid "Last update"
-msgstr "Stand"
-
-#: zzbrick_tables/logging.php
-msgid "Don’t delete"
-msgstr "Nicht löschen"
-
-#: zzbrick_tables/translations.php
-msgid "Translations"
-msgstr "Übersetzungen"
-
-#: zzbrick_tables/translations.php
-msgid "Database"
-msgstr "Datenbank"
-
-#: zzbrick_tables/translations.php
-msgid "Table"
-msgstr "Tabelle"
-
-#: zzbrick_tables/translations.php
-msgid "Field"
-msgstr "Feld"
-
-#: zzbrick_tables/translations.php
-msgid "Data type"
-msgstr "Datentyp"
-
-#: zzbrick_tables/translations.php
-msgid "Data Type"
-msgstr "Datentyp"
-
-#: zzbrick_tables/translations.php
-msgid "text line"
-msgstr "Textzeile"
-
-#: zzbrick_tables/translations.php
-msgid "memo"
-msgstr "Memo"
-
-#: zzbrick_tables/jobqueue.php
-msgid "Background Job Queue"
-msgstr "Warteschlange der Hintergrundaufträge"
-
-#: zzbrick_tables/jobqueue.php
-msgid "Job URL"
-msgstr "Job URL"
-
-#: zzbrick_tables/jobqueue.php
-msgid "Started"
-msgstr "Gestartet"
-
-#: zzbrick_tables/jobqueue.php
-msgid "Finished"
-msgstr "Beendet"
-
-#: zzbrick_tables/jobqueue.php
-msgid "Wait until"
-msgstr "Warten bis"
-
-#: zzbrick_tables/jobqueue.php
-msgid "Job Status"
-msgstr "Job Status"
-
-#: zzbrick_tables/jobqueue.php
-msgid "not started"
-msgstr "nicht gestartet"
-
-#: zzbrick_tables/jobqueue.php
-msgid "running"
-msgstr "laufend"
-
-#: zzbrick_tables/jobqueue.php
-msgid "successful"
-msgstr "erfolgreich"
-
-#: zzbrick_tables/jobqueue.php
-msgid "failed"
-msgstr "fehlgeschlagen"
-
-#: zzbrick_tables/jobqueue.php
-msgid "abandoned"
-msgstr "abgebrochen"
-
-#: zzbrick_tables/jobqueue.php
-msgid "not found"
-msgstr "nicht gefunden"
-
-#: zzbrick_tables/jobqueue.php
-msgid "Try No."
-msgstr "Versuch Nr."
-
-#: zzbrick_tables/jobqueue.php
-msgid "Error Message"
-msgstr "Fehlermeldung"
-
-#: zzbrick_tables/jobqueue.php
-msgid "Category No."
-msgstr "Kategorie Nr."
-
-#. Abbreviation for priority, head of table
-#: zzbrick_tables/jobqueue.php
-msgid "P."
-msgstr "P."
-
-#. Here, a boilerplate text for redirects is needed
-#: zzbrick_tables/redirects.php
-msgid "Information about redirects"
-msgstr ""
-"<p>Hier können Webseiten auf andere Webseiten umgeleitet werden. Dabei gibt "
-"es mehrere Möglichkeiten:</p><ul><li>Vorübergehende Umleitung, z. B. einer "
-"kurzen Adresse auf eine lange, permanent existierende Adresse, wie "
-"example.com/aktuell auf example.com/nachrichten/2010/04 mittels <code>307</"
-"code>-Code für temporäre Umleitungen</li><li>Dauerhafte Umleitung von einer "
-"alten Adresse auf eine neue Adresse mittels <code>301</code>-Code für "
-"permanente Umleitungen</li><li>Umleitung von mehreren alten Adressen auf "
-"eine neue Adresse, hier muß die alten Adresse auf <code>*</code> enden. "
-"Achtung: es darf kein <code>/</code> vor dem Sternchen stehen.</li></ul>"
-
-#: zzbrick_tables/redirects.php
-msgid "Old URL"
-msgstr "Alte URL"
-
-#: zzbrick_tables/redirects.php
-msgid "New URL"
-msgstr "Neue URL"
-
-#: zzbrick_tables/redirects.php
-msgid "Code"
-msgstr "Code"
-
-#: zzbrick_tables/redirects.php
-msgid "Area"
-msgstr "Bereich"
-
-#: zzbrick_tables/redirects.php
-msgid "Redirects"
-msgstr "Umleitungen"
-
-#: zzbrick_tables/settings.php
-msgid "Settings"
-msgstr "Einstellungen"
-
-#: zzbrick_tables/settings.php
-msgid "Key"
-msgstr "Schlüssel"
-
-#: zzbrick_tables/settings.php
-msgid "Explanation"
-msgstr "Erläuterung"
-
-#: zzbrick_tables/settings.php
-msgid "User settings"
-msgstr "Benutzereinstellungen"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "Webpages"
-msgstr "Webseiten"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "Title"
-msgstr "Titel"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "Content"
-msgstr "Inhalt"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "Identifier"
-msgstr "Kennung"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "Ending"
-msgstr "Endung"
-
-#. Webpages: Possible ending of URL
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "none"
-msgstr "keine"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid ""
-"Address of page, should show hierarchy, no / at the end!<br>The identifier "
-"should contain only letters a-z, numbers 0-9 and the - sign."
-msgstr ""
-"Adresse der Seite, sollte Hierarchie zeigen, kein / am Ende!<br>Die Kennung "
-"sollte nur aus den Buchstaben a-z, Zahlen 0-9 und dem Minuszeichen (-) "
-"bestehen."
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "Sequence"
-msgstr "Reihenfolge"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "Subpage&nbsp;of"
-msgstr "Unterseite&nbsp;von"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "Published?"
-msgstr "Öffentlich?"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "Menu"
-msgstr "Menü"
-
-#: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid "Short text (max. 160 characters), only appears in search results."
-msgstr "Kurztext (max. 160 Zeichen), taucht nur bei Suchergebnissen auf."
-
-#: zzbrick_tables/webpages-categories.php
-msgid "Webpages/Categories"
-msgstr "Webseiten/Kategorien"
-
-#: zzbrick_tables/webpages-categories.php
-msgid "Page"
-msgstr "Seite"
-
-#: zzbrick_tables/webpages-media.php
-msgid "Media"
-msgstr "Medien"
-
-#: zzbrick_tables/webpages-media.php
-msgid "Preview"
-msgstr "Vorschau"
-
-#: zzbrick_tables/webpages-media.php
-msgid "No."
-msgstr "Nr."
-
-#: zzbrick_tables/webpages-media.php
-msgid "Medium"
-msgstr "Medium"
-
 #: zzbrick_tables/blocks.php
 msgid "Blocks"
 msgstr "Bausteine"
 
-#: zzbrick_tables/blocks.php
+#: zzbrick_tables/blocks.php:94
 msgid "Block Type"
 msgstr "Bausteintyp"
 
-#: zzbrick_tables/blocks.php zzbrick_tables/blocks-media.php zzbrick_tables/webpages-blocks.php
+#: zzbrick_tables/blocks.php zzbrick_tables/blocks-media.php
+#: zzbrick_tables/webpages-blocks.php
 msgid "Block"
 msgstr "Baustein"
 
@@ -1090,13 +1132,62 @@ msgstr "Baustein"
 msgid "Media for Blocks"
 msgstr "Medien für Bausteine"
 
-#: zzbrick_tables/webpages-blocks.php
-msgid "Blocks on Webpages"
-msgstr "Bausteine auf Webseiten"
-
 #: zzbrick_tables/blocks-media.php zzbrick_tables/webpages-blocks.php
 msgid "Updated"
 msgstr "Stand"
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Abbr."
+msgstr "Abk."
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Abbreviation"
+msgstr "Abkürzung"
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Categories"
+msgstr "Kategorien"
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Category"
+msgstr "Kategorie"
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Description"
+msgstr "Beschreibung"
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Identifier / Parameters"
+msgstr "Kennung / Parameter"
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Internal parameters. Change with care."
+msgstr "Interne Parameter. Bitte mit Vorsicht ändern."
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Main Category"
+msgstr "Hauptkategorie"
+
+#: zzbrick_tables/categories.php
+msgctxt "default"
+msgid "Parameters"
+msgstr "Parameter"
+
+#: zzbrick_tables/categories.php:106
+msgid "Main Category"
+msgstr ""
+
+#: zzbrick_tables/categories.template.php
+msgid "Property"
+msgstr "Eigenschaft"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
@@ -1115,8 +1206,37 @@ msgstr "Ländercode"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
+msgid "Country Code 3"
+msgstr "Ländercode 3"
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
 msgid "Country code according to ISO 3166"
 msgstr "Ländercode gemäß ISO 3166"
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "IOC"
+msgstr "IOC"
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "IOC Code"
+msgstr "IOC-Code"
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid "Three letter country code according to ISO 3166"
+msgstr "Drei-Buchstaben-Ländercode gemäß ISO 3166"
+
+#: zzbrick_tables/countries.php
+msgctxt "default"
+msgid ""
+"Three letter country code according to the International Olympic Committee "
+"(IOC)"
+msgstr ""
+"Drei-Buchstaben-Ländercode gemäß dem Internationalen Olympischen Komitee "
+"(IOC)"
 
 #: zzbrick_tables/countries.php
 msgctxt "default"
@@ -1128,39 +1248,105 @@ msgctxt "default"
 msgid "Will country be used on website?"
 msgstr "Soll Land auf Website genutzt werden?"
 
-#: zzbrick_tables/countries.php
-msgctxt "default"
-msgid "Country Code 3"
-msgstr "Ländercode 3"
+#: zzbrick_tables/cronjobs.php
+msgid "Cron Job"
+msgstr "Cronjob"
 
-#: zzbrick_tables/countries.php
-msgctxt "default"
-msgid "Three letter country code according to ISO 3166"
-msgstr "Drei-Buchstaben-Ländercode gemäß ISO 3166"
+#: zzbrick_tables/cronjobs.php
+msgid "Cron Jobs"
+msgstr "Cronjobs"
 
-#: zzbrick_tables/countries.php
-msgctxt "default"
-msgid "IOC Code"
-msgstr "IOC-Code"
+#: zzbrick_tables/cronjobs.php
+msgid "Day"
+msgstr "Tag"
 
-#: zzbrick_tables/countries.php
-msgctxt "default"
-msgid "IOC"
-msgstr "IOC"
+#: zzbrick_tables/cronjobs.php
+msgid "Hour"
+msgstr "Stunde"
 
-#: zzbrick_tables/countries.php
-msgctxt "default"
+#: zzbrick_tables/cronjobs.php
+msgid "Hr."
+msgstr "Std."
+
+#: zzbrick_tables/cronjobs.php
+msgid "Min."
+msgstr "Min."
+
+#: zzbrick_tables/cronjobs.php
+msgid "Minute"
+msgstr "Minute"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Month"
+msgstr "Monat"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Mth."
+msgstr "Mon."
+
+#: zzbrick_tables/cronjobs.php
+msgid "URL"
+msgstr "URL"
+
+#: zzbrick_tables/cronjobs.php
+msgid "Wd."
+msgstr "Wt."
+
+#: zzbrick_tables/cronjobs.php
+msgid "Weekday"
+msgstr "Wochentag"
+
+#: zzbrick_tables/cronjobs.php:88
 msgid ""
-"Three letter country code according to the International Olympic Committee "
-"(IOC)"
+"Here, you can add cron jobs. Please note: the execution of the cron jobs "
+"depends on the real cron job which has to be triggered according to these "
+"dates. It is possible to enter one or more numeric values per field, "
+"separated by a comma."
 msgstr ""
-"Drei-Buchstaben-Ländercode gemäß dem Internationalen Olympischen Komitee "
-"(IOC)"
 
-#: zzbrick_tables/languages.php
-msgctxt "default"
-msgid "Languages"
-msgstr "Sprachen"
+#: zzbrick_tables/jobqueue.php
+msgid "Category No."
+msgstr "Kategorie Nr."
+
+#: zzbrick_tables/jobqueue.php
+msgid "Error Message"
+msgstr "Fehlermeldung"
+
+#: zzbrick_tables/jobqueue.php
+msgid "Finished"
+msgstr "Beendet"
+
+#: zzbrick_tables/jobqueue.php
+msgid "Job URL"
+msgstr "Job URL"
+
+#: zzbrick_tables/jobqueue.php
+msgid "P."
+msgstr "P."
+
+#: zzbrick_tables/jobqueue.php
+msgid "Started"
+msgstr "Gestartet"
+
+#: zzbrick_tables/jobqueue.php
+msgid "Try No."
+msgstr "Versuch Nr."
+
+#: zzbrick_tables/jobqueue.php
+msgid "Wait until"
+msgstr "Warten bis"
+
+#: zzbrick_tables/jobqueue.php:104
+msgid "successful"
+msgstr "erfolgreich"
+
+#: zzbrick_tables/jobqueue.php:105
+msgid "not found"
+msgstr "nicht gefunden"
+
+#: zzbrick_tables/jobqueue.php:171
+msgid "Job Status"
+msgstr "Job Status"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
@@ -1179,8 +1365,8 @@ msgstr "Sprachcode ISO 639-2, Terminologie"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
-msgid "Will language be used on website?"
-msgstr "Soll Sprache auf Website genutzt werden?"
+msgid "Languages"
+msgstr "Sprachen"
 
 #: zzbrick_tables/languages.php
 msgctxt "default"
@@ -1192,6 +1378,15 @@ msgctxt "default"
 msgid "Variation of language, e. g. informal"
 msgstr "Variante der Sprache, z. B. informell"
 
+#: zzbrick_tables/languages.php
+msgctxt "default"
+msgid "Will language be used on website?"
+msgstr "Soll Sprache auf Website genutzt werden?"
+
+#: zzbrick_tables/languages.php:57
+msgid "Web"
+msgstr ""
+
 #: zzbrick_tables/languages-categories.php
 msgctxt "default"
 msgid "Language Categories"
@@ -1202,74 +1397,26 @@ msgctxt "default"
 msgid "Short label in target language (e.g. “Du”, “Sie”, “tu”, “vous”)"
 msgstr "Kurze Bezeichnung in der Zielsprache (z. B. „Du“, „Sie“, „tu“, „vous“)"
 
-#: zzbrick_tables/categories.php
-msgctxt "default"
-msgid "Categories"
-msgstr "Kategorien"
+#: zzbrick_tables/logging.php zzbrick_tables/relations.php:82
+msgid "Don’t delete"
+msgstr "Nicht löschen"
 
-#: zzbrick_tables/categories.php
-msgctxt "default"
-msgid "Category"
-msgstr "Kategorie"
+#: zzbrick_tables/logging.php
+msgid "Last update"
+msgstr "Stand"
 
-#: zzbrick_tables/categories.php
-msgctxt "default"
-msgid "Main Category"
-msgstr "Hauptkategorie"
-
-#: zzbrick_tables/categories.php
-msgctxt "default"
-msgid "Description"
-msgstr "Beschreibung"
-
-#: zzbrick_tables/categories.php
-msgctxt "default"
-msgid "Identifier / Parameters"
-msgstr "Kennung / Parameter"
-
-#: zzbrick_tables/categories.php
-msgctxt "default"
-msgid "Parameters"
-msgstr "Parameter"
-
-#: zzbrick_tables/categories.php
-msgctxt "default"
-msgid "Internal parameters. Change with care."
-msgstr "Interne Parameter. Bitte mit Vorsicht ändern."
-
-#: zzbrick_tables/categories.php
-msgctxt "default"
-msgid "Abbreviation"
-msgstr "Abkürzung"
-
-#: zzbrick_tables/categories.php
-msgctxt "default"
-msgid "Abbr."
-msgstr "Abk."
+#: zzbrick_tables/logging.php
+msgid "Record"
+msgstr "Eintrag"
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
-msgid "Logins"
-msgstr "Logins"
-
-#: zzbrick_tables/logins.php
-msgctxt "default"
-msgid ""
-"“Yes” means that the user has to change the password next time he or she "
-"logs in."
-msgstr ""
-"»Ja« bedeutet, daß der Benutzer sein Passwort beim nächsten Login ändern muß."
+msgid "Service"
+msgstr "Dienst"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
 msgid "<abbr title=\"Is user online\">Online?</abbr>"
 msgstr "<abbr title=\"Ist Benutzer online\">Online?</abbr>"
-
-#: zzbrick_tables/logins.php
-msgctxt "default"
-msgid "Is user logged in or did not log out last time?"
-msgstr ""
-"Ist Benutzer eingeloggt bzw. hat sich beim letzten Mal nicht ausgeloggt?"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
@@ -1288,6 +1435,12 @@ msgstr "Klick"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
+msgid "Is user logged in or did not log out last time?"
+msgstr ""
+"Ist Benutzer eingeloggt bzw. hat sich beim letzten Mal nicht ausgeloggt?"
+
+#: zzbrick_tables/logins.php
+msgctxt "default"
 msgid "Last activity online"
 msgstr "Letzte Aktivität online"
 
@@ -1298,13 +1451,18 @@ msgstr "Eingeloggt"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
-msgid "Password"
-msgstr "Passwort"
+msgid "Login rights"
+msgstr "Login-Rechte"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
-msgid "To deactivate a login"
-msgstr "Um einen Login zu deaktivieren"
+msgid "Logins"
+msgstr "Logins"
+
+#: zzbrick_tables/logins.php
+msgctxt "default"
+msgid "Password"
+msgstr "Passwort"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
@@ -1313,209 +1471,286 @@ msgstr "Rechte"
 
 #: zzbrick_tables/logins.php
 msgctxt "default"
-msgid "Login rights"
-msgstr "Login-Rechte"
+msgid "To deactivate a login"
+msgstr "Um einen Login zu deaktivieren"
 
-#: zzbrick_tables/logins.php
-msgid "Service"
-msgstr "Dienst"
-
-#: zzbrick_tables/logins.php
+#: zzbrick_tables/logins.php:178
 msgid "Active"
 msgstr "Aktiv"
 
-#: zzbrick_tables/languages.php zzbrick_tables/countries.php
-msgid "yes"
-msgstr "ja"
+#: zzbrick_tables/redirects.php zzbrick_tables/text.php:54
+msgid "Area"
+msgstr "Bereich"
 
-#: zzbrick_tables/languages.php zzbrick_tables/countries.php
-msgid "no"
-msgstr "nein"
+#: zzbrick_tables/redirects.php
+msgid "Code"
+msgstr "Code"
 
-#: zzbrick_tables/translations-text.php zzbrick_tables/translations-varchar.php
-msgid "Translation to"
-msgstr "Übersetzung auf"
+#: zzbrick_tables/redirects.php
+msgid "Information about redirects"
+msgstr ""
+"<p>Hier können Webseiten auf andere Webseiten umgeleitet werden. Dabei gibt "
+"es mehrere Möglichkeiten:</p><ul><li>Vorübergehende Umleitung, z. B. einer "
+"kurzen Adresse auf eine lange, permanent existierende Adresse, wie "
+"example.com/aktuell auf example.com/nachrichten/2010/04 mittels <code>307</"
+"code>-Code für temporäre Umleitungen</li><li>Dauerhafte Umleitung von einer "
+"alten Adresse auf eine neue Adresse mittels <code>301</code>-Code für "
+"permanente Umleitungen</li><li>Umleitung von mehreren alten Adressen auf "
+"eine neue Adresse, hier muß die alten Adresse auf <code>*</code> enden. "
+"Achtung: es darf kein <code>/</code> vor dem Sternchen stehen.</li></ul>"
 
-#: zzbrick_tables/translations-text.php zzbrick_tables/translations-varchar.php
-msgid "Translation field"
-msgstr "Übersetzungsfeld"
+#: zzbrick_tables/redirects.php
+msgid "New URL"
+msgstr "Neue URL"
+
+#: zzbrick_tables/redirects.php
+msgid "Old URL"
+msgstr "Alte URL"
+
+#: zzbrick_tables/redirects.php
+msgid "Redirects"
+msgstr "Umleitungen"
+
+#: zzbrick_tables/redirects.php:43 zzbrick_tables/uris.php:74
+msgid "Moved Permanently"
+msgstr ""
+
+#: zzbrick_tables/redirects.php:44 zzbrick_tables/uris.php:75
+msgid "See Other"
+msgstr ""
+
+#: zzbrick_tables/redirects.php:44 zzbrick_tables/uris.php:75
+msgid "Temporary Redirect"
+msgstr ""
+
+#: zzbrick_tables/redirects.php:45 zzbrick_tables/uris.php:76
+msgid "Forbidden"
+msgstr ""
+
+#: zzbrick_tables/redirects.php:45 zzbrick_tables/uris.php:76
+msgid "Gone"
+msgstr ""
+
+#: zzbrick_tables/relations.php
+msgid "Database Table Relations"
+msgstr "Tabellenbeziehungen der Datenbank"
+
+#: zzbrick_tables/relations.php
+msgid "Database of Detail Table"
+msgstr "Datenbank der Detailtabelle"
+
+#: zzbrick_tables/relations.php
+msgid "Database of Master Table"
+msgstr "Datenbank der Haupttabelle"
+
+#: zzbrick_tables/relations.php
+msgid "Detail Table"
+msgstr "Detailtabelle"
+
+#: zzbrick_tables/relations.php
+msgid "Foreign Key"
+msgstr "Fremdschlüssel"
+
+#: zzbrick_tables/relations.php
+msgid "Foreign Key of Detail Table"
+msgstr "Fremdschlüssel der Detailtabelle"
+
+#: zzbrick_tables/relations.php
+msgid "If main record will be deleted, what should happen with detail record?"
+msgstr ""
+"Falls Haupteintrag gelöscht wird, was soll mit Detaileintrag geschehen?"
+
+#: zzbrick_tables/relations.php
+msgid "Master Table"
+msgstr "Haupttabelle"
+
+#: zzbrick_tables/relations.php
+msgid "Name of Detail Table"
+msgstr "Name der Detailtabelle"
+
+#: zzbrick_tables/relations.php
+msgid "Name of Master Table"
+msgstr "Name der Haupttabelle"
+
+#: zzbrick_tables/relations.php
+msgid "Primary Key of Detail Table"
+msgstr "Primärschlüssel der Detailtabelle"
+
+#: zzbrick_tables/relations.php
+msgid "Primary Key of Master Table"
+msgstr "Primärschlüssel der Haupttabelle"
+
+#: zzbrick_tables/settings.php
+msgid "Explanation"
+msgstr "Erläuterung"
+
+#: zzbrick_tables/settings.php
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: zzbrick_tables/settings.php
+msgid "User settings"
+msgstr "Benutzereinstellungen"
 
 #: zzbrick_tables/text.php
 msgid "More Text"
 msgstr "Weiterer Text"
 
-#: zzbrick_make/dbupdate.inc.php
-msgid "Ignore"
-msgstr "Ignorieren"
+#: zzbrick_tables/translations.php
+msgid "Data Type"
+msgstr "Datentyp"
 
-#: templates/dbupdate.template.txt
-msgid "Database Updates"
-msgstr "Datenbank-Aktualisierungen"
+#: zzbrick_tables/translations.php
+msgid "Data type"
+msgstr "Datentyp"
 
-#: templates/dbupdate.template.txt
-msgid "Show full history"
-msgstr "Gesamte Chronik anzeigen"
+#: zzbrick_tables/translations.php
+msgid "Translations"
+msgstr "Übersetzungen"
 
-#: templates/dbupdate.template.txt
-msgid "Back to Database Updates"
-msgstr "Zurück zu Datenbank-Aktualisierungen"
+#: zzbrick_tables/translations.php:55
+msgid "memo"
+msgstr "Memo"
 
-#: zzbrick_make/dbupdate.inc.php
-msgid "History"
-msgstr "Chronik"
+#: zzbrick_tables/translations.php:55
+msgid "text line"
+msgstr "Textzeile"
 
-#: zzbrick_make/dbupdate.inc.php
-msgid "Database Updates History"
-msgstr "Chronik der Datenbank-Aktualisierungen"
+#: zzbrick_tables/translations-text.php zzbrick_tables/translations-varchar.php
+msgid "Translation field"
+msgstr "Übersetzungsfeld"
 
-#: templates/dbupdate.template.txt
-msgid "Run all pending"
-msgstr "Alle offenen ausführen"
+#: zzbrick_tables/translations-text.php:66
+#: zzbrick_tables/translations-varchar.php:67
+msgid "Translation to"
+msgstr "Übersetzung auf"
 
-#: templates/dbupdate.template.txt zzbrick_make/dbupdate.inc.php
-msgid "No pending SQL updates."
-msgstr "Keine offenen SQL-Updates."
+#: zzbrick_tables/uris.php:110
+msgid "Status"
+msgstr "Status"
 
-#: zzbrick_make/dbupdate.inc.php
-msgid "1 query was executed."
-msgid_plural "%d queries were executed."
-msgstr[0] "1 Abfrage wurde ausgeführt."
-msgstr[1] "%d Abfragen wurden ausgeführt."
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Content"
+msgstr "Inhalt"
 
-#: zzbrick_make/dbupdate.inc.php
-msgid "Could not update database."
-msgstr "Datenbank konnte nicht aktualisiert werden."
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Ending"
+msgstr "Endung"
 
-#: zzbrick_make/jobmanager.inc.php
-msgid "The job should start later."
-msgstr "Der Job soll erst später starten."
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Identifier"
+msgstr "Kennung"
 
-#: zzbrick_make/jobmanager.inc.php
-msgid "Another job is running."
-msgstr "Ein anderer Job läuft."
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Menu"
+msgstr "Menü"
 
-#: zzbrick_make/jobmanager.inc.php
-msgid "Unable to start job."
-msgstr "Der Job kann nicht gestartet werden."
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Published?"
+msgstr "Öffentlich?"
 
-#: zzbrick_tables/websites.php
-msgid "Websites"
-msgstr "Websites"
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Sequence"
+msgstr "Reihenfolge"
+
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Short text (max. 160 characters), only appears in search results."
+msgstr "Kurztext (max. 160 Zeichen), taucht nur bei Suchergebnissen auf."
+
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Subpage&nbsp;of"
+msgstr "Unterseite&nbsp;von"
+
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Title"
+msgstr "Titel"
+
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "Webpages"
+msgstr "Webseiten"
+
+#: zzbrick_tables/webpages.php
+msgctxt "default"
+msgid "none"
+msgstr "keine"
+
+#: zzbrick_tables/webpages-blocks.php
+msgid "Blocks on Webpages"
+msgstr "Bausteine auf Webseiten"
+
+#: zzbrick_tables/webpages-categories.php
+msgid "Page"
+msgstr "Seite"
+
+#: zzbrick_tables/webpages-categories.php
+msgid "Webpages/Categories"
+msgstr "Webseiten/Kategorien"
+
+#: zzbrick_tables/webpages-media.php
+msgid "Media"
+msgstr "Medien"
+
+#: zzbrick_tables/webpages-media.php
+msgid "Medium"
+msgstr "Medium"
+
+#: zzbrick_tables/webpages-media.php
+msgid "No."
+msgstr "Nr."
+
+#: zzbrick_tables/webpages-media.php
+msgid "Preview"
+msgstr "Vorschau"
 
 #: zzbrick_tables/websites.php
 msgid "Domain name without subdomain www"
 msgstr "Domainname ohne www-Subdomain"
 
-#: zzbrick_make/dbmodules.inc.php
-msgid "Modules"
-msgstr "Module"
+#: zzbrick_tables/websites.php
+msgid "Websites"
+msgstr "Websites"
 
-#: zzbrick_make/dbmodules.inc.php
-msgid "List of Modules"
-msgstr "Liste der Module"
+#: zzbrick_xhr/autosuggest.inc.php:70 zzbrick_xhr/autosuggest.inc.php:76
+msgid "Please enter more characters."
+msgstr "Bitte geben Sie weitere Zeichen ein."
 
-#: templates/modules.template.txt
-msgid "Module"
-msgstr "Modul"
+#: zzbrick_xhr/autosuggest.inc.php:87 zzbrick_xhr/autosuggest.inc.php:93
+msgid "No record was found."
+msgstr "Kein Eintrag gefunden."
 
-#: zzbrick_request/modules.inc.php templates/modules.template.txt
-msgid "Installed modules"
-msgstr "Installierte Module"
+#: zzform/definition.inc.php:264
+msgid "Details"
+msgstr "Details"
 
-#: templates/modules.template.txt
-msgid "Tagline"
-msgstr "Kurzbeschreibung"
+#~ msgid "Username:"
+#~ msgstr "Benutzer:"
 
-#: zzbrick_request/modulesettings.inc.php templates/modulesettings.template.txt
-msgid "Module settings for %s"
-msgstr "Moduleinstellungen für %s"
+#~ msgid "Download"
+#~ msgstr "Herunterladen"
 
-#: templates/modulesettings.template.txt
-msgid "No settings are defined for this package in configuration/settings.cfg."
-msgstr "Für dieses Paket sind in configuration/settings.cfg keine Einstellungen definiert."
+#~ msgctxt "default"
+#~ msgid ""
+#~ "Address of page, should show hierarchy, no / at the end!<br>The "
+#~ "identifier should contain only letters a-z, numbers 0-9 and the - sign."
+#~ msgstr ""
+#~ "Adresse der Seite, sollte Hierarchie zeigen, kein / am Ende!<br>Die "
+#~ "Kennung sollte nur aus den Buchstaben a-z, Zahlen 0-9 und dem "
+#~ "Minuszeichen (-) bestehen."
 
-#: templates/modulesettings.template.txt zzbrick_request/modulesettings.inc.php
-msgid "Scope"
-msgstr "Geltungsbereich"
-
-#: templates/modulesettings.template.txt
-msgid "Default value:"
-msgstr "Standardwert:"
-
-#: templates/modulesettings.template.txt
-msgid "Current value"
-msgstr "Aktueller Wert"
-
-#: templates/modulesettings.template.txt
-msgid "Examples:"
-msgstr "Beispiele:"
-
-#: zzbrick_request/modulesettings.inc.php
-msgid "Module settings"
-msgstr "Moduleinstellungen"
-
-#: zzbrick_request/modulesettings.inc.php
-msgid "local overlay"
-msgstr "lokale Überlagerung"
-
-#: zzbrick_make/dbmodules.inc.php
-msgid "Installation"
-msgstr "Installation"
-
-#: zzbrick_make/dbmodules.inc.php
-msgid "enabled?"
-msgstr "Aktiviert?"
-
-#: zzbrick_make/dbmodules.inc.php
-msgid "ReadMe"
-msgstr "LiesMich"
-
-#: zzbrick_make/dbmodules.inc.php
-msgid "Install module"
-msgstr "Modul installieren"
-
-#: zzbrick_make/deprecations.inc.php templates/deprecations.template.txt
-msgid "Deprecated Code Patterns"
-msgstr "Veraltete Code-Muster"
-
-#: templates/deprecations.template.txt
-msgid ""
-"The following deprecated code patterns were found in your codebase. Please "
-"update your code and mark each item as resolved when completed."
-msgstr ""
-"Die folgenden veralteten Code-Muster wurden in Ihrer Codebasis gefunden. "
-"Bitte aktualisieren Sie Ihren Code und markieren Sie jeden Eintrag als "
-"erledigt, wenn Sie fertig sind."
-
-#: templates/deprecations.template.txt
-msgid "No deprecated code patterns found. Your codebase is up to date!"
-msgstr ""
-"Es wurden keine veralteten Code-Muster gefunden. Ihre Codebasis ist aktuell!"
-
-#: templates/deprecations.template.txt
-msgid "Pattern"
-msgstr "Muster"
-
-#: templates/deprecations.template.txt
-msgid "Found in Files"
-msgstr "Gefunden in Dateien"
-
-#: templates/deprecations.template.txt
-msgid "Resolved"
-msgstr "Erledigt"
-
-#: templates/deprecations.template.txt
-msgid "Save"
-msgstr "Speichern"
-
-#: templates/deprecations.template.txt
-msgid "Excluding"
-msgstr "Ausgenommen"
-
-#: templates/deprecations.template.txt
-msgid "Breaking change, manual check needed"
-msgstr "Inkompatible Änderung, manuelle Überprüfung erforderlich"
-
-#: templates/deprecations.template.txt
-msgid "Package"
-msgstr "Paket"
+#~ msgctxt "default"
+#~ msgid ""
+#~ "“Yes” means that the user has to change the password next time he or she "
+#~ "logs in."
+#~ msgstr ""
+#~ "»Ja« bedeutet, daß der Benutzer sein Passwort beim nächsten Login ändern "
+#~ "muß."
