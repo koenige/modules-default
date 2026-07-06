@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -27,6 +27,7 @@ function mod_default_toolinfo($params) {
 		'exiftool' => 'ExifTool',
 		'pdfinfo' => 'pdfinfo',
 		'file' => 'Unix file',
+		'ffmpeg' => 'FFmpeg',
 		'mysql' => 'MySQL'
 	];
 	if (!in_array($params[0], array_keys($allowed))) return false;

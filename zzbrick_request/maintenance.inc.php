@@ -71,7 +71,7 @@ function mod_default_maintenance($params) {
 	$data = array_merge($data, mod_default_maintenance_tables());
 	$data['php_version'] = phpversion();
 	wrap_include('upload', 'zzform');
-	$functions = ['convert', 'gs', 'exiftool', 'file'];
+	$functions = ['convert', 'gs', 'exiftool', 'file', 'ffmpeg'];
 	// @todo check why 'pdfinfo' does not return anything
 	foreach ($functions as $function) {
 		$full = zz_upload_binary_version($function, false);
