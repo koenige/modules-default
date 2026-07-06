@@ -19,6 +19,7 @@
  * @return string
  */
 function page_packagecss($params, $page) {
+	wrap_include('functions', 'default');
 	$css = [];
 	$extra_css = $page['extra']['css'] ?? [];
 	if (!is_array($extra_css)) $extra_css = [$extra_css];
