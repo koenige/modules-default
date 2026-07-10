@@ -48,10 +48,7 @@ foreach (array_keys($zz['fields']) as $no) {
 }
 
 $zz['title'] = 'Change Password';
-$zz['explanation'] = markdown(
-	'### '.wrap_text('Hints for secure passwords')
-	."\n\n".wrap_text('password-rules')
-);
+$zz['explanation'] = wrap_template('password-hints');
 $zz['access'] = 'edit_only';
 $zz['hooks']['after_update'] = 'mf_default_password_update';
 $zz['record']['no_timeframe'] = true;
