@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-04 07:49+0000\n"
+"POT-Creation-Date: 2026-07-11 09:35+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -635,17 +635,17 @@ msgstr ""
 msgid "Unix file not found."
 msgstr ""
 
-#: templates/maintenance.template.txt:90
+#: templates/maintenance.template.txt:91
 msgid "Temp and Backup Files"
 msgstr ""
 
-#: templates/maintenance.template.txt:93
+#: templates/maintenance.template.txt:94
 #: zzbrick_make/filetree.inc.php:55
 #: zzbrick_make/filetree.inc.php:56
 msgid "Filetree"
 msgstr ""
 
-#: templates/maintenance.template.txt:99
+#: templates/maintenance.template.txt:100
 #: zzbrick_make/dbupdate.inc.php:77
 #: zzbrick_make/dbupdate.inc.php:86
 #: zzbrick_make/dbupdate.inc.php:87
@@ -653,7 +653,7 @@ msgstr ""
 msgid "Database Updates"
 msgstr ""
 
-#: templates/maintenance.template.txt:101
+#: templates/maintenance.template.txt:102
 #: zzbrick_make/deprecations.inc.php:67
 #: zzbrick_make/deprecations.inc.php:68
 msgid "Deprecated Code Patterns"
@@ -764,6 +764,16 @@ msgstr ""
 msgid "You are here:"
 msgstr ""
 
+# Record form: Change password
+#: templates/password-hints.template.txt:11
+msgid "Hints for secure passwords"
+msgstr ""
+
+# Record form: Change password
+#: templates/password-hints.template.txt:14
+msgid "password-rules"
+msgstr ""
+
 #: templates/polanguages.template.txt:14
 #: templates/translationscheck.template.txt:24
 #: zzbrick_tables/translations.php
@@ -869,24 +879,24 @@ msgid "Custom SQL query"
 msgstr ""
 
 #: templates/textupdate.template.txt:13
-#: zzbrick_make/textupdate.inc.php:52
+#: zzbrick_make/textupdate.inc.php:53
 msgid "Update Text Files"
 msgstr ""
 
-#: templates/textupdate.template.txt:20
+#: templates/textupdate.template.txt:19
+msgid "No changes needed."
+msgstr ""
+
+#: templates/textupdate.template.txt:24
 msgid "No translatable strings were found for this package."
 msgstr ""
 
-#: templates/textupdate.template.txt:23
+#: templates/textupdate.template.txt:27
 msgid "Comparison of scanned source strings with existing .pot files."
 msgstr ""
 
-#: templates/textupdate.template.txt:40
+#: templates/textupdate.template.txt:44
 msgid "Write to .pot files"
-msgstr ""
-
-#: templates/textupdate.template.txt:43
-msgid "No changes needed."
 msgstr ""
 
 #: templates/translationscheck.template.txt:13
@@ -936,16 +946,6 @@ msgstr ""
 # Record form: Change password
 #: zzbrick_forms/my-password.php
 msgid "Username"
-msgstr ""
-
-# Record form: Change password
-#: zzbrick_forms/my-password.php:52
-msgid "Hints for secure passwords"
-msgstr ""
-
-# Record form: Change password
-#: zzbrick_forms/my-password.php:53
-msgid "password-rules"
 msgstr ""
 
 #: zzbrick_make/cachedircheck.inc.php:58
@@ -1046,7 +1046,7 @@ msgstr ""
 msgid "SQL Query"
 msgstr ""
 
-#: zzbrick_make/textupdate.inc.php:37
+#: zzbrick_make/textupdate.inc.php:38
 msgid "Invalid package."
 msgstr ""
 
