@@ -21,7 +21,7 @@
  */
 function mod_default_make_textupdate($params) {
 	wrap_access_quit('default_maintenance');
-	wrap_include('language-extract', 'zzwrap');
+	wrap_include('extract');
 
 	if (count($params) !== 1) return false;
 	$package = $params[0];
