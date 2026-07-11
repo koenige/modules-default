@@ -22,6 +22,7 @@
 function mod_default_make_textupdate($params) {
 	wrap_access_quit('default_maintenance');
 	wrap_include('extract');
+	wrap_include('pot', 'zzwrap');
 
 	if (count($params) !== 1) return false;
 	$package = $params[0];
