@@ -37,7 +37,7 @@ function mod_default_make_textupdate($params) {
 			$data['write_done'] = false;
 			$data['write_message'] = wrap_text('Invalid package.');
 		} else {
-			$result = wrap_text_pot_write($package);
+			$result = wrap_pot_write($package);
 			$data = mod_default_make_textupdate_data($package) + [
 				'package' => $package,
 				'write' => true,
@@ -64,13 +64,13 @@ function mod_default_make_textupdate($params) {
 function mod_default_make_textupdate_data($package) {
 	$data = ['pots' => [], 'empty' => true, 'writeable' => false];
 
-	foreach (wrap_text_pot_items($package) as $pot) {
-		$stats = wrap_text_pot_diff_stats($pot['old'], $pot['entries']);
-		if (wrap_text_pot_normalize_for_diff($pot['old']) !== wrap_text_pot_normalize_for_diff($pot['new']))
+	foreach (wrap_pot_items($package) as $pot) {
+		$stats = wrap_pot_diff_stats($pot['old'], $pot['entries']);
+		if (wrap_pot_normalize_for_diff($pot['old']) !== wrap_pot_normalize_for_diff($pot['new']))
 			$data['writeable'] = true;
 		$data['pots'][] = [
 			'filename' => $pot['filename'],
-			'diff_html' => wrap_text_pot_diff_html($pot['old'], $pot['new']),
+			'diff_html' => wrap_pot_diff_html($pot['old'], $pot['new']),
 			'count' => count($pot['entries']),
 			'added' => $stats['added'] ?: '',
 			'deleted' => $stats['deleted'] ?: '',
