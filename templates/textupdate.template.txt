@@ -12,6 +12,15 @@
 
 <h2>%%% text Update Text Files %%%: %%% item package format=html_escape %%%</h2>
 
+%%% if warnings %%%
+<h3 class="error">%%% text Warnings %%%</h3>
+<ul class="extract-warnings">
+%%% loop warnings %%%
+<li>%%% item warning_text format=html_escape %%%</li>
+%%% loop end %%%
+</ul>
+%%% endif %%%
+
 %%% if write_message %%%
 <p class="%%% if write_done %%%notice%%% else %%%error%%% endif %%%">%%% item write_message format=html_escape %%%</p>
 %%% else %%%

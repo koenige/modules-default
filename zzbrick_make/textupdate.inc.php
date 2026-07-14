@@ -61,7 +61,7 @@ function mod_default_make_textupdate($params) {
  * @return array
  */
 function mod_default_make_textupdate_data($package) {
-	$data = ['pots' => [], 'empty' => true, 'writeable' => false];
+	$data = ['pots' => [], 'empty' => true, 'writeable' => false, 'warnings' => []];
 
 	foreach (wrap_pot_items($package) as $pot) {
 		$stats = wrap_pot_diff_stats($pot['old'], $pot['entries']);
@@ -76,6 +76,12 @@ function mod_default_make_textupdate_data($package) {
 			'updated' => $stats['updated'] ?: '',
 		];
 		$data['empty'] = false;
+	}
+
+	foreach (wrap_extract_warnings() as $warning) {
+		$data['warnings'][] = [
+			'warning_text' => sprintf('%s:%d: %s', $warning['file'], $warning['line'], $warning['message']),
+		];
 	}
 	return $data;
 }
