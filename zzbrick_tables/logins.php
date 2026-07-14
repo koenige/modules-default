@@ -72,7 +72,7 @@ if (wrap_setting('login_with_login_rights')) {
 	$zz['fields'][6]['type'] = 'select';
 	$zz['fields'][6]['default'] = 'read and write';
 	$zz['fields'][6]['enum'] = ['admin', 'read and write', 'read'];
-	$zz['fields'][6]['enum_title'] = ['Technik', 'Redaktion', 'Gast'];
+	$zz['fields'][6]['enum_title'] = [wrap_text('Admin user'), wrap_text('Editorial staff'), wrap_text('Guest user')];
 	$zz['fields'][6]['show_values_as_list'] = true;
 }
 
