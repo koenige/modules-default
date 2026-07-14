@@ -131,49 +131,46 @@ function mod_default_maintenance_tables() {
 
 	if (!wrap_setting('zzform_check_referential_integrity') AND !wrap_setting('translate_fields'))
 		return $data;
-		
+
+	$types = [];
+	if (wrap_setting('zzform_check_referential_integrity')) {
+		$types['master'] = [
+			'title' => wrap_text('Master'),
+			'db_table' => '/*_TABLE zzform_relations _*/',
+			'db_field' => 'master_db',
+		];
+		$types['detail'] = [
+			'title' => wrap_text('Detail'),
+			'db_table' => '/*_TABLE zzform_relations _*/',
+			'db_field' => 'detail_db',
+		];
+	}
+	if (wrap_setting('translate_fields')) {
+		$types['translation'] = [
+			'title' => wrap_text('Translation'),
+			'db_table' => '/*_TABLE default_translationfields _*/',
+			'db_field' => 'db_name',
+		];
+	}
+
 	// Update
 	if ($_POST AND !empty($_POST['db_value'])) {
-		$areas = ['master', 'detail', 'translation'];
-		foreach ($areas as $area) {
-			if (!empty($_POST['db_value'][$area])) {
-				foreach ($_POST['db_value'][$area] as $old => $new) {
-					if (empty($_POST['db_set'][$area][$old])) continue;
-					if ($_POST['db_set'][$area][$old] != 'change') continue;
-					if ($area === 'translation') {
-						$table = '/*_TABLE default_translationfields _*/';
-						$field_name = 'db_name';
-					} else {
-						$table = '/*_TABLE zzform_relations _*/';
-						$field_name = $area.'_db';
-					}
-					$sql = 'UPDATE %s SET %s = "%s" WHERE %s = "%s"';
-					$sql = sprintf($sql, $table,
-						$field_name, wrap_db_escape($new),
-						$field_name, wrap_db_escape($old)
-					);
-					wrap_db_query($sql);
-				}
+		foreach ($types as $category => $type) {
+			if (empty($_POST['db_value'][$category])) continue;
+			foreach ($_POST['db_value'][$category] as $old => $new) {
+				if (empty($_POST['db_set'][$category][$old])) continue;
+				if ($_POST['db_set'][$category][$old] != 'change') continue;
+				$sql = 'UPDATE %s SET %s = "%s" WHERE %s = "%s"';
+				$sql = sprintf($sql, $type['db_table'],
+					$type['db_field'], wrap_db_escape($new),
+					$type['db_field'], wrap_db_escape($old)
+				);
+				wrap_db_query($sql);
 			}
 		}
 		wrap_redirect_change();
 	}
-	if (wrap_setting('zzform_check_referential_integrity')) {
-	// Master database
-		$sql = 'SELECT DISTINCT master_db FROM /*_TABLE zzform_relations _*/';
-		$dbs['master'] = wrap_db_fetch($sql, 'master_db', 'single value');
 
-	// Detail database	
-		$sql = 'SELECT DISTINCT detail_db FROM /*_TABLE zzform_relations _*/';
-		$dbs['detail'] = wrap_db_fetch($sql, 'detail_db', 'single value');
-	}
-
-	if (wrap_setting('translate_fields')) {
-	// Translations database	
-		$sql = 'SELECT DISTINCT db_name FROM /*_TABLE default_translationfields _*/';
-		$dbs['translation'] = wrap_db_fetch($sql, 'db_name', 'single value');
-	}
-	
 	// All available databases
 	$sql = 'SHOW DATABASES';
 	$databases = wrap_db_fetch($sql, 'Databases', 'single value');
@@ -186,19 +183,27 @@ function mod_default_maintenance_tables() {
 			'prefered' => $db === wrap_setting('db_name') ? true : false
 		];
 	}
-	$data['database_changeable'] = mod_default_maintenance_database_changeable($dbs, $db_list);
 
-	$i = 0;
-	foreach ($dbs as $category => $db_names) {
-		foreach ($db_names as $db) {
+	$data['tables'] = [];
+	foreach ($types as $category => $type) {
+		$sql = sprintf('SELECT DISTINCT %s FROM %s', $type['db_field'], $type['db_table']);
+		foreach (wrap_db_fetch($sql, $type['db_field'], 'single value') as $db) {
 			$data['tables'][] = [
-				'title' => wrap_text(ucfirst($category)),
+				'title' => $type['title'],
 				'db' => $db,
 				'category' => $category,
-				'keep' => in_array($db, $databases) ? true : false,
-				'databases' => $data['database_changeable'] ? $db_list : []
+				'keep' => in_array($db, $databases),
+				'databases' => []
 			];
 		}
+	}
+
+	$data['database_changeable'] = mod_default_maintenance_database_changeable($data['tables'], $db_list);
+	if ($data['database_changeable']) {
+		foreach ($data['tables'] as &$table) {
+			$table['databases'] = $db_list;
+		}
+		unset($table);
 	}
 	return $data;
 }
@@ -206,19 +211,17 @@ function mod_default_maintenance_tables() {
 /**
  * should relation/translation database names be editable?
  *
- * @param array $dbs master, detail, and/or translation database names from tables
+ * @param array $tables rows built for the maintenance table
  * @param array $db_list databases available on the server (for dropdown)
  * @return bool
  */
-function mod_default_maintenance_database_changeable(array $dbs, array $db_list) {
+function mod_default_maintenance_database_changeable(array $tables, array $db_list) {
 	if (count($db_list) > 1) return true;
 
 	$server_databases = array_column($db_list, 'db');
 	if (!in_array(wrap_setting('db_name'), $server_databases, true)) return true;
-	foreach ($dbs as $category_databases) {
-		foreach ($category_databases as $db) {
-			if (!in_array($db, $server_databases, true)) return true;
-		}
+	foreach ($tables as $table) {
+		if (!in_array($table['db'], $server_databases, true)) return true;
 	}
 	return false;
 }
