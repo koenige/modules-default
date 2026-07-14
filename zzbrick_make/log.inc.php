@@ -8,8 +8,11 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010, 2013-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2010, 2013-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ *
+ * Variables
+ * translate_pot = admin
  */
 
 
@@ -54,12 +57,25 @@ function mod_default_make_log($params) {
 		return $page;
 	}
 
-	$filters['type'] = $logfiles[$logfile]['types'];
-	$filters['level'] = [
-		'Notice', 'Deprecated', 'Warning', 'Error', 'Parse error',
-		'Strict error', 'Fatal error', 'Upload'
+	$filters = [
+		'type' => [
+			'title' => wrap_text('Type'),
+			'values' => $logfiles[$logfile]['types'],
+		],
+		'level' => [
+			'title' => wrap_text('Level'),
+			'values' => [
+				'Notice', 'Deprecated', 'Warning', 'Error', 'Parse error',
+				'Strict error', 'Fatal error', 'Upload',
+			],
+		],
+		'group' => [
+			'title' => wrap_text('Group'),
+			'values' => [
+				'Group entries' => wrap_text('Group entries'),
+			],
+		],
 	];
-	$filters['group'] = ['Group entries'];
 
 	// delete
 	$data['message'] = false;
@@ -69,7 +85,7 @@ function mod_default_make_log($params) {
 		foreach ($_POST['line'] as $index) {
 			if (empty($_POST['hash'][$index])) continue;
 			$file->seek($index);
-			$line = mf_default_log_line($file->current(), $filters['type']);
+			$line = mf_default_log_line($file->current(), $filters['type']['values']);
 			if ($line AND $line['hash'] === $_POST['hash'][$index]) continue;
 			unset($_POST['line'][$index]);
 		}
@@ -131,13 +147,13 @@ function mod_default_make_log($params) {
 			}
 			if (!empty($_GET['filter']['type']) OR $data['group']) {
 				$type = substr($line, 0, strpos($line, ' '));
-				if (!in_array($type, $filters['type'])) $type = '';
+				if (!in_array($type, $filters['type']['values'])) $type = '';
 				if (!empty($_GET['filter']['type']) AND $type !== $_GET['filter']['type']) continue;
 			}
 			if (!empty($_GET['filter']['level']) OR $data['group']) {
 				$start = strpos($line, ' ') + 1;
 				$level = substr($line, $start, strpos($line, ':') - $start);
-				if (!in_array($level, $filters['level'])) $level = '';
+				if (!in_array($level, $filters['level']['values'])) $level = '';
 				if (!empty($_GET['filter']['level']) AND $level !== $_GET['filter']['level']) continue;
 			}
 			if ($data['group'] AND empty($_POST['deleteall'])) {
@@ -208,7 +224,7 @@ function mod_default_make_log($params) {
 	if ($data['total_rows']) {
 		foreach ($found as $index) {
 			$file->seek($index);
-			$data['lines'][$index] = mf_default_log_line($file->current(), $filters['type']);
+			$data['lines'][$index] = mf_default_log_line($file->current(), $filters['type']['values']);
 			$data['lines'][$index]['no'] = $index;
 			$data['lines'][$index]['keys'] = $index;
 		}
@@ -232,7 +248,7 @@ function mod_default_make_log($params) {
 /**
  * output filters for log files
  *
- * @param array $filter
+ * @param array $filters
  * @return string
  */
 function mod_default_make_log_filter($filters) {
@@ -245,9 +261,9 @@ function mod_default_make_log_filter($filters) {
 	
 	$my_uri = zzform_url_remove($unwanted_keys, zzform_url('self+qs+qs_zzform'));
 
-	if (count($filters['type']) === 1) unset($filters['type']);
+	if (count($filters['type']['values']) === 1) unset($filters['type']);
 	foreach ($filters as $index => $filter) {
-		$f_output[$index]['title'] = wrap_text(ucfirst($index));
+		$f_output[$index]['title'] = $filter['title'];
 		$filter_link = $my_uri;
 		if ($filters_set) {
 			foreach ($filters_set as $which => $filter_set) {
@@ -255,13 +271,14 @@ function mod_default_make_log_filter($filters) {
 				$filter_link = zzform_url_add(['filter' => [$which => $filter_set]], $filter_link);
 			}
 		}
-		foreach ($filter as $value) {
+		foreach ($filter['values'] as $key => $title) {
+			$value = is_string($key) ? $key : $title;
 			$is_selected = ((isset($_GET['filter'][$index]) 
 				AND $_GET['filter'][$index] == $value)) ? true : false;
 			$link = zzform_url_add(['filter' => [$index => $value]], $filter_link);
 			$f_output[$index]['values'][] = [
 				'link' => !$is_selected ? $link : '',
-				'title' => wrap_text($value)
+				'title' => $title
 			];
 		}
 		$f_output[$index]['values'][] = [

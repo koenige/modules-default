@@ -10,6 +10,9 @@
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2020-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ *
+ * Variables
+ * translate_pot = admin
  */
 
 
@@ -237,7 +240,7 @@ function mod_default_make_dbupdate_update($line) {
 		if (wrap_setting('send_as_json')) return;
 		wrap_redirect_change('#current');
 	}
-	wrap_error('Could not update database', E_USER_ERROR);
+	wrap_error(wrap_text('Could not update database.'), E_USER_ERROR);
 }
 
 /**

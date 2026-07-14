@@ -2,7 +2,7 @@
 
 /**
  * default module
- * Database table for settings (website settings, user settings)
+ * Database table for website settings
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/default

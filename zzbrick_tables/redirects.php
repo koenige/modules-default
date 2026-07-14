@@ -11,6 +11,9 @@
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2006-2016, 2019, 2022-2023, 2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ *
+ * Variables
+ * translate_pot = admin
  */
 
 
@@ -18,7 +21,7 @@
 // Bitte Zugriffsbeschränkungen in der Datei, die diese einbindet, definieren!
 
 $zz['title'] = 'Redirects';
-$zz['explanation'] = '%%% text Information about redirects %%%';
+$zz['explanation'] = wrap_template('redirect-hints');
 $zz['table'] = '/*_PREFIX_*/redirects';
 
 $zz['fields'][1]['title'] = 'ID';

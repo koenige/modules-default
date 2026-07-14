@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 3.9\n"
 
 #: templates/login.template.txt
 msgid "You have been logged out."
@@ -48,15 +48,11 @@ msgid "Password:"
 msgstr ""
 
 #: templates/login.template.txt
-msgid ""
-"To access the internal area, a registration is required. Please enter below "
-"your username and password."
+msgid "To access the internal area, a registration is required. Please enter below your username and password."
 msgstr ""
 
 #: templates/login.template.txt
-msgid ""
-"Please allow cookies after sending your login credentials. For security "
-"reasons, after %d minutes of inactivity you will be logged out automatically."
+msgid "Please allow cookies after sending your login credentials. For security reasons, after %d minutes of inactivity you will be logged out automatically."
 msgstr ""
 
 #: templates/login.template.txt
@@ -80,8 +76,7 @@ msgid "Please enter a valid e-mail address."
 msgstr ""
 
 #: templates/login-password.template.txt
-msgid ""
-"If you have an existing login, we have sent you an e-mail with a login link."
+msgid "If you have an existing login, we have sent you an e-mail with a login link."
 msgstr ""
 
 #: templates/login-password.template.txt
@@ -120,18 +115,6 @@ msgstr ""
 #: zzbrick_forms/my-password.php
 msgid "Hints for secure passwords"
 msgstr ""
-
-# Record form: Change password
-#: zzbrick_forms/my-password.php
-msgid "password-rules"
-msgstr ""
-"* Instead of a single word, several words or even complete sentences can be "
-"used.\n"
-"* The longer the password (or the selected sentence), the better the access "
-"to the site is secured.\n"
-"* For short passwords, it is recommended that they consist of uppercase and "
-"lowercase letters, numbers and special characters (? = + ; etc.).\n"
-"* The same password should not be used on other sites."
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Maintenance"
@@ -209,7 +192,8 @@ msgstr ""
 #: templates/sqlquery.template.txt
 msgid "%d row affected"
 msgid_plural "%d rows affected"
-msgstr[] ""
+msgstr[0] ""
+msgstr[1] ""
 
 #: templates/sqlquery.template.txt
 msgid "Sorry, %s is not yet supported"
@@ -256,12 +240,10 @@ msgid "Translation"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#database-tables
-msgctxt "default"
 msgid "Master"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php#database-tables
-msgctxt "default"
 msgid "Detail"
 msgstr ""
 
@@ -467,8 +449,7 @@ msgid "Single sign on: incorrect login credentials."
 msgstr ""
 
 #: zzbrick_request/sso.inc.php
-msgid ""
-"Sorry, the possible login period has expired. Please get a new login link."
+msgid "Sorry, the possible login period has expired. Please get a new login link."
 msgstr ""
 
 #: zzbrick_request/sso.inc.php
@@ -559,19 +540,6 @@ msgstr ""
 msgid "Data Type"
 msgstr ""
 
-#. Here, a boilerplate text for redirects is needed
-#: zzbrick_tables/redirects.php
-msgid "Information about redirects"
-msgstr ""
-"<p>You can redirect URLs to different addresses. You have several "
-"possibilities:</p><ul><li>Temporary redirect, e. g. from a shortcut to a "
-"permanent address like from <code>example.com/current_news</code> to <code>example.com/"
-"news/2010/04</code> with a code <code>307</code></li><li>Permanent redirect from an "
-"old address to a new address with code <code>301</code></li><li>Redirect "
-"from several old addresses to a new address, here, the old address must end "
-"with the asterisk (<code>*</code>). There must not be a <code>/</code> "
-"before the asterisk.</li></ul>"
-
 #: zzbrick_tables/redirects.php
 msgid "Old URL"
 msgstr ""
@@ -613,207 +581,163 @@ msgid "Website settings"
 msgstr ""
 
 #: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "Webpages"
 msgstr ""
 
 #: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "Title"
 msgstr ""
 
 #: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "Content"
 msgstr ""
 
 #: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "Identifier"
 msgstr ""
 
 #. Webpages: Possible ending of URL
 #: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "none"
 msgstr ""
 
 #: zzbrick_tables/webpages.php
-msgctxt "default"
-msgid ""
-"Address of page, should show hierarchy, no / at the end!<br>The identifier "
-"should contain only letters a-z, numbers 0-9 and the - sign."
+msgid "Address of page, should show hierarchy, no / at the end!<br>The identifier should contain only letters a-z, numbers 0-9 and the - sign."
 msgstr ""
 
 #: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "Sequence"
 msgstr ""
 
 #: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "Subpage&nbsp;of"
 msgstr ""
 
 #: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "Published?"
 msgstr ""
 
 #: zzbrick_tables/webpages.php
-msgctxt "default"
 msgid "Menu"
 msgstr ""
 
 #: zzbrick_tables/countries.php
-msgctxt "default"
 msgid "Countries"
 msgstr ""
 
 #: zzbrick_tables/countries.php
-msgctxt "default"
 msgid "Country"
 msgstr ""
 
 #: zzbrick_tables/countries.php
-msgctxt "default"
 msgid "Country Code"
 msgstr ""
 
 #: zzbrick_tables/countries.php
-msgctxt "default"
 msgid "Country code according to ISO 3166"
 msgstr ""
 
 #: zzbrick_tables/countries.php
-msgctxt "default"
 msgid "Website"
 msgstr ""
 
 #: zzbrick_tables/countries.php
-msgctxt "default"
 msgid "Will country be used on website?"
 msgstr ""
 
 #: zzbrick_tables/languages.php
-msgctxt "default"
 msgid "Languages"
 msgstr ""
 
 #: zzbrick_tables/languages.php
-msgctxt "default"
 msgid "Language code ISO 639-1"
 msgstr ""
 
 #: zzbrick_tables/languages.php
-msgctxt "default"
 msgid "Language code ISO 639-2, Bibliographic"
 msgstr ""
 
 #: zzbrick_tables/languages.php
-msgctxt "default"
 msgid "Language code ISO 639-2, Terminology"
 msgstr ""
 
 #: zzbrick_tables/languages.php
-msgctxt "default"
 msgid "Will language be used on website?"
 msgstr ""
 
 #: zzbrick_tables/categories.php
-msgctxt "default"
 msgid "Categories"
 msgstr ""
 
 #: zzbrick_tables/categories.php
-msgctxt "default"
 msgid "Category"
 msgstr ""
 
 #: zzbrick_tables/categories.php
-msgctxt "default"
 msgid "Main Category"
 msgstr ""
 
 #: zzbrick_tables/categories.php
-msgctxt "default"
 msgid "Description"
 msgstr ""
 
 #: zzbrick_tables/categories.php
-msgctxt "default"
 msgid "Parameters"
 msgstr ""
 
 #: zzbrick_tables/categories.php
-msgctxt "default"
 msgid "Internal parameters. Change with care."
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "Logins"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
-msgid ""
-"“Yes” means that the user has to change the password next time he or she "
-"logs in."
+msgid "“Yes” means that the user has to change the password next time he or she logs in."
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "<abbr title=\"Is user online\">Online?</abbr>"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "Is user logged in or did not log out last time?"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "Active"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "Change Pwd?"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "Click"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "Last activity online"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "Logged in"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "Password"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "To deactivate a login"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "Rights"
 msgstr ""
 
 #: zzbrick_tables/logins.php
-msgctxt "default"
 msgid "Login rights"
 msgstr ""
 
@@ -840,3 +764,4 @@ msgstr ""
 #: zzbrick_make/dbupdate.inc.php
 msgid "Ignore"
 msgstr ""
+

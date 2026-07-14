@@ -8,8 +8,11 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2013-2016, 2018, 2020-2021, 2023, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2013-2016, 2018, 2020-2021, 2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ *
+ * Variables
+ * translate_pot = admin
  */
 
 
