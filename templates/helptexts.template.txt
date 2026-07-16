@@ -13,7 +13,7 @@
 %%% if texts %%%
 <ul>
 %%% loop texts %%%
-<li><a href="%%% path default_helptext identifier %%%">%%% item title %%%</a> %%% if foreign_language %%% %%% text "(not translated, language = %s)" language strtoupper %%%%%% endif %%%</li>
+<li><a href="%%% path default_help identifier %%%">%%% item title %%%</a> %%% if foreign_language %%% %%% text "(not translated, language = %s)" language strtoupper %%%%%% endif %%%</li>
 %%% loop end %%%
 </ul>
 %%% endif %%%

@@ -13,17 +13,17 @@
  */
 
 
-function mod_default_get_helptexts($params) {
-	$files = mf_default_helptexts_files();
+function mod_default_get_help($params) {
+	$files = mf_default_help_files();
 	$data = [];
 	foreach ($files as $identifier => $variants) {
 		if (!empty($params[0]) AND $identifier !== $params[0]) continue;
 		foreach ($variants as $variant) {
 			if (array_key_exists($identifier, $data))
-				if (!mf_default_helptexts_better($variant, $data[$identifier])) continue;
+				if (!mf_default_help_better($variant, $data[$identifier])) continue;
 			$data[$identifier] = $variant;
 		}
-		$data[$identifier] = mf_default_helptexts_content($data[$identifier]);
+		$data[$identifier] = mf_default_help_content($data[$identifier]);
 	}
 	$data = array_values($data);
 	foreach ($data as $index => $text) {
@@ -39,7 +39,7 @@ function mod_default_get_helptexts($params) {
  *
  * @return array
  */
-function mf_default_helptexts_files() {
+function mf_default_help_files() {
 	$files = wrap_collect_files('help/*.{txt,md}');
 
 	foreach ($files as $package => $file) {
@@ -56,7 +56,7 @@ function mf_default_helptexts_files() {
 			$basename = implode('-', $basename);
 		}
 		$title = $basename;
-		$basename = mf_default_helptexts_identifier($basename);
+		$basename = mf_default_help_identifier($basename);
 		$data[$basename][] = [
 			'title' => $title,
 			'language' => $lang ?? 'en',
@@ -77,7 +77,7 @@ function mf_default_helptexts_files() {
  * @param array $existing
  * @return bool true = better
  */
-function mf_default_helptexts_better($new, $existing) {
+function mf_default_help_better($new, $existing) {
 	// check language
 	if ($new['language'] === wrap_setting('lang')) return true;
 	if ($new['language'] === '' AND $existing['language'] !== wrap_setting('lang')) return true;
@@ -87,16 +87,16 @@ function mf_default_helptexts_better($new, $existing) {
 }
 
 /**
- * get content of helptext file, set title
+ * get content of help file, set title
  *
  * @param array $file
  * @return array
  */
-function mf_default_helptexts_content($file) {
+function mf_default_help_content($file) {
 	$file['text'] = file_get_contents($file['filename']);
 	$file['text'] = preg_replace('/<!--[\s\S]*?-->/', '', $file['text']);
 	$file['text'] = preg_replace('/%%%(.*?)%%%/s', '%%% explain $1%%%', $file['text']);
-	$file['text'] = mf_default_helptexts_links($file['text']);
+	$file['text'] = mf_default_help_links($file['text']);
 
 	if ($file['type'] === 'md') {
 		preg_match('/# (.+)/', $file['text'], $matches);
@@ -106,12 +106,12 @@ function mf_default_helptexts_content($file) {
 }
 
 /**
- * helptext identifier from a file or link name (lowercase, no extension)
+ * help identifier from a file or link name (lowercase, no extension)
  *
  * @param string $name e.g. "Format.md", "Page Elements", "format"
  * @return string e.g. "format", "page-elements"
  */
-function mf_default_helptexts_identifier($name) {
+function mf_default_help_identifier($name) {
 	$basename = basename($name);
 	$extension = wrap_file_extension($basename);
 	if ($extension)
@@ -134,10 +134,10 @@ function mf_default_helptexts_identifier($name) {
  * @param string $text
  * @return string
  */
-function mf_default_helptexts_links($text) {
+function mf_default_help_links($text) {
 	static $files = null;
 	if ($files === null)
-		$files = mf_default_helptexts_files();
+		$files = mf_default_help_files();
 
 	return preg_replace_callback(
 		'/\[([^\]]+)\]\(([^)\s]+(?:\s+"[^"]*")?)\)/',
@@ -157,10 +157,10 @@ function mf_default_helptexts_links($text) {
 				$anchor = substr($url, $pos);
 				$url = substr($url, 0, $pos);
 			}
-			$identifier = mf_default_helptexts_identifier($url);
+			$identifier = mf_default_help_identifier($url);
 			if (!$identifier || !array_key_exists($identifier, $files)) return $match[0];
 
-			$path = wrap_path('default_helptext', $identifier);
+			$path = wrap_path('default_help', $identifier);
 			if (!$path) return $match[0];
 
 			$output = sprintf('[%s](%s%s', $link_text, $path, $anchor);

@@ -579,3 +579,4 @@
 /* 2026-05-05-4 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'webpages_blocks', 'webpage_block_id', 'layout_category_id', 'no-delete');
 /* 2026-05-05-5 */	ALTER TABLE `webpages_blocks` ADD `layout_category_id` int unsigned NOT NULL AFTER `block_id`;
 /* 2026-05-05-6 */	ALTER TABLE `webpages_blocks` ADD KEY `layout_category_id` (`layout_category_id`);
+/* 2026-07-16-1 */	UPDATE webpages SET content = REPLACE(content, '%%% request helptext * %%%', '%%% request help * %%%') WHERE content LIKE '%\%\%\% request helptext * \%\%\%%';

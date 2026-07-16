@@ -8,13 +8,13 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2024-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2024-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
-function mod_default_helptext($params) {
-	$data = brick_request_data('helptexts', [$params[0]]);
+function mod_default_help($params) {
+	$data = brick_request_data('help', [$params[0]]);
 	if (!$data) return false;
 	
 	switch ($data['type']) {
