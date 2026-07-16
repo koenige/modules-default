@@ -25,10 +25,11 @@ function mod_default_help_package($params) {
 
 	$data = [];
 	$data['package'] = $params[0];
-	$data['texts'] = mf_default_help_list($data['package']);
-	if (!$data['texts']) return false;
+	$data['audiences'] = mf_default_help_list_grouped($data['package']);
+	if (!$data['audiences']) return false;
 	$pkg = wrap_cfg_files('package', ['package' => $data['package'], 'translate' => true]);
 	$data['name'] = $pkg['about']['name'] ?? $data['package'];
+	$data['tagline'] = trim((string) ($pkg['about']['tagline'] ?? ''));
 
 	$page['extra']['css'][] = 'default/help.css';
 	$page['breadcrumbs'][] = ['title' => $data['name']];

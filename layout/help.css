@@ -14,6 +14,10 @@
 .helptext	{ --background-color-helptext: #EEE;
 			--border-color-helptext: black; }
 
+.help-audience	{ margin-top: 1.5rem; }
+.help .help-audience:first-of-type
+			{ margin-top: 0; }
+
 .helptext table
 			{ border-collapse: collapse; }
 .helptext thead th

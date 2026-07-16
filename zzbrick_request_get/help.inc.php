@@ -72,11 +72,14 @@ function mf_default_help_packages() {
 	$packages = [];
 	foreach (array_keys($names) as $package) {
 		$pkg = wrap_cfg_files('package', ['package' => $package, 'translate' => true]);
-		$packages[] = [
+		$entry = [
 			'package' => $package,
 			'name' => $pkg['about']['name'] ?? $package,
 			'count' => count(mf_default_help_list($package))
 		];
+		$tagline = trim((string) ($pkg['about']['tagline'] ?? ''));
+		if ($tagline) $entry['tagline'] = $tagline;
+		$packages[] = $entry;
 	}
 	usort($packages, fn($a, $b) => strcmp($a['name'], $b['name']));
 	return $packages;
@@ -102,6 +105,51 @@ function mf_default_help_list($package) {
 			$data[$index]['foreign_language'] = true;
 	}
 	return $data;
+}
+
+/**
+ * help texts for one package, grouped by audience
+ *
+ * @param string $package
+ * @return array list of ['audience', 'title', 'texts']
+ */
+function mf_default_help_list_grouped($package) {
+	$texts = mf_default_help_list($package);
+	if (!$texts) return [];
+
+	$order = mf_default_help_audiences();
+	$buckets = array_fill_keys($order, []);
+	$general = [];
+	foreach ($texts as $text) {
+		if (empty($text['audience'])) {
+			$general[] = $text;
+			continue;
+		}
+		foreach ($text['audience'] as $audience) {
+			if (!array_key_exists($audience, $buckets)) continue;
+			$buckets[$audience][] = $text;
+		}
+	}
+
+	$groups = [];
+	foreach ($order as $audience) {
+		if (!$buckets[$audience]) continue;
+		usort($buckets[$audience], fn($a, $b) => strcmp($a['title'], $b['title']));
+		$groups[] = [
+			'audience' => $audience,
+			'title' => mf_default_help_audience_title($audience),
+			'texts' => $buckets[$audience],
+		];
+	}
+	if ($general) {
+		usort($general, fn($a, $b) => strcmp($a['title'], $b['title']));
+		$groups[] = [
+			'audience' => '',
+			'title' => wrap_text('General'),
+			'texts' => $general,
+		];
+	}
+	return $groups;
 }
 
 /**
@@ -180,8 +228,9 @@ function mf_default_help_better($new, $existing) {
  * @return array
  */
 function mf_default_help_content($file) {
-	$file['text'] = file_get_contents($file['filename']);
-	$file['text'] = preg_replace('/<!--[\s\S]*?-->/', '', $file['text']);
+	$raw = file_get_contents($file['filename']);
+	$file['audience'] = mf_default_help_audience($raw);
+	$file['text'] = preg_replace('/<!--[\s\S]*?-->/', '', $raw);
 	$file['text'] = preg_replace('/%%%(.*?)%%%/s', '%%% explain $1%%%', $file['text']);
 	$file['text'] = mf_default_help_links($file['text'], $file['package']);
 
@@ -262,4 +311,62 @@ function mf_default_help_links($text, $package = NULL) {
 		},
 		$text
 	);
+}
+
+/**
+ * audience list from a help file header Variables block
+ *
+ * @param string $content raw file contents
+ * @return array audience identifiers
+ */
+function mf_default_help_audience($content) {
+	wrap_include('file', 'zzwrap');
+	$variables = wrap_file_header_variables($content);
+	if (empty($variables['audience'])) return [];
+
+	$allowed = mf_default_help_audiences();
+	$audiences = [];
+	foreach (preg_split('/\s*,\s*/', $variables['audience']) as $audience) {
+		$audience = trim($audience);
+		if (!$audience) continue;
+		if (!in_array($audience, $allowed, true)) {
+			wrap_error(sprintf(
+				'Unknown help audience `%s`, allowed: %s.',
+				$audience,
+				implode(', ', $allowed)
+			), E_USER_NOTICE);
+			continue;
+		}
+		$audiences[] = $audience;
+	}
+	return array_values(array_unique($audiences));
+}
+
+/**
+ * configured audience identifiers from help.cfg
+ *
+ * @return array
+ */
+function mf_default_help_audiences() {
+	static $audiences = null;
+	if ($audiences !== null) return $audiences;
+
+	$cfg = wrap_cfg_files('help');
+	$audiences = $cfg['audience']['default'] ?? [];
+	if (!is_array($audiences)) $audiences = [$audiences];
+	return $audiences;
+}
+
+/**
+ * section title for one audience
+ *
+ * @param string $audience
+ * @return string
+ */
+function mf_default_help_audience_title($audience) {
+	$cfg = wrap_cfg_files('help', ['translate' => true]);
+	$key = 'audience.'.$audience;
+	if (!empty($cfg[$key]['description']))
+		return $cfg[$key]['description'];
+	return $audience;
 }

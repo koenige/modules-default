@@ -12,7 +12,7 @@
 <div class="help">
 <ul>
 %%% loop packages %%%
-<li><a href="%%% item package %%%/"><strong>%%% item package %%%</strong> – %%% item name %%%</a> (%%% item count %%%)
+<li><a href="%%% item package %%%/"><strong>%%% item package %%%</strong> – %%% item name %%%</a> (%%% item count %%%)%%% if tagline %%%<br><span class="help-tagline">%%% item tagline format=html_escape %%%</span>%%% endif %%%</li>
 %%% loop end %%%
 </ul>
 </div>

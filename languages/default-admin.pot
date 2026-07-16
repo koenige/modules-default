@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-14 15:11+0000\n"
+"POT-Creation-Date: 2026-07-16 14:45+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -100,6 +100,26 @@ msgstr ""
 msgid "True Crypt (Virtual Encrypted Disk (Container))"
 msgstr ""
 
+#: configuration/help.cfg:13
+msgid "Allowed target audiences (Variables: audience = … in help file header)"
+msgstr ""
+
+#: configuration/help.cfg:19
+msgid "For editors"
+msgstr ""
+
+#: configuration/help.cfg:22
+msgid "For administrators"
+msgstr ""
+
+#: configuration/help.cfg:25
+msgid "For programmers"
+msgstr ""
+
+#: configuration/package.cfg:13
+msgid "default module"
+msgstr ""
+
 #: configuration/package.cfg:15
 msgid "Site-wide administration, maintenance, and utilities"
 msgstr ""
@@ -109,46 +129,54 @@ msgid "Subtree of categories"
 msgstr ""
 
 #: configuration/routes.cfg:21
-msgid "Individual help text pages"
+msgid "Help text"
 msgstr ""
 
 #: configuration/routes.cfg:26
-msgid "Database maintenance, updates, access to logfiles"
+msgid "Help packages"
 msgstr ""
 
 #: configuration/routes.cfg:31
-msgid "Overview of installed modules"
+msgid "Help texts per package"
 msgstr ""
 
 #: configuration/routes.cfg:36
-msgid "Single installed module (package overview)"
+msgid "Database maintenance, updates, access to logfiles"
 msgstr ""
 
 #: configuration/routes.cfg:41
-msgid "Installed module settings (from configuration/settings.cfg vs runtime)"
+msgid "Overview of installed modules"
 msgstr ""
 
 #: configuration/routes.cfg:46
-msgid "Masquerade login"
+msgid "Single installed module (package overview)"
 msgstr ""
 
 #: configuration/routes.cfg:51
-msgid "Proxy access of third-party websites"
+msgid "Installed module settings (from configuration/settings.cfg vs runtime)"
 msgstr ""
 
 #: configuration/routes.cfg:56
-msgid "Website settings"
+msgid "Masquerade login"
 msgstr ""
 
 #: configuration/routes.cfg:61
-msgid "Admin access to all tables"
+msgid "Proxy access of third-party websites"
 msgstr ""
 
 #: configuration/routes.cfg:66
+msgid "Website settings"
+msgstr ""
+
+#: configuration/routes.cfg:71
+msgid "Admin access to all tables"
+msgstr ""
+
+#: configuration/routes.cfg:76
 msgid "Internal tools for a single website"
 msgstr ""
 
-#: configuration/routes.cfg:73
+#: configuration/routes.cfg:83
 msgid "Search"
 msgstr ""
 

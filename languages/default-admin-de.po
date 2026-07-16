@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-14 15:11+0000\n"
+"POT-Creation-Date: 2026-07-16 14:45+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -64,19 +64,19 @@ msgstr ""
 
 #: configuration/filetypes.cfg:113
 msgid "Microsoft Windows Bitmap v2 (Microsoft Windows 2.x)"
-msgstr ""
+msgstr "Microsoft Windows Bitmap v2 (Microsoft Windows 2.x)"
 
 #: configuration/filetypes.cfg:120
 msgid "Microsoft Windows Bitmap v3 (Microsoft Windows 3.x, NT)"
-msgstr ""
+msgstr "Microsoft Windows Bitmap v3 (Microsoft Windows 3.x, NT)"
 
 #: configuration/filetypes.cfg:127
 msgid "ChessBase Archive"
-msgstr ""
+msgstr "ChessBase-Archiv"
 
 #: configuration/filetypes.cfg:135
 msgid "INI file"
-msgstr ""
+msgstr "INI-Datei"
 
 #: configuration/filetypes.cfg:328
 msgid "PostScript document text (EPS)"
@@ -84,11 +84,11 @@ msgstr ""
 
 #: configuration/filetypes.cfg:338
 msgid "Encapsulated PostScript Interchange format with TIFF preview"
-msgstr ""
+msgstr "Encapsulated PostScript-Austauschformat mit TIFF-Vorschau"
 
 #: configuration/filetypes.cfg:820
 msgid "Maker Interchange Format (Adobe FrameMaker)"
-msgstr ""
+msgstr "Maker Interchange Format (Adobe FrameMaker)"
 
 #: configuration/filetypes.cfg:1111
 msgid "PostScript document text (PS)"
@@ -96,11 +96,31 @@ msgstr ""
 
 #: configuration/filetypes.cfg:1234
 msgid "Structured Query Language (SQL) file"
-msgstr ""
+msgstr "Structured Query Language (SQL)-Datei"
 
 #: configuration/filetypes.cfg:1278
 msgid "True Crypt (Virtual Encrypted Disk (Container))"
 msgstr ""
+
+#: configuration/help.cfg:13
+msgid "Allowed target audiences (Variables: audience = … in help file header)"
+msgstr "Zielgruppen (Variablen: audience = … im Kopf der Hilfedatei)"
+
+#: configuration/help.cfg:19
+msgid "For editors"
+msgstr "Für Redakteure"
+
+#: configuration/help.cfg:22
+msgid "For administrators"
+msgstr "Für Administratoren"
+
+#: configuration/help.cfg:25
+msgid "For programmers"
+msgstr "Für Programmierer"
+
+#: configuration/package.cfg:13
+msgid "default module"
+msgstr "Standardmodul"
 
 #: configuration/package.cfg:15
 msgid "Site-wide administration, maintenance, and utilities"
@@ -108,51 +128,59 @@ msgstr "Website-weite Verwaltung, Wartung und Hilfsfunktionen"
 
 #: configuration/routes.cfg:12
 msgid "Subtree of categories"
-msgstr ""
+msgstr "Teilbaum von Kategorien"
 
 #: configuration/routes.cfg:21
-msgid "Individual help text pages"
-msgstr ""
+msgid "Help text"
+msgstr "Hilfetext"
 
 #: configuration/routes.cfg:26
-msgid "Database maintenance, updates, access to logfiles"
-msgstr ""
+msgid "Help packages"
+msgstr "Pakete mit Hilfetexten"
 
 #: configuration/routes.cfg:31
-msgid "Overview of installed modules"
-msgstr ""
+msgid "Help texts per package"
+msgstr "Hilfetexte pro Paket"
 
 #: configuration/routes.cfg:36
+msgid "Database maintenance, updates, access to logfiles"
+msgstr "Datenbankwartung, Aktualisierungen, Zugriff auf Protokolldateien"
+
+#: configuration/routes.cfg:41
+msgid "Overview of installed modules"
+msgstr "Übersicht über die installierten Module"
+
+#: configuration/routes.cfg:46
 msgid "Single installed module (package overview)"
 msgstr ""
 
-#: configuration/routes.cfg:41
+#: configuration/routes.cfg:51
 msgid "Installed module settings (from configuration/settings.cfg vs runtime)"
 msgstr ""
 
-#: configuration/routes.cfg:46
-msgid "Masquerade login"
-msgstr ""
-
-#: configuration/routes.cfg:51
-msgid "Proxy access of third-party websites"
-msgstr ""
-
 #: configuration/routes.cfg:56
+msgid "Masquerade login"
+msgstr "Maskiertes Login"
+
+#: configuration/routes.cfg:61
+msgid "Proxy access of third-party websites"
+msgstr "Proxy-Zugriff auf Websites von Drittanbietern"
+
+#: configuration/routes.cfg:66
 msgid "Website settings"
 msgstr "Website-Einstellungen"
 
-#: configuration/routes.cfg:61
+#: configuration/routes.cfg:71
 msgid "Admin access to all tables"
-msgstr ""
+msgstr "Administratorzugriff auf alle Tabellen"
 
-#: configuration/routes.cfg:66
+#: configuration/routes.cfg:76
 msgid "Internal tools for a single website"
-msgstr ""
+msgstr "Interne Tools für eine einzelne Website"
 
-#: configuration/routes.cfg:73
+#: configuration/routes.cfg:83
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
 #: configuration/settings.cfg:20 configuration/settings.cfg:24
 msgid "Link to a form where a detail record can be added"

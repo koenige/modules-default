@@ -10,11 +10,15 @@
 #
 #
 <div class="help">
-%%% if texts %%%
+%%% if tagline %%%
+<p class="help-tagline abstract">%%% item tagline format=html_escape %%%</p>
+%%% endif %%%
+%%% loop audiences %%%
+<h3 class="help-audience">%%% item title %%%</h3>
 <ul>
 %%% loop texts %%%
 <li><a href="%%% path default_help package identifier %%%">%%% item title %%%</a> %%% if foreign_language %%% %%% text "(%s language only)" language strtoupper %%%%%% endif %%%</li>
 %%% loop end %%%
 </ul>
-%%% endif %%%
+%%% loop end %%%
 </div>

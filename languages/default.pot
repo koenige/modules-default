@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-14 15:11+0000\n"
+"POT-Creation-Date: 2026-07-16 14:45+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -111,12 +111,12 @@ msgstr ""
 msgid "TOP"
 msgstr ""
 
-#: templates/helplink.template.txt:11
-msgid "Help:"
+#: templates/help-package.template.txt:20
+msgid "(%s language only)"
 msgstr ""
 
-#: templates/helptexts.template.txt:16
-msgid "(not translated, language = %s)"
+#: templates/helplink.template.txt:11
+msgid "Help:"
 msgstr ""
 
 #: templates/login.template.txt:14
@@ -339,6 +339,15 @@ msgstr ""
 msgid "Unable to start job."
 msgstr ""
 
+#: zzbrick_request/help-package.inc.php:36
+msgid "Help for %s"
+msgstr ""
+
+#: zzbrick_request/help-packages.inc.php:28
+#: zzbrick_request/help-packages.inc.php:29
+msgid "Help"
+msgstr ""
+
 #: zzbrick_request/maintenance.inc.php
 msgid "Field %s contains invalid values:"
 msgstr ""
@@ -376,6 +385,10 @@ msgstr ""
 
 #: zzbrick_request/sso.inc.php:90
 msgid "Sorry, the possible login period has expired. Please get a new login link."
+msgstr ""
+
+#: zzbrick_request_get/help.inc.php:148
+msgid "General"
 msgstr ""
 
 #: zzbrick_tables/blocks.php:16
