@@ -20,7 +20,7 @@
 
 ## Help
 
-* [Markdown](%%% path default_help markdown %%%) – for formatting texts
+* [Markdown](%%% path default_help default markdown %%%) – for formatting texts
 
 %%% section col2 %%%
 %%% rights admin %%%

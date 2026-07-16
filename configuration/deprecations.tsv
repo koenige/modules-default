@@ -34,6 +34,6 @@
 2026-03-14-10	code	search_path	removed, paths from routes; use wrap_path()
 2026-03-14-11	code	default_categories_form_path	removed, paths from routes; use wrap_path()
 2026-04-11-1	code	default_logout	route `logout` in zzwrap; use wrap_path('logout') or %%% path logout %%%
-2026-07-16-1	code	path default_helptext	use `path default_help` instead
-2026-07-16-2	code	wrap_path('default_helptext'	use `wrap_path('default_help'` instead
+2026-07-16-1	code	path default_helptext	use `path default_help` instead, package name is required
+2026-07-16-2	code	wrap_path('default_helptext'	use `wrap_path('default_help'` instead, package name is required
 2026-07-16-3	code	brick_request_data('helptexts'	use `brick_request_data('help'` instead

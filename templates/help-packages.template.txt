@@ -10,11 +10,9 @@
 #
 #
 <div class="help">
-%%% if texts %%%
 <ul>
-%%% loop texts %%%
-<li><a href="%%% path default_help identifier %%%">%%% item title %%%</a> %%% if foreign_language %%% %%% text "(not translated, language = %s)" language strtoupper %%%%%% endif %%%</li>
+%%% loop packages %%%
+<li><a href="%%% item package %%%/"><strong>%%% item package %%%</strong> – %%% item name %%%</a> (%%% item count %%%)
 %%% loop end %%%
 </ul>
-%%% endif %%%
 </div>

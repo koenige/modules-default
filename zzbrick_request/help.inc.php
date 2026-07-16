@@ -13,8 +13,18 @@
  */
 
 
+/**
+ * display a help text
+ *
+ * @param array $params
+ *		[0]: package
+ *		[1]: identifier of help text
+ * @return array|false
+ */
 function mod_default_help($params) {
-	$data = brick_request_data('help', [$params[0]]);
+	if (count($params) !== 2) return false;
+
+	$data = brick_request_data('help', [$params[0], $params[1]]);
 	if (!$data) return false;
 	
 	switch ($data['type']) {
@@ -25,6 +35,12 @@ function mod_default_help($params) {
 	default:
 		$page['text'] = sprintf('<pre>%s</pre>', $data['text']);
 		break;
+	}
+	if (wrap_path('default_help_package', [], ['testing' => 1])) {
+		$page['breadcrumbs'][] = [
+			'title' => $data['package'],
+			'url_path' => wrap_path('default_help_package', $data['package'])
+		];
 	}
 	$page['breadcrumbs'][]['title'] = $data['title'];
 	$page['title'] = $data['title'];

@@ -1,0 +1,20 @@
+# default module
+# Template for list of help texts
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2024, 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+#
+<div class="help">
+%%% if texts %%%
+<ul>
+%%% loop texts %%%
+<li><a href="%%% path default_help package identifier %%%">%%% item title %%%</a> %%% if foreign_language %%% %%% text "(%s language only)" language strtoupper %%%%%% endif %%%</li>
+%%% loop end %%%
+</ul>
+%%% endif %%%
+</div>
