@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-16 14:45+0000\n"
+"POT-Creation-Date: 2026-07-24 15:26+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -22,10 +22,6 @@ msgstr ""
 
 #: default/download.inc.php:39
 msgid "Download: Archive Too Big"
-msgstr ""
-
-#: default/download.inc.php:93
-msgid "Creation of ZIP file “%s” failed."
 msgstr ""
 
 #: layout/internal.css:20
@@ -295,6 +291,10 @@ msgstr ""
 msgid "Languages"
 msgstr ""
 
+#: zzbrick_forms/language-tags.php:35
+msgid "Register"
+msgstr ""
+
 # Record form: Change password
 #: zzbrick_forms/my-password.php:50
 msgid "Change Password"
@@ -323,19 +323,23 @@ msgstr ""
 msgid "Folder"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:172
+#: zzbrick_make/jobmanager.inc.php:65
+msgid "Headers"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:170
 msgid "Job Manager"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:458
+#: zzbrick_make/jobmanager.inc.php:446
 msgid "The job should start later."
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:465
+#: zzbrick_make/jobmanager.inc.php:453
 msgid "Another job is running."
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:473
+#: zzbrick_make/jobmanager.inc.php:461
 msgid "Unable to start job."
 msgstr ""
 
@@ -371,19 +375,7 @@ msgstr ""
 msgid "Module settings for %s"
 msgstr ""
 
-#: zzbrick_request/sso.inc.php:65
-msgid "Single sign on: too many URL parameters."
-msgstr ""
-
-#: zzbrick_request/sso.inc.php:79
-msgid "Single sign on: incorrect login credentials."
-msgstr ""
-
-#: zzbrick_request/sso.inc.php:88
-msgid "Single sign on: possible login period expired."
-msgstr ""
-
-#: zzbrick_request/sso.inc.php:90
+#: zzbrick_request/sso.inc.php:89
 msgid "Sorry, the possible login period has expired. Please get a new login link."
 msgstr ""
 

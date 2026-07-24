@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-16 14:45+0000\n"
+"POT-Creation-Date: 2026-07-24 15:26+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -498,6 +498,10 @@ msgstr ""
 #: configuration/settings.cfg:412
 msgid "Name of the user to login with for server sync"
 msgstr ""
+
+#: default/download.inc.php:93
+msgid "Creation of ZIP file “%s” failed."
+msgstr "Die Erstellung der ZIP-Datei „%s“ ist fehlgeschlagen."
 
 #: templates/cachedircheck.template.txt:16
 msgid "Check Cache Directory"
@@ -1170,6 +1174,18 @@ msgstr "Datenbank:"
 msgid "Check Cache Directories"
 msgstr "Cache-Verzeichnisse überprüfen"
 
+#: zzbrick_make/cleanup.inc.php:39
+msgid "Folder to clean up does not exist: %s"
+msgstr ""
+
+#: zzbrick_make/cleanup.inc.php:60
+msgid "Logfile to clean up does not exist: %s"
+msgstr ""
+
+#: zzbrick_make/cleanup.inc.php:112
+msgid "Cleanup for folder %s not possible: folder does not exist."
+msgstr ""
+
 #: zzbrick_make/cronjobs.inc.php:47
 msgid "No active jobs found."
 msgstr "Keine aktiven Jobs gefunden."
@@ -1195,6 +1211,30 @@ msgstr[1] "%d Abfragen wurden ausgeführt."
 #: zzbrick_make/dbupdate.inc.php:243
 msgid "Could not update database."
 msgstr "Datenbank konnte nicht aktualisiert werden."
+
+#: zzbrick_make/jobmanager.inc.php:64
+msgid "Job Manager with URL %s failed. (Status: %d)"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:232
+msgid "Job Manager: unable to start job ID %d, jobqueue is locked"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:265
+msgid "Job Manager: unable to start job ID %d"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:300
+msgid "Job Manager: unable to finish job ID %d successfully"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:358
+msgid "Job Manager: %s"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:380
+msgid "Job Manager: unable to delete jobs ID %s"
+msgstr ""
 
 #: zzbrick_make/log.inc.php:31 zzbrick_make/log.inc.php:32
 msgid "Logs"
@@ -1235,6 +1275,14 @@ msgstr "Ungültiges Paket."
 #: zzbrick_make/translationscheck.inc.php:64
 msgid "Checking translations: Table `%s` does not exist"
 msgstr "Übersetzungen prüfen: Die Tabelle `%s` existiert nicht"
+
+#: zzbrick_make/update.inc.php:62
+msgid "Creation of thumbnail for medium ID %s failed."
+msgstr ""
+
+#: zzbrick_request/adminer.inc.php:40
+msgid "Library Adminer does not exist"
+msgstr ""
 
 #: zzbrick_request/maintenance.inc.php:45
 #: zzbrick_request/maintenance.inc.php:92
@@ -1281,6 +1329,22 @@ msgstr "lokale Überlagerung"
 #: zzbrick_request/specialfolders.inc.php:27
 msgid "Backup of uploaded files is not active."
 msgstr "Backup von hochgeladenen Dateien ist nicht aktiv."
+
+#: zzbrick_request/sso.inc.php:65
+msgid "Single sign on: too many URL parameters. (%s)"
+msgstr "Einmalige Anmeldung (SSO): zu viele URL-Parameter. (%s)"
+
+#: zzbrick_request/sso.inc.php:79
+msgid "Single sign on: incorrect login credentials. (%s)"
+msgstr "Einmalige Anmeldung (SSO): falsche Anmeldeinformationen. (%s)"
+
+#: zzbrick_request/sso.inc.php:88
+msgid "Single sign on: possible login period expired. (%s)"
+msgstr "Einmalige Anmeldung (SSO): der Anmeldezeitraum ist vorbei. (%s)"
+
+#: zzbrick_request_get/help.inc.php:330
+msgid "Unknown help audience `%s`, allowed: %s."
+msgstr ""
 
 #: zzbrick_tables/redirects.php:23
 msgid "Redirects"
@@ -1385,3 +1449,7 @@ msgstr "Erster Zugriff"
 #: zzbrick_tables/uris.php:100
 msgid "Last Access"
 msgstr "Letzter Zugriff"
+
+#: zzform/definition.inc.php:87
+msgid "You need a property field if using `key_value` subtables."
+msgstr ""

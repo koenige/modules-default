@@ -240,7 +240,7 @@ function mod_default_make_dbupdate_update($line) {
 		if (wrap_setting('send_as_json')) return;
 		wrap_redirect_change('#current');
 	}
-	wrap_error(wrap_text('Could not update database.'), E_USER_ERROR);
+	wrap_error(['Could not update database.'], E_USER_ERROR);
 }
 
 /**

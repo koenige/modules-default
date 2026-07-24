@@ -90,7 +90,7 @@ function mf_default_download_zip($files, $download_file) {
 	}
 	unlink($metadata_file);
 	if (!$success) {
-		wrap_error(wrap_text('Creation of ZIP file “%s” failed.', ['values' => [$download_file]]), E_USER_ERROR);
+		wrap_error(['Creation of ZIP file “%s” failed.', ['values' => [$download_file]]], E_USER_ERROR);
 		exit;
 	}
 

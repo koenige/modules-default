@@ -36,7 +36,7 @@ function mod_default_make_cleanup() {
 				$folder = sprintf('%s/%s', wrap_setting('tmp_dir'), $folder);
 			$folder = realpath($folder);
 			if (!$folder) {
-				wrap_error(sprintf('Folder to clean up does not exist: %s', $folder_given));
+				wrap_error(['Folder to clean up does not exist: %s', ['values' => [$folder_given]]]);
 				continue;
 			}
 			$data['folders'][] = [
@@ -57,7 +57,7 @@ function mod_default_make_cleanup() {
 				$logfile = sprintf('%s/%s', wrap_setting('log_dir'), $logfile);
 			$logfile = realpath($logfile);
 			if (!$logfile) {
-				wrap_error(sprintf('Logfile to clean up does not exist: %s', $logfile_given));
+				wrap_error(['Logfile to clean up does not exist: %s', ['values' => [$logfile_given]]]);
 				continue;
 			}
 			$data['logfiles'][] = [
@@ -109,7 +109,7 @@ function mod_default_session_cleanup() {
  */
 function mod_default_file_cleanup($folder, $max_age_seconds) {
 	if (!is_dir($folder)) {
-		wrap_error(sprintf('Cleanup for folder %s not possible: folder does not exist.', $folder));
+		wrap_error(['Cleanup for folder %s not possible: folder does not exist.', ['values' => [$folder]]]);
 		return $counter;
 	}
 	$invalid = time() - $max_age_seconds;

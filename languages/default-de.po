@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-16 14:45+0000\n"
+"POT-Creation-Date: 2026-07-24 15:26+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -28,10 +28,6 @@ msgstr ""
 #: default/download.inc.php:39
 msgid "Download: Archive Too Big"
 msgstr "Download: Archiv zu groß"
-
-#: default/download.inc.php:93
-msgid "Creation of ZIP file “%s” failed."
-msgstr "Die Erstellung der ZIP-Datei „%s“ ist fehlgeschlagen."
 
 #: layout/internal.css:20
 msgid "PREVIEW"
@@ -315,6 +311,10 @@ msgstr "Werkzeuge"
 msgid "Languages"
 msgstr "Sprachen"
 
+#: zzbrick_forms/language-tags.php:35
+msgid "Register"
+msgstr ""
+
 # Record form: Change password
 #: zzbrick_forms/my-password.php:50
 msgid "Change Password"
@@ -341,19 +341,23 @@ msgstr "unbekannt"
 msgid "Folder"
 msgstr "Ordner"
 
-#: zzbrick_make/jobmanager.inc.php:172
+#: zzbrick_make/jobmanager.inc.php:65
+msgid "Headers"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:170
 msgid "Job Manager"
 msgstr "Aufgaben-Manager"
 
-#: zzbrick_make/jobmanager.inc.php:458
+#: zzbrick_make/jobmanager.inc.php:446
 msgid "The job should start later."
 msgstr "Der Job soll erst später starten."
 
-#: zzbrick_make/jobmanager.inc.php:465
+#: zzbrick_make/jobmanager.inc.php:453
 msgid "Another job is running."
 msgstr "Ein anderer Job läuft."
 
-#: zzbrick_make/jobmanager.inc.php:473
+#: zzbrick_make/jobmanager.inc.php:461
 msgid "Unable to start job."
 msgstr "Der Job kann nicht gestartet werden."
 
@@ -388,19 +392,7 @@ msgstr "Installierte Module"
 msgid "Module settings for %s"
 msgstr "Moduleinstellungen für %s"
 
-#: zzbrick_request/sso.inc.php:65
-msgid "Single sign on: too many URL parameters."
-msgstr "Einmalige Anmeldung (SSO): zu viele URL-Parameter."
-
-#: zzbrick_request/sso.inc.php:79
-msgid "Single sign on: incorrect login credentials."
-msgstr "Einmalige Anmeldung (SSO): falsche Anmeldeinformationen."
-
-#: zzbrick_request/sso.inc.php:88
-msgid "Single sign on: possible login period expired."
-msgstr "Einmalige Anmeldung (SSO): der Anmeldezeitraum ist vorbei."
-
-#: zzbrick_request/sso.inc.php:90
+#: zzbrick_request/sso.inc.php:89
 msgid ""
 "Sorry, the possible login period has expired. Please get a new login link."
 msgstr ""

@@ -61,7 +61,7 @@ function mod_default_make_translationscheck($params) {
 		$primary_keys = wrap_db_fetch($sql, '_dummy_', 'key/value');
 		foreach ($fields as $field) {
 			if (!array_key_exists($field['table_name'], $primary_keys)) {
-				wrap_error(wrap_text('Checking translations: Table `%s` does not exist', ['values' => [$field['table_name']]]));
+				wrap_error(['Checking translations: Table `%s` does not exist', ['values' => [$field['table_name']]]]);
 				continue;
 			}
 			$sql = sprintf($sql_t

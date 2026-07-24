@@ -327,11 +327,7 @@ function mf_default_help_audience($content) {
 	$audiences = [];
 	foreach (wrap_array_list($variables['audience'] ?? null) as $audience) {
 		if (!in_array($audience, $allowed, true)) {
-			wrap_error(sprintf(
-				'Unknown help audience `%s`, allowed: %s.',
-				$audience,
-				implode(', ', $allowed)
-			), E_USER_NOTICE);
+			wrap_error(['Unknown help audience `%s`, allowed: %s.', ['values' => [$audience, implode(', ', $allowed)]]], E_USER_NOTICE);
 			continue;
 		}
 		$audiences[] = $audience;

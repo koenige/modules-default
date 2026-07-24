@@ -37,7 +37,7 @@ function mod_default_adminer($params) {
 	
 	$path = wrap_setting('lib').'/adminer/adminer-mysql-de.php';
 	if (!file_exists($path)) {
-		wrap_error('Library Adminer does not exist', E_USER_ERROR);
+		wrap_error(['Library Adminer does not exist'], E_USER_ERROR);
 		exit;
 	}
 	// Close framework session and start Adminer's session
