@@ -322,13 +322,10 @@ function mf_default_help_links($text, $package = NULL) {
 function mf_default_help_audience($content) {
 	wrap_include('file', 'zzwrap');
 	$variables = wrap_file_header_variables($content);
-	if (empty($variables['audience'])) return [];
 
 	$allowed = mf_default_help_audiences();
 	$audiences = [];
-	foreach (preg_split('/\s*,\s*/', $variables['audience']) as $audience) {
-		$audience = trim($audience);
-		if (!$audience) continue;
+	foreach (wrap_array_list($variables['audience'] ?? null) as $audience) {
 		if (!in_array($audience, $allowed, true)) {
 			wrap_error(sprintf(
 				'Unknown help audience `%s`, allowed: %s.',
