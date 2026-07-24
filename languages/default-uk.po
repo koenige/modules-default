@@ -188,7 +188,7 @@ msgid "Name:"
 msgstr ""
 
 #: templates/login-password.template.txt:25
-msgid "E-Mail:"
+msgid "E-mail:"
 msgstr ""
 
 #: templates/login-password.template.txt:28
