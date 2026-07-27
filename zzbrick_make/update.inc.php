@@ -32,7 +32,7 @@ function mod_default_make_update($params) {
 	$sql = sprintf($sql, wrap_db_escape($params[0]));
 	$pkey = wrap_db_fetch($sql);
 	if (!$pkey)
-		wrap_quit(404, sprintf('Table %s not found', $params[0]));
+		wrap_quit(404, wrap_text('Table %s not found', ['values' => [$params[0]]]));
 
 	$page['query_strings'][] = 'thumbs';
 	$page['query_strings'][] = 'field';

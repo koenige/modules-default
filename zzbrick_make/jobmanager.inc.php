@@ -62,7 +62,7 @@ function mod_default_make_jobmanager() {
 		if (!in_array($status, [100, 200]))
 			wrap_error([
 				'Job Manager with URL %s failed. (Status: %d)',
-				['values' => [$job['job_url'], $status], 'data' => [wrap_text('Headers') => $headers]]
+				['values' => [$job['job_url'], $status], 'data' => ['Headers' => $headers]]
 			], E_USER_NOTICE, ['log_post_data' => false]);
 
 		if (empty($_SERVER['HTTP_X_TIMEOUT_IGNORE'])) {

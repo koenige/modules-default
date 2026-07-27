@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/clubs
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021, 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021, 2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,7 +23,9 @@
  * @return array
  */
 function mod_default_xhr_autosuggest($request, $def) {
-	if (!is_array($def)) wrap_quit(403, 'Not usable as standalone command.');
+	if (!is_array($def)) wrap_quit(403, wrap_text(
+		'This autosuggest endpoint cannot be called directly.'
+	));
 
 	$text = mb_strtolower($request['text']);
 	$limit = $request['limit'] + 1;

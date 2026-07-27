@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-24 15:26+0000\n"
+"POT-Creation-Date: 2026-07-27 06:44+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -291,6 +291,7 @@ msgstr ""
 msgid "Languages"
 msgstr ""
 
+# Language register
 #: zzbrick_forms/language-tags.php:35
 msgid "Register"
 msgstr ""
@@ -323,10 +324,6 @@ msgstr ""
 msgid "Folder"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:65
-msgid "Headers"
-msgstr ""
-
 #: zzbrick_make/jobmanager.inc.php:170
 msgid "Job Manager"
 msgstr ""
@@ -341,6 +338,10 @@ msgstr ""
 
 #: zzbrick_make/jobmanager.inc.php:461
 msgid "Unable to start job."
+msgstr ""
+
+#: zzbrick_make/update.inc.php:35
+msgid "Table %s not found"
 msgstr ""
 
 #: zzbrick_request/help-package.inc.php:36
@@ -1169,13 +1170,17 @@ msgstr ""
 msgid "Domain name without subdomain www"
 msgstr ""
 
-#: zzbrick_xhr/autosuggest.inc.php:70
-#: zzbrick_xhr/autosuggest.inc.php:76
+#: zzbrick_xhr/autosuggest.inc.php:27
+msgid "This autosuggest endpoint cannot be called directly."
+msgstr ""
+
+#: zzbrick_xhr/autosuggest.inc.php:72
+#: zzbrick_xhr/autosuggest.inc.php:78
 msgid "Please enter more characters."
 msgstr ""
 
-#: zzbrick_xhr/autosuggest.inc.php:87
-#: zzbrick_xhr/autosuggest.inc.php:93
+#: zzbrick_xhr/autosuggest.inc.php:89
+#: zzbrick_xhr/autosuggest.inc.php:95
 msgid "No record was found."
 msgstr ""
 
