@@ -266,6 +266,7 @@ function mf_default_help_identifier($name) {
  * convert markdown links to other help texts into site paths
  *
  * [Format.md](Format.md) and [Format](format) both link to the same page.
+ * Cross-package: [Translating Text](zzwrap/Translating Text.md).
  *
  * @param string $text
  * @param string|null $package package of the source file (optional)
@@ -277,14 +278,14 @@ function mf_default_help_links($text, $package = NULL) {
 		$files = mf_default_help_files();
 
 	return preg_replace_callback(
-		'/\[([^\]]+)\]\(([^)\s]+(?:\s+"[^"]*")?)\)/',
+		'/\[([^\]]+)\]\(([^)]+)\)/',
 		function ($match) use ($files, $package) {
 			$link_text = $match[1];
-			$url = $match[2];
+			$url = trim($match[2]);
 			$title = '';
-			if (preg_match('/^([^\s]+)(?:\s+"([^"]*)")?$/', $url, $parts)) {
-				$url = $parts[1];
-				$title = $parts[2] ?? '';
+			if (preg_match('/^(.+?)\s+"([^"]*)"$/', $url, $parts)) {
+				$url = trim($parts[1]);
+				$title = $parts[2];
 			}
 			if (preg_match('#^[a-z]+:#i', $url)) return $match[0];
 			if (str_starts_with($url, '/') || str_starts_with($url, '#')) return $match[0];
@@ -294,11 +295,21 @@ function mf_default_help_links($text, $package = NULL) {
 				$anchor = substr($url, $pos);
 				$url = substr($url, 0, $pos);
 			}
-			$identifier = mf_default_help_identifier($url);
+
+			$explicit_package = NULL;
+			$target = $url;
+			if (strpos($url, '/') !== false) {
+				[$explicit_package, $target] = explode('/', $url, 2);
+			}
+			$identifier = mf_default_help_identifier($target);
 			if (!$identifier || !array_key_exists($identifier, $files)) return $match[0];
 
-			$variant = mf_default_help_pick_variant($files[$identifier], $package)
-				?? mf_default_help_pick_variant($files[$identifier]);
+			if ($explicit_package) {
+				$variant = mf_default_help_pick_variant($files[$identifier], $explicit_package);
+			} else {
+				$variant = mf_default_help_pick_variant($files[$identifier], $package)
+					?? mf_default_help_pick_variant($files[$identifier]);
+			}
 			if (!$variant) return $match[0];
 
 			$path = wrap_path('default_help', [$variant['package'], $identifier]);
