@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-14 15:11+0000\n"
+"POT-Creation-Date: 2026-07-27 13:51+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -15,7 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
+"|| n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
 
 #: configuration/access.cfg:20
@@ -102,6 +103,26 @@ msgstr ""
 msgid "True Crypt (Virtual Encrypted Disk (Container))"
 msgstr ""
 
+#: configuration/help.cfg:13
+msgid "Allowed target audiences (Variables: audience = … in help file header)"
+msgstr ""
+
+#: configuration/help.cfg:19
+msgid "For editors"
+msgstr ""
+
+#: configuration/help.cfg:22
+msgid "For administrators"
+msgstr ""
+
+#: configuration/help.cfg:25
+msgid "For programmers"
+msgstr ""
+
+#: configuration/package.cfg:13
+msgid "default module"
+msgstr ""
+
 #: configuration/package.cfg:15
 msgid "Site-wide administration, maintenance, and utilities"
 msgstr ""
@@ -111,46 +132,54 @@ msgid "Subtree of categories"
 msgstr ""
 
 #: configuration/routes.cfg:21
-msgid "Individual help text pages"
+msgid "Help text"
 msgstr ""
 
 #: configuration/routes.cfg:26
-msgid "Database maintenance, updates, access to logfiles"
+msgid "Help packages"
 msgstr ""
 
 #: configuration/routes.cfg:31
-msgid "Overview of installed modules"
+msgid "Help texts per package"
 msgstr ""
 
 #: configuration/routes.cfg:36
-msgid "Single installed module (package overview)"
+msgid "Database maintenance, updates, access to logfiles"
 msgstr ""
 
 #: configuration/routes.cfg:41
-msgid "Installed module settings (from configuration/settings.cfg vs runtime)"
+msgid "Overview of installed modules"
 msgstr ""
 
 #: configuration/routes.cfg:46
-msgid "Masquerade login"
+msgid "Single installed module (package overview)"
 msgstr ""
 
 #: configuration/routes.cfg:51
-msgid "Proxy access of third-party websites"
+msgid "Installed module settings (from configuration/settings.cfg vs runtime)"
 msgstr ""
 
 #: configuration/routes.cfg:56
-msgid "Website settings"
+msgid "Masquerade login"
 msgstr ""
 
 #: configuration/routes.cfg:61
-msgid "Admin access to all tables"
+msgid "Proxy access of third-party websites"
 msgstr ""
 
 #: configuration/routes.cfg:66
+msgid "Website settings"
+msgstr ""
+
+#: configuration/routes.cfg:71
+msgid "Admin access to all tables"
+msgstr ""
+
+#: configuration/routes.cfg:76
 msgid "Internal tools for a single website"
 msgstr ""
 
-#: configuration/routes.cfg:73
+#: configuration/routes.cfg:83
 msgid "Search"
 msgstr ""
 
@@ -191,11 +220,15 @@ msgid "Date of the last execution of the cron job"
 msgstr ""
 
 #: configuration/settings.cfg:66
-msgid "Seconds to wait between the start of cron jobs that should start at the same time"
+msgid ""
+"Seconds to wait between the start of cron jobs that should start at the same "
+"time"
 msgstr ""
 
 #: configuration/settings.cfg:71
-msgid "Number of already executed (past) database update queries to show on the standard dbupdate page"
+msgid ""
+"Number of already executed (past) database update queries to show on the "
+"standard dbupdate page"
 msgstr ""
 
 #: configuration/settings.cfg:76
@@ -223,7 +256,9 @@ msgid "Maximum filesize of download archive"
 msgstr ""
 
 #: configuration/settings.cfg:120
-msgid "ZIP creation is possible via `shell` or `php` – shell is faster but not always available"
+msgid ""
+"ZIP creation is possible via `shell` or `php` – shell is faster but not "
+"always available"
 msgstr ""
 
 #: configuration/settings.cfg:127
@@ -239,7 +274,9 @@ msgid "Filenames (basename, without folder) that cannot be deleted"
 msgstr ""
 
 #: configuration/settings.cfg:164
-msgid "Maximum length of a filename extension shown in filetree (longer suffixes are treated as unknown)"
+msgid ""
+"Maximum length of a filename extension shown in filetree (longer suffixes "
+"are treated as unknown)"
 msgstr ""
 
 #: configuration/settings.cfg:169
@@ -259,7 +296,8 @@ msgid "Maximum runtime of one request in the job manager"
 msgstr ""
 
 #: configuration/settings.cfg:189
-msgid "Maximum length of response or single response key that job manager will save"
+msgid ""
+"Maximum length of response or single response key that job manager will save"
 msgstr ""
 
 #: configuration/settings.cfg:194
@@ -271,7 +309,8 @@ msgid "Sleep microseconds after a job was finished before calling the next one"
 msgstr ""
 
 #: configuration/settings.cfg:204
-msgid "Default language register per language, i. e. is not added to language tag"
+msgid ""
+"Default language register per language, i. e. is not added to language tag"
 msgstr ""
 
 #: configuration/settings.cfg:209
@@ -319,7 +358,9 @@ msgid "List of allowed hostnames (or ends of it) for proxy"
 msgstr ""
 
 #: configuration/settings.cfg:269
-msgid "Username of local user that is used for maintenance operations (should have admin rights)"
+msgid ""
+"Username of local user that is used for maintenance operations (should have "
+"admin rights)"
 msgstr ""
 
 #: configuration/settings.cfg:272
@@ -335,7 +376,9 @@ msgid "Show search form in search results at the top"
 msgstr ""
 
 #: configuration/settings.cfg:287
-msgid "If content is translated, default source language, ISO 639-1 code; for text table only"
+msgid ""
+"If content is translated, default source language, ISO 639-1 code; for text "
+"table only"
 msgstr ""
 
 #: configuration/settings.cfg:293
@@ -343,7 +386,9 @@ msgid "If content is translated, default destination language, ISO 639-1 code"
 msgstr ""
 
 #: configuration/settings.cfg:298
-msgid "Allow to use table definition scripts from default module, bool: yes, or list of tables"
+msgid ""
+"Allow to use table definition scripts from default module, bool: yes, or "
+"list of tables"
 msgstr ""
 
 #: configuration/settings.cfg:302
@@ -363,15 +408,20 @@ msgid "Class for website template"
 msgstr ""
 
 #: configuration/settings.cfg:320
-msgid "Datetime as start date from when on a caching of certain JS/CSS should be disabled (when you deploy updates)"
+msgid ""
+"Datetime as start date from when on a caching of certain JS/CSS should be "
+"disabled (when you deploy updates)"
 msgstr ""
 
 #: configuration/settings.cfg:324
-msgid "Title of language link, preferably language name in native language (or variants like “English Version“), iso=name"
+msgid ""
+"Title of language link, preferably language name in native language (or "
+"variants like “English Version“), iso=name"
 msgstr ""
 
 #: configuration/settings.cfg:329
-msgid "Additional log files, same format as error logs (filled with wrap_log())"
+msgid ""
+"Additional log files, same format as error logs (filled with wrap_log())"
 msgstr ""
 
 #: configuration/settings.cfg:333
@@ -391,7 +441,9 @@ msgid "Initial installation date of default module (for updates)"
 msgstr ""
 
 #: configuration/settings.cfg:352
-msgid "Path used to restrict detail records to this path fragment, for reverse relations"
+msgid ""
+"Path used to restrict detail records to this path fragment, for reverse "
+"relations"
 msgstr ""
 
 #: configuration/settings.cfg:356
@@ -411,7 +463,9 @@ msgid "For menu_hierarchy, use only part of the path starting at this segment"
 msgstr ""
 
 #: configuration/settings.cfg:374
-msgid "Split title at ' / ' if a link between records can be seen from both sides and different titles are needed"
+msgid ""
+"Split title at ' / ' if a link between records can be seen from both sides "
+"and different titles are needed"
 msgstr ""
 
 #: configuration/settings.cfg:379
@@ -444,6 +498,10 @@ msgstr ""
 
 #: configuration/settings.cfg:412
 msgid "Name of the user to login with for server sync"
+msgstr ""
+
+#: default/download.inc.php:93
+msgid "Creation of ZIP file “%s” failed."
 msgstr ""
 
 #: templates/cachedircheck.template.txt:16
@@ -479,7 +537,8 @@ msgstr[2] ""
 
 #: templates/cleanup.template.txt:21
 msgid "%d file deleted in folder <code>%s</code> that was older than %s."
-msgid_plural "%d files deleted in folder <code>%s</code> that were older than %s."
+msgid_plural ""
+"%d files deleted in folder <code>%s</code> that were older than %s."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -493,7 +552,8 @@ msgstr[2] ""
 
 #: templates/cleanup.template.txt:25
 msgid "%d line deleted in logfile <code>%s</code> that was older than %s."
-msgid_plural "%d lines deleted in logfile <code>%s</code> that were older than %s."
+msgid_plural ""
+"%d lines deleted in logfile <code>%s</code> that were older than %s."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -571,7 +631,9 @@ msgid "No deprecated code patterns found. Your codebase is up to date!"
 msgstr ""
 
 #: templates/deprecations.template.txt:20
-msgid "The following deprecated code patterns were found in your codebase. Please update your code and mark each item as resolved when completed."
+msgid ""
+"The following deprecated code patterns were found in your codebase. Please "
+"update your code and mark each item as resolved when completed."
 msgstr ""
 
 #: templates/deprecations.template.txt:26
@@ -796,7 +858,8 @@ msgstr "Tabele relacji i tłumaczeń"
 
 #: templates/maintenance.template.txt:20
 msgid "The referential integrity of the database is not checked automatically."
-msgstr "Integralność referencyjna bazy danych nie jest sprawdzana automatycznie."
+msgstr ""
+"Integralność referencyjna bazy danych nie jest sprawdzana automatycznie."
 
 #: templates/maintenance.template.txt:23
 msgid "The fields in the database are not translated."
@@ -977,15 +1040,23 @@ msgid "You have several possibilities:"
 msgstr ""
 
 #: templates/redirect-hints.template.txt:17
-msgid "Temporary redirect, e. g. from a shortcut to a permanent address like from <code>example.com/current_news</code> to <code>example.com/news/2010/04</code> with a code <code>307</code>."
+msgid ""
+"Temporary redirect, e. g. from a shortcut to a permanent address like from "
+"<code>example.com/current_news</code> to <code>example.com/news/2010/04</"
+"code> with a code <code>307</code>."
 msgstr ""
 
 #: templates/redirect-hints.template.txt:18
-msgid "Permanent redirect from an old address to a new address with code <code>301</code>."
+msgid ""
+"Permanent redirect from an old address to a new address with code <code>301</"
+"code>."
 msgstr ""
 
 #: templates/redirect-hints.template.txt:19
-msgid "Redirect from several old addresses to a new address, here, the old address must end with the asterisk (<code>*</code>). There must not be a <code>/</code> before the asterisk."
+msgid ""
+"Redirect from several old addresses to a new address, here, the old address "
+"must end with the asterisk (<code>*</code>). There must not be a <code>/</"
+"code> before the asterisk."
 msgstr ""
 
 #: templates/specialfolders.template.txt:18
@@ -1089,6 +1160,18 @@ msgstr "Baza danych:"
 msgid "Check Cache Directories"
 msgstr ""
 
+#: zzbrick_make/cleanup.inc.php:39
+msgid "Folder to clean up does not exist: %s"
+msgstr ""
+
+#: zzbrick_make/cleanup.inc.php:60
+msgid "Logfile to clean up does not exist: %s"
+msgstr ""
+
+#: zzbrick_make/cleanup.inc.php:112
+msgid "Cleanup for folder %s not possible: folder does not exist."
+msgstr ""
+
 #: zzbrick_make/cronjobs.inc.php:47
 msgid "No active jobs found."
 msgstr ""
@@ -1114,6 +1197,30 @@ msgstr[2] ""
 
 #: zzbrick_make/dbupdate.inc.php:243
 msgid "Could not update database."
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:64
+msgid "Job Manager with URL %s failed. (Status: %d)"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:232
+msgid "Job Manager: unable to start job ID %d, jobqueue is locked"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:265
+msgid "Job Manager: unable to start job ID %d"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:300
+msgid "Job Manager: unable to finish job ID %d successfully"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:358
+msgid "Job Manager: %s"
+msgstr ""
+
+#: zzbrick_make/jobmanager.inc.php:380
+msgid "Job Manager: unable to delete jobs ID %s"
 msgstr ""
 
 #: zzbrick_make/log.inc.php:31 zzbrick_make/log.inc.php:32
@@ -1154,6 +1261,14 @@ msgstr ""
 
 #: zzbrick_make/translationscheck.inc.php:64
 msgid "Checking translations: Table `%s` does not exist"
+msgstr ""
+
+#: zzbrick_make/update.inc.php:62
+msgid "Creation of thumbnail for medium ID %s failed."
+msgstr ""
+
+#: zzbrick_request/adminer.inc.php:40
+msgid "Library Adminer does not exist"
 msgstr ""
 
 #: zzbrick_request/maintenance.inc.php:45
@@ -1201,6 +1316,22 @@ msgstr ""
 #: zzbrick_request/specialfolders.inc.php:27
 msgid "Backup of uploaded files is not active."
 msgstr "Tworzenie kopii zapasowych wgranych plików nie jest aktywowane."
+
+#: zzbrick_request/sso.inc.php:65
+msgid "Single sign on: too many URL parameters. (%s)"
+msgstr "Single sign on: zbyt wiele parametrów URL. (%s)"
+
+#: zzbrick_request/sso.inc.php:79
+msgid "Single sign on: incorrect login credentials. (%s)"
+msgstr "Single sign on: nieprawidłowe uprawnienia logowania. (%s)"
+
+#: zzbrick_request/sso.inc.php:88
+msgid "Single sign on: possible login period expired. (%s)"
+msgstr "Single sign on: upłynął możliwy okres logowania. (%s)"
+
+#: zzbrick_request_get/help.inc.php:343
+msgid "Unknown help audience `%s`, allowed: %s."
+msgstr ""
 
 #: zzbrick_tables/redirects.php:23
 msgid "Redirects"
@@ -1304,4 +1435,8 @@ msgstr ""
 
 #: zzbrick_tables/uris.php:100
 msgid "Last Access"
+msgstr ""
+
+#: zzform/definition.inc.php:87
+msgid "You need a property field if using `key_value` subtables."
 msgstr ""

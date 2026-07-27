@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-14 15:11+0000\n"
+"POT-Creation-Date: 2026-07-27 13:53+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -26,10 +26,6 @@ msgstr "İstenen arşive ait dosyaların hiçbiri sunucuda bulunamadı."
 #: default/download.inc.php:39
 msgid "Download: Archive Too Big"
 msgstr "İndirin: Arşiv Çok Büyük"
-
-#: default/download.inc.php:93
-msgid "Creation of ZIP file “%s” failed."
-msgstr "\"%s\" ZIP dosyasının oluşturulması başarısız oldu."
 
 #: layout/internal.css:20
 msgid "PREVIEW"
@@ -116,13 +112,13 @@ msgstr ""
 msgid "TOP"
 msgstr "ÜST"
 
+#: templates/help-package.template.txt:20
+msgid "(%s language only)"
+msgstr ""
+
 #: templates/helplink.template.txt:11
 msgid "Help:"
 msgstr "Yardım edin:"
-
-#: templates/helptexts.template.txt:16
-msgid "(not translated, language = %s)"
-msgstr ""
 
 #: templates/login.template.txt:14
 msgid "You have been logged out."
@@ -304,6 +300,11 @@ msgstr "Araçlar"
 msgid "Languages"
 msgstr "Diller"
 
+# Language register
+#: zzbrick_forms/language-tags.php:35
+msgid "Register"
+msgstr ""
+
 # Record form: Change password
 #: zzbrick_forms/my-password.php:50
 msgid "Change Password"
@@ -330,21 +331,34 @@ msgstr "bilinmeyen"
 msgid "Folder"
 msgstr "Klasör"
 
-#: zzbrick_make/jobmanager.inc.php:172
+#: zzbrick_make/jobmanager.inc.php:170
 msgid "Job Manager"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:458
+#: zzbrick_make/jobmanager.inc.php:446
 msgid "The job should start later."
 msgstr "İş daha sonra başlamalı."
 
-#: zzbrick_make/jobmanager.inc.php:465
+#: zzbrick_make/jobmanager.inc.php:453
 msgid "Another job is running."
 msgstr "Başka bir iş devam ediyor."
 
-#: zzbrick_make/jobmanager.inc.php:473
+#: zzbrick_make/jobmanager.inc.php:461
 msgid "Unable to start job."
 msgstr "İş başlatılamıyor."
+
+#: zzbrick_make/update.inc.php:35
+msgid "Table %s not found"
+msgstr ""
+
+#: zzbrick_request/help-package.inc.php:36
+msgid "Help for %s"
+msgstr ""
+
+#: zzbrick_request/help-packages.inc.php:28
+#: zzbrick_request/help-packages.inc.php:29
+msgid "Help"
+msgstr ""
 
 #: zzbrick_request/maintenance.inc.php
 msgid "Field %s contains invalid values:"
@@ -368,23 +382,15 @@ msgstr ""
 msgid "Module settings for %s"
 msgstr ""
 
-#: zzbrick_request/sso.inc.php:65
-msgid "Single sign on: too many URL parameters."
-msgstr "Çoklu oturum açma: çok fazla URL parametresi."
-
-#: zzbrick_request/sso.inc.php:79
-msgid "Single sign on: incorrect login credentials."
-msgstr "Çoklu oturum açma: hatalı oturum açma kimlik bilgileri."
-
-#: zzbrick_request/sso.inc.php:88
-msgid "Single sign on: possible login period expired."
-msgstr "Tek oturum açma: olası oturum açma süresi sona erdi."
-
-#: zzbrick_request/sso.inc.php:90
+#: zzbrick_request/sso.inc.php:89
 msgid ""
 "Sorry, the possible login period has expired. Please get a new login link."
 msgstr ""
 "Üzgünüz, olası giriş süresi sona erdi. Lütfen yeni bir giriş bağlantısı alın."
+
+#: zzbrick_request_get/help.inc.php:150
+msgid "General"
+msgstr ""
 
 #: zzbrick_tables/blocks.php:16 zzbrick_tables/webpages.php:41
 msgid "Blocks"
@@ -420,7 +426,7 @@ msgid "Media"
 msgstr "Medya"
 
 #: zzbrick_tables/blocks.php:78 zzbrick_tables/categories.php:86
-#: zzbrick_tables/categories.template.php:47
+#: zzbrick_tables/categories.template.php:48
 #: zzbrick_tables/languages-categories.php:84 zzbrick_tables/logging.php:41
 #: zzbrick_tables/text.php:47 zzbrick_tables/tokens.php:79
 #: zzbrick_tables/webpages.php:129
@@ -496,8 +502,9 @@ msgid "Property"
 msgstr "Emlak"
 
 #: zzbrick_tables/categories.template.php:39
-msgid "Type category"
-msgstr ""
+#: zzbrick_tables/languages-categories.php:33
+msgid "Type"
+msgstr "Tip"
 
 #: zzbrick_tables/countries.php:16
 msgid "Countries"
@@ -784,10 +791,6 @@ msgstr ""
 #: zzbrick_tables/languages-categories.php:16
 msgid "Language Categories"
 msgstr ""
-
-#: zzbrick_tables/languages-categories.php:33
-msgid "Type"
-msgstr "Tip"
 
 #: zzbrick_tables/languages-categories.php:70
 msgid "Label"
@@ -1146,11 +1149,15 @@ msgstr ""
 msgid "Domain name without subdomain www"
 msgstr "Alt alan adı olmayan alan adı www"
 
-#: zzbrick_xhr/autosuggest.inc.php:70 zzbrick_xhr/autosuggest.inc.php:76
+#: zzbrick_xhr/autosuggest.inc.php:27
+msgid "This autosuggest endpoint cannot be called directly."
+msgstr ""
+
+#: zzbrick_xhr/autosuggest.inc.php:72 zzbrick_xhr/autosuggest.inc.php:78
 msgid "Please enter more characters."
 msgstr ""
 
-#: zzbrick_xhr/autosuggest.inc.php:87 zzbrick_xhr/autosuggest.inc.php:93
+#: zzbrick_xhr/autosuggest.inc.php:89 zzbrick_xhr/autosuggest.inc.php:95
 msgid "No record was found."
 msgstr ""
 

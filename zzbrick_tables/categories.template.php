@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -36,6 +36,7 @@ $zz['fields'][3]['hide_in_list'] = true;
 
 $zz['fields'][4]['field_name'] = 'property';
 
+$zz['fields'][5]['title'] = 'Type';
 $zz['fields'][5]['field_name'] = 'type_category_id';
 $zz['fields'][5]['type'] = 'hidden';
 $zz['fields'][5]['type_detail'] = 'select';
