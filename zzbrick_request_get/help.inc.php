@@ -15,6 +15,8 @@
 
 function mod_default_get_help($params) {
 	$files = mf_default_help_files();
+	if (count($params) === 1 && strstr($params[0], '/'))
+		$params = explode('/', $params[0]);
 	if (count($params) === 2)
 		return mf_default_help_pick($files, $params[1], $params[0]) ?? [];
 	if (count($params) === 1)
