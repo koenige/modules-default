@@ -1,5 +1,5 @@
 # default module
-# help index and .pot file status
+# help index, table definitions, and .pot file status
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/default
@@ -13,19 +13,20 @@
 #
 <div class="maintenance">
 
-<h2>%%% text Help and Text Files %%%</h2>
+<h2>%%% text Help, Tables, and Text Files %%%</h2>
 
 %%% unless packages %%%
-<p>%%% text No help texts or translatable strings were found. %%%</p>
+<p>%%% text No help texts, table definitions, or translatable strings were found. %%%</p>
 
 %%% else %%%
-<p>%%% text Comparison of help/index.json and .pot files with current source. %%%</p>
+<p>%%% text Comparison of generated index files with current source. %%%</p>
 
 <table class="data">
 <thead>
 <tr>
 	<th>%%% text Package %%%</th>
 	<th>%%% text Help index %%%</th>
+	<th>%%% text Table definitions %%%</th>
 	<th>%%% text Text files %%%</th>
 </tr>
 </thead>
@@ -40,6 +41,15 @@
 		<a href="%%% item helpupdate_url %%%" class="error">%%% text Missing %%%</a>
 %%% elseif help_outdated %%%
 		<a href="%%% item helpupdate_url %%%" class="error">%%% text Outdated %%%</a>
+%%% endif %%%
+	</td>
+	<td>
+%%% if tables_current %%%
+		%%% text Up to date %%%
+%%% elseif tables_missing %%%
+		<a href="%%% item tableupdate_url %%%" class="error">%%% text Missing %%%</a>
+%%% elseif tables_outdated %%%
+		<a href="%%% item tableupdate_url %%%" class="error">%%% text Outdated %%%</a>
 %%% endif %%%
 	</td>
 	<td>

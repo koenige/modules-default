@@ -15,7 +15,7 @@
 
 <h2><a href="?dbmodules">%%% text Modules %%%</a></h2>
 
-<h2><a href="?sourcecheck">%%% text Help and Text Files %%%</a></h2>
+<h2><a href="?sourcecheck">%%% text Help, Tables, and Text Files %%%</a></h2>
 
 <h2>%%% text Relation and Translation Tables %%%</h2>
 %%% unless setting zzform_check_referential_integrity %%%

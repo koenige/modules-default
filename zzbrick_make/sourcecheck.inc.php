@@ -2,7 +2,7 @@
 
 /**
  * default module
- * overview: help indices and .pot files up to date?
+ * overview: JSON indices and .pot files up to date?
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/default
@@ -17,7 +17,7 @@
 
 
 /**
- * Show help index and .pot status for all packages
+ * Show index.json and .pot status for all packages
  *
  * @param array $params
  * @return array $page
@@ -25,6 +25,7 @@
 function mod_default_make_sourcecheck($params) {
 	wrap_access_quit('default_maintenance');
 	wrap_include('zzbrick_request_get/help', 'default');
+	wrap_include('zzbrick_request_get/tables', 'default');
 	wrap_include('pot', 'zzwrap');
 
 	$data = [];
@@ -33,7 +34,8 @@ function mod_default_make_sourcecheck($params) {
 	$page = [];
 	$page['extra']['css'][] = 'default/maintenance.css';
 	$page['text'] = wrap_template('sourcecheck', $data);
-	$page['title'] = wrap_text('Help and Text Files');
+	$page['title'] = wrap_text('Help, Tables, and Text Files');
+	$page['breadcrumbs'][]['title'] = wrap_text('Help, Tables, and Text Files');
 	return $page;
 }
 
@@ -47,8 +49,9 @@ function mod_default_sourcecheck_packages() {
 	$packages = [];
 	foreach (mod_default_sourcecheck_package_names() as $package) {
 		$help = mf_default_index_status($package, 'help/index.json', 'mf_default_help_collect');
+		$tables = mf_default_tables_index_status($package);
 		$pot = mf_default_pot_status($package);
-		if ($help === 'empty' AND $pot === 'empty') continue;
+		if ($help === 'empty' AND $tables === 'empty' AND $pot === 'empty') continue;
 
 		$cfg = wrap_cfg_files('package', ['package' => $package, 'translate' => true]);
 		$row = [
@@ -57,12 +60,17 @@ function mod_default_sourcecheck_packages() {
 			'help_current' => $help === 'current',
 			'help_missing' => $help === 'missing',
 			'help_outdated' => $help === 'outdated',
+			'tables_current' => $tables === 'current',
+			'tables_missing' => $tables === 'missing',
+			'tables_outdated' => $tables === 'outdated',
 			'pot_current' => $pot === 'current',
 			'pot_missing' => $pot === 'missing',
 			'pot_outdated' => $pot === 'outdated',
 		];
 		if ($help !== 'empty')
 			$row['helpupdate_url'] = '?helpupdate='.$package;
+		if ($tables !== 'empty')
+			$row['tableupdate_url'] = '?tableupdate='.$package;
 		if ($pot !== 'empty')
 			$row['textupdate_url'] = '?textupdate='.$package;
 		$packages[] = $row;

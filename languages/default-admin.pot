@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-29 13:18+0000\n"
+"POT-Creation-Date: 2026-07-29 13:27+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -869,8 +869,9 @@ msgstr ""
 
 #: templates/maintenance.template.txt:18
 #: templates/sourcecheck.template.txt:16
-#: zzbrick_make/sourcecheck.inc.php:36
-msgid "Help and Text Files"
+#: zzbrick_make/sourcecheck.inc.php:37
+#: zzbrick_make/sourcecheck.inc.php:38
+msgid "Help, Tables, and Text Files"
 msgstr ""
 
 #: templates/maintenance.template.txt:20
@@ -1014,6 +1015,12 @@ msgstr ""
 msgid "Update Help Index"
 msgstr ""
 
+#: templates/module.template.txt:19
+#: zzbrick_make/tableupdate.inc.php:48
+#: zzbrick_make/tableupdate.inc.php:49
+msgid "Update Table Definitions"
+msgstr ""
+
 #: templates/modules.template.txt:18
 msgid "Tagline"
 msgstr ""
@@ -1084,11 +1091,11 @@ msgid "Redirect from several old addresses to a new address, here, the old addre
 msgstr ""
 
 #: templates/sourcecheck.template.txt:19
-msgid "No help texts or translatable strings were found."
+msgid "No help texts, table definitions, or translatable strings were found."
 msgstr ""
 
 #: templates/sourcecheck.template.txt:22
-msgid "Comparison of help/index.json and .pot files with current source."
+msgid "Comparison of generated index files with current source."
 msgstr ""
 
 #: templates/sourcecheck.template.txt:28
@@ -1096,21 +1103,28 @@ msgid "Help index"
 msgstr ""
 
 #: templates/sourcecheck.template.txt:29
+msgid "Table definitions"
+msgstr ""
+
+#: templates/sourcecheck.template.txt:30
 msgid "Text files"
 msgstr ""
 
-#: templates/sourcecheck.template.txt:38
-#: templates/sourcecheck.template.txt:47
+#: templates/sourcecheck.template.txt:39
+#: templates/sourcecheck.template.txt:48
+#: templates/sourcecheck.template.txt:57
 msgid "Up to date"
 msgstr ""
 
-#: templates/sourcecheck.template.txt:40
-#: templates/sourcecheck.template.txt:49
+#: templates/sourcecheck.template.txt:41
+#: templates/sourcecheck.template.txt:50
+#: templates/sourcecheck.template.txt:59
 msgid "Missing"
 msgstr ""
 
-#: templates/sourcecheck.template.txt:42
-#: templates/sourcecheck.template.txt:51
+#: templates/sourcecheck.template.txt:43
+#: templates/sourcecheck.template.txt:52
+#: templates/sourcecheck.template.txt:61
 msgid "Outdated"
 msgstr ""
 
@@ -1306,11 +1320,6 @@ msgstr ""
 msgid "SQL Query"
 msgstr ""
 
-#: zzbrick_make/tableupdate.inc.php:48
-#: zzbrick_make/tableupdate.inc.php:49
-msgid "Update Table Definitions"
-msgstr ""
-
 #: zzbrick_make/textupdate.inc.php:51
 #: zzbrick_make/textupdate.inc.php:52
 msgid "Update Text Files"
@@ -1334,19 +1343,19 @@ msgstr ""
 msgid "Maintenance"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:143
+#: zzbrick_request/maintenance.inc.php:144
 msgid "Master"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:148
+#: zzbrick_request/maintenance.inc.php:149
 msgid "Detail"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:155
+#: zzbrick_request/maintenance.inc.php:156
 msgid "Translation"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:240
+#: zzbrick_request/maintenance.inc.php:241
 msgid "not installed"
 msgstr ""
 
