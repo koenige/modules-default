@@ -49,6 +49,7 @@ function mod_default_make_textupdate($params) {
 	$page['extra']['css'][] = 'default/maintenance.css';
 	$page['text'] = wrap_template('textupdate', $data);
 	$page['title'] = wrap_text('Update Text Files');
+	$page['breadcrumbs'][]['title'] = wrap_text('Update Text Files');
 	return $page;
 }
 

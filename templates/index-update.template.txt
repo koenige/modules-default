@@ -1,5 +1,5 @@
 # default module
-# preview help/index.json from help file scan
+# preview index.json from file scan
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/default
@@ -13,14 +13,14 @@
 #
 <div class="maintenance">
 
-<h2>%%% text Update Help Index %%%: %%% item package format=html_escape %%%</h2>
+<h2>%%% text Package %%%: %%% item package %%%</h2>
 
 %%% if package_invalid %%%
 <p class="error">%%% text Invalid package. %%%</p>
 %%% elseif file_content_unchanged %%%
-<p class="notice">%%% text No help index changes. %%%</p>
+<p class="notice">%%% text No index changes. %%%</p>
 %%% elseif file_not_writable %%%
-<p class="error">%%% text Could not write help index file. %%%</p>
+<p class="error">%%% text Could not write index file. %%%</p>
 %%% elseif file_written %%%
 <p class="notice">%%% text Index file was updated. %%%</p>
 %%% else %%%
@@ -30,10 +30,10 @@
 %%% endif %%%
 
 %%% if empty %%%
-<p>%%% text No help files were found for this package. %%%</p>
+<p>%%% text No files were found for this package. %%%</p>
 
 %%% else %%%
-<p>%%% text Comparison of scanned help files with index.json. %%%</p>
+<p>%%% text Comparison of scanned files with index.json. %%%</p>
 
 <h3>%%% item filename_local %%% (%%% item count %%%)</h3>
 %%% if added | deleted | updated %%%

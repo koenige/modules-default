@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-29 10:32+0000\n"
+"POT-Creation-Date: 2026-07-29 13:18+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -605,7 +605,9 @@ msgid "The following deprecated code patterns were found in your codebase. Pleas
 msgstr ""
 
 #: templates/deprecations.template.txt:26
+#: templates/index-update.template.txt:16
 #: templates/sourcecheck.template.txt:27
+#: templates/textupdate.template.txt:16
 msgid "Package"
 msgstr ""
 
@@ -724,43 +726,37 @@ msgstr ""
 msgid "disabled"
 msgstr ""
 
-#: templates/helpupdate.template.txt:16
-#: templates/module.template.txt:18
-#: zzbrick_make/helpupdate.inc.php:47
-msgid "Update Help Index"
-msgstr ""
-
-#: templates/helpupdate.template.txt:19
+#: templates/index-update.template.txt:19
 #: zzbrick_make/textupdate.inc.php:38
 msgid "Invalid package."
 msgstr ""
 
-#: templates/helpupdate.template.txt:21
-msgid "No help index changes."
+#: templates/index-update.template.txt:21
+msgid "No index changes."
 msgstr ""
 
-#: templates/helpupdate.template.txt:23
-msgid "Could not write help index file."
+#: templates/index-update.template.txt:23
+msgid "Could not write index file."
 msgstr ""
 
-#: templates/helpupdate.template.txt:25
+#: templates/index-update.template.txt:25
 msgid "Index file was updated."
 msgstr ""
 
-#: templates/helpupdate.template.txt:28
+#: templates/index-update.template.txt:28
 #: templates/textupdate.template.txt:31
 msgid "No changes needed."
 msgstr ""
 
-#: templates/helpupdate.template.txt:33
-msgid "No help files were found for this package."
+#: templates/index-update.template.txt:33
+msgid "No files were found for this package."
 msgstr ""
 
-#: templates/helpupdate.template.txt:36
-msgid "Comparison of scanned help files with index.json."
+#: templates/index-update.template.txt:36
+msgid "Comparison of scanned files with index.json."
 msgstr ""
 
-#: templates/helpupdate.template.txt:51
+#: templates/index-update.template.txt:51
 msgid "Write index"
 msgstr ""
 
@@ -1010,6 +1006,12 @@ msgstr ""
 
 #: templates/module.template.txt:17
 msgid "Update .pot files"
+msgstr ""
+
+#: templates/module.template.txt:18
+#: zzbrick_make/helpupdate.inc.php:48
+#: zzbrick_make/helpupdate.inc.php:49
+msgid "Update Help Index"
 msgstr ""
 
 #: templates/modules.template.txt:18
@@ -1309,6 +1311,11 @@ msgstr ""
 msgid "SQL Query"
 msgstr ""
 
+#: zzbrick_make/textupdate.inc.php:51
+#: zzbrick_make/textupdate.inc.php:52
+msgid "Update Text Files"
+msgstr ""
+
 #: zzbrick_make/translationscheck.inc.php:64
 msgid "Checking translations: Table `%s` does not exist"
 msgstr ""
@@ -1389,7 +1396,7 @@ msgstr ""
 msgid "Help file %s is not readable."
 msgstr ""
 
-#: zzbrick_request_get/help.inc.php:431
+#: zzbrick_request_get/help.inc.php:405
 msgid "Unknown help audience `%s`, allowed: %s."
 msgstr ""
 

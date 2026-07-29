@@ -45,8 +45,9 @@ function mod_default_make_helpupdate($params) {
 
 	$page = [];
 	$page['extra']['css'][] = 'default/maintenance.css';
-	$page['text'] = wrap_template('helpupdate', $data);
 	$page['title'] = wrap_text('Update Help Index');
+	$page['breadcrumbs'][]['title'] = wrap_text('Update Help Index');
+	$page['text'] = wrap_template('index-update', $data);
 	return $page;
 }
 

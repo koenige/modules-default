@@ -13,7 +13,7 @@
 #
 <div id="zzform" class="maintenance">
 
-<h2>%%% text Update Text Files %%%: %%% item package format=html_escape %%%</h2>
+<h2>%%% text Package %%%: %%% item package format=html_escape %%%</h2>
 
 %%% if warnings %%%
 <h3 class="error">%%% text Warnings %%%</h3>
