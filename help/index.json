@@ -1,0 +1,40 @@
+{
+    "configuring-detail-tables-based-on-categories": [
+        {
+            "title": "Configuring detail tables based on categories",
+            "language": "en",
+            "package": "default",
+            "filename": "help/Configuring detail tables based on categories.md",
+            "identifier": "configuring-detail-tables-based-on-categories",
+            "type": "md"
+        }
+    ],
+    "markdown": [
+        {
+            "title": "Markdown",
+            "language": "de",
+            "package": "default",
+            "filename": "help/Markdown-de.md",
+            "identifier": "markdown",
+            "type": "md"
+        },
+        {
+            "title": "Markdown",
+            "language": "en",
+            "package": "default",
+            "filename": "help/Markdown.md",
+            "identifier": "markdown",
+            "type": "md"
+        }
+    ],
+    "search-with-modules": [
+        {
+            "title": "Search with modules",
+            "language": "en",
+            "package": "default",
+            "filename": "help/Search with modules.md",
+            "identifier": "search-with-modules",
+            "type": "md"
+        }
+    ]
+}

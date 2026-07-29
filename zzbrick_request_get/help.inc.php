@@ -25,12 +25,40 @@ function mod_default_get_help($params) {
 }
 
 /**
- * get all help files
+ * get all help files from help/index.json per package
  *
- * @return array
+ * @return array identifier => variants
  */
 function mf_default_help_files() {
-	$files = wrap_collect_files('help/*.{txt,md}');
+	static $files = [];
+	if ($files) return $files;
+
+	$index_files = wrap_collect_files('help/index.json');
+	foreach ($index_files as $package => $index_path) {
+		$data = json_decode(file_get_contents($index_path), true);
+		if (!is_array($data)) {
+			wrap_error(['Help index %s is not readable.', ['values' => [$index_path]]]);
+			continue;
+		}
+		$folder = wrap_package_folder($package);
+		foreach ($data as $identifier => $variants) {
+			foreach ($variants as $variant) {
+				$variant['filename'] = $folder.'/'.$variant['filename'];
+				$files[$identifier][] = $variant;
+			}
+		}
+	}
+	return $files;
+}
+
+/**
+ * collect help/*.{txt,md} from modules and custom
+ *
+ * @param string $package
+ * @return array
+ */
+function mf_default_help_collect($package) {
+	$files = wrap_collect_files('help/*.{txt,md}', $package);
 
 	foreach ($files as $package => $file) {
 		$basename = basename($file);
@@ -47,11 +75,13 @@ function mf_default_help_files() {
 		}
 		$title = $basename;
 		$basename = mf_default_help_identifier($basename);
+		$package = substr($package, 0, strrpos($package, '/'));
+		$filename_local = substr($file, strlen(wrap_package_folder($package)) + 1);
 		$data[$basename][] = [
 			'title' => $title,
 			'language' => $lang ?? 'en',
-			'package' => substr($package, 0, strrpos($package, '/')),
-			'filename' => $file,
+			'package' => $package,
+			'filename' => $filename_local,
 			'identifier' => $basename,
 			'type' => $extension
 		];
