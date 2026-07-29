@@ -31,20 +31,16 @@ function mod_default_make_textupdate($params) {
 	if ($package !== 'custom' AND !in_array($package, wrap_setting('modules'))) return false;
 
 	$data = mod_default_make_textupdate_data($package);
-	$data['package'] = $package;
 	$data['write'] = $_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['write']);
 
 	if ($data['write']) {
 		if (empty($_POST['package']) OR $_POST['package'] !== $package) {
-			$data['write_done'] = false;
 			$data['write_message'] = wrap_text('Invalid package.');
 		} else {
 			$result = wrap_pot_write($package);
 			$data = mod_default_make_textupdate_data($package) + [
-				'package' => $package,
-				'write' => true,
 				'write_done' => $result['ok'],
-				'write_message' => $result['message'],
+				'write_message' => $result['message']
 			];
 		}
 	}
@@ -53,7 +49,6 @@ function mod_default_make_textupdate($params) {
 	$page['extra']['css'][] = 'default/maintenance.css';
 	$page['text'] = wrap_template('textupdate', $data);
 	$page['title'] = wrap_text('Update Text Files');
-	$page['breadcrumbs'][] = ['title' => $page['title']];
 	return $page;
 }
 
@@ -64,7 +59,13 @@ function mod_default_make_textupdate($params) {
  * @return array
  */
 function mod_default_make_textupdate_data($package) {
-	$data = ['pots' => [], 'empty' => true, 'writeable' => false, 'warnings' => []];
+	$data = [
+		'pots' => [],
+		'empty' => true,
+		'writeable' => false,
+		'warnings' => [],
+		'package' => $package
+	];
 
 	foreach (wrap_pot_items($package) as $pot) {
 		$stats = wrap_pot_diff_stats($pot['old'], $pot['entries']);
@@ -76,14 +77,14 @@ function mod_default_make_textupdate_data($package) {
 			'count' => count($pot['entries']),
 			'added' => $stats['added'] ?: '',
 			'deleted' => $stats['deleted'] ?: '',
-			'updated' => $stats['updated'] ?: '',
+			'updated' => $stats['updated'] ?: ''
 		];
 		$data['empty'] = false;
 	}
 
 	foreach (wrap_extract_warnings() as $warning) {
 		$data['warnings'][] = [
-			'warning_text' => sprintf('%s:%d: %s', $warning['file'], $warning['line'], $warning['message']),
+			'warning_text' => sprintf('%s:%d: %s', $warning['file'], $warning['line'], $warning['message'])
 		];
 	}
 	return $data;
