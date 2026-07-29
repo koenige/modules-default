@@ -43,7 +43,8 @@ function mf_default_help_files() {
 		$folder = wrap_package_folder($package);
 		foreach ($data as $identifier => $variants) {
 			foreach ($variants as $variant) {
-				$variant['filename'] = $folder.'/'.$variant['filename'];
+				if (!empty($variant['filename']))
+					$variant['filename'] = $folder.'/'.$variant['filename'];
 				$files[$identifier][] = $variant;
 			}
 		}
@@ -93,7 +94,113 @@ function mf_default_help_collect($package) {
 			'audience' => $metadata['audience'],
 		];
 	}
+
+	wrap_include('zzbrick_request_get/tables', 'default');
+	foreach (mf_default_help_collect_parameters($package) as $identifier => $variants)
+		$data[$identifier] = $variants;
+
 	return $data ?? [];
+}
+
+/**
+ * parameter reference index entries from zzbrick_tables scan
+ *
+ * @param string $package
+ * @return array identifier => variants
+ */
+function mf_default_help_collect_parameters($package) {
+	$tables = mf_default_tables_collect($package);
+	if (!$tables) return [];
+
+	$entries = [];
+	foreach ($tables as $table => $meta) {
+		if (empty($meta['parameter_field'])) continue;
+		
+		$identifier = $table.'-parameters';
+		$entries[$identifier][] = [
+			'title' => wrap_text('%s parameters', ['values' => [$meta['title']], 'lang' => 'en']),
+			'language' => 'en',
+			'package' => $package,
+			'identifier' => $identifier,
+			'type' => 'parameters',
+			'audience' => $meta['audience'] ?? ['editor'],
+			'table' => $table,
+			'parameter_field' => $meta['parameter_field'],
+		];
+		foreach (mf_default_help_po_languages('default') as $language) {
+			$format = mf_default_help_po_msgstr('default', $language, '%s parameters');
+			if (!$format) continue;
+			$translated_title = mf_default_help_po_msgstr($package, $language, $meta['title']);
+			if (!$translated_title) $translated_title = $meta['title'];
+			$entries[$identifier][] = [
+				'title' => sprintf($format, $translated_title),
+				'language' => $language,
+				'package' => $package,
+				'identifier' => $identifier,
+				'type' => 'parameters',
+				'audience' => $meta['audience'] ?? ['editor'],
+				'table' => $table,
+				'parameter_field' => $meta['parameter_field'],
+			];
+		}
+	}
+	return $entries;
+}
+
+/**
+ * language codes with a non-admin .po file for one package
+ *
+ * @param string $package
+ * @return array
+ */
+function mf_default_help_po_languages($package) {
+	$basename = wrap_text_language_basename($package);
+	$folder = wrap_text_languages_path($package);
+	if (!$folder) return [];
+
+	$languages = [];
+	foreach (glob($folder.'/'.$basename.'-*.po') ?: [] as $file) {
+		if (!preg_match('/^'.preg_quote($basename, '/').'-([a-z]{2})\.po$/', basename($file), $matches))
+			continue;
+		if ($matches[1] === 'en') continue;
+		$languages[] = $matches[1];
+	}
+	sort($languages);
+	return $languages;
+}
+
+/**
+ * translated msgid from one package .po file
+ *
+ * @param string $package
+ * @param string $language
+ * @param string $msgid
+ * @return string|null empty if untranslated
+ */
+function mf_default_help_po_msgstr($package, $language, $msgid) {
+	static $cache = [];
+
+	$key = $package.'/'.$language;
+	if (!array_key_exists($key, $cache)) {
+		$file = sprintf(
+			'%s/%s-%s.po',
+			wrap_text_languages_path($package),
+			wrap_text_language_basename($package),
+			$language
+		);
+		if (!file_exists($file)) {
+			$cache[$key] = null;
+		} else {
+			$cache[$key] = wrap_po_parse($file);
+		}
+	}
+	if (!$cache[$key]) return null;
+
+	$text = $cache[$key];
+	foreach (['_global', ''] as $context) {
+		if (!empty($text[$context][$msgid])) return $text[$context][$msgid];
+	}
+	return null;
 }
 
 /**
@@ -265,6 +372,9 @@ function mf_default_help_better($new, $existing) {
  * @return array
  */
 function mf_default_help_content($file) {
+	if (($file['type'] ?? '') === 'parameters')
+		return mf_default_help_parameters_content($file);
+
 	$raw = file_get_contents($file['filename']);
 	$metadata = mf_default_help_metadata($raw, $file['type'], $file['title']);
 	$file['title'] = $metadata['title'];
@@ -437,4 +547,69 @@ function mf_default_help_audience_title($audience) {
 	if (!empty($cfg[$key]['description']))
 		return $cfg[$key]['description'];
 	return $audience;
+}
+
+/**
+ * render parameter reference page from settings.cfg (scope = table)
+ *
+ * @param array $variant index entry (type parameters)
+ * @return array
+ */
+function mf_default_help_parameters_content($variant) {
+	wrap_include('zzbrick_request/modulesettings', 'default');
+
+	$table = $variant['table'];
+	$definitions = wrap_cfg_files('settings', ['scope' => $table, 'translate' => true]);
+	$full_cfg = wrap_cfg_files('settings', ['translate' => true]);
+
+	$data = [
+		'parameter_field' => $variant['parameter_field'],
+		'intro' => wrap_text(
+			'Enter parameters as <code>key=value</code> pairs.'
+		),
+		'empty_message' => wrap_text(
+			'No parameters are documented for this table in settings.cfg.'
+		),
+	];
+	if (!$definitions) {
+		$data['parameters_empty'] = true;
+	} else {
+		$rows = [];
+		foreach ($definitions as $key => $meta) {
+			if (!is_array($meta)) continue;
+			unset($meta['package']);
+			$description = isset($meta['description']) ? (string) $meta['description'] : '';
+			if (is_array($description))
+				$description = implode(' ', $description);
+			$description = mod_default_modulesettings_escape_pct_for_template($description);
+			$key_text = mod_default_modulesettings_key_label($key, $definitions);
+			$cfg_line = $full_cfg[$key] ?? $meta;
+			$private = !empty($cfg_line['private']);
+			$type = isset($cfg_line['type']) ? (string) $cfg_line['type'] : '';
+			$default_raw = isset($full_cfg[$key])
+				? wrap_get_setting_default($key, $full_cfg[$key])
+				: wrap_get_setting_default($key, $meta);
+			$default_for_view = mod_default_modulesettings_coerce_list_empty($default_raw, $cfg_line);
+			$row = [
+				'key' => $key_text,
+				'description' => $description,
+				'type' => $type,
+				'deprecated' => !empty($cfg_line['deprecated']),
+				'default_display' => mod_default_modulesettings_value_display(
+					$default_for_view,
+					$private,
+					$type
+				),
+			];
+			$example_lines = mod_default_modulesettings_examples_lines($cfg_line);
+			if ($example_lines)
+				$row['examples'] = $example_lines;
+			$rows[] = $row;
+		}
+		usort($rows, 'mod_default_modulesettings_compare_rows');
+		$data['rows'] = $rows;
+	}
+
+	$variant['text'] = wrap_template('help-parameters', $data);
+	return $variant;
 }

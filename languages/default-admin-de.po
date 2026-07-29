@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-29 13:27+0000\n"
+"POT-Creation-Date: 2026-07-29 15:23+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -683,7 +683,9 @@ msgstr "Speichern"
 msgid "Error Logging"
 msgstr "Fehlerlogs"
 
-#: templates/errorlogs.template.txt:17 templates/modulesettings.template.txt:21
+#: templates/errorlogs.template.txt:17
+#: templates/help-parameters.template.txt:22
+#: templates/modulesettings.template.txt:21
 msgid "Setting"
 msgstr "Einstellung"
 
@@ -758,6 +760,24 @@ msgstr "Protokollierung (E-Mail)"
 #: templates/errorlogs.template.txt:63
 msgid "disabled"
 msgstr "deaktiviert"
+
+#: templates/help-parameters.template.txt:23
+msgid "Default value"
+msgstr "Standardwert"
+
+#: templates/help-parameters.template.txt:24
+#: templates/maintenance.template.txt:32
+#: templates/maintenance-logs.template.txt:44
+#: templates/modulesettings.template.txt:23
+#: templates/translationscheck.template.txt:29 zzbrick_make/log.inc.php:62
+#: zzbrick_tables/uris.php:50
+msgid "Type"
+msgstr "Typ"
+
+#: templates/help-parameters.template.txt:38
+#: templates/modulesettings.template.txt:42
+msgid "Examples:"
+msgstr "Beispiele:"
 
 #: templates/index-update.template.txt:19 zzbrick_make/textupdate.inc.php:38
 msgid "Invalid package."
@@ -907,14 +927,6 @@ msgstr "Es wurde keine Tabelle für Datenbankbeziehungen angegeben."
 msgid "The fields in the database are not translated."
 msgstr "Die Felder in der Datenbank werden nicht übersetzt."
 
-#: templates/maintenance.template.txt:32
-#: templates/maintenance-logs.template.txt:44
-#: templates/modulesettings.template.txt:23
-#: templates/translationscheck.template.txt:29 zzbrick_make/log.inc.php:62
-#: zzbrick_tables/uris.php:50
-msgid "Type"
-msgstr "Typ"
-
 #: templates/maintenance.template.txt:33
 msgid "Current database"
 msgstr "Aktuelle Datenbank"
@@ -1053,10 +1065,6 @@ msgstr "Aktueller Wert"
 #: templates/modulesettings.template.txt:39
 msgid "Default value:"
 msgstr "Standardwert:"
-
-#: templates/modulesettings.template.txt:42
-msgid "Examples:"
-msgstr "Beispiele:"
 
 #: templates/mysqldump.template.txt:16
 msgid "No websites were found"
@@ -1360,7 +1368,7 @@ msgstr ""
 
 #: zzbrick_request/adminer.inc.php:40
 msgid "Library Adminer does not exist"
-msgstr ""
+msgstr "Die „Adminer“-Bibliothek existiert nicht"
 
 #: zzbrick_request/maintenance.inc.php:45
 #: zzbrick_request/maintenance.inc.php:92
@@ -1424,13 +1432,13 @@ msgstr "Einmalige Anmeldung (SSO): der Anmeldezeitraum ist vorbei. (%s)"
 msgid "Help index %s is not readable."
 msgstr "Der Hilfe-Index %s ist nicht lesbar."
 
-#: zzbrick_request_get/help.inc.php:82
+#: zzbrick_request_get/help.inc.php:83
 msgid "Help file %s is not readable."
 msgstr "Die Hilfedatei %s kann nicht gelesen werden."
 
-#: zzbrick_request_get/help.inc.php:405
+#: zzbrick_request_get/help.inc.php:515
 msgid "Unknown help audience `%s`, allowed: %s."
-msgstr ""
+msgstr "Unbekannte Hilfe-Zielgruppe `%s`, zulässig: %s."
 
 #: zzbrick_request_get/tables.inc.php:56
 msgid "Table definition %s is not readable."

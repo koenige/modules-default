@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-29 13:27+0000\n"
+"POT-Creation-Date: 2026-07-29 15:23+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -649,6 +649,7 @@ msgid "Error Logging"
 msgstr ""
 
 #: templates/errorlogs.template.txt:17
+#: templates/help-parameters.template.txt:22
 #: templates/modulesettings.template.txt:21
 msgid "Setting"
 msgstr ""
@@ -724,6 +725,25 @@ msgstr ""
 
 #: templates/errorlogs.template.txt:63
 msgid "disabled"
+msgstr ""
+
+#: templates/help-parameters.template.txt:23
+msgid "Default value"
+msgstr ""
+
+#: templates/help-parameters.template.txt:24
+#: templates/maintenance.template.txt:32
+#: templates/maintenance-logs.template.txt:44
+#: templates/modulesettings.template.txt:23
+#: templates/translationscheck.template.txt:29
+#: zzbrick_make/log.inc.php:62
+#: zzbrick_tables/uris.php:50
+msgid "Type"
+msgstr ""
+
+#: templates/help-parameters.template.txt:38
+#: templates/modulesettings.template.txt:42
+msgid "Examples:"
 msgstr ""
 
 #: templates/index-update.template.txt:19
@@ -886,15 +906,6 @@ msgstr ""
 msgid "The fields in the database are not translated."
 msgstr ""
 
-#: templates/maintenance.template.txt:32
-#: templates/maintenance-logs.template.txt:44
-#: templates/modulesettings.template.txt:23
-#: templates/translationscheck.template.txt:29
-#: zzbrick_make/log.inc.php:62
-#: zzbrick_tables/uris.php:50
-msgid "Type"
-msgstr ""
-
 #: templates/maintenance.template.txt:33
 msgid "Current database"
 msgstr ""
@@ -1035,10 +1046,6 @@ msgstr ""
 
 #: templates/modulesettings.template.txt:39
 msgid "Default value:"
-msgstr ""
-
-#: templates/modulesettings.template.txt:42
-msgid "Examples:"
 msgstr ""
 
 #: templates/mysqldump.template.txt:16
@@ -1401,11 +1408,11 @@ msgstr ""
 msgid "Help index %s is not readable."
 msgstr ""
 
-#: zzbrick_request_get/help.inc.php:82
+#: zzbrick_request_get/help.inc.php:83
 msgid "Help file %s is not readable."
 msgstr ""
 
-#: zzbrick_request_get/help.inc.php:405
+#: zzbrick_request_get/help.inc.php:515
 msgid "Unknown help audience `%s`, allowed: %s."
 msgstr ""
 

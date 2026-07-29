@@ -48,5 +48,83 @@
                 "programmer"
             ]
         }
+    ],
+    "_jobqueue-parameters": [
+        {
+            "title": "Background Job Queue parameters",
+            "language": "en",
+            "package": "default",
+            "identifier": "_jobqueue-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "_jobqueue",
+            "parameter_field": "postdata"
+        },
+        {
+            "title": "Warteschlange der Hintergrundaufträge-Parameter",
+            "language": "de",
+            "package": "default",
+            "identifier": "_jobqueue-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "_jobqueue",
+            "parameter_field": "postdata"
+        }
+    ],
+    "categories-parameters": [
+        {
+            "title": "Categories parameters",
+            "language": "en",
+            "package": "default",
+            "identifier": "categories-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "categories",
+            "parameter_field": "parameters"
+        },
+        {
+            "title": "Kategorien-Parameter",
+            "language": "de",
+            "package": "default",
+            "identifier": "categories-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "categories",
+            "parameter_field": "parameters"
+        }
+    ],
+    "webpages-parameters": [
+        {
+            "title": "Webpages parameters",
+            "language": "en",
+            "package": "default",
+            "identifier": "webpages-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "webpages",
+            "parameter_field": "parameters"
+        },
+        {
+            "title": "Webseiten-Parameter",
+            "language": "de",
+            "package": "default",
+            "identifier": "webpages-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "webpages",
+            "parameter_field": "parameters"
+        }
     ]
 }

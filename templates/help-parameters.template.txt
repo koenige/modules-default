@@ -1,0 +1,51 @@
+# default module
+# parameter reference from settings.cfg
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+# Variables
+# translate_pot = admin
+#
+<div class="help-parameters">
+<p>%%% item intro %%%</p>
+%%% if parameters_empty %%%
+<p><em>%%% item empty_message %%%</em></p>
+%%% else %%%
+<table class="data">
+<thead>
+<tr>
+<th class="setting-name">%%% text Setting %%%</th>
+<th>%%% text Default value %%%</th>
+<th>%%% text Type %%%</th>
+</tr>
+</thead>
+<tbody>
+%%% loop rows %%%
+<tr class="%%% loopposition uneven un %%%even%%% if deprecated %%% setting-deprecated%%% endif %%%">
+<td class="setting-name"><code class="setting-key">%%% item key format=html_escape %%%</code>%%% if deprecated %%% <span class="setting-deprecated">@deprecated</span>%%% endif %%%
+%%% if description %%%
+<p class="setting-desc">%%% item description format=html_escape %%%</p>
+%%% endif %%%
+</td>
+<td class="value">
+<code>%%% item default_display format=html_escape %%%</code>
+%%% if examples %%%
+<p class="setting-examples"><span class="setting-examples-label">%%% text Examples: %%%</span><span class="setting-examples-values">
+%%% loop examples %%%
+<code>%%% item text format=html_escape %%%</code>
+%%% loop end %%%
+</span></p>
+%%% endif %%%
+</td>
+<td>%%% item type format=html_escape %%%</td>
+</tr>
+%%% loop end %%%
+</tbody>
+</table>
+%%% endif %%%
+</div>

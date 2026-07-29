@@ -32,6 +32,9 @@ function mod_default_help($params) {
 		$page['text'] = markdown($data['text']);
 		$page['dont_show_h1'] = true;
 		break;
+	case 'parameters':
+		$page['text'] = sprintf('<div class="helptext-parameters">%s</div>', $data['text']);
+		break;
 	default:
 		$page['text'] = sprintf('<pre>%s</pre>', $data['text']);
 		break;

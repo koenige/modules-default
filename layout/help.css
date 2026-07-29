@@ -30,3 +30,18 @@
 .helptext code
 			{ background: var(--background-color-helptext); padding: .2rem;
 			display: inline-block; }
+
+.helptext-parameters .setting-key
+			{ display: inline-block; }
+.helptext-parameters .setting-desc
+			{ margin: .25rem 0 0 2.5rem; font-size: .95em; }
+.helptext-parameters .setting-examples
+			{ margin: .5rem 0 0; }
+.helptext-parameters .setting-examples-values code
+			{ display: inline-block; margin-right: .5rem; }
+.helptext-parameters .setting-deprecated
+			{ opacity: .75; }
+.helptext-parameters tr.setting-deprecated td .setting-key
+			{ text-decoration: line-through; }
+.helptext-parameters tr.setting-deprecated .setting-desc
+			{ color: #666; }
