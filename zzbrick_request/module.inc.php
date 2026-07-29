@@ -36,6 +36,7 @@ function mod_default_module($params) {
 	$data['title'] = $pkg['about']['name'] ?? $module;
 	$data['tagline'] = $pkg['about']['tagline'] ?? '';
 	$data['textupdate_url'] = wrap_path('default_maintenance').'?textupdate='.$module;
+	$data['helpupdate_url'] = wrap_path('default_maintenance').'?helpupdate='.$module;
 
 	$page = [];
 	$page['title'] = $data['title'];
