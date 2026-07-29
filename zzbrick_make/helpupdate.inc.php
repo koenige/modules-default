@@ -59,25 +59,5 @@ function mod_default_make_helpupdate($params) {
 function mod_default_make_helpupdate_data($package) {
 	wrap_include('zzbrick_request_get/help', 'default');
 	wrap_include('index', 'default');
-	wrap_include('diff', 'zzwrap');
-
-	$filename_local = 'help/index.json';
-	$filename = wrap_package_folder($package).'/'.$filename_local;
-	$old = file_exists($filename) ? file_get_contents($filename) : '';
-	$entries = mf_default_help_collect($package);
-	$new = mf_default_index_json_encode($entries);
-	$stats = mf_default_index_diff_stats($old, $entries);
-
-	return [
-		'empty' => !count($entries),
-		'writeable' => $old !== $new,
-		'filename_local' => $filename_local,
-		'filename' => $filename,
-		'count' => count($entries),
-		'diff_html' => wrap_diff($old, $new),
-		'added' => $stats['added'] ?: '',
-		'deleted' => $stats['deleted'] ?: '',
-		'updated' => $stats['updated'] ?: '',
-		'package' => $package
-	];
+	return mf_default_index_data($package, 'help/index.json', mf_default_help_collect($package));
 }

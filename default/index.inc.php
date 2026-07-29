@@ -92,3 +92,33 @@ function mf_default_index_write($package, $filename, callable $collect) {
 	if (file_put_contents($filename, $new) === false) return 'file_not_writable';
 	return 'file_written';
 }
+
+/**
+ * Preview data for indexupdate templates (diff, stats, write flags)
+ *
+ * @param string $package
+ * @param string $filename_local path under package folder
+ * @param array $entries scanned index entries
+ * @return array
+ */
+function mf_default_index_data($package, $filename_local, array $entries) {
+	wrap_include('diff', 'zzwrap');
+
+	$filename = wrap_package_folder($package).'/'.$filename_local;
+	$old = file_exists($filename) ? file_get_contents($filename) : '';
+	$new = mf_default_index_json_encode($entries);
+	$stats = mf_default_index_diff_stats($old, $entries);
+
+	return [
+		'empty' => !count($entries),
+		'writeable' => $old !== $new,
+		'filename_local' => $filename_local,
+		'filename' => $filename,
+		'count' => count($entries),
+		'diff_html' => wrap_diff($old, $new),
+		'added' => $stats['added'] ?: '',
+		'deleted' => $stats['deleted'] ?: '',
+		'updated' => $stats['updated'] ?: '',
+		'package' => $package
+	];
+}
