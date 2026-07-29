@@ -90,6 +90,41 @@ function mf_default_help_collect($package) {
 }
 
 /**
+ * Is help/index.json up to date for one package?
+ *
+ * @param string $package
+ * @return string empty|missing|current|outdated
+ */
+function mf_default_help_index_status($package) {
+	$folder = wrap_package_folder($package);
+	if (!$folder) return 'empty';
+
+	$filename = $folder.'/help/index.json';
+	$old = file_exists($filename) ? file_get_contents($filename) : '';
+	$entries = mf_default_help_collect($package);
+	$new = mf_default_help_json_encode($entries);
+
+	if (!count($entries) AND $old === '') return 'empty';
+	if (!count($entries)) return 'outdated';
+	if ($old === '') return 'missing';
+	if ($old === $new) return 'current';
+	return 'outdated';
+}
+
+/**
+ * Encode help index as pretty JSON
+ *
+ * @param array $entries
+ * @return string
+ */
+function mf_default_help_json_encode(array $entries) {
+	return json_encode(
+		$entries,
+		JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+	)."\n";
+}
+
+/**
  * packages with number of help texts (language-aware, one per identifier)
  *
  * @return array

@@ -80,19 +80,6 @@ function mod_default_make_helpupdate_data($package) {
 }
 
 /**
- * Encode help index as pretty JSON
- *
- * @param array $entries
- * @return string
- */
-function mf_default_help_json_encode(array $entries) {
-	return json_encode(
-		$entries,
-		JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-	)."\n";
-}
-
-/**
  * JSON diff stats between existing index and scan
  *
  * @param string $old_content
