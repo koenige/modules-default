@@ -1335,6 +1335,10 @@ msgstr "Unbekannter Fehler."
 msgid "SQL Query"
 msgstr "SQL-Abfrage"
 
+#: zzbrick_make/tableupdate.inc.php:48
+msgid "Update Table Definitions"
+msgstr "Tabellendefinitionen aktualisieren"
+
 #: zzbrick_make/translationscheck.inc.php:64
 msgid "Checking translations: Table `%s` does not exist"
 msgstr "Übersetzungen prüfen: Die Tabelle `%s` existiert nicht"
@@ -1412,6 +1416,10 @@ msgstr "Der Hilfe-Index %s ist nicht lesbar."
 #: zzbrick_request_get/help.inc.php:408
 msgid "Unknown help audience `%s`, allowed: %s."
 msgstr ""
+
+#: zzbrick_request_get/tables.inc.php:56
+msgid "Table definition %s is not readable."
+msgstr "Die Tabellendefinition %s ist nicht lesbar."
 
 #: zzbrick_tables/redirects.php:23
 msgid "Redirects"

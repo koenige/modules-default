@@ -117,6 +117,7 @@ function mod_default_maintenance_keycheck() {
 		'deprecations' => 'make',
 		'textupdate' => 'make',
 		'helpupdate' => 'make',
+		'tableupdate' => 'make',
 		'sourcecheck' => 'make'
 	];
 	foreach ($keys as $key => $verb) {

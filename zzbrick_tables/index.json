@@ -1,0 +1,86 @@
+{
+    "_cronjobs": {
+        "title": "Cron Jobs"
+    },
+    "_jobqueue": {
+        "title": "Background Job Queue",
+        "parameter_field": "postdata",
+        "audience": [
+            "editor"
+        ]
+    },
+    "_settings": {
+        "title": "Website settings"
+    },
+    "_translations_text": {
+        "title": "Translation"
+    },
+    "_translations_varchar": {
+        "title": "Translation"
+    },
+    "_uris": {
+        "title": "URIs"
+    },
+    "blocks": {
+        "title": "Blocks"
+    },
+    "blocks_media": {
+        "title": "Media for Blocks"
+    },
+    "categories": {
+        "title": "Categories",
+        "parameter_field": "parameters",
+        "audience": [
+            "editor"
+        ]
+    },
+    "countries": {
+        "title": "Countries"
+    },
+    "default_text": {
+        "title": "Text"
+    },
+    "default_translationfields": {
+        "title": "Translations"
+    },
+    "languages": {
+        "title": "Languages"
+    },
+    "languages_categories": {
+        "title": "Language Categories"
+    },
+    "logins": {
+        "title": "Logins"
+    },
+    "redirects": {
+        "title": "Redirects"
+    },
+    "tokens": {
+        "title": "Tokens"
+    },
+    "webpages": {
+        "title": "Webpages",
+        "parameter_field": "parameters",
+        "audience": [
+            "editor"
+        ]
+    },
+    "webpages_blocks": {
+        "title": "Blocks on Webpages"
+    },
+    "webpages_categories": {
+        "title": "Webpages/Categories"
+    },
+    "webpages_media": {
+        "title": "Webpages/Media"
+    },
+    "websites": {
+        "title": "Websites"
+    },
+    "zzform_logging": {
+        "title": "Logging"
+    },
+    "zzform_relations": {
+        "title": "Database Table Relations"
+    }
+}

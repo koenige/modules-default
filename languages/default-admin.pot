@@ -1156,11 +1156,6 @@ msgstr ""
 msgid "Custom SQL query"
 msgstr ""
 
-#: templates/textupdate.template.txt:16
-#: zzbrick_make/textupdate.inc.php:51
-msgid "Update Text Files"
-msgstr ""
-
 #: templates/textupdate.template.txt:19
 msgid "Warnings"
 msgstr ""
@@ -1311,6 +1306,11 @@ msgstr ""
 msgid "SQL Query"
 msgstr ""
 
+#: zzbrick_make/tableupdate.inc.php:48
+#: zzbrick_make/tableupdate.inc.php:49
+msgid "Update Table Definitions"
+msgstr ""
+
 #: zzbrick_make/textupdate.inc.php:51
 #: zzbrick_make/textupdate.inc.php:52
 msgid "Update Text Files"
@@ -1398,6 +1398,10 @@ msgstr ""
 
 #: zzbrick_request_get/help.inc.php:405
 msgid "Unknown help audience `%s`, allowed: %s."
+msgstr ""
+
+#: zzbrick_request_get/tables.inc.php:56
+msgid "Table definition %s is not readable."
 msgstr ""
 
 #: zzbrick_tables/redirects.php:23
