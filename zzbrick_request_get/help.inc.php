@@ -77,13 +77,20 @@ function mf_default_help_collect($package) {
 		$basename = mf_default_help_identifier($basename);
 		$package = substr($package, 0, strrpos($package, '/'));
 		$filename_local = substr($file, strlen(wrap_package_folder($package)) + 1);
+		$raw = file_get_contents($file);
+		if ($raw === false) {
+			wrap_error(['Help file %s is not readable.', ['values' => [$file]]]);
+			continue;
+		}
+		$metadata = mf_default_help_metadata($raw, $extension, $title);
 		$data[$basename][] = [
-			'title' => $title,
+			'title' => $metadata['title'],
 			'language' => $lang ?? 'en',
 			'package' => $package,
 			'filename' => $filename_local,
 			'identifier' => $basename,
-			'type' => $extension
+			'type' => $extension,
+			'audience' => $metadata['audience'],
 		];
 	}
 	return $data ?? [];
@@ -164,13 +171,11 @@ function mf_default_help_list($package) {
 	foreach ($files as $identifier => $variants) {
 		$variant = mf_default_help_pick_variant($variants, $package);
 		if (!$variant) continue;
-		$data[] = mf_default_help_content($variant);
+		if ($variant['language'] !== wrap_setting('lang'))
+			$variant['foreign_language'] = true;
+		$data[] = $variant;
 	}
 	usort($data, fn($a, $b) => strcmp($a['title'], $b['title']));
-	foreach ($data as $index => $text) {
-		if ($text['language'] !== wrap_setting('lang'))
-			$data[$index]['foreign_language'] = true;
-	}
 	return $data;
 }
 
@@ -296,16 +301,34 @@ function mf_default_help_better($new, $existing) {
  */
 function mf_default_help_content($file) {
 	$raw = file_get_contents($file['filename']);
-	$file['audience'] = mf_default_help_audience($raw);
+	$metadata = mf_default_help_metadata($raw, $file['type'], $file['title']);
+	$file['title'] = $metadata['title'];
+	$file['audience'] = $metadata['audience'];
 	$file['text'] = preg_replace('/<!--[\s\S]*?-->/', '', $raw);
 	$file['text'] = preg_replace('/%%%(.*?)%%%/s', '%%% explain $1%%%', $file['text']);
 	$file['text'] = mf_default_help_links($file['text'], $file['package']);
-
-	if ($file['type'] === 'md') {
-		preg_match('/# (.+)/', $file['text'], $matches);
-		if (!empty($matches[1])) $file['title'] = $matches[1];
-	}
 	return $file;
+}
+
+/**
+ * title and audience from raw help file contents
+ *
+ * @param string $raw
+ * @param string $type md|txt
+ * @param string $title_fallback from filename
+ * @return array title, audience
+ */
+function mf_default_help_metadata($raw, $type, $title_fallback) {
+	$title = $title_fallback;
+	if ($type === 'md') {
+		$text = preg_replace('/<!--[\s\S]*?-->/', '', $raw);
+		preg_match('/# (.+)/', $text, $matches);
+		if (!empty($matches[1])) $title = $matches[1];
+	}
+	return [
+		'title' => $title,
+		'audience' => mf_default_help_audience($raw),
+	];
 }
 
 /**

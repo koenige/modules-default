@@ -6,7 +6,10 @@
             "package": "default",
             "filename": "help/Configuring detail tables based on categories.md",
             "identifier": "configuring-detail-tables-based-on-categories",
-            "type": "md"
+            "type": "md",
+            "audience": [
+                "programmer"
+            ]
         }
     ],
     "markdown": [
@@ -16,7 +19,10 @@
             "package": "default",
             "filename": "help/Markdown-de.md",
             "identifier": "markdown",
-            "type": "md"
+            "type": "md",
+            "audience": [
+                "editor"
+            ]
         },
         {
             "title": "Markdown",
@@ -24,7 +30,10 @@
             "package": "default",
             "filename": "help/Markdown.md",
             "identifier": "markdown",
-            "type": "md"
+            "type": "md",
+            "audience": [
+                "editor"
+            ]
         }
     ],
     "search-with-modules": [
@@ -34,7 +43,10 @@
             "package": "default",
             "filename": "help/Search with modules.md",
             "identifier": "search-with-modules",
-            "type": "md"
+            "type": "md",
+            "audience": [
+                "programmer"
+            ]
         }
     ]
 }
