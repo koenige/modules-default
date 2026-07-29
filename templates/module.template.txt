@@ -14,6 +14,7 @@
 %%% if tagline %%%
 <p class="module-tagline">%%% item tagline format=html_escape %%%</p>
 %%% endif %%%
-<p><a href="%%% item textupdate_url %%%">%%% text Update .pot files %%%</a></p>
-<p><a href="%%% item helpupdate_url %%%">%%% text Update Help Index %%%</a></p>
+<p><a href="%%% path default_maintenance %%%?textupdate=%%% item module %%%">%%% text Update .pot files %%%</a></p>
+<p><a href="%%% path default_maintenance %%%?helpupdate=%%% item module %%%">%%% text Update Help Index %%%</a></p>
+<p><a href="%%% path default_maintenance %%%?tableupdate=%%% item module %%%">%%% text Update Table Definitions %%%</a></p>
 %%% page subpages %%%
