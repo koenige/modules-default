@@ -35,7 +35,9 @@ function mod_default_make_helpupdate($params) {
 		if (empty($_POST['package']) OR $_POST['package'] !== $package) {
 			$data['package_invalid'] = true;
 		} else {
-			$return = mf_default_help_write($package, $data['filename']);
+			wrap_include('zzbrick_request_get/help', 'default');
+			wrap_include('index', 'default');
+			$return = mf_default_index_write($package, $data['filename'], 'mf_default_help_collect');
 			$data = mod_default_make_helpupdate_data($package);
 			$data[$return] = true;
 		}
@@ -56,14 +58,15 @@ function mod_default_make_helpupdate($params) {
  */
 function mod_default_make_helpupdate_data($package) {
 	wrap_include('zzbrick_request_get/help', 'default');
+	wrap_include('index', 'default');
 	wrap_include('diff', 'zzwrap');
 
 	$filename_local = 'help/index.json';
 	$filename = wrap_package_folder($package).'/'.$filename_local;
 	$old = file_exists($filename) ? file_get_contents($filename) : '';
 	$entries = mf_default_help_collect($package);
-	$new = mf_default_help_json_encode($entries);
-	$stats = mf_default_help_diff_stats($old, $entries);
+	$new = mf_default_index_json_encode($entries);
+	$stats = mf_default_index_diff_stats($old, $entries);
 
 	return [
 		'empty' => !count($entries),
@@ -77,47 +80,4 @@ function mod_default_make_helpupdate_data($package) {
 		'updated' => $stats['updated'] ?: '',
 		'package' => $package
 	];
-}
-
-/**
- * JSON diff stats between existing index and scan
- *
- * @param string $old_content
- * @param array $new_entries
- * @return array added, deleted, updated (int)
- */
-function mf_default_help_diff_stats($old_content, array $new_entries) {
-	$stats = ['added' => 0, 'deleted' => 0, 'updated' => 0];
-	$old = json_decode($old_content, true);
-	if (!is_array($old)) $old = [];
-
-	foreach ($new_entries as $identifier => $variants) {
-		if (!array_key_exists($identifier, $old))
-			$stats['added']++;
-		elseif ($old[$identifier] !== $variants)
-			$stats['updated']++;
-	}
-	foreach ($old as $identifier => $variants) {
-		if (!array_key_exists($identifier, $new_entries))
-			$stats['deleted']++;
-	}
-	return $stats;
-}
-
-/**
- * Write scanned help index
- *
- * @param string $package
- * @param string $filename
- * @return string
- */
-function mf_default_help_write($package, $filename) {
-	wrap_include('zzbrick_request_get/help', 'default');
-	$entries = mf_default_help_collect($package);
-	$new = mf_default_help_json_encode($entries);
-	$old = file_exists($filename) ? file_get_contents($filename) : '';
-
-	if ($old === $new) return 'file_content_unchanged';
-	if (file_put_contents($filename, $new) === false) return 'file_not_writable';
-	return 'file_written';
 }

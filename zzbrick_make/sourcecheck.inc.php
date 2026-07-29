@@ -43,9 +43,10 @@ function mod_default_make_sourcecheck($params) {
  * @return array
  */
 function mod_default_sourcecheck_packages() {
+	wrap_include('index', 'default');
 	$packages = [];
 	foreach (mod_default_sourcecheck_package_names() as $package) {
-		$help = mf_default_help_index_status($package);
+		$help = mf_default_index_status($package, 'help/index.json', 'mf_default_help_collect');
 		$pot = mf_default_pot_status($package);
 		if ($help === 'empty' AND $pot === 'empty') continue;
 
