@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-29 15:23+0000\n"
+"POT-Creation-Date: 2026-07-30 16:50+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -301,176 +301,220 @@ msgstr ""
 msgid "Default language register per language, i. e. is not added to language tag"
 msgstr ""
 
-#: configuration/settings.cfg:209
+#: configuration/settings.cfg:210
 msgid "Show full language name instead of ISO code for language switcher"
 msgstr ""
 
-#: configuration/settings.cfg:213
+#: configuration/settings.cfg:214
 msgid "Use logfile for database export"
 msgstr ""
 
-#: configuration/settings.cfg:218
+#: configuration/settings.cfg:219
 msgid "List of fields for database export log"
 msgstr ""
 
-#: configuration/settings.cfg:226
+#: configuration/settings.cfg:227
 msgid "Validity of entries in database export log"
 msgstr ""
 
-#: configuration/settings.cfg:231
+#: configuration/settings.cfg:232
 msgid "Set to true if last token might contain spaces"
 msgstr ""
 
-#: configuration/settings.cfg:236
+#: configuration/settings.cfg:237
 msgid "Use logfile for database import, old and new IDs"
 msgstr ""
 
-#: configuration/settings.cfg:241
+#: configuration/settings.cfg:242
 msgid "List of fields for database import log, IDs"
 msgstr ""
 
-#: configuration/settings.cfg:248
+#: configuration/settings.cfg:249
 msgid "Validity of entries in database import ID log"
 msgstr ""
 
-#: configuration/settings.cfg:253
+#: configuration/settings.cfg:254
 msgid "Background colour of login form"
 msgstr ""
 
-#: configuration/settings.cfg:258
+#: configuration/settings.cfg:259
 msgid "sed patterns to clean up MySQL structure dumps"
 msgstr ""
 
-#: configuration/settings.cfg:264
+#: configuration/settings.cfg:265
 msgid "List of allowed hostnames (or ends of it) for proxy"
 msgstr ""
 
-#: configuration/settings.cfg:269
+#: configuration/settings.cfg:270
 msgid "Username of local user that is used for maintenance operations (should have admin rights)"
 msgstr ""
 
-#: configuration/settings.cfg:272
+#: configuration/settings.cfg:273
 msgid "Show a h2 with Search results: above search results"
 msgstr ""
 
-#: configuration/settings.cfg:277
+#: configuration/settings.cfg:278
 msgid "Show search form in search results at the bottom"
 msgstr ""
 
-#: configuration/settings.cfg:282
+#: configuration/settings.cfg:283
 msgid "Show search form in search results at the top"
 msgstr ""
 
-#: configuration/settings.cfg:287
+#: configuration/settings.cfg:288
 msgid "If content is translated, default source language, ISO 639-1 code; for text table only"
 msgstr ""
 
-#: configuration/settings.cfg:293
+#: configuration/settings.cfg:294
 msgid "If content is translated, default destination language, ISO 639-1 code"
 msgstr ""
 
-#: configuration/settings.cfg:298
+#: configuration/settings.cfg:299
 msgid "Allow to use table definition scripts from default module, bool: yes, or list of tables"
 msgstr ""
 
-#: configuration/settings.cfg:302
+#: configuration/settings.cfg:303
 msgid "If make script for update is run, limit each run to this no. of records"
 msgstr ""
 
-#: configuration/settings.cfg:307
+#: configuration/settings.cfg:308
 msgid "Use webpages/media table from default module"
 msgstr ""
 
-#: configuration/settings.cfg:312
+#: configuration/settings.cfg:313
 msgid "Use webpages/blocks table: assign blocks to webpages in webpage form"
 msgstr ""
 
-#: configuration/settings.cfg:316
+#: configuration/settings.cfg:317
 msgid "Class for website template"
 msgstr ""
 
-#: configuration/settings.cfg:320
+#: configuration/settings.cfg:321
+msgid "Set access rights for this webpage; e.g. `admin` hides it from the webpages table for users without admin access"
+msgstr ""
+
+#: configuration/settings.cfg:326
+msgid "Display mode for category subtable in form"
+msgstr ""
+
+#: configuration/settings.cfg:331
+msgid "Do not show this category subtable in the list view"
+msgstr ""
+
+#: configuration/settings.cfg:337
 msgid "Datetime as start date from when on a caching of certain JS/CSS should be disabled (when you deploy updates)"
 msgstr ""
 
-#: configuration/settings.cfg:324
+#: configuration/settings.cfg:341
 msgid "Title of language link, preferably language name in native language (or variants like “English Version“), iso=name"
 msgstr ""
 
-#: configuration/settings.cfg:329
+#: configuration/settings.cfg:346
 msgid "Additional log files, same format as error logs (filled with wrap_log())"
 msgstr ""
 
-#: configuration/settings.cfg:333
+#: configuration/settings.cfg:350
 msgid "Minimal length of a password"
 msgstr ""
 
-#: configuration/settings.cfg:338
+#: configuration/settings.cfg:355
 msgid "Use field logins.login_rights"
 msgstr ""
 
-#: configuration/settings.cfg:343
+#: configuration/settings.cfg:360
+msgid "Maximum detail records for category subtable"
+msgstr ""
+
+#: configuration/settings.cfg:366
 msgid "Max no. of requests per job category which might run parallel"
 msgstr ""
 
-#: configuration/settings.cfg:348
+#: configuration/settings.cfg:372
+msgid "Minimum required detail records for category subtable"
+msgstr ""
+
+#: configuration/settings.cfg:378
 msgid "Initial installation date of default module (for updates)"
 msgstr ""
 
-#: configuration/settings.cfg:352
-msgid "Path used to restrict detail records to this path fragment, for reverse relations"
-msgstr ""
-
-#: configuration/settings.cfg:356
-msgid "Size of images in search results"
-msgstr ""
-
-#: configuration/settings.cfg:360
-msgid "Order of modules in search output"
-msgstr ""
-
-#: configuration/settings.cfg:364
-msgid "Read menu hierarchy from categories"
-msgstr ""
-
-#: configuration/settings.cfg:369
-msgid "For menu_hierarchy, use only part of the path starting at this segment"
-msgstr ""
-
-#: configuration/settings.cfg:374
-msgid "Split title at ' / ' if a link between records can be seen from both sides and different titles are needed"
-msgstr ""
-
-#: configuration/settings.cfg:379
-msgid "Class name for subpage list item"
-msgstr ""
-
-#: configuration/settings.cfg:383
-msgid "Extra item: subpage description"
+#: configuration/settings.cfg:382
+msgid "Do not append category title as prefix in list or export output"
 msgstr ""
 
 #: configuration/settings.cfg:388
-msgid "Extra item: query string to add as default for subpage list item"
+msgid "Write this field category to type_category_id in the database"
 msgstr ""
 
-#: configuration/settings.cfg:393
-msgid "Extra item: subpage title"
+#: configuration/settings.cfg:394
+msgid "Path used to restrict detail records to this path fragment, for reverse relations"
 msgstr ""
 
 #: configuration/settings.cfg:398
-msgid "Hide this page from subpage list items"
+msgid "Show property value field next to category in subtable"
 msgstr ""
 
-#: configuration/settings.cfg:403
-msgid "Indentation level of subpage list item"
+#: configuration/settings.cfg:404
+msgid "Size of images in search results"
 msgstr ""
 
 #: configuration/settings.cfg:408
-msgid "Query string to add as default for subpage list item"
+msgid "Order of modules in search output"
 msgstr ""
 
 #: configuration/settings.cfg:412
+msgid "Sequence field in category subtable (0 = hide, sequence = show sequence field)"
+msgstr ""
+
+#: configuration/settings.cfg:417
+msgid "Read menu hierarchy from categories"
+msgstr ""
+
+#: configuration/settings.cfg:422
+msgid "For menu_hierarchy, use only part of the path starting at this segment"
+msgstr ""
+
+#: configuration/settings.cfg:427
+msgid "Split title at ' / ' if a link between records can be seen from both sides and different titles are needed"
+msgstr ""
+
+#: configuration/settings.cfg:432
+msgid "Class name for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:436
+msgid "Extra item: subpage description"
+msgstr ""
+
+#: configuration/settings.cfg:441
+msgid "Extra item: query string to add as default for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:446
+msgid "Extra item: subpage title"
+msgstr ""
+
+#: configuration/settings.cfg:451
+msgid "Hide this page from subpage list items"
+msgstr ""
+
+#: configuration/settings.cfg:456
+msgid "Indentation level of subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:461
+msgid "Query string to add as default for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:465
 msgid "Name of the user to login with for server sync"
+msgstr ""
+
+#: configuration/settings.cfg:468
+msgid "Language tag for language register category"
+msgstr ""
+
+#: configuration/settings.cfg:473
+msgid "Use each child category as separate subtable field"
 msgstr ""
 
 #: default/download.inc.php:93
