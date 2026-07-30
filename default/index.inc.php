@@ -89,6 +89,7 @@ function mf_default_index_write($package, $filename, callable $collect) {
 	$old = file_exists($filename) ? file_get_contents($filename) : '';
 
 	if ($old === $new) return 'file_content_unchanged';
+	wrap_mkdir(dirname($filename));
 	if (file_put_contents($filename, $new) === false) return 'file_not_writable';
 	return 'file_written';
 }
