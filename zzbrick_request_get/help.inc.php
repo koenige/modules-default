@@ -604,6 +604,9 @@ function mf_default_help_parameters_content($variant) {
 			$example_lines = mod_default_modulesettings_examples_lines($cfg_line);
 			if ($example_lines)
 				$row['examples'] = $example_lines;
+			$enum_lines = mod_default_modulesettings_enum_lines($cfg_line);
+			if ($enum_lines)
+				$row['enums'] = $enum_lines;
 			$rows[] = $row;
 		}
 		usort($rows, 'mod_default_modulesettings_compare_rows');

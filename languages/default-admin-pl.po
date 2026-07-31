@@ -1002,6 +1002,9 @@ msgstr ""
 msgid "Examples:"
 msgstr ""
 
+msgid "Allowed values:"
+msgstr ""
+
 #: templates/mysqldump.template.txt:16
 msgid "No websites were found"
 msgstr ""

@@ -786,6 +786,10 @@ msgid "Type"
 msgstr ""
 
 #: templates/help-parameters.template.txt:38
+msgid "Allowed values:"
+msgstr ""
+
+#: templates/help-parameters.template.txt:45
 #: templates/modulesettings.template.txt:42
 msgid "Examples:"
 msgstr ""

@@ -34,6 +34,13 @@
 </td>
 <td class="value">
 <code>%%% item default_display format=html_escape %%%</code>
+%%% if enums %%%
+<p class="setting-enum"><span class="setting-enum-label">%%% text Allowed values: %%%</span><span class="setting-enum-values">
+%%% loop enums %%%
+<code>%%% item text format=html_escape %%%</code>
+%%% loop end %%%
+</span></p>
+%%% endif %%%
 %%% if examples %%%
 <p class="setting-examples"><span class="setting-examples-label">%%% text Examples: %%%</span><span class="setting-examples-values">
 %%% loop examples %%%

@@ -779,6 +779,9 @@ msgstr "Typ"
 msgid "Examples:"
 msgstr "Beispiele:"
 
+msgid "Allowed values:"
+msgstr "Zulässige Werte:"
+
 #: templates/index-update.template.txt:19 zzbrick_make/textupdate.inc.php:38
 msgid "Invalid package."
 msgstr "Ungültiges Paket."

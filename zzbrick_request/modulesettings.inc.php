@@ -116,6 +116,30 @@ function mod_default_modulesettings_examples_lines(array $cfg_line): array {
 }
 
 /**
+ * Allowed values from settings.cfg (`enum`, `enum[]`) as loop rows
+ *
+ * @param array $cfg_line merged settings line
+ * @return array<int, array{text: string}>
+ */
+function mod_default_modulesettings_enum_lines(array $cfg_line): array {
+	if (empty($cfg_line['enum'])) {
+		return [];
+	}
+	$enum = $cfg_line['enum'];
+	$list = is_array($enum) ? $enum : [$enum];
+	$lines = [];
+	foreach ($list as $value) {
+		$value = trim((string) $value);
+		if ($value === '') {
+			continue;
+		}
+		$lines[] = ['text' => mod_default_modulesettings_escape_pct_for_template($value)];
+	}
+
+	return $lines;
+}
+
+/**
  * Stable sort by setting label
  *
  * @param array $a
