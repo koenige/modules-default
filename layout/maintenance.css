@@ -22,6 +22,8 @@
 .maintenance h2:first-child
 					{ margin-top: 0; }
 
+.maintenance table.data
+					{ border-collapse: collapse; }
 
 /* dbupdate.template.txt */
 .maintenance .exists
