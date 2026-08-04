@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-08-04 08:12+0000\n"
+"POT-Creation-Date: 2026-08-04 09:34+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -1081,24 +1081,24 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: templates/module.template.txt:43
+#: templates/module.template.txt:45
 #: zzbrick_request/maintenance.inc.php:45
 #: zzbrick_request/maintenance.inc.php:92
 #: zzbrick_request/maintenance.inc.php:93
 msgid "Maintenance"
 msgstr ""
 
-#: templates/module.template.txt:45
+#: templates/module.template.txt:47
 msgid "Update .pot files"
 msgstr ""
 
-#: templates/module.template.txt:46
+#: templates/module.template.txt:48
 #: zzbrick_make/helpupdate.inc.php:48
 #: zzbrick_make/helpupdate.inc.php:49
 msgid "Update Help Index"
 msgstr ""
 
-#: templates/module.template.txt:47
+#: templates/module.template.txt:49
 #: zzbrick_make/tableupdate.inc.php:48
 #: zzbrick_make/tableupdate.inc.php:49
 msgid "Update Table Definitions"
