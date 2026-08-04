@@ -12,9 +12,43 @@
 # translate_pot = admin
 #
 %%% if tagline %%%
-<p class="module-tagline">%%% item tagline format=html_escape %%%</p>
+<p class="module-tagline">%%% item tagline %%%</p>
 %%% endif %%%
-<p><a href="%%% path default_maintenance %%%?textupdate=%%% item module %%%">%%% text Update .pot files %%%</a></p>
-<p><a href="%%% path default_maintenance %%%?helpupdate=%%% item module %%%">%%% text Update Help Index %%%</a></p>
-<p><a href="%%% path default_maintenance %%%?tableupdate=%%% item module %%%">%%% text Update Table Definitions %%%</a></p>
+
+<div class="columns">
+
+<section class="column">
+
+<h2>%%% text About %%%</h2>
+<ul>
+<li><a href="%%% path default_modulesettings module %%%">%%% text Module settings %%%</a></li>
+%%% if has_help %%%
+<li><a href="%%% path default_help_package module %%%">%%% text Module Help %%%</a></li>
+%%% endif %%%
+</ul>
+
+%%% if categorytrees %%%
+<h2>%%% text Categories %%%</h2>
+<ul>
+%%% loop categorytrees %%%
+<li><a href="%%% path default_categorytree path %%%">%%% item title %%%</a>%%% item description " – %s" %%% (<code>%%% item path %%%</code>)</li>
+%%% loop end %%%
+</ul>
+%%% endif %%%
+
 %%% page subpages %%%
+
+</section>
+
+<section class="column">
+
+<h2>%%% text Maintenance %%%</h2>
+<ul>
+<li><a href="%%% path default_maintenance %%%?textupdate=%%% item module %%%">%%% text Update .pot files %%%</a></li>
+<li><a href="%%% path default_maintenance %%%?helpupdate=%%% item module %%%">%%% text Update Help Index %%%</a></li>
+<li><a href="%%% path default_maintenance %%%?tableupdate=%%% item module %%%">%%% text Update Table Definitions %%%</a></li>
+</ul>
+
+</section>
+
+</div>

@@ -63,6 +63,15 @@ table.data tbody tr.even > th
 }
 
 
+/* two columns layout */
+.columns	{ display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.column h2:first-child
+			{ margin-top: 1.5rem; }
+@media screen and (max-width: 640px) {
+	.columns	{ grid-template-columns: 1fr; }
+}
+
+
 /* module overview & settings */
 .modulesettings table
 		{ table-layout: auto; width: 100%; }
