@@ -28,12 +28,14 @@ $zz['fields'][2]['field_name'] = 'query';
 $zz['fields'][2]['class'] = 'block480a hyphenate';
 $zz['fields'][2]['list_format'] = 'zz_htmltag_escape';
 
-if (wrap_setting('zzform_logging_id')) {
-	$zz['fields'][3]['title'] = 'Record';
-	$zz['fields'][3]['field_name'] = 'record_id';
-	$zz['fields'][3]['type'] = 'number';
-	$zz['fields'][3]['class'] = 'hidden480';
-}
+$zz['fields'][5]['title'] = 'Table';
+$zz['fields'][5]['field_name'] = 'db_table';
+$zz['fields'][5]['class'] = 'hidden480';
+
+$zz['fields'][3]['title'] = 'Record';
+$zz['fields'][3]['field_name'] = 'record_id';
+$zz['fields'][3]['type'] = 'number';
+$zz['fields'][3]['class'] = 'hidden480';
 
 $zz['fields'][4]['field_name'] = 'user';
 $zz['fields'][4]['class'] = 'hidden480';
@@ -45,6 +47,16 @@ $zz['fields'][99]['class'] = 'block480';
 
 $zz['sql'] = 'SELECT * FROM /*_TABLE zzform_logging _*/';
 $zz['sqlorder'] = ' ORDER BY log_id DESC';
+
+$zz['filter'][1]['title'] = wrap_text('Table');
+$zz['filter'][1]['identifier'] = 'table';
+$zz['filter'][1]['type'] = 'list';
+$zz['filter'][1]['where'] = 'db_table';
+$zz['filter'][1]['field_name'] = 'db_table';
+$zz['filter'][1]['sql'] = 'SELECT DISTINCT db_table, db_table
+	FROM /*_TABLE zzform_logging _*/
+	WHERE db_table IS NOT NULL
+	ORDER BY db_table';
 
 $zz['setting']['zzform_max_select'] = 200;
 $zz['setting']['zzform_limit'] = 20;
