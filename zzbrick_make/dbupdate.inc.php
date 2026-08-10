@@ -146,7 +146,7 @@ function mod_default_make_dbupdate_readfile($filename, $module) {
 		$line[0] = explode('-', $line[0]);
 		$key = vsprintf('%04d-%02d-%02d-%06d-%\'_12s', array_merge($line[0], [$module]));
 		$query = rtrim(trim($line[1]), ';');
-		$table = mod_default_make_dbupdate_table($query);
+		$table = wrap_db_log_table($query);
 		if (!$table OR !wrap_sql_ignores($module, $table)) {
 			$data[$key] = [
 				'query' => $query,
@@ -157,31 +157,6 @@ function mod_default_make_dbupdate_readfile($filename, $module) {
 		}
 	}
 	return $data;
-}
-
-/**
- * get table name from query
- *
- * @param string $query
- * @return string
- */
-function mod_default_make_dbupdate_table($query) {
-	$sql_verbs = [
-		'ALTER TABLE', 'DELETE FROM', 'UPDATE', 'INSERT INTO', 'CREATE TABLE',
-		'DROP TABLE', 'DELETE'
-	];
-	foreach ($sql_verbs as $verb) {
-		if (str_starts_with($query, $verb.' ')) {
-			$table = substr($query, strlen($verb) + 1);
-			break;
-		}
-	}
-	if (!empty($table)) {
-		if ($pos = strpos($table, ' ')) $table = substr($table, 0, $pos);
-		$table = trim($table, '`');
-		return $table;
-	}
-	return '';
 }
 
 /**
@@ -207,11 +182,7 @@ function mod_default_make_dbupdate_check($line) {
 	}
 
 	// update already in logging table?
-	$sql = 'SELECT log_id FROM /*_TABLE zzform_logging _*/
-		WHERE query = "%s" AND last_update > "%s"';
-	$sql = sprintf($sql, wrap_db_escape($line['query']), $line['date']);
-	$record = wrap_db_fetch($sql);
-	if ($record) {
+	if (wrap_db_log_find($line['query'], $line['date'])) {
 		mod_default_make_dbupdate_log($line, 'exists');
 		return true;
 	}
