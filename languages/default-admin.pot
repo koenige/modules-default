@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-08-04 09:34+0000\n"
+"POT-Creation-Date: 2026-08-10 23:22+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -15,6 +15,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: behaviour/track-progress.js:74
+msgid "Response has no `%s` key."
+msgstr ""
+
+#: behaviour/track-progress.js:82
+msgid "`%s` value is not valid JSON."
+msgstr ""
+
+#: behaviour/track-progress.js:86
+msgid "Progress response is not an object."
+msgstr ""
+
+#: behaviour/track-progress.js:117
+msgid "Invalid JSON."
+msgstr ""
+
+#: behaviour/track-progress.js:239
+msgid "Init failed."
+msgstr ""
+
+#: behaviour/track-progress.js:265
+msgid "Step failed."
+msgstr ""
 
 #: configuration/access.cfg:20
 msgid "Adminer MySQL database administration"

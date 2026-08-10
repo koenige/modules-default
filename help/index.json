@@ -49,6 +49,19 @@
             ]
         }
     ],
+    "track-progress": [
+        {
+            "title": "Track progress",
+            "language": "en",
+            "package": "default",
+            "filename": "help/Track progress.md",
+            "identifier": "track-progress",
+            "type": "md",
+            "audience": [
+                "programmer"
+            ]
+        }
+    ],
     "_jobqueue-parameters": [
         {
             "title": "Background Job Queue parameters",

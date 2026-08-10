@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-07-29 15:23+0000\n"
+"POT-Creation-Date: 2026-08-10 22:47+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -442,7 +442,7 @@ msgstr ""
 #: zzbrick_tables/categories.php:86
 #: zzbrick_tables/categories.template.php:48
 #: zzbrick_tables/languages-categories.php:84
-#: zzbrick_tables/logging.php:41
+#: zzbrick_tables/logging.php:43
 #: zzbrick_tables/text.php:47
 #: zzbrick_tables/tokens.php:79
 #: zzbrick_tables/webpages.php:129
@@ -852,11 +852,17 @@ msgstr ""
 msgid "Query"
 msgstr ""
 
-#: zzbrick_tables/logging.php:32
+#: zzbrick_tables/logging.php:31
+#: zzbrick_tables/logging.php:51
+#: zzbrick_tables/translations.php:33
+msgid "Table"
+msgstr ""
+
+#: zzbrick_tables/logging.php:35
 msgid "Record"
 msgstr ""
 
-#: zzbrick_tables/logging.php:38
+#: zzbrick_tables/logging.php:40
 #: zzbrick_tables/logins.php:45
 msgid "User"
 msgstr ""
@@ -1058,10 +1064,6 @@ msgstr ""
 
 #: zzbrick_tables/translations.php:26
 msgid "Database"
-msgstr ""
-
-#: zzbrick_tables/translations.php:33
-msgid "Table"
 msgstr ""
 
 #: zzbrick_tables/translations.php:43
