@@ -26,7 +26,7 @@ in the module’s zzform/definition file.
 An example from the `events` module in conjunction with the `contacts`
 module:
 
-	$values['roles_restrict_to'] = 'events';
+	$values['roles_restrict_to'] = 'events_contacts';
 	mf_default_categories_restrict($values, 'roles');
 
 	$no = 60;
@@ -36,8 +36,8 @@ module:
 This will restrict the linking of contacts to these categories:
 
 - `roles`: categories that belong to the subtree roles
-- `events`: among those categories, restrict the selection to categories
-with the parameter `events=1`
+- `events_contacts`: among those categories, restrict the selection to categories
+with the parameter `events_contacts=1`
 
 ## Using detail tables with identical keys
 
