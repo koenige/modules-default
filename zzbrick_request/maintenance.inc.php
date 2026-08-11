@@ -108,6 +108,7 @@ function mod_default_maintenance_keycheck() {
 		'integritycheck' => 'request',
 		'log' => 'make',
 		'loggingadd' => 'make',
+		'loggingdbtable' => 'make',
 		'loggingread' => 'request',
 		'maillog' => 'make',
 		'serversync_development' => 'make',

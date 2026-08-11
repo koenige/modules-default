@@ -1,0 +1,38 @@
+# default module
+# Template: backfill logging db_table with XHR progress
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+# Variables
+# translate_pot = admin
+#
+<div class="track-progress maintenance" data-track-mode="drive" data-action="loggingdbtable">
+
+%%% unless ready %%%
+<p class="error">%%% text The logging table has no db_table column yet. Apply the database update first. %%%</p>
+%%% else %%%
+<p>%%% text This fills empty db_table values in the logging table by parsing each stored SQL query. Rows whose query does not contain a table name stay empty. %%%</p>
+<p><strong>%%% text Pending rows %%%:</strong> %%% item pending %%%
+<br><strong>%%% text Rows per step %%%:</strong> %%% item chunk_size %%%</p>
+
+<p><button type="button" data-role="start" class="button">%%% text Start backfill %%%</button>
+<button type="button" data-role="stop" class="button" disabled>%%% text Stop %%%</button></p>
+
+<div data-role="status" hidden>
+	<p><strong>%%% text Progress %%%:</strong> <span data-role="count">0 / 0</span></p>
+	<progress data-role="progress" max="1" value="0">0%</progress>
+</div>
+
+<p data-role="summary" hidden></p>
+<ul data-role="log"></ul>
+%%% endif %%%
+
+</div>
+%%% if ready %%%
+%%% script default/track-progress.js %%%
+%%% endif %%%
