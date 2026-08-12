@@ -588,3 +588,4 @@
 /* 2026-07-16-7 */	INSERT INTO redirects (old_url, new_url, code, website_id) SELECT CONCAT(parent.identifier, '/advanced-search-tips-for-forms/'), CONCAT(parent.identifier, '/zzform/advanced-search-tips-for-forms/'), 301, parent.website_id FROM webpages parent WHERE parent.content LIKE '%\%\%\% request help-packages \%\%\%%';
 /* 2026-07-16-8 */	INSERT INTO redirects (old_url, new_url, code, website_id) SELECT CONCAT(parent.identifier, '/privacy-for-embedded-content/'), CONCAT(parent.identifier, '/media/privacy-for-embedded-content/'), 301, parent.website_id FROM webpages parent WHERE parent.content LIKE '%\%\%\% request help-packages \%\%\%%';
 /* 2026-08-10-1 */	ALTER TABLE `_logging` ADD `db_table` varchar(127) COLLATE 'latin1_general_ci' NULL AFTER `query`, ADD KEY `db_table` (`db_table`);
+/* 2026-08-12-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&explanation=', '&zzform_def[explanation]=') WHERE `parameters` LIKE '%&explanation=%';

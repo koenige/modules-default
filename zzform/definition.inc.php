@@ -96,8 +96,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			$zz['fields'][$no]['min_records_required'] = intval($category['min_records_required']);
 		if (isset($category['max_records']))
 			$zz['fields'][$no]['max_records'] = intval($category['max_records']);
-		if (!empty($category['explanation']))
-			$zz['fields'][$no]['explanation'] = $category['explanation'];
+		if (!empty($category['zzform_def']['explanation']))
+			$zz['fields'][$no]['explanation'] = $category['zzform_def']['explanation'];
 		if (!empty($def['property']) AND !empty($category['property_of_category'])) {
 			$zz['fields'][$no]['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.category_id = %d', $category['category_id']);
 			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.category_id = %d', $category['category_id']);
