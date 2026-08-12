@@ -155,9 +155,9 @@ if (wrap_setting('login_with_contact_id')) {
 			, /*_PREFIX_*/contacts.identifier AS username
 			, IF(ISNULL(last_click), last_click, FROM_UNIXTIME(last_click, "%Y-%m-%d %H:%i")) AS last_click
 			, contact_categories.parameters AS contact_parameters
-			, (CASE WHEN LOCATE("&type=", contact_categories.parameters) > 0 THEN
-				SUBSTRING_INDEX(SUBSTRING_INDEX(contact_categories.parameters, "&type=", -1), "&", 1)
-				ELSE "*" END
+			, SUBSTRING_INDEX(CASE WHEN LOCATE("&alias=", contact_categories.parameters) > 0 THEN
+				SUBSTRING_INDEX(SUBSTRING_INDEX(contact_categories.parameters, "&alias=", -1), "&", 1)
+				ELSE contact_categories.path END, "/", -1
 			) AS contact_scope
 			, login_categories.category AS login_category
 		FROM /*_PREFIX_*/logins
