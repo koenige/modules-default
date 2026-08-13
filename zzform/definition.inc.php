@@ -71,6 +71,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 		if (!array_key_exists($table, $definition))
 			$definition[$table] = mf_default_categories_subtable_definition($zz['fields'][$no]);
 		$def = $definition[$table];
+		$form_def = $category['zzform_def'] ?? [];
 
 		$zz['fields'][$no]['type'] = 'subtable';
 		$zz['fields'][$no]['title'] = $category['category'];
@@ -89,15 +90,15 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			$zz['fields'][$no]['fields'][$def['property']]['subtable_value'] = true;
 			$zz['fields'][$no]['fields'][$def['property']]['size'] = 32;
 		}
-		$zz['fields'][$no]['hide_in_list'] = $category['hide_in_list'] ?? false;
-		if (isset($category['min_records']))
-			$zz['fields'][$no]['min_records'] = intval($category['min_records']);
-		if (isset($category['min_records_required']))
-			$zz['fields'][$no]['min_records_required'] = intval($category['min_records_required']);
-		if (isset($category['max_records']))
-			$zz['fields'][$no]['max_records'] = intval($category['max_records']);
-		if (!empty($category['zzform_def']['explanation']))
-			$zz['fields'][$no]['explanation'] = $category['zzform_def']['explanation'];
+		$zz['fields'][$no]['hide_in_list'] = $form_def['hide_in_list'] ?? false;
+		if (isset($form_def['min_records']))
+			$zz['fields'][$no]['min_records'] = intval($form_def['min_records']);
+		if (isset($form_def['min_records_required']))
+			$zz['fields'][$no]['min_records_required'] = intval($form_def['min_records_required']);
+		if (isset($form_def['max_records']))
+			$zz['fields'][$no]['max_records'] = intval($form_def['max_records']);
+		if (!empty($form_def['explanation']))
+			$zz['fields'][$no]['explanation'] = $form_def['explanation'];
 		if (!empty($def['property']) AND !empty($category['property_of_category'])) {
 			$zz['fields'][$no]['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.category_id = %d', $category['category_id']);
 			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.category_id = %d', $category['category_id']);
@@ -122,8 +123,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 				$zz['fields'][$no]['fields'][$def['property']]['hide_in_form'] = true;
 			if (!empty($category['property_size']))
 				$zz['fields'][$no]['fields'][$def['property']]['size'] = $category['property_size'];
-			if (!empty($category['placeholder']))
-				$zz['fields'][$no]['fields'][$def['property']]['placeholder'] = $category['placeholder'];
+			if (!empty($form_def['placeholder']))
+				$zz['fields'][$no]['fields'][$def['property']]['placeholder'] = $form_def['placeholder'];
 		}
 		$zz['fields'][$no]['sql'] .= ' '.$zz['fields'][$no]['sqlorder'];
 		$zz['fields'][$no]['fields'][2]['type'] = 'foreign_key';
@@ -237,7 +238,7 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 		}
 		if (!empty($line['parameters']['association'])) {
 			$new[$index] = $line;
-			$new[$index]['parameters']['integrate_in_next'] = true;
+			$new[$index]['parameters']['zzform_def']['integrate_in_next'] = true;
 			$new[$index]['association'] = true;
 		}
 	}
