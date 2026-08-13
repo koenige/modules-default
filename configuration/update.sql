@@ -607,3 +607,4 @@
 /* 2026-08-12-26 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&select_save_value=', '&zzform_def[select_save_value]=') WHERE `parameters` LIKE '%&select_save_value=%';
 /* 2026-08-12-27 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&sql=', '&zzform_def[sql]=') WHERE `parameters` LIKE '%&sql=%';
 /* 2026-08-12-28 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&show_values_as_list=', '&zzform_def[show_values_as_list]=') WHERE `parameters` LIKE '%&show_values_as_list=%';
+/* 2026-08-13-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&form_display=', '&zzform_def[form_display]=') WHERE `parameters` LIKE '%&form_display=%';
