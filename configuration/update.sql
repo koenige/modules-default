@@ -608,3 +608,6 @@
 /* 2026-08-12-27 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&sql=', '&zzform_def[sql]=') WHERE `parameters` LIKE '%&sql=%';
 /* 2026-08-12-28 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&show_values_as_list=', '&zzform_def[show_values_as_list]=') WHERE `parameters` LIKE '%&show_values_as_list=%';
 /* 2026-08-13-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&form_display=', '&zzform_def[form_display]=') WHERE `parameters` LIKE '%&form_display=%';
+/* 2026-08-14-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&add_details_reverse=', '&reversed[add_details]=') WHERE `parameters` LIKE '%&add_details_reverse=%';
+/* 2026-08-14-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&path_reverse=', '&reversed[path]=') WHERE `parameters` LIKE '%&path_reverse=%';
+/* 2026-08-14-3 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&category_reverse=', '&reversed[category]=') WHERE `parameters` LIKE '%&category_reverse=%';

@@ -63,7 +63,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 		// remove unselectable categories
 		if (!$pc[$index]['category_count'] AND empty($pc[$index]['property_of_category']))
 			unset($pc[$index]);
-		if ($restrict_to AND empty($pc[$index][$restrict_to]))
+		if ($restrict_to AND !mf_default_category_use_for($pc[$index], $restrict_to))
 			unset($pc[$index]);
 	}
 	if (!$pc) return;
@@ -186,55 +186,45 @@ function mf_default_categories_subtable_definition($zz) {
  *
  * @param array $values
  *		array $values[$type] or empty
- *		string $values[$type.'_restrict_to'] (optional)
+ *		string|array $values['context'][$type] (optional)
  * @param string $type
  * @param string $category_path (optional, set only if different from $type)
  * @return array
  */
 function mf_default_categories_restrict(&$values, $type, $category_path = NULL) {
 	if (isset($values[$type])) return false; // do not overwrite existing data
-	if (isset($values[$type.'_restrict_to']))
-		$restrict_to = $values[$type.'_restrict_to'];
-	else
-		$restrict_to = '';
+
+	$contexts = mf_default_contexts($values, $type);
+
 	$sql = 'SELECT category_id, category, parameters
 			, SUBSTRING_INDEX(path, "/", -1) AS path
 		FROM categories
 		WHERE main_category_id = /*_ID categories %s _*/
-		%s
 		ORDER BY sequence, path';
-	$sql = sprintf($sql
-		, $category_path ?? $type
-		, $restrict_to ? sprintf('AND parameters LIKE "%%&%s=1%%"', $restrict_to) : ''
-	);
-	$values[$type] = wrap_db_fetch($sql, 'category_id');
-	$last_category_id = array_keys($values[$type]);
-	$last_category_id = end($last_category_id);
+	$sql = sprintf($sql, $category_path ?? $type);
+	$lines = wrap_db_fetch($sql, 'category_id', 'numeric');
+	$last_category_id = $lines ? end($lines)['category_id'] : null;
 	$new = [];
-	$values[$type] = array_values($values[$type]);
-	foreach ($values[$type] as $index => &$line) {
+	$filtered = [];
+	foreach ($lines as $index => $line) {
 		if ($line['parameters'])
 			parse_str($line['parameters'], $line['parameters']);
 		else
 			$line['parameters'] = [];
+
+		if ($contexts) {
+			if (!mf_default_category_use_for($line['parameters'], $contexts))
+				continue;
+			$line['parameters'] = mf_default_apply_if($line['parameters'], $contexts);
+			$line = mf_default_apply_reversed($line, $contexts);
+		}
+
 		if (!empty($line['parameters']['alias']))
 			$line['path'] = $line['parameters']['alias'];
 		if ($pos = strrpos($line['path'], '/'))
 			$line['path'] = substr($line['path'], $pos + 1);
-		if ($line['category_id'].'' === $last_category_id.'')
+		if ($last_category_id !== null AND $line['category_id'].'' === $last_category_id.'')
 			$line['last_category'] = true;
-		// check for reverse
-		if (!empty($line['parameters'][$restrict_to.'_reverse'])) {
-			$line['reverse'] = true;
-			foreach ($line['parameters'] as $key => $value) {
-				if (!str_ends_with($key, '_reverse')) continue;
-				$key = substr($key, 0, -strlen('_reverse'));
-				if (in_array($key, ['path']))
-					$line[$key] = $value;
-				else
-					$line['parameters'][$key] = $value;
-			}
-		}
 		if (!empty($line['parameters']['split_title']) AND strstr($line['category'], ' / ')) {
 			$title = explode(' / ', $line['category']);
 			$line['category'] = !empty($line['reverse']) ? $title[1] : $title[0];
@@ -244,9 +234,11 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 			$new[$index]['parameters']['zzform_def']['integrate_in_next'] = true;
 			$new[$index]['association'] = true;
 		}
+		$filtered[] = $line;
 	}
 	foreach ($new as $pos => $association)
-		array_splice($values[$type], $pos - 2, 0, [$association]);
+		array_splice($filtered, $pos - 2, 0, [$association]);
+	$values[$type] = $filtered;
 	return true;
 }
 
