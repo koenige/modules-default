@@ -13,6 +13,9 @@
  */
 
 
+wrap_include('context', 'default');
+
+
 /**
  * link a subtable maintable_categories with fields maintable_id, category_id, property
  *
