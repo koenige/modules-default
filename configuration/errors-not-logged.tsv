@@ -826,3 +826,6 @@ php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:
 
 # referer m.baidu.com, trying to access incomplete URLs, just noise
 404	ua	pc
+
+# Source map probes (bots, DevTools); we don't deploy .map files
+404	end	.js.map
