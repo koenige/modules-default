@@ -125,9 +125,10 @@ foreign keys have the same type (`contact_id`, `main_contact_id` in
 and from the main-contact form.
 
 1. To use a different title, use `split_title=1` and a category name in
-the order `contact_id / main_contact_id`, e. g. `Local Groups /
-Universities`. From `contact_id`, `Universities` is used as title; from
-`main_contact_id`, `Local Groups`.
+the order **normal / reverse** (i. e. `some_id / main_some_id`), e. g.
+`Universities / Local Groups`. On the normal side (`contact_id`), the
+first part (`Universities`) is used; on the reverse side
+(`main_contact_id`), the second part (`Local Groups`).
 
 2. For reverse settings, set `if[$context][reverse_relation]=1` and use
 `reversed[…]` for overrides (see above).
