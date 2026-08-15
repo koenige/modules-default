@@ -40,3 +40,4 @@
 2026-08-13-1	code_regex	\$values\['[a-z_]+_restrict_to'\]	use $values['context'][$type] instead
 2026-08-14-1	code	&add_details_reverse=	use reversed[add_details]=… in category parameters
 2026-08-14-2	code	&path_reverse=	use reversed[path]=… in category parameters
+2026-08-14-3	code	&category_reverse=	use reversed[category]=… in category parameters
