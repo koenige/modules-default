@@ -19,7 +19,7 @@ For greater flexibility, it is possible to configure detail tables based
 on entries in the `categories` table.
 
 The form declares a **context** per subtable type. Category rows declare
-where they apply via **`use_for`**, optional per-context overrides via
+where they apply via **`context`**, optional per-context overrides via
 **`if`**, and reverse-relation settings via **`reversed`**.
 
 ## Form context
@@ -49,7 +49,7 @@ A context is either a **registered slug** or a **category path**.
 **Registered slugs** are listed in the module’s `settings.cfg` with
 `scope[] = context` on the section name, e. g. `contacts_persons`,
 `events_contacts`, `news_articles`, `shop`. The section name is the
-context string used in PHP and in `use_for[…]` / `if[…]` keys.
+context string used in PHP and in `context[…]` / `if[…]` keys.
 
 **Category paths** contain a slash, e. g. `contact/school`, `contact/club`.
 They are valid when the path exists in the categories tree (resolved via
@@ -74,18 +74,18 @@ context.
 
 ## Category parameters
 
-### `use_for`
+### `context`
 
 On a category row, tag inclusion for a context:
 
-	use_for[contacts_persons]=1
-	use_for[contacts_organisations]=1
-	use_for[contact/school]=1
-	use_for[events_contacts]=1
-	use_for[shop]=1
+	context[contacts_persons]=1
+	context[contacts_organisations]=1
+	context[contact/school]=1
+	context[events_contacts]=1
+	context[shop]=1
 
 `mf_default_categories_restrict()` loads categories from the subtree and
-keeps those with `use_for[$context]=1` for the form’s context.
+keeps those with `context[$context]=1` for the form’s context.
 
 ### `if`
 
@@ -114,7 +114,7 @@ When a relation is shown from the main-contact side, use
 ## Restricting categories (engine)
 
 `mf_default_categories_restrict()` in the module’s zzform/definition file
-reads `$values['context'][$type]`, filters categories by `use_for`, applies
+reads `$values['context'][$type]`, filters categories by `context`, applies
 `if` and `reversed`, and fills `$values[$type]`.
 
 ## Using detail tables with identical keys

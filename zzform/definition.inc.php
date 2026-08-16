@@ -63,7 +63,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 		// remove unselectable categories
 		if (!$pc[$index]['category_count'] AND empty($pc[$index]['property_of_category']))
 			unset($pc[$index]);
-		if ($restrict_to AND !mf_default_category_use_for($pc[$index], $restrict_to))
+		if ($restrict_to AND !mf_default_category_context($pc[$index], $restrict_to))
 			unset($pc[$index]);
 	}
 	if (!$pc) return;
@@ -213,7 +213,7 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 			$line['parameters'] = [];
 
 		if ($contexts) {
-			if (!mf_default_category_use_for($line['parameters'], $contexts))
+			if (!mf_default_category_context($line['parameters'], $contexts))
 				continue;
 			$line['parameters'] = mf_default_apply_if($line['parameters'], $contexts);
 			$line = mf_default_apply_reversed($line, $contexts);
