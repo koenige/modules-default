@@ -74,7 +74,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 		if (!array_key_exists($table, $definition))
 			$definition[$table] = mf_default_categories_subtable_definition($zz['fields'][$no]);
 		$def = $definition[$table];
-		$form_def = $category['zzform_def'] ?? [];
+		$form_def = $category['zzform'] ?? [];
 
 		$zz['fields'][$no]['type'] = 'subtable';
 		$zz['fields'][$no]['title'] = $category['category'];
@@ -231,7 +231,7 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 		}
 		if (!empty($line['parameters']['association'])) {
 			$new[$index] = $line;
-			$new[$index]['parameters']['zzform_def']['integrate_in_next'] = true;
+			$new[$index]['parameters']['zzform']['integrate_in_next'] = true;
 			$new[$index]['association'] = true;
 		}
 		$filtered[] = $line;

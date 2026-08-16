@@ -139,7 +139,7 @@ function mf_default_apply_if(array $parameters, $contexts) {
  * apply reversed[] overrides when if[context][reverse_relation]=1
  *
  * Only applies when context[$context]=1 on the same row.
- * reversed[zzform_def] is merged into the existing zzform_def block;
+ * reversed[zzform] is merged into the existing zzform block;
  * all other keys replace the existing value.
  *
  * @param array $line category row with parameters (and optional path key)
@@ -168,7 +168,7 @@ function mf_default_apply_reversed(array $line, $contexts) {
 			$line['path'] = $value;
 			continue;
 		}
-		if ($key === 'zzform_def') {
+		if ($key === 'zzform') {
 			$line['parameters'][$key] = wrap_array_merge($line['parameters'][$key] ?? [], $value);
 			continue;
 		}

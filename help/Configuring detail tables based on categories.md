@@ -91,11 +91,11 @@ keeps those with `context[$context]=1` for the form’s context.
 
 Per-context overrides on a category row. The `if[$context]` block has the
 same shape as category `parameters` and is merged when the context
-applies (field overrides under `zzform_def`):
+applies (field overrides under `zzform`):
 
-	if[contacts_places][zzform_def][title]=Telefon
-	if[contacts_places][zzform_def][explanation]=Festnetz vor Ort. Bitte im Format %2B49 4321 56789
-	if[shop][zzform_def][max_records]=1
+	if[contacts_places][zzform][title]=Telefon
+	if[contacts_places][zzform][explanation]=Festnetz vor Ort. Bitte im Format %2B49 4321 56789
+	if[shop][zzform][max_records]=1
 	if[contacts_organisations][reverse_relation]=1
 	if[contacts_organisations][contacts_details_separate]=1
 
