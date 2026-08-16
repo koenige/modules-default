@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-08-10 23:22+0000\n"
+"POT-Creation-Date: 2026-08-16 08:56+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -205,340 +205,443 @@ msgid "Search"
 msgstr ""
 
 #: configuration/settings.cfg:20
-#: configuration/settings.cfg:25
-msgid "Link to a form where a detail record can be added"
-msgstr ""
-
-#: configuration/settings.cfg:29
 msgid "Alias for a category path, use preferably"
 msgstr ""
 
-#: configuration/settings.cfg:34
+#: configuration/settings.cfg:25
 msgid "Delete old files in these folders: folder = max_age_seconds"
 msgstr ""
 
-#: configuration/settings.cfg:39
+#: configuration/settings.cfg:30
 msgid "Delete stale lines in these logfiles: filename = max_age_seconds"
 msgstr ""
 
+#: configuration/settings.cfg:35
+msgid "Include category when building contact-relation subtables"
+msgstr ""
+
+#: configuration/settings.cfg:40
+msgid "Include this category when the form context matches"
+msgstr ""
+
 #: configuration/settings.cfg:44
+msgid "Restrict linked-record picker to these category paths; on reverse relations also limits which categories get the subtable."
+msgstr ""
+
+#: configuration/settings.cfg:55
 msgid "IP addresses of server/s (IPv4, IPV6) that executes cron jobs"
 msgstr ""
 
-#: configuration/settings.cfg:49
-msgid "Throw 404 error if no search results were found"
-msgstr ""
-
-#: configuration/settings.cfg:54
-msgid "Class for block, set directly (instead of path or alias)"
-msgstr ""
-
-#: configuration/settings.cfg:58
-msgid "Allow to set a detail category per block"
-msgstr ""
-
-#: configuration/settings.cfg:63
-msgid "Date of the last execution of the cron job"
+#: configuration/settings.cfg:60
+msgid "Default selected category ID on insert for property subtables"
 msgstr ""
 
 #: configuration/settings.cfg:67
-msgid "Seconds to wait between the start of cron jobs that should start at the same time"
+msgid "Throw 404 error if no search results were found"
 msgstr ""
 
 #: configuration/settings.cfg:72
-msgid "Number of already executed (past) database update queries to show on the standard dbupdate page"
+msgid "Class for block, set directly (instead of path or alias)"
 msgstr ""
 
 #: configuration/settings.cfg:77
-msgid "Directories to exclude from deprecation scans"
+msgid "Allow to set a detail category per block"
 msgstr ""
 
-#: configuration/settings.cfg:86
-msgid "Files to exclude from deprecation scans"
+#: configuration/settings.cfg:83
+msgid "Date of the last execution of the cron job"
+msgstr ""
+
+#: configuration/settings.cfg:87
+msgid "Seconds to wait between the start of cron jobs that should start at the same time"
 msgstr ""
 
 #: configuration/settings.cfg:92
+msgid "Number of already executed (past) database update queries to show on the standard dbupdate page"
+msgstr ""
+
+#: configuration/settings.cfg:97
+msgid "Directories to exclude from deprecation scans"
+msgstr ""
+
+#: configuration/settings.cfg:106
+msgid "Files to exclude from deprecation scans"
+msgstr ""
+
+#: configuration/settings.cfg:112
 msgid "File extensions to scan for deprecated code patterns (without dot)"
 msgstr ""
 
-#: configuration/settings.cfg:107
+#: configuration/settings.cfg:127
 msgid "List of files not to use from default module"
 msgstr ""
 
-#: configuration/settings.cfg:111
+#: configuration/settings.cfg:131
 msgid "Maximum no. of files that can be downloaded at once"
 msgstr ""
 
-#: configuration/settings.cfg:116
+#: configuration/settings.cfg:136
 msgid "Maximum filesize of download archive"
 msgstr ""
 
-#: configuration/settings.cfg:121
+#: configuration/settings.cfg:141
 msgid "ZIP creation is possible via `shell` or `php` – shell is faster but not always available"
 msgstr ""
 
-#: configuration/settings.cfg:128
+#: configuration/settings.cfg:148
 msgid "Top folder for filetree"
 msgstr ""
 
-#: configuration/settings.cfg:134
+#: configuration/settings.cfg:154
 msgid "Filenames that are treated as text files when viewed in filetree"
 msgstr ""
 
-#: configuration/settings.cfg:145
+#: configuration/settings.cfg:165
 msgid "Filenames (basename, without folder) that cannot be deleted"
 msgstr ""
 
-#: configuration/settings.cfg:165
+#: configuration/settings.cfg:185
 msgid "Maximum length of a filename extension shown in filetree (longer suffixes are treated as unknown)"
 msgstr ""
 
-#: configuration/settings.cfg:170
+#: configuration/settings.cfg:190
 msgid "Delete job entries from job queue after n hours"
 msgstr ""
 
-#: configuration/settings.cfg:175
+#: configuration/settings.cfg:195
 msgid "Base value for the exponent for the delay of retries after minutes"
 msgstr ""
 
-#: configuration/settings.cfg:180
+#: configuration/settings.cfg:200
 msgid "Maximum number of tries to complete a job if it fails"
 msgstr ""
 
-#: configuration/settings.cfg:185
+#: configuration/settings.cfg:205
 msgid "Maximum runtime of one request in the job manager"
 msgstr ""
 
-#: configuration/settings.cfg:190
+#: configuration/settings.cfg:210
 msgid "Maximum length of response or single response key that job manager will save"
 msgstr ""
 
-#: configuration/settings.cfg:195
+#: configuration/settings.cfg:215
 msgid "Minutes after a running job that probably hung can be started again"
 msgstr ""
 
-#: configuration/settings.cfg:200
+#: configuration/settings.cfg:220
 msgid "Sleep microseconds after a job was finished before calling the next one"
 msgstr ""
 
-#: configuration/settings.cfg:205
+#: configuration/settings.cfg:225
 msgid "Default language register per language, i. e. is not added to language tag"
 msgstr ""
 
-#: configuration/settings.cfg:210
+#: configuration/settings.cfg:231
 msgid "Show full language name instead of ISO code for language switcher"
 msgstr ""
 
-#: configuration/settings.cfg:214
+#: configuration/settings.cfg:235
 msgid "Use logfile for database export"
 msgstr ""
 
-#: configuration/settings.cfg:219
+#: configuration/settings.cfg:240
 msgid "List of fields for database export log"
 msgstr ""
 
-#: configuration/settings.cfg:227
+#: configuration/settings.cfg:248
 msgid "Validity of entries in database export log"
 msgstr ""
 
-#: configuration/settings.cfg:232
+#: configuration/settings.cfg:253
 msgid "Set to true if last token might contain spaces"
 msgstr ""
 
-#: configuration/settings.cfg:237
+#: configuration/settings.cfg:258
 msgid "Use logfile for database import, old and new IDs"
 msgstr ""
 
-#: configuration/settings.cfg:242
+#: configuration/settings.cfg:263
 msgid "List of fields for database import log, IDs"
 msgstr ""
 
-#: configuration/settings.cfg:249
+#: configuration/settings.cfg:270
 msgid "Validity of entries in database import ID log"
 msgstr ""
 
-#: configuration/settings.cfg:254
+#: configuration/settings.cfg:275
 msgid "Background colour of login form"
 msgstr ""
 
-#: configuration/settings.cfg:259
+#: configuration/settings.cfg:280
 msgid "sed patterns to clean up MySQL structure dumps"
 msgstr ""
 
-#: configuration/settings.cfg:265
+#: configuration/settings.cfg:286
 msgid "List of allowed hostnames (or ends of it) for proxy"
 msgstr ""
 
-#: configuration/settings.cfg:270
+#: configuration/settings.cfg:291
 msgid "Username of local user that is used for maintenance operations (should have admin rights)"
 msgstr ""
 
-#: configuration/settings.cfg:273
+#: configuration/settings.cfg:294
 msgid "Show a h2 with Search results: above search results"
 msgstr ""
 
-#: configuration/settings.cfg:278
+#: configuration/settings.cfg:299
 msgid "Show search form in search results at the bottom"
 msgstr ""
 
-#: configuration/settings.cfg:283
+#: configuration/settings.cfg:304
 msgid "Show search form in search results at the top"
 msgstr ""
 
-#: configuration/settings.cfg:288
+#: configuration/settings.cfg:309
 msgid "If content is translated, default source language, ISO 639-1 code; for text table only"
 msgstr ""
 
-#: configuration/settings.cfg:294
+#: configuration/settings.cfg:315
 msgid "If content is translated, default destination language, ISO 639-1 code"
 msgstr ""
 
-#: configuration/settings.cfg:299
+#: configuration/settings.cfg:320
 msgid "Allow to use table definition scripts from default module, bool: yes, or list of tables"
 msgstr ""
 
-#: configuration/settings.cfg:303
+#: configuration/settings.cfg:324
 msgid "If make script for update is run, limit each run to this no. of records"
 msgstr ""
 
-#: configuration/settings.cfg:308
+#: configuration/settings.cfg:329
 msgid "Use webpages/media table from default module"
 msgstr ""
 
-#: configuration/settings.cfg:313
+#: configuration/settings.cfg:334
 msgid "Use webpages/blocks table: assign blocks to webpages in webpage form"
 msgstr ""
 
-#: configuration/settings.cfg:317
+#: configuration/settings.cfg:338
 msgid "Class for website template"
 msgstr ""
 
-#: configuration/settings.cfg:321
+#: configuration/settings.cfg:342
+msgid "Description for subpage list item (overrides database field)"
+msgstr ""
+
+#: configuration/settings.cfg:348
 msgid "Set access rights for this webpage; e.g. `admin` hides it from the webpages table for users without admin access"
 msgstr ""
 
-#: configuration/settings.cfg:326
-msgid "Display mode for category subtable in form"
+#: configuration/settings.cfg:353
+msgid "Filter contacts to federation-type organisations in booking forms"
 msgstr ""
 
-#: configuration/settings.cfg:332
-msgid "Do not show this category subtable in the list view"
+#: configuration/settings.cfg:358
+msgid "Per-field overrides on checkout address subtables (title_desc, explanation, required, default)"
 msgstr ""
 
-#: configuration/settings.cfg:337
-msgid "Datetime as start date from when on a caching of certain JS/CSS should be disabled (when you deploy updates)"
+#: configuration/settings.cfg:369
+msgid "Exclude category from news article menu hierarchy"
 msgstr ""
 
-#: configuration/settings.cfg:341
-msgid "Title of language link, preferably language name in native language (or variants like “English Version“), iso=name"
+#: configuration/settings.cfg:375
+msgid "Hide participation fields on usergroup categories (unless overridden by show[…])"
 msgstr ""
 
-#: configuration/settings.cfg:346
-msgid "Additional log files, same format as error logs (filled with wrap_log())"
-msgstr ""
-
-#: configuration/settings.cfg:350
-msgid "Minimal length of a password"
-msgstr ""
-
-#: configuration/settings.cfg:355
-msgid "Use field logins.login_rights"
-msgstr ""
-
-#: configuration/settings.cfg:360
-msgid "Maximum detail records for category subtable"
-msgstr ""
-
-#: configuration/settings.cfg:367
-msgid "Max no. of requests per job category which might run parallel"
-msgstr ""
-
-#: configuration/settings.cfg:373
-msgid "Minimum required detail records for category subtable"
-msgstr ""
-
-#: configuration/settings.cfg:379
-msgid "Initial installation date of default module (for updates)"
-msgstr ""
-
-#: configuration/settings.cfg:383
-msgid "Do not append category title as prefix in list or export output"
-msgstr ""
-
-#: configuration/settings.cfg:388
-msgid "Write this field category to type_category_id in the database"
-msgstr ""
-
-#: configuration/settings.cfg:393
-msgid "Path used to restrict detail records to this path fragment, for reverse relations"
-msgstr ""
-
-#: configuration/settings.cfg:397
-msgid "Show property value field next to category in subtable"
+#: configuration/settings.cfg:382
+msgid "Auto-identifier rules for records linked to this category (concat, fields, prefix, etc.)"
 msgstr ""
 
 #: configuration/settings.cfg:402
-msgid "Size of images in search results"
+msgid "Per-context overrides; if[context] block merges into parameters"
 msgstr ""
 
 #: configuration/settings.cfg:406
-msgid "Order of modules in search output"
+msgid "Category ID of the job type (parallel limit via max_requests on that category)"
 msgstr ""
 
-#: configuration/settings.cfg:410
-msgid "Sequence field in category subtable (0 = hide, sequence = show sequence field)"
+#: configuration/settings.cfg:413
+msgid "Datetime as start date from when on a caching of certain JS/CSS should be disabled (when you deploy updates)"
 msgstr ""
 
-#: configuration/settings.cfg:416
-msgid "Read menu hierarchy from categories"
+#: configuration/settings.cfg:417
+msgid "Title of language link, preferably language name in native language (or variants like “English Version“), iso=name"
 msgstr ""
 
-#: configuration/settings.cfg:421
-msgid "For menu_hierarchy, use only part of the path starting at this segment"
+#: configuration/settings.cfg:422
+msgid "Additional log files, same format as error logs (filled with wrap_log())"
 msgstr ""
 
 #: configuration/settings.cfg:426
-msgid "Split title at ' / ' if a link between records can be seen from both sides and different titles are needed"
+msgid "Minimal length of a password"
 msgstr ""
 
 #: configuration/settings.cfg:431
-msgid "Class name for subpage list item"
+msgid "Use field logins.login_rights"
 msgstr ""
 
 #: configuration/settings.cfg:436
-msgid "Extra item: subpage description"
+msgid "Max no. of requests per job category which might run parallel"
 msgstr ""
 
-#: configuration/settings.cfg:442
-msgid "Extra item: query string to add as default for subpage list item"
+#: configuration/settings.cfg:443
+msgid "Initial installation date of default module (for updates)"
 msgstr ""
 
-#: configuration/settings.cfg:448
-msgid "Extra item: subpage title"
+#: configuration/settings.cfg:447
+msgid "Tag event-text categories for a module context (e.g. module=tournaments)"
 msgstr ""
 
 #: configuration/settings.cfg:454
-msgid "Hide this page from subpage list items"
+msgid "Move excess contactdetail rows to another channel category when max exceeded"
 msgstr ""
 
-#: configuration/settings.cfg:459
-msgid "Indentation level of subpage list item"
+#: configuration/settings.cfg:460
+msgid "Do not append category title as prefix in list or export output"
 msgstr ""
 
 #: configuration/settings.cfg:465
-msgid "Query string to add as default for subpage list item"
+msgid "Use “Categories” tab instead of prepending category title on property subtables"
 msgstr ""
 
 #: configuration/settings.cfg:471
+msgid "Suppress separator between consecutive category subtable fields"
+msgstr ""
+
+#: configuration/settings.cfg:477
+msgid "Write this field category to type_category_id in the database"
+msgstr ""
+
+#: configuration/settings.cfg:482
+msgid "Job priority in the queue (lower number = higher priority)"
+msgstr ""
+
+#: configuration/settings.cfg:488
+msgid "Show property value field next to category in subtable"
+msgstr ""
+
+#: configuration/settings.cfg:493
+msgid "Input width for property field in category property subtables"
+msgstr ""
+
+#: configuration/settings.cfg:499
+msgid "Show remarks field on contact-relation subtables when set"
+msgstr ""
+
+#: configuration/settings.cfg:504
+msgid "Swap symmetric foreign keys when viewing data from the main ID side"
+msgstr ""
+
+#: configuration/settings.cfg:509
+msgid "Reverse-relation overrides when if[context][reverse_relation]=1"
+msgstr ""
+
+#: configuration/settings.cfg:513
+msgid "Exclude page from site search when set to 0"
+msgstr ""
+
+#: configuration/settings.cfg:518
+msgid "Size of images in search results"
+msgstr ""
+
+#: configuration/settings.cfg:522
+msgid "Order of modules in search output"
+msgstr ""
+
+#: configuration/settings.cfg:526
+msgid "Sequence field in category subtable (0 = hide, sequence = show sequence field)"
+msgstr ""
+
+#: configuration/settings.cfg:532
+msgid "Run jobs sequentially for the same URL path (mutex); implies trigger"
+msgstr ""
+
+#: configuration/settings.cfg:537
+msgid "Show participation fields on usergroup categories (counterpart to hide[…])"
+msgstr ""
+
+#: configuration/settings.cfg:544
+msgid "Read menu hierarchy from categories"
+msgstr ""
+
+#: configuration/settings.cfg:549
+msgid "For menu_hierarchy, use only part of the path starting at this segment"
+msgstr ""
+
+#: configuration/settings.cfg:554
+msgid "Split category title at ' / ' (normal / reverse) for symmetric relations; replaces children[relation] and parents[relation]"
+msgstr ""
+
+#: configuration/settings.cfg:559
+msgid "Class name for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:564
+msgid "Extra item: subpage description"
+msgstr ""
+
+#: configuration/settings.cfg:570
+msgid "Extra item: query string to add as default for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:576
+msgid "Extra item: subpage title"
+msgstr ""
+
+#: configuration/settings.cfg:582
+msgid "Hide this page from subpage list items"
+msgstr ""
+
+#: configuration/settings.cfg:587
+msgid "Indentation level of subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:593
+msgid "Query string to add as default for subpage list item"
+msgstr ""
+
+#: configuration/settings.cfg:599
 msgid "Name of the user to login with for server sync"
 msgstr ""
 
-#: configuration/settings.cfg:474
+#: configuration/settings.cfg:602
 msgid "Language tag for language register category"
 msgstr ""
 
-#: configuration/settings.cfg:479
+#: configuration/settings.cfg:608
+msgid "Trigger the job via HTTP POST to the job manager immediately"
+msgstr ""
+
+#: configuration/settings.cfg:613
+msgid "Fixed type_category_id for _categories junction rows (e.g. costs/buchungen)"
+msgstr ""
+
+#: configuration/settings.cfg:622
+msgid "Unit of a category property"
+msgstr ""
+
+#: configuration/settings.cfg:630
+msgid "URL path of the background job to execute (stored as job_url)"
+msgstr ""
+
+#: configuration/settings.cfg:639
+msgid "URL slug segment for registration-type participation categories"
+msgstr ""
+
+#: configuration/settings.cfg:646
 msgid "Use each child category as separate subtable field"
+msgstr ""
+
+#: configuration/settings.cfg:651
+msgid "Preset hidden field values on invitation or registration subtables"
+msgstr ""
+
+#: configuration/settings.cfg:661
+msgid "Pre-fill form values when opening contacts form for this contact category"
+msgstr ""
+
+#: default/context.inc.php:37
+msgid "Unknown form context `%s` for `%s`."
 msgstr ""
 
 #: default/download.inc.php:93
@@ -1088,6 +1191,35 @@ msgstr ""
 msgid "Frequency"
 msgstr ""
 
+#: templates/make-logging-db-table.template.txt:17
+#: zzbrick_make/loggingdbtable.inc.php:78
+msgid "The logging table has no db_table column yet. Apply the database update first."
+msgstr ""
+
+#: templates/make-logging-db-table.template.txt:19
+msgid "This fills empty db_table values in the logging table by parsing each stored SQL query. Rows whose query does not contain a table name stay empty."
+msgstr ""
+
+#: templates/make-logging-db-table.template.txt:20
+msgid "Pending rows"
+msgstr ""
+
+#: templates/make-logging-db-table.template.txt:21
+msgid "Rows per step"
+msgstr ""
+
+#: templates/make-logging-db-table.template.txt:23
+msgid "Start backfill"
+msgstr ""
+
+#: templates/make-logging-db-table.template.txt:24
+msgid "Stop"
+msgstr ""
+
+#: templates/make-logging-db-table.template.txt:27
+msgid "Progress"
+msgstr ""
+
 #: templates/module.template.txt:22
 msgid "About"
 msgstr ""
@@ -1360,7 +1492,7 @@ msgid_plural "%d queries were executed."
 msgstr[] ""
 msgstr[] ""
 
-#: zzbrick_make/dbupdate.inc.php:243
+#: zzbrick_make/dbupdate.inc.php:214
 msgid "Could not update database."
 msgstr ""
 
@@ -1399,6 +1531,42 @@ msgstr ""
 
 #: zzbrick_make/log.inc.php:75
 msgid "Group entries"
+msgstr ""
+
+#: zzbrick_make/loggingdbtable.inc.php:34
+msgid "Logging table names"
+msgstr ""
+
+#: zzbrick_make/loggingdbtable.inc.php:91
+msgid "Invalid logging db_table request."
+msgstr ""
+
+#: zzbrick_make/loggingdbtable.inc.php:104
+msgid "Invalid processed count."
+msgstr ""
+
+#: zzbrick_make/loggingdbtable.inc.php:110
+msgid "Stopped after %d steps. %d logging rows still have an empty db_table."
+msgstr ""
+
+#: zzbrick_make/loggingdbtable.inc.php:115
+msgid "Finished %d steps. %d logging rows still have an empty db_table (queries without a table name)."
+msgstr ""
+
+#: zzbrick_make/loggingdbtable.inc.php:119
+msgid "All logging rows with a parseable table name were updated."
+msgstr ""
+
+#: zzbrick_make/loggingdbtable.inc.php:133
+msgid "No logging rows with an empty db_table were found."
+msgstr ""
+
+#: zzbrick_make/loggingdbtable.inc.php:149
+msgid "Could not read logging rows."
+msgstr ""
+
+#: zzbrick_make/loggingdbtable.inc.php:154
+msgid "log_id %d–%d: %d updated, %d without table name."
 msgstr ""
 
 #: zzbrick_make/maillog.inc.php:26
@@ -1440,19 +1608,19 @@ msgstr ""
 msgid "Library Adminer does not exist"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:144
+#: zzbrick_request/maintenance.inc.php:145
 msgid "Master"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:149
+#: zzbrick_request/maintenance.inc.php:150
 msgid "Detail"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:156
+#: zzbrick_request/maintenance.inc.php:157
 msgid "Translation"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:241
+#: zzbrick_request/maintenance.inc.php:242
 msgid "not installed"
 msgstr ""
 
@@ -1617,6 +1785,6 @@ msgstr ""
 msgid "Last Access"
 msgstr ""
 
-#: zzform/definition.inc.php:87
+#: zzform/definition.inc.php:91
 msgid "You need a property field if using `key_value` subtables."
 msgstr ""

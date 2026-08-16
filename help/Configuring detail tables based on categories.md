@@ -20,7 +20,7 @@ on entries in the `categories` table.
 
 The form declares a **context** per subtable type. Category rows declare
 where they apply via **`context`**, optional per-context overrides via
-**`if`**, and reverse-relation settings via **`reversed`**.
+**`if`** and **`zzform_if`**, and reverse-relation settings via **`reversed`**.
 
 ## Form context
 
@@ -91,16 +91,25 @@ keeps those with `context[$context]=1` for the form’s context.
 
 Per-context overrides on a category row. The `if[$context]` block has the
 same shape as category `parameters` and is merged when the context
-applies (field overrides under `zzform`):
+applies (flags such as `reverse_relation`, not form-field properties):
 
-	if[contacts_places][zzform][title]=Telefon
-	if[contacts_places][zzform][explanation]=Festnetz vor Ort. Bitte im Format %2B49 4321 56789
-	if[shop][zzform][max_records]=1
+	if[contacts_places][title]=Telefon
 	if[contacts_organisations][reverse_relation]=1
 	if[contacts_organisations][contacts_details_separate]=1
 
 When several contexts match (path OR), matching `if` blocks are merged;
 later blocks override earlier ones.
+
+### `zzform_if`
+
+Per-context overrides for zzform field properties. Merged into `zzform`
+when the context applies:
+
+	zzform_if[contacts_places][explanation]=Festnetz vor Ort. Bitte im Format %2B49 4321 56789
+	zzform_if[shop][max_records]=1
+
+When several contexts match (path OR), matching `zzform_if` blocks are
+merged into `zzform` in order; later blocks override earlier ones.
 
 ### `reversed`
 
@@ -115,7 +124,7 @@ When a relation is shown from the main-contact side, use
 
 `mf_default_categories_restrict()` in the module’s zzform/definition file
 reads `$values['context'][$type]`, filters categories by `context`, applies
-`if` and `reversed`, and fills `$values[$type]`.
+`if`, `zzform_if`, and `reversed`, and fills `$values[$type]`.
 
 ## Using detail tables with identical keys
 

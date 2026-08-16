@@ -2,7 +2,7 @@
 
 /**
  * default module
- * form context helpers (context / if / reversed)
+ * form context helpers (context / if / zzform_if / reversed)
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/default
@@ -131,6 +131,29 @@ function mf_default_apply_if(array $parameters, $contexts) {
 		if (empty($parameters['if'][$context])) continue;
 		if (!is_array($parameters['if'][$context])) continue;
 		$parameters = wrap_array_merge($parameters, $parameters['if'][$context]);
+	}
+	return $parameters;
+}
+
+/**
+ * merge matching zzform_if[context] blocks into parameters[zzform]
+ *
+ * @param array $parameters parsed category parameters
+ * @param string|array $contexts one context or list (OR); blocks merged in order
+ * @return array
+ */
+function mf_default_apply_zzform_if(array $parameters, $contexts) {
+	if (empty($parameters['zzform_if'])) return $parameters;
+	if (!is_array($parameters['zzform_if'])) return $parameters;
+
+	foreach (mf_default_context_list($contexts) as $context) {
+		if (!mf_default_category_context($parameters, $context)) continue;
+		if (empty($parameters['zzform_if'][$context])) continue;
+		if (!is_array($parameters['zzform_if'][$context])) continue;
+		$parameters['zzform'] = wrap_array_merge(
+			$parameters['zzform'] ?? [],
+			$parameters['zzform_if'][$context]
+		);
 	}
 	return $parameters;
 }
