@@ -153,7 +153,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 
 	foreach ($pc as $index => $category) {
 		$no = $last_no - $index;
-		if (empty($parameters['no_separator']))
+		if ($parameters['zzform']['separator'] ?? true)
 			$zz['fields'][$no]['separator'] = true;
 		if ($zz['fields'][$no]['hide_in_list']) continue;
 		if (!$last_visible_found)

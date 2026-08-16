@@ -614,3 +614,4 @@
 /* 2026-08-16-3 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&use_for[', '&context[') WHERE `parameters` LIKE '%&use_for[%';
 /* 2026-08-16-8 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&if[', '&context_if[') WHERE `parameters` LIKE '%&if[%';
 /* 2026-08-16-10 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&reversed[', '&context_reversed[') WHERE `parameters` LIKE '%&reversed[%';
+/* 2026-08-16-11 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&no_separator=1', '&zzform[separator]=0') WHERE `parameters` LIKE '%&no_separator=1%';
