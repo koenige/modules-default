@@ -2,7 +2,7 @@
 
 /**
  * default module
- * form context helpers (context / if / zzform_if / reversed)
+ * form context helpers (context / context_if / zzform_if / reversed)
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/default
@@ -113,24 +113,24 @@ function mf_default_category_context(array $parameters, $contexts) {
 }
 
 /**
- * merge matching if[context] blocks into parameters
+ * merge matching context_if[context] blocks into parameters
  *
- * The if[$context] block is a partial parameters tree (same shape as on the
+ * The context_if[$context] block is a partial parameters tree (same shape as on the
  * category row); merged with wrap_array_merge when context[$context]=1.
  *
  * @param array $parameters parsed category parameters
  * @param string|array $contexts one context or list (OR); blocks merged in order
  * @return array
  */
-function mf_default_apply_if(array $parameters, $contexts) {
-	if (empty($parameters['if'])) return $parameters;
-	if (!is_array($parameters['if'])) return $parameters;
+function mf_default_apply_context_if(array $parameters, $contexts) {
+	if (empty($parameters['context_if'])) return $parameters;
+	if (!is_array($parameters['context_if'])) return $parameters;
 
 	foreach (mf_default_context_list($contexts) as $context) {
 		if (!mf_default_category_context($parameters, $context)) continue;
-		if (empty($parameters['if'][$context])) continue;
-		if (!is_array($parameters['if'][$context])) continue;
-		$parameters = wrap_array_merge($parameters, $parameters['if'][$context]);
+		if (empty($parameters['context_if'][$context])) continue;
+		if (!is_array($parameters['context_if'][$context])) continue;
+		$parameters = wrap_array_merge($parameters, $parameters['context_if'][$context]);
 	}
 	return $parameters;
 }
@@ -159,7 +159,7 @@ function mf_default_apply_zzform_if(array $parameters, $contexts) {
 }
 
 /**
- * apply reversed[] overrides when if[context][reverse_relation]=1
+ * apply reversed[] overrides when context_if[context][reverse_relation]=1
  *
  * Only applies when context[$context]=1 on the same row.
  * reversed[zzform] is merged into the existing zzform block;
@@ -175,8 +175,8 @@ function mf_default_apply_reversed(array $line, $contexts) {
 	$reverse = false;
 	foreach (mf_default_context_list($contexts) as $context) {
 		if (!mf_default_category_context($line['parameters'], $context)) continue;
-		if (empty($line['parameters']['if'][$context]['reverse_relation'])) continue;
-		if ($line['parameters']['if'][$context]['reverse_relation'].'' !== '1') continue;
+		if (empty($line['parameters']['context_if'][$context]['reverse_relation'])) continue;
+		if ($line['parameters']['context_if'][$context]['reverse_relation'].'' !== '1') continue;
 		$reverse = true;
 		break;
 	}

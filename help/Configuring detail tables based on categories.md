@@ -20,7 +20,7 @@ on entries in the `categories` table.
 
 The form declares a **context** per subtable type. Category rows declare
 where they apply via **`context`**, optional per-context overrides via
-**`if`** and **`zzform_if`**, and reverse-relation settings via **`reversed`**.
+**`context_if`** and **`zzform_if`**, and reverse-relation settings via **`reversed`**.
 
 ## Form context
 
@@ -49,7 +49,7 @@ A context is either a **registered slug** or a **category path**.
 **Registered slugs** are listed in the module’s `settings.cfg` with
 `scope[] = context` on the section name, e. g. `contacts_persons`,
 `events_contacts`, `news_articles`, `shop`. The section name is the
-context string used in PHP and in `context[…]` / `if[…]` keys.
+context string used in PHP and in `context[…]` / `context_if[…]` keys.
 
 **Category paths** contain a slash, e. g. `contact/school`, `contact/club`.
 They are valid when the path exists in the categories tree (resolved via
@@ -87,17 +87,17 @@ On a category row, tag inclusion for a context:
 `mf_default_categories_restrict()` loads categories from the subtree and
 keeps those with `context[$context]=1` for the form’s context.
 
-### `if`
+### `context_if`
 
-Per-context overrides on a category row. The `if[$context]` block has the
+Per-context overrides on a category row. The `context_if[$context]` block has the
 same shape as category `parameters` and is merged when the context
 applies (flags such as `reverse_relation`, not form-field properties):
 
-	if[contacts_places][title]=Telefon
-	if[contacts_organisations][reverse_relation]=1
-	if[contacts_organisations][contacts_details_separate]=1
+	context_if[contacts_places][title]=Telefon
+	context_if[contacts_organisations][reverse_relation]=1
+	context_if[contacts_organisations][contacts_details_separate]=1
 
-When several contexts match (path OR), matching `if` blocks are merged;
+When several contexts match (path OR), matching `context_if` blocks are merged;
 later blocks override earlier ones.
 
 ### `zzform_if`
@@ -114,7 +114,7 @@ merged into `zzform` in order; later blocks override earlier ones.
 ### `reversed`
 
 When a relation is shown from the main-contact side, use
-`if[$context][reverse_relation]=1` and optional overrides:
+`context_if[$context][reverse_relation]=1` and optional overrides:
 
 	reversed[path]=local-group
 	reversed[add_details]=/db/local-groups/
@@ -124,7 +124,7 @@ When a relation is shown from the main-contact side, use
 
 `mf_default_categories_restrict()` in the module’s zzform/definition file
 reads `$values['context'][$type]`, filters categories by `context`, applies
-`if`, `zzform_if`, and `reversed`, and fills `$values[$type]`.
+`context_if`, `zzform_if`, and `reversed`, and fills `$values[$type]`.
 
 ## Using detail tables with identical keys
 
@@ -139,7 +139,7 @@ the order **normal / reverse** (i. e. `some_id / main_some_id`), e. g.
 first part (`Universities`) is used; on the reverse side
 (`main_contact_id`), the second part (`Local Groups`).
 
-2. For reverse settings, set `if[$context][reverse_relation]=1` and use
+2. For reverse settings, set `context_if[$context][reverse_relation]=1` and use
 `reversed[…]` for overrides (see above).
 
 3. To associate records, use `association=1`. Two detail records are shown

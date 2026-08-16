@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-08-16 08:56+0000\n"
+"POT-Creation-Date: 2026-08-16 09:05+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -225,235 +225,235 @@ msgid "Include this category when the form context matches"
 msgstr ""
 
 #: configuration/settings.cfg:44
+msgid "Per-context overrides; context_if[context] block merges into parameters"
+msgstr ""
+
+#: configuration/settings.cfg:48
 msgid "Restrict linked-record picker to these category paths; on reverse relations also limits which categories get the subtable."
 msgstr ""
 
-#: configuration/settings.cfg:55
+#: configuration/settings.cfg:59
 msgid "IP addresses of server/s (IPv4, IPV6) that executes cron jobs"
 msgstr ""
 
-#: configuration/settings.cfg:60
+#: configuration/settings.cfg:64
 msgid "Default selected category ID on insert for property subtables"
 msgstr ""
 
-#: configuration/settings.cfg:67
+#: configuration/settings.cfg:71
 msgid "Throw 404 error if no search results were found"
 msgstr ""
 
-#: configuration/settings.cfg:72
+#: configuration/settings.cfg:76
 msgid "Class for block, set directly (instead of path or alias)"
 msgstr ""
 
-#: configuration/settings.cfg:77
+#: configuration/settings.cfg:81
 msgid "Allow to set a detail category per block"
 msgstr ""
 
-#: configuration/settings.cfg:83
+#: configuration/settings.cfg:87
 msgid "Date of the last execution of the cron job"
 msgstr ""
 
-#: configuration/settings.cfg:87
+#: configuration/settings.cfg:91
 msgid "Seconds to wait between the start of cron jobs that should start at the same time"
 msgstr ""
 
-#: configuration/settings.cfg:92
+#: configuration/settings.cfg:96
 msgid "Number of already executed (past) database update queries to show on the standard dbupdate page"
 msgstr ""
 
-#: configuration/settings.cfg:97
+#: configuration/settings.cfg:101
 msgid "Directories to exclude from deprecation scans"
 msgstr ""
 
-#: configuration/settings.cfg:106
+#: configuration/settings.cfg:110
 msgid "Files to exclude from deprecation scans"
 msgstr ""
 
-#: configuration/settings.cfg:112
+#: configuration/settings.cfg:116
 msgid "File extensions to scan for deprecated code patterns (without dot)"
 msgstr ""
 
-#: configuration/settings.cfg:127
+#: configuration/settings.cfg:131
 msgid "List of files not to use from default module"
 msgstr ""
 
-#: configuration/settings.cfg:131
+#: configuration/settings.cfg:135
 msgid "Maximum no. of files that can be downloaded at once"
 msgstr ""
 
-#: configuration/settings.cfg:136
+#: configuration/settings.cfg:140
 msgid "Maximum filesize of download archive"
 msgstr ""
 
-#: configuration/settings.cfg:141
+#: configuration/settings.cfg:145
 msgid "ZIP creation is possible via `shell` or `php` – shell is faster but not always available"
 msgstr ""
 
-#: configuration/settings.cfg:148
+#: configuration/settings.cfg:152
 msgid "Top folder for filetree"
 msgstr ""
 
-#: configuration/settings.cfg:154
+#: configuration/settings.cfg:158
 msgid "Filenames that are treated as text files when viewed in filetree"
 msgstr ""
 
-#: configuration/settings.cfg:165
+#: configuration/settings.cfg:169
 msgid "Filenames (basename, without folder) that cannot be deleted"
 msgstr ""
 
-#: configuration/settings.cfg:185
+#: configuration/settings.cfg:189
 msgid "Maximum length of a filename extension shown in filetree (longer suffixes are treated as unknown)"
 msgstr ""
 
-#: configuration/settings.cfg:190
+#: configuration/settings.cfg:194
 msgid "Delete job entries from job queue after n hours"
 msgstr ""
 
-#: configuration/settings.cfg:195
+#: configuration/settings.cfg:199
 msgid "Base value for the exponent for the delay of retries after minutes"
 msgstr ""
 
-#: configuration/settings.cfg:200
+#: configuration/settings.cfg:204
 msgid "Maximum number of tries to complete a job if it fails"
 msgstr ""
 
-#: configuration/settings.cfg:205
+#: configuration/settings.cfg:209
 msgid "Maximum runtime of one request in the job manager"
 msgstr ""
 
-#: configuration/settings.cfg:210
+#: configuration/settings.cfg:214
 msgid "Maximum length of response or single response key that job manager will save"
 msgstr ""
 
-#: configuration/settings.cfg:215
+#: configuration/settings.cfg:219
 msgid "Minutes after a running job that probably hung can be started again"
 msgstr ""
 
-#: configuration/settings.cfg:220
+#: configuration/settings.cfg:224
 msgid "Sleep microseconds after a job was finished before calling the next one"
 msgstr ""
 
-#: configuration/settings.cfg:225
+#: configuration/settings.cfg:229
 msgid "Default language register per language, i. e. is not added to language tag"
 msgstr ""
 
-#: configuration/settings.cfg:231
+#: configuration/settings.cfg:235
 msgid "Show full language name instead of ISO code for language switcher"
 msgstr ""
 
-#: configuration/settings.cfg:235
+#: configuration/settings.cfg:239
 msgid "Use logfile for database export"
 msgstr ""
 
-#: configuration/settings.cfg:240
+#: configuration/settings.cfg:244
 msgid "List of fields for database export log"
 msgstr ""
 
-#: configuration/settings.cfg:248
+#: configuration/settings.cfg:252
 msgid "Validity of entries in database export log"
 msgstr ""
 
-#: configuration/settings.cfg:253
+#: configuration/settings.cfg:257
 msgid "Set to true if last token might contain spaces"
 msgstr ""
 
-#: configuration/settings.cfg:258
+#: configuration/settings.cfg:262
 msgid "Use logfile for database import, old and new IDs"
 msgstr ""
 
-#: configuration/settings.cfg:263
+#: configuration/settings.cfg:267
 msgid "List of fields for database import log, IDs"
 msgstr ""
 
-#: configuration/settings.cfg:270
+#: configuration/settings.cfg:274
 msgid "Validity of entries in database import ID log"
 msgstr ""
 
-#: configuration/settings.cfg:275
+#: configuration/settings.cfg:279
 msgid "Background colour of login form"
 msgstr ""
 
-#: configuration/settings.cfg:280
+#: configuration/settings.cfg:284
 msgid "sed patterns to clean up MySQL structure dumps"
 msgstr ""
 
-#: configuration/settings.cfg:286
+#: configuration/settings.cfg:290
 msgid "List of allowed hostnames (or ends of it) for proxy"
 msgstr ""
 
-#: configuration/settings.cfg:291
+#: configuration/settings.cfg:295
 msgid "Username of local user that is used for maintenance operations (should have admin rights)"
 msgstr ""
 
-#: configuration/settings.cfg:294
+#: configuration/settings.cfg:298
 msgid "Show a h2 with Search results: above search results"
 msgstr ""
 
-#: configuration/settings.cfg:299
+#: configuration/settings.cfg:303
 msgid "Show search form in search results at the bottom"
 msgstr ""
 
-#: configuration/settings.cfg:304
+#: configuration/settings.cfg:308
 msgid "Show search form in search results at the top"
 msgstr ""
 
-#: configuration/settings.cfg:309
+#: configuration/settings.cfg:313
 msgid "If content is translated, default source language, ISO 639-1 code; for text table only"
 msgstr ""
 
-#: configuration/settings.cfg:315
+#: configuration/settings.cfg:319
 msgid "If content is translated, default destination language, ISO 639-1 code"
 msgstr ""
 
-#: configuration/settings.cfg:320
+#: configuration/settings.cfg:324
 msgid "Allow to use table definition scripts from default module, bool: yes, or list of tables"
 msgstr ""
 
-#: configuration/settings.cfg:324
+#: configuration/settings.cfg:328
 msgid "If make script for update is run, limit each run to this no. of records"
 msgstr ""
 
-#: configuration/settings.cfg:329
+#: configuration/settings.cfg:333
 msgid "Use webpages/media table from default module"
 msgstr ""
 
-#: configuration/settings.cfg:334
+#: configuration/settings.cfg:338
 msgid "Use webpages/blocks table: assign blocks to webpages in webpage form"
 msgstr ""
 
-#: configuration/settings.cfg:338
+#: configuration/settings.cfg:342
 msgid "Class for website template"
 msgstr ""
 
-#: configuration/settings.cfg:342
+#: configuration/settings.cfg:346
 msgid "Description for subpage list item (overrides database field)"
 msgstr ""
 
-#: configuration/settings.cfg:348
+#: configuration/settings.cfg:352
 msgid "Set access rights for this webpage; e.g. `admin` hides it from the webpages table for users without admin access"
 msgstr ""
 
-#: configuration/settings.cfg:353
+#: configuration/settings.cfg:357
 msgid "Filter contacts to federation-type organisations in booking forms"
 msgstr ""
 
-#: configuration/settings.cfg:358
+#: configuration/settings.cfg:362
 msgid "Per-field overrides on checkout address subtables (title_desc, explanation, required, default)"
 msgstr ""
 
-#: configuration/settings.cfg:369
+#: configuration/settings.cfg:373
 msgid "Exclude category from news article menu hierarchy"
 msgstr ""
 
-#: configuration/settings.cfg:375
+#: configuration/settings.cfg:379
 msgid "Hide participation fields on usergroup categories (unless overridden by show[…])"
 msgstr ""
 
-#: configuration/settings.cfg:382
+#: configuration/settings.cfg:386
 msgid "Auto-identifier rules for records linked to this category (concat, fields, prefix, etc.)"
-msgstr ""
-
-#: configuration/settings.cfg:402
-msgid "Per-context overrides; if[context] block merges into parameters"
 msgstr ""
 
 #: configuration/settings.cfg:406
@@ -533,7 +533,7 @@ msgid "Swap symmetric foreign keys when viewing data from the main ID side"
 msgstr ""
 
 #: configuration/settings.cfg:509
-msgid "Reverse-relation overrides when if[context][reverse_relation]=1"
+msgid "Reverse-relation overrides when context_if[context][reverse_relation]=1"
 msgstr ""
 
 #: configuration/settings.cfg:513

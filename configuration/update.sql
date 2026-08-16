@@ -612,3 +612,4 @@
 /* 2026-08-14-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&path_reverse=', '&reversed[path]=') WHERE `parameters` LIKE '%&path_reverse=%';
 /* 2026-08-14-3 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&category_reverse=', '&reversed[category]=') WHERE `parameters` LIKE '%&category_reverse=%';
 /* 2026-08-16-3 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&use_for[', '&context[') WHERE `parameters` LIKE '%&use_for[%';
+/* 2026-08-16-8 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&if[', '&context_if[') WHERE `parameters` LIKE '%&if[%';
