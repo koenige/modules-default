@@ -2,7 +2,7 @@
 
 /**
  * default module
- * form context helpers (context / context_if / zzform_if / reversed)
+ * form context helpers (context / context_if / zzform_if / context_reversed / zzform_reversed)
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/default
@@ -159,17 +159,16 @@ function mf_default_apply_zzform_if(array $parameters, $contexts) {
 }
 
 /**
- * apply reversed[] overrides when context_if[context][reverse_relation]=1
+ * apply context_reversed[] overrides when context_if[context][reverse_relation]=1
  *
  * Only applies when context[$context]=1 on the same row.
- * reversed[zzform] is merged into the existing zzform block;
- * all other keys replace the existing value.
+ * Sets $line['reverse']; path replaces $line['path'], other keys replace parameters.
  *
  * @param array $line category row with parameters (and optional path key)
  * @param string|array $contexts one context or list (OR)
  * @return array
  */
-function mf_default_apply_reversed(array $line, $contexts) {
+function mf_default_apply_context_reversed(array $line, $contexts) {
 	if (empty($line['parameters']) || !is_array($line['parameters'])) return $line;
 
 	$reverse = false;
@@ -183,19 +182,33 @@ function mf_default_apply_reversed(array $line, $contexts) {
 	if (!$reverse) return $line;
 
 	$line['reverse'] = true;
-	if (empty($line['parameters']['reversed'])) return $line;
-	if (!is_array($line['parameters']['reversed'])) return $line;
+	if (empty($line['parameters']['context_reversed'])) return $line;
+	if (!is_array($line['parameters']['context_reversed'])) return $line;
 
-	foreach ($line['parameters']['reversed'] as $key => $value) {
+	foreach ($line['parameters']['context_reversed'] as $key => $value) {
 		if ($key === 'path') {
 			$line['path'] = $value;
 			continue;
 		}
-		if ($key === 'zzform') {
-			$line['parameters'][$key] = wrap_array_merge($line['parameters'][$key] ?? [], $value);
-			continue;
-		}
 		$line['parameters'][$key] = $value;
 	}
+	return $line;
+}
+
+/**
+ * merge zzform_reversed[] into parameters[zzform] when reverse relation is active
+ *
+ * @param array $line category row with parameters (and optional reverse flag)
+ * @return array
+ */
+function mf_default_apply_zzform_reversed(array $line) {
+	if (empty($line['reverse'])) return $line;
+	if (empty($line['parameters']['zzform_reversed'])) return $line;
+	if (!is_array($line['parameters']['zzform_reversed'])) return $line;
+
+	$line['parameters']['zzform'] = wrap_array_merge(
+		$line['parameters']['zzform'] ?? [],
+		$line['parameters']['zzform_reversed']
+	);
 	return $line;
 }

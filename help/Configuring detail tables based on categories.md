@@ -20,7 +20,8 @@ on entries in the `categories` table.
 
 The form declares a **context** per subtable type. Category rows declare
 where they apply via **`context`**, optional per-context overrides via
-**`context_if`** and **`zzform_if`**, and reverse-relation settings via **`reversed`**.
+**`context_if`** and **`zzform_if`**, and reverse-relation settings via
+**`context_reversed`** and **`zzform_reversed`**.
 
 ## Form context
 
@@ -111,20 +112,27 @@ when the context applies:
 When several contexts match (path OR), matching `zzform_if` blocks are
 merged into `zzform` in order; later blocks override earlier ones.
 
-### `reversed`
+### `context_reversed`
 
 When a relation is shown from the main-contact side, use
-`context_if[$context][reverse_relation]=1` and optional overrides:
+`context_if[$context][reverse_relation]=1` and optional parameter overrides:
 
-	reversed[path]=local-group
-	reversed[add_details]=/db/local-groups/
-	reversed[category]=Local Groups
+	context_reversed[path]=local-group
+	context_reversed[add_details]=/db/local-groups/
+	context_reversed[category]=Local Groups
+	context_reversed[context_link][contact/person]=1
+
+### `zzform_reversed`
+
+When reverse relation is active, zzform field overrides are merged into
+`zzform` (same keys as under `zzform[…]`).
 
 ## Restricting categories (engine)
 
 `mf_default_categories_restrict()` in the module’s zzform/definition file
 reads `$values['context'][$type]`, filters categories by `context`, applies
-`context_if`, `zzform_if`, and `reversed`, and fills `$values[$type]`.
+`context_if`, `zzform_if`, `context_reversed`, and `zzform_reversed`, and
+fills `$values[$type]`.
 
 ## Using detail tables with identical keys
 
@@ -140,7 +148,7 @@ first part (`Universities`) is used; on the reverse side
 (`main_contact_id`), the second part (`Local Groups`).
 
 2. For reverse settings, set `context_if[$context][reverse_relation]=1` and use
-`reversed[…]` for overrides (see above).
+`context_reversed[…]` / `zzform_reversed[…]` for overrides (see above).
 
 3. To associate records, use `association=1`. Two detail records are shown
 in combination: one with the main key and one with the normal key as

@@ -533,7 +533,7 @@ msgid "Swap symmetric foreign keys when viewing data from the main ID side"
 msgstr ""
 
 #: configuration/settings.cfg:509
-msgid "Reverse-relation overrides when context_if[context][reverse_relation]=1"
+msgid "Reverse-relation parameter overrides when context_if[context][reverse_relation]=1"
 msgstr ""
 
 #: configuration/settings.cfg:513

@@ -217,7 +217,8 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 				continue;
 			$line['parameters'] = mf_default_apply_context_if($line['parameters'], $contexts);
 			$line['parameters'] = mf_default_apply_zzform_if($line['parameters'], $contexts);
-			$line = mf_default_apply_reversed($line, $contexts);
+			$line = mf_default_apply_context_reversed($line, $contexts);
+			$line = mf_default_apply_zzform_reversed($line);
 		}
 
 		if (!empty($line['parameters']['alias']))
