@@ -55,7 +55,6 @@ function mod_default_make_jobmanager() {
 				'Access debug: X-Lock-Hash sent to %s: %s',
 				['values' => [$job['job_url'], $lock_hash]]
 			], 'debug_access');
-			}
 			list($status, $headers, $response)
 				= wrap_get_protected_url($job['job_url'], $headers_to_send, 'POST', $job['postdata'], $job['username']);
 		}
