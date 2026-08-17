@@ -34,7 +34,7 @@ function mod_default_make_jobmanager() {
 		if (!$job) break;
 		
 		// @todo allow to run a certain number of jobs per category in parallel
-		// with wrap_lock(), category, parameters, e. g. `max_requests`
+		// with wrap_lock(), category, parameters, e. g. `job_max_requests`
 
 		$started = mod_default_make_jobmanager_start($job);
 		if (!$started) break;
@@ -182,7 +182,7 @@ function mod_default_make_jobmanager_get($job_id = 0) {
 				WHERE jq.job_category_id = _jobqueue.job_category_id
 				AND job_status = "running" AND job_id != %d
 			) AS running_jobs
-			, SUBSTRING_INDEX(SUBSTRING_INDEX(parameters, "max_requests=", -1), "&", 1) AS max_request
+			, SUBSTRING_INDEX(SUBSTRING_INDEX(parameters, "job_max_requests=", -1), "&", 1) AS max_request
 			, postdata
 		FROM _jobqueue
 		LEFT JOIN categories

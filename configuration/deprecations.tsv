@@ -41,3 +41,4 @@
 2026-08-14-1	code	&add_details_reverse=	use context_reversed[add_details]=… in category parameters
 2026-08-14-2	code	&path_reverse=	use context_reversed[path]=… in category parameters
 2026-08-14-3	code	&category_reverse=	use context_reversed[category]=… in category parameters
+2026-08-17=1	code	&max_requests=	use `jobs_max_requests`
