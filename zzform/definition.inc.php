@@ -132,9 +132,9 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 		$zz['fields'][$no]['sql'] .= ' '.$zz['fields'][$no]['sqlorder'];
 		$zz['fields'][$no]['fields'][2]['type'] = 'foreign_key';
 		if (!empty($def['type_category_id'])) {
-			if (!empty($category['own_type_category']) AND empty($category['type_category']))
+			if (!empty($category['form_type_self']) AND empty($category['form_type_category']))
 				$category['type_category_id'] = $category['category_id'];
-			$zz['fields'][$no]['fields'][$def['type_category_id']]['value'] = $category['type_category_id'] ?? wrap_category_id($category['type_category'] ?? $path);
+			$zz['fields'][$no]['fields'][$def['type_category_id']]['value'] = $category['type_category_id'] ?? wrap_category_id($category['form_type_category'] ?? $path);
 			$zz['fields'][$no]['fields'][$def['type_category_id']]['for_action_ignore'] = true;
 		}
 		$zz['fields'][$no]['if'][1]['list_suffix'] = '</del>';
@@ -142,8 +142,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			$zz['fields'][$no]['fields'][$def['sequence']]['type'] = 'sequence';
 			$zz['fields'][$no]['fields'][$def['sequence']]['auto_value'] = 'increment';
 		}
-		if (!empty($category['default']))
-			$zz['fields'][$no]['if']['insert']['fields'][$def['category_id']]['default'] = wrap_category_id($category['default']);
+		if (!empty($category['form_category']))
+			$zz['fields'][$no]['if']['insert']['fields'][$def['category_id']]['default'] = wrap_category_id($category['form_category']);
 	}
 
 	// do not set list_append_next for last visible element

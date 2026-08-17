@@ -41,4 +41,7 @@
 2026-08-14-1	code	&add_details_reverse=	use context_reversed[add_details]=… in category parameters
 2026-08-14-2	code	&path_reverse=	use context_reversed[path]=… in category parameters
 2026-08-14-3	code	&category_reverse=	use context_reversed[category]=… in category parameters
-2026-08-17=1	code	&max_requests=	use `jobs_max_requests`
+2026-08-17-1	code	&max_requests=	use `job_max_requests` in category parameters
+2026-08-17-2	code	&type_category=	use `form_type_category=` in category parameters
+2026-08-17-3	code	&default=	use `form_category=` in category parameters (not site settings `[default]`)
+2026-08-17-4	code	&own_type_category=	use `form_type_self=1` in category parameters

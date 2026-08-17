@@ -465,8 +465,8 @@ msgstr ""
 msgid "Do not append category title as prefix in list or export output"
 msgstr ""
 
-#: configuration/settings.cfg:388
-msgid "Write this field category to type_category_id in the database"
+#: configuration/settings.cfg:437
+msgid "Use this category row as type_category_id when form_type_category is not set"
 msgstr ""
 
 #: configuration/settings.cfg:393

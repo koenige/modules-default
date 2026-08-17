@@ -616,3 +616,6 @@
 /* 2026-08-16-10 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&reversed[', '&context_reversed[') WHERE `parameters` LIKE '%&reversed[%';
 /* 2026-08-16-11 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&no_separator=1', '&zzform[separator]=0') WHERE `parameters` LIKE '%&no_separator=1%';
 /* 2026-08-17-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&max_requests=', '&job_max_requests=') WHERE `parameters` LIKE '%&max_requests=%' AND main_category_id = /*_ID categories jobs _*/;
+/* 2026-08-17-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&type_category=', '&form_type_category=') WHERE `parameters` LIKE '%&type_category=%';
+/* 2026-08-17-3 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&default=', '&form_category=') WHERE `parameters` LIKE '%&default=%';
+/* 2026-08-17-4 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&own_type_category=1', '&form_type_self=1') WHERE `parameters` LIKE '%&own_type_category=1%';
