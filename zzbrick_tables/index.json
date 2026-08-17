@@ -3,11 +3,7 @@
         "title": "Cron Jobs"
     },
     "_jobqueue": {
-        "title": "Background Job Queue",
-        "parameter_field": "postdata",
-        "audience": [
-            "editor"
-        ]
+        "title": "Background Job Queue"
     },
     "_settings": {
         "title": "Website settings"

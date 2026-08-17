@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-08-17 04:56+0000\n"
+"POT-Creation-Date: 2026-08-17 06:34+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -449,174 +449,154 @@ msgid "Hide participation fields on usergroup categories (unless overridden by s
 msgstr ""
 
 #: configuration/settings.cfg:380
-msgid "Category ID of the job type"
-msgstr ""
-
-#: configuration/settings.cfg:387
 msgid "Max no. of requests per job category which might run parallel"
 msgstr ""
 
-#: configuration/settings.cfg:394
+#: configuration/settings.cfg:387
 msgid "Datetime as start date from when on a caching of certain JS/CSS should be disabled (when you deploy updates)"
 msgstr ""
 
-#: configuration/settings.cfg:398
+#: configuration/settings.cfg:391
 msgid "Title of language link, preferably language name in native language (or variants like “English Version“), iso=name"
 msgstr ""
 
-#: configuration/settings.cfg:403
+#: configuration/settings.cfg:396
 msgid "Additional log files, same format as error logs (filled with wrap_log())"
 msgstr ""
 
-#: configuration/settings.cfg:407
+#: configuration/settings.cfg:400
 msgid "Minimal length of a password"
 msgstr ""
 
-#: configuration/settings.cfg:412
+#: configuration/settings.cfg:405
 msgid "Use field logins.login_rights"
 msgstr ""
 
-#: configuration/settings.cfg:417
+#: configuration/settings.cfg:410
 msgid "Initial installation date of default module (for updates)"
 msgstr ""
 
-#: configuration/settings.cfg:421
+#: configuration/settings.cfg:414
 msgid "Tag event-text categories for a module context (e.g. module=tournaments)"
 msgstr ""
 
-#: configuration/settings.cfg:428
+#: configuration/settings.cfg:421
 msgid "Move excess contactdetail rows to another channel category when max exceeded"
 msgstr ""
 
-#: configuration/settings.cfg:434
+#: configuration/settings.cfg:427
 msgid "Do not append category title as prefix in list or export output"
 msgstr ""
 
-#: configuration/settings.cfg:439
+#: configuration/settings.cfg:432
 msgid "Use “Categories” tab instead of prepending category title on property subtables"
 msgstr ""
 
-#: configuration/settings.cfg:443
+#: configuration/settings.cfg:436
 msgid "Write this field category to type_category_id in the database"
 msgstr ""
 
-#: configuration/settings.cfg:448
-msgid "Job priority in the queue (lower number = higher priority)"
-msgstr ""
-
-#: configuration/settings.cfg:454
+#: configuration/settings.cfg:441
 msgid "Show property value field next to category in subtable"
 msgstr ""
 
-#: configuration/settings.cfg:459
+#: configuration/settings.cfg:446
 msgid "Input width for property field in category property subtables"
 msgstr ""
 
-#: configuration/settings.cfg:465
+#: configuration/settings.cfg:452
 msgid "Show remarks field on contact-relation subtables when set"
 msgstr ""
 
-#: configuration/settings.cfg:470
+#: configuration/settings.cfg:457
 msgid "Swap symmetric foreign keys when viewing data from the main ID side"
 msgstr ""
 
-#: configuration/settings.cfg:475
+#: configuration/settings.cfg:462
 msgid "Exclude page from site search when set to 0"
 msgstr ""
 
-#: configuration/settings.cfg:480
+#: configuration/settings.cfg:467
 msgid "Size of images in search results"
 msgstr ""
 
-#: configuration/settings.cfg:484
+#: configuration/settings.cfg:471
 msgid "Order of modules in search output"
 msgstr ""
 
-#: configuration/settings.cfg:488
+#: configuration/settings.cfg:475
 msgid "Sequence field in category subtable (0 = hide, sequence = show sequence field)"
 msgstr ""
 
-#: configuration/settings.cfg:494
-msgid "Run jobs sequentially for the same URL path (mutex); implies trigger"
-msgstr ""
-
-#: configuration/settings.cfg:499
+#: configuration/settings.cfg:481
 msgid "Show participation fields on usergroup categories (counterpart to hide[…])"
 msgstr ""
 
-#: configuration/settings.cfg:506
+#: configuration/settings.cfg:488
 msgid "Read menu hierarchy from categories"
 msgstr ""
 
-#: configuration/settings.cfg:511
+#: configuration/settings.cfg:493
 msgid "For menu_hierarchy, use only part of the path starting at this segment"
 msgstr ""
 
-#: configuration/settings.cfg:516
+#: configuration/settings.cfg:498
 msgid "Split category title at ' / ' (normal / reverse) for symmetric relations; replaces children[relation] and parents[relation]"
 msgstr ""
 
-#: configuration/settings.cfg:521
+#: configuration/settings.cfg:503
 msgid "Class name for subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:526
+#: configuration/settings.cfg:508
 msgid "Extra item: subpage description"
 msgstr ""
 
-#: configuration/settings.cfg:532
+#: configuration/settings.cfg:514
 msgid "Extra item: query string to add as default for subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:538
+#: configuration/settings.cfg:520
 msgid "Extra item: subpage title"
 msgstr ""
 
-#: configuration/settings.cfg:544
+#: configuration/settings.cfg:526
 msgid "Hide this page from subpage list items"
 msgstr ""
 
-#: configuration/settings.cfg:549
+#: configuration/settings.cfg:531
 msgid "Indentation level of subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:555
+#: configuration/settings.cfg:537
 msgid "Query string to add as default for subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:561
+#: configuration/settings.cfg:543
 msgid "Name of the user to login with for server sync"
 msgstr ""
 
-#: configuration/settings.cfg:564
+#: configuration/settings.cfg:546
 msgid "Language tag for language register category"
 msgstr ""
 
-#: configuration/settings.cfg:570
-msgid "Trigger the job via HTTP POST to the job manager immediately"
-msgstr ""
-
-#: configuration/settings.cfg:575
+#: configuration/settings.cfg:552
 msgid "Fixed type_category_id for _categories junction rows (e.g. costs/buchungen)"
 msgstr ""
 
-#: configuration/settings.cfg:584
+#: configuration/settings.cfg:561
 msgid "Unit of a category property"
 msgstr ""
 
-#: configuration/settings.cfg:592
-msgid "URL path of the background job to execute (stored as job_url)"
-msgstr ""
-
-#: configuration/settings.cfg:601
+#: configuration/settings.cfg:569
 msgid "Use each child category as separate subtable field"
 msgstr ""
 
-#: configuration/settings.cfg:606
+#: configuration/settings.cfg:574
 msgid "Preset hidden field values on invitation or registration subtables"
 msgstr ""
 
-#: configuration/settings.cfg:616
+#: configuration/settings.cfg:584
 msgid "Pre-fill form values when opening contacts form for this contact category"
 msgstr ""
 
@@ -1476,27 +1456,27 @@ msgstr[] ""
 msgid "Could not update database."
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:64
+#: zzbrick_make/jobmanager.inc.php:63
 msgid "Job Manager with URL %s failed. (Status: %d)"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:232
+#: zzbrick_make/jobmanager.inc.php:231
 msgid "Job Manager: unable to start job ID %d, jobqueue is locked"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:265
+#: zzbrick_make/jobmanager.inc.php:264
 msgid "Job Manager: unable to start job ID %d"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:300
+#: zzbrick_make/jobmanager.inc.php:299
 msgid "Job Manager: unable to finish job ID %d successfully"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:358
+#: zzbrick_make/jobmanager.inc.php:357
 msgid "Job Manager: %s"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:380
+#: zzbrick_make/jobmanager.inc.php:379
 msgid "Job Manager: unable to delete jobs ID %s"
 msgstr ""
 

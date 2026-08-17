@@ -62,32 +62,6 @@
             ]
         }
     ],
-    "_jobqueue-parameters": [
-        {
-            "title": "Background Job Queue parameters",
-            "language": "en",
-            "package": "default",
-            "identifier": "_jobqueue-parameters",
-            "type": "parameters",
-            "audience": [
-                "editor"
-            ],
-            "table": "_jobqueue",
-            "parameter_field": "postdata"
-        },
-        {
-            "title": "Warteschlange der Hintergrundaufträge-Parameter",
-            "language": "de",
-            "package": "default",
-            "identifier": "_jobqueue-parameters",
-            "type": "parameters",
-            "audience": [
-                "editor"
-            ],
-            "table": "_jobqueue",
-            "parameter_field": "postdata"
-        }
-    ],
     "categories-parameters": [
         {
             "title": "Categories parameters",
