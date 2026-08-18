@@ -462,7 +462,7 @@ msgid "Initial installation date of default module (for updates)"
 msgstr ""
 
 #: configuration/settings.cfg:383
-msgid "Do not append category title as prefix in list or export output"
+msgid "Separate list/export column for this category (no in-cell prefix, no list_append_next)"
 msgstr ""
 
 #: configuration/settings.cfg:374

@@ -80,12 +80,12 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 		$zz['fields'][$no]['title'] = $category['category'];
 		if (array_key_exists('class', $category))
 			$zz['fields'][$no]['class'] = $category['class'];
-		if (!empty($category['no_append_before']))
+		if (empty($category['list_no_append']))
 			$zz['fields'][$no]['title_tab'] = 'Categories';
 		$zz['fields'][$no]['table_name'] = $table.'_categories_'.$category['category_id'];
-		if (empty($category['no_append']))
+		if (empty($category['list_no_append']))
 			$zz['fields'][$no]['unless']['export_mode']['subselect']['prefix'] = '<p><em>'.wrap_text($category['category']).'</em>: ';
-		$zz['fields'][$no]['unless']['export_mode']['subselect']['suffix'] = empty($category['no_append']) ? '</p>' : '';
+		$zz['fields'][$no]['unless']['export_mode']['subselect']['suffix'] = empty($category['list_no_append']) ? '</p>' : '';
 		$zz['fields'][$no]['form_display'] = $form_def['form_display'] ?? 'lines';
 		if ($zz['fields'][$no]['form_display'] === 'key_value') {
 			if (empty($def['property'])) wrap_error(['You need a property field if using `key_value` subtables.']);
@@ -158,7 +158,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 		if ($zz['fields'][$no]['hide_in_list']) continue;
 		if (!$last_visible_found)
 			$last_visible_found = true;
-		elseif (empty($category['no_append']))
+		elseif (empty($category['list_no_append']))
 			$zz['fields'][$no]['unless']['export_mode']['list_append_next'] = true;
 	}
 }

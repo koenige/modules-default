@@ -505,7 +505,7 @@ msgid "Move excess contactdetail rows to another channel category when max excee
 msgstr ""
 
 #: configuration/settings.cfg:448
-msgid "Do not append category title as prefix in list or export output"
+msgid "Separate list/export column for this category (no in-cell prefix, no list_append_next)"
 msgstr ""
 
 #: configuration/settings.cfg:453
