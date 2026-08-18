@@ -624,3 +624,4 @@
 /* 2026-08-17-7 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&property=1', '&form_property_show=1') WHERE `parameters` LIKE '%&property=1%';
 /* 2026-08-18-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&no_append_before=1', '') WHERE `parameters` LIKE '%&no_append_before=1%';
 /* 2026-08-18-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&no_append=1', '&list_no_append=1') WHERE `parameters` LIKE '%&no_append=1%';
+/* 2026-08-19-1 */	UPDATE webpages SET `parameters` = REPLACE(`parameters`, '&description=', '&subpages_description=') WHERE `parameters` LIKE '%&description=%';
