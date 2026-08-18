@@ -465,18 +465,20 @@ msgstr ""
 msgid "Do not append category title as prefix in list or export output"
 msgstr ""
 
-#: configuration/settings.cfg:437
+#: configuration/settings.cfg:374
 msgid "Use this category row as type_category_id when form_type_category is not set"
 msgstr ""
 
-#: configuration/settings.cfg:393
-msgid ""
-"Path used to restrict detail records to this path fragment, for reverse "
-"relations"
+#: configuration/settings.cfg:364
+msgid "Use this category row as category_id (hidden) when form_category is not set"
 msgstr ""
 
-#: configuration/settings.cfg:397
+#: configuration/settings.cfg:379
 msgid "Show property value field next to category in subtable"
+msgstr ""
+
+#: configuration/settings.cfg:384
+msgid "Input width for property field in category property subtables"
 msgstr ""
 
 #: configuration/settings.cfg:402

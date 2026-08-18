@@ -61,7 +61,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			$pc[$index] += $cparameters;
 		}
 		// remove unselectable categories
-		if (!$pc[$index]['category_count'] AND empty($pc[$index]['property_of_category']))
+		if (!$pc[$index]['category_count'] AND empty($pc[$index]['form_category_self']))
 			unset($pc[$index]);
 		if ($restrict_to AND !mf_default_category_context($pc[$index], $restrict_to))
 			unset($pc[$index]);
@@ -102,7 +102,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			$zz['fields'][$no]['max_records'] = intval($form_def['max_records']);
 		if (!empty($form_def['explanation']))
 			$zz['fields'][$no]['explanation'] = $form_def['explanation'];
-		if (!empty($def['property']) AND !empty($category['property_of_category'])) {
+		if (!empty($def['property']) AND !empty($category['form_category_self'])) {
 			$zz['fields'][$no]['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.category_id = %d', $category['category_id']);
 			$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.category_id = %d', $category['category_id']);
 			$zz['fields'][$no]['fields'][$def['category_id']]['hide_in_form'] = true;
@@ -122,10 +122,10 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 		if (!empty($def['property'])) {
 			if (!empty($category['unit']))
 				$zz['fields'][$no]['fields'][$def['property']]['unit'] = $category['unit'];
-			if (empty($category['property']))
+			if (empty($category['form_property_show']))
 				$zz['fields'][$no]['fields'][$def['property']]['hide_in_form'] = true;
-			if (!empty($category['property_size']))
-				$zz['fields'][$no]['fields'][$def['property']]['size'] = $category['property_size'];
+			if (!empty($category['form_property_size']))
+				$zz['fields'][$no]['fields'][$def['property']]['size'] = $category['form_property_size'];
 			if (!empty($form_def['placeholder']))
 				$zz['fields'][$no]['fields'][$def['property']]['placeholder'] = $form_def['placeholder'];
 		}

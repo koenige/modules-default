@@ -45,3 +45,6 @@
 2026-08-17-2	code	&type_category=	use `form_type_category=` in category parameters
 2026-08-17-3	code	&default=	use `form_category=` in category parameters (not site settings `[default]`)
 2026-08-17-4	code	&own_type_category=	use `form_type_self=1` in category parameters
+2026-08-17-5	code	&property_of_category=	use `form_category_self=1` in category parameters
+2026-08-17-6	code	&property_size=	use `form_property_size=` in category parameters
+2026-08-17-7	code	&property=1	use `form_property_show=1` in category parameters (not junction `property` column)
