@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-08-17 08:16+0000\n"
+"POT-Creation-Date: 2026-08-19 14:47+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -425,182 +425,174 @@ msgid "Class for website template"
 msgstr ""
 
 #: configuration/settings.cfg:338
-msgid "Description for subpage list item (overrides database field)"
-msgstr ""
-
-#: configuration/settings.cfg:344
 msgid "Set access rights for this webpage; e.g. `admin` hides it from the webpages table for users without admin access"
 msgstr ""
 
-#: configuration/settings.cfg:349
-msgid "Per-field overrides on checkout address subtables (title_desc, explanation, required, default)"
-msgstr ""
-
-#: configuration/settings.cfg:360
+#: configuration/settings.cfg:343
 msgid "Category path preselected for category_id on _categories junction subtables"
 msgstr ""
 
-#: configuration/settings.cfg:364
+#: configuration/settings.cfg:347
 msgid "Use this category row as category_id (hidden) when form_category is not set"
 msgstr ""
 
-#: configuration/settings.cfg:369
+#: configuration/settings.cfg:352
 msgid "Fixed type_category_id for _categories junction rows (e.g. costs/buchungen)"
 msgstr ""
 
-#: configuration/settings.cfg:373
+#: configuration/settings.cfg:356
 msgid "Use this category row as type_category_id when form_type_category is not set"
 msgstr ""
 
-#: configuration/settings.cfg:378
+#: configuration/settings.cfg:361
 msgid "Show property value field next to category in subtable"
 msgstr ""
 
-#: configuration/settings.cfg:383
+#: configuration/settings.cfg:366
 msgid "Input width for property field in category property subtables"
 msgstr ""
 
-#: configuration/settings.cfg:388
+#: configuration/settings.cfg:371
 msgid "Exclude category from news article menu hierarchy"
 msgstr ""
 
-#: configuration/settings.cfg:394
+#: configuration/settings.cfg:377
 msgid "Hide participation fields on usergroup categories (unless overridden by show[…])"
 msgstr ""
 
-#: configuration/settings.cfg:401
+#: configuration/settings.cfg:384
 msgid "Max no. of requests per job category which might run parallel"
 msgstr ""
 
-#: configuration/settings.cfg:408
+#: configuration/settings.cfg:391
 msgid "Datetime as start date from when on a caching of certain JS/CSS should be disabled (when you deploy updates)"
 msgstr ""
 
-#: configuration/settings.cfg:412
+#: configuration/settings.cfg:395
 msgid "Title of language link, preferably language name in native language (or variants like “English Version“), iso=name"
 msgstr ""
 
-#: configuration/settings.cfg:417
-msgid "Additional log files, same format as error logs (filled with wrap_log())"
-msgstr ""
-
-#: configuration/settings.cfg:421
-msgid "Minimal length of a password"
-msgstr ""
-
-#: configuration/settings.cfg:426
-msgid "Use field logins.login_rights"
-msgstr ""
-
-#: configuration/settings.cfg:431
-msgid "Initial installation date of default module (for updates)"
-msgstr ""
-
-#: configuration/settings.cfg:435
-msgid "Tag event-text categories for a module context (e.g. module=tournaments)"
-msgstr ""
-
-#: configuration/settings.cfg:442
-msgid "Move excess contactdetail rows to another channel category when max exceeded"
-msgstr ""
-
-#: configuration/settings.cfg:448
+#: configuration/settings.cfg:400
 msgid "Separate list/export column for this category (no in-cell prefix, no list_append_next)"
 msgstr ""
 
-#: configuration/settings.cfg:453
-msgid "Use “Categories” tab instead of prepending category title on property subtables"
+#: configuration/settings.cfg:405
+msgid "Additional log files, same format as error logs (filled with wrap_log())"
 msgstr ""
 
-#: configuration/settings.cfg:457
+#: configuration/settings.cfg:409
+msgid "Minimal length of a password"
+msgstr ""
+
+#: configuration/settings.cfg:414
+msgid "Use field logins.login_rights"
+msgstr ""
+
+#: configuration/settings.cfg:419
+msgid "Initial installation date of default module (for updates)"
+msgstr ""
+
+#: configuration/settings.cfg:423
+msgid "Tag event-text categories for a module context (e.g. module=tournaments)"
+msgstr ""
+
+#: configuration/settings.cfg:430
+msgid "Move excess contactdetail rows to another channel category when max exceeded"
+msgstr ""
+
+#: configuration/settings.cfg:436
 msgid "Show remarks field on contact-relation subtables when set"
 msgstr ""
 
-#: configuration/settings.cfg:462
+#: configuration/settings.cfg:441
 msgid "Swap symmetric foreign keys when viewing data from the main ID side"
 msgstr ""
 
-#: configuration/settings.cfg:467
+#: configuration/settings.cfg:446
 msgid "Exclude page from site search when set to 0"
 msgstr ""
 
-#: configuration/settings.cfg:472
+#: configuration/settings.cfg:451
 msgid "Size of images in search results"
 msgstr ""
 
-#: configuration/settings.cfg:476
+#: configuration/settings.cfg:455
 msgid "Order of modules in search output"
 msgstr ""
 
-#: configuration/settings.cfg:480
+#: configuration/settings.cfg:459
 msgid "Sequence field in category subtable (0 = hide, sequence = show sequence field)"
 msgstr ""
 
-#: configuration/settings.cfg:486
+#: configuration/settings.cfg:465
 msgid "Show participation fields on usergroup categories (counterpart to hide[…])"
 msgstr ""
 
-#: configuration/settings.cfg:493
+#: configuration/settings.cfg:472
 msgid "Read menu hierarchy from categories"
 msgstr ""
 
-#: configuration/settings.cfg:498
+#: configuration/settings.cfg:477
 msgid "For menu_hierarchy, use only part of the path starting at this segment"
 msgstr ""
 
-#: configuration/settings.cfg:503
+#: configuration/settings.cfg:482
 msgid "Split category title at ' / ' (normal / reverse) for symmetric relations; replaces children[relation] and parents[relation]"
 msgstr ""
 
-#: configuration/settings.cfg:508
+#: configuration/settings.cfg:487
 msgid "Class name for subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:513
+#: configuration/settings.cfg:492
+msgid "Subpage list item caption (used when webpages.description is empty)"
+msgstr ""
+
+#: configuration/settings.cfg:498
 msgid "Extra item: subpage description"
 msgstr ""
 
-#: configuration/settings.cfg:519
+#: configuration/settings.cfg:504
 msgid "Extra item: query string to add as default for subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:525
+#: configuration/settings.cfg:510
 msgid "Extra item: subpage title"
 msgstr ""
 
-#: configuration/settings.cfg:531
+#: configuration/settings.cfg:516
 msgid "Hide this page from subpage list items"
 msgstr ""
 
-#: configuration/settings.cfg:536
+#: configuration/settings.cfg:521
 msgid "Indentation level of subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:542
+#: configuration/settings.cfg:527
 msgid "Query string to add as default for subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:548
+#: configuration/settings.cfg:533
 msgid "Name of the user to login with for server sync"
 msgstr ""
 
-#: configuration/settings.cfg:551
+#: configuration/settings.cfg:536
 msgid "Language tag for language register category"
 msgstr ""
 
-#: configuration/settings.cfg:557
+#: configuration/settings.cfg:542
 msgid "Unit of a category property"
 msgstr ""
 
-#: configuration/settings.cfg:565
+#: configuration/settings.cfg:550
 msgid "Use each child category as separate subtable field"
 msgstr ""
 
-#: configuration/settings.cfg:570
+#: configuration/settings.cfg:555
 msgid "Preset hidden field values on invitation or registration subtables"
 msgstr ""
 
-#: configuration/settings.cfg:580
+#: configuration/settings.cfg:562
 msgid "Pre-fill form values when opening contacts form for this contact category"
 msgstr ""
 
@@ -669,11 +661,13 @@ msgid "Install module"
 msgstr ""
 
 #: templates/dbmodules.template.txt:32
+#: templates/parameterscheck.template.txt:79
 #: zzbrick_request/modulesettings.inc.php:318
 msgid "no"
 msgstr ""
 
 #: templates/dbmodules.template.txt:32
+#: templates/parameterscheck.template.txt:77
 #: zzbrick_request/modulesettings.inc.php:318
 msgid "yes"
 msgstr ""
@@ -681,6 +675,7 @@ msgstr ""
 #: templates/dbmodules.template.txt:39
 #: templates/dbupdate.template.txt:25
 #: templates/modules.template.txt:17
+#: templates/parameterscheck.template.txt:61
 msgid "Module"
 msgstr ""
 
@@ -1125,6 +1120,12 @@ msgstr ""
 msgid "Deprecated Code Patterns"
 msgstr ""
 
+#: templates/maintenance.template.txt:109
+#: zzbrick_request/parameterscheck.inc.php:35
+#: zzbrick_request/parameterscheck.inc.php:36
+msgid "Check Parameters"
+msgstr ""
+
 #: templates/maintenance-logs.template.txt:16
 msgid "No logfile specified"
 msgstr ""
@@ -1258,6 +1259,70 @@ msgstr ""
 
 #: templates/mysqldump.template.txt:22
 msgid "Project"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:16
+msgid "Scanned"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:16
+msgid "tables with parameter fields."
+msgstr ""
+
+#: templates/parameterscheck.template.txt:18
+msgid "Undefined Parameters"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:21
+msgid "All parameter keys in the database are registered in settings.cfg."
+msgstr ""
+
+#: templates/parameterscheck.template.txt:24
+msgid "The following parameter keys are used in the database but not defined in any settings.cfg file."
+msgstr ""
+
+#: templates/parameterscheck.template.txt:29
+#: templates/parameterscheck.template.txt:57
+#: templates/translationscheck.template.txt:28
+msgid "Field"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:30
+msgid "Record"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:31
+#: templates/parameterscheck.template.txt:59
+msgid "Context"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:32
+#: templates/parameterscheck.template.txt:60
+msgid "Parameter"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:48
+msgid "Registered Parameters in Use"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:51
+msgid "No registered parameters were found in parameter fields."
+msgstr ""
+
+#: templates/parameterscheck.template.txt:58
+msgid "Count"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:62
+msgid "Scope"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:63
+msgid "Applies"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:86
+msgid "Applies shows whether the parameter scope matches the table (for categories: first segment of alias or path)."
 msgstr ""
 
 #: templates/polanguages.template.txt:17
@@ -1397,10 +1462,6 @@ msgstr ""
 #: zzbrick_tables/redirects.php:27
 #: zzbrick_tables/uris.php:26
 msgid "ID"
-msgstr ""
-
-#: templates/translationscheck.template.txt:28
-msgid "Field"
 msgstr ""
 
 #: templates/translationscheck.template.txt:30
@@ -1572,19 +1633,19 @@ msgstr ""
 msgid "Library Adminer does not exist"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:145
+#: zzbrick_request/maintenance.inc.php:146
 msgid "Master"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:150
+#: zzbrick_request/maintenance.inc.php:151
 msgid "Detail"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:157
+#: zzbrick_request/maintenance.inc.php:158
 msgid "Translation"
 msgstr ""
 
-#: zzbrick_request/maintenance.inc.php:242
+#: zzbrick_request/maintenance.inc.php:243
 msgid "not installed"
 msgstr ""
 

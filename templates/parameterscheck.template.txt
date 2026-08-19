@@ -1,0 +1,89 @@
+# default module
+# parameter fields vs settings.cfg
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+# Variables
+# translate_pot = admin
+#
+<div id="zzform" class="maintenance">
+
+<p>%%% text Scanned %%% <strong>%%% item tables_scanned %%%</strong> %%% text tables with parameter fields. %%%</p>
+
+<h2>%%% text Undefined Parameters %%%</h2>
+
+%%% unless undefined %%%
+<p class="success">%%% text All parameter keys in the database are registered in settings.cfg. %%%</p>
+
+%%% else %%%
+<p class="error">%%% text The following parameter keys are used in the database but not defined in any settings.cfg file. %%%</p>
+
+<table class="data">
+<thead>
+<tr>
+	<th>%%% text Field %%%</th>
+	<th>%%% text Record %%%</th>
+	<th>%%% text Context %%%</th>
+	<th>%%% text Parameter %%%</th>
+</tr>
+</thead>
+<tbody>
+%%% loop undefined %%%
+<tr class="%%% loopposition uneven "un" %%%even">
+	<td><code>%%% item table %%%.%%% item field %%%</code></td>
+	<td>%%% item record %%%</td>
+	<td>%%% item context %%%</td>
+	<td><code>%%% item parameter %%%</code></td>
+</tr>
+%%% loop end %%%
+</tbody>
+</table>
+%%% endif %%%
+
+<h2>%%% text Registered Parameters in Use %%%</h2>
+
+%%% unless defined %%%
+<p>%%% text No registered parameters were found in parameter fields. %%%</p>
+
+%%% else %%%
+<table class="data">
+<thead>
+<tr>
+	<th>%%% text Field %%%</th>
+	<th>%%% text Count %%%</th>
+	<th>%%% text Context %%%</th>
+	<th>%%% text Parameter %%%</th>
+	<th>%%% text Module %%%</th>
+	<th>%%% text Scope %%%</th>
+	<th>%%% text Applies %%%</th>
+</tr>
+</thead>
+<tbody>
+%%% loop defined %%%
+<tr class="%%% loopposition uneven "un" %%%even">
+	<td><code>%%% item table %%%.%%% item field %%%</code></td>
+	<td>%%% item count %%%</td>
+	<td>%%% item context %%%</td>
+	<td><code>%%% item parameter %%%</code></td>
+	<td>%%% item module %%%</td>
+	<td><code>%%% item scope %%%</code></td>
+	<td>
+%%% if applies %%%
+		%%% text yes %%%
+%%% else %%%
+		<span class="error">%%% text no %%%</span>
+%%% endif %%%
+	</td>
+</tr>
+%%% loop end %%%
+</tbody>
+</table>
+<p><small>%%% text Applies shows whether the parameter scope matches the table (for categories: first segment of alias or path). %%%</small></p>
+%%% endif %%%
+
+</div>

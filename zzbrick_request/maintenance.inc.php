@@ -119,7 +119,8 @@ function mod_default_maintenance_keycheck() {
 		'textupdate' => 'make',
 		'helpupdate' => 'make',
 		'tableupdate' => 'make',
-		'sourcecheck' => 'make'
+		'sourcecheck' => 'make',
+		'parameterscheck' => 'request'
 	];
 	foreach ($keys as $key => $verb) {
 		if (isset($_GET[$key])) return ['key' => $key, 'verb' => $verb];

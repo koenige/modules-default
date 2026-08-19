@@ -106,6 +106,8 @@
 
 <h2><a href="?deprecations">%%% text Deprecated Code Patterns %%%</a></h2>
 
+<h2><a href="?parameterscheck">%%% text Check Parameters %%%</a></h2>
+
 %%% include sqlquery-form %%%
 
 </div>
