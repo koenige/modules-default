@@ -46,8 +46,10 @@ function mod_default_make_sourcecheck($params) {
  */
 function mod_default_sourcecheck_packages() {
 	wrap_include('index', 'default');
+	$package_names = wrap_setting('modules');
+	array_unshift($package_names, 'custom');
 	$packages = [];
-	foreach (mod_default_sourcecheck_package_names() as $package) {
+	foreach ($package_names as $package) {
 		$help = mf_default_index_status($package, 'help/index.json', 'mf_default_help_collect');
 		$tables = mf_default_tables_index_status($package);
 		$pot = mf_default_pot_status($package);
@@ -76,17 +78,6 @@ function mod_default_sourcecheck_packages() {
 		$packages[] = $row;
 	}
 	usort($packages, fn($left, $right) => strcmp($left['name'], $right['name']));
-	return $packages;
-}
-
-/**
- * Installed package names to check
- *
- * @return array
- */
-function mod_default_sourcecheck_package_names() {
-	$packages = wrap_setting('modules');
-	if (wrap_package('custom')) array_unshift($packages, 'custom');
 	return $packages;
 }
 
