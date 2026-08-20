@@ -625,3 +625,4 @@
 /* 2026-08-18-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&no_append_before=1', '') WHERE `parameters` LIKE '%&no_append_before=1%';
 /* 2026-08-18-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&no_append=1', '&list_no_append=1') WHERE `parameters` LIKE '%&no_append=1%';
 /* 2026-08-19-1 */	UPDATE webpages SET `parameters` = REPLACE(`parameters`, '&description=', '&subpages_description=') WHERE `parameters` LIKE '%&description=%';
+/* 2026-08-19-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&add_details[', '&zzform[add_details][') WHERE `parameters` LIKE '%&add_details[%';
