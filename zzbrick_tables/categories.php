@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2011, 2016-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2011, 2016-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -82,6 +82,14 @@ $zz['fields'][6]['class'] = 'hidden480';
 
 // extra enum field if needed
 $zz['fields'][8] = [];
+
+$zz['fields'][9]['title_tab'] = 'Pub.';
+$zz['fields'][9]['field_name'] = 'published';
+$zz['fields'][9]['type'] = 'select';
+$zz['fields'][9]['enum'] = ['yes', 'no'];
+$zz['fields'][9]['default'] = 'yes';
+$zz['fields'][9]['class'] = 'hidden480';
+$zz['fields'][9]['explanation'] = 'Publish on website?';
 
 $zz['fields'][20]['field_name'] = 'last_update';
 $zz['fields'][20]['type'] = 'timestamp';

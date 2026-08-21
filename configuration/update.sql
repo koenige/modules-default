@@ -626,3 +626,4 @@
 /* 2026-08-18-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&no_append=1', '&list_no_append=1') WHERE `parameters` LIKE '%&no_append=1%';
 /* 2026-08-19-1 */	UPDATE webpages SET `parameters` = REPLACE(`parameters`, '&description=', '&subpages_description=') WHERE `parameters` LIKE '%&description=%';
 /* 2026-08-19-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&add_details[', '&zzform[add_details][') WHERE `parameters` LIKE '%&add_details[%';
+/* 2026-08-21-1 */	ALTER TABLE `categories` ADD `published` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes' AFTER `sequence`;
