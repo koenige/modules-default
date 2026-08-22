@@ -52,7 +52,7 @@ function mf_default_contexts($values, $type) {
 function mf_default_context_list($contexts) {
 	if ($contexts === null || $contexts === '') return [];
 	if (!is_array($contexts)) return [$contexts];
-	return array_values(array_filter($contexts, fn($context) => $context !== '' && $context !== null));
+	return array_values(array_filter($contexts));
 }
 
 /**

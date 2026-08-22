@@ -227,7 +227,9 @@ function mf_default_help_packages() {
 		if ($tagline) $entry['tagline'] = $tagline;
 		$packages[] = $entry;
 	}
-	usort($packages, fn($a, $b) => strcmp($a['name'], $b['name']));
+	usort($packages, function ($a, $b) {
+		return strcmp($a['name'], $b['name']);
+	});
 	return $packages;
 }
 
@@ -247,7 +249,9 @@ function mf_default_help_list($package) {
 			$variant['foreign_language'] = true;
 		$data[] = $variant;
 	}
-	usort($data, fn($a, $b) => strcmp($a['title'], $b['title']));
+	usort($data, function ($a, $b) {
+		return strcmp($a['title'], $b['title']);
+	});
 	return $data;
 }
 
@@ -278,7 +282,9 @@ function mf_default_help_list_grouped($package) {
 	$groups = [];
 	foreach ($order as $audience) {
 		if (!$buckets[$audience]) continue;
-		usort($buckets[$audience], fn($a, $b) => strcmp($a['title'], $b['title']));
+		usort($buckets[$audience], function ($a, $b) {
+			return strcmp($a['title'], $b['title']);
+		});
 		$groups[] = [
 			'audience' => $audience,
 			'title' => mf_default_help_audience_title($audience),
@@ -286,7 +292,9 @@ function mf_default_help_list_grouped($package) {
 		];
 	}
 	if ($general) {
-		usort($general, fn($a, $b) => strcmp($a['title'], $b['title']));
+		usort($general, function ($a, $b) {
+			return strcmp($a['title'], $b['title']);
+		});
 		$groups[] = [
 			'audience' => '',
 			'title' => wrap_text('General'),

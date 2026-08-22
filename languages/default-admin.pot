@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-08-21 09:23+0000\n"
+"POT-Creation-Date: 2026-08-22 14:25+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -1663,7 +1663,7 @@ msgstr ""
 msgid "Help file %s is not readable."
 msgstr ""
 
-#: zzbrick_request_get/help.inc.php:515
+#: zzbrick_request_get/help.inc.php:523
 msgid "Unknown help audience `%s`, allowed: %s."
 msgstr ""
 
