@@ -12,7 +12,7 @@
 <h2>%%% switch menu %%%
 %%% case help %%%%%% text Help %%%
 %%% case website %%%%%% text Website %%%
-%%% case content %%%%%% text Content %%%
+%%% case content %%%%%% text Contents %%%
 %%% case module %%%%%% text Module %%%
 %%% switch - %%%</h2>
 

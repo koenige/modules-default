@@ -12,6 +12,8 @@
 
 %%% show internal-menu website %%%
 
+%%% show internal-menu content %%%
+
 %%% show internal-menu help %%%
 
 %%% section col2 %%%
