@@ -10,13 +10,7 @@
 #
 %%% section col1 %%%
 
-## Website
-
-* [Webseiten](%%% path default_tables webpages %%%) – Grundstruktur der Website
-%%% if setting default_webpages_blocks & path default_tables %%%
-* [Bausteine](%%% path default_tables blocks %%%) – Modulare Blöcke mit Text und Bildern
-%%% endif %%%
-* [Medien](%%% path media_internal %%%) – Alle Bilder, Dokumente und Videos
+%%% show internal-menu website %%%
 
 %%% show internal-menu help %%%
 

@@ -47,6 +47,7 @@ function mf_default_internal_menu_items($menu) {
 	if (!in_array($menu, mf_default_help_menus(), true)) return [];
 
 	$items = mf_default_internal_menu_from_help($menu);
+	$items = array_merge($items, wrap_routes_menu($menu));
 	return mf_default_internal_menu_sort($items);
 }
 

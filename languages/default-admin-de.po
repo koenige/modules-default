@@ -182,6 +182,22 @@ msgstr "Interne Tools für eine einzelne Website"
 msgid "Search"
 msgstr "Suche"
 
+#: configuration/routes.cfg:80
+msgid "Web pages"
+msgstr "Webseiten"
+
+#: configuration/routes.cfg:81
+msgid "Base structure of the website"
+msgstr "Grundstruktur der Website"
+
+#: configuration/routes.cfg:89
+msgid "Blocks"
+msgstr "Bausteine"
+
+#: configuration/routes.cfg:90
+msgid "Modular sections with text and images"
+msgstr "Modulare Blöcke mit Text und Bildern"
+
 #: configuration/settings.cfg:20 configuration/settings.cfg:25
 msgid "Link to a form where a detail record can be added"
 msgstr ""
