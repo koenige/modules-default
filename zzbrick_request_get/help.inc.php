@@ -57,7 +57,7 @@ function mf_default_help_collect($package) {
 			continue;
 		}
 		$metadata = mf_default_help_metadata($raw, $extension, $title);
-		$data[$basename][] = [
+		$entry = [
 			'title' => $metadata['title'],
 			'language' => $lang ?? 'en',
 			'package' => $package,
@@ -66,6 +66,14 @@ function mf_default_help_collect($package) {
 			'type' => $extension,
 			'audience' => $metadata['audience'],
 		];
+		if ($metadata['menu']) {
+			$entry['menu'] = $metadata['menu'];
+			if ($metadata['menu_description'])
+				$entry['menu_description'] = $metadata['menu_description'];
+			if ($metadata['menu_priority'] !== null)
+				$entry['menu_priority'] = $metadata['menu_priority'];
+		}
+		$data[$basename][] = $entry;
 	}
 
 	wrap_include('zzbrick_request_get/tables', 'default');
@@ -240,7 +248,9 @@ function mf_default_help_content($file) {
  * @return array title, audience
  */
 function mf_default_help_metadata($raw, $type, $title_fallback) {
+	wrap_include('file', 'zzwrap');
 	wrap_include('help', 'default');
+	$variables = wrap_file_header_variables($raw);
 	$title = $title_fallback;
 	if ($type === 'md') {
 		$text = preg_replace('/<!--[\s\S]*?-->/', '', $raw);
@@ -249,7 +259,10 @@ function mf_default_help_metadata($raw, $type, $title_fallback) {
 	}
 	return [
 		'title' => $title,
-		'audience' => mf_default_help_audience($raw),
+		'audience' => mf_default_help_audience_list($variables['audience'] ?? null),
+		'menu' => mf_default_help_menu_value($variables['menu'] ?? null),
+		'menu_description' => mf_default_help_menu_description($variables['menu_description'] ?? null),
+		'menu_priority' => mf_default_help_menu_priority($variables['menu_priority'] ?? null),
 	];
 }
 
@@ -402,4 +415,53 @@ function mf_default_help_parameters_content($variant) {
 
 	$variant['text'] = wrap_template('help-parameters', $data);
 	return $variant;
+}
+
+/**
+ * menu group from a help file header value
+ *
+ * @param mixed $value
+ * @return string|null
+ */
+function mf_default_help_menu_value($value) {
+	if ($value === null || $value === '') return null;
+	$menu = trim((string) $value);
+	if ($menu === '') return null;
+	if (!in_array($menu, mf_default_help_menus(), true)) {
+		wrap_error(['Unknown help menu `%s`, allowed: %s.', ['values' => [$menu, implode(', ', mf_default_help_menus())]]], E_USER_NOTICE);
+		return null;
+	}
+	return $menu;
+}
+
+/**
+ * menu link description from a help file header value
+ *
+ * @param mixed $value
+ * @return string|null
+ */
+function mf_default_help_menu_description($value) {
+	if ($value === null || $value === '') return null;
+	$description = trim((string) $value);
+	return $description !== '' ? $description : null;
+}
+
+/**
+ * menu sort priority from a help file header value
+ *
+ * @param mixed $value
+ * @return int|null
+ */
+function mf_default_help_menu_priority($value) {
+	if ($value === null || $value === '') return null;
+	if (!is_numeric($value)) {
+		wrap_error(['Help menu_priority `%s` is not a number.', ['values' => [(string) $value]]], E_USER_NOTICE);
+		return null;
+	}
+	$priority = (int) $value;
+	if ($priority < 0 || $priority > 10) {
+		wrap_error(['Help menu_priority `%s` is out of range, allowed: 0–10.', ['values' => [$priority]]], E_USER_NOTICE);
+		return null;
+	}
+	return $priority;
 }

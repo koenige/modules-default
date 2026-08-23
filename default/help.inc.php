@@ -156,3 +156,18 @@ function mf_default_help_audience_title($audience) {
 		return $cfg[$key]['description'];
 	return $audience;
 }
+
+/**
+ * allowed internal area menu groups from help.cfg
+ *
+ * @return array
+ */
+function mf_default_help_menus() {
+	static $menus = null;
+	if ($menus !== null) return $menus;
+
+	$cfg = wrap_cfg_files('help');
+	$menus = $cfg['menu']['enum'];
+	if (!is_array($menus)) $menus = [$menus];
+	return $menus;
+}

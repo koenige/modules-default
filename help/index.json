@@ -22,7 +22,10 @@
             "type": "md",
             "audience": [
                 "editor"
-            ]
+            ],
+            "menu": "help",
+            "menu_description": "zur Formatierung von Texten",
+            "menu_priority": 10
         },
         {
             "title": "Markdown",
@@ -33,7 +36,10 @@
             "type": "md",
             "audience": [
                 "editor"
-            ]
+            ],
+            "menu": "help",
+            "menu_description": "for formatting texts",
+            "menu_priority": 10
         }
     ],
     "search-with-modules": [

@@ -1,0 +1,23 @@
+# default module
+# Internal area menu section
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+
+<h2>%%% switch menu %%%
+%%% case help %%%%%% text Help %%%
+%%% case website %%%%%% text Website %%%
+%%% case content %%%%%% text Content %%%
+%%% case module %%%%%% text Module %%%
+%%% switch - %%%</h2>
+
+<ul>
+%%% loop items %%%
+<li><a href="%%% item path %%%">%%% item title %%%</a>%%% item description " – %s" %%%</li>
+%%% loop end %%%
+</ul>

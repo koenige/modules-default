@@ -18,9 +18,7 @@
 %%% endif %%%
 * [Media](%%% path media_internal %%%) – All images, documents, and videos
 
-## Help
-
-* [Markdown](%%% path default_help default markdown %%%) – for formatting texts
+%%% show internal-menu help %%%
 
 %%% section col2 %%%
 %%% rights admin %%%
