@@ -14,6 +14,7 @@
 
 
 function mod_default_get_help($params) {
+	wrap_include('help', 'default');
 	$files = mf_default_help_files();
 	if (count($params) === 1 && strstr($params[0], '/'))
 		$params = explode('/', $params[0]);
@@ -22,34 +23,6 @@ function mod_default_get_help($params) {
 	if (count($params) === 1)
 		return mf_default_help_pick($files, $params[0]) ?? [];
 	return mf_default_help_all($files);
-}
-
-/**
- * get all help files from help/index.json per package
- *
- * @return array identifier => variants
- */
-function mf_default_help_files() {
-	static $files = [];
-	if ($files) return $files;
-
-	$index_files = wrap_collect_files('help/index.json');
-	foreach ($index_files as $package => $index_path) {
-		$data = json_decode(file_get_contents($index_path), true);
-		if (!is_array($data)) {
-			wrap_error(['Help index %s is not readable.', ['values' => [$index_path]]]);
-			continue;
-		}
-		$folder = wrap_package_folder($package);
-		foreach ($data as $identifier => $variants) {
-			foreach ($variants as $variant) {
-				if (!empty($variant['filename']))
-					$variant['filename'] = $folder.'/'.$variant['filename'];
-				$files[$identifier][] = $variant;
-			}
-		}
-	}
-	return $files;
 }
 
 /**
@@ -204,107 +177,6 @@ function mf_default_help_po_msgstr($package, $language, $msgid) {
 }
 
 /**
- * packages with number of help texts (language-aware, one per identifier)
- *
- * @return array
- */
-function mf_default_help_packages() {
-	$files = mf_default_help_files();
-	$names = [];
-	foreach ($files as $variants) {
-		foreach ($variants as $variant)
-			$names[$variant['package']] = true;
-	}
-	$packages = [];
-	foreach (array_keys($names) as $package) {
-		$pkg = wrap_cfg_files('package', ['package' => $package, 'translate' => true]);
-		$entry = [
-			'package' => $package,
-			'name' => $pkg['about']['name'] ?? $package,
-			'count' => count(mf_default_help_list($package))
-		];
-		$tagline = trim((string) ($pkg['about']['tagline'] ?? ''));
-		if ($tagline) $entry['tagline'] = $tagline;
-		$packages[] = $entry;
-	}
-	usort($packages, function ($a, $b) {
-		return strcmp($a['name'], $b['name']);
-	});
-	return $packages;
-}
-
-/**
- * help texts for one package
- *
- * @param string $package
- * @return array
- */
-function mf_default_help_list($package) {
-	$files = mf_default_help_files();
-	$data = [];
-	foreach ($files as $identifier => $variants) {
-		$variant = mf_default_help_pick_variant($variants, $package);
-		if (!$variant) continue;
-		if ($variant['language'] !== wrap_setting('lang'))
-			$variant['foreign_language'] = true;
-		$data[] = $variant;
-	}
-	usort($data, function ($a, $b) {
-		return strcmp($a['title'], $b['title']);
-	});
-	return $data;
-}
-
-/**
- * help texts for one package, grouped by audience
- *
- * @param string $package
- * @return array list of ['audience', 'title', 'texts']
- */
-function mf_default_help_list_grouped($package) {
-	$texts = mf_default_help_list($package);
-	if (!$texts) return [];
-
-	$order = mf_default_help_audiences();
-	$buckets = array_fill_keys($order, []);
-	$general = [];
-	foreach ($texts as $text) {
-		if (empty($text['audience'])) {
-			$general[] = $text;
-			continue;
-		}
-		foreach ($text['audience'] as $audience) {
-			if (!array_key_exists($audience, $buckets)) continue;
-			$buckets[$audience][] = $text;
-		}
-	}
-
-	$groups = [];
-	foreach ($order as $audience) {
-		if (!$buckets[$audience]) continue;
-		usort($buckets[$audience], function ($a, $b) {
-			return strcmp($a['title'], $b['title']);
-		});
-		$groups[] = [
-			'audience' => $audience,
-			'title' => mf_default_help_audience_title($audience),
-			'texts' => $buckets[$audience],
-		];
-	}
-	if ($general) {
-		usort($general, function ($a, $b) {
-			return strcmp($a['title'], $b['title']);
-		});
-		$groups[] = [
-			'audience' => '',
-			'title' => wrap_text('General'),
-			'texts' => $general,
-		];
-	}
-	return $groups;
-}
-
-/**
  * all help texts, best variant per identifier (legacy flat list)
  *
  * @param array $files
@@ -340,40 +212,6 @@ function mf_default_help_pick($files, $identifier, $package = NULL) {
 }
 
 /**
- * pick best variant from a list, optionally for one package
- *
- * @param array $variants
- * @param string|null $package (optional)
- * @return array|null
- */
-function mf_default_help_pick_variant($variants, $package = NULL) {
-	$best = NULL;
-	foreach ($variants as $variant) {
-		if ($package AND $variant['package'] !== $package) continue;
-		if (!$best OR mf_default_help_better($variant, $best))
-			$best = $variant;
-	}
-	return $best;
-}
-
-/**
- * check if help file is more important than existing in list
- * i. e. language better, package not default
- *
- * @param array $new
- * @param array $existing
- * @return bool true = better
- */
-function mf_default_help_better($new, $existing) {
-	// check language
-	if ($new['language'] === wrap_setting('lang')) return true;
-	if ($new['language'] === '' AND $existing['language'] !== wrap_setting('lang')) return true;
-	// check package
-	if ($existing['package'] === 'default' AND $new['package'] !== 'default') return true;
-	return false;
-}
-
-/**
  * get content of help file, set title
  *
  * @param array $file
@@ -402,6 +240,7 @@ function mf_default_help_content($file) {
  * @return array title, audience
  */
 function mf_default_help_metadata($raw, $type, $title_fallback) {
+	wrap_include('help', 'default');
 	$title = $title_fallback;
 	if ($type === 'md') {
 		$text = preg_replace('/<!--[\s\S]*?-->/', '', $raw);
@@ -495,66 +334,6 @@ function mf_default_help_links($text, $package = NULL) {
 		},
 		$text
 	);
-}
-
-/**
- * audience list from a help file header Variables block
- *
- * @param string $content raw file contents
- * @return array audience identifiers
- */
-function mf_default_help_audience($content) {
-	wrap_include('file', 'zzwrap');
-	$variables = wrap_file_header_variables($content);
-	return mf_default_help_audience_list($variables['audience'] ?? null);
-}
-
-/**
- * audience list from cfg values or a literal
- *
- * @param mixed $value
- * @return array audience identifiers
- */
-function mf_default_help_audience_list($value) {
-	$allowed = mf_default_help_audiences();
-	$audiences = [];
-	foreach (wrap_array_list($value) as $audience) {
-		if (!in_array($audience, $allowed, true)) {
-			wrap_error(['Unknown help audience `%s`, allowed: %s.', ['values' => [$audience, implode(', ', $allowed)]]], E_USER_NOTICE);
-			continue;
-		}
-		$audiences[] = $audience;
-	}
-	return array_values(array_unique($audiences));
-}
-
-/**
- * configured audience identifiers from help.cfg
- *
- * @return array
- */
-function mf_default_help_audiences() {
-	static $audiences = null;
-	if ($audiences !== null) return $audiences;
-
-	$cfg = wrap_cfg_files('help');
-	$audiences = $cfg['audience']['default'] ?? [];
-	if (!is_array($audiences)) $audiences = [$audiences];
-	return $audiences;
-}
-
-/**
- * section title for one audience
- *
- * @param string $audience
- * @return string
- */
-function mf_default_help_audience_title($audience) {
-	$cfg = wrap_cfg_files('help', ['translate' => true]);
-	$key = 'audience.'.$audience;
-	if (!empty($cfg[$key]['description']))
-		return $cfg[$key]['description'];
-	return $audience;
 }
 
 /**

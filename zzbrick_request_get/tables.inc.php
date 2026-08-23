@@ -71,7 +71,7 @@ function mf_default_tables_parse_file($file) {
 	$entry['parameter_field'] = $parameter['field_name'];
 	$entry['audience'] = $parameter['audience'];
 	if (!$entry['audience']) {
-		wrap_include('zzbrick_request_get/help', 'default');
+		wrap_include('help', 'default');
 		$entry['audience'] = mf_default_help_audience($raw);
 	}
 	if (!$entry['audience']) $entry['audience'] = ['editor'];
@@ -120,7 +120,7 @@ function mf_default_tables_parameter_field($raw) {
 		$raw,
 		$audience_matches
 	)) {
-		wrap_include('zzbrick_request_get/help', 'default');
+		wrap_include('help', 'default');
 		$audience = mf_default_help_audience_list($audience_matches[1]);
 	}
 

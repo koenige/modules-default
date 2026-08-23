@@ -41,7 +41,7 @@ function mod_default_module($params) {
 	}
 	$data['categorytrees'] = mod_default_module_categorytrees($paths);
 
-	wrap_include('zzbrick_request_get/help', 'default');
+	wrap_include('help', 'default');
 	$data['has_help'] = (bool) mf_default_help_list($module);
 	if ($data['has_help']) {
 		$data['has_help'] = (bool) wrap_path('default_help_package', $module, ['testing' => 1]);

@@ -20,7 +20,6 @@
  * @return array|false
  */
 function mod_default_help_package($params) {
-	wrap_include('zzbrick_request_get/help', 'default');
 	if (count($params) !== 1) return false;
 
 	$data = [];
@@ -36,4 +35,54 @@ function mod_default_help_package($params) {
 	$page['title'] = wrap_text('Help for %s', ['values' => [$data['name']]]);
 	$page['text'] = wrap_template('help-package', $data);
 	return $page;
+}
+
+/**
+ * help texts for one package, grouped by audience
+ *
+ * @param string $package
+ * @return array list of ['audience', 'title', 'texts']
+ */
+function mf_default_help_list_grouped($package) {
+	wrap_include('help', 'default');
+	$texts = mf_default_help_list($package);
+	if (!$texts) return [];
+
+	$order = mf_default_help_audiences();
+	$buckets = array_fill_keys($order, []);
+	$general = [];
+	foreach ($texts as $text) {
+		if (empty($text['audience'])) {
+			$general[] = $text;
+			continue;
+		}
+		foreach ($text['audience'] as $audience) {
+			if (!array_key_exists($audience, $buckets)) continue;
+			$buckets[$audience][] = $text;
+		}
+	}
+
+	$groups = [];
+	foreach ($order as $audience) {
+		if (!$buckets[$audience]) continue;
+		usort($buckets[$audience], function ($a, $b) {
+			return strcmp($a['title'], $b['title']);
+		});
+		$groups[] = [
+			'audience' => $audience,
+			'title' => mf_default_help_audience_title($audience),
+			'texts' => $buckets[$audience],
+		];
+	}
+	if ($general) {
+		usort($general, function ($a, $b) {
+			return strcmp($a['title'], $b['title']);
+		});
+		$groups[] = [
+			'audience' => '',
+			'title' => wrap_text('General'),
+			'texts' => $general,
+		];
+	}
+	return $groups;
 }

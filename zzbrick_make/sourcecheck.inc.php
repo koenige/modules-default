@@ -24,9 +24,6 @@
  */
 function mod_default_make_sourcecheck($params) {
 	wrap_access_quit('default_maintenance');
-	wrap_include('zzbrick_request_get/help', 'default');
-	wrap_include('zzbrick_request_get/tables', 'default');
-	wrap_include('pot', 'zzwrap');
 
 	$data = [];
 	$data['packages'] = mod_default_sourcecheck_packages();
@@ -45,6 +42,8 @@ function mod_default_make_sourcecheck($params) {
  * @return array
  */
 function mod_default_sourcecheck_packages() {
+	wrap_include('zzbrick_request_get/help', 'default');
+	wrap_include('zzbrick_request_get/tables', 'default');
 	wrap_include('index', 'default');
 	$package_names = wrap_setting('modules');
 	array_unshift($package_names, 'custom');
