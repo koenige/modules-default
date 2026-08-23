@@ -30,7 +30,7 @@ $zz['fields'][2]['list_format'] = 'zz_htmltag_escape';
 
 $zz['fields'][5]['title'] = 'Table';
 $zz['fields'][5]['field_name'] = 'db_table';
-$zz['fields'][5]['class'] = 'hidden480';
+$zz['fields'][5]['hide_in_list'] = true;
 
 $zz['fields'][3]['title'] = 'Record';
 $zz['fields'][3]['field_name'] = 'record_id';
