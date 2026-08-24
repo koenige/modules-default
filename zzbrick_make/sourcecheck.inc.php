@@ -76,7 +76,7 @@ function mod_default_sourcecheck_packages() {
 			$row['textupdate_url'] = '?textupdate='.$package;
 		$packages[] = $row;
 	}
-	usort($packages, fn($left, $right) => strcmp($left['name'], $right['name']));
+	usort($packages, fn($left, $right) => strcmp($left['package'], $right['package']));
 	return $packages;
 }
 
