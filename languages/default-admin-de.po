@@ -18,6 +18,30 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
 
+#: behaviour/track-progress.js:74
+msgid "Response has no `%s` key."
+msgstr "Die Antwort enthält keinen Schlüssel `%s`."
+
+#: behaviour/track-progress.js:82
+msgid "`%s` value is not valid JSON."
+msgstr "Der Wert von `%s` ist kein gültiges JSON."
+
+#: behaviour/track-progress.js:86
+msgid "Progress response is not an object."
+msgstr "Die Fortschrittsantwort ist kein Objekt."
+
+#: behaviour/track-progress.js:117
+msgid "Invalid JSON."
+msgstr "Ungültiges JSON."
+
+#: behaviour/track-progress.js:239
+msgid "Init failed."
+msgstr "Initialisierung fehlgeschlagen."
+
+#: behaviour/track-progress.js:265
+msgid "Step failed."
+msgstr "Schritt fehlgeschlagen."
+
 #: configuration/access.cfg:20
 msgid "Adminer MySQL database administration"
 msgstr "Adminer MySQL-Datenbankverwaltung"

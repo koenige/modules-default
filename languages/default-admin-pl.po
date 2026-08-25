@@ -19,6 +19,30 @@ msgstr ""
 "|| n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
 
+#: behaviour/track-progress.js:74
+msgid "Response has no `%s` key."
+msgstr ""
+
+#: behaviour/track-progress.js:82
+msgid "`%s` value is not valid JSON."
+msgstr ""
+
+#: behaviour/track-progress.js:86
+msgid "Progress response is not an object."
+msgstr ""
+
+#: behaviour/track-progress.js:117
+msgid "Invalid JSON."
+msgstr ""
+
+#: behaviour/track-progress.js:239
+msgid "Init failed."
+msgstr ""
+
+#: behaviour/track-progress.js:265
+msgid "Step failed."
+msgstr ""
+
 #: configuration/access.cfg:20
 msgid "Adminer MySQL database administration"
 msgstr ""
