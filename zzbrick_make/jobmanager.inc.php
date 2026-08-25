@@ -43,10 +43,12 @@ function mod_default_make_jobmanager() {
 			unset($job['postdata']['trigger']);
 			unset($job['postdata']['url']);
 		}
+		if (!is_array($job['postdata']))
+			$job['postdata'] = [];
 
 		if (!empty($_SERVER['HTTP_X_TIMEOUT_IGNORE']))
 			list($status, $headers, $response)
-				= wrap_trigger_protected_url($job['job_url'], $job['username'], 'POST', $job['postdata']);
+				= wrap_trigger_protected_url($job['job_url'], $job['username'], true, $job['postdata']);
 		else {
 			$headers_to_send = [];
 			$lock_hash = wrap_lock_hash();
@@ -132,6 +134,13 @@ function mod_default_make_jobmanager_add($data) {
 		, !empty($data['sequential']) ? '"running", ' : ''
 	);
 	$job_ids = wrap_db_fetch($sql, 'job_id', 'single value');
+	$postdata = $data;
+	$remove_keys = [
+		'wait_until', 'url', 'try_no_increase', 'job_category_id', 'priority', 'trigger'
+	];
+	foreach ($remove_keys as $key)
+		unset($postdata[$key]);
+
 	if ($job_ids) {
 		// prolong waiting period if new wait_until is given
 		if (!empty($data['wait_until']) AND count($job_ids) === 1 AND empty($data['sequential'])) {
@@ -148,13 +157,10 @@ function mod_default_make_jobmanager_add($data) {
 			);
 			wrap_db_query($sql);
 		}
-		return reset($job_ids);
+		$job_id = reset($job_ids);
+		mod_default_make_jobmanager_postdata_save($job_id, $postdata);
+		return $job_id;
 	}
-	
-	$postdata = $data;
-	$remove_keys = [
-		'wait_until', 'url', 'try_no_increase', 'job_category_id', 'priority', 'trigger'
-	];
 
 	$line = [
 		'job_url' => $data['url'],
@@ -164,9 +170,26 @@ function mod_default_make_jobmanager_add($data) {
 		'wait_until' => $data['wait_until'] ?? NULL,
 		'website_id' => wrap_setting('website_id'),
 		'lock_hash' => wrap_lock_hash(),
-		'postdata' => $postdata ? http_build_query($postdata) : ''
 	];
-	return zzform_insert('jobqueue', $line, E_USER_NOTICE, ['_msg' => 'Job Manager', 'log_post_data' => false]);
+	$job_id = zzform_insert('jobqueue', $line, E_USER_NOTICE, ['_msg' => 'Job Manager', 'log_post_data' => false]);
+	mod_default_make_jobmanager_postdata_save($job_id, $postdata);
+	return $job_id;
+}
+
+/**
+ * store POST parameters for a job queue row
+ *
+ * zzform field postdata is type display (not written on insert), so save directly.
+ *
+ * @param int $job_id
+ * @param array $postdata
+ * @return void
+ */
+function mod_default_make_jobmanager_postdata_save($job_id, $postdata) {
+	if (!$job_id || !$postdata) return;
+	$sql = 'UPDATE _jobqueue SET postdata = "%s" WHERE job_id = %d';
+	$sql = sprintf($sql, wrap_db_escape(http_build_query($postdata)), $job_id);
+	wrap_db_query($sql, E_USER_NOTICE);
 }
 
 /**
@@ -309,16 +332,17 @@ function mod_default_make_jobmanager_success($job_id) {
  * @return string
  */
 function mod_default_make_jobmanager_fail($job, $status, $response) {
+	$try_no = $job['try_no'] ?? 0;
 	if ($status === 404) {
 		$job_status = 'not_found';
 		$error_msg = 'unable to mark job ID %d as not found';
 		$wait_until_sql = '';
-	} elseif ($job['try_no'] + 1 < wrap_setting('default_jobs_max_tries')) {
+	} elseif ($try_no + 1 < wrap_setting('default_jobs_max_tries')) {
 		$job_status = 'failed';
 		$error_msg = 'unable to delay failed job ID %d';
 		$wait_until_sql = sprintf(
 			', wait_until = DATE_ADD(NOW(), INTERVAL %s MINUTE)',
-			pow(wrap_setting('default_jobs_delay_base_value'), $job['try_no'])
+			pow(wrap_setting('default_jobs_delay_base_value'), $try_no)
 		);
 	} else {
 		$job_status = 'abandoned';
@@ -387,10 +411,17 @@ function mod_default_make_jobmanager_delete() {
  * @return bool
  */
 function mod_default_make_jobmanager_release() {
+	// Sequential pipelines (e. g. sync) stay `running` across several
+	// fire-and-forget HTTP steps and can exceed default_jobs_resume_running_minutes.
 	$sql = 'SELECT job_id, job_url, try_no
 		FROM _jobqueue
 		WHERE job_status = "running"
-		AND DATE_ADD(started, INTERVAL /*_SETTING default_jobs_resume_running_minutes _*/ MINUTE) < NOW()';
+		AND (
+			(postdata LIKE "%%sequential=1%%"
+				AND DATE_ADD(started, INTERVAL 60 MINUTE) < NOW())
+			OR (postdata NOT LIKE "%%sequential=1%%"
+				AND DATE_ADD(started, INTERVAL /*_SETTING default_jobs_resume_running_minutes _*/ MINUTE) < NOW())
+		)';
 	$jobs = wrap_db_fetch($sql, 'job_id');
 	if (!$jobs) return false;
 	

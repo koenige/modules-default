@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-08-23 17:06+0000\n"
+"POT-Creation-Date: 2026-08-25 21:13+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -348,19 +348,19 @@ msgstr ""
 msgid "Folder"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:169
+#: zzbrick_make/jobmanager.inc.php:174
 msgid "Job Manager"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:445
+#: zzbrick_make/jobmanager.inc.php:476
 msgid "The job should start later."
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:452
+#: zzbrick_make/jobmanager.inc.php:483
 msgid "Another job is running."
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:460
+#: zzbrick_make/jobmanager.inc.php:491
 msgid "Unable to start job."
 msgstr ""
 
