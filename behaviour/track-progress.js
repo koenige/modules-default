@@ -95,27 +95,44 @@
 			jsonKey = 'json';
 		}
 		var params = new URLSearchParams();
-		params.set(action, actionValue);
 		if (extra) {
 			Object.keys(extra).forEach(function (key) {
 				params.set(key, extra[key]);
 			});
 		}
-		var response = await fetch(window.location.href, {
-			method: 'POST',
+		var method = (root.dataset.method || 'POST').toUpperCase();
+		var url = root.dataset.url || window.location.href;
+		var fetchOptions = {
+			method: method,
 			credentials: 'same-origin',
 			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: params.toString()
-		});
+				'Accept': 'application/json'
+			}
+		};
+		if (method === 'GET') {
+			if (params.toString()) {
+				url = appendQuery(url, params);
+			}
+		} else {
+			params.set(action, actionValue);
+			fetchOptions.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+			fetchOptions.body = params.toString();
+		}
+		var response = await fetch(url, fetchOptions);
 		var text = await response.text();
 		try {
 			return parsePayload(JSON.parse(text), jsonKey);
 		} catch (error) {
 			return { ok: false, error: text.slice(0, 200) || '%%% text Invalid JSON. %%%' };
 		}
+	}
+
+	function appendQuery(url, params) {
+		var target = new URL(url, window.location.href);
+		params.forEach(function (value, key) {
+			target.searchParams.set(key, value);
+		});
+		return target.toString();
 	}
 
 	function readInitialProgress(root) {

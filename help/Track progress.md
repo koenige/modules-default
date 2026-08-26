@@ -46,9 +46,20 @@ Multiple containers per page are possible.
 
 ## Requests
 
-All requests go as POST to the current URL
+By default, requests go as POST to the current URL
 (`application/x-www-form-urlencoded`, `Accept: application/json`). The
 parameter name is set via `data-action`, its value depends on mode and step.
+
+- `data-url`: request URL (default: the current page)
+- `data-method`: `GET` or `POST` (default: `POST`)
+
+GET requests `data-url` as it is (`Accept: application/json`). Do not add
+an action query parameter; the URL already identifies the resource, e. g.
+`/de/import/file-check-status/`. POST still sends `data-action` in the body
+(needed when the request shares the page URL with a form).
+
+Drive steps that change data should stay POST. Poll status that only reads
+progress can use GET.
 
 The response must be JSON. If the payload is wrapped in a key (default:
 `json`, changeable via `data-json-key`, disable with `data-json-key=""`),
@@ -63,6 +74,7 @@ it is unwrapped first; a string value is parsed as JSON again.
 Attributes:
 
 - `data-interval`: poll interval in milliseconds (default 3000)
+- `data-url`, `data-method`: see Requests (poll status may use GET)
 - `data-action-value`: value of the action parameter (default `status`)
 - `data-map-done`, `data-map-checked`, `data-map-total`: JSON keys for the
 status fields (defaults `done`, `checked`, `total`)
