@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-08-26 10:38+0000\n"
+"POT-Creation-Date: 2026-08-26 15:47+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -100,592 +100,596 @@ msgstr ""
 msgid "Adobe Illustrator graphics file"
 msgstr ""
 
-#: configuration/filetypes.cfg:67
+#: configuration/filetypes.cfg:58
+msgid "Adobe Camera Raw sidecar"
+msgstr ""
+
+#: configuration/filetypes.cfg:71
 msgid "Sony ARW"
 msgstr ""
 
-#: configuration/filetypes.cfg:76
+#: configuration/filetypes.cfg:80
 msgid "Advanced Streaming Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:86
+#: configuration/filetypes.cfg:90
 msgid "Audio Video Interleave File"
 msgstr ""
 
-#: configuration/filetypes.cfg:106
+#: configuration/filetypes.cfg:110
 msgid "Microsoft Windows Bitmap v4"
 msgstr ""
 
-#: configuration/filetypes.cfg:113
+#: configuration/filetypes.cfg:117
 msgid "Microsoft Windows Bitmap v2 (Microsoft Windows 2.x)"
 msgstr ""
 
-#: configuration/filetypes.cfg:120
+#: configuration/filetypes.cfg:124
 msgid "Microsoft Windows Bitmap v3 (Microsoft Windows 3.x, NT)"
 msgstr ""
 
-#: configuration/filetypes.cfg:127
+#: configuration/filetypes.cfg:131
 msgid "ChessBase Archive"
 msgstr ""
 
-#: configuration/filetypes.cfg:135
+#: configuration/filetypes.cfg:139
 msgid "INI file"
 msgstr ""
 
-#: configuration/filetypes.cfg:141
+#: configuration/filetypes.cfg:145
 msgid "Computer Graphics Metafile"
 msgstr ""
 
-#: configuration/filetypes.cfg:156
+#: configuration/filetypes.cfg:160
 msgid "Collection Font Type"
 msgstr ""
 
-#: configuration/filetypes.cfg:166
+#: configuration/filetypes.cfg:170
 msgid "Canon CR2 raw image"
 msgstr ""
 
-#: configuration/filetypes.cfg:185
+#: configuration/filetypes.cfg:189
 msgid "Cascading Stylesheets"
 msgstr ""
 
-#: configuration/filetypes.cfg:188
+#: configuration/filetypes.cfg:192
 msgid "Comma Separated Values"
 msgstr ""
 
-#: configuration/filetypes.cfg:195
+#: configuration/filetypes.cfg:199
 msgid "AutoCAD Color-dependent Plot Style Table"
 msgstr ""
 
-#: configuration/filetypes.cfg:204
+#: configuration/filetypes.cfg:208
 msgid "Apple Disk Image"
 msgstr ""
 
-#: configuration/filetypes.cfg:226
+#: configuration/filetypes.cfg:230
 msgid "Digital Negative Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:234
+#: configuration/filetypes.cfg:238
 msgid "MS Word Document"
 msgstr ""
 
-#: configuration/filetypes.cfg:251
+#: configuration/filetypes.cfg:255
 msgid "MS Word Open XML Document"
 msgstr ""
 
-#: configuration/filetypes.cfg:255
+#: configuration/filetypes.cfg:259
 msgid "MS Word Document Template"
 msgstr ""
 
-#: configuration/filetypes.cfg:268
+#: configuration/filetypes.cfg:272
 msgid "MS Word Open XML Document Template"
 msgstr ""
 
-#: configuration/filetypes.cfg:271
+#: configuration/filetypes.cfg:275
 msgid "XML Document Type Definition"
 msgstr ""
 
-#: configuration/filetypes.cfg:278
+#: configuration/filetypes.cfg:282
 msgid "Autodesk Design Web Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:288
+#: configuration/filetypes.cfg:292
 msgid "AutoCAD Drawing Database"
 msgstr ""
 
-#: configuration/filetypes.cfg:302
+#: configuration/filetypes.cfg:306
 msgid "AutoCAD Template/Prototype"
 msgstr ""
 
-#: configuration/filetypes.cfg:306
+#: configuration/filetypes.cfg:310
 msgid "AutoCAD Drawing Interchange Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:320
+#: configuration/filetypes.cfg:324
 msgid "eDrawings File"
 msgstr ""
 
-#: configuration/filetypes.cfg:324
+#: configuration/filetypes.cfg:328
 msgid "Embedded OpenType"
 msgstr ""
 
-#: configuration/filetypes.cfg:328
+#: configuration/filetypes.cfg:332
 msgid "PostScript document text (EPS)"
 msgstr ""
 
-#: configuration/filetypes.cfg:338
+#: configuration/filetypes.cfg:342
 msgid "Encapsulated PostScript Interchange format with TIFF preview"
 msgstr ""
 
-#: configuration/filetypes.cfg:352
+#: configuration/filetypes.cfg:356
 msgid "MS Executable"
 msgstr ""
 
-#: configuration/filetypes.cfg:358
+#: configuration/filetypes.cfg:362
 msgid "Freehand"
 msgstr ""
 
-#: configuration/filetypes.cfg:368
+#: configuration/filetypes.cfg:372
 msgid "Flash Video File"
 msgstr ""
 
-#: configuration/filetypes.cfg:375
+#: configuration/filetypes.cfg:379
 msgid "GAEB"
 msgstr ""
 
-#: configuration/filetypes.cfg:379
+#: configuration/filetypes.cfg:383
 msgid "GAEB DA 90 Leistungsverzeichnis"
 msgstr ""
 
-#: configuration/filetypes.cfg:385
+#: configuration/filetypes.cfg:389
 msgid "GAEB DA 90 Kostenanschlag"
 msgstr ""
 
-#: configuration/filetypes.cfg:391
+#: configuration/filetypes.cfg:395
 msgid "GAEB DA 90 Angebotsaufforderung"
 msgstr ""
 
-#: configuration/filetypes.cfg:397
+#: configuration/filetypes.cfg:401
 msgid "GAEB DA 90 Angebotsabgabe"
 msgstr ""
 
-#: configuration/filetypes.cfg:403
+#: configuration/filetypes.cfg:407
 msgid "GAEB DA 90 Nebenangebot"
 msgstr ""
 
-#: configuration/filetypes.cfg:409
+#: configuration/filetypes.cfg:413
 msgid "GAEB DA 90 Zuschlag/Auftragserteilung"
 msgstr ""
 
-#: configuration/filetypes.cfg:415
+#: configuration/filetypes.cfg:419
 msgid "GAEB DA 2000 Leistungsverzeichnis"
 msgstr ""
 
-#: configuration/filetypes.cfg:421
+#: configuration/filetypes.cfg:425
 msgid "GAEB DA 2000 Kostenanschlag"
 msgstr ""
 
-#: configuration/filetypes.cfg:427
+#: configuration/filetypes.cfg:431
 msgid "GAEB DA 2000 Angebotsaufforderung"
 msgstr ""
 
-#: configuration/filetypes.cfg:433
+#: configuration/filetypes.cfg:437
 msgid "GAEB DA 2000 Angebotsabgabe"
 msgstr ""
 
-#: configuration/filetypes.cfg:439
+#: configuration/filetypes.cfg:443
 msgid "GAEB DA 2000 Nebenangebot"
 msgstr ""
 
-#: configuration/filetypes.cfg:445
+#: configuration/filetypes.cfg:449
 msgid "GAEB DA 2000 Zuschlag/Auftragserteilung"
 msgstr ""
 
-#: configuration/filetypes.cfg:451
+#: configuration/filetypes.cfg:455
 msgid "GAEB DA 2000 Handel-Preisangebot"
 msgstr ""
 
-#: configuration/filetypes.cfg:457
+#: configuration/filetypes.cfg:461
 msgid "GAEB DA XML LV-Katalog"
 msgstr ""
 
-#: configuration/filetypes.cfg:463
+#: configuration/filetypes.cfg:467
 msgid "GAEB DA XML Mengenermittlung und Aufmaß"
 msgstr ""
 
-#: configuration/filetypes.cfg:469
+#: configuration/filetypes.cfg:473
 msgid "GAEB DA XML Leistungsverzeichnis"
 msgstr ""
 
-#: configuration/filetypes.cfg:475
+#: configuration/filetypes.cfg:479
 msgid "GAEB DA XML Kostenanschlag"
 msgstr ""
 
-#: configuration/filetypes.cfg:481
+#: configuration/filetypes.cfg:485
 msgid "GAEB DA XML Angebotsaufforderung"
 msgstr ""
 
-#: configuration/filetypes.cfg:487
+#: configuration/filetypes.cfg:491
 msgid "GAEB DA XML Angebotsabgabe"
 msgstr ""
 
-#: configuration/filetypes.cfg:493
+#: configuration/filetypes.cfg:497
 msgid "GAEB DA XML Nebenangebot"
 msgstr ""
 
-#: configuration/filetypes.cfg:499
+#: configuration/filetypes.cfg:503
 msgid "GAEB DA XML Zuschlag/Auftragserteilung"
 msgstr ""
 
-#: configuration/filetypes.cfg:505
+#: configuration/filetypes.cfg:509
 msgid "GAEB DA XML Rechnung"
 msgstr ""
 
-#: configuration/filetypes.cfg:511
+#: configuration/filetypes.cfg:515
 msgid "Geographic JSON"
 msgstr ""
 
-#: configuration/filetypes.cfg:518
+#: configuration/filetypes.cfg:522
 msgid "CompuServe Graphics Interchange Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:524
+#: configuration/filetypes.cfg:528
 msgid "GPS eXchange Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:538
+#: configuration/filetypes.cfg:542
 msgid "Gzip Compressed Archive"
 msgstr ""
 
-#: configuration/filetypes.cfg:553
+#: configuration/filetypes.cfg:557
 msgid "High Efficiency Image File Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:568
-#: configuration/filetypes.cfg:578
+#: configuration/filetypes.cfg:572
+#: configuration/filetypes.cfg:582
 msgid "Hypertext Document"
 msgstr ""
 
-#: configuration/filetypes.cfg:586
+#: configuration/filetypes.cfg:590
 msgid "Microsoft icon"
 msgstr ""
 
-#: configuration/filetypes.cfg:592
+#: configuration/filetypes.cfg:596
 msgid "vCalendar calendar file"
 msgstr ""
 
-#: configuration/filetypes.cfg:598
+#: configuration/filetypes.cfg:602
 msgid "Image Exchange Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:605
+#: configuration/filetypes.cfg:609
 msgid "Interchange File Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:617
+#: configuration/filetypes.cfg:621
 msgid "Adobe InDesign Document"
 msgstr ""
 
-#: configuration/filetypes.cfg:637
+#: configuration/filetypes.cfg:641
 msgid "Joint Photographers Expert Group Image"
 msgstr ""
 
-#: configuration/filetypes.cfg:652
+#: configuration/filetypes.cfg:656
 msgid "JPEG 2000 image"
 msgstr ""
 
-#: configuration/filetypes.cfg:675
+#: configuration/filetypes.cfg:679
 msgid "JavaScript"
 msgstr ""
 
-#: configuration/filetypes.cfg:681
+#: configuration/filetypes.cfg:685
 msgid "JavaScript Object Notation"
 msgstr ""
 
-#: configuration/filetypes.cfg:687
+#: configuration/filetypes.cfg:691
 msgid "JSON lines"
 msgstr ""
 
-#: configuration/filetypes.cfg:696
+#: configuration/filetypes.cfg:700
 msgid "Keyhole Markup Language"
 msgstr ""
 
-#: configuration/filetypes.cfg:702
+#: configuration/filetypes.cfg:706
 msgid "Keyhole Markup Language Archive"
 msgstr ""
 
-#: configuration/filetypes.cfg:706
+#: configuration/filetypes.cfg:710
 msgid "LaTeX source"
 msgstr ""
 
-#: configuration/filetypes.cfg:719
+#: configuration/filetypes.cfg:723
 msgid "Log file"
 msgstr ""
 
-#: configuration/filetypes.cfg:723
+#: configuration/filetypes.cfg:727
 msgid "LZH compressed data"
 msgstr ""
 
-#: configuration/filetypes.cfg:730
+#: configuration/filetypes.cfg:734
 msgid "MPEG-4 Audio"
 msgstr ""
 
-#: configuration/filetypes.cfg:740
+#: configuration/filetypes.cfg:744
 msgid "MPEG-4 Audio Books"
 msgstr ""
 
-#: configuration/filetypes.cfg:747
+#: configuration/filetypes.cfg:751
 msgid "MPEG-4 Audio Protected"
 msgstr ""
 
-#: configuration/filetypes.cfg:753
+#: configuration/filetypes.cfg:757
 msgid "MPEG-4 Audio Ringtones"
 msgstr ""
 
-#: configuration/filetypes.cfg:762
+#: configuration/filetypes.cfg:766
 msgid "MPEG-4 Video File"
 msgstr ""
 
-#: configuration/filetypes.cfg:781
+#: configuration/filetypes.cfg:785
 msgid "MatLab"
 msgstr ""
 
-#: configuration/filetypes.cfg:789
+#: configuration/filetypes.cfg:793
 msgid "MiniCAD Design File"
 msgstr ""
 
-#: configuration/filetypes.cfg:793
+#: configuration/filetypes.cfg:797
 msgid "Microsoft Access Database"
 msgstr ""
 
-#: configuration/filetypes.cfg:798
+#: configuration/filetypes.cfg:802
 msgid "Markdown file"
 msgstr ""
 
-#: configuration/filetypes.cfg:806
+#: configuration/filetypes.cfg:810
 msgid "MediaRSS"
 msgstr ""
 
-#: configuration/filetypes.cfg:820
+#: configuration/filetypes.cfg:824
 msgid "Maker Interchange Format (Adobe FrameMaker)"
 msgstr ""
 
-#: configuration/filetypes.cfg:823
+#: configuration/filetypes.cfg:827
 msgid "JPEG 2000 video"
 msgstr ""
 
-#: configuration/filetypes.cfg:830
+#: configuration/filetypes.cfg:834
 msgid "QuickTime Video Clip"
 msgstr ""
 
-#: configuration/filetypes.cfg:855
+#: configuration/filetypes.cfg:859
 msgid "MPEG Audio Stream, Layer III"
 msgstr ""
 
-#: configuration/filetypes.cfg:883
+#: configuration/filetypes.cfg:887
 msgid "Microsoft Project File"
 msgstr ""
 
-#: configuration/filetypes.cfg:901
+#: configuration/filetypes.cfg:905
 msgid "MaXQDA"
 msgstr ""
 
-#: configuration/filetypes.cfg:911
+#: configuration/filetypes.cfg:915
 msgid "Nikon Electronic format"
 msgstr ""
 
-#: configuration/filetypes.cfg:920
+#: configuration/filetypes.cfg:924
 msgid "Nikon Raw Image File"
 msgstr ""
 
-#: configuration/filetypes.cfg:931
+#: configuration/filetypes.cfg:935
 msgid "Open Document Spreadsheet"
 msgstr ""
 
-#: configuration/filetypes.cfg:937
+#: configuration/filetypes.cfg:941
 msgid "Open Document Text Document"
 msgstr ""
 
-#: configuration/filetypes.cfg:943
+#: configuration/filetypes.cfg:947
 msgid "Olympus RAW File"
 msgstr ""
 
-#: configuration/filetypes.cfg:947
+#: configuration/filetypes.cfg:951
 msgid "Ogg Theora Vorbis Audio"
 msgstr ""
 
-#: configuration/filetypes.cfg:953
+#: configuration/filetypes.cfg:957
 msgid "Ogg Theora Vorbis"
 msgstr ""
 
-#: configuration/filetypes.cfg:961
+#: configuration/filetypes.cfg:965
 msgid "Ogg Theora Vorbis Video"
 msgstr ""
 
-#: configuration/filetypes.cfg:968
+#: configuration/filetypes.cfg:972
 msgid "OpenType font"
 msgstr ""
 
-#: configuration/filetypes.cfg:972
+#: configuration/filetypes.cfg:976
 msgid "OpenDocument Text Document Template"
 msgstr ""
 
-#: configuration/filetypes.cfg:984
+#: configuration/filetypes.cfg:988
 msgid "AutoCAD Plotter Configuration File"
 msgstr ""
 
-#: configuration/filetypes.cfg:991
+#: configuration/filetypes.cfg:995
 msgid "Adobe Portable Document Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:1016
+#: configuration/filetypes.cfg:1020
 msgid "Portable Game Notation"
 msgstr ""
 
-#: configuration/filetypes.cfg:1036
+#: configuration/filetypes.cfg:1040
 msgid "QuickDraw PICT Drawing"
 msgstr ""
 
-#: configuration/filetypes.cfg:1045
+#: configuration/filetypes.cfg:1049
 msgid "HPGL Plotfile"
 msgstr ""
 
-#: configuration/filetypes.cfg:1051
+#: configuration/filetypes.cfg:1055
 msgid "Portable Network Graphic"
 msgstr ""
 
-#: configuration/filetypes.cfg:1062
+#: configuration/filetypes.cfg:1066
 msgid "Portable Object file"
 msgstr ""
 
-#: configuration/filetypes.cfg:1069
+#: configuration/filetypes.cfg:1073
 msgid "MS Powerpoint Presentation Template"
 msgstr ""
 
-#: configuration/filetypes.cfg:1074
+#: configuration/filetypes.cfg:1078
 msgid "MS PowerPoint Open XML Presentation Template"
 msgstr ""
 
-#: configuration/filetypes.cfg:1081
+#: configuration/filetypes.cfg:1085
 msgid "MS PowerPoint Slideshow"
 msgstr ""
 
-#: configuration/filetypes.cfg:1086
+#: configuration/filetypes.cfg:1090
 msgid "MS PowerPoint Open XML Slideshow"
 msgstr ""
 
-#: configuration/filetypes.cfg:1090
+#: configuration/filetypes.cfg:1094
 msgid "MS PowerPoint Presentation"
 msgstr ""
 
-#: configuration/filetypes.cfg:1101
+#: configuration/filetypes.cfg:1105
 msgid "MS PowerPoint Open XML Presentation"
 msgstr ""
 
-#: configuration/filetypes.cfg:1105
+#: configuration/filetypes.cfg:1109
 msgid "MS PowerPoint Packaged Presentation"
 msgstr ""
 
-#: configuration/filetypes.cfg:1111
+#: configuration/filetypes.cfg:1115
 msgid "PostScript document text (PS)"
 msgstr ""
 
-#: configuration/filetypes.cfg:1119
+#: configuration/filetypes.cfg:1123
 msgid "Adobe Photoshop Document"
 msgstr ""
 
-#: configuration/filetypes.cfg:1134
+#: configuration/filetypes.cfg:1138
 msgid "RAR archive data"
 msgstr ""
 
-#: configuration/filetypes.cfg:1144
+#: configuration/filetypes.cfg:1148
 msgid "Revit Family File"
 msgstr ""
 
-#: configuration/filetypes.cfg:1157
+#: configuration/filetypes.cfg:1161
 msgid "Revit Project Template"
 msgstr ""
 
-#: configuration/filetypes.cfg:1161
+#: configuration/filetypes.cfg:1165
 msgid "Rich Text Format File"
 msgstr ""
 
-#: configuration/filetypes.cfg:1174
+#: configuration/filetypes.cfg:1178
 msgid "Revit Model"
 msgstr ""
 
-#: configuration/filetypes.cfg:1183
+#: configuration/filetypes.cfg:1187
 msgid "Spline font or Scalable font"
 msgstr ""
 
-#: configuration/filetypes.cfg:1210
+#: configuration/filetypes.cfg:1214
 msgid "Google Sketchup Drawing"
 msgstr ""
 
-#: configuration/filetypes.cfg:1234
+#: configuration/filetypes.cfg:1238
 msgid "Structured Query Language (SQL) file"
 msgstr ""
 
-#: configuration/filetypes.cfg:1242
+#: configuration/filetypes.cfg:1246
 msgid "AutoCAD Style Sheet File"
 msgstr ""
 
-#: configuration/filetypes.cfg:1252
+#: configuration/filetypes.cfg:1256
 msgid "Scalable Vector Graphics"
 msgstr ""
 
-#: configuration/filetypes.cfg:1267
+#: configuration/filetypes.cfg:1271
 msgid "Swiss-Chess tournament data"
 msgstr ""
 
-#: configuration/filetypes.cfg:1278
+#: configuration/filetypes.cfg:1282
 msgid "True Crypt (Virtual Encrypted Disk (Container))"
 msgstr ""
 
-#: configuration/filetypes.cfg:1285
+#: configuration/filetypes.cfg:1289
 msgid "TeX source / LaTeX Source"
 msgstr ""
 
-#: configuration/filetypes.cfg:1296
+#: configuration/filetypes.cfg:1300
 msgid "Truevision Targa Graphic"
 msgstr ""
 
-#: configuration/filetypes.cfg:1308
+#: configuration/filetypes.cfg:1312
 msgid "Gzipped Tar file"
 msgstr ""
 
-#: configuration/filetypes.cfg:1314
+#: configuration/filetypes.cfg:1318
 msgid "Tag Image File Format"
 msgstr ""
 
-#: configuration/filetypes.cfg:1336
+#: configuration/filetypes.cfg:1340
 msgid "TrueType font"
 msgstr ""
 
-#: configuration/filetypes.cfg:1340
+#: configuration/filetypes.cfg:1344
 msgid "Plain Text"
 msgstr ""
 
-#: configuration/filetypes.cfg:1359
+#: configuration/filetypes.cfg:1363
 msgid "vCard File"
 msgstr ""
 
-#: configuration/filetypes.cfg:1373
+#: configuration/filetypes.cfg:1377
 msgid "Vectorworks Design File"
 msgstr ""
 
-#: configuration/filetypes.cfg:1420
+#: configuration/filetypes.cfg:1424
 msgid "Windows Media File"
 msgstr ""
 
-#: configuration/filetypes.cfg:1426
+#: configuration/filetypes.cfg:1430
 msgid "Web Open Font Format 1.0"
 msgstr ""
 
-#: configuration/filetypes.cfg:1431
+#: configuration/filetypes.cfg:1435
 msgid "Web Open Font Format 2.0"
 msgstr ""
 
-#: configuration/filetypes.cfg:1436
+#: configuration/filetypes.cfg:1440
 msgid "Microsoft Works Document"
 msgstr ""
 
-#: configuration/filetypes.cfg:1453
+#: configuration/filetypes.cfg:1457
 msgid "MS Excel Worksheet"
 msgstr ""
 
-#: configuration/filetypes.cfg:1466
+#: configuration/filetypes.cfg:1470
 msgid "MS Excel Open XML Spreadsheet"
 msgstr ""
 
-#: configuration/filetypes.cfg:1470
+#: configuration/filetypes.cfg:1474
 msgid "MS Excel Open XML Spreadsheet Template"
 msgstr ""
 
-#: configuration/filetypes.cfg:1477
+#: configuration/filetypes.cfg:1481
 msgid "Adobe Extensible Metadata Platform"
 msgstr ""
 
-#: configuration/filetypes.cfg:1497
+#: configuration/filetypes.cfg:1501
 msgid "ZIP Archive"
 msgstr ""
 
