@@ -25,6 +25,9 @@ WHERE old_url = _latin1'%s/' OR old_url = _latin1'%s.html' OR old_url = _latin1'
 -- core_redirects_* --
 SELECT * FROM /*_PREFIX_*/redirects WHERE old_url = _latin1'%s*';
 
+-- core_redirects_*.* --
+SELECT * FROM /*_PREFIX_*/redirects WHERE old_url = _latin1'%s*.*';
+
 -- core_redirects*_ --
 SELECT * FROM /*_PREFIX_*/redirects WHERE old_url = _latin1'*%s';
 
