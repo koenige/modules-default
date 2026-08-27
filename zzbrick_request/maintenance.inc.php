@@ -101,6 +101,7 @@ function mod_default_maintenance($params) {
  */
 function mod_default_maintenance_keycheck() {
 	$keys = [
+		'allowed-hostnames' => 'make',
 		'cachedircheck' => 'make',
 		'dbmodules' => 'make',
 		'dbupdate' => 'make',

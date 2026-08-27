@@ -108,6 +108,8 @@
 
 <h2><a href="?parameterscheck">%%% text Check Parameters %%%</a></h2>
 
+<h2><a href="?allowed-hostnames">%%% text Allowed hostnames %%%</a></h2>
+
 %%% include sqlquery-form %%%
 
 </div>

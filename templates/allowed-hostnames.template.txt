@@ -1,0 +1,55 @@
+# default module
+# Template: write config/allowed-hostnames.json from known hostnames
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/default
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+# Variables
+# translate_pot = admin
+#
+<div id="zzform" class="maintenance">
+
+<p>%%% text This file is local to this server. It is not stored in the database. After writing, remove hostnames that this server should not answer. %%%</p>
+<p><code>%%% item file %%%</code></p>
+
+%%% if write_error %%%
+<p class="error">%%% text The file could not be written. %%%</p>
+%%% endif %%%
+
+%%% if exists %%%
+<h2>%%% text Current file %%%</h2>
+%%% if current %%%
+<ul>
+%%% loop current %%%
+<li><code>%%% item hostname %%%</code></li>
+%%% loop end %%%
+</ul>
+%%% else %%%
+<p>%%% text The file exists but contains no hostnames. %%%</p>
+%%% endif %%%
+%%% else %%%
+<p>%%% text No allowed-hostnames.json file exists yet. Requests are not filtered by hostname. %%%</p>
+%%% endif %%%
+
+<h2>%%% text Known hostnames %%%</h2>
+%%% if has_proposed %%%
+<ul>
+%%% loop proposed %%%
+<li><code>%%% item hostname %%%</code></li>
+%%% loop end %%%
+</ul>
+%%% if unchanged %%%
+<p class="success">%%% text The file already matches this list. %%%</p>
+%%% endif %%%
+<form action="" method="POST">
+<p><input type="submit" value="%%% text Write allowed-hostnames.json %%%"></p>
+</form>
+%%% else %%%
+<p>%%% text No known hostnames were found. %%%</p>
+%%% endif %%%
+
+</div>
