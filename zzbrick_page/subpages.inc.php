@@ -25,12 +25,9 @@ function page_subpages($params = [], $page = [], $settings = []) {
 	$data = wrap_db_fetch($sql, wrap_sql_fields('page_id'));
 	$data = wrap_translate($data, 'webpages');
 
-	$data += $settings;
-	
 	$last_level = 1;
 	$current_identifier = wrap_page_field('identifier').'/';
 	foreach ($data as $id => $line) {
-		if (!is_numeric($id)) continue;
 		if (strstr($line['identifier'], $current_identifier)) {
 			$data[$id]['identifier'] = str_replace(
 				$current_identifier, wrap_url('path'), $line['identifier']
@@ -69,5 +66,8 @@ function page_subpages($params = [], $page = [], $settings = []) {
 			$data[$id]['leveldown'] = true;
 		$last_level = $level;
 	}
+	if (!$data) return '';
+
+	$data += $settings;
 	return wrap_template('subpages', $data);
 }
