@@ -29,7 +29,7 @@
 <tr data-index="%%% item index %%%" %%% if current %%%id="current" %%% endif %%%class="%%% loopposition uneven un %%%even%%% if exists %%% exists%%% elseif current %%% current_record%%% endif %%%">
 <td>%%% item date %%%</td>
 <td>%%% item module %%%</td>
-<td>%%% item query %%%
+<td>%%% item query format=html_escape brick_no_format_inside=1 %%%
 %%% if current %%%
 <p>
 <input type="hidden" name="index" value="%%% item index %%%">
