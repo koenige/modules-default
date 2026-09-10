@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2020, 2024, 2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <h1>Installation of Zugzwang Project CMS</h1>
@@ -13,15 +13,15 @@
 <h2>Step 2 – Username and password</h2>
 <p>Now we need to create a username and a password. Please enter a username 
 (best: first.last) and a password (at least eight characters long).</p>
-<form method="POST" action="">
+<form method="POST" action="" autocomplete="off">
 %%% if error %%%
 <p class="error">%%% item error %%%</p>
 %%% endif %%%
 <p><label>Username:
-<input type="text" name="username">
+<input type="text" name="username" autocomplete="off">
 </label></p>
 <p><label>Password:
-<input type="password" name="password">
+<input type="password" name="password" autocomplete="new-password">
 </label></p>
 <input type="submit" value="Submit">
 </form>
