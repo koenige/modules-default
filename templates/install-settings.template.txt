@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/default
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2020, 2024-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% if module %%%
@@ -31,6 +31,8 @@
 %%% unless setting html_label_after_input %%%<label for="id_%%% item key %%%-2">%%% endif %%%<input type="radio" value="false" name="%%% item id %%%" id="id_%%% item key %%%-2">%%% if setting html_label_after_input %%%<label for="id_%%% item key %%%-2">%%% endif %%%&nbsp;false</label>
 %%% elseif mail %%%
 <input type="email" id="id_%%% item key %%%" value="%%% item default %%%" name="%%% item id %%%">
+%%% elseif install_default %%%
+<input type="text" id="id_%%% item key %%%" value="%%% item install_default %%%" name="%%% item id %%%">
 %%% else %%%
 <input type="text" id="id_%%% item key %%%" value="%%% item default %%%" name="%%% item id %%%">
 %%% endif %%%
