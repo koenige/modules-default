@@ -26,11 +26,16 @@ function page_subpages($params = [], $page = [], $settings = []) {
 	$data = wrap_translate($data, 'webpages');
 
 	$last_level = 1;
-	$current_identifier = wrap_page_field('identifier').'/';
+	$page_identifier = wrap_page_field('identifier');
+	$current_identifier = ($page_identifier === '/')
+		? $page_identifier.'/'
+		: rtrim($page_identifier, '/');
+	$current_path = rtrim(wrap_url('path'), '/');
+	if ($current_path === '') $current_path = '/';
 	foreach ($data as $id => $line) {
 		if (strstr($line['identifier'], $current_identifier)) {
 			$data[$id]['identifier'] = str_replace(
-				$current_identifier, wrap_url('path'), $line['identifier']
+				$current_identifier, $current_path, $line['identifier']
 			);
 		}
 		$access = wrap_access_page($line['parameters'] ?? '', false);
