@@ -1251,7 +1251,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 
 INSERT INTO `webpages` (`page_id`, `title`, `content`, `identifier`, `ending`, `sequence`, `mother_page_id`, `live`, `parameters`, `last_update`) VALUES
 (1,	'Website',	'Hello World',	'/',	'none',	1,	NULL,	'yes',	NULL,	NOW()),
-(2,	'Internal Area',	'%%% include internal-area %%%',	'/db',	'/',	2,	NULL,	'yes',	'&edit=admin',	NOW()),
+(2,	'Internal Area',	'%%% include internal-area %%%',	'/db',	'/',	2,	NULL,	'yes',	'&edit=admin&route=login_entry',	NOW()),
 (3,	'Login',	'%%% request login %%%',	'/login',	'/',	0,	2,	'yes',	'&edit=admin',	NOW()),
 (4,	'Logout',	'%%% request logout %%%',	'/logout',	'/',	10,	2,	'yes',	'&edit=admin',	NOW()),
 (5,	'Tables',	'%%% tables * %%%',	'/db*',	'none',	1,	2,	'yes',	'&edit=admin',	NOW()),
