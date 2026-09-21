@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2016, 2021-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2016, 2021-2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -17,11 +17,13 @@
  * %%% request mailaddress %%%
  * %%% request mailaddress "First Last" %%%
  * %%% request mailaddress "First Last" test@example.org %%%
+ * %%% request mailaddress href_only=1 %%% (obfuscated href for <a href="…">)
  *
  * @param array $params
- * @return array
+ * @param array $local_settings
+ * @return array|false
  */
-function mod_default_mailaddress($params) {
+function mod_default_mailaddress($params, $local_settings = []) {
 	$name = wrap_setting('own_name');
 	$mail = wrap_setting('own_e_mail');
 	
@@ -43,6 +45,14 @@ function mod_default_mailaddress($params) {
 		}
 	} elseif (count($params)) {
 		return false;
+	}
+	if (!empty($local_settings['href_only'])) {
+		if (!$mail) {
+			$page['text'] = '';
+			return $page;
+		}
+		$page['text'] = wrap_mailto($name, $mail, false, true);
+		return $page;
 	}
 	if ($name) {
 		$page['text'] = wrap_mailto($name, $mail);
