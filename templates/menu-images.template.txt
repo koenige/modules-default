@@ -9,7 +9,7 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <ul class="menu-images">
-%%% loop start %%%
-<li><a href="%%% item url %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% if path %%%%%% item path %%%%%% else %%%%%% setting default_menu_image_size %%%%%% endif %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% if alternative_text %%%%%% item alternative_text format=html_escape %%%%%% else %%%%%% item title format=html_escape %%%%%% endif %%%"%%% if thumb_extension & setting default_menu_image_size_x2 %%% srcset="%%% setting files_path %%%/%%% item filename %%%.%%% if path %%%%%% item path %%%%%% else %%%%%% setting default_menu_image_size %%%%%% endif %%%.%%% item thumb_extension %%%?v=%%% item version %%% 1x, %%% setting files_path %%%/%%% item filename %%%.%%% if path_x2 %%%%%% item path_x2 %%%%%% else %%%%%% setting default_menu_image_size_x2 %%%%%% endif %%%.%%% item thumb_extension %%%?v=%%% item version %%% 2x"%%% endif %%%></a></li>
+%%% loop items %%%
+<li><a href="%%% item url %%%" title="%%% item title %%%"><img src="%%% setting files_path %%%/%%% item filename %%%.%%% if path %%%%%% item path %%%%%% else %%%%%% setting default_menu_image_size %%%%%% endif %%%.%%% item thumb_extension %%%?v=%%% item version %%%" alt="%%% if alternative_text %%%%%% item alternative_text format=html_escape %%%%%% else %%%%%% item title format=html_escape %%%%%% endif %%%"%%% if thumb_extension & setting default_menu_image_size_x2 %%% srcset="%%% setting files_path %%%/%%% item filename %%%.%%% if path %%%%%% item path %%%%%% else %%%%%% setting default_menu_image_size %%%%%% endif %%%.%%% item thumb_extension %%%?v=%%% item version %%% 1x, %%% setting files_path %%%/%%% item filename %%%.%%% if path_x2 %%%%%% item path_x2 %%%%%% else %%%%%% setting default_menu_image_size_x2 %%%%%% endif %%%.%%% item thumb_extension %%%?v=%%% item version %%% 2x"%%% endif %%%></a></li>
 %%% loop end %%%
 </ul>

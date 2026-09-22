@@ -53,7 +53,7 @@ function mod_default_show_menu_images($params, $settings) {
 		if (!is_array($item) || empty($item['url'])) continue;
 		$page_id = $item[wrap_sql_fields('page_id')] ?? null;
 		if (!$page_id) continue;
-		$data[$page_id] = [
+		$data['items'][$page_id] = [
 			'title' => $item['title'],
 			'url' => $item['url'],
 		];
@@ -61,14 +61,13 @@ function mod_default_show_menu_images($params, $settings) {
 	if (!$data) return false;
 
 	// get hero image per page from webpages_media
-	$media = wrap_media(array_keys($data), 'webpages');
-	foreach (array_keys($data) as $page_id) {
+	$media = wrap_media(array_keys($data['items']), 'webpages');
+	foreach (array_keys($data['items']) as $page_id) {
 		if (!array_key_exists($page_id, $media)) continue;
 		$image = reset($media[$page_id]['images']);
 		if (($image['sequence'] ?? '') . '' !== '1') continue;
-		$data[$page_id] += $image;
+		$data['items'][$page_id] += $image;
 	}
-	if (!$data) return false;
 
 	$page['text'] = wrap_template('menu-images', $data);
 	return $page;
