@@ -60,6 +60,7 @@ $zz['fields'][4]['character_set'] = 'utf8';
 $zz['fields'][4]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][4]['show_hierarchy_subtree'] = wrap_category_id('layout');
 $zz['fields'][4]['default'] = wrap_category_id('layout/standard');
+$zz['fields'][4]['for_action_ignore'] = true;
 
 $zz['fields'][20]['title'] = 'Updated';
 $zz['fields'][20]['field_name'] = 'last_update';
