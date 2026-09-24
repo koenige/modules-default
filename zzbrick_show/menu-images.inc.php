@@ -34,14 +34,14 @@ function mod_default_show_menu_images($params, $settings) {
 	if (empty($params[0])) {
 		$entries = $page['nav_db'][wrap_setting('main_menu')] ?? [];
 	} elseif ($params[0] === 'current') {
-		$top_id = wrap_nav_top($page['nav_db']);
-		if (!$top_id) return false;
-		$menu_name = $page['current_menu'] ?: wrap_setting('main_menu');
-		if (empty($page['nav_db'][$menu_name][$top_id])) return false;
-		$entries = $page['nav_db'][wrap_menu_id(
-			$page['nav_db'][$menu_name][$top_id],
-			wrap_sql_fields('page_id')
-		)] ?? [];
+		$top_menu = $page['current_menu'] ?: wrap_setting('main_menu');
+		$menu = sprintf('%s-%s', $top_menu, $page['current_navitem']);
+		if (!array_key_exists($menu, $page['nav_db'])) {
+			// if there is no menu below, show menu of same level
+			$menu = $top_menu;
+			if (!array_key_exists($menu, $page['nav_db'])) return false;
+		}
+		$entries = $page['nav_db'][$menu];
 	} elseif (isset($page['nav_db'][$params[0]])) {
 		$entries = $page['nav_db'][$params[0]];
 	} else {
@@ -56,6 +56,7 @@ function mod_default_show_menu_images($params, $settings) {
 		$data['items'][$page_id] = [
 			'title' => $item['title'],
 			'url' => $item['url'],
+			'current_page' => !empty($item['current_page']),
 		];
 	}
 	if (!$data) return false;
