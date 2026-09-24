@@ -68,8 +68,17 @@ function page_blocks($params, &$page, $local_settings = []) {
 		}
 		$block_media = $media[$block_id] ?? [];
 		if ($block_media) {
-			brick_request_links($line['block'], $block_media, 'sequence');
-			$line['image'] = brick_request_link($block_media, ['image', 1, $size], 'sequence');
+			brick_request_links($line['block'], $block_media);
+			$line['media'] = [];
+			$line['medium'] = null;
+			foreach ($block_media['images'] ?? [] as $block_medium_id => $block_medium) {
+				$image = brick_request_link($block_media, ['image', $block_medium['sequence'], $size]);
+				if ($image) {
+					$line['media'][$block_medium_id]['medium'] = $image;
+					if (!$line['medium']) $line['medium'] = $image;
+				}
+			}
+			if (count($line['media']) > 1) $line['is_gallery'] = true;
 		}
 		if (!empty($line['default_blocks_template']))
 			$line['html'] = wrap_template($line['default_blocks_template'], $line);
