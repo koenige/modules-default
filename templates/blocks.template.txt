@@ -9,15 +9,20 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% loop start %%%
+%%% if html %%%
+%%% item html %%%
+
+%%% else %%%
 <section class="block %%% item layout_class %%%">
 <div>
 
 <h2%%% if identifier %%% id="%%% item identifier %%%"%%% endif %%%>%%% item title %%%</h2>
 
-%%% item image %%%
+%%% item medium %%%
 
 %%% item block format=markdown %%%
 
 </div>
 </section>
+%%% endif %%%
 %%% loop end %%%
