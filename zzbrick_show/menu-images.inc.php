@@ -19,6 +19,8 @@
  * examples:
  * 		%%% show menu-images %%%
  * 		%%% show menu-images current %%% — submenu of the active main-menu section
+ * 		%%% show menu-images current titles=1 %%% — same, with titles under images
+ * 		%%% show menu-images current fallback_level=2 %%% — same, but no fallback to the top menu
  * 		%%% show menu-images top %%% — explicit menu bucket (same as default if that is main_menu)
  *
  * @param array $params [0] optional: `current`, or a menu bucket name from nav_db
@@ -37,7 +39,9 @@ function mod_default_show_menu_images($params, $settings) {
 		$top_menu = $page['current_menu'] ?: wrap_setting('main_menu');
 		$menu = sprintf('%s-%s', $top_menu, $page['current_navitem']);
 		if (!array_key_exists($menu, $page['nav_db'])) {
-			// if there is no menu below, show menu of same level
+			// no submenu below: show the menu this page is in, if it is deep enough
+			$fallback_level = (int) ($settings['fallback_level'] ?? wrap_setting('default_menu_image_fallback_level') ?? 1);
+			if (mod_default_menu_images_level($top_menu) < $fallback_level) return false;
 			$menu = $top_menu;
 			if (!array_key_exists($menu, $page['nav_db'])) return false;
 		}
@@ -61,6 +65,8 @@ function mod_default_show_menu_images($params, $settings) {
 	}
 	if (!$data) return false;
 
+	$data['titles'] = $settings['titles'] ?? wrap_setting('default_menu_image_titles');
+
 	// get hero image per page from webpages_media
 	$media = wrap_media(array_keys($data['items']), 'webpages');
 	foreach (array_keys($data['items']) as $page_id) {
@@ -72,4 +78,21 @@ function mod_default_show_menu_images($params, $settings) {
 
 	$page['text'] = wrap_template('menu-images', $data);
 	return $page;
+}
+
+/**
+ * menu level of a nav_db key
+ *
+ * the category alias may contain hyphens; each trailing -{page id} is one level
+ *
+ * @param string $menu
+ * @return int 1 = top menu
+ */
+function mod_default_menu_images_level($menu) {
+	$level = 1;
+	while (preg_match('/^(.*)-\d+$/', $menu, $matches)) {
+		$menu = $matches[1];
+		$level++;
+	}
+	return $level;
 }
