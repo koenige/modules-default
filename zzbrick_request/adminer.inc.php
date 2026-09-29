@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014-2021, 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2014-2021, 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  *
  * Variables
@@ -40,36 +40,21 @@ function mod_default_adminer($params) {
 		wrap_error(['Library Adminer does not exist'], E_USER_ERROR);
 		exit;
 	}
-	// Close framework session and start Adminer's session
+	// Close framework session; Adminer configures and starts its own session
 	if (session_status() === PHP_SESSION_ACTIVE) {
 		session_write_close();
 	}
-		
+
 	// Set a no-op error handler to completely bypass error handling
 	// speeds up downloads
 	set_error_handler(function() { return true; }, E_ALL);
-	
-	// Start Adminer's session with its own name and cookie params
-	@ini_set('session.use_trans_sid', '0');
-	session_cache_limiter('');
-	session_name('adminer_sid');
-	$request_path = preg_replace('~\?.*~', '', $_SERVER['REQUEST_URI']);
-	$is_https = (!empty($_SERVER['HTTPS']) && strcasecmp($_SERVER['HTTPS'], 'off') !== 0) 
-		|| ini_get('session.cookie_secure');
-	session_set_cookie_params(0, $request_path, '', $is_https, true);
-	
-	if (session_status() === PHP_SESSION_NONE) {
-		ini_set('session.use_only_cookies', '1');
-		session_start();
-		// Set password to skip login prompt (Adminer 4.7.2+)
-		$_SESSION['pwds']['server'][''][''] = 'random';
-	}
-	
+
 	require $path;
 	exit;
 }
 
 function adminer_object() {
+	adminer_seed_session_password();
 
     class AdminerSoftware extends Adminer\Adminer {
         
@@ -99,4 +84,16 @@ function adminer_object() {
     }
     
     return new AdminerSoftware;
+}
+
+/**
+ * Adminer auth requires is_string(get_password()); connect uses credentials().
+ */
+function adminer_seed_session_password() {
+	if (!isset($_GET['username'])) {
+		return;
+	}
+	$server = (string) ($_GET['server'] ?? '');
+	$username = (string) $_GET['username'];
+	$_SESSION['pwds']['server'][$server][$username] = 'random';
 }
