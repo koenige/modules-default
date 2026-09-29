@@ -73,6 +73,9 @@
 404	request	*/wp-includes*
 404	request	*/wp-json*
 
+# WordPress REST API via ?rest_route= (scanner probes, not wp-json path)
+qs	string	rest_route
+
 # Joomla
 404	end	/administrator/index.php
 404	all	/index.php?option=com_users&view=registration
