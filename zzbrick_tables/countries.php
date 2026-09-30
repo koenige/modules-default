@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2010-2012, 2018-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2010-2012, 2018-2021, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -16,6 +16,7 @@
 $zz['title'] = 'Countries';
 $zz['table'] = '/*_PREFIX_*/countries';
 
+$zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'country_id';
 $zz['fields'][1]['type'] = 'id';
 

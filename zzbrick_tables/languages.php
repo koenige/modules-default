@@ -16,6 +16,7 @@
 $zz['title'] = 'Languages';
 $zz['table'] = '/*_PREFIX_*/languages';
 
+$zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'language_id';
 $zz['fields'][1]['type'] = 'id';
 

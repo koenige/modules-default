@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-09-30 10:02+0000\n"
+"POT-Creation-Date: 2026-09-30 11:54+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -122,9 +122,9 @@ msgid "Help"
 msgstr ""
 
 #: templates/internal-menu.template.txt:14
-#: zzbrick_tables/countries.php:41
+#: zzbrick_tables/countries.php:42
 #: zzbrick_tables/jobqueue.php:35
-#: zzbrick_tables/languages.php:46
+#: zzbrick_tables/languages.php:47
 #: zzbrick_tables/settings.php:48
 #: zzbrick_tables/webpages.php:163
 #: zzbrick_tables/websites.php:31
@@ -246,8 +246,10 @@ msgstr ""
 #: zzbrick_tables/blocks-media.php:19
 #: zzbrick_tables/categories.php:19
 #: zzbrick_tables/categories.template.php:16
+#: zzbrick_tables/countries.php:19
 #: zzbrick_tables/cronjobs.php:19
 #: zzbrick_tables/jobqueue.php:19
+#: zzbrick_tables/languages.php:19
 #: zzbrick_tables/languages-categories.php:19
 #: zzbrick_tables/logging.php:22
 #: zzbrick_tables/logins.php:19
@@ -262,6 +264,7 @@ msgstr ""
 #: zzbrick_tables/translations-varchar.php:55
 #: zzbrick_tables/webpages.php:19
 #: zzbrick_tables/webpages-blocks.php:19
+#: zzbrick_tables/webpages-categories.php:21
 #: zzbrick_tables/webpages-media.php:19
 #: zzbrick_tables/websites.php:19
 msgid "ID"
@@ -554,11 +557,11 @@ msgid "Published"
 msgstr ""
 
 #: zzbrick_tables/categories.php:89
-#: zzbrick_tables/countries.php:43
-#: zzbrick_tables/countries.php:56
+#: zzbrick_tables/countries.php:44
+#: zzbrick_tables/countries.php:57
 #: zzbrick_tables/cronjobs.php:32
-#: zzbrick_tables/languages.php:48
-#: zzbrick_tables/languages.php:62
+#: zzbrick_tables/languages.php:49
+#: zzbrick_tables/languages.php:63
 #: zzbrick_tables/logins.php:90
 #: zzbrick_tables/logins.php:114
 #: zzbrick_tables/logins.php:181
@@ -567,11 +570,11 @@ msgid "no"
 msgstr ""
 
 #: zzbrick_tables/categories.php:89
-#: zzbrick_tables/countries.php:43
-#: zzbrick_tables/countries.php:55
+#: zzbrick_tables/countries.php:44
+#: zzbrick_tables/countries.php:56
 #: zzbrick_tables/cronjobs.php:32
-#: zzbrick_tables/languages.php:48
-#: zzbrick_tables/languages.php:61
+#: zzbrick_tables/languages.php:49
+#: zzbrick_tables/languages.php:62
 #: zzbrick_tables/logins.php:90
 #: zzbrick_tables/logins.php:114
 #: zzbrick_tables/logins.php:180
@@ -596,49 +599,48 @@ msgstr ""
 msgid "Countries"
 msgstr ""
 
-#: zzbrick_tables/countries.php:19
-#: zzbrick_tables/countries.php:37
+#: zzbrick_tables/countries.php:23
+msgid "Country Code"
+msgstr ""
+
+#: zzbrick_tables/countries.php:24
+msgid "CC"
+msgstr ""
+
+#: zzbrick_tables/countries.php:26
+msgid "Country code according to ISO 3166"
+msgstr ""
+
+#: zzbrick_tables/countries.php:28
+msgid "Country Code 3"
+msgstr ""
+
+#: zzbrick_tables/countries.php:29
+msgid "CC3"
+msgstr ""
+
+#: zzbrick_tables/countries.php:31
+msgid "Three letter country code according to ISO 3166"
+msgstr ""
+
+#: zzbrick_tables/countries.php:33
+msgid "IOC Code"
+msgstr ""
+
+#: zzbrick_tables/countries.php:34
+msgid "IOC"
+msgstr ""
+
+#: zzbrick_tables/countries.php:36
+msgid "Three letter country code according to the International Olympic Committee (IOC)"
+msgstr ""
+
+#: zzbrick_tables/countries.php:38
 #: zzbrick_tables/languages-categories.php:45
 msgid "Country"
 msgstr ""
 
-#: zzbrick_tables/countries.php:22
-msgid "Country Code"
-msgstr ""
-
-#: zzbrick_tables/countries.php:23
-msgid "CC"
-msgstr ""
-
-#: zzbrick_tables/countries.php:25
-msgid "Country code according to ISO 3166"
-msgstr ""
-
-#: zzbrick_tables/countries.php:27
-msgid "Country Code 3"
-msgstr ""
-
-#: zzbrick_tables/countries.php:28
-msgid "CC3"
-msgstr ""
-
-#: zzbrick_tables/countries.php:30
-msgid "Three letter country code according to ISO 3166"
-msgstr ""
-
-#: zzbrick_tables/countries.php:32
-msgid "IOC Code"
-msgstr ""
-
-#: zzbrick_tables/countries.php:33
-msgid "IOC"
-msgstr ""
-
-#: zzbrick_tables/countries.php:35
-msgid "Three letter country code according to the International Olympic Committee (IOC)"
-msgstr ""
-
-#: zzbrick_tables/countries.php:45
+#: zzbrick_tables/countries.php:46
 msgid "Will country be used on website?"
 msgstr ""
 
@@ -787,63 +789,62 @@ msgstr ""
 msgid "Lock hash"
 msgstr ""
 
-#: zzbrick_tables/languages.php:19
-#: zzbrick_tables/languages.php:37
+#: zzbrick_tables/languages.php:23
+msgid "ISO 639-2 T"
+msgstr ""
+
+#: zzbrick_tables/languages.php:24
+msgid "639-2 T"
+msgstr ""
+
+#: zzbrick_tables/languages.php:26
+msgid "Language code ISO 639-2, Terminology"
+msgstr ""
+
+#: zzbrick_tables/languages.php:28
+msgid "ISO 639-2 B"
+msgstr ""
+
+#: zzbrick_tables/languages.php:29
+msgid "639-2 B"
+msgstr ""
+
+#: zzbrick_tables/languages.php:31
+msgid "Language code ISO 639-2, Bibliographic"
+msgstr ""
+
+#: zzbrick_tables/languages.php:33
+msgid "ISO 639-1"
+msgstr ""
+
+#: zzbrick_tables/languages.php:34
+msgid "639-1"
+msgstr ""
+
+#: zzbrick_tables/languages.php:36
+msgid "Language code ISO 639-1"
+msgstr ""
+
+#: zzbrick_tables/languages.php:38
 #: zzbrick_tables/languages-categories.php:23
 #: zzbrick_tables/translations-text.php:58
 #: zzbrick_tables/translations-varchar.php:59
 msgid "Language"
 msgstr ""
 
-#: zzbrick_tables/languages.php:22
-msgid "ISO 639-2 T"
-msgstr ""
-
-#: zzbrick_tables/languages.php:23
-msgid "639-2 T"
-msgstr ""
-
-#: zzbrick_tables/languages.php:25
-msgid "Language code ISO 639-2, Terminology"
-msgstr ""
-
-#: zzbrick_tables/languages.php:27
-msgid "ISO 639-2 B"
-msgstr ""
-
-#: zzbrick_tables/languages.php:28
-msgid "639-2 B"
-msgstr ""
-
-#: zzbrick_tables/languages.php:30
-msgid "Language code ISO 639-2, Bibliographic"
-msgstr ""
-
-#: zzbrick_tables/languages.php:32
-msgid "ISO 639-1"
-msgstr ""
-
-#: zzbrick_tables/languages.php:33
-msgid "639-1"
-msgstr ""
-
-#: zzbrick_tables/languages.php:35
-msgid "Language code ISO 639-1"
-msgstr ""
-
-#: zzbrick_tables/languages.php:41
+#: zzbrick_tables/languages.php:42
 msgid "Variation"
 msgstr ""
 
-#: zzbrick_tables/languages.php:42
+#: zzbrick_tables/languages.php:43
 msgid "Variation of language, e. g. informal"
 msgstr ""
 
-#: zzbrick_tables/languages.php:50
+#: zzbrick_tables/languages.php:51
 msgid "Will language be used on website?"
 msgstr ""
 
-#: zzbrick_tables/languages.php:57
+#: zzbrick_tables/languages.php:58
 msgid "Web"
 msgstr ""
 
@@ -1172,7 +1173,7 @@ msgid "Blocks on Webpages"
 msgstr ""
 
 #: zzbrick_tables/webpages-blocks.php:30
-#: zzbrick_tables/webpages-categories.php:23
+#: zzbrick_tables/webpages-categories.php:25
 #: zzbrick_tables/webpages-media.php:23
 msgid "Page"
 msgstr ""
@@ -1183,10 +1184,6 @@ msgstr ""
 
 #: zzbrick_tables/webpages-categories.php:18
 msgid "Webpages/Categories"
-msgstr ""
-
-#: zzbrick_tables/webpages-categories.php:21
-msgid "Page category"
 msgstr ""
 
 #: zzbrick_tables/webpages-media.php:16
