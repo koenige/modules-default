@@ -44,6 +44,10 @@ function mod_default_adminer($params) {
 	if (session_status() === PHP_SESSION_ACTIVE) {
 		session_write_close();
 	}
+	// Adminer uses session_name() for its upload progress cookie;
+	// must not be the name of the framework session cookie
+	$session_ini = ini_get_all('session');
+	session_name($session_ini['session.name']['global_value']);
 
 	// Set a no-op error handler to completely bypass error handling
 	// speeds up downloads
