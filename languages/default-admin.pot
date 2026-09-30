@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-09-28 14:10+0000\n"
+"POT-Creation-Date: 2026-09-30 10:02+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -1102,94 +1102,90 @@ msgid "Additional log files, same format as error logs (filled with wrap_log())"
 msgstr ""
 
 #: configuration/settings.cfg:421
-msgid "Minimal length of a password"
-msgstr ""
-
-#: configuration/settings.cfg:426
 msgid "Use field logins.login_rights"
 msgstr ""
 
-#: configuration/settings.cfg:431
+#: configuration/settings.cfg:426
 msgid "Initial installation date of default module (for updates)"
 msgstr ""
 
-#: configuration/settings.cfg:435
+#: configuration/settings.cfg:430
 msgid "Swap symmetric foreign keys when viewing data from the main ID side"
 msgstr ""
 
-#: configuration/settings.cfg:440
+#: configuration/settings.cfg:435
 msgid "Exclude page from site search and sitemap when set to 0"
 msgstr ""
 
-#: configuration/settings.cfg:446
+#: configuration/settings.cfg:441
 msgid "Size of images in search results"
 msgstr ""
 
-#: configuration/settings.cfg:450
+#: configuration/settings.cfg:445
 msgid "Order of modules in search output"
 msgstr ""
 
-#: configuration/settings.cfg:454
+#: configuration/settings.cfg:449
 msgid "Sequence field in category subtable (0 = hide, sequence = show sequence field)"
 msgstr ""
 
-#: configuration/settings.cfg:460
+#: configuration/settings.cfg:455
 msgid "Read menu hierarchy from categories"
 msgstr ""
 
-#: configuration/settings.cfg:465
+#: configuration/settings.cfg:460
 msgid "For menu_hierarchy, use only part of the path starting at this segment"
 msgstr ""
 
-#: configuration/settings.cfg:470
+#: configuration/settings.cfg:465
 msgid "Split category title at ' / ' (normal / reverse) for symmetric relations"
 msgstr ""
 
-#: configuration/settings.cfg:475
+#: configuration/settings.cfg:470
 msgid "Class name for subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:480
+#: configuration/settings.cfg:475
 msgid "Subpage list item caption (used when webpages.description is empty)"
 msgstr ""
 
-#: configuration/settings.cfg:486
+#: configuration/settings.cfg:481
 msgid "Extra item: subpage description"
 msgstr ""
 
-#: configuration/settings.cfg:492
+#: configuration/settings.cfg:487
 msgid "Extra item: query string to add as default for subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:498
+#: configuration/settings.cfg:493
 msgid "Extra item: subpage title"
 msgstr ""
 
-#: configuration/settings.cfg:504
+#: configuration/settings.cfg:499
 msgid "Hide this page from subpage list items"
 msgstr ""
 
-#: configuration/settings.cfg:509
+#: configuration/settings.cfg:504
 msgid "Indentation level of subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:515
+#: configuration/settings.cfg:510
 msgid "Query string to add as default for subpage list item"
 msgstr ""
 
-#: configuration/settings.cfg:521
+#: configuration/settings.cfg:516
 msgid "Name of the user to login with for server sync"
 msgstr ""
 
-#: configuration/settings.cfg:524
+#: configuration/settings.cfg:519
 msgid "Language tag for language register category"
 msgstr ""
 
-#: configuration/settings.cfg:530
+#: configuration/settings.cfg:525
 msgid "Unit for a value"
 msgstr ""
 
-#: configuration/settings.cfg:536
+#: configuration/settings.cfg:531
 msgid "Use each child category as separate subtable field"
 msgstr ""
 
