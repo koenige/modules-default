@@ -791,12 +791,11 @@ php	string_regex	.+File Upload Mime headers garbled in Unknown:0
 php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:0
 
 # looking for development tool / CI configuration files
-404	begin	/.github
-404	begin	/.gitlab-ci
 404	begin	/.vscode
+404	begin	/.aws
+404	begin	/.env
 
 # looking for configuration files accessible inside document root
-404	begin	/.git/
 404	end	/.npmrc
 404	end	/aws-config.js
 404	end	/aws.config.js
@@ -832,3 +831,6 @@ php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:
 
 # Source map probes (bots, DevTools); we don't deploy .map files
 404	end	.js.map
+
+# Joomla search
+404	begin	/joomla/?p=
