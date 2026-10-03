@@ -240,12 +240,12 @@ function mf_default_help_content($file) {
 }
 
 /**
- * title and audience from raw help file contents
+ * title and header Variables from raw help file contents
  *
  * @param string $raw
  * @param string $type md|txt
  * @param string $title_fallback from filename
- * @return array title, audience
+ * @return array title, plus normalized header keys from help.cfg
  */
 function mf_default_help_metadata($raw, $type, $title_fallback) {
 	wrap_include('file', 'zzwrap');
@@ -257,13 +257,80 @@ function mf_default_help_metadata($raw, $type, $title_fallback) {
 		preg_match('/# (.+)/', $text, $matches);
 		if (!empty($matches[1])) $title = $matches[1];
 	}
-	return [
-		'title' => $title,
-		'audience' => mf_default_help_audience_list($variables['audience'] ?? null),
-		'menu' => mf_default_help_menu_value($variables['menu'] ?? null),
-		'menu_description' => mf_default_help_menu_description($variables['menu_description'] ?? null),
-		'menu_priority' => mf_default_help_menu_priority($variables['menu_priority'] ?? null),
-	];
+	return ['title' => $title] + mf_default_help_header_variables($variables);
+}
+
+/**
+ * normalize help file header Variables against help.cfg
+ *
+ * @param array<string, string|string[]> $variables raw from wrap_file_header_variables()
+ * @return array normalized header fields (all registered keys, always set)
+ */
+function mf_default_help_header_variables($variables) {
+	$allowed = mf_default_help_header_keys();
+	$result = [];
+	foreach ($allowed as $key) {
+		$result[$key] = mf_default_help_header_format($variables, $key);
+		unset($variables[$key]);
+	}
+	foreach ($variables as $key => $value)
+		wrap_error([
+			'Unknown help variable `%s`, allowed: %s.',
+			['values' => [$key, implode(', ', $allowed)]]], E_USER_NOTICE
+		);
+	return $result;
+}
+
+/**
+ * help file header variable keys from top-level help.cfg sections (no dot)
+ *
+ * @return string[]
+ */
+function mf_default_help_header_keys() {
+	$cfg = wrap_cfg_files('help');
+	$keys = [];
+	foreach (array_keys($cfg) as $key) {
+		if (str_contains($key, '.')) continue;
+		$keys[] = $key;
+	}
+	return $keys;
+}
+
+/**
+ * format header, via specific function, generic function or set default
+ *
+ * @param array $variables
+ * @param string $key
+ * @return string|array|null
+ */
+function mf_default_help_header_format($variables, $key) {
+	$cfg = wrap_cfg_files('help');
+	$section = $cfg[$key] ?? [];
+	$suffix = empty($section['list']) ? 'value' : 'list';
+	if (empty($variables[$key]))
+		return $suffix === 'list' ? [] : null;
+	$function = sprintf('mf_default_help_%s_%s', $key, $suffix);
+	if (function_exists($function))
+		return $function($variables[$key]);
+	if ($suffix === 'list')
+		return mf_default_help_header_list($variables[$key]);
+	return $variables[$key];
+}
+
+/**
+ * normalized string list from one help file header value
+ *
+ * @param mixed $value
+ * @return string[]
+ */
+function mf_default_help_header_list($value) {
+	$items = [];
+	foreach (wrap_array_list($value) as $item) {
+		$item = trim((string) $item);
+		if ($item === '') continue;
+		$items[] = preg_replace('/\s+/', ' ', $item);
+	}
+	return array_values(array_unique($items));
 }
 
 /**
@@ -440,7 +507,7 @@ function mf_default_help_menu_value($value) {
  * @param mixed $value
  * @return string|null
  */
-function mf_default_help_menu_description($value) {
+function mf_default_help_menu_description_value($value) {
 	if ($value === null || $value === '') return null;
 	$description = trim((string) $value);
 	return $description !== '' ? $description : null;
@@ -452,7 +519,7 @@ function mf_default_help_menu_description($value) {
  * @param mixed $value
  * @return int|null
  */
-function mf_default_help_menu_priority($value) {
+function mf_default_help_menu_priority_value($value) {
 	if ($value === null || $value === '') return null;
 	if (!is_numeric($value)) {
 		wrap_error(['Help menu_priority `%s` is not a number.', ['values' => [(string) $value]]], E_USER_NOTICE);
