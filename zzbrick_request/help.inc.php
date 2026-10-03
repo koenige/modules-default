@@ -30,7 +30,13 @@ function mod_default_help($params) {
 	switch ($data['type']) {
 	case 'md':
 		$page['text'] = markdown($data['text']);
-		$page['dont_show_h1'] = true;
+		// try remove h1 if it is first line, otherwise don‘t show it
+		[$first, $rest] = array_pad(explode("\n", $page['text'], 2), 2, '');
+		$first = rtrim($first, "\r");
+		if (str_starts_with($first, '<h1') && str_ends_with($first, '</h1>'))
+			$page['text'] = ltrim($rest, "\r\n");
+		else
+			$page['dont_show_h1'] = true;
 		break;
 	case 'parameters':
 		$page['text'] = sprintf('<div class="helptext-parameters">%s</div>', $data['text']);
