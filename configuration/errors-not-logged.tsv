@@ -89,6 +89,9 @@ qs	string	rest_route
 # Magento
 404	end	/js/mage/cookies.js
 
+# 1C-Bitrix (CMS fingerprint probes, e. g. /bitrix/js/main/core/core.js)
+404	begin	/bitrix/js/
+
 # DedeCMS
 404	all	/data/admin/ver.txt
 404	all	/templets/default/style/dedecms.css
