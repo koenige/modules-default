@@ -12,6 +12,30 @@
             ]
         }
     ],
+    "google-search-console": [
+        {
+            "title": "Google Search Console",
+            "language": "de",
+            "package": "default",
+            "filename": "help/Google Search Console-de.md",
+            "identifier": "google-search-console",
+            "type": "md",
+            "audience": [
+                "editor"
+            ]
+        },
+        {
+            "title": "Google Search Console",
+            "language": "en",
+            "package": "default",
+            "filename": "help/Google Search Console.md",
+            "identifier": "google-search-console",
+            "type": "md",
+            "audience": [
+                "editor"
+            ]
+        }
+    ],
     "markdown": [
         {
             "title": "Markdown",
