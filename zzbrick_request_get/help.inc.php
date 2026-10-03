@@ -234,9 +234,29 @@ function mf_default_help_content($file) {
 	$file['title'] = $metadata['title'];
 	$file['audience'] = $metadata['audience'];
 	$file['text'] = preg_replace('/<!--[\s\S]*?-->/', '', $raw);
-	$file['text'] = preg_replace('/%%%(.*?)%%%/s', '%%% explain $1%%%', $file['text']);
+	$file['text'] = mf_default_help_text_bricks($file['text'], $metadata['execute_bricks']);
 	$file['text'] = mf_default_help_links($file['text'], $file['package']);
 	return $file;
+}
+
+/**
+ * explain help body bricks, except lines listed in execute_bricks
+ *
+ * @param string $text
+ * @param array $execute_bricks normalized brick lines from header
+ * @return string
+ */
+function mf_default_help_text_bricks($text, array $execute_bricks) {
+	return preg_replace_callback(
+		'/%%%(.*?)%%%/s',
+		function ($match) use ($execute_bricks) {
+			$line = trim($match[1]);
+			if (!in_array($line, $execute_bricks, true))
+				return '%%% explain '.$line.' %%%';
+			return brick_inline($line);
+		},
+		$text
+	);
 }
 
 /**
@@ -326,9 +346,9 @@ function mf_default_help_header_format($variables, $key) {
 function mf_default_help_header_list($value) {
 	$items = [];
 	foreach (wrap_array_list($value) as $item) {
-		$item = trim((string) $item);
-		if ($item === '') continue;
-		$items[] = preg_replace('/\s+/', ' ', $item);
+		$line = trim($item);
+		if (!$line) continue;
+		$items[] = $line;
 	}
 	return array_values(array_unique($items));
 }
