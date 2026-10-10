@@ -419,7 +419,7 @@ function mod_default_make_jobmanager_release() {
 		AND (
 			(postdata LIKE "%%sequential=1%%"
 				AND DATE_ADD(started, INTERVAL 60 MINUTE) < NOW())
-			OR (postdata NOT LIKE "%%sequential=1%%"
+			OR ((ISNULL(postdata) OR postdata NOT LIKE "%%sequential=1%%")
 				AND DATE_ADD(started, INTERVAL /*_SETTING default_jobs_resume_running_minutes _*/ MINUTE) < NOW())
 		)';
 	$jobs = wrap_db_fetch($sql, 'job_id');
