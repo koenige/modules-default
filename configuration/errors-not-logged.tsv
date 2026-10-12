@@ -324,6 +324,11 @@ qs	string	msclkid
 404	post	*$1:__proto__:then*
 404	post	*eval(Buffer.from*
 
+# Inngest (Vercel/Next.js background jobs); DELETE probes on sites without Inngest → 405
+405	begin	/inngest
+405	begin	/api/inngest
+405	begin	/api/events
+
 # Bot with severe problems parsing URLs
 404	ua	Mozilla/5.0 (compatible; Adsbot/3.1)
 404	ua	Mozilla/5.0 (compatible; Adsbot/3.1; +https://seostar.co/robot/)
