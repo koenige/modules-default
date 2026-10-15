@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-10-03 13:46+0000\n"
+"POT-Creation-Date: 2026-10-15 09:00+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -1301,35 +1301,27 @@ msgstr ""
 msgid "Install module"
 msgstr ""
 
-#: templates/dbmodules.template.txt:32
-#: templates/parameterscheck.template.txt:79
-#: zzbrick_request/modulesettings.inc.php:318
-msgid "no"
-msgstr ""
-
-#: templates/dbmodules.template.txt:32
-#: templates/parameterscheck.template.txt:77
-#: zzbrick_request/modulesettings.inc.php:318
-msgid "yes"
-msgstr ""
-
-#: templates/dbmodules.template.txt:39
+#: templates/dbmodules.template.txt:45
 #: templates/dbupdate.template.txt:25
 #: templates/modules.template.txt:17
 #: templates/parameterscheck.template.txt:61
 msgid "Module"
 msgstr ""
 
-#: templates/dbmodules.template.txt:40
+#: templates/dbmodules.template.txt:46
 msgid "Installation"
 msgstr ""
 
-#: templates/dbmodules.template.txt:41
-msgid "enabled?"
+#: templates/dbmodules.template.txt:47
+msgid "Activated"
 msgstr ""
 
-#: templates/dbmodules.template.txt:42
+#: templates/dbmodules.template.txt:48
 msgid "ReadMe"
+msgstr ""
+
+#: templates/dbmodules.template.txt:53
+msgid "Save activation"
 msgstr ""
 
 #: templates/dbupdate.template.txt:17
@@ -1655,10 +1647,10 @@ msgid "Deselect all"
 msgstr ""
 
 #: templates/maintenance.template.txt:16
-#: zzbrick_make/dbmodules.inc.php:66
-#: zzbrick_make/dbmodules.inc.php:67
-#: zzbrick_make/dbmodules.inc.php:71
 #: zzbrick_make/dbmodules.inc.php:72
+#: zzbrick_make/dbmodules.inc.php:73
+#: zzbrick_make/dbmodules.inc.php:77
+#: zzbrick_make/dbmodules.inc.php:78
 msgid "Modules"
 msgstr ""
 
@@ -1968,6 +1960,16 @@ msgstr ""
 msgid "Applies"
 msgstr ""
 
+#: templates/parameterscheck.template.txt:77
+#: zzbrick_request/modulesettings.inc.php:318
+msgid "yes"
+msgstr ""
+
+#: templates/parameterscheck.template.txt:79
+#: zzbrick_request/modulesettings.inc.php:318
+msgid "no"
+msgstr ""
+
 #: templates/parameterscheck.template.txt:86
 msgid "Applies shows whether the parameter scope matches the table (for categories: first segment of alias or path)."
 msgstr ""
@@ -2145,8 +2147,8 @@ msgstr ""
 msgid "No active jobs found."
 msgstr ""
 
-#: zzbrick_make/dbmodules.inc.php:66
-#: zzbrick_make/dbmodules.inc.php:68
+#: zzbrick_make/dbmodules.inc.php:72
+#: zzbrick_make/dbmodules.inc.php:74
 msgid "Install Settings"
 msgstr ""
 

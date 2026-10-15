@@ -25,17 +25,20 @@
  */
 function mod_default_make_dbmodules($params) {
 	$data = [];
-	$files['readme'] = wrap_collect_files('./README.md', 'modules');
-	$files['install'] = wrap_collect_files('configuration/install.sql', 'modules');
-	$files['settings'] = wrap_collect_files('configuration/settings.cfg', 'modules');
-	foreach (wrap_setting('modules') as $module) {
+	$files['readme'] = wrap_collect_files('./README.md', wrap_setting('modules_installed'));
+	$files['install'] = wrap_collect_files('configuration/install.sql', wrap_setting('modules_installed'));
+	$files['settings'] = wrap_collect_files('configuration/settings.cfg', wrap_setting('modules_installed'));
+
+	foreach (wrap_setting('modules_installed') as $module) {
+		$package_info = wrap_cfg_files('package', ['package' => $module]);
 		$data['modules'][$module] = [
 			'module' => $module,
 			'install_sql' => !empty($files['install'][$module]) ? $files['install'][$module] : false,
 			'install_date' => wrap_setting('mod_'.$module.'_install_date'),
 			'settings_cfg' => !empty($files['settings'][$module]) ? $files['settings'][$module] : false,
 			'readme' => !empty($files['readme'][$module]) ? $files['readme'][$module] : false,
-			'enabled' => 1
+			'activated' => in_array($module, wrap_setting('modules'), true),
+			'core_package' => $package_info['runtime']['core_package'] ?? false,
 		];
 	}
 	if (!empty($_GET['readme']) AND array_key_exists($_GET['readme'], $data['modules'])) {
@@ -53,6 +56,9 @@ function mod_default_make_dbmodules($params) {
 				$data['install_settings'] = wrap_install_settings_page($module);
 				if (!$data['install_settings']) wrap_redirect_change();
 			}
+		} elseif (!empty($_POST['modules_activation'])) {
+			mod_default_dbmodules_activation_save();
+			wrap_redirect_change();
 		} else {
 			wrap_install_settings_write();
 			wrap_redirect_change();
@@ -72,4 +78,40 @@ function mod_default_make_dbmodules($params) {
 		$page['breadcrumbs'][]['title'] = wrap_text('Modules');
 	}
 	return $page;
+}
+
+/**
+ * save activation toggles on ?dbmodules into _settings
+ *
+ * the config JSON is rewritten, it is read for the next request before the database
+ * @return void
+ */
+function mod_default_dbmodules_activation_save() {
+	wrap_include('functions', 'zzform');
+
+	$inactive = wrap_packages_inactive(wrap_setting('modules_installed'), $_POST['activated'] ?? []);
+	wrap_setting('modules_inactive', $inactive);
+
+	$cfg = wrap_cfg_files('settings');
+	$sql = 'SELECT setting_id FROM /*_PREFIX_*/_settings
+		WHERE setting_key = "modules_inactive"
+		AND website_id = /*_SETTING website_id _*/';
+	$setting_id = wrap_db_fetch($sql, '', 'single value');
+
+	$line = [
+		'setting_id' => $setting_id ? $setting_id : NULL,
+		'setting_key' => 'modules_inactive',
+		'setting_value' => sprintf('[%s]', implode(', ', wrap_setting('modules_inactive'))),
+		'explanation' => $cfg['modules_inactive']['description'] ?? '',
+		'website_id' => wrap_setting('website_id')
+	];
+	if ($setting_id)
+		zzform_update('_settings', $line);
+	else
+		zzform_insert('_settings', $line);
+
+	if (!wrap_setting('multiple_websites'))
+		wrap_config_write();
+	else
+		wrap_config_write('_current');
 }

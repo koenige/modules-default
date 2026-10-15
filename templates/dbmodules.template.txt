@@ -29,7 +29,13 @@
 <input type="submit" name="install[%%% item module %%%]" value="%%% text Install module %%%">
 %%% else %%%–
 %%% endif %%%</td>
-<td>%%% if enabled %%%%%% text yes %%%%%% else %%%%%% text no %%%%%% endif %%%</td>
+<td>%%% if core_package %%%
+<input type="checkbox" checked disabled>
+%%% elseif activated %%%
+<input type="checkbox" name="activated[]" value="%%% item module %%%" checked>
+%%% else %%%
+<input type="checkbox" name="activated[]" value="%%% item module %%%">
+%%% endif %%%</td>
 <td>%%% if readme %%%<a href="?dbmodules&readme=%%% item module %%%">ReadMe.md</a>%%% else %%%–%%% endif %%%</td>
 </tr>
 %%% loop end %%%
@@ -38,11 +44,13 @@
 <tr>
 <th>%%% text Module %%%</th>
 <th>%%% text Installation %%%</th>
-<th>%%% text enabled? %%%</th>
+<th>%%% text Activated %%%</th>
 <th>%%% text ReadMe %%%</th>
 </tr>
 </thead>
 </table>
+
+<p><input type="submit" name="modules_activation" value="%%% text Save activation %%%"></p>
 
 %%% if readme %%%
 <hr>

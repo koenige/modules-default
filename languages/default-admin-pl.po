@@ -605,15 +605,19 @@ msgstr ""
 msgid "Module"
 msgstr ""
 
-#: templates/dbmodules.template.txt:40
+#: templates/dbmodules.template.txt:46
 msgid "Installation"
 msgstr "instalacja"
 
-#: templates/dbmodules.template.txt:41
-msgid "enabled?"
-msgstr "Aktywowane?"
+#: templates/dbmodules.template.txt:47
+msgid "Activated"
+msgstr "Aktywowane"
 
-#: templates/dbmodules.template.txt:42
+#: templates/dbmodules.template.txt:53
+msgid "Save activation"
+msgstr "Zapisz aktywację"
+
+#: templates/dbmodules.template.txt:48
 msgid "ReadMe"
 msgstr "ReadMe"
 
