@@ -1399,6 +1399,10 @@ msgstr ""
 msgid "Breaking change, manual check needed"
 msgstr ""
 
+#: templates/deprecations.template.txt:43
+msgid "Recommended feature, manual check needed"
+msgstr ""
+
 #: templates/deprecations.template.txt:47
 msgid "Excluding"
 msgstr ""

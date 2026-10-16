@@ -128,6 +128,7 @@ function mod_default_make_deprecations_scan($line) {
 	
 	switch ($type) {
 		case 'breaking':
+		case 'feature':
 			// no scan, show as informational only
 			return -1;
 		case 'filename':

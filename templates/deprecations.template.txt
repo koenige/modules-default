@@ -39,6 +39,8 @@
 %%% switch type %%%
 %%% case breaking %%%
 <p><em>%%% text Breaking change, manual check needed %%%</em></p>
+%%% case feature %%%
+<p><em>%%% text Recommended feature, manual check needed %%%</em></p>
 %%% default %%%
 <p><code>%%% item search_text format=html_escape %%%</code></p>
 %%% switch - %%%

@@ -1,9 +1,10 @@
 # default module
 # Deprecated code patterns and breaking changes
 #
-# This file lists deprecated code patterns (replace with newer alternatives)
-# and breaking changes (migration notes). The checker scans the codebase
-# for deprecations; breaking changes are shown as informational only.
+# This file lists deprecated code patterns (replace with newer alternatives),
+# breaking changes (migration notes), and recommended features. The checker
+# scans the codebase for deprecations; breaking changes and features are
+# shown as informational only (no scan).
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/default
