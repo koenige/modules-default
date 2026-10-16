@@ -42,3 +42,4 @@
 </dl>
 <input type="submit" value="Submit">
 </form>
+%%% script default/form-submit-once.js %%%

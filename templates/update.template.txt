@@ -12,6 +12,7 @@
 <form method="POST" action="">
 <input type="submit" value="%%% text Start update %%%">
 </form>
+%%% script default/form-submit-once.js %%%
 
 %%% elseif thumbnail_created %%%
 <p>Thumbnail %%% item thumb_field %%% for %%% item table %%% ID %%% item record_id %%% created.</p>

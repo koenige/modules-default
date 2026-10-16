@@ -48,6 +48,7 @@
 <form action="" method="POST">
 <p><input type="submit" value="%%% text Write allowed-hostnames.json %%%"></p>
 </form>
+%%% script default/form-submit-once.js %%%
 %%% else %%%
 <p>%%% text No known hostnames were found. %%%</p>
 %%% endif %%%

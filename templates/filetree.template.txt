@@ -16,6 +16,7 @@
 %%% endif %%%
 %%% if deleteall_url %%%
 <form action="%%% item deleteall_url %%%" method="POST"><input type="submit" name="deleteall" value='Delete all files?%%% item deleteall_filter " Search: %s" %%%'></form>
+%%% script default/form-submit-once.js %%%
 %%% else %%%
 
 <form action="" method="POST">
@@ -66,6 +67,7 @@
 </p>
 %%% endif %%%
 </form>
+%%% script default/form-submit-once.js %%%
 
 %%% item total_records %%%
 %%% item pages %%%

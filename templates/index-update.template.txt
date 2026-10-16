@@ -50,6 +50,7 @@
 <input type="hidden" name="package" value="%%% item package format=html_escape %%%">
 <input type="submit" name="write" value="%%% text Write index %%%">
 </form>
+%%% script default/form-submit-once.js %%%
 %%% endif %%%
 %%% endif %%%
 

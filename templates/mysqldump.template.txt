@@ -39,6 +39,7 @@
 <form method="POST" action="">
 <input type="submit" value="Create database dump of database %%% item database_name %%%">
 </form>
+%%% script default/form-submit-once.js %%%
 %%% loop end %%%
 
 %%% elseif dump %%%

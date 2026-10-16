@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-10-03 13:46+0000\n"
+"POT-Creation-Date: 2026-10-16 12:06+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -54,51 +54,51 @@ msgid_plural "%d files deleted"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/filetree.template.txt:26
+#: templates/filetree.template.txt:27
 msgid "Filename"
 msgstr ""
 
-#: templates/filetree.template.txt:27
+#: templates/filetree.template.txt:28
 msgid "Filetype"
 msgstr ""
 
-#: templates/filetree.template.txt:28
+#: templates/filetree.template.txt:29
 msgid "Size"
 msgstr ""
 
-#: templates/filetree.template.txt:29
+#: templates/filetree.template.txt:30
 msgid "Files"
 msgstr ""
 
-#: templates/filetree.template.txt:30
+#: templates/filetree.template.txt:31
 msgid "Timestamp"
 msgstr ""
 
-#: templates/filetree.template.txt:36
+#: templates/filetree.template.txt:37
 msgid "All Files"
 msgstr ""
 
-#: templates/filetree.template.txt:56
+#: templates/filetree.template.txt:57
 msgid "You have no access to this folder"
 msgstr ""
 
-#: templates/filetree.template.txt:58
+#: templates/filetree.template.txt:59
 msgid "Folder is empty"
 msgstr ""
 
-#: templates/filetree.template.txt:63
+#: templates/filetree.template.txt:64
 msgid "Delete all files"
 msgstr ""
 
-#: templates/filetree.template.txt:64
+#: templates/filetree.template.txt:65
 msgid "Delete selected files"
 msgstr ""
 
-#: templates/filetree.template.txt:64
+#: templates/filetree.template.txt:65
 msgid "Select all"
 msgstr ""
 
-#: templates/filetree.template.txt:65
+#: templates/filetree.template.txt:66
 msgid "Deselect all"
 msgstr ""
 

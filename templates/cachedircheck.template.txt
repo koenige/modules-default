@@ -20,6 +20,7 @@
 <li>%%% text Inactive folder %%%: <code>%%% item inactive_cache_folder %%%</code>
 %%% if inactive_folders %%%
 <form method="POST" action=""><input type="submit" value="%%% text Move cached files from inactive folder to active folder %%%"></form>
+%%% script default/form-submit-once.js %%%
 %%% endif %%%
 </li>
 </ul>

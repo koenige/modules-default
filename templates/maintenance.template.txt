@@ -66,6 +66,7 @@
 %%% if database_changeable %%%
 <input type="submit">
 </form>
+%%% script default/form-submit-once.js %%%
 %%% endif %%%
 %%% if setting zzform_check_referential_integrity %%%
 <p><a href="?integritycheck">%%% text Check relational integrity %%%</a></p>

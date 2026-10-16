@@ -55,6 +55,7 @@
 <input type="hidden" name="package" value="%%% item package format=html_escape %%%">
 <input type="submit" name="write" value="%%% text Write to .pot files %%%">
 </form>
+%%% script default/form-submit-once.js %%%
 %%% endif %%%
 %%% endif %%%
 

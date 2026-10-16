@@ -22,3 +22,4 @@ to exist yet.</p>
 </label></p>
 <input type="submit" value="Submit">
 </form>
+%%% script default/form-submit-once.js %%%

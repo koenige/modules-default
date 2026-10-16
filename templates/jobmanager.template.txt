@@ -54,6 +54,8 @@
 <h2>%%% text Start jobs manually %%%</h2>
 <p><form action="" method="POST">
 <input type="submit" value="%%% text Start jobs %%%"></p>
-</form></p>
+</form>
+%%% script default/form-submit-once.js %%%
+</p>
 
 </div>

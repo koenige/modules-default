@@ -67,6 +67,7 @@
 </table>
 <p><input type="submit" value="%%% text Save %%%"></p>
 </form>
+%%% script default/form-submit-once.js %%%
 %%% endif %%%
 
 </div>

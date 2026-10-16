@@ -48,5 +48,6 @@
 %%% loop end %%%
 </table>
 </form>
+%%% script default/form-submit-once.js %%%
 
 </div>

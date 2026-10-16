@@ -39,4 +39,6 @@
 %%% endif %%%
 </fieldset>
 %%% item hidden_fields %%%
-</form></div>
+</form>
+%%% script default/form-submit-once.js %%%
+</div>
