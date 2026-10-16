@@ -92,6 +92,12 @@ $zz['fields'][6]['field_name'] = 'started';
 $zz['fields'][6]['type'] = 'datetime';
 $zz['fields'][6]['list_append_next'] = true;
 
+$zz['fields'][17]['field_name'] = 'refreshed';
+$zz['fields'][17]['type'] = 'datetime';
+$zz['fields'][17]['list_prefix'] = '<br>';
+$zz['fields'][17]['list_append_show_title'] = true;
+$zz['fields'][17]['list_append_next'] = true;
+
 $zz['fields'][7]['field_name'] = 'finished';
 $zz['fields'][7]['type'] = 'datetime';
 $zz['fields'][7]['list_prefix'] = '<br>';

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-10-16 12:06+0000\n"
+"POT-Creation-Date: 2026-10-16 20:37+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -355,15 +355,15 @@ msgstr ""
 msgid "Job Manager"
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:476
+#: zzbrick_make/jobmanager.inc.php:486
 msgid "The job should start later."
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:483
+#: zzbrick_make/jobmanager.inc.php:497
 msgid "Another job is running."
 msgstr ""
 
-#: zzbrick_make/jobmanager.inc.php:491
+#: zzbrick_make/jobmanager.inc.php:503
 msgid "Unable to start job."
 msgstr ""
 
@@ -443,7 +443,7 @@ msgstr ""
 #: zzbrick_tables/categories.php:23
 #: zzbrick_tables/categories.template.php:28
 #: zzbrick_tables/jobqueue.php:23
-#: zzbrick_tables/jobqueue.php:163
+#: zzbrick_tables/jobqueue.php:169
 #: zzbrick_tables/languages-categories.php:57
 msgid "Category"
 msgstr ""
@@ -476,7 +476,7 @@ msgid "Media for Blocks"
 msgstr ""
 
 #: zzbrick_tables/blocks-media.php:32
-#: zzbrick_tables/jobqueue.php:111
+#: zzbrick_tables/jobqueue.php:117
 #: zzbrick_tables/webpages-blocks.php:23
 #: zzbrick_tables/webpages-media.php:33
 msgid "No."
@@ -741,51 +741,55 @@ msgid "Started"
 msgstr ""
 
 #: zzbrick_tables/jobqueue.php:95
+msgid "Refreshed"
+msgstr ""
+
+#: zzbrick_tables/jobqueue.php:101
 msgid "Finished"
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:100
-#: zzbrick_tables/jobqueue.php:172
+#: zzbrick_tables/jobqueue.php:106
+#: zzbrick_tables/jobqueue.php:178
 msgid "Job Status"
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:105
+#: zzbrick_tables/jobqueue.php:111
 msgid "not started"
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:105
+#: zzbrick_tables/jobqueue.php:111
 msgid "running"
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:105
+#: zzbrick_tables/jobqueue.php:111
 msgid "successful"
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:106
+#: zzbrick_tables/jobqueue.php:112
 msgid "abandoned"
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:106
+#: zzbrick_tables/jobqueue.php:112
 msgid "failed"
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:106
+#: zzbrick_tables/jobqueue.php:112
 msgid "not found"
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:110
+#: zzbrick_tables/jobqueue.php:116
 msgid "Try No."
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:117
+#: zzbrick_tables/jobqueue.php:123
 msgid "Error Message"
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:122
+#: zzbrick_tables/jobqueue.php:128
 msgid "Category No."
 msgstr ""
 
-#: zzbrick_tables/jobqueue.php:128
+#: zzbrick_tables/jobqueue.php:134
 msgid "Lock hash"
 msgstr ""
 

@@ -631,3 +631,4 @@
 /* 2026-08-21-2 */	UPDATE categories SET `published` = 'no' WHERE `parameters` LIKE '%&hidden=1%' OR `parameters` LIKE '%&hide_category=1%';
 /* 2026-08-21-3 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&hidden=1', '') WHERE `parameters` LIKE '%&hidden=1%';
 /* 2026-08-21-4 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&hide_category=1', '') WHERE `parameters` LIKE '%&hide_category=1%';
+/* 2026-10-16-1 */	ALTER TABLE `_jobqueue` ADD `refreshed` datetime NULL AFTER `started`;

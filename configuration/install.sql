@@ -332,6 +332,7 @@ CREATE TABLE `_jobqueue` (
   `priority` tinyint NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
   `started` datetime DEFAULT NULL,
+  `refreshed` datetime DEFAULT NULL,
   `finished` datetime DEFAULT NULL,
   `wait_until` datetime DEFAULT NULL,
   `job_status` enum('not_started','running','successful','failed','abandoned','not_found') CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT 'not_started',

@@ -271,7 +271,9 @@ function mod_default_make_jobmanager_start($job) {
 	$sql = 'UPDATE _jobqueue
 		SET job_status = "running"
 			, started = NOW()
+			, refreshed = NULL
 			, finished = NULL
+			, wait_until = NULL
 			, try_no = try_no + 1
 			, lock_hash = "%s"
 		WHERE job_id = %d
@@ -283,9 +285,16 @@ function mod_default_make_jobmanager_start($job) {
 	wrap_job_debug('STARTING NEW JOB '.$sql);
 	$success = wrap_db_query($sql, E_USER_NOTICE);
 	wrap_unlock($lock_realm, 'delete');
-	if ($success) return true;
-	wrap_error(['Job Manager: unable to start job ID %d', ['values' => [$job['job_id']]]], E_USER_NOTICE, ['log_post_data' => false]);
-	return false;
+	if (!$success) {
+		wrap_error(['Job Manager: unable to start job ID %d', ['values' => [$job['job_id']]]], E_USER_NOTICE, ['log_post_data' => false]);
+		return false;
+	}
+	// another request started this job in the meantime
+	if (empty($success['rows'])) {
+		wrap_job_debug('JOB ALREADY STARTED', $job);
+		return false;
+	}
+	return true;
 }
 
 /**
@@ -412,15 +421,16 @@ function mod_default_make_jobmanager_delete() {
  */
 function mod_default_make_jobmanager_release() {
 	// Sequential pipelines (e. g. sync) stay `running` across several
-	// fire-and-forget HTTP steps and can exceed default_jobs_resume_running_minutes.
+	// fire-and-forget HTTP steps and can exceed default_jobs_resume_running_minutes;
+	// each step sets `refreshed`.
 	$sql = 'SELECT job_id, job_url, try_no
 		FROM _jobqueue
 		WHERE job_status = "running"
 		AND (
 			(postdata LIKE "%%sequential=1%%"
-				AND DATE_ADD(started, INTERVAL 60 MINUTE) < NOW())
+				AND DATE_ADD(IFNULL(refreshed, started), INTERVAL /*_SETTING default_jobs_sequential_timeout_minutes _*/ MINUTE) < NOW())
 			OR ((ISNULL(postdata) OR postdata NOT LIKE "%%sequential=1%%")
-				AND DATE_ADD(started, INTERVAL /*_SETTING default_jobs_resume_running_minutes _*/ MINUTE) < NOW())
+				AND DATE_ADD(IFNULL(refreshed, started), INTERVAL /*_SETTING default_jobs_resume_running_minutes _*/ MINUTE) < NOW())
 		)';
 	$jobs = wrap_db_fetch($sql, 'job_id');
 	if (!$jobs) return false;
@@ -441,7 +451,7 @@ function mod_default_make_jobmanager_release() {
 function mod_default_make_jobmanager_check() {
 	$sql = 'SELECT job_id
 			, IF(ISNULL(wait_until), NULL, IF(wait_until <= NOW(), NULL, 1)) AS wait
-			, IF(job_status = "running", IF(DATE_ADD(started, INTERVAL /*_SETTING default_jobs_resume_running_minutes _*/ MINUTE) > NOW(), 1, NULL), NULL) AS running
+			, IF(job_status = "running", IF(DATE_ADD(IFNULL(refreshed, started), INTERVAL IF(postdata LIKE "%%sequential=1%%", /*_SETTING default_jobs_sequential_timeout_minutes _*/, /*_SETTING default_jobs_resume_running_minutes _*/) MINUTE) > NOW(), 1, NULL), NULL) AS running
 			, username, job_status, lock_hash, try_no, job_url
 			, CONCAT(SUBSTRING_INDEX(categories.path, "/", -1), "-", job_category_no) AS realm
 			, job_url AS job_url_raw
@@ -477,13 +487,15 @@ function mod_default_make_jobmanager_check() {
 	}
 
 	// is a job already running?
-	foreach ($jobs as $job)
-		if ($job['running']) {
-			if ($job['lock_hash'] !== wrap_lock_hash())
-				wrap_quit(403, wrap_text('Another job is running.'));
-			else
-				return $job;
+	foreach ($jobs as $job) {
+		if ($job['job_status'] !== 'running') continue;
+		if ($job['lock_hash'] === wrap_lock_hash()) {
+			mod_default_make_jobmanager_refresh($job['job_id']);
+			return $job;
 		}
+		if ($job['running'])
+			wrap_quit(403, wrap_text('Another job is running.'));
+	}
 
 	// start the job, preferences set by ORDER BY
 	$job = reset($jobs);
@@ -491,4 +503,16 @@ function mod_default_make_jobmanager_check() {
 	if (!$success) wrap_quit(403, wrap_text('Unable to start job.'));
 	wrap_setting('log_username', $job['username']);
 	return $job;
+}
+
+/**
+ * mark a running job as still alive
+ *
+ * @param int $job_id
+ * @return void
+ */
+function mod_default_make_jobmanager_refresh($job_id) {
+	$sql = 'UPDATE _jobqueue SET refreshed = NOW() WHERE job_id = %d';
+	$sql = sprintf($sql, $job_id);
+	wrap_db_query($sql, E_USER_NOTICE);
 }
