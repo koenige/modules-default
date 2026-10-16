@@ -843,3 +843,15 @@ php	string_regex	.+Missing boundary in multipart/form-data POST data in Unknown:
 
 # Joomla search
 404	begin	/joomla/?p=
+
+# AI / MCP / IDE config probes (root scanners)
+404	end	/mcp.json
+404	end	/.mcp.json
+404	end	/mcp_config.json
+404	end	/cline_mcp_settings.json
+404	end	/claude_desktop_config.json
+404	end	/opencode.json
+404	end	/openapi.json
+404	end	/local.settings.json
+404	end	/azure.yaml
+404	all	/config/azure.yaml
