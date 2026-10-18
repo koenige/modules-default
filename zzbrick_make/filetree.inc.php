@@ -231,7 +231,8 @@ function mod_default_filetree_folders($params) {
 	$data['filecount_total'] = 0;
 	$data['deletable_files'] = false;
 	if (!empty($_GET['limit']) AND $_GET['limit'] === 'last') {
-		wrap_page_limit('last', count($files));
+		$total_rows = !empty($_GET['q']) ? $total_files_q : count($files);
+		wrap_page_limit('last', $total_rows);
 	}
 	foreach ($files as $filename) {
 		if (!empty($_GET['q']) AND !mf_default_searched($filename)) {
