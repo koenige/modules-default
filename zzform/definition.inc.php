@@ -111,7 +111,7 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 			$zz['fields'][$no]['fields'][$def['category_id']]['def_val_ignore'] = true;
 		} elseif (!empty($category['category_id'])) {
 			$zz['fields'][$no]['fields'][$def['category_id']]['show_hierarchy_subtree'] = $category['category_id'];
-			$zz['fields'][$no]['fields'][$def['category_id']]['sql_ignore'] = 'main_category';
+			$zz['fields'][$no]['fields'][$def['category_id']]['sql_ignore'][] = 'main_category';
 			$main_category_ids = wrap_id_tree('categories', $category['path']);
 			$zz['fields'][$no]['sql'] .= sprintf(' WHERE /*_PREFIX_*/categories.main_category_id IN (%s)', implode(',', $main_category_ids));
 			if (!empty($zz['fields'][$no]['subselect']['sql']))
