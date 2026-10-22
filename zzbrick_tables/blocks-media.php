@@ -67,7 +67,6 @@ $zz['fields'][3]['sql'] = 'SELECT /*_PREFIX_*/media.medium_id, folders.title AS 
 		ON /*_PREFIX_*/media.main_medium_id = folders.medium_id
 	WHERE /*_PREFIX_*/media.filetype_id != /*_ID filetypes folder _*/
 	ORDER BY folders.title, /*_PREFIX_*/media.title';
-$zz['fields'][3]['sql_character_set'] = ['utf8', 'utf8', 'utf8'];
 $zz['fields'][3]['display_field'] = 'image';
 $zz['fields'][3]['group'] = 'folder';
 $zz['fields'][3]['exclude_from_search'] = true;
