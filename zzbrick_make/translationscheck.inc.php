@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  *
  * Variables
@@ -48,7 +48,7 @@ function mod_default_make_translationscheck($params) {
 		LEFT JOIN %s.%s data_table
 			ON translations.field_id = data_table.%s
 		WHERE translationfield_id = %d
-		AND ISNULL(%s)';
+		AND ISNULL(data_table.%s)';
 
 	$data = [];
 	foreach ($fields as $database => $fields) {
