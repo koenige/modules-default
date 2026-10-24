@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-10-16 20:37+0000\n"
+"POT-Creation-Date: 2026-10-24 11:05+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -2107,7 +2107,8 @@ msgstr ""
 msgid "Comparison of scanned source strings with existing .pot files."
 msgstr ""
 
-#: templates/textupdate.template.txt:56
+#: templates/textupdate.template.txt:44
+#: templates/textupdate.template.txt:60
 msgid "Write to .pot files"
 msgstr ""
 

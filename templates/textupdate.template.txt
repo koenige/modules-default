@@ -38,6 +38,12 @@
 %%% else %%%
 <p>%%% text Comparison of scanned source strings with existing .pot files. %%%</p>
 
+%%% if writeable %%%
+<form action="" method="POST">
+<input type="hidden" name="package" value="%%% item package format=html_escape %%%">
+<p><input type="submit" name="write" value="%%% text Write to .pot files %%%"></p>
+%%% endif %%%
+
 %%% loop pots %%%
 <h3>%%% item filename format=html_escape %%% (%%% item count %%%)</h3>
 %%% if added | deleted | updated %%%
@@ -51,9 +57,7 @@
 %%% loop end %%%
 
 %%% if writeable %%%
-<form action="" method="POST">
-<input type="hidden" name="package" value="%%% item package format=html_escape %%%">
-<input type="submit" name="write" value="%%% text Write to .pot files %%%">
+<p><input type="submit" name="write" value="%%% text Write to .pot files %%%"></p>
 </form>
 %%% script default/form-submit-once.js %%%
 %%% endif %%%
