@@ -78,8 +78,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 
 		$zz['fields'][$no]['type'] = 'subtable';
 		$zz['fields'][$no]['title'] = $category['category'];
-		if (array_key_exists('class', $category))
-			$zz['fields'][$no]['class'] = $category['class'];
+		if (array_key_exists('class', $form_def))
+			$zz['fields'][$no]['class'] = $form_def['class'];
 		if (empty($category['list_no_append']))
 			$zz['fields'][$no]['title_tab'] = 'Categories';
 		$zz['fields'][$no]['table_name'] = $table.'_categories_'.$category['category_id'];

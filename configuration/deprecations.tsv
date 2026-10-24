@@ -52,3 +52,4 @@
 2026-08-18-1	code	&no_append_before=1	removed; list column title «Categories» follows from append mode (no `list_no_append=1`)
 2026-08-18-2	code	&no_append=1	use `list_no_append=1` in category parameters
 2026-10-16-1	feature	form-submit-once	Add `%%% script default/form-submit-once.js %%%` after each POST form to disable multiple form submissions
+2026-10-24-1	code	&class=	use `zzform[class]=` in category parameters

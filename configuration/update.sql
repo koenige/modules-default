@@ -632,3 +632,4 @@
 /* 2026-08-21-3 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&hidden=1', '') WHERE `parameters` LIKE '%&hidden=1%';
 /* 2026-08-21-4 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&hide_category=1', '') WHERE `parameters` LIKE '%&hide_category=1%';
 /* 2026-10-16-1 */	ALTER TABLE `_jobqueue` ADD `refreshed` datetime NULL AFTER `started`;
+/* 2026-10-24-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&class=', '&zzform[class]=') WHERE `parameters` LIKE '%&class=%';
