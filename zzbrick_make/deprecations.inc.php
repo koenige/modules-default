@@ -148,7 +148,6 @@ function mod_default_make_deprecations_scan($line) {
  * @return array list of files where pattern was found
  */
 function mod_default_make_deprecations_scan_code($line, $fixed_string = true) {
-	$cms_dir = wrap_setting('cms_dir');
 	$search_text = $line['search_text'];
 	$exclude_pattern = $line['exclude_pattern'] ?? '';
 	
@@ -171,7 +170,7 @@ function mod_default_make_deprecations_scan_code($line, $fixed_string = true) {
 		implode(' ', $exclude_params),
 		implode(' ', $exclude_dir_params),
 		escapeshellarg($search_text),
-		escapeshellarg($cms_dir)
+		escapeshellarg(wrap_setting('cms_dir'))
 	);
 	
 	exec($cmd, $output, $return_var);
@@ -182,7 +181,7 @@ function mod_default_make_deprecations_scan_code($line, $fixed_string = true) {
 	$found = [];
 	
 	foreach ($output as $file) {
-		$relative_path = str_replace($cms_dir.'/', '', $file);
+		$relative_path = str_replace(wrap_setting('cms_dir').'/', '', $file);
 		
 		foreach ($exclude_patterns as $pattern) {
 			if ($pattern && strpos($relative_path, $pattern) !== false) continue 2;
@@ -201,7 +200,6 @@ function mod_default_make_deprecations_scan_code($line, $fixed_string = true) {
  * @return array list of files where pattern was found
  */
 function mod_default_make_deprecations_scan_filename($line) {
-	$cms_dir = wrap_setting('cms_dir');
 	$pattern = $line['search_text'];
 	$exclude_pattern = $line['exclude_pattern'] ?? '';
 	$found = [];
@@ -210,7 +208,7 @@ function mod_default_make_deprecations_scan_filename($line) {
 	$exclude_patterns = $exclude_pattern ? array_map('trim', explode(';', $exclude_pattern)) : [];
 	
 	$iterator = new RecursiveIteratorIterator(
-		new RecursiveDirectoryIterator($cms_dir, RecursiveDirectoryIterator::SKIP_DOTS),
+		new RecursiveDirectoryIterator(wrap_setting('cms_dir'), RecursiveDirectoryIterator::SKIP_DOTS),
 		RecursiveIteratorIterator::SELF_FIRST
 	);
 	
@@ -223,7 +221,7 @@ function mod_default_make_deprecations_scan_filename($line) {
 		if (in_array($filename, $exclude_files)) continue;
 		
 		// make path relative to cms_dir for matching
-		$relative_path = str_replace($cms_dir.'/', '', $file->getPathname());
+		$relative_path = str_replace(wrap_setting('cms_dir').'/', '', $file->getPathname());
 		
 		// check if path matches pattern (supports both filename and path patterns)
 		$matched = fnmatch($pattern, $relative_path) || fnmatch($pattern, $filename);

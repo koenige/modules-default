@@ -72,7 +72,7 @@ function mod_default_make_mysqldump() {
 
 	$credentials = file_get_contents(wrap_setting('local_pwd'));
 	$credentials = json_decode($credentials, true);
-	$base_folder = dirname(dirname($_SERVER['DOCUMENT_ROOT'])); // remove [host]/www
+	$base_folder = dirname($_SERVER['DOCUMENT_ROOT'], 2); // remove [host]/www
 	$datafile = sprintf('%s/%%s/docs/sql/%%s-data.sql', $base_folder);
 	$mysqldump_structure = sprintf(
 		'/opt/homebrew/bin/mysqldump -u%s -p%s --routines --no-data --skip-dump-date --databases %%s > %s/%%s/docs/sql/%%s-structure.sql'
