@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-10-22 10:07+0000\n"
+"POT-Creation-Date: 2026-11-02 00:32+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -429,7 +429,7 @@ msgid "Title"
 msgstr ""
 
 #: zzbrick_tables/blocks.php:27
-#: zzbrick_tables/categories.php:56
+#: zzbrick_tables/categories.php:62
 #: zzbrick_tables/webpages.php:59
 msgid "Identifier"
 msgstr ""
@@ -461,7 +461,7 @@ msgid "Media"
 msgstr ""
 
 #: zzbrick_tables/blocks.php:78
-#: zzbrick_tables/categories.php:94
+#: zzbrick_tables/categories.php:100
 #: zzbrick_tables/categories.template.php:48
 #: zzbrick_tables/languages-categories.php:82
 #: zzbrick_tables/logging.php:43
@@ -517,46 +517,50 @@ msgid "Description"
 msgstr ""
 
 #: zzbrick_tables/categories.php:43
-#: zzbrick_tables/categories.php:114
+msgid "Alternative"
+msgstr ""
+
+#: zzbrick_tables/categories.php:49
+#: zzbrick_tables/categories.php:120
 msgid "Main Category"
 msgstr ""
 
-#: zzbrick_tables/categories.php:57
+#: zzbrick_tables/categories.php:63
 msgid "Identifier / Parameters"
 msgstr ""
 
-#: zzbrick_tables/categories.php:67
+#: zzbrick_tables/categories.php:73
 #: zzbrick_tables/webpages.php:123
 msgid "Parameters"
 msgstr ""
 
-#: zzbrick_tables/categories.php:69
+#: zzbrick_tables/categories.php:75
 msgid "Internal parameters. Change with care."
 msgstr ""
 
-#: zzbrick_tables/categories.php:78
+#: zzbrick_tables/categories.php:84
 #: zzbrick_tables/categories.template.php:23
 #: zzbrick_tables/cronjobs.php:73
 #: zzbrick_tables/webpages.php:76
 msgid "Sequence"
 msgstr ""
 
-#: zzbrick_tables/categories.php:79
+#: zzbrick_tables/categories.php:85
 #: zzbrick_tables/categories.template.php:22
 #: zzbrick_tables/cronjobs.php:72
 #: zzbrick_tables/webpages.php:75
 msgid "Seq."
 msgstr ""
 
-#: zzbrick_tables/categories.php:86
+#: zzbrick_tables/categories.php:92
 msgid "Pub."
 msgstr ""
 
-#: zzbrick_tables/categories.php:87
+#: zzbrick_tables/categories.php:93
 msgid "Published"
 msgstr ""
 
-#: zzbrick_tables/categories.php:89
+#: zzbrick_tables/categories.php:95
 #: zzbrick_tables/countries.php:44
 #: zzbrick_tables/countries.php:57
 #: zzbrick_tables/cronjobs.php:32
@@ -569,7 +573,7 @@ msgstr ""
 msgid "no"
 msgstr ""
 
-#: zzbrick_tables/categories.php:89
+#: zzbrick_tables/categories.php:95
 #: zzbrick_tables/countries.php:44
 #: zzbrick_tables/countries.php:56
 #: zzbrick_tables/cronjobs.php:32
@@ -582,7 +586,7 @@ msgstr ""
 msgid "yes"
 msgstr ""
 
-#: zzbrick_tables/categories.php:92
+#: zzbrick_tables/categories.php:98
 msgid "Publish on website?"
 msgstr ""
 

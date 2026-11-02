@@ -503,6 +503,10 @@ msgstr "Kategorien"
 msgid "Abbreviation"
 msgstr "Abkürzung"
 
+#: zzbrick_tables/categories.php:43
+msgid "Alternative"
+msgstr "Alternative"
+
 #: zzbrick_tables/categories.php:29
 msgid "Abbr."
 msgstr "Abk."

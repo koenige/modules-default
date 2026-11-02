@@ -40,6 +40,12 @@ $zz['fields'][3]['list_prefix'] = '<p><small>';
 $zz['fields'][3]['list_suffix'] = '</small></p>';
 $zz['fields'][3]['typo_cleanup'] = true;
 
+$zz['fields'][23]['title'] = 'Alternative';
+$zz['fields'][23]['field_name'] = 'category_alternative';
+$zz['fields'][23]['type'] = 'text';
+$zz['fields'][23]['typo_cleanup'] = true;
+$zz['fields'][23]['typo_remove_double_spaces'] = true;
+
 $zz['fields'][4]['title'] = 'Main Category';
 $zz['fields'][4]['field_name'] = 'main_category_id';
 $zz['fields'][4]['type'] = 'select';

@@ -636,3 +636,4 @@
 /* 2026-10-24-2 */	UPDATE webpages SET content = REPLACE(content, '%%% path default_helptext advanced-search-tips-for-forms', '%%% path default_help zzform advanced-search-tips-for-forms') WHERE content LIKE '%\%\%\% path default_helptext advanced-search-tips-for-forms%';
 /* 2026-10-24-3 */	UPDATE webpages SET content = REPLACE(content, '%%% path default_helptext privacy-for-embedded-content', '%%% path default_help media privacy-for-embedded-content') WHERE content LIKE '%\%\%\% path default_helptext privacy-for-embedded-content%';
 /* 2026-10-24-4 */	UPDATE webpages SET content = REPLACE(content, '%%% path default_helptext', '%%% path default_help default') WHERE content LIKE '%\%\%\% path default_helptext%';
+/* 2026-11-01-1 */	ALTER TABLE `categories` ADD `category_alternative` varchar(120) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `category_short`;
