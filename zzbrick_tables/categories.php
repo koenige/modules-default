@@ -45,6 +45,7 @@ $zz['fields'][23]['field_name'] = 'category_alternative';
 $zz['fields'][23]['type'] = 'text';
 $zz['fields'][23]['typo_cleanup'] = true;
 $zz['fields'][23]['typo_remove_double_spaces'] = true;
+$zz['fields'][23]['hide_in_list'] = true;
 
 $zz['fields'][4]['title'] = 'Main Category';
 $zz['fields'][4]['field_name'] = 'main_category_id';
