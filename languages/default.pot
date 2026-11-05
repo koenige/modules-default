@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-11-02 00:43+0000\n"
+"POT-Creation-Date: 2026-11-05 14:11+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -1224,6 +1224,6 @@ msgstr ""
 msgid "No record was found."
 msgstr ""
 
-#: zzform/definition.inc.php:262
+#: zzform/definition.inc.php:266
 msgid "Details"
 msgstr ""

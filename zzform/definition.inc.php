@@ -58,6 +58,8 @@ function mf_default_categories_subtable(&$zz, $table, $path, $start_no, $restric
 	foreach ($pc as $index => $category) {
 		if (!empty($category['parameters'])) {
 			parse_str($category['parameters'], $cparameters);
+			foreach ($cparameters as $key => $value)
+				$cparameters[$key] = wrap_setting_subkeys_list($key, $value);
 			$pc[$index] += $cparameters;
 		}
 		// remove unselectable categories
@@ -211,6 +213,8 @@ function mf_default_categories_restrict(&$values, $type, $category_path = NULL) 
 			parse_str($line['parameters'], $line['parameters']);
 		else
 			$line['parameters'] = [];
+		foreach ($line['parameters'] as $key => $value)
+			$line['parameters'][$key] = wrap_setting_subkeys_list($key, $value);
 
 		if ($contexts) {
 			if (!mf_default_category_context($line['parameters'], $contexts))
