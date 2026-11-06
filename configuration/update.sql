@@ -541,6 +541,9 @@
 /* 2025-12-30-5 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Register', NULL, NULL, 'register', '&alias=register', NULL, NOW());
 /* 2025-12-30-6 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Formal', NULL, /*_ID categories register _*/, 'register/formal', '&alias=register/formal&default_language_register=1', 1, NOW());
 /* 2025-12-30-7 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Informal', NULL, /*_ID categories register _*/, 'register/informal', '&alias=register/informal', 2, NOW());
+/* 2026-01-01-1 */	UPDATE categories SET `parameters` = NULL WHERE `parameters` = '';
+/* 2026-01-01-2 */	UPDATE categories SET `parameters` = CONCAT('&', `parameters`) WHERE NOT ISNULL(`parameters`) AND `parameters` NOT LIKE '&%';
+/* 2026-01-01-3 */	UPDATE webpages SET `parameters` = CONCAT('&', `parameters`) WHERE NOT ISNULL(`parameters`) AND `parameters` != '' AND `parameters` NOT LIKE '&%';
 /* 2026-01-04-1 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Language', NULL, NULL, 'language', '&alias=language', NULL, NOW());
 /* 2026-01-04-2 */	UPDATE categories SET `main_category_id` = /*_ID categories language _*/, `path` = "language/register", `parameters` = "&alias=language/register&use_subtree=1", `last_update` = NOW() WHERE category_id = /*_ID categories register _*/;
 /* 2026-01-04-3 */	UPDATE categories SET `path` = 'language/register/formal', `parameters` = "&alias=language/register/formal&default_language_register=1&no_append=1&own_type_category=1", `sequence` = 2, `last_update` = NOW() WHERE category_id = /*_ID categories register/formal _*/;
@@ -588,7 +591,6 @@
 /* 2026-07-16-7 */	INSERT INTO redirects (old_url, new_url, code, website_id) SELECT CONCAT(parent.identifier, '/advanced-search-tips-for-forms/'), CONCAT(parent.identifier, '/zzform/advanced-search-tips-for-forms/'), 301, parent.website_id FROM webpages parent WHERE parent.content LIKE '%\%\%\% request help-packages \%\%\%%';
 /* 2026-07-16-8 */	INSERT INTO redirects (old_url, new_url, code, website_id) SELECT CONCAT(parent.identifier, '/privacy-for-embedded-content/'), CONCAT(parent.identifier, '/media/privacy-for-embedded-content/'), 301, parent.website_id FROM webpages parent WHERE parent.content LIKE '%\%\%\% request help-packages \%\%\%%';
 /* 2026-08-10-1 */	ALTER TABLE `_logging` ADD `db_table` varchar(127) COLLATE 'latin1_general_ci' NULL AFTER `query`, ADD KEY `db_table` (`db_table`);
-/* 2026-08-11-1 */	UPDATE categories SET `parameters` = CONCAT('&', `parameters`) WHERE NOT ISNULL(`parameters`) AND `parameters` NOT LIKE '&%';
 /* 2026-08-12-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&explanation=', '&zzform_def[explanation]=') WHERE `parameters` LIKE '%&explanation=%';
 /* 2026-08-12-11 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&title_desc=', '&zzform_def[title_desc]=') WHERE `parameters` LIKE '%&title_desc=%';
 /* 2026-08-12-12 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&min_records=', '&zzform_def[min_records]=') WHERE `parameters` LIKE '%&min_records=%';
