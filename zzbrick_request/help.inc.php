@@ -45,6 +45,7 @@ function mod_default_help($params) {
 		$page['text'] = sprintf('<pre>%s</pre>', $data['text']);
 		break;
 	}
+	$page['text'] = mf_default_help_explain_markup($page['text']);
 	if (wrap_path('default_help_package', [], ['testing' => 1])) {
 		$page['breadcrumbs'][] = [
 			'title' => $data['package'],
@@ -57,4 +58,17 @@ function mod_default_help($params) {
 	$page['text'] = sprintf('<div class="helptext">%s</div>', $page['text']);
 	$page['extra']['css'][] = 'default/help.css';
 	return $page;
+}
+
+/**
+ * wrap explain bricks in a span for highlighting
+ *
+ * must run on formatted HTML, markdown would escape the span inside code
+ * @param string $text
+ * @return string
+ */
+function mf_default_help_explain_markup($text) {
+	return preg_replace(
+		'/%%% explain .*?%%%/s', '<span class="zzbrick-code">$0</span>', $text
+	);
 }

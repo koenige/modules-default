@@ -12,7 +12,8 @@
 
 
 .helptext	{ --background-color-helptext: #EEE;
-			--border-color-helptext: black; }
+			--border-color-helptext: black;
+			--color-zzbrick-code: #B04000; }
 
 .help-audience	{ margin-top: 1.5rem; }
 .help .help-audience:first-of-type
@@ -30,6 +31,7 @@
 .helptext code
 			{ background: var(--background-color-helptext); padding: .2rem;
 			display: inline-block; }
+.zzbrick-code	{ color: var(--color-zzbrick-code); }
 
 .helptext-parameters .setting-key
 			{ display: inline-block; }
