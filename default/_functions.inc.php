@@ -77,9 +77,10 @@ function mf_default_categories_menu_hierarchy($parameter, $path) {
  *
  * @param int $category_id
  * @param string $group e. g. 'forms' for texts/forms
+ * @param string $language (optional) language code, e. g. 'de'; active language if empty
  * @return array text type (identifier under texts/{group}/, alias over path) => text
  */
-function mf_default_category_texts($category_id, $group) {
+function mf_default_category_texts($category_id, $group, $language = false) {
 	if (!$category_id) return [];
 	$prefix = 'texts/'.strtolower($group).'/';
 	$types = wrap_category_id($prefix, 'list');
@@ -92,7 +93,7 @@ function mf_default_category_texts($category_id, $group) {
 	$sql = sprintf($sql, $category_id, implode(',', array_unique($types)));
 	$rows = wrap_db_fetch($sql, 'category_text_id');
 	if (!$rows) return [];
-	$rows = wrap_translate($rows, 'categories_text');
+	$rows = wrap_translate($rows, 'categories_text', '', true, $language);
 
 	$keys = [];
 	foreach ($types as $path => $id)
