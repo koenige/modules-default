@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2023, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2023, 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -70,4 +70,65 @@ function mf_default_categories_menu_hierarchy($parameter, $path) {
 		if (!$path) break;
 	}
 	return implode('/', $path);
+}
+
+/**
+ * texts stored for a category below texts/{group}, in the active language
+ *
+ * @param int $category_id
+ * @param string $group e. g. 'forms' for texts/forms
+ * @return array text type (identifier under texts/{group}/, alias over path) => text
+ */
+function mf_default_category_texts($category_id, $group) {
+	if (!$category_id) return [];
+	$prefix = 'texts/'.strtolower($group).'/';
+	$types = wrap_category_id($prefix, 'list');
+	if (!$types) return [];
+
+	$sql = 'SELECT category_text_id, category_text, text_category_id
+		FROM categories_text
+		WHERE category_id = %d
+		AND text_category_id IN (%s)';
+	$sql = sprintf($sql, $category_id, implode(',', array_unique($types)));
+	$rows = wrap_db_fetch($sql, 'category_text_id');
+	if (!$rows) return [];
+	$rows = wrap_translate($rows, 'categories_text');
+
+	$keys = [];
+	foreach ($types as $path => $id)
+		$keys[$id] = substr($path, strlen($prefix));
+	$texts = [];
+	foreach ($rows as $row)
+		$texts[$keys[$row['text_category_id']]] = $row['category_text'];
+	return $texts;
+}
+
+/**
+ * categories that have a texts/{group} tree, keyed by category id
+ *
+ * the group is the second segment of a texts/ identifier, e. g. forms
+ * for texts/forms/heading. aliases are included via wrap_category_id()
+ *
+ * @return array category_id => group
+ */
+function mf_default_category_text_categories() {
+	$types = wrap_category_id('texts/', 'list');
+	if (!$types) return [];
+
+	$groups = [];
+	foreach (array_keys($types) as $path) {
+		$parts = explode('/', $path);
+		if (empty($parts[1])) continue;
+		$groups[$parts[1]] = $parts[1];
+	}
+	if (!$groups) return [];
+
+	$categories = [];
+	foreach ($groups as $group) {
+		$list = wrap_category_id($group.'/', 'list');
+		if (!$list) continue;
+		foreach ($list as $id)
+			$categories[$id] = $group;
+	}
+	return $categories;
 }

@@ -47,6 +47,21 @@ $zz['fields'][23]['typo_cleanup'] = true;
 $zz['fields'][23]['typo_remove_double_spaces'] = true;
 $zz['fields'][23]['hide_in_list'] = true;
 
+$category_texts = mf_default_category_text_categories();
+if ($category_texts) {
+	$zz['conditions'][1]['scope'] = 'record';
+	$zz['conditions'][1]['where'] = sprintf(
+		'/*_PREFIX_*/categories.category_id IN (%s)',
+		implode(',', array_keys($category_texts))
+	);
+	$zz['if'][1]['details'][1]['title'] = 'Texts';
+	$zz['if'][1]['details'][1]['link'] = [
+		'area' => 'default_categorytexts',
+		'fields' => ['category_id']
+	];
+	$zz['if'][1]['details'][1]['sql'] = 'SELECT COUNT(*) FROM /*_PREFIX_*/categories_text WHERE category_id = %d';
+}
+
 $zz['fields'][4]['title'] = 'Main Category';
 $zz['fields'][4]['field_name'] = 'main_category_id';
 $zz['fields'][4]['type'] = 'select';

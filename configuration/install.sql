@@ -323,6 +323,24 @@ CREATE TABLE `categories` (
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'categories', 'category_id', 'main_category_id', 'no-delete');
 
 
+-- categories_text --
+CREATE TABLE `categories_text` (
+  `category_text_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` int unsigned NOT NULL,
+  `category_text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text_category_id` int unsigned NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`category_text_id`),
+  UNIQUE KEY `category_id_text_category_id` (`category_id`,`text_category_id`),
+  KEY `text_category_id` (`text_category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'categories_text', 'category_text_id', 'category_id', 'delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'categories_text', 'category_text_id', 'text_category_id', 'no-delete');
+
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Texts', NULL, NULL, 'texts', '&alias=texts', NULL, NOW());
+
+
 -- _jobqueue --
 CREATE TABLE `_jobqueue` (
   `job_id` int unsigned NOT NULL AUTO_INCREMENT,

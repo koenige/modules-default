@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- default module\n"
-"POT-Creation-Date: 2026-11-05 14:11+0000\n"
+"POT-Creation-Date: 2026-11-12 12:24+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -754,62 +754,66 @@ msgid "Subtree of categories"
 msgstr ""
 
 #: configuration/routes.cfg:37
+msgid "Texts of a category"
+msgstr ""
+
+#: configuration/routes.cfg:45
 msgid "Help text"
 msgstr ""
 
-#: configuration/routes.cfg:42
+#: configuration/routes.cfg:50
 msgid "Help packages"
 msgstr ""
 
-#: configuration/routes.cfg:47
+#: configuration/routes.cfg:55
 msgid "Help texts per package"
 msgstr ""
 
-#: configuration/routes.cfg:52
+#: configuration/routes.cfg:60
 msgid "Database maintenance, updates, access to logfiles"
 msgstr ""
 
-#: configuration/routes.cfg:57
+#: configuration/routes.cfg:65
 msgid "Overview of installed modules"
 msgstr ""
 
-#: configuration/routes.cfg:62
+#: configuration/routes.cfg:70
 msgid "Single installed module (package overview)"
 msgstr ""
 
-#: configuration/routes.cfg:67
+#: configuration/routes.cfg:75
 msgid "Installed module settings (from configuration/settings.cfg vs runtime)"
 msgstr ""
 
-#: configuration/routes.cfg:72
+#: configuration/routes.cfg:80
 msgid "Masquerade login"
 msgstr ""
 
-#: configuration/routes.cfg:77
+#: configuration/routes.cfg:85
 msgid "Proxy access of third-party websites"
 msgstr ""
 
-#: configuration/routes.cfg:82
+#: configuration/routes.cfg:90
 msgid "Website settings"
 msgstr ""
 
-#: configuration/routes.cfg:87
+#: configuration/routes.cfg:95
 msgid "Web pages table"
 msgstr ""
 
-#: configuration/routes.cfg:91
+#: configuration/routes.cfg:99
 msgid "Web pages"
 msgstr ""
 
-#: configuration/routes.cfg:92
+#: configuration/routes.cfg:100
 msgid "Base structure of the website"
 msgstr ""
 
-#: configuration/routes.cfg:96
+#: configuration/routes.cfg:104
 msgid "Internal tools for a single website"
 msgstr ""
 
-#: configuration/routes.cfg:103
+#: configuration/routes.cfg:111
 msgid "Search"
 msgstr ""
 

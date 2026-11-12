@@ -30,6 +30,9 @@
             "editor"
         ]
     },
+    "categories_text": {
+        "title": "Category Texts"
+    },
     "countries": {
         "title": "Countries"
     },
