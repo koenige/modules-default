@@ -12,6 +12,19 @@
             ]
         }
     ],
+    "cron-jobs": [
+        {
+            "title": "Cron Jobs",
+            "language": "en",
+            "package": "default",
+            "filename": "help/Cron Jobs.md",
+            "identifier": "cron-jobs",
+            "type": "md",
+            "audience": [
+                "admin"
+            ]
+        }
+    ],
     "google-search-console": [
         {
             "title": "Google Search Console",
