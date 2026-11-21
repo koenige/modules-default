@@ -29,8 +29,8 @@ if (wrap_setting('login_with_contact_id')) {
 		ORDER BY identifier';
 	$zz['fields'][11]['display_field'] = 'contact';
 	$zz['fields'][11]['link'] = [
-		'area' => 'contacts_profile[%s]',
-		'area_fields' => ['contact_scope'],
+		'route' => 'contacts_profile[%s]',
+		'route_fields' => ['contact_scope'],
 		'fields' => ['identifier']
 	];
 	$zz['fields'][11]['unique'] = true;
@@ -44,7 +44,7 @@ if (wrap_access('default_masquerade')) {
 	$zz['fields'][19]['field_name'] = 'user_id'; // extend query to include this
 	$zz['fields'][19]['type'] = 'display';
 	$zz['fields'][19]['link'] = [
-		'area' => 'default_masquerade',
+		'route' => 'default_masquerade',
 		'fields' => ['user_id']
 	];
 	$zz['fields'][19]['exclude_from_search'] = true;

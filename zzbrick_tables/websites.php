@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/default
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2016-2017, 2019-2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2016-2017, 2019-2021, 2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,7 +23,7 @@ $zz['fields'][1]['type'] = 'id';
 $zz['fields'][3]['field_name'] = 'domain';
 $zz['fields'][3]['explanation'] = 'Domain name without subdomain www';
 $zz['fields'][3]['link'] = [
-	'area' => 'default_website',
+	'route' => 'default_website',
 	'restrict_to' => 'website_id',
 	'fields' => ['domain']
 ];

@@ -56,7 +56,7 @@ if ($category_texts) {
 	);
 	$zz['if'][1]['details'][1]['title'] = 'Texts';
 	$zz['if'][1]['details'][1]['link'] = [
-		'area' => 'default_categorytexts',
+		'route' => 'default_categorytexts',
 		'fields' => ['category_id']
 	];
 	$zz['if'][1]['details'][1]['sql'] = 'SELECT COUNT(*) FROM /*_PREFIX_*/categories_text WHERE category_id = %d';
