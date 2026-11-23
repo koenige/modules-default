@@ -242,21 +242,51 @@ function mf_default_help_content($file) {
 /**
  * explain help body bricks, except lines listed in execute_bricks
  *
+ * Condition bricks (if, endif, …) are run together afterwards so they can
+ * hide the lines between them.
+ *
  * @param string $text
  * @param array $execute_bricks normalized brick lines from header
  * @return string
  */
 function mf_default_help_text_bricks($text, array $execute_bricks) {
-	return preg_replace_callback(
+	$conditional = false;
+	$explained = [];
+	$text = preg_replace_callback(
 		'/%%%(.*?)%%%/s',
-		function ($match) use ($execute_bricks) {
+		function ($match) use ($execute_bricks, &$conditional, &$explained) {
 			$line = trim($match[1]);
-			if (!in_array($line, $execute_bricks, true))
-				return '%%% explain '.$line.' %%%';
-			return brick_inline($line);
+			if (!in_array($line, $execute_bricks, true)) {
+				$token = '%%HELPKEEP'.count($explained).'%%';
+				$explained[$token] = '%%% explain '.$line.' %%%';
+				return $token;
+			}
+			if (!preg_match('/^(if|endif|else|elseif|unless)\b/', $line))
+				return brick_inline($line);
+			$conditional = true;
+			return $match[0];
 		},
 		$text
 	);
+	if ($conditional)
+		$text = mf_default_help_text_conditions($text);
+	return strtr($text, $explained);
+}
+
+/**
+ * evaluate condition bricks, leave markdown unchanged
+ *
+ * @param string $text
+ * @return string
+ */
+function mf_default_help_text_conditions($text) {
+	$format = wrap_setting('brick_fulltextformat');
+	wrap_setting('brick_fulltextformat', 'brick_textformat_html');
+	$page = brick_format($text);
+	wrap_setting('brick_fulltextformat', $format);
+
+	if (is_array($page['text'])) return implode('', $page['text']);
+	return $page['text'];
 }
 
 /**
