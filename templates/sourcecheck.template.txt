@@ -11,7 +11,7 @@
 # Variables
 # translate_pot = admin
 #
-<div class="maintenance">
+<div id="zzform" class="maintenance">
 
 <h2>%%% text Help, Tables, and Text Files %%%</h2>
 
